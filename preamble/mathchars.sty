@@ -1,0 +1,101 @@
+\renewcommand{\cal}[1]{\mathcal{#1}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\id}{\mathbbm{1}}
+\newcommand{\supf}{\mathfrak{c}}
+\renewcommand{\tr}{{\rm{tr}}}
+\renewcommand{\det}{{\rm{det}}}
+
+\newcommand{\spanv}[1]{
+    {{\rm{span}}\left\{#1\right\}}
+}
+\newcommand{\conv}[1]{
+    {{\rm{conv}}#1}
+}
+\newcommand{\orb}[1]{
+    {{\rm{orb}}(#1)}
+}
+\newcommand{\sn}[1]{
+    {{\rm{sn}}\left(#1\right)}
+}
+\newcommand{\mana}[1]{
+    {{\rm{mana}}\left(#1\right)}
+}
+
+\newcommand{\bmx}{\bm{x}}
+\newcommand{\bmy}{\bm{y}}
+\newcommand{\bmz}{\bm{z}}
+\newcommand{\bmo}{\bm{0}}
+\newcommand{\bmd}{\bm{d}}
+\newcommand{\bmg}{\bm{g}}
+\newcommand{\bma}{\bm{a}}
+\newcommand{\bmxi}{\bm{\xi}}
+
+\newcommand{\zd}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {\mathbb{Z}_d} }{
+    {\mathbb{Z}_{#1}}}
+}
+\newcommand{\hd}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {\cal{H}_d} }{
+    {\cal{H}_{#1}}}
+}
+\newcommand{\pd}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {\cal{P}_d} }{
+    {\cal{P}_{#1}}}
+}
+\newcommand{\cd}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {\cal{C}_d} }{
+    {\cal{C}_{#1}}}
+}
+\newcommand{\spd}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {{\rm{Sp}}(2, \zd)} }{
+    {{\rm{Sp}}(2, \zd[#1])}}
+}
+\newcommand{\gp}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {\rm{GP}_d} }{
+    {\rm{GP}_{#1}}}
+}
+\newcommand{\stoch}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {{\rm{S}}_d(\bmg)} }{
+    {{\rm{S}}_d(#1)}}
+}
+\newcommand{\stochw}[1][]{
+    \ifthenelse{\isempty{#1}}{
+    {{\rm{S}}_{d^2}(\W{\sigma})} }{
+    {{\rm{S}}_{d^2}(#1)}}
+}
+\makeatletter
+\def\W{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{ 
+    {{\rm{W}}_{#2}\left(#1\right)} }
+\def\@without#1{ 
+    {{\rm{W}}_{#1}} }
+\makeatother
+\newcommand{\T}{\cal{T}}
+
+\newcommand{\C}{\cal{C}}
+\newcommand{\E}{\cal{E}}
+\newcommand{\J}{\cal{J}}
+\newcommand{\R}{\cal{R}}
+\newcommand{\F}{\cal{F}}
+\renewcommand{\O}{\cal{O}}
+\newcommand{\so}{{\rm{SO}}}
+\newcommand{\stab}{{\rm{STAB}}}
+
+\newcommand{\cptp}{{\rm{CPTP}}}
+\newcommand{\tho}{{\rm{TO}}}
+\newcommand{\spo}{{\rm{SPO}}}
+\newcommand{\cspo}{{\rm{CSPO}}}
+\newcommand{\cpwp}{{\rm{CPWPO}}}
+\newcommand{\ru}{{\rm{RU}}}
+\newcommand{\rcu}{{\rm{RCU}}}
+
+\newcommand{\Pis}{\Pi_{\rm{s}}}
+\newcommand{\Pio}{\Pi_{\rm{o}}}

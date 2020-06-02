@@ -1,0 +1,50 @@
+\section{Magic Resource Theories}
+\label{sec:magic}
+
+\subsection{Introduction}
+
+Magic states are necessary for achieving universal quantum computation within fault-tolerant schemes.
+Identifying magic as a resource for quantum universality has led to several theories which try to provide a framework for its quantification and manipulation \nick{CITE}.
+The main question that such a theory attempts to answer is:
+\begin{center}
+    \emph{Given two magic states $\rho$ and $\rho'$ is there a free operation that can convert $\rho$ to $\rho'$?}
+\end{center}
+Magic monotones are often used \nick{CITE} to partially address this question, although such approaches do not exploit much of the structure of the theory.
+Therefore, we introduce a generalised notion of a measure, the \emph{fragment}, applicable in general resource theories and in particular in all theories of magic we consider. \nick{expand}
+
+We are interested in all resource theories of magic $\R = (\F, \O)$ that obey two assumptions:
+\begin{enumerate}[I]
+    \item Free operations send free states into free states, $\E: \F \mapsto \F$, for all $\E \in \O$;
+    \item Resource theory $\R$ is a completely free state preserving theory, in the sense that for any $d$-dimensional ancilla system and all free operations $\E$, $(\id_d \otimes \E ) \sigma \in \F$ whenever $\sigma \in \F$.
+\end{enumerate}
+The first assumption simply states that resources cannot be generated for free and is a minimal requirement for a resource theory. 
+An immediate consequence is that if statistical mixing is included in $\O$, then the resource theory is convex.
+Convex resource theories have attracted a lot of attention recently \nick{CITE} and include the magic theories discussed in~\cref{sec:prev}.
+The second assumption implies that resources cannot be generated even when ancillas are allowed \nick{example of T state generation on Bell state by Campbell}.
+
+The main result of this paper is that any magic theory $\R$ satisfying the above assumptions can be recast as a subtheory of stochasticity.
+This reformulation grants additional power to the theory as the structure of stochastic process can be exploited to add insight to the main questions of theories as stated above. \nick{expand}
+
+\subsection{Previous work}\label{sec:prev}
+
+The stabilizer theory \nick{CITE} is the first theory to introduce the idea of magic and it is discussed in sufficient detail for our purposes in~\cref{sec:so}. 
+It comprises of the so-called ``stabilizer'' states ($\stab$) and operations ($\so$), while non-stabilizer (resource) states are called magic.
+The stabilizer operations can be expressed in terms of a Stinespring dilation as 
+\begin{equation}
+    \E(\rho) = \tr_E [U(\rho \otimes \sigma_E)U^\dagger],
+\end{equation} 
+for an ancilla stabilizer state $\sigma_E$. 
+The motivation of the theory stems from the fact that stabilizer operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabilizer states due to their construction \nick{CITE}.
+The Gottesman-Knill theorem however indicates that stabilizer operations need to be supplemented with magic states in order to achieve universality, justifying the term ``magic''.
+
+Generalisations of the stabilizer theory appear in the literature intending to include broader classes of operations \nick{CITE}.
+The class of stabilizer preserving operations ($\spo$) is defined as the set of $\cptp$ maps that send stabilizer states into stabilizer states~\cite{cit:ahmadi}.
+An important subclass of $\spo$ is the set of completely stabilizer preserving operations ($\cspo$), which intuitively cannot induce ``non-stabilizerness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
+
+Even though non-stabilizerness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
+In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable in~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
+The Wigner distribution of a state in odd prime dimensions is discussed rigorously in~\cref{sec:wigner} and arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{cit:howard2, cit:veitch2}.
+In this framework, the stabilizer states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
+However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabilizer states~\cite{cit:gross}.
+Therefore, stabilizer-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{cit:wang}, formally defined in~\cref{sec:wigner} for odd prime dimensions.
+Informally, it can be considered as the maximal theory of magic $\R_{\rm{max}} = (\F_{\rm{max}}, \O_{\rm{max}})$, where free states have non-negative Wigner distributions and free operations completely preserve this property.

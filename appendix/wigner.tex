@@ -1,0 +1,31 @@
+\section{Properties of the Wigner distribution}
+\label{app:wigner}
+
+Here we present important properties of the Wigner distribution that are used throughout the paper.
+
+\begin{proposition}\label{thm:wstate}
+    The Wigner distribution of a state $\rho$ is
+    \begin{enumerate}%[label=\enlabel{W}{\arabic*}]
+        \item\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
+        \item\label{en:w2} Normalised: $\sum_{\bmz \in \pd} \W[\bmz]{\rho}=1$;
+        \item\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
+        \item\label{en:w4} Additive under mixing:
+        
+        $\W[\bmx]{\sum_i p_i \rho_i} = \sum\limits_i p_i \W[\bmx]{\rho_i}$;
+        \item\label{en:w5} Multiplicative under tensor products: 
+        
+        $\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+    \label{thm:wchannel}
+    The Wigner distribution of a $\cptp$ operation $\E: \cal{B}(\hd[d_A]) \mapsto \cal{B}(\hd[d_B])$ is:
+    \begin{enumerate}
+        \item\label{en:wo1} Real-valued: $\W[\bmy|\bmx]{\E} \in \mathbb{R}$;
+        \item\label{en:wo2} Normalised: $\sum_{\bmz \in \pd[d_B]} \W[\bmz|\bmx]{\E} = 1$ for any $\bmx \in \pd[d_A]$;
+        \item\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmx]{\E}} \leq \frac{d_A}{d_B}$;
+	    \item\label{en:wo4} \nick{Transitive}: $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \pd[d_A]} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \pd[d_B]$.
+    \end{enumerate}
+\end{proposition}
+If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto itself, then the stochasticity condition $\abs{\W[\bmy|\bmx]{\E}} \leq 1$ is satisfied.
