@@ -14,13 +14,14 @@ However, a single monotone does not provide information on whether two states ar
 Motivated by this restrictive nature of the monotone, we introduce the idea of a \emph{fragment} as a less restrictive way of comparing the resource of states in an arbitrary theory $\R = (\F, \O)$. \nick{explain exactly why fragments $>$ monotones}
 Let $\R' = (\F', \O')$ be a subtheory of $\R$ so that $\F' \subseteq \F$ and $\O' \subseteq \O$. 
 Then, we define a fragment as follows.
-\begin{definition}\label{def:fragment}
+\begin{definition}[\textbf{Resource projection}]\label{def:fragment}
     Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
     We call a resource fragment of $\R$ any theory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$, if there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
     \begin{enumerate}
         \item $\Pis: \F \mapsto \F'$ and $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_{\R} \rho_2$ for any states $\rho_1, \rho_2 \in \F$;
         \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for any free operations $\E_1, \E_2 \in \O$. 
     \end{enumerate}
+    We call $\Pi$ a resource projection.
 \end{definition}
 The subtheory $\R'$ is essentially the image of the surjection $\Pi$.
 The point of constructing a resource fragment with such a surjective map would be to achieve a more convenient set of free states or operations, or importantly a more convenient pre-order.
@@ -54,7 +55,7 @@ Note that these mappings are one-to-one due to the orthogonality of the phase-po
 
 Our goal is to give insight into magic state transformations.
 We first break up the theory into fragments that allow for the incorporation of $\bmd$-majorization in its framework.
-\begin{definition}\label{def:sigmafrag}
+\begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
     A subtheory $\R'$ of the Wigner negativity theory $\R = (\F, \O)$ is called a \emph{$\sigma$-fragment} iff $\R' = (\F, \O_\sigma)$, where the free operations are restricted to the ones that preserve $\sigma$,
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
@@ -159,7 +160,7 @@ A restatement of the theorem including more equivalent conditions, along with a 
     Conversely, suppose $\E$ is in $\O$. 
     The free states are mapped one-to-one to a subset $\cal{S}$ of the $(d^2 - 1)$-dimensional probability simplex.
     $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
-    Therefore, $\cal{S}$ is convex and compact as a convex subset of the bounded compact probability simplex.
+    Therefore, $\cal{S}$ is convex and compact as a convex subset of the bounded compact probability simplex. \nick{Need to prove that $\cal{S}$ is closed.}
     Then, $\W{\E}{}$ is a stochastic, thus continuous, mapping from $\cal{S}$ to itself and Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $g_{\bmz}, \bmz \in \pd$ that is preserved by $\W{\E}{}$.
     This corresponds one-to-one to a state $\sigma \coloneqq \sum_{\bmz \in \pd} g_{\bmz} A_{\bmz}$ and so $\O \subseteq \bigcup\limits_{\sigma \in \F} \O_\sigma$.
     
