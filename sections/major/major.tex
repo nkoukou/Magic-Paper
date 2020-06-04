@@ -5,7 +5,11 @@
 
 Magic is commonly quantified via monotones \nick{CITE}. 
 A monotone is a projection from the $d$-dimensional set of density states of the theory to the real line. 
-It is monotonically decreasing under free operations, reflecting the no resource generating property of free operations and thus respecting the pre-order $\prec$ of the theory.
+It is monotonically decreasing under free operations, 
+\begin{equation}\label{eq:monotonicity}
+    \cal{M}(\rho_1) \leq \cal{M}(\rho_2)\ \text{if}\ \rho_1 \prec_{\R} \rho_2,
+\end{equation}
+reflecting the no resource generating property of free operations and thus respecting the pre-order $\prec$ of the theory.
 A popular magic monotone is the \emph{mana} of a state \nick{CITE}, defined as
 \begin{equation}
     \mana{\rho} \coloneqq \log{\left(\sum\limits_{\bmz \in \pd} \abs{\W[\bmz]{\rho}}\right)}.
@@ -39,7 +43,15 @@ Any monotone is a trivial example of a resource fragment in the sense of the fol
 	Any monotone $\cal{M}$ of a resource theory $\R$ is a resource projection that maps the set of free states to $0$ and the pre-order $\prec_\R$ to a total order.
 \end{proposition}
 \begin{proof}
-	Trivial.
+	Consider a monotone $\cal{M}$ in the context of a general resource theory $\R = (\F, \O)$.
+	Let $\R' = (\F', \O')$, where $\F' \equiv \mathbb{R}_{\geq 0}$ is the set of non-negative real numbers and $\O'$ is the set of non-increasing real functions mapping $\mathbb{R}_{\geq 0}$ to $\mathbb{R}_{\geq 0}$. 
+	Naturally, we also set $\prec_{\R'}$ as the usual total order $\leq$ and $\circ_{\R'}$ as the usual function composition.
+	
+	The defining property of a monotone, given in~\cref{eq:monotonicity} ensures condition 1 of~\cref{def:fragment}.
+	
+	We can then project any $\E \in \O$ onto a function $f \in \O'$, so that $f$ maps $\cal{M}(\rho)$ onto $\cal{M}(\E(\rho))$ for all states $\rho$.
+	
+	\nick{expand}
 \end{proof}
 Mapping free states to real numbers and free operations to simple addition, the two conditions in the definition are equivalent to monotonicity and additivity respectively.
 The ``free state'' for real numbers is 0 and all free states of the resource theory are mapped onto it.
@@ -175,8 +187,15 @@ If any component of $\W{\sigma}$ is zero, then we can always add some $\epsilon$
 This ensures that all components are strictly positive and $\bmd$-majorization can be used.
 
 \begin{proposition}
-    A state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible only if there exists a free state $\sigma$ such that for \nick{an infinitesimal $\epsilon$}, $\W{\tau} \prec_{\W{\sigma'}} \W{\rho}$, where $\sigma' = (1-\epsilon)\sigma + \epsilon \frac{1}{d}\id$.
+    Let $\R = (\O, \F)$ be a theory of magic.
+    If the state conversion $\rho \xrightarrow{\O} \tau$ is possible, then there exists a full-rank free state $\sigma \in \F$ such that $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
 \end{proposition}
+\begin{proof}
+    Suppose there exists $\E \in \O$ such that $\E(\rho) = \tau$.
+    The free operation belongs to a $\sigma$-fragment, $\E \in \O_\sigma$, for some $\sigma \in \F$.
+    Then, $\W{\E}\W{\rho} = \W{\tau}$ with $\W{\E} \in \stochw$, or, equivalently, $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
+\end{proof}
+\nick{This proposition needs modification. What about $\E(\rho) = \ketbra{0}$?}
 
 \emph{Remark 1.} Note that free states $\F$ map onto a \emph{strict subset} of the set of probability distributions.
 As a counterexample, consider the 9-dimensional probability distribution with non-zero components $\left(\frac{1}{2}, \frac{1}{4}, \frac{1}{4} \right)$. 
@@ -215,9 +234,9 @@ Completely positive-Wigner-preserving operations ($\cpwp$) form the largest oper
 Therefore, $\sigma$-fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
 For example, the stabilizer-preserving ($\spo$)~\cite{cit:ahmadi} and completely stabilizer-preserving ($\cspo$)~\cite{cit:seddon} operation subclasses follow the hierarchy $\so \subset \cspo \subset \spo \subset \cpwp$ and therefore are described by our $\sigma$-fragments.
 
-\begin{figure}
+\begin{figure}[b]
     \centering
-        \includegraphics[scale=0.5]{sections/major/operations.pdf}
+        \includegraphics[scale=0.45]{sections/major/operations.pdf}
     \caption{Zoo of allowed operations for magic resource theories.
     Established theories involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \cpwp$.
     We introduce fragments $\O_\sigma \subset \stochw,\ \sigma \in \F$ that cover $\cpwp$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used.
