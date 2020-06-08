@@ -9,10 +9,13 @@ The main question that such a theory attempts to answer is:
 \begin{center}
     \emph{Given two magic states $\rho$ and $\rho'$ is there a free operation that can convert $\rho$ to $\rho'$?}
 \end{center}
-Magic monotones are often used \nick{CITE} to partially address this question, although such approaches do not exploit much of the structure of the theory.
-Therefore, we introduce a generalised notion of a measure, the \emph{fragment}, applicable in general resource theories and in particular in all theories of magic we consider. \nick{expand}
 
-We are interested in all resource theories of magic $\R = (\F, \O)$ that obey two assumptions:
+We are interested in all resource theories of magic $\R = (\F, \O)$ in which free operations cannot generate any amount of resource. 
+The structure of such theory is described by a pre-order, often called partial order \nick{CITE}, $\prec_{\R}$ between states.
+We write $\rho' \prec_{\R} \rho$ iff there exists $\E \in \O$ such that $\E(\rho) = \rho'$.
+Naturally, states may be incomparable under the given theory, meaning that there exists no free operation that converts one to the other.
+
+Formally, the no resource generation condition on the theories translates into two assumptions:
 \begin{enumerate}[I]
     \item Free operations send free states into free states, $\E: \F \mapsto \F$, for all $\E \in \O$;
     \item Resource theory $\R$ is a completely free state preserving theory, in the sense that for any $d$-dimensional ancilla system and all free operations $\E$, $(\id_d \otimes \E ) \sigma \in \F$ whenever $\sigma \in \F$.
@@ -22,8 +25,12 @@ An immediate consequence is that if statistical mixing is included in $\O$, then
 Convex resource theories have attracted a lot of attention recently \nick{CITE} and include the magic theories discussed in~\cref{sec:prev}.
 The second assumption implies that resources cannot be generated even when ancillas are allowed \nick{example of T state generation on Bell state by Campbell}.
 
-The main result of this paper is that any magic theory $\R$ satisfying the above assumptions can be recast as a subtheory of stochasticity.
-This reformulation grants additional power to the theory as the structure of stochastic process can be exploited to add insight to the main questions of theories as stated above. \nick{expand}
+Monotones are often used \nick{CITE} to address the question of state convertibility, although such approaches are usually generic.
+A monotone of any general resource theory is a projection of the theory onto the non-negative real numbers, collapsing the pre-order of the theory to the total order defined on the real line.
+This is the \nick{most naive} non-trivial projection under which the images of incomparable states can be compared.
+Our first contribution is the introduction of a generalised notion of \emph{resource projection} which maps a general resource theory onto a subtheory which in principle still retains a partial structure.
+Applying this notion on existing magic theories highlights the hidden stochasticity that governs magic state conversions.
+We show that a magic theory can be subdivided into \emph{fragments} \nick{expand}
 
 \subsection{Previous work}\label{sec:prev}
 
@@ -47,4 +54,4 @@ The Wigner distribution of a state in odd prime dimensions is discussed rigorous
 In this framework, the stabilizer states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
 However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabilizer states~\cite{cit:gross}.
 Therefore, stabilizer-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{cit:wang}, formally defined in~\cref{sec:wigner} for odd prime dimensions.
-Informally, it can be considered as the maximal theory of magic $\R_{\rm{max}} = (\F_{\rm{max}}, \O_{\rm{max}})$, where free states have non-negative Wigner distributions and free operations completely preserve this property.
+Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax, \Omax)$, where free states have non-negative Wigner distributions and free operations completely preserve this property.

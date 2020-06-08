@@ -68,7 +68,7 @@ where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rh
 \begin{equation}\label{eq:wstate}
     \W[\bmx]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmx} \rho].
 \end{equation}
-It is in fact a bounded $d^2$-dimensional quasi-probability distribution over $\pd$ as shown in~\cref{app:wigner}. 
+It is in fact a real, bounded, $d^2$-dimensional quasi-probability distribution over $\pd$ as shown in~\cref{app:wigner}. 
 
 The Wigner distributions of different types of qutrit states are illustrated in~\cref{fig:wstate_examples}.
 \begin{figure}%
@@ -112,9 +112,8 @@ to extend the definition of the Wigner distribution to quantum $\cptp$ operation
 \end{align}
 where $\bm{\bar x} \coloneqq (x_0, -x_1)$.
 
-The particular form of~\cref{eq:woperation} was chosen so that Wigner distributions of operations act as transition matrices for Wigner distribution of states, $\W{\E(\rho)} = \W{\E}\W{\rho}$.
-In particular, $\cptp$ operations that map a Hilbert space to itself and have non-negative Wigner distributions correspond to stochastic matrices.
-All these properties are shown in~\cref{app:wigner}
+The specific form of~\cref{eq:woperation} is chosen so that Wigner distributions of operations act as transition matrices for Wigner distributions of states, $\W{\E(\rho)} = \W{\E}\W{\rho}$.
+In particular, $\cptp$ operations that map between density operators of equal dimensions and have non-negative Wigner distributions correspond to stochastic matrices, as shown in~\cref{app:wigner}
 
 The single-qudit Hadamard gate $H$ and phase gate $S$ generate the $d$-dimensional Clifford group $\cd$. \nick{CITE}
 Their Wigner distributions are given by permutation matrices,
@@ -122,15 +121,3 @@ Their Wigner distributions are given by permutation matrices,
     H &\coloneqq \frac{1}{\sqrt{d}}\sum_{j,k} \omega^{jk} \ketbra{j}{k}, \W[\bmy|\bmx]{H} = \delta_{y_0, -x_1}\delta_{y_1, x_0};\label{eq:H}\\
     S &\coloneqq \sum_k \tau^{k(k+1)} \ketbra{k}{k}, \W[\bmy|\bmx]{S} = \delta_{y_0, x_0}\delta_{y_1, x_0 + x_1 + 2^{-1}}.\label{eq:S}
 \end{align}
-
-Equipped with the definitions of the Wigner distribution, we can formally define the Wigner positivity theory $\R_{\rm{max}}$ in odd prime dimensions.
-The free states are all states with non-negative Wigner distributions 
-\begin{equation}
-    \F_{\rm{max}} \coloneqq \{ \rho: \W[\bmz]{\rho} \geq 0 \text{ for all } \bmz \in \pd\}
-\end{equation}
-The free operations should send the set of free states $\F_{\rm{max}}$ into itself and completely preserve the non-negativity of the states, in the sense that $\E \in \O_{\rm{max}}$ iff $(\id_d \otimes \E ) \sigma \in \stab$ for all odd prime dimensions $d$ whenever $\sigma \in \F_{\rm{max}}$.
-
-It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\O_{\rm{max}}$ coincides with the set of operations $\E$ with a non-negative Wigner distributions, 
-\begin{equation}
-    \O_{\rm{max}} = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
-\end{equation}
