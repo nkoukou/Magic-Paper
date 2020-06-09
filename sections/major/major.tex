@@ -15,10 +15,12 @@ It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with 
     \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
 \end{equation}
 
+Let $\R = (\F, \O)$ be a general resource theory.
+We call $\R' = (\F', \O')$ a \emph{subtheory} of $\R$ iff $\F' \subseteq \F$ and $\O' \subseteq \O$. 
 Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. \nick{expand}
 
 \begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
-    A subtheory $\R'$ of the Wigner negativity theory $\R = (\F, \O)$ is called a \emph{$\sigma$-fragment} iff $\R' = (\F, \O_\sigma)$, where the free operations are restricted to the ones that preserve $\sigma$,
+    A subtheory $\R'$ of a magic theory $\R = (\F, \O)$ is called a \emph{$\sigma$-fragment} of $\R$ iff $\R' = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant,
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
     \end{equation}
@@ -42,6 +44,23 @@ We now show that every free operation has a fixed point, so that the theory $\R$
     Then, $\W{\E}{}$ is a stochastic, thus continuous, mapping from $\cal{S}$ to itself and Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $g_{\bmz}, \bmz \in \pd$ that is preserved by $\W{\E}{}$.
     This corresponds one-to-one to a state $\sigma \coloneqq \sum_{\bmz \in \pd} g_{\bmz} A_{\bmz}$ and so $\O \subseteq \bigcup\limits_{\sigma \in \F} \O_\sigma$.
 \end{proof}
+Therefore, identifying an invariance in the setup helps in determining whether a state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible. 
+If state $\sigma$ is left invariant by an operational sequence, then the total operation $\E$ that converts $\rho$ to $\tau$ lies in $\O_\sigma$. \nick{expand}
+
+The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
+Completely positive-Wigner-preserving operations~\cite{cit:wang} form the operation class $\Omax$.
+Therefore, $\sigma$-fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
+In particular, the stabilizer operations $\so$ are contained within $\Omax$.
+\begin{figure}[t]
+    \centering
+        \includegraphics[scale=0.47
+        ]{sections/major/operations.pdf}
+    \caption{Zoo of allowed operations for magic resource theories.
+    Established theories involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \Omax$.
+    We introduce fragments $\O_\sigma,\ \sigma \in \F$ that cover $\Omax$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used.
+    }
+    \label{fig:zoo}
+\end{figure}
 
 The subdivision of magic theories into $\sigma$-fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$-fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
 
@@ -134,105 +153,6 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
     \label{fig:lctoy}
 \end{figure}
 
-\subsection{General resource fragments}\label{sec:frag}
-
-Subdividing magic into $\sigma$-fragments
-Magic is commonly quantified via monotones \nick{CITE}. 
-A monotone is a projection from the $d$-dimensional set of density states of the theory to the real line. 
-It is monotonically decreasing under free operations, 
-\begin{equation}\label{eq:monotonicity}
-    \cal{M}(\rho_1) \leq \cal{M}(\rho_2)\ \text{if}\ \rho_1 \prec_{\R} \rho_2,
-\end{equation}
-reflecting the no resource generating property of free operations and thus respecting the pre-order $\prec$ of the theory.
-A popular magic monotone is the \emph{mana} of a state \nick{CITE}, defined as
-\begin{equation}
-    \mana{\rho} \coloneqq \log{\left(\sum\limits_{\bmz \in \pd} \abs{\W[\bmz]{\rho}}\right)}.
-\end{equation}
-However, a single monotone does not provide information on whether two states are incomparable in the theory.
-Motivated by this restrictive nature of the monotone, we introduce the idea of a \emph{fragment} as a less restrictive way of comparing the resource of states in an arbitrary theory $\R = (\F, \O)$. \nick{explain exactly why fragments $>$ monotones}
-
-\begin{figure}
-    \centering
-    \includegraphics[height=3cm]{sections/major/fragments.pdf}
-    \caption{Fragments \nick{Split into subfigures}
-    }
-    \label{fig:fragments}
-\end{figure}
-
-Let $\R' = (\F', \O')$ be a subtheory of $\R$ so that $\F' \subseteq \F$ and $\O' \subseteq \O$. 
-Then, we define a fragment as follows.
-\begin{definition}[\textbf{Resource projection}]\label{def:fragment}
-    Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
-    We call a resource fragment of $\R$ any theory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$, if there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
-    \begin{enumerate}
-        \item $\Pis: \F \mapsto \F'$ \nick{actually it maps all states, not just the free ones} and $\rho_1 \prec_{\R} \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ for any states $\rho_1, \rho_2$;
-        \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for any free operations $\E_1, \E_2 \in \O$. 
-    \end{enumerate}
-    We call $\Pi$ a resource projection.
-\end{definition}
-Fragment $\R'$ is the image of the projection $\Pi$.
-Considering a resource projection is particularly useful when the structure of the fragment is more tractable.
-
-\begin{proposition}
-    Let $\R = (\F, \O)$ be a theory of magic.
-    Every $\sigma$-fragment $(\F, \O_\sigma)$ is a resource fragment of $\R$.
-\end{proposition}
-\begin{proof}
-    Let the state projection be the identity projection $\Pis:\F\mapsto\F$.
-    
-    Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
-    \begin{equation}
-    \Pio(\E) =
-    \begin{cases}
-        \E,\ &\sigma \in \O, \\
-        1_{\rm{C}},\ &\sigma \notin \O.
-    \end{cases}
-    \end{equation}
-    The ordered pair $(\Pis, \Pio)$ acts as the desired projection.
-\end{proof}
-
-\begin{proposition}
-    Every theory of magic $\R = (\F, \O)$ is a fragment of the maximal theory $\Rmax$.
-\end{proposition}
-\begin{proof}
-    Consider the state projection $\Pis:\Fmax \mapsto \F$, defined as
-    \begin{equation}
-    \Pis(\sigma) =
-    \begin{cases}
-        \sigma,\ &\sigma \in \F, \\
-        \frac{1}{d}\id,\ &\sigma \notin \F.
-    \end{cases}
-    \end{equation}
-    \nick{Perhaps $\Pis = $ identity}
-    Let $1_{\rm{C}}$ denote the identity channel.
-    Consider the operation projection $\Pio:\Omax \mapsto \O$, defined as
-    \begin{equation}
-    \Pio(\E) =
-    \begin{cases}
-        \E,\ &\sigma \in \O, \\
-        1_{\rm{C}},\ &\sigma \notin \O.
-    \end{cases}
-    \end{equation}
-    The orderd pair $(\Pis, \Pio)$ acts as the desired projection.
-\end{proof}
-
-Monotones reduce the structure of the theory into a real number ordering, therefore a monotone is the simplest tractable projection as formally stated in~\cref{thm:monofrag}.
-\begin{proposition}\label{thm:monofrag}
-	Let $\cal{M}$ be a monotone defined in the context of a resource theory $\R$. 
-	Then $\cal{M}$ is a resource projection that  reduces the pre-order $\prec_\R$ to a total order.
-\end{proposition}
-\begin{proof}
-	Consider a monotone $\cal{M}$ in the context of a general resource theory $\R = (\F, \O)$.
-	Let $\R' = (\F', \O')$, where $\F' \equiv \{0\}$ is the set of non-negative real numbers and $\O'$ is the set of non-increasing real functions mapping $\mathbb{R}_{\geq 0}$ to $\mathbb{R}_{\geq 0}$. 
-	Naturally, we also set $\prec_{\R'}$ as the usual total order $\leq$ and $\circ_{\R'}$ as the composition of real functions.
-	
-	The defining property of a monotone, given in~\cref{eq:monotonicity} ensures condition 1 of~\cref{def:fragment}.
-	
-	We can then project any $\E \in \O$ onto a function $f \in \O'$, so that $f$ maps $\cal{M}(\rho)$ onto $\cal{M}(\E(\rho))$ for all states $\rho$.
-	
-	\nick{expand}
-\end{proof}
-
 \subsection{Set theoretic properties of magic fragments}\label{sec:propmagfrag}
 
 \nick{May move statements around the section or in an appendix.}
@@ -302,19 +222,3 @@ As an example, consider the permutation matrix
     \end{psmallmatrix} \in \stochw,\ d=5.
 \end{equation}
 It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any completely positive operation and therefore to any $\E \in \O$, due to~\cref{thm:frag}.
-
-The zoo of all the operation classes is summarised in ~\cref{fig:zoo}.
-Completely positive-Wigner-preserving operations ($\cpwp$) form the largest operation class in the literature.
-Therefore, $\sigma$-fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
-For example, the stabilizer-preserving ($\spo$)~\cite{cit:ahmadi} and completely stabilizer-preserving ($\cspo$)~\cite{cit:seddon} operation subclasses follow the hierarchy $\so \subset \cspo \subset \spo \subset \cpwp$ and therefore are described by our $\sigma$-fragments.
-
-\begin{figure}[b]
-    \centering
-        \includegraphics[scale=0.45]{sections/major/operations.pdf}
-    \caption{Zoo of allowed operations for magic resource theories.
-    Established theories involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \cpwp$.
-    We introduce fragments $\O_\sigma \subset \stochw,\ \sigma \in \F$ that cover $\cpwp$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used.
-    \nick{fragments are the intersections of blue and orange, not the whole bubble - technically $\stochw$ should be replaced by its operational pre-image.}
-    }
-    \label{fig:zoo}
-\end{figure}
