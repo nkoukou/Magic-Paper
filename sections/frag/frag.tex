@@ -12,7 +12,7 @@ Resource theories are commonly equipped with monotones which quantify the resour
     A monotone $\M$ is a projection from the set of all states of the theory to the real line, satisfying two conditions:
     \begin{enumerate}
         \item All free states are mapped onto 0, $\M(\sigma) = 0,\ \sigma \in \F$;
-        \item $\M$ is monotonically decreasing under free operations, $\M(\rho_1) \leq \M(\rho_2)$ if $\rho_1 \prec_{\R} \rho_2$.
+        \item $\M$ is monotonically decreasing under free operations, $\M(\rho_1) \leq \M(\rho_2)$ whenever $\rho_1 \prec_{\R} \rho_2$.
     \end{enumerate}
 \end{definition}
 The first condition reflects the property that all free states can be converted into each other, hence they need to be mapped onto the same number, by convention 0.
@@ -35,7 +35,7 @@ Monotones reduce the structure of the resource theory $\R$ into a real number or
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
 This is a generic approach that ensures a form of state comparison and resource quantification.
 However, motivated by $\sigma$-fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
-\begin{figure}
+\begin{figure}[t]
     \centering
     \includegraphics[height=3cm]{sections/major/fragments.pdf}
     \caption{Fragments \nick{Split into subfigures}
@@ -47,15 +47,16 @@ We define such a resource projection for general resource theories as follows.
     Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
     Any subtheory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$ is called a resource fragment iff there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
     \begin{enumerate}
-        \item $\Pis: \cal{B}(\cal{H}) \mapsto \cal{B}(\cal{H})$ and $\rho_1 \prec_{\R} \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ for all states $\rho_1, \rho_2$;
-        \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for all free operations $\E_1, \E_2 \in \O$. 
+        \item $\Pis: \cal{B}(\cal{H}) \mapsto \cal{B}(\cal{H})$ and $\Pis(\rho_2) \nprec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_{\R} \rho_2$;
+        \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
     \end{enumerate}
     We call $\Pi$ a resource projection.
 \end{definition}
 Fragment $\R'$ is the image of the projection $\Pi$.
-Considering a resource projection is particularly useful when the structure of the fragment is more tractable.
+Considering a resource projection is particularly useful when the pre-order of the fragment is tractable.
+Note the subtle difference of condition 1 in~\cref{def:fragment} and condition 2 in~\cref{def:mono}, which is due to fragments generally retaining a pre-order, while monotones impose a total order.
 
-A monotone is the simplest tractable projection as formally stated in~\cref{thm:monofrag}.
+A monotone is the projection with the simplest tractable order as formally stated in~\cref{thm:monofrag}.
 \begin{proposition}\label{thm:monofrag}
 	Let $\M$ be a resource monotone of a resource theory $\R$. 
 	Then $\M$ is a resource projection that reduces the pre-order $\prec_\R$ to a total order.
