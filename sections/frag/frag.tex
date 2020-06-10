@@ -47,7 +47,7 @@ We define such a resource projection for general resource theories as follows.
     Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
     Any subtheory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$ is called a resource fragment iff there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
     \begin{enumerate}
-        \item $\Pis: \cal{B}(\cal{H}) \mapsto \cal{B}(\cal{H})$ and $\Pis(\rho_2) \nprec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_{\R} \rho_2$;
+        \item $\Pis: \D \mapsto \D$ and $\Pis(\rho_2) \nprec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_{\R} \rho_2$;
         \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
     \end{enumerate}
     We call $\Pi$ a resource projection.
@@ -67,7 +67,7 @@ A monotone is the projection with the simplest tractable order as formally state
 	We also set $\prec_{\R'}$ as the usual total order $\leq$ and $\circ_{\R'}$ as the composition of real functions.
 	
 	Let $\Pis = \M$.
-	The defining properties of a monotone, given in~\cref{def:mono}, ensure condition 1 of~\cref{def:fragment}.
+	The defining properties of a monotone, given in~\cref{def:mono}, ensure condition 1 of~\cref{def:fragment}. \nick{expand}
 	
 	Let $\Pio$ project any $\E \in \O$ onto a function $f \in \O$ which maps $\M(\rho)$ onto $\M(\E(\rho))$ for all states $\rho$.
 	
@@ -80,7 +80,7 @@ We now justify the name $\sigma$-fragment for the subdivision of a magic theory 
     Every $\sigma$-fragment $(\F, \O_\sigma)$ is a resource fragment of $\R$.
 \end{proposition}
 \begin{proof}
-    Let the state projection be the identity projection $\Pis:\F\mapsto\F$.
+    Let the state projection be the identity projection $\Pis:\D\mapsto\D$.
     
     Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
     \begin{equation}
@@ -90,6 +90,7 @@ We now justify the name $\sigma$-fragment for the subdivision of a magic theory 
         1_{\rm{C}},\ &\sigma \notin \O.
     \end{cases}
     \end{equation}
+    \nick{$\Pio$ should be different, this here is not right. If we need to project every $\E \in \O$, we may need a different condition on $\Pio$ than $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$.}
     The ordered pair $(\Pis, \Pio)$ acts as the desired projection.
 \end{proof}
 
@@ -102,23 +103,5 @@ Existing magic theories can be thought of as fragments of $\Rmax$.
     Every theory of magic $\R$ is a fragment of the maximal theory $\Rmax$.
 \end{proposition}
 \begin{proof}
-    Consider the state projection $\Pis:\Fmax \mapsto \F$, defined as
-    \begin{equation}
-    \Pis(\sigma) =
-    \begin{cases}
-        \sigma,\ &\sigma \in \F, \\
-        \frac{1}{d}\id,\ &\sigma \notin \F.
-    \end{cases}
-    \end{equation}
-    \nick{Perhaps $\Pis = $ identity}
-    Let $1_{\rm{C}}$ denote the identity channel.
-    Consider the operation projection $\Pio:\Omax \mapsto \O$, defined as
-    \begin{equation}
-    \Pio(\E) =
-    \begin{cases}
-        \E,\ &\sigma \in \O, \\
-        1_{\rm{C}},\ &\sigma \notin \O.
-    \end{cases}
-    \end{equation}
-    The orderd pair $(\Pis, \Pio)$ acts as the desired projection.
+    \nick{We need a state projection that establishes that some free states are not free any more $+$ an operations projection.}
 \end{proof}

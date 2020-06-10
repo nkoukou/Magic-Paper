@@ -15,10 +15,8 @@ It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with 
     \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
 \end{equation}
 
-Let $\R = (\F, \O)$ be a general resource theory.
-We call $\R' = (\F', \O')$ a \emph{subtheory} of $\R$ iff $\F' \subseteq \F$ and $\O' \subseteq \O$. 
-Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. \nick{expand}
-
+Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. 
+This observation gives rise to the idea of subdividing magic theories into ``chunks'' identified by the invariance of a particular state under stochastic processes. \nick{explain better}
 \begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
     A subtheory $\R'$ of a magic theory $\R = (\F, \O)$ is called a \emph{$\sigma$-fragment} of $\R$ iff $\R' = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant,
     \begin{equation}
@@ -27,7 +25,6 @@ Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref
 \end{definition}
 
 State $\sigma$ is thus a fixed point of all operations in $\O_\sigma$. 
-This is an observation arising from the stochastic nature of free operations. 
 We now show that every free operation has a fixed point, so that the theory $\R$ can be entirely subdivided into $\sigma$-fragments.
 
 \begin{theorem}
@@ -103,8 +100,8 @@ There are non-full-rank states with no zeros in W.}
 The pre-order $\prec_{\R'}$ of the $\sigma$-fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
 
 \begin{theorem}
-    Let $\R = (\O, \F)$ be a theory of magic.
-    Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible. 
+    Let $\R = (\F, \O)$ be a theory of magic.
+    Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible, $\tau \prec_\R \rho$.
     Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
 \end{theorem}
 \begin{proof}
@@ -203,7 +200,7 @@ Note that these mappings are one-to-one due to the orthogonality of the phase-po
 \emph{Remark 1.} Note that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
 As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition~\ref{en:w3} in~\cref{thm:wstate}.
 
-\emph{Remark 2.} Similarly, not all stochastic matrices correspond to $\cpos$ operations.
+\emph{Remark 2.} Similarly, not all stochastic matrices correspond to completely positive operations.
 
 As an example, consider the permutation matrix
 \begin{equation}
@@ -221,4 +218,4 @@ As an example, consider the permutation matrix
         0 & 1 & 0 & 0 & 0    
     \end{psmallmatrix} \in \stochw,\ d=5.
 \end{equation}
-It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any completely positive operation and therefore to any $\E \in \O$, due to~\cref{thm:frag}.
+It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any $\cpos$ operation, hence any $\E \in \O$ due to~\cref{thm:frag}.
