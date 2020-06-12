@@ -241,34 +241,35 @@ It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with 
     \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
 \end{equation}
 
-Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. 
-This observation gives rise to the idea of subdividing magic theories into ``chunks'' identified by the invariance of a particular state under stochastic processes. \nick{explain better}
+Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\mbox{\tiny max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr [ L\rho] \ge 0$ with $L \in \mathcal{B}(\mathcal{H})$.
+
+
+Given this context we now define the following key notion, that is central to our analysis.
 \begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
-    A subtheory $\R'$ of a magic theory $\R = (\F, \O)$ is called a \emph{$\sigma$-fragment} of $\R$ iff $\R' = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant,
+   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$-fragment of $\R$} is the resource theory $\R_\sigma = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant, namely
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
     \end{equation}
 \end{definition}
 
-State $\sigma$ is thus a fixed point of all operations in $\O_\sigma$. 
-We now show that every free operation has a fixed point, so that the theory $\R$ can be entirely subdivided into $\sigma$-fragments.
+With this basic notion defined, we now show that any resource theory of magic can be faithfully subdivided into $\sigma$-fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
 
 \begin{theorem}
     Let $\R = (\F, \O)$ be a theory of magic.
-    Every free operation leaves at least one free state invariant such that $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$.
+    Every operation in $\O$ leaves at least one free state invariant,
+  \begin{equation}
+\O = \bigcup\limits_{\sigma \in \F} \O_\sigma, 
+\end{equation}
+and therefore $\rho\longrightarrow \tau$ in $\R$ if and only if $\rho\longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
 \end{theorem}
 \begin{proof}
-    Suppose $\E$ is in $\O_\sigma$, then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$.
-    
-    Conversely, suppose $\E$ is in $\O$. 
-    The free states are mapped one-to-one to a subset $\cal{S}$ of the $(d^2 - 1)$-dimensional probability simplex.
+    Suppose $\E$ is in $\O_\sigma$, then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. Conversely, suppose $\E$ is in $\O$. 
+    The free states are a closed set that is mapped one-to-one to a closed subset $\cal{S}$ of the $(d^2 - 1)$-dimensional probability simplex.
     $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
-    Therefore, $\cal{S}$ is convex and compact as a convex subset of the bounded compact probability simplex. \nick{Need to prove that $\cal{S}$ is closed.}
-    Then, $\W{\E}{}$ is a stochastic, thus continuous, mapping from $\cal{S}$ to itself and Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $g_{\bmz}, \bmz \in \pd$ that is preserved by $\W{\E}{}$.
-    This corresponds one-to-one to a state $\sigma \coloneqq \sum_{\bmz \in \pd} g_{\bmz} A_{\bmz}$ and so $\O \subseteq \bigcup\limits_{\sigma \in \F} \O_\sigma$.
+    Therefore, $\cal{S}$ is convex and compact as a convex subset of the bounded compact probability simplex.
+    Then, $\W{\E}{}$ is a stochastic, continuous, mapping from $\cal{S}$ to itself and so Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $g_{\bmz}$ for some $ \bmz \in \pd$ that is a fixed point of $\W{\E}{}$.
+    This corresponds to an operator $\sigma \coloneqq \sum_{\bmz \in \pd} g_{\bmz} A_{\bmz}$  which is a state in $\F$. Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. The state interconversion result follows immediately.
 \end{proof}
-Therefore, identifying an invariance in the setup helps in determining whether a state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible. 
-If state $\sigma$ is left invariant by an operational sequence, then the total operation $\E$ that converts $\rho$ to $\tau$ lies in $\O_\sigma$. \nick{expand}
 
 The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
 Completely positive-Wigner-preserving operations~\cite{cit:wang} form the operation class $\Omax$.
@@ -278,7 +279,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
     \centering
         \includegraphics[scale=0.47
         ]{figs/operations.pdf}
-    \caption{Zoo of allowed operations for magic resource theories.
+    \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
     Established theories involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \Omax$.
     We introduce fragments $\O_\sigma,\ \sigma \in \F$ that cover $\Omax$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used.
     }
@@ -287,7 +288,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
 
 The subdivision of magic theories into $\sigma$-fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$-fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
 
-\subsection{Majorization}\label{sec:major}
+\subsection{Majorization in the $\sigma$--fragments}\label{sec:major}
 
 Majorization is a powerful tool that has recently found many applications in quantum information theory \nick{CITE}.
 It can describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
@@ -355,8 +356,9 @@ In fact, the Lorenz curves $L(\bmz|\bmd)$ and $L(\bmz \otimes \bmd|\bmd \otimes 
 
 \emph{Remark 4.} If $L_d(\bmz|\bmd) = 1$ and for all $k$, $L_k(\bmz|\bmd) \leq 1$, then $\bmz$ is a probability distribution.
 Lorenz curves of quasi-probability distributions in principle reach above 1.
+\ddd{[It is usually better to convert the Lorenz curve into a \emph{function} $L_{\bmz|\bmd}(x)$ defined on $[0,1]$. Then the majorization simply becomes the functional inequality $L_{\bmz|\bmd}(x) \ge L _{\bmy|\bmd}(x)$ for all $x$.]}
 
-A vector $\bmy$ $\bmd$-majorizes another vector $\bmx$  if and only if Lorenz curve $L(\bmy|\bmd)$ lies above Lorenz curve $L(\bmx|\bmd)$.
+A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$  if and only if the Lorenz curve $L(\bmy|\bmd)$ lies above Lorenz curve $L(\bmx|\bmd)$.
 \begin{theorem}\label{thm:dmajor}
     Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $L_k(\bmx|\bmd) \leq L_k(\bmy|\bmd)$ for all $k=1,2,\dots, d-1$ and $L_d(\bmx|\bmd) = L_d(\bmy|\bmd)$.
@@ -378,7 +380,7 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
 
 \subsection{Set theoretic properties of magic fragments}\label{sec:propmagfrag}
 
-\nick{May move statements around the section or in an appendix.}
+\nick{May move statements around the section or in an appendix.} \ddd{[Yes, the following theorem, while useful, isn't so interesting.]}
 
 \begin{theorem}\label{thm:frag}
     Let $\R = (\O, \F)$ be a magic theory. 
@@ -403,7 +405,7 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
     \end{align}
     where $\sigma \in \F$. 
     Then, $\E \in \O_\sigma$.
-    It can be thought as a sequence of tracing out state $\rho$ and preparing the free state $\sigma$.
+    It can be thought as a sequence of tracing out state $\rho$ and preparing the free state $\sigma$. \ddd{[There is no reason this map is in $\O$. Better to use the identity map, which we can assume is always available.]}
     
     \item Let $\E \in \O_{\sigma} \cap \O_{\sigma'}$.
     Then $\E \in \cptp$ and corresponds to stochastic Wigner distribution $\W{\E}$ such that $\W{\E} \W{\sigma} = \W{\sigma}$ and $\W{\E} \W{\sigma'} = \W{\sigma'}$.
@@ -448,8 +450,10 @@ It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not co
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{General resource fragments}
+\section{Extension to general quantum resource theories}
 \label{sec:frag}
+
+\ddd{In the previous section we introduced the notion of $\sigma$--fragments for any resource theory of magic. In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. The busy reader more focussed on magic may skip this section.}
 
 State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
 In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ \nick{expand / move to intro}.
@@ -458,10 +462,10 @@ Subdividing magic theories into $\sigma$-fragments \nick{helps}.
 
 Resource theories are commonly equipped with monotones which quantify the resource\nick{CITE}. 
 \begin{definition}[\textbf{Resource monotone}]\label{def:mono}
-    Let $\R = (\F, \O)$ be a general resource theory.
-    A monotone $\M$ is a projection from the set of all states of the theory to the real line, satisfying two conditions:
+    Let $\R = (\F, \O)$ be a resource theory.
+    A resource monotone $\M$ is a projection from the set of all states of the theory to the real line, satisfying two conditions:
     \begin{enumerate}
-        \item All free states are mapped onto 0, $\M(\sigma) = 0,\ \sigma \in \F$;
+        \item All free states are mapped onto 0, $\M(\sigma) = 0,\ \sigma \in \F$; \ddd{[This is not a requirement!]}
         \item $\M$ is monotonically decreasing under free operations, $\M(\rho_1) \leq \M(\rho_2)$ whenever $\rho_1 \prec_{\R} \rho_2$.
     \end{enumerate}
 \end{definition}
@@ -481,7 +485,7 @@ It is a monotone, additive function of the $\ell_1$-norm of negativity~\nick{CIT
 
 \subsection{Fragments}
 
-Monotones reduce the structure of the resource theory $\R$ into a real number ordering.
+Monotones reduce the structure of the resource theory $\R$ into a \emph{total} order on the real numbers.
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
 This is a generic approach that ensures a form of state comparison and resource quantification.
 However, motivated by $\sigma$-fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
@@ -502,10 +506,30 @@ We define such a resource projection for general resource theories as follows.
     \end{enumerate}
     We call $\Pi$ a resource projection.
 \end{definition}
+
+\ddd{[I think the following might be the right way to understand things, using the notion of ``covariant'' and ``contravariant''.]}
+
+\ddd{\begin{definition}[Covariant Projection] Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec$. Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec'$, is a pair of mappings $\Pi_s, \Pi_o$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. Moreover, these obey
+\begin{enumerate}
+        \item $\rho_1 \prec \rho_2$  implies that $\Pis(\rho_2) \prec' \Pis(\rho_1)$.
+        \item  $\Pio(\E_1) \circ \Pio(\E_2) = \Pio(\E_1 \circ \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
+    \end{enumerate}
+\end{definition}
+In a similar manner we can define the following distinct notion of a resource projection.
+\begin{definition}[Contravariant Projection] Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec$. Then a \emph{contravariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec'$, is a pair of mappings $\Pi_s, \Pi_o$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. Moreover, these obey
+\begin{enumerate}
+        \item $\Pis(\rho_1) \prec' \Pis(\rho_2)$ implies that $\rho_1 \prec \rho_2$ .
+        \item  $\Pio(\E_1) \circ \Pio(\E_2) = \Pio(\E_1 \circ \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
+    \end{enumerate}
+\end{definition}
+The use of covariant and contravariant here refers to direction of implication between the two pre-orders\footnote{ Also note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}. It is now clear that any resource monotone is a covariant projection, while the $\sigma$--fragments are contravariant projections of the magic theory.
+}
+
 Fragment $\R'$ is the image of the projection $\Pi$.
 Considering a resource projection is particularly useful when the pre-order of the fragment is tractable.
 Note the subtle difference of condition 1 in~\cref{def:fragment} and condition 2 in~\cref{def:mono}, which is due to fragments generally retaining a pre-order, while monotones impose a total order.
 
+\ddd{[If you agree with the covariant-contravariant definitions above then you can update the following results using the new terminology.]}
 A monotone is the projection with the simplest tractable order as formally stated in~\cref{thm:monofrag}.
 \begin{proposition}\label{thm:monofrag}
 	Let $\M$ be a resource monotone of a resource theory $\R$. 
@@ -524,10 +548,13 @@ A monotone is the projection with the simplest tractable order as formally state
 	The ordered pair $(\Pis, \Pio)$ is the resource projection which corresponds to monotone $\M$.
 \end{proof}
 
+\begin{example}Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be any free operation. Then we can define the following contravariant projection $\Pi_s( \rho) := \D(\rho)$ for all states $\rho$, and $\Pi_o (\E) = \E$. \ddd{[Explain why contravariant]}. As a simple example, we can consider the thermal operations resource theory of thermodynamics, and take $\D$ to be the dephasing map that kills off coherences between energy eigenspaces. Then the resource projection $\R'$ induced by $\D$ is fully described by the thermo-majorization pre-order on distributions over energies.
+\end{example}
+
 We now justify the name $\sigma$-fragment for the subdivision of a magic theory $\R = (\F, \O)$, by establishing a resource projection which reduces $\R$ into any subtheory $(\F, \O_\sigma)$.
 \begin{proposition}
     Let $\R = (\F, \O)$ be a theory of magic.
-    Every $\sigma$-fragment $(\F, \O_\sigma)$ is a resource fragment of $\R$.
+    Every $\sigma$-fragment $(\F, \O_\sigma)$ \ddd{defines a contravariant projection} of $\R$.
 \end{proposition}
 \begin{proof}
     Let the state projection be the identity projection $\Pis:\D\mapsto\D$.
@@ -556,6 +583,7 @@ Existing magic theories can be thought of as fragments of $\Rmax$.
     \nick{We need a state projection that establishes that some free states are not free any more $+$ an operations projection.}
 \end{proof}
 
+\ddd{[Is there a way to view Nielsen's theorem as describing a projection of the full mixed state LOCC entanglement theory? Is really not essential but might be nice to include. Send $\rho_{AB} $ to the most entangled pure state in its eigendecomposition?]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Distillation bounds}
@@ -621,7 +649,7 @@ In fact, it is clear than this is the case in any general distillation process.
     \begin{equation}
         \max_k{L_k(\rho | \sigma)} = 1 + \sum_{\bmz: \W[\bmz]{\rho}<0} \abs{\W[\bmz]{\rho}} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
     \end{equation}
-    Therefore, the majorization condition stated in~\cref{eq:majbound} implies that $\mana{\rho^{\otimes k}} \geq \mana{\tau}$.
+    Therefore, the majorization condition stated in~\cref{eq:majbound} implies that $\mana{\rho^{\otimes k}} \geq \mana{\tau}$. \ddd{[This is a bit too short]}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
