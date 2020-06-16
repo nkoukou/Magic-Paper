@@ -246,21 +246,21 @@ Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref
 
 Given this context we now define the following key notion, that is central to our analysis.
 \begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
-   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$-fragment of $\R$} is the resource theory $\R_\sigma = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant, namely
+   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the resource theory $\R_\sigma = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant, namely
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
     \end{equation}
 \end{definition}
 
-With this basic notion defined, we now show that any resource theory of magic can be faithfully subdivided into $\sigma$-fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
+With this basic notion defined, we now show that any resource theory of magic can be faithfully subdivided into $\sigma$--fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
 
 \begin{theorem}
     Let $\R = (\F, \O)$ be a theory of magic.
     Every operation in $\O$ leaves at least one free state invariant,
   \begin{equation}
-\O = \bigcup\limits_{\sigma \in \F} \O_\sigma, 
+\O = \bigcup\limits_{\sigma \in \F} \O_\sigma.
 \end{equation}
-and therefore $\rho\longrightarrow \tau$ in $\R$ if and only if $\rho\longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
+Therefore, $\rho\longrightarrow \tau$ in $\R$ if and only if $\rho\longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
 \end{theorem}
 \begin{proof}
     Suppose $\E$ is in $\O_\sigma$, then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. Conversely, suppose $\E$ is in $\O$. 
@@ -273,7 +273,7 @@ and therefore $\rho\longrightarrow \tau$ in $\R$ if and only if $\rho\longrighta
 
 The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
 Completely positive-Wigner-preserving operations~\cite{cit:wang} form the operation class $\Omax$.
-Therefore, $\sigma$-fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
+Therefore, $\sigma$--fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
 In particular, the stabilizer operations $\so$ are contained within $\Omax$.
 \begin{figure}[t]
     \centering
@@ -286,7 +286,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
     \label{fig:zoo}
 \end{figure}
 
-The subdivision of magic theories into $\sigma$-fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$-fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
+The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
 
 \subsection{Majorization in the $\sigma$--fragments}\label{sec:major}
 
@@ -318,23 +318,31 @@ Drawing intuition from this setting, we can define majorization as follows.
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
 If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization in entanglement theory. \nick{CITE}
 
-\nick{We need to address the non-full-rankness of states.\\
-For example, the operation $\E(\rho) = \ketbra{0}$ corresponds to no $\sigma$-fragment because components of $\W{\sigma}$ are zero.\\
-In such a case we can always add some $\epsilon$ amount of unital noise by mixing $\sigma$ with the maximally mixed state $\frac{1}{d}\id$. 
-This ensures that all components are strictly positive and $\bmd$-majorization can be used.
-There are non-full-rank states with no zeros in W.}
-
-The pre-order $\prec_{\R'}$ of the $\sigma$-fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+The pre-order $\prec_{\R'}$ of the $\sigma$--fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
 
 \begin{theorem}
     Let $\R = (\F, \O)$ be a theory of magic.
     Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible, $\tau \prec_\R \rho$.
     Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
+
+\nick{We need to address zeros in the Wigner distribution (I think full-rank states do not have any zeros - there certainly exist non-full-rank states with no zeros).
+
+For example, the replacement operation $\E(\rho) = \ketbra{0}$ is free in $\Rmax$ with $\E \in \O_{\ketbra{0}}$, BUT $W{\ketbra{0}}$-majorization is not defined because $W{\ketbra{0}}$ contains zeros.
+
+In such a case we can always add some $\epsilon$ amount of noise by mixing $\sigma$ with a free full-rank state, e.g. a thermal state $\gamma_\beta$, to get $\sigma' = (1-\epsilon)\sigma + \epsilon\gamma_\beta$.
+This ensures that all Wigner components of $\sigma'$ are strictly positive and $\W{\sigma'}$-majorization can be used BUT $\E$ is NOT in $\O_{\sigma'}$ now for any $\epsilon > 0$.
+
+This could be solved if every operation preserves some thermal state.
+Otherwise, simply stating in this theorem that ``there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$'' is not accurate and needs reformulation to include the error $\epsilon$.
+}
 \end{theorem}
 \begin{proof}
     Suppose there exists $\E \in \O$ such that $\E(\rho) = \tau$.
-    The free operation belongs to a $\sigma$-fragment, $\E \in \O_\sigma$, for some $\sigma \in \F$.
-    Then, $\W{\E}\W{\rho} = \W{\tau}$ with $\W{\E} \in \stochw$, or, equivalently, $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
+    The free operation belongs to a $\sigma$--fragment, $\E \in \O_\sigma$, for some $\sigma \in \F$ so that $\W{\E}\W{\rho} = \W{\tau}$ with $\W{\E} \in \stochw$.
+    
+    If all components of $\W{\sigma}$ are positive, we directly have $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
+    
+    If $\W{\sigma}$ contains some zero components, we can construct the full-rank state $\sigma' = (1-\epsilon)\sigma + \epsilon\gamma_\beta$ by mixing an arbitrarily small amout $\epsilon>0$ of some thermal state $\gamma_\beta$ \nick{can replace with maximally mixed state}, so that all components of $\W{\sigma'}$ are positive. \nick{but $\W{\tau} \prec_{\W{\sigma'}} \W{\rho}$ is NOT true now}
 \end{proof}
 
 A visual representation of $\bmd$-majorization is provided by Lorenz curves.
@@ -378,99 +386,27 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
     \label{fig:lctoy}
 \end{figure}
 
-\subsection{Set theoretic properties of magic fragments}\label{sec:propmagfrag}
-
-\nick{May move statements around the section or in an appendix.} \ddd{[Yes, the following theorem, while useful, isn't so interesting.]}
-
-\begin{theorem}\label{thm:frag}
-    Let $\R = (\O, \F)$ be a magic theory. 
-    The following statements hold:
-    \begin{enumerate}
-        \item No $\sigma$-fragment is empty.
-        \item If a free operation leaves two states invariant, then it also leaves their mixtures invariant, 
-        \begin{equation}
-            \O_{\sigma} \cap \O_{\sigma'} \subseteq \O_{p\sigma + (1-p)\sigma'}\ \text{for all}\ p \in [0,1].
-        \end{equation}
-        \item Let $\E$ be a $\cptp$ operation with Wigner distribution $\W{\E}$.
-        For $\R = \Rmax$ $\E \in \O_\sigma$ iff $\W{\E} \in \stochw$.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}$ $\\
-
-    \begin{enumerate}
-    \item Consider the completely depolarising \nick{replacement} map
-    \begin{align}
-        \E(\rho) &= \sigma \tr[\rho],\ \text{with} \\
-        \W[\bmy|\bmx]{\E} &= \W[\bmy]{\sigma} \tr[\rho],
-    \end{align}
-    where $\sigma \in \F$. 
-    Then, $\E \in \O_\sigma$.
-    It can be thought as a sequence of tracing out state $\rho$ and preparing the free state $\sigma$. \ddd{[There is no reason this map is in $\O$. Better to use the identity map, which we can assume is always available.]}
-    
-    \item Let $\E \in \O_{\sigma} \cap \O_{\sigma'}$.
-    Then $\E \in \cptp$ and corresponds to stochastic Wigner distribution $\W{\E}$ such that $\W{\E} \W{\sigma} = \W{\sigma}$ and $\W{\E} \W{\sigma'} = \W{\sigma'}$.
-    Then, $\W{\E} \W{p\sigma + (1-p)\sigma'} = \W{p\sigma + (1-p)\sigma'}$ for any $p \in [0,1]$ due to the additive property~\ref{en:w4} of the Wigner distribution, implying that state $p\sigma + (1-p)\sigma'$ is also left invariant by $\E$.
-    
-    \item Let $\O_\sigma' \coloneqq \{ \E \in \cptp: \W{\E} \in \stochw \}$ be the described set of operations.
-    
-    Suppose $\E$ is in $\O_\sigma$, then $\E \in \cptp$ and $\W{\E} \in \stochw$ due to property~\ref{en:wo4} of~\cref{thm:wchannel}, hence $\O_\sigma \subseteq \O_\sigma'$.
-    
-    Conversely, suppose $\E \in \cptp$ with $\W{\E} \in \stochw$. 
-    Then, $\W[\bmy|\bmx]{\E} \geq 0$ for all $\bmx, \bmy$, hence $\E \in \O$.
-    Furthermore, $\W{\E} \W{\sigma} = \W{\sigma}$ implies $\E(\sigma) = \sigma$ using~\cref{eq:woperation} defined for any $\cptp$ operation $\E$.
-    Hence, $\O_\sigma' \subseteq \O_\sigma$.
-    \end{enumerate}
-\end{proof}
-
-Any free state $\sigma \in \cal{B}(\hd)$ corresponds to a $d^2$-dimensional probability distribution $\W{\sigma}$ and any free operation $\E: \cal{B}(\hd) \mapsto \cal{B}(\hd)$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
-Note that these mappings are one-to-one due to the orthogonality of the phase-point operators as an operator basis.
-
-\emph{Remark 1.} Note that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
-As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition~\ref{en:w3} in~\cref{thm:wstate}.
-
-\emph{Remark 2.} Similarly, not all stochastic matrices correspond to completely positive operations.
-
-As an example, consider the permutation matrix
-\begin{equation}
-    \Pi_X = \begin{psmallmatrix}
-        0 & 1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 1 \\
-        0 & 0 & 0 & 1 & 0 \\
-        1 & 0 & 0 & 0 & 0 \\
-        0 & 0 & 1 & 0 & 0
-    \end{psmallmatrix} \otimes \begin{psmallmatrix}
-        0 & 0 & 1 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 1 \\
-        0 & 0 & 0 & 1 & 0 \\
-        1 & 0 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 & 0    
-    \end{psmallmatrix} \in \stochw,\ d=5.
-\end{equation}
-It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any $\cpos$ operation, hence any $\E \in \O$ due to~\cref{thm:frag}.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Extension to general quantum resource theories}
 \label{sec:frag}
 
-\ddd{In the previous section we introduced the notion of $\sigma$--fragments for any resource theory of magic. In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. The busy reader more focussed on magic may skip this section.}
+In the previous section we introduced the notion of $\sigma$--fragments for any resource theory of magic. In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. The busy reader more focussed on magic may skip this section.
 
 State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
 In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ \nick{expand / move to intro}.
-Subdividing magic theories into $\sigma$-fragments \nick{helps}.
+Subdividing magic theories into $\sigma$--fragments \nick{helps}.
 \subsection{Monotones}\label{sec:mono}
 
 Resource theories are commonly equipped with monotones which quantify the resource\nick{CITE}. 
 \begin{definition}[\textbf{Resource monotone}]\label{def:mono}
     Let $\R = (\F, \O)$ be a resource theory.
-    A resource monotone $\M$ is a projection from the set of all states of the theory to the real line, satisfying two conditions:
-    \begin{enumerate}
-        \item All free states are mapped onto 0, $\M(\sigma) = 0,\ \sigma \in \F$; \ddd{[This is not a requirement!]}
-        \item $\M$ is monotonically decreasing under free operations, $\M(\rho_1) \leq \M(\rho_2)$ whenever $\rho_1 \prec_{\R} \rho_2$.
-    \end{enumerate}
+    A resource monotone $\M$ is a projection from the set of quantum states of the theory onto the real line, so that $\M$ is monotonically decreasing under free operations,
+    \begin{equation}
+        \M(\rho_1) \leq \M(\rho_2)\ \text{whenever}\ \rho_1 \prec_{\R} \rho_2.
+    \end{equation}
 \end{definition}
-The first condition reflects the property that all free states can be converted into each other, hence they need to be mapped onto the same number, by convention 0.
-The second condition reflects the no resource generating property of free operations, thus monotones respect the pre-order $\prec_\R$ of the theory.
+The monotonicity condition reflects the no resource generating property of free operations, so that monotones respect the pre-order $\prec_\R$ of the theory.
 Furthermore, if a monotone satisfies the additivity condition,
 \begin{equation}
     \M(\rho_1 \otimes \rho_2) = \M(\rho_1) + \M(\rho_2),
@@ -485,10 +421,95 @@ It is a monotone, additive function of the $\ell_1$-norm of negativity~\nick{CIT
 
 \subsection{Fragments}
 
+Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
+Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
+We now generalise this idea to any projection of the theory that ensures a form of comparison between states.
+\begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
+Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
+Then a \emph{covariant resource projection} of $\R$ into a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ into quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. 
+Moreover, these obey
+	\begin{enumerate}
+        \item $\Pis(\rho_2) \prec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_\R \rho_2$;
+        \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
+    \end{enumerate}
+We call $\R'$ a \emph{covariant fragment} of $\R$.
+\end{definition}
+
+Resource monotones can now be clearly seen as covariant projections of resource theories.
+\begin{proposition}\label{thm:monoproj}
+	Let $\M$ be a resource monotone of a resource theory $\R$. 
+	Then $\M$ is a covariant projection that reduces the pre-order $\prec_\R$ to a total order.
+\end{proposition}
+\begin{proof}
+	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
+	The defining property of a monotone, stated in~\cref{def:mono} ensures order preservation under state projection $\Pis$.	
+	Let $\Pio$ project any $\E \in \O$ onto a real non-increasing function $f$ mapping $\M(\rho)$ to $\M(\E(\rho))$ for all states $\rho$.
+	Then, the composition of functions is preserved under operation projection $\Pio$.	
+	The ordered pair $(\Pis, \Pio)$ is the covariant resource projection which corresponds to monotone $\M$.
+\end{proof}
+
+On the other hand, $\sigma$--fragments are an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
+States which are incomparable in $\R$ remain incomparable, but transformations between comparable states may no longer be possible.
+We generalise the idea of reducing the structure of a theory into a simpler one, by introducing two types of resource projections.
+\begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
+	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
+Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
+Moreover, these obey
+	\begin{enumerate}
+        \item $\rho_1 \prec_\R \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$;
+        \item $\E = \E_1 \circ \E_2$ whenever $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$.
+    \end{enumerate}
+We call $\R'$ a \emph{contravariant fragment} of $\R$.
+\end{definition}
+The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
+Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
+
+\begin{proposition}\label{thm:sigmaproj}
+    Let $\R = (\F, \O)$ be a theory of magic.
+    Every $\sigma$--fragment $(\F, \O_\sigma)$ is a contravariant fragment of $\R$.
+\end{proposition}
+\begin{proof}
+    Let the state projection $\Pis$ map all states onto themselves, so order preservation is trivially satisfied.    
+    Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
+    \begin{equation}
+    \Pio(\E) =
+    \begin{cases}
+        \E,\ &\E \in \O_\sigma, \\
+        1_{\rm{C}},\ &\E \notin \O_\sigma.
+    \end{cases}
+    \end{equation}
+    Since for any $\E_1, \E_2 \in \O_\sigma,$ it is also true that $\E_1 \circ \E_2 \in \O_\sigma$, operational composition is contravariantly preserved.
+\end{proof}
+
+\begin{proposition}
+	Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be a free operation, which is reversible by $\D_{\rm{rev}} \in \O$, so that $\D_{\rm{rev}} \circ \D = 1_{\rm{C}}$.
+	
+	Then, we can define a contravariant projection of $\R$, by acting with $\D$ on all states.
+\end{proposition}
+\begin{proof}
+	We show that the theory $\R' = (\F', \O)$, with $\F' = \{\D(\rho):\rho \in \F \}$, is a contravariant fragment of $\R$.
+	Let $\Pis$ map every state $\rho$ to $\D(\rho)$.
+	Then, $\D(\rho_1) \prec \D(\rho_2)$ implies that there exists $\E \in \O$ such that $\rho_1 = (\D_{\rm{rev}} \circ \E \circ \D) (\rho_2)$, so the state order is preserved contravariantly.
+	
+	Finally, let $\Pio$ map every free operation to itself, so that composition of operations is trivially preserved.
+	
+\nick{If $\D$ is a recovery map, so that $\D \circ \D_{\rm{rev}} = 1_{\rm{C}}$, then this is a covariant projection instead.
+
+If $\D$ is not reversible, this mapping is in general NOT contravariant (consider the replacement map $\D(\rho) = \frac{1}{d}\id$ for a strange state and stabilizer state - surely there is such a counterexample in thermodynamics theory if we consider a highly coherent state and one with the same energy population but no coherences.} 
+\end{proof}
+
+Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.}
+
+\newpage
+
+\subsection{Fragments - OLD}
+
+\nick{OLD VERSION}
+
 Monotones reduce the structure of the resource theory $\R$ into a \emph{total} order on the real numbers.
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-This is a generic approach that ensures a form of state comparison and resource quantification.
-However, motivated by $\sigma$-fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
+This is a generic approach that ensures a form of comparison between states and resource quantification.
+However, motivated by $\sigma$--fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
 \begin{figure}[t]
     \centering
     \includegraphics[height=3cm]{figs/fragments.pdf}
@@ -508,22 +529,6 @@ We define such a resource projection for general resource theories as follows.
 \end{definition}
 
 \ddd{[I think the following might be the right way to understand things, using the notion of ``covariant'' and ``contravariant''.]}
-
-\ddd{\begin{definition}[Covariant Projection] Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec$. Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec'$, is a pair of mappings $\Pi_s, \Pi_o$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. Moreover, these obey
-\begin{enumerate}
-        \item $\rho_1 \prec \rho_2$  implies that $\Pis(\rho_2) \prec' \Pis(\rho_1)$.
-        \item  $\Pio(\E_1) \circ \Pio(\E_2) = \Pio(\E_1 \circ \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
-    \end{enumerate}
-\end{definition}
-In a similar manner we can define the following distinct notion of a resource projection.
-\begin{definition}[Contravariant Projection] Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec$. Then a \emph{contravariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec'$, is a pair of mappings $\Pi_s, \Pi_o$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. Moreover, these obey
-\begin{enumerate}
-        \item $\Pis(\rho_1) \prec' \Pis(\rho_2)$ implies that $\rho_1 \prec \rho_2$ .
-        \item  $\Pio(\E_1) \circ \Pio(\E_2) = \Pio(\E_1 \circ \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
-    \end{enumerate}
-\end{definition}
-The use of covariant and contravariant here refers to direction of implication between the two pre-orders\footnote{ Also note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}. It is now clear that any resource monotone is a covariant projection, while the $\sigma$--fragments are contravariant projections of the magic theory.
-}
 
 Fragment $\R'$ is the image of the projection $\Pi$.
 Considering a resource projection is particularly useful when the pre-order of the fragment is tractable.
@@ -548,13 +553,13 @@ A monotone is the projection with the simplest tractable order as formally state
 	The ordered pair $(\Pis, \Pio)$ is the resource projection which corresponds to monotone $\M$.
 \end{proof}
 
-\begin{example}Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be any free operation. Then we can define the following contravariant projection $\Pi_s( \rho) := \D(\rho)$ for all states $\rho$, and $\Pi_o (\E) = \E$. \ddd{[Explain why contravariant]}. As a simple example, we can consider the thermal operations resource theory of thermodynamics, and take $\D$ to be the dephasing map that kills off coherences between energy eigenspaces. Then the resource projection $\R'$ induced by $\D$ is fully described by the thermo-majorization pre-order on distributions over energies.
+\begin{example}. As a simple example, we can consider the thermal operations resource theory of thermodynamics, and take $\D$ to be the dephasing map that kills off coherences between energy eigenspaces. Then the resource projection $\R'$ induced by $\D$ is fully described by the thermo-majorization pre-order on distributions over energies.
 \end{example}
 
-We now justify the name $\sigma$-fragment for the subdivision of a magic theory $\R = (\F, \O)$, by establishing a resource projection which reduces $\R$ into any subtheory $(\F, \O_\sigma)$.
+We now justify the name $\sigma$--fragment for the subdivision of a magic theory $\R = (\F, \O)$, by establishing a resource projection which reduces $\R$ into any subtheory $(\F, \O_\sigma)$.
 \begin{proposition}
     Let $\R = (\F, \O)$ be a theory of magic.
-    Every $\sigma$-fragment $(\F, \O_\sigma)$ \ddd{defines a contravariant projection} of $\R$.
+    Every $\sigma$--fragment $(\F, \O_\sigma)$ \ddd{defines a contravariant projection} of $\R$.
 \end{proposition}
 \begin{proof}
     Let the state projection be the identity projection $\Pis:\D\mapsto\D$.
@@ -594,14 +599,14 @@ Consider a general magic state distillation process,
     \rho^{\otimes k} \xrightarrow{\E \in \O} \tau,
 \end{equation}
 where $n$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
-Identifying a symmetry of the distillation process responsible for leaving a state $\sigma$ invariant is equivalent with restricting the process to the $\sigma$-fragment $\O_\sigma$.
+Identifying a symmetry of the distillation process responsible for leaving a state $\sigma$ invariant is equivalent with restricting the process to the $\sigma$--fragment $\O_\sigma$.
 
-Mana is monotonic and additive in all $\sigma$-fragments as seen in~\cref{app:major}, so it provides a bound for distillation processes
+Mana is monotonic and additive in all $\sigma$--fragments as seen in~\cref{app:major}, so it provides a bound for distillation processes
 \begin{equation}
     \mana{\rho} \geq \frac{1}{k} \mana{\tau}.
 \end{equation}.
 
-A new bound can be obtained in any $\sigma$-fragment by comparing the Lorenz curves of the initial and target states,
+A new bound can be obtained in any $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
 \begin{equation}\label{eq:majbound}
     L_k(\rho^{\otimes k} | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2,
 \end{equation}
@@ -620,18 +625,18 @@ Consider the noisy Strange state,
 \begin{equation}
     \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \sigma,
 \end{equation}
-in the $\sigma$-fragment $\O_\sigma$.
+in the $\sigma$--fragment $\O_\sigma$.
 At noise level $\epsilon \leq \frac{3}{4}$, the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ contains negativities and the state can be purified so as to obtain a single-copy state with sufficiently low $\epsilon$.
 In~\cref{fig:distill}, we examine the purifying process 
 \begin{equation}\label{eq:purify}
     \rho_{\rm{S}}^{\otimes k}(\epsilon_{\rm{th}}) \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(0.05),\ \sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id
 \end{equation}
-with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit the process for given number of copies $k$ and $\sigma$-fragment, parametrised by $p$ as a mixture of the zero and the maximally mixed states.
+with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit the process for given number of copies $k$ and $\sigma$--fragment, parametrised by $p$ as a mixture of the zero and the maximally mixed states.
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/ratios.pdf}
     \caption{Plot of the noise level threshold ratios between mana and Lorenz curve for the Strange state purifying process in~\cref{eq:purify}.
-    The ratios are calculated for different numbers of initial state copies and different $\sigma$-fragments parametrised by $p$ such that $\sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id$.
+    The ratios are calculated for different numbers of initial state copies and different $\sigma$--fragments parametrised by $p$ such that $\sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id$.
     Lorenz curve comparison consistently gives stricter bounds as proven in~\cref{thm:bounds}.
     \nick{Highlight physics/invariance}
     }
@@ -642,10 +647,10 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 In fact, it is clear than this is the case in any general distillation process.
 \begin{theorem}\label{thm:bounds}
     Consider the distillation process in~\cref{eq:distprocess}.
-    In any $\sigma$-fragment, $\W{\sigma}$-majorization provides a stricter bound than mana.
+    In any $\sigma$--fragment, $\W{\sigma}$-majorization provides a stricter bound than mana.
 \end{theorem}
 \begin{proof}
-    The maximum of the Lorenz curve of a state $\rho$ can be expressed monotonically in terms of mana, independently of the $\sigma$-fragment,
+    The maximum of the Lorenz curve of a state $\rho$ can be expressed monotonically in terms of mana, independently of the $\sigma$--fragment,
     \begin{equation}
         \max_k{L_k(\rho | \sigma)} = 1 + \sum_{\bmz: \W[\bmz]{\rho}<0} \abs{\W[\bmz]{\rho}} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
     \end{equation}

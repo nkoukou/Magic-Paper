@@ -1,3 +1,38 @@
+\section{Properties of the Wigner distribution}
+\label{app:wigner}
+
+Here we present important properties of the Wigner distribution that are used throughout the paper.
+
+\begin{proposition}\label{thm:wstate}
+    The Wigner distribution of a state $\rho$ is
+    \begin{enumerate}
+        \item\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
+        \item\label{en:w2} Normalised: $\sum_{\bmz \in \pd} \W[\bmz]{\rho}=1$;
+        \item\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
+        \item\label{en:w4} Additive under mixing:
+        
+        $\W[\bmx]{\sum_i p_i \rho_i} = \sum\limits_i p_i \W[\bmx]{\rho_i}$;
+        \item\label{en:w5} Multiplicative under tensor products: 
+        
+        $\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}$.
+	\end{enumerate}
+\end{proposition}
+A distribution satisfying the first three properties does not necessarily correspond to a positive semi-definite state.
+
+\begin{proposition}
+    \label{thm:wchannel}
+    The Wigner distribution of a $\cptp$ operation $\E: \cal{B}(\hd[d_A]) \mapsto \cal{B}(\hd[d_B])$ is:
+    \begin{enumerate}
+        \item\label{en:wo1} Real-valued: $\W[\bmy|\bmx]{\E} \in \mathbb{R}$;
+        \item\label{en:wo2} Normalised: $\sum_{\bmz \in \pd[d_B]} \W[\bmz|\bmx]{\E} = 1$ for any $\bmx \in \pd[d_A]$;
+        \item\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmx]{\E}} \leq \frac{d_A}{d_B}$;
+	    \item\label{en:wo4} \nick{Transitive}: $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \pd[d_A]} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \pd[d_B]$.
+    \end{enumerate}
+\end{proposition}
+If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto itself, then the stochasticity condition $\abs{\W[\bmy|\bmx]{\E}} \leq 1$ is satisfied.
+
+%%%
+
 \section{Properties of majorization}
 \label{app:major}
 
@@ -5,12 +40,12 @@
 
 \begin{theorem}
 Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
- \begin{enumerate}
-	\item[(TM1)] $\bmx \prec_{\bmd} \bmy$;
-	\item[(TM2)] $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
-	\item[(TM3)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
-	\item[(TM4)] $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-	\item[(TM5)] $\forall k, L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ and $L_{\bmx|\bmd}(k=n) = L_{\bmy|\bmd}(k=n)$.
+ \begin{enumerate}%[\rm{(TM1)}]
+	\item $\bmx \prec_{\bmd} \bmy$;
+	\item $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
+	\item\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
+	\item $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+	\item $\forall k, L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ and $L_{\bmx|\bmd}(k=n) = L_{\bmy|\bmd}(k=n)$.
  \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -38,35 +73,64 @@ Furthermore, mana is additive due to the multiplicative property~\ref{en:w4} of~
 
 %%%
 
-\section{Properties of the Wigner distribution}
-\label{app:wigner}
+\section{Properties of $\sigma$-fragments}
+\label{app:frag}
 
-Here we present important properties of the Wigner distribution that are used throughout the paper.
-
-\begin{proposition}\label{thm:wstate}
-    The Wigner distribution of a state $\rho$ is
-    \begin{enumerate}%[label=\enlabel{W}{\arabic*}]
-        \item\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
-        \item\label{en:w2} Normalised: $\sum_{\bmz \in \pd} \W[\bmz]{\rho}=1$;
-        \item\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
-        \item\label{en:w4} Additive under mixing:
-        
-        $\W[\bmx]{\sum_i p_i \rho_i} = \sum\limits_i p_i \W[\bmx]{\rho_i}$;
-        \item\label{en:w5} Multiplicative under tensor products: 
-        
-        $\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}$.
-	\end{enumerate}
-\end{proposition}
-A distribution satisfying the first three properties does not necessarily correspond to a positive semi-definite state.
-
-\begin{proposition}
-    \label{thm:wchannel}
-    The Wigner distribution of a $\cptp$ operation $\E: \cal{B}(\hd[d_A]) \mapsto \cal{B}(\hd[d_B])$ is:
+\begin{theorem}\label{thm:frag}
+    Let $\R = (\O, \F)$ be a magic theory. 
+    The following statements hold:
     \begin{enumerate}
-        \item\label{en:wo1} Real-valued: $\W[\bmy|\bmx]{\E} \in \mathbb{R}$;
-        \item\label{en:wo2} Normalised: $\sum_{\bmz \in \pd[d_B]} \W[\bmz|\bmx]{\E} = 1$ for any $\bmx \in \pd[d_A]$;
-        \item\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmx]{\E}} \leq \frac{d_A}{d_B}$;
-	    \item\label{en:wo4} \nick{Transitive}: $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \pd[d_A]} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \pd[d_B]$.
+        \item No $\sigma$-fragment is empty.
+        \item If a free operation leaves two states invariant, then it also leaves their mixtures invariant, 
+        \begin{equation}
+            \O_{\sigma} \cap \O_{\sigma'} \subseteq \O_{p\sigma + (1-p)\sigma'}\ \text{for all}\ p \in [0,1].
+        \end{equation}
+        \item Let $\E$ be a $\cptp$ operation with Wigner distribution $\W{\E}$.
+        For $\R = \Rmax$ $\E \in \O_\sigma$ iff $\W{\E} \in \stochw$.
     \end{enumerate}
-\end{proposition}
-If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto itself, then the stochasticity condition $\abs{\W[\bmy|\bmx]{\E}} \leq 1$ is satisfied.
+\end{theorem}
+\begin{proof}$ $\\
+
+    \begin{enumerate}
+    \item The identity channel $1_{\rm{C}}: \D \mapsto \D$ belongs to every $\sigma$-fragment, as $1_{\rm{C}} \in \O$ and $1_{\rm{C}}\sigma = \sigma$ for all $\sigma \in \F$.
+    
+    \item Let $\E \in \O_{\sigma} \cap \O_{\sigma'}$.
+    Then $\E \in \cptp$ and corresponds to stochastic Wigner distribution $\W{\E}$ such that $\W{\E} \W{\sigma} = \W{\sigma}$ and $\W{\E} \W{\sigma'} = \W{\sigma'}$.
+    Then, $\W{\E} \W{p\sigma + (1-p)\sigma'} = \W{p\sigma + (1-p)\sigma'}$ for any $p \in [0,1]$ due to the additive property~\ref{en:w4} of the Wigner distribution, implying that state $p\sigma + (1-p)\sigma'$ is also left invariant by $\E$.
+    
+    \item Let $\O_\sigma' \coloneqq \{ \E \in \cptp: \W{\E} \in \stochw \}$ be the described set of operations.
+    
+    Suppose $\E$ is in $\O_\sigma$, then $\E \in \cptp$ and $\W{\E} \in \stochw$ due to property~\ref{en:wo4} of~\cref{thm:wchannel}, hence $\O_\sigma \subseteq \O_\sigma'$.
+    
+    Conversely, suppose $\E \in \cptp$ with $\W{\E} \in \stochw$. 
+    Then, $\W[\bmy|\bmx]{\E} \geq 0$ for all $\bmx, \bmy$, hence $\E \in \O$.
+    Furthermore, $\W{\E} \W{\sigma} = \W{\sigma}$ implies $\E(\sigma) = \sigma$ using~\cref{eq:woperation} defined for any $\cptp$ operation $\E$.
+    Hence, $\O_\sigma' \subseteq \O_\sigma$.
+    \end{enumerate}
+\end{proof}
+
+Any free state $\sigma \in \cal{B}(\hd)$ corresponds to a $d^2$-dimensional probability distribution $\W{\sigma}$ and any free operation $\E: \cal{B}(\hd) \mapsto \cal{B}(\hd)$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
+Note that these mappings are one-to-one due to the orthogonality of the phase-point operators as an operator basis.
+
+\emph{Remark 1.} Note that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
+As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition~\ref{en:w3} in~\cref{thm:wstate}.
+
+\emph{Remark 2.} Similarly, not all stochastic matrices correspond to completely positive operations.
+
+As an example, consider the permutation matrix
+\begin{equation}
+    \Pi_X = \begin{psmallmatrix}
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 1 & 0 \\
+        1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0
+    \end{psmallmatrix} \otimes \begin{psmallmatrix}
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 1 & 0 \\
+        1 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0    
+    \end{psmallmatrix} \in \stochw,\ d=5.
+\end{equation}
+It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any $\cpos$ operation, hence any $\E \in \O$ due to~\cref{thm:frag}.
