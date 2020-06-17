@@ -423,7 +423,7 @@ It is a monotone, additive function of the $\ell_1$-norm of negativity~\nick{CIT
 
 Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-We now generalise this idea to any projection of the theory that ensures a form of comparison between states.
+We now generalise this idea of a theory projection that preserves comparability between states.
 \begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
 Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
 Then a \emph{covariant resource projection} of $\R$ into a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ into quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. 
@@ -442,15 +442,16 @@ Resource monotones can now be clearly seen as covariant projections of resource 
 \end{proposition}
 \begin{proof}
 	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	The defining property of a monotone, stated in~\cref{def:mono} ensures order preservation under state projection $\Pis$.	
-	Let $\Pio$ project any $\E \in \O$ onto a real non-increasing function $f$ mapping $\M(\rho)$ to $\M(\E(\rho))$ for all states $\rho$.
-	Then, the composition of functions is preserved under operation projection $\Pio$.	
+	The defining property of a monotone, seen in~\cref{def:mono} ensures order preservation under state projection $\Pis = \M$, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ of real numbers.
+	
+	Let $\Pio$ project any $\E \in \O$ onto a real non-increasing function $f$ defined by mapping $\M(\rho)$ to $\M(\E(\rho))$ for every state $\rho$.
+	Then, composition of free opearations implies composition of their function projections. \nick{expand?}
+	
 	The ordered pair $(\Pis, \Pio)$ is the covariant resource projection which corresponds to monotone $\M$.
 \end{proof}
 
 On the other hand, $\sigma$--fragments are an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
-States which are incomparable in $\R$ remain incomparable, but transformations between comparable states may no longer be possible.
-We generalise the idea of reducing the structure of a theory into a simpler one, by introducing two types of resource projections.
+States which are incomparable in $\R$ remain incomparable, but conversions between states which are comparable in $\R$ may no longer be possible.
 \begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
 	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
 Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
@@ -461,39 +462,50 @@ Moreover, these obey
     \end{enumerate}
 We call $\R'$ a \emph{contravariant fragment} of $\R$.
 \end{definition}
+Note that a contravariant projection is always a surjective mapping for both states and operations, so that the conditions in~\cref{def:contraproj} make sense.
 The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
 Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
 
-\begin{proposition}\label{thm:sigmaproj}
-    Let $\R = (\F, \O)$ be a theory of magic.
-    Every $\sigma$--fragment $(\F, \O_\sigma)$ is a contravariant fragment of $\R$.
+\begin{proposition}\label{thm:subproj}
+    Let $\R = (\F, \O)$ be a general resource theory. 
+    Then, any subtheory $\R' = (\F, \O')$ of $\R$, where $\O' \subseteq \O$, is a contravariant fragment of $\R$.    
 \end{proposition}
 \begin{proof}
-    Let the state projection $\Pis$ map all states onto themselves, so order preservation is trivially satisfied.    
-    Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
+    We will establish a contravariant projection $(\Pis, \Pio)$ from $\R$ to $\R'$.
+    Let the state projection $\Pis$ map all states onto themselves and suppose that $\rho_1 \prec_{\R'} \rho_2$. 
+    Then, there exists $\E \in \O' \subseteq \O$ such that $\rho_1 = \E(\rho_2)$, therefore $\rho_1 \prec_{\R} \rho_2$ as well.
+	
+    Consider the operation projection $\Pio:\O \mapsto \O'$, defined as
     \begin{equation}
     \Pio(\E) =
     \begin{cases}
-        \E,\ &\E \in \O_\sigma, \\
-        1_{\rm{C}},\ &\E \notin \O_\sigma.
+        \E,\ &\E \in \O', \\
+        1_{\rm{C}},\ &\E \notin \O',
     \end{cases}
-    \end{equation}
-    Since for any $\E_1, \E_2 \in \O_\sigma,$ it is also true that $\E_1 \circ \E_2 \in \O_\sigma$, operational composition is contravariantly preserved.
+    \end{equation}    
+    This projection ensures that operational composition is contravariantly preserved.
+    For any $\E_1, \E_2 \in \O'$, then $\E =\E_1 \circ \E_2 \in \O_\sigma$ as well, so $\E = \Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2) = \E_1 \circ \E_2$.
+    If $\E_1 \notin \O'$ or $\E_2 \notin \O'$, then $\Pio(\E) \neq \Pio(\E_1) \circ \Pio(\E_2)$.
+    
+    \nick{This does not hold in the case of all $\E, \E_1, \E_2 \notin \O'$. We need to update the composition condition in~\cref{def:contraproj}}
 \end{proof}
+As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any magic theory $\R$ is a contravariant fragment of $\R$.
+
 
 \begin{proposition}
-	Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be a free operation, which is reversible by $\D_{\rm{rev}} \in \O$, so that $\D_{\rm{rev}} \circ \D = 1_{\rm{C}}$.
+	Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be a free operation, which is reversible by $\D_{\rm{rev}} \in \O$, so that $\D_{\rm{rev}} \circ \D = \idc$.
 	
-	Then, we can define a contravariant projection of $\R$, by acting with $\D$ on all states.
+	Then, we can define a contravariant projection of $\R$, by acting on all quantum states with $\D$.
 \end{proposition}
 \begin{proof}
 	We show that the theory $\R' = (\F', \O)$, with $\F' = \{\D(\rho):\rho \in \F \}$, is a contravariant fragment of $\R$.
-	Let $\Pis$ map every state $\rho$ to $\D(\rho)$.
-	Then, $\D(\rho_1) \prec \D(\rho_2)$ implies that there exists $\E \in \O$ such that $\rho_1 = (\D_{\rm{rev}} \circ \E \circ \D) (\rho_2)$, so the state order is preserved contravariantly.
+	
+	Let $\Pis$ map every state $\rho$ to $\D(\rho)$ and suppose $\D(\rho_1) \prec \D(\rho_2)$. 
+	Then, there exists $\E \in \O$ such that $\rho_1 = (\D_{\rm{rev}} \circ \E \circ \D) (\rho_2)$, so $\rho_1 \prec \rho_2$.
 	
 	Finally, let $\Pio$ map every free operation to itself, so that composition of operations is trivially preserved.
 	
-\nick{If $\D$ is a recovery map, so that $\D \circ \D_{\rm{rev}} = 1_{\rm{C}}$, then this is a covariant projection instead.
+\nick{If $\D$ is a recovery map, so that $\D \circ \D_{\rm{rev}} = \idc$, then this is a covariant projection instead.
 
 If $\D$ is not reversible, this mapping is in general NOT contravariant (consider the replacement map $\D(\rho) = \frac{1}{d}\id$ for a strange state and stabilizer state - surely there is such a counterexample in thermodynamics theory if we consider a highly coherent state and one with the same energy population but no coherences.} 
 \end{proof}
@@ -569,7 +581,7 @@ We now justify the name $\sigma$--fragment for the subdivision of a magic theory
     \Pio(\E) =
     \begin{cases}
         \E,\ &\sigma \in \O, \\
-        1_{\rm{C}},\ &\sigma \notin \O.
+        \idc,\ &\sigma \notin \O.
     \end{cases}
     \end{equation}
     \nick{$\Pio$ should be different, this here is not right. If we need to project every $\E \in \O$, we may need a different condition on $\Pio$ than $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$.}
