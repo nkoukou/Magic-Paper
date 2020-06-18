@@ -288,7 +288,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
 
 The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
 
-\subsection{Majorization in the $\sigma$--fragments}\label{sec:major}
+\subsection{Majorization of quasi-probabilities in the $\sigma$--fragments}\label{sec:major}
 
 Majorization is a powerful tool that has recently found many applications in quantum information theory \nick{CITE}.
 It can describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
@@ -372,6 +372,11 @@ A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$  if and
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $L_k(\bmx|\bmd) \leq L_k(\bmy|\bmd)$ for all $k=1,2,\dots, d-1$ and $L_d(\bmx|\bmd) = L_d(\bmy|\bmd)$.
 \end{theorem}
 A restatement of the theorem including more equivalent conditions, along with a proof is provided in the \nick{appendix}.
+
+\subsection{Lorenz curves for magic states in a $\sigma$--fragment}
+With this it is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment. For any $\sigma$ being a full rank free state we have that $W_\sigma(\bmx) $ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.We write $L_{\rho|\sigma}(x)$ for the Lorenz curve of $W_\rho(\bmx)$ with respect to $W_\sigma(\bmx)$. 
+
+We now see that $0\le L_{\rho |\sigma}(x) \le 1$ for all $x$ if and only if $\rho$ is a positive Wigner state. Moreover, the area of the function $L_{\rho|\sigma}$ above the line $y=1$ is a resource monotone in this fragment. \ddd{[expand on this -- relate to mana?]}
 
 An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.
 \begin{figure}
@@ -490,7 +495,7 @@ As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any mag
 If $\D$ is not reversible, this mapping is in general NOT contravariant (consider the replacement map $\D(\rho) = \frac{1}{d}\id$ for a strange state and stabilizer state - surely there is such a counterexample in thermodynamics theory if we consider a highly coherent state and one with the same energy population but no coherences.} 
 \end{proof}
 
-Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.}
+Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.} \ddd{[Don't worry about these things now -- let's get the computations section improved]}
 
 \newpage
 %
@@ -593,7 +598,7 @@ Consider a general magic state distillation process,
 where $n$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
 Identifying a symmetry of the distillation process responsible for leaving a state $\sigma$ invariant is equivalent with restricting the process to the $\sigma$--fragment $\O_\sigma$.
 
-\subsection{Mana and Majorization}
+\subsection{Magic, Mana and Majorization}
 We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them preceeds. Mana is the basic resource monotone for magic. Here we show that its basic properties are actually special cases of more general majorization features. More precisely its properties can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
 
 As discussed above, we know that every magic interconversion problem can be analysed across all $\sigma$--fragments and moreover the pre-order in each fragment is exactly specified by $d$--majorization.We now note the following equivalent formulations of $d$--majorization.
@@ -629,6 +634,7 @@ This allows analytical calculation of all Lorenz curve points, hence the maximum
 \begin{equation}\label{eq:Skmax}
     \max_k{L_k \left( \ketbra{S}^{\otimes k} \bigm| \sigma \right)} = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j: 1 \leq 2j+1 \leq k} 4^{-(2j+1)} \binom{k}{2j+1}.
 \end{equation}
+\ddd{[We can probably put upper and lower bounds on this value fairly readily. E.g. using known sum rules. Also -- bad choice of variable $k$, using it as index and also copy number. I think $L_{\rho|\sigma}$ is a neater formulation, since you then package things into a single object -- a function.]}
 
 Consider the noisy Strange state,
 \begin{equation}
