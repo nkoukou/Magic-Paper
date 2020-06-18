@@ -202,12 +202,12 @@ The Wigner distributions of different types of qutrit states are illustrated in~
 
 We can exploit the channel-state duality and use the normalised Choi-Jamio\l{}kowski state 
 \begin{equation}\label{eq:cj}
-    \frac{1}{d_A}\J_\E \coloneqq \frac{1}{d_A}(\id \otimes \E) \sum_{i,j} \ket{ii}\bra{jj}
+    \frac{1}{d_A}\J(\E) \coloneqq \frac{1}{d_A}(\id \otimes \E) \sum_{i,j} \ket{ii}\bra{jj}
 \end{equation}
 to extend the definition of the Wigner distribution to quantum $\cptp$ operations $\E: \cal{B}(\hd[d_A]) \mapsto \cal{B}(\hd[d_B])$, 
 \begin{align}\label{eq:woperation}
     \W[\bmy|\bmx]{\E} 
-    &\coloneqq d_A^2 \W[\bm{\bar x} \oplus \bmy]{\frac{1}{d_A}\J_\E} \\
+    &\coloneqq d_A^2 \W[\bm{\bar x} \oplus \bmy]{\frac{1}{d_A}\J(\E)} \\
     &= \frac{1}{d_B} \tr_B[A_{\bmy} \E(A_{\bmx})],
 \end{align}
 where $\bm{\bar x} \coloneqq (x_0, -x_1)$.
@@ -280,8 +280,8 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
         \includegraphics[scale=0.47
         ]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
-    Established theories involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \Omax$.
-    We introduce fragments $\O_\sigma,\ \sigma \in \F$ that cover $\Omax$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used.
+    Examples of magic theories (SO: Stabilizer Operations, CSPO: Completely Positive Stabilizer Preserving Operations, SPO: Stabilizer Preserving Operations) involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \Omax$.
+    We introduce fragments $\O_\sigma,\ \sigma \in \F$ that cover $\Omax$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used. \ddd{[I think introducing the CSPO and SPO is overly complex here - best to keep things simple and clear. I'd delete them and only explain the terms used in the actual figure.]}
     }
     \label{fig:zoo}
 \end{figure}
@@ -306,7 +306,7 @@ The set $\stoch$ forms a group under matrix multiplication for all $\bmd$ with p
 
 Majorization finds an important application on quantum thermodynamics in the absence of coherence.
 The use of majorization in this setting provides useful intuition for our purposes.
-At any given temperature $\beta$, the thermal state $\gamma_\beta$ is thermodynamically the most ordered state. 
+At any given temperature $\beta$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
 Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
 Roughly, the statement is that there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
@@ -318,12 +318,12 @@ Drawing intuition from this setting, we can define majorization as follows.
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
 If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization in entanglement theory. \nick{CITE}
 
-The pre-order $\prec_{\R'}$ of the $\sigma$--fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+The pre-order $\prec_{\R'}$ of the $\sigma$--fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions. For simplicity we shall shorten this notation and use $\prec_\sigma$, as there is little risk of confusion. \ddd{[update any occurrences]}
 
 \begin{theorem}
     Let $\R = (\F, \O)$ be a theory of magic.
-    Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible, $\tau \prec_\R \rho$.
-    Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
+    Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible.
+    Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_\sigma \W{\rho}$.
 
 \nick{We need to address zeros in the Wigner distribution (I think full-rank states do not have any zeros - there certainly exist non-full-rank states with no zeros).
 
@@ -423,7 +423,7 @@ It is a monotone, additive function of the $\ell_1$-norm of negativity~\nick{CIT
 
 Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-We now generalise this idea of a theory projection that preserves comparability between states.
+We now generalise this idea of a theory projection that preserves comparability between states. 
 \begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
 Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
 Then a \emph{covariant resource projection} of $\R$ into a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ into quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. 
@@ -436,18 +436,13 @@ We call $\R'$ a \emph{covariant fragment} of $\R$.
 \end{definition}
 
 Resource monotones can now be clearly seen as covariant projections of resource theories.
-\begin{proposition}\label{thm:monoproj}
-	Let $\M$ be a resource monotone of a resource theory $\R$. 
-	Then $\M$ is a covariant projection that reduces the pre-order $\prec_\R$ to a total order.
+\begin{proposition}[Totally ordered covariant theories]\label{thm:monoproj}
+	Any $\M$ resource monotone of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order, and conversely any such covariant project corresponds to a resource monotone $\M$. 
 \end{proposition}
 \begin{proof}
 	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	The defining property of a monotone, seen in~\cref{def:mono} ensures order preservation under state projection $\Pis = \M$, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ of real numbers.
+	The defining property of a monotone, seen in~\cref{def:mono} ensures order preservation under state projection $\Pis = \M$, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. For the quantum operations, we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. The definition of a resource monotone then automatically implies covariance. Conversely given any covariant projection of $\R$ we may map the totally ordered set of elements $\Pis(\rho)$ via an injective function $f$ into $\mathbb{R}$ for which $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the required conditions for a resource monotone. 
 	
-	Let $\Pio$ project any $\E \in \O$ onto a real non-increasing function $f$ defined by mapping $\M(\rho)$ to $\M(\E(\rho))$ for every state $\rho$.
-	Then, composition of free opearations implies composition of their function projections. \nick{expand?}
-	
-	The ordered pair $(\Pis, \Pio)$ is the covariant resource projection which corresponds to monotone $\M$.
 \end{proof}
 
 On the other hand, $\sigma$--fragments are an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
@@ -467,28 +462,13 @@ The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refe
 Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
 
 \begin{proposition}\label{thm:subproj}
-    Let $\R = (\F, \O)$ be a general resource theory. 
-    Then, any subtheory $\R' = (\F, \O')$ of $\R$, where $\O' \subseteq \O$, is a contravariant fragment of $\R$.    
+    Let $\R = (\F, \O)$ be a resource theory, and let $\O' \subseteq \O$ be a non-empty subset of the free operations that is closed under composition, and moreover $\O'$ is the largest such subset, in the sense that for any $\E_1 \not \in \O'$ and any $\E_2 \in \O'$ we have that both $\E_1 \circ \E_2$ and $\E_2 \circ \E_1$ are not in $\O'$. Then $\R' = (\F, \O')$ of $\R$ defines a contravariant fragment of $\R$.    
 \end{proposition}
 \begin{proof}
-    We will establish a contravariant projection $(\Pis, \Pio)$ from $\R$ to $\R'$.
-    Let the state projection $\Pis$ map all states onto themselves and suppose that $\rho_1 \prec_{\R'} \rho_2$. 
-    Then, there exists $\E \in \O' \subseteq \O$ such that $\rho_1 = \E(\rho_2)$, therefore $\rho_1 \prec_{\R} \rho_2$ as well.
-	
-    Consider the operation projection $\Pio:\O \mapsto \O'$, defined as
-    \begin{equation}
-    \Pio(\E) =
-    \begin{cases}
-        \E,\ &\E \in \O', \\
-        1_{\rm{C}},\ &\E \notin \O',
-    \end{cases}
-    \end{equation}    
-    This projection ensures that operational composition is contravariantly preserved.
-    For any $\E_1, \E_2 \in \O'$, then $\E =\E_1 \circ \E_2 \in \O_\sigma$ as well, so $\E = \Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2) = \E_1 \circ \E_2$.
-    If $\E_1 \notin \O'$ or $\E_2 \notin \O'$, then $\Pio(\E) \neq \Pio(\E_1) \circ \Pio(\E_2)$.
+    We first define $\Pis (\rho) = \rho$ for all $\rho$. It is clear that since $\O'$ is a subset of $\O$ any operation in $\O'$ will map the set of free states into itself. Moreover the identity channel $id$ is necessarily in $\O'$, due to the maximality assumption. For $\Pio$ we let $\Pis(\E) = \E$ if $\E \in \O'$ and otherwise $\Pis(\E) =id$. Now consider $\Pio (\E_1 \circ \E_2)$. Either the triple $\{\E_1, \E_2, \E_1\circ \E_2\}$ are all in $\O'$ or they are all outside of $\O'$. For the former case $\Pio(\E_1 \circ \E_2) = \E_1 \circ \E_2 = \Pio(\E_1) \circ \Pio(\E_2)$, while for the latter $\Pio(\E_1 \circ \E_2) = id = \Pio(\E_1) \circ \Pio(\E_2)$, which proves that compositions are respected under the map. Finally, $\rho \prec_{R'} \sigma$ implies there exists $\E \in \O' \subseteq \O$ such that $ \E(\rho) = \sigma$, and since $\E \in \O$ this implies $\rho \prec _{\R} \sigma$, as required, which completes the proof.
     
-    \nick{This does not hold in the case of all $\E, \E_1, \E_2 \notin \O'$. We need to update the composition condition in~\cref{def:contraproj}}
 \end{proof}
+\ddd{[The key method in proof-analysis is to first make any assumptions you want in order to get the result that you want...then you can later go back and see what assumptions can be weakened or dropped.]}
 As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any magic theory $\R$ is a contravariant fragment of $\R$.
 
 
@@ -513,95 +493,95 @@ If $\D$ is not reversible, this mapping is in general NOT contravariant (conside
 Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.}
 
 \newpage
-
-\subsection{Fragments - OLD}
-
-\nick{OLD VERSION}
-
-Monotones reduce the structure of the resource theory $\R$ into a \emph{total} order on the real numbers.
-Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-This is a generic approach that ensures a form of comparison between states and resource quantification.
-However, motivated by $\sigma$--fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
-\begin{figure}[t]
-    \centering
-    \includegraphics[height=3cm]{figs/fragments.pdf}
-    \caption{Fragments \nick{Split into subfigures}
-    }
-    \label{fig:fragments}
-\end{figure}
-We define such a resource projection for general resource theories as follows.
-\begin{definition}[\textbf{Resource projection}]\label{def:fragment}
-    Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
-    Any subtheory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$ is called a resource fragment iff there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
-    \begin{enumerate}
-        \item $\Pis: \D \mapsto \D$ and $\Pis(\rho_2) \nprec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_{\R} \rho_2$;
-        \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
-    \end{enumerate}
-    We call $\Pi$ a resource projection.
-\end{definition}
-
-\ddd{[I think the following might be the right way to understand things, using the notion of ``covariant'' and ``contravariant''.]}
-
-Fragment $\R'$ is the image of the projection $\Pi$.
-Considering a resource projection is particularly useful when the pre-order of the fragment is tractable.
-Note the subtle difference of condition 1 in~\cref{def:fragment} and condition 2 in~\cref{def:mono}, which is due to fragments generally retaining a pre-order, while monotones impose a total order.
-
-\ddd{[If you agree with the covariant-contravariant definitions above then you can update the following results using the new terminology.]}
-A monotone is the projection with the simplest tractable order as formally stated in~\cref{thm:monofrag}.
-\begin{proposition}\label{thm:monofrag}
-	Let $\M$ be a resource monotone of a resource theory $\R$. 
-	Then $\M$ is a resource projection that reduces the pre-order $\prec_\R$ to a total order.
-\end{proposition}
-\begin{proof}
-	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	Let $\R' = (\F', \O')$, where $\F' \equiv \{0\}$ and $\O'$ is the set of non-increasing real functions mapping the set of non-negative real numbers $\mathbb{R}_{\geq 0}$ to itself. 
-	We also set $\prec_{\R'}$ as the usual total order $\leq$ and $\circ_{\R'}$ as the composition of real functions.
-	
-	Let $\Pis = \M$.
-	The defining properties of a monotone, given in~\cref{def:mono}, ensure condition 1 of~\cref{def:fragment}. \nick{expand}
-	
-	Let $\Pio$ project any $\E \in \O$ onto a function $f \in \O$ which maps $\M(\rho)$ onto $\M(\E(\rho))$ for all states $\rho$.
-	
-	The ordered pair $(\Pis, \Pio)$ is the resource projection which corresponds to monotone $\M$.
-\end{proof}
-
-\begin{example}. As a simple example, we can consider the thermal operations resource theory of thermodynamics, and take $\D$ to be the dephasing map that kills off coherences between energy eigenspaces. Then the resource projection $\R'$ induced by $\D$ is fully described by the thermo-majorization pre-order on distributions over energies.
-\end{example}
-
-We now justify the name $\sigma$--fragment for the subdivision of a magic theory $\R = (\F, \O)$, by establishing a resource projection which reduces $\R$ into any subtheory $(\F, \O_\sigma)$.
-\begin{proposition}
-    Let $\R = (\F, \O)$ be a theory of magic.
-    Every $\sigma$--fragment $(\F, \O_\sigma)$ \ddd{defines a contravariant projection} of $\R$.
-\end{proposition}
-\begin{proof}
-    Let the state projection be the identity projection $\Pis:\D\mapsto\D$.
-    
-    Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
-    \begin{equation}
-    \Pio(\E) =
-    \begin{cases}
-        \E,\ &\sigma \in \O, \\
-        \idc,\ &\sigma \notin \O.
-    \end{cases}
-    \end{equation}
-    \nick{$\Pio$ should be different, this here is not right. If we need to project every $\E \in \O$, we may need a different condition on $\Pio$ than $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$.}
-    The ordered pair $(\Pis, \Pio)$ acts as the desired projection.
-\end{proof}
-
-An important example of a fragment appears in quantum thermodynamics. 
-Consider a projection $\Pi$, such that $\Pis$ dephases all states in the energy eigenbasis, while $\Pio$ maps all free operations to themselves.
-Then $\Pi$ describes the theory in the absence of coherences and the new pre-order is simply thermo-majorization, which in fact is fully solvable in the form of entropic conditions~\cite{cit:gour}. \nick{expand/rephrase}
-
-Existing magic theories can be thought of as fragments of $\Rmax$.
-\begin{proposition}
-    Every theory of magic $\R$ is a fragment of the maximal theory $\Rmax$.
-\end{proposition}
-\begin{proof}
-    \nick{We need a state projection that establishes that some free states are not free any more $+$ an operations projection.}
-\end{proof}
-
-\ddd{[Is there a way to view Nielsen's theorem as describing a projection of the full mixed state LOCC entanglement theory? Is really not essential but might be nice to include. Send $\rho_{AB} $ to the most entangled pure state in its eigendecomposition?]}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\subsection{Fragments - OLD}
+%
+%\nick{OLD VERSION}
+%
+%Monotones reduce the structure of the resource theory $\R$ into a \emph{total} order on the real numbers.
+%Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
+%This is a generic approach that ensures a form of comparison between states and resource quantification.
+%However, motivated by $\sigma$--fragments in magic theories, it is clear that we can often reduce the theory by a less \nick{information-collapsing} projection into a subtheory $\R'$ which has a tractable pre-order $\R'$, as sketched in~\cref{fig:fragments}.
+%\begin{figure}[t]
+%    \centering
+%    \includegraphics[height=3cm]{figs/fragments.pdf}
+%    \caption{Fragments \nick{Split into subfigures}
+%    }
+%    \label{fig:fragments}
+%\end{figure}
+%We define such a resource projection for general resource theories as follows.
+%\begin{definition}[\textbf{Resource projection}]\label{def:fragment}
+%    Let a resource theory $\R = (\F, \O)$ have pre-order $\prec_{\R}$ and operational composition rule $\circ_{\R}$. 
+%    Any subtheory $\R' = (\F', \O')$ with pre-order $\prec_{\R'}$ and operational composition rule $\circ_{\R'}$ is called a resource fragment iff there exists a surjective projection $\Pi \equiv (\Pis, \Pio): \R \mapsto \R'$ that satisfies the following two conditions.
+%    \begin{enumerate}
+%        \item $\Pis: \D \mapsto \D$ and $\Pis(\rho_2) \nprec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_{\R} \rho_2$;
+%        \item $\Pio: \O \mapsto \O'$ and $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$ for all free operations $\E_1, \E_2 \in \O$.
+%    \end{enumerate}
+%    We call $\Pi$ a resource projection.
+%\end{definition}
+%
+%\ddd{[I think the following might be the right way to understand things, using the notion of ``covariant'' and ``contravariant''.]}
+%
+%Fragment $\R'$ is the image of the projection $\Pi$.
+%Considering a resource projection is particularly useful when the pre-order of the fragment is tractable.
+%Note the subtle difference of condition 1 in~\cref{def:fragment} and condition 2 in~\cref{def:mono}, which is due to fragments generally retaining a pre-order, while monotones impose a total order.
+%
+%\ddd{[If you agree with the covariant-contravariant definitions above then you can update the following results using the new terminology.]}
+%A monotone is the projection with the simplest tractable order as formally stated in~\cref{thm:monofrag}.
+%\begin{proposition}\label{thm:monofrag}
+%	Let $\M$ be a resource monotone of a resource theory $\R$. 
+%	Then $\M$ is a resource projection that reduces the pre-order $\prec_\R$ to a total order.
+%\end{proposition}
+%\begin{proof}
+%	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
+%	Let $\R' = (\F', \O')$, where $\F' \equiv \{0\}$ and $\O'$ is the set of non-increasing real functions mapping the set of non-negative real numbers $\mathbb{R}_{\geq 0}$ to itself. 
+%	We also set $\prec_{\R'}$ as the usual total order $\leq$ and $\circ_{\R'}$ as the composition of real functions.
+%	
+%	Let $\Pis = \M$.
+%	The defining properties of a monotone, given in~\cref{def:mono}, ensure condition 1 of~\cref{def:fragment}. \nick{expand}
+%	
+%	Let $\Pio$ project any $\E \in \O$ onto a function $f \in \O$ which maps $\M(\rho)$ onto $\M(\E(\rho))$ for all states $\rho$.
+%	
+%	The ordered pair $(\Pis, \Pio)$ is the resource projection which corresponds to monotone $\M$.
+%\end{proof}
+%
+%\begin{example}. As a simple example, we can consider the thermal operations resource theory of thermodynamics, and take $\D$ to be the dephasing map that kills off coherences between energy eigenspaces. Then the resource projection $\R'$ induced by $\D$ is fully described by the thermo-majorization pre-order on distributions over energies.
+%\end{example}
+%
+%We now justify the name $\sigma$--fragment for the subdivision of a magic theory $\R = (\F, \O)$, by establishing a resource projection which reduces $\R$ into any subtheory $(\F, \O_\sigma)$.
+%\begin{proposition}
+%    Let $\R = (\F, \O)$ be a theory of magic.
+%    Every $\sigma$--fragment $(\F, \O_\sigma)$ \ddd{defines a contravariant projection} of $\R$.
+%\end{proposition}
+%\begin{proof}
+%    Let the state projection be the identity projection $\Pis:\D\mapsto\D$.
+%    
+%    Consider the operation projection $\Pio:\O \mapsto \O_\sigma$, defined as
+%    \begin{equation}
+%    \Pio(\E) =
+%    \begin{cases}
+%        \E,\ &\sigma \in \O, \\
+%        \idc,\ &\sigma \notin \O.
+%    \end{cases}
+%    \end{equation}
+%    \nick{$\Pio$ should be different, this here is not right. If we need to project every $\E \in \O$, we may need a different condition on $\Pio$ than $\Pio(\E_1) \circ_{\R'} \Pio(\E_2) = \Pio(\E_1 \circ_{\R} \E_2)$.}
+%    The ordered pair $(\Pis, \Pio)$ acts as the desired projection.
+%\end{proof}
+%
+%An important example of a fragment appears in quantum thermodynamics. 
+%Consider a projection $\Pi$, such that $\Pis$ dephases all states in the energy eigenbasis, while $\Pio$ maps all free operations to themselves.
+%Then $\Pi$ describes the theory in the absence of coherences and the new pre-order is simply thermo-majorization, which in fact is fully solvable in the form of entropic conditions~\cite{cit:gour}. \nick{expand/rephrase}
+%
+%Existing magic theories can be thought of as fragments of $\Rmax$.
+%\begin{proposition}
+%    Every theory of magic $\R$ is a fragment of the maximal theory $\Rmax$.
+%\end{proposition}
+%\begin{proof}
+%    \nick{We need a state projection that establishes that some free states are not free any more $+$ an operations projection.}
+%\end{proof}
+%
+%\ddd{[Is there a way to view Nielsen's theorem as describing a projection of the full mixed state LOCC entanglement theory? Is really not essential but might be nice to include. Send $\rho_{AB} $ to the most entangled pure state in its eigendecomposition?]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Distillation bounds}
 \label{sec:distill}
@@ -613,7 +593,24 @@ Consider a general magic state distillation process,
 where $n$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
 Identifying a symmetry of the distillation process responsible for leaving a state $\sigma$ invariant is equivalent with restricting the process to the $\sigma$--fragment $\O_\sigma$.
 
-Mana is monotonic and additive in all $\sigma$--fragments as seen in~\cref{app:major}, so it provides a bound for distillation processes
+\subsection{Mana and Majorization}
+We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them preceeds. Mana is the basic resource monotone for magic. Here we show that its basic properties are actually special cases of more general majorization features. More precisely its properties can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
+
+As discussed above, we know that every magic interconversion problem can be analysed across all $\sigma$--fragments and moreover the pre-order in each fragment is exactly specified by $d$--majorization.We now note the following equivalent formulations of $d$--majorization.
+\begin{theorem}
+Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
+ \begin{enumerate}%[\rm{(TM1)}]
+	\item $\bmx \prec_{\bmd} \bmy$;
+	\item $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
+	\item\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
+	\item $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+	\item $\forall k, L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ and $L_{\bmx|\bmd}(k=n) = L_{\bmy|\bmd}(k=n)$.
+ \end{enumerate}
+\end{theorem}
+However, statement 3 implies that if we take $t=0$ then we see that this becomes that $\mbox{mana}(\rho) \ge \mbox{mana}(\sigma)$. \ddd{[expand/tidy this]}
+
+\ddd{[I didn't follow your mana is additive argument]}
+so it provides a bound for distillation processes
 \begin{equation}
     \mana{\rho} \geq \frac{1}{k} \mana{\tau}.
 \end{equation}.
