@@ -193,7 +193,7 @@ The Wigner distributions of different types of qutrit states are illustrated in~
     \includegraphics[height=2cm]{figs/strangestate.pdf}
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
-    \caption{Wigner distributions for qutrit states of varying magic. 
+    \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
     \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabilizer Wigner-positive state; \subref{fig:strange} Magic strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$.
     \nick{Explain what a magic / bound magic state is in intro}
     }%
@@ -242,6 +242,10 @@ It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with 
 \end{equation}
 
 Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\mbox{\tiny max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr [ L\rho] \ge 0$ with $L \in \mathcal{B}(\mathcal{H})$.
+\nick{Unfortunately, this is not enough. 
+There are positive Wigner ditributions which correspond to invalid states i.e. they are NOT positive semi-definite.
+Therefore, there are ``holes'' in the set specified by these linear constraints.
+We need a stricter argument.}
 
 
 Given this context we now define the following key notion, that is central to our analysis.
@@ -260,15 +264,22 @@ With this basic notion defined, we now show that any resource theory of magic ca
   \begin{equation}
 \O = \bigcup\limits_{\sigma \in \F} \O_\sigma.
 \end{equation}
-Therefore, $\rho\longrightarrow \tau$ in $\R$ if and only if $\rho\longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
+Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
 \end{theorem}
 \begin{proof}
-    Suppose $\E$ is in $\O_\sigma$, then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. Conversely, suppose $\E$ is in $\O$. 
+    Suppose $\E$ is in a $\sigma$--fragment $\O_\sigma$.
+    Then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. 
+    
+    Conversely, suppose $\E$ is in $\O$. 
     The free states are a closed set that is mapped one-to-one to a closed subset $\cal{S}$ of the $(d^2 - 1)$-dimensional probability simplex.
     $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
-    Therefore, $\cal{S}$ is convex and compact as a convex subset of the bounded compact probability simplex.
-    Then, $\W{\E}{}$ is a stochastic, continuous, mapping from $\cal{S}$ to itself and so Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $g_{\bmz}$ for some $ \bmz \in \pd$ that is a fixed point of $\W{\E}{}$.
-    This corresponds to an operator $\sigma \coloneqq \sum_{\bmz \in \pd} g_{\bmz} A_{\bmz}$  which is a state in $\F$. Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. The state interconversion result follows immediately.
+    Therefore, $\cal{S}$ is convex and compact as a closed convex subset of the bounded compact probability simplex.
+    
+    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \pd$ that is a fixed point of $\W{\E}$.
+    This corresponds to a free state $\sigma \coloneqq \sum_{\bmz \in \pd} d_{\bmz} A_{\bmz} \in \F$. 
+    Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. 
+    
+    The state interconversion result follows immediately.
 \end{proof}
 
 The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
@@ -280,17 +291,18 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
         \includegraphics[scale=0.47
         ]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
-    Examples of magic theories (SO: Stabilizer Operations, CSPO: Completely Positive Stabilizer Preserving Operations, SPO: Stabilizer Preserving Operations) involve operations within the yellow regions, following the hierarchy $\so \subset \cspo \subset \spo \subset \Omax$.
-    We introduce fragments $\O_\sigma,\ \sigma \in \F$ that cover $\Omax$ with each one extending to a set of stochastic maps that allows for $\bmd$-majorization to be used. \ddd{[I think introducing the CSPO and SPO is overly complex here - best to keep things simple and clear. I'd delete them and only explain the terms used in the actual figure.]}
+    Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations) involve operations within the yellow regions, with all other established magic theories between these two.
+    We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$ with each one extendible to a set of stochastic maps outside the $\cptp$ operations.
+    Within each $\sigma$--fragment $\bmd$-majorization can be used allowing for an \nick{in-depth approach} towards the study of magic state interconversion.
     }
     \label{fig:zoo}
 \end{figure}
 
-The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R'}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}. \nick{expand}
+The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}.
 
 \subsection{Majorization in the $\sigma$--fragments}\label{sec:major}
 
-Majorization is a powerful tool that has recently found many applications in quantum information theory \nick{CITE}.
+Majorization is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
 It can describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
 
 To formally state majorization results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$. \nick{Should we introduce notation directly in the magic setting?}
@@ -318,11 +330,11 @@ Drawing intuition from this setting, we can define majorization as follows.
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
 If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization in entanglement theory. \nick{CITE}
 
-The pre-order $\prec_{\R'}$ of the $\sigma$--fragment $\R' = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions. For simplicity we shall shorten this notation and use $\prec_\sigma$, as there is little risk of confusion. \ddd{[update any occurrences]}
+The pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+For simplicity we shall merge this notation into $\prec_\sigma$, as there is little risk of confusion.
 
 \begin{theorem}
-    Let $\R = (\F, \O)$ be a theory of magic.
-    Suppose the state conversion $\rho \xrightarrow{\E \in \O} \tau$ is possible.
+    Let $\R = (\F, \O)$ be a theory of magic and suppose the state conversion $\rho \longrightarrow \tau$ is possible.
     Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_\sigma \W{\rho}$.
 
 \nick{We need to address zeros in the Wigner distribution (I think full-rank states do not have any zeros - there certainly exist non-full-rank states with no zeros).
@@ -347,7 +359,7 @@ Otherwise, simply stating in this theorem that ``there exists a full-rank free s
 
 A visual representation of $\bmd$-majorization is provided by Lorenz curves.
 Let the vector $\bmz^\downarrow$ denote a component permutation of vector $\bmz \in \reals^d$, so that its components are arranged in non-increasing order.
-\begin{definition}[\textbf{Lorenz curve}]
+\begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
     Let $\bmz \in \reals^d$.
     Let $\bmd \in \reals^d$ be a vector with positive components, $\pi$ a permutation mapping $(z_i/d_i) \mapsto (z_i/d_i)^\downarrow$ for all $i=1,\dots,d$ and $D = \sum_{i=1}^d d_i$.
     The Lorenz curve $L(\bmz|\bmd)$ of vector $\bmz$ is the piecewise linear curve obtained by joining the points $\{ (x_k, L_k(\bmz|\bmd)) \}_{k=1,\dots,d}$, where
@@ -364,16 +376,17 @@ In fact, the Lorenz curves $L(\bmz|\bmd)$ and $L(\bmz \otimes \bmd|\bmd \otimes 
 
 \emph{Remark 4.} If $L_d(\bmz|\bmd) = 1$ and for all $k$, $L_k(\bmz|\bmd) \leq 1$, then $\bmz$ is a probability distribution.
 Lorenz curves of quasi-probability distributions in principle reach above 1.
-\ddd{[It is usually better to convert the Lorenz curve into a \emph{function} $L_{\bmz|\bmd}(x)$ defined on $[0,1]$. Then the majorization simply becomes the functional inequality $L_{\bmz|\bmd}(x) \ge L _{\bmy|\bmd}(x)$ for all $x$.]}
+
+\emph{Remark 5.} We can recast the Lorenz curve into the \emph{function} $L_{\bmz|\bmd}(x)$ defined on $[0,1]$.
 
 A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$  if and only if the Lorenz curve $L(\bmy|\bmd)$ lies above Lorenz curve $L(\bmx|\bmd)$.
 \begin{theorem}\label{thm:dmajor}
     Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $L_k(\bmx|\bmd) \leq L_k(\bmy|\bmd)$ for all $k=1,2,\dots, d-1$ and $L_d(\bmx|\bmd) = L_d(\bmy|\bmd)$.
 \end{theorem}
-A restatement of the theorem including more equivalent conditions, along with a proof is provided in the \nick{appendix}.
+A restatement of the theorem including more equivalent conditions, along with a proof is provided in~\cref{app:major}.
 
-An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.
+An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}. \nick{expand}
 \begin{figure}
     \centering
     \includegraphics[height=5cm]{figs/lctoy.pdf}
@@ -394,11 +407,12 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
 In the previous section we introduced the notion of $\sigma$--fragments for any resource theory of magic. In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. The busy reader more focussed on magic may skip this section.
 
 State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
-In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ \nick{expand / move to intro}.
-Subdividing magic theories into $\sigma$--fragments \nick{helps}.
+In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering\nick{CITE}.
+The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the origin theory than a measure can.
+
 \subsection{Monotones}\label{sec:mono}
 
-Resource theories are commonly equipped with monotones which quantify the resource\nick{CITE}. 
+We highlight the defining property of a monotone for the discussion that follows.
 \begin{definition}[\textbf{Resource monotone}]\label{def:mono}
     Let $\R = (\F, \O)$ be a resource theory.
     A resource monotone $\M$ is a projection from the set of quantum states of the theory onto the real line, so that $\M$ is monotonically decreasing under free operations,
@@ -407,17 +421,17 @@ Resource theories are commonly equipped with monotones which quantify the resour
     \end{equation}
 \end{definition}
 The monotonicity condition reflects the no resource generating property of free operations, so that monotones respect the pre-order $\prec_\R$ of the theory.
-Furthermore, if a monotone satisfies the additivity condition,
+Furthermore, a monotone may also satisfy the additivity condition,
 \begin{equation}
-    \M(\rho_1 \otimes \rho_2) = \M(\rho_1) + \M(\rho_2),
+    \M(\rho_1 \otimes \rho_2) = \M(\rho_1) + \M(\rho_2).
 \end{equation}
-it is of practical importance for resource distillation, which we discuss in~\cref{sec:distill} within the context of magic.
+This optional condition is of practical importance for resource distillation, which we discuss in~\cref{sec:distill} within the context of magic.
 
-A very commonly used magic monotone is the \emph{mana} of a state \nick{CITE}, defined as
+The most fundamental and commonly used magic monotone is the \emph{mana} of a state \nick{CITE}, defined as
 \begin{equation}
     \mana{\rho} \coloneqq \log{\left(\sum\limits_{\bmz \in \pd} \abs{\W[\bmz]{\rho}}\right)}.
 \end{equation}
-It is a monotone, additive function of the $\ell_1$-norm of negativity~\nick{CITE}.
+It is a monotone function of the $\ell_1$-norm of state negativity~\nick{CITE} that satisfies the additivity condition.
 
 \subsection{Fragments}
 
@@ -426,27 +440,34 @@ Therefore, two states, even if incomparable in $\R$, are always mapped onto orde
 We now generalise this idea of a theory projection that preserves comparability between states. 
 \begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
 Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-Then a \emph{covariant resource projection} of $\R$ into a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ into quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ into free operations in $\R'$. 
+Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ to free operations in $\R'$. 
 Moreover, these obey
 	\begin{enumerate}
-        \item $\Pis(\rho_2) \prec_{\R'} \Pis(\rho_1)$ whenever $\rho_1 \prec_\R \rho_2$;
+        \item $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_\R \rho_2$;
         \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
     \end{enumerate}
 We call $\R'$ a \emph{covariant fragment} of $\R$.
 \end{definition}
 
-Resource monotones can now be clearly seen as covariant projections of resource theories.
-\begin{proposition}[Totally ordered covariant theories]\label{thm:monoproj}
-	Any $\M$ resource monotone of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order, and conversely any such covariant project corresponds to a resource monotone $\M$. 
+Resource monotones can now be clearly seen as a special case of covariant resource projections.
+\begin{proposition}[\textbf{Totally ordered covariant theories}]\label{thm:monoproj}
+	Any resource monotone $\M$ of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order. 
+	Conversely, any such covariant projection corresponds to a resource monotone $\M$. 
 \end{proposition}
 \begin{proof}
 	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	The defining property of a monotone, seen in~\cref{def:mono} ensures order preservation under state projection $\Pis = \M$, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. For the quantum operations, we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. The definition of a resource monotone then automatically implies covariance. Conversely given any covariant projection of $\R$ we may map the totally ordered set of elements $\Pis(\rho)$ via an injective function $f$ into $\mathbb{R}$ for which $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the required conditions for a resource monotone. 
+	State order is covariantly preserved due to the defining property of a monotone, seen in~\cref{def:mono}, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
+	
+	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
+	The definition of a resource monotone then automatically implies covariance.
+	
+	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
+	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the defining monotone condition.
 	
 \end{proof}
 
-On the other hand, $\sigma$--fragments are an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
-States which are incomparable in $\R$ remain incomparable, but conversions between states which are comparable in $\R$ may no longer be possible.
+We can also view $\sigma$--fragments as an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
+However, states which are incomparable in $\R$ remain incomparable and conversions between states which are comparable in $\R$ may no longer be possible.
 \begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
 	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
 Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
@@ -468,7 +489,7 @@ Here our use of the term projection is motivated by the idea that one one genera
     We first define $\Pis (\rho) = \rho$ for all $\rho$. It is clear that since $\O'$ is a subset of $\O$ any operation in $\O'$ will map the set of free states into itself. Moreover the identity channel $id$ is necessarily in $\O'$, due to the maximality assumption. For $\Pio$ we let $\Pis(\E) = \E$ if $\E \in \O'$ and otherwise $\Pis(\E) =id$. Now consider $\Pio (\E_1 \circ \E_2)$. Either the triple $\{\E_1, \E_2, \E_1\circ \E_2\}$ are all in $\O'$ or they are all outside of $\O'$. For the former case $\Pio(\E_1 \circ \E_2) = \E_1 \circ \E_2 = \Pio(\E_1) \circ \Pio(\E_2)$, while for the latter $\Pio(\E_1 \circ \E_2) = id = \Pio(\E_1) \circ \Pio(\E_2)$, which proves that compositions are respected under the map. Finally, $\rho \prec_{R'} \sigma$ implies there exists $\E \in \O' \subseteq \O$ such that $ \E(\rho) = \sigma$, and since $\E \in \O$ this implies $\rho \prec _{\R} \sigma$, as required, which completes the proof.
     
 \end{proof}
-\ddd{[The key method in proof-analysis is to first make any assumptions you want in order to get the result that you want...then you can later go back and see what assumptions can be weakened or dropped.]}
+\nick{The above proposition is not relevant to $\sigma$-fragments where ``for any $\E_1 \not \in \O_\sigma$ and any $\E_2 \in \O_\sigma$'' we sometimes have $\E_1 \circ \E_2 \in \O_\sigma$ as well as $\E_2 \circ \E_1 \in \O_\sigma$ and sometimes $\E_1 \circ \E_2 \notin \O_\sigma$ as well as $\E_2 \circ \E_1 \notin \O_\sigma$}
 As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any magic theory $\R$ is a contravariant fragment of $\R$.
 
 
@@ -583,39 +604,40 @@ Important examples of resource fragments appear in several established resource 
 %\ddd{[Is there a way to view Nielsen's theorem as describing a projection of the full mixed state LOCC entanglement theory? Is really not essential but might be nice to include. Send $\rho_{AB} $ to the most entangled pure state in its eigendecomposition?]}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Distillation bounds}
+\section{Magic state interconversion and Lorenz curves}
 \label{sec:distill}
 
-Consider a general magic state distillation process,
-\begin{equation}\label{eq:distprocess}
-    \rho^{\otimes k} \xrightarrow{\E \in \O} \tau,
+Any quantum circuit aiming at a given magic state conversion $\rho \longrightarrow \tau$ possesses certain symmetries according to~\cref{thm:frag} that allow us to study the conversion within only certain $\sigma$-fragments.
+As a simple example, the dephasing channel
+\begin{equation}
+	\Delta(\rho) = \sum_{k \in \zd} \ketbra{k}{k}\rho\ketbra{k}{k}
 \end{equation}
-where $n$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
-Identifying a symmetry of the distillation process responsible for leaving a state $\sigma$ invariant is equivalent with restricting the process to the $\sigma$--fragment $\O_\sigma$.
+removes coherent phases in the computational basis and therefore only leaves invariant mixtures of computational basis states.
+If the circuit simply consists of such dephasing channels, the whole analysis could be restricted in the $\sigma$--fragments for pure computational basis states $\sigma$.
 
-\subsection{Mana and Majorization}
-We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them preceeds. Mana is the basic resource monotone for magic. Here we show that its basic properties are actually special cases of more general majorization features. More precisely its properties can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
+Lorenz curves provide a very efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
+Such methods are often more conclusive than magic monotones as we discuss in section~\cref{sec:scmana}.
 
-As discussed above, we know that every magic interconversion problem can be analysed across all $\sigma$--fragments and moreover the pre-order in each fragment is exactly specified by $d$--majorization.We now note the following equivalent formulations of $d$--majorization.
-\begin{theorem}
-Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
- \begin{enumerate}%[\rm{(TM1)}]
-	\item $\bmx \prec_{\bmd} \bmy$;
-	\item $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
-	\item\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
-	\item $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-	\item $\forall k, L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ and $L_{\bmx|\bmd}(k=n) = L_{\bmy|\bmd}(k=n)$.
- \end{enumerate}
-\end{theorem}
-However, statement 3 implies that if we take $t=0$ then we see that this becomes that $\mbox{mana}(\rho) \ge \mbox{mana}(\sigma)$. \ddd{[expand/tidy this]}
+\subsection{Mana and Majorization}\label{sec:scmana}
+We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them proceeds. 
+Mana is the fundamental resource monotone for magic. 
+Here we show that its properties are in fact special cases of more general majorization features. 
+More precisely, its properties can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
 
-\ddd{[I didn't follow your mana is additive argument]}
-so it provides a bound for distillation processes
+As discussed above, we know that every magic interconversion problem can be analysed across all $\sigma$--fragments that reflect symmetries of the circuit and moreover the pre-order in each such fragment is exactly specified by $d$--majorization.
+
+Consider a general magic state distillation process, \nick{Generalise discussion to any state conversion?}
+\begin{equation}\label{eq:distprocess}
+    \rho^{\otimes k} \longrightarrow \tau,
+\end{equation}
+where $k$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
+
+It is shown in~\cref{app:major} that mana is an additive monotone in every $\sigma$--fragment under $d$--majorization, so it provides a bound for the process,
 \begin{equation}
     \mana{\rho} \geq \frac{1}{k} \mana{\tau}.
-\end{equation}.
+\end{equation}
 
-A new bound can be obtained in any $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
+A new bound can be obtained in every $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
 \begin{equation}\label{eq:majbound}
     L_k(\rho^{\otimes k} | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2,
 \end{equation}
@@ -644,10 +666,10 @@ with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/ratios.pdf}
-    \caption{Plot of the noise level threshold ratios between mana and Lorenz curve for the Strange state purifying process in~\cref{eq:purify}.
+    \caption{\textbf{Noise threshold ratios.} Mana and Lorenz curve ratios for the Strange state purifying process in~\cref{eq:purify}.
     The ratios are calculated for different numbers of initial state copies and different $\sigma$--fragments parametrised by $p$ such that $\sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id$.
     Lorenz curve comparison consistently gives stricter bounds as proven in~\cref{thm:bounds}.
-    \nick{Highlight physics/invariance}
+    \nick{Consider set of pure stabilizer states instead of $(1-p)\ketbra{0} + p \frac{1}{3}\id$ perhaps}
     }
     \label{fig:distill}
 \end{figure}
@@ -659,7 +681,9 @@ In fact, it is clear than this is the case in any general distillation process.
     In any $\sigma$--fragment, $\W{\sigma}$-majorization provides a stricter bound than mana.
 \end{theorem}
 \begin{proof}
-    The maximum of the Lorenz curve of a state $\rho$ can be expressed monotonically in terms of mana, independently of the $\sigma$--fragment,
+    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment
+    
+    The Lorenz curve maximum can then be expressed monotonically in terms of mana,
     \begin{equation}
         \max_k{L_k(\rho | \sigma)} = 1 + \sum_{\bmz: \W[\bmz]{\rho}<0} \abs{\W[\bmz]{\rho}} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
     \end{equation}
