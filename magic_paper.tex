@@ -300,7 +300,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
 
 The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}.
 
-\subsection{Majorization in the $\sigma$--fragments}\label{sec:major}
+\subsection{Majorization of quasi-probabilities in the $\sigma$--fragments}\label{sec:major}
 
 Majorization is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
 It can describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
@@ -386,7 +386,12 @@ A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$  if and
 \end{theorem}
 A restatement of the theorem including more equivalent conditions, along with a proof is provided in~\cref{app:major}.
 
-An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}. \nick{expand}
+\subsection{Lorenz curves for magic states in a $\sigma$--fragment}
+With this it is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment. For any $\sigma$ being a full rank free state we have that $W_\sigma(\bmx) $ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.We write $L_{\rho|\sigma}(x)$ for the Lorenz curve of $W_\rho(\bmx)$ with respect to $W_\sigma(\bmx)$. 
+
+We now see that $0\le L_{\rho |\sigma}(x) \le 1$ for all $x$ if and only if $\rho$ is a positive Wigner state. Moreover, the area of the function $L_{\rho|\sigma}$ above the line $y=1$ is a resource monotone in this fragment. \ddd{[expand on this -- relate to mana?]} \nick{the area depends on several positive Wigner components and cannot be written as a function of mana annoyingly - can make plot similar to 4.1 in my thesis}
+
+An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.
 \begin{figure}
     \centering
     \includegraphics[height=5cm]{figs/lctoy.pdf}
@@ -456,13 +461,13 @@ Resource monotones can now be clearly seen as a special case of covariant resour
 \end{proposition}
 \begin{proof}
 	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	State order is covariantly preserved due to the defining property of a monotone, seen in~\cref{def:mono}, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
+	State order is covariantly preserved due to the defining property of a monotone, stated in~\cref{def:mono}, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
 	
 	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
 	The definition of a resource monotone then automatically implies covariance.
 	
 	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
-	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the defining monotone condition.
+	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the definition of a monotone.
 	
 \end{proof}
 
@@ -511,7 +516,7 @@ As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any mag
 If $\D$ is not reversible, this mapping is in general NOT contravariant (consider the replacement map $\D(\rho) = \frac{1}{d}\id$ for a strange state and stabilizer state - surely there is such a counterexample in thermodynamics theory if we consider a highly coherent state and one with the same energy population but no coherences.} 
 \end{proof}
 
-Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.}
+Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.} \ddd{[Don't worry about these things now -- let's get the computations section improved]}
 
 \newpage
 %
@@ -618,7 +623,7 @@ If the circuit simply consists of such dephasing channels, the whole analysis co
 Lorenz curves provide a very efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
 Such methods are often more conclusive than magic monotones as we discuss in section~\cref{sec:scmana}.
 
-\subsection{Mana and Majorization}\label{sec:scmana}
+\subsection{Mana and majorization in magic theories}\label{sec:scmana}
 We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them proceeds. 
 Mana is the fundamental resource monotone for magic. 
 Here we show that its properties are in fact special cases of more general majorization features. 
@@ -651,6 +656,7 @@ This allows analytical calculation of all Lorenz curve points, hence the maximum
 \begin{equation}\label{eq:Skmax}
     \max_k{L_k \left( \ketbra{S}^{\otimes k} \bigm| \sigma \right)} = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j: 1 \leq 2j+1 \leq k} 4^{-(2j+1)} \binom{k}{2j+1}.
 \end{equation}
+\ddd{[We can probably put upper and lower bounds on this value fairly readily. E.g. using known sum rules. Also -- bad choice of variable $k$, using it as index and also copy number. I think $L_{\rho|\sigma}$ is a neater formulation, since you then package things into a single object -- a function.]}
 
 Consider the noisy Strange state,
 \begin{equation}
