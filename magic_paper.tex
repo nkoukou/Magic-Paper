@@ -356,6 +356,7 @@ Let the vector $\bmz^\downarrow$ denote a component permutation of vector $\bmz 
     \end{equation}
     The Lorenz curve of vector $\bmz$ with respect to $\bmd$ is then $\lc{\bmz}{\bmd}(x)$ for all $x \in [0,1]$.
 \end{definition}
+\nick{The discrete formulation is more useful in the whole discussion that follows, but the functional formulation is a little more elegant - what to choose?}
 Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
 In fact, one can see that the Lorenz curves $\lc{\bmz}{\bmd}$ and $\lc{\bmz \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
 Furthermore, a Lorenz curve $\lc{\bmz}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $D(\frac{z_i}{d_i})^\downarrow$ for $i=1,\dots,d$ which is non-increasing by construction.
@@ -374,7 +375,7 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
     Vectors $\bmy$ and $\bmd$ are simply probability distributions.
     The curve corresponding to vector $\bmd$ is always the line segment connecting $(0,0)$ and $(1,1)$, so that any other Lorenz curve lies above it, for example $\bmx \prec_{\bmd} \bmd$.
     Curves $L_k(\bmx|\bmd)$ and $L_k(\bmy|\bmd)$ intersect, so $\bmx \nprec_{\bmd} \bmy$ as well as $\bmy \nprec_{\bmd} \bmx$.
-    \nick{Recast in terms of magic}
+    \nick{Recast in terms of magic - replace with~\cref{fig:test}?}
     }
     \label{fig:lctoy}
 \end{figure}
@@ -384,15 +385,18 @@ It is now straightforward to construct Lorenz curves for Wigner distributions in
 As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.
 We write $\lc{\rho}{\sigma}(x)$ for the Lorenz curve of $\W{\rho}$ with respect to $\W{\sigma}$.
 
-We now establish important properties of Lorenz curves that are independent of the $\sigma$--fragment they are define in.
+We now establish important properties of Lorenz curves that are independent of the $\sigma$--fragment they are defined in.
 \begin{proposition}\label{thm:lccont}
-	The Lorenz curve $\lc{\rho}{\sigma}$ of a state $\rho$ with respect to state $\sigma$ is uniformly continuous in $\sigma$.
+	The Lorenz curve $\lc{\rho}{\sigma}(x)$ of a state $\rho$ with respect to state $\sigma$ is uniformly continuous in $\sigma$. 
+	\nick{In the sense that if $\sigma$ and $\sigma'$ are $\delta$-close with respect to a state norm, then the curves $\lc{\rho}{\sigma}(x)$ and $\lc{\rho}{\sigma'}(x)$ are $\epsilon$-close at all $x \in [0,1]$.
+	I think this clears up the narrative quite a bit? - Should we keep and prove this result?}
 \end{proposition}
-The proof of this important result in \nick{the appendix}.
+The proof of this important result is in \nick{the appendix}.
 The consequence of this statement is that infinitesimal changes in state $\sigma$ only result in infinitesimal shifts of the $\sigma$--fragment.
 Therefore, Lorenz curves and majorization analysis in general \nick{behave nicely in the presence of / are robust under} imperfections in the experimental implementation of quantum operations.
 In particular, any $\sigma_0$--fragment defined by a non full-rank state $\sigma_0$ can be approximated by a $\sigma$--fragment defined by a full-rank $\sigma$ which is arbitrarily close to $\sigma_0$, such that $\sigma = (1-\epsilon)\sigma_0 + \epsilon\frac{1}{d}\id$, for some small $\epsilon > 0$.
 Such $\sigma_0$--fragments may include important stabilizer operations such that the replacement channel defined as $\E(\rho) = \sigma_0$ for all states $\rho$.
+
 Normalisation of the Wigner distribution \nick{REF} ensures that for all quantum states $\rho$, $\lc{\rho}{\sigma}(x) \geq 0$ and $\lc{\rho}{\sigma}(1) = 1$.
 As a consequence, checking whether a state conversion $\rho \longrightarrow \tau$ is possible as per~\cref{thm:dmajor}, reduces to the condition $\lc{\rho}{\sigma}(x) \leq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
 
@@ -405,8 +409,12 @@ It can further be seen that the maximum of $\lc{\rho}{\sigma}$ is independent of
 \end{proof}
 
 Therefore, it is clear that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
-The maximum of the Lorenz curve corresponds to the well established monotone of sum-negativity $\rm{sn}$ further discussed in \nick{expand}
-Moreover, the area of the function $L_{\rho|\sigma}$ above the line $y=1$ is also a resource monotone in this fragment. \ddd{[expand - relate to mana?]} \nick{the area depends on several positive Wigner components and cannot be written as a function of mana annoyingly - can make plot similar to 4.1 in my thesis}
+The maximum of the Lorenz curve corresponds to the well established monotone of sum-negativity ($\rm{sn}$) further discussed in \nick{expand - move subsection on monotones (\cref{sec:mono}) in intro}.
+Moreover, the area $\A_\sigma(\rho)$ of the function $L_{\rho|\sigma}$ above the line $y=1$ is also a resource monotone in the $\sigma$--fragment. 
+This is clear because for any state conversion $\rho \longrightarrow \tau$ for some $\E \in \O_\sigma$, the Lorenz curve $L_{\tau|\sigma}$ is lower than $L_{\rho|\sigma}$, hence $\A_\sigma(\E(\rho)) \leq \A_\sigma(\rho)$.
+The exact form of the monotone is given in~\cref{app:areamono}
+
+\ddd{[relate to mana?]} \nick{the area depends on several positive Wigner components and cannot be written as a function of mana annoyingly - should we include the area? Have a look at~\cref{app:areamono}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -617,6 +625,12 @@ In fact, we can more generally claim that mana bounds are always weaker than bou
     
     \ddd{[This is a bit too short]}\nick{I have added~\cref{lem:lcmax}}
 \end{proof}
+
+\subsection{Magic in thermal fragments}
+
+\nick{$\rcu$ and Noisy channels preserve $\frac{1}{d}\id$}
+
+\nick{Can extend to general thermal states}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
