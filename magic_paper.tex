@@ -331,71 +331,42 @@ We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
 If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization in entanglement theory. \nick{CITE}
 
 The pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
-For simplicity we shall merge this notation into $\prec_\sigma$, as there is little risk of confusion.
+For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
 
-\begin{theorem}
-    Let $\R = (\F, \O)$ be a theory of magic and suppose the state conversion $\rho \longrightarrow \tau$ is possible.
-    Then, there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_\sigma \W{\rho}$.
-
-\nick{We need to address zeros in the Wigner distribution (I think full-rank states do not have any zeros - there certainly exist non-full-rank states with no zeros).
-
-For example, the replacement operation $\E(\rho) = \ketbra{0}$ is free in $\Rmax$ with $\E \in \O_{\ketbra{0}}$, BUT $W{\ketbra{0}}$-majorization is not defined because $W{\ketbra{0}}$ contains zeros.
-
-In such a case we can always add some $\epsilon$ amount of noise by mixing $\sigma$ with a free full-rank state, e.g. a thermal state $\gamma_\beta$, to get $\sigma' = (1-\epsilon)\sigma + \epsilon\gamma_\beta$.
-This ensures that all Wigner components of $\sigma'$ are strictly positive and $\W{\sigma'}$-majorization can be used BUT $\E$ is NOT in $\O_{\sigma'}$ now for any $\epsilon > 0$.
-
-This could be solved if every operation preserves some thermal state.
-Otherwise, simply stating in this theorem that ``there exists a full-rank free state $\sigma \in \F$ such that  $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$'' is not accurate and needs reformulation to include the error $\epsilon$.
-}
+\begin{theorem}\label{thm:sigmamajor}
+    Let $\R = (\F, \O)$ be a theory of magic and suppose the state conversion $\rho \longrightarrow \tau$ is possible within a $\sigma$--fragment for some full-rank free state $\sigma$.
+    Then, $\W{\tau} \prec_\sigma \W{\rho}$.
 \end{theorem}
 \begin{proof}
-    Suppose there exists $\E \in \O$ such that $\E(\rho) = \tau$.
-    The free operation belongs to a $\sigma$--fragment, $\E \in \O_\sigma$, for some $\sigma \in \F$ so that $\W{\E}\W{\rho} = \W{\tau}$ with $\W{\E} \in \stochw$.
+    Suppose there exists $\E \in \O_\sigma$ such that $\E(\rho) = \tau$.
+    Therefore, the Wigner distribution of this free operation satisfies $\W{\E} \in \stochw$ and $\W{\E}\W{\rho} = \W{\tau}$.
     
-    If all components of $\W{\sigma}$ are positive, we directly have $\W{\tau} \prec_{\W{\sigma}} \W{\rho}$.
-    
-    If $\W{\sigma}$ contains some zero components, we can construct the full-rank state $\sigma' = (1-\epsilon)\sigma + \epsilon\gamma_\beta$ by mixing an arbitrarily small amout $\epsilon>0$ of some thermal state $\gamma_\beta$ \nick{can replace with maximally mixed state}, so that all components of $\W{\sigma'}$ are positive. \nick{but $\W{\tau} \prec_{\W{\sigma'}} \W{\rho}$ is NOT true now}
+    Since $\sigma$ is full-rank and free, its Wigner distribution is strictly positive in all components, so it directly follows from~\cref{def:dmajor} that $\W{\tau} \prec_{\sigma} \W{\rho}$.
 \end{proof}
 
-A visual representation of $\bmd$-majorization is provided by Lorenz curves.
+A numerically efficient reformulation of $\bmd$-majorization is provided by Lorenz curves.
 Let the vector $\bmz^\downarrow$ denote a component permutation of vector $\bmz \in \reals^d$, so that its components are arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
     Let $\bmz \in \reals^d$.
-    Let $\bmd \in \reals^d$ be a vector with positive components, $\pi$ a permutation mapping $(z_i/d_i) \mapsto (z_i/d_i)^\downarrow$ for all $i=1,\dots,d$ and $D = \sum_{i=1}^d d_i$.
-    The Lorenz curve $L(\bmz|\bmd)$ of vector $\bmz$ is the piecewise linear curve obtained by joining the points $\{ (x_k, L_k(\bmz|\bmd)) \}_{k=1,\dots,d}$, where
+    Let $\bmd \in \reals^d$ be a vector with positive components, $\pi$ a permutation mapping $(z_i/d_i) \mapsto (z_\pi(i)/d_\pi(i)) \coloneqq (z_i/d_i)^\downarrow$ for all $i=1,\dots,d$ and $D = \sum_{i=1}^d d_i$.
+    
+    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$,where
     \begin{equation}\label{eq:lorenz}
-        (x_k, L_k(\bmz|\bmd)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k z_{\pi(i)} \right) \in \mathbb{R}^2.
+        (x_k, \lc{\bmz}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k z_{\pi(i)} \right) \in \mathbb{R}^2.
     \end{equation}
+    The Lorenz curve of vector $\bmz$ with respect to $\bmd$ is then $\lc{\bmz}{\bmd}(x)$ for all $x \in [0,1]$.
 \end{definition}
-\emph{Remark 1.} The origin $(x_0, L_0(\bmz|\bmd)) \coloneqq (0,0)$ is usually included in the curve.
+Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
+In fact, one can see that the Lorenz curves $\lc{\bmz}{\bmd}$ and $\lc{\bmz \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
+Furthermore, a Lorenz curve $\lc{\bmz}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $D(\frac{z_i}{d_i})^\downarrow$ for $i=1,\dots,d$ which is non-increasing by construction.
 
-\emph{Remark 2.} Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
-In fact, the Lorenz curves $L(\bmz|\bmd)$ and $L(\bmz \otimes \bmd|\bmd \otimes \bmd)$, where $\otimes$ denotes the Kronecker product, are identical.
-
-\emph{Remark 3.} Lorenz curves are always concave.
-
-\emph{Remark 4.} If $L_d(\bmz|\bmd) = 1$ and for all $k$, $L_k(\bmz|\bmd) \leq 1$, then $\bmz$ is a probability distribution.
-Lorenz curves of quasi-probability distributions in principle reach above 1.
-
-\emph{Remark 5.} We can recast the Lorenz curve into the \emph{function} $L_{\bmz|\bmd}(x)$ defined on $[0,1]$.
-
-A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$  if and only if the Lorenz curve $L(\bmy|\bmd)$ lies above Lorenz curve $L(\bmx|\bmd)$.
+A vector $\bmy$ \emph{$\bmd$--majorizes} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorization into a finite set of inequalities.
 \begin{theorem}\label{thm:dmajor}
     Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
-    Then, $\bmx \prec_{\bmd} \bmy$ if and only if $L_k(\bmx|\bmd) \leq L_k(\bmy|\bmd)$ for all $k=1,2,\dots, d-1$ and $L_d(\bmx|\bmd) = L_d(\bmy|\bmd)$.
+    Then, $\bmx \prec_{\bmd} \bmy$ if and only if $\lc{\bmx}{\bmd}(x) \leq \lc{\bmy}{\bmd}(x)$ for all $x \in [0,1]$ with strict equality at $x=1$.
 \end{theorem}
-A restatement of the theorem including more equivalent conditions, along with a proof is provided in~\cref{app:major}.
-
-\subsection{Lorenz curves for magic states in a $\sigma$--fragment}
-With this it is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment. For any $\sigma$ being a full rank free state we have that $W_\sigma(\bmx) $ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.We write $L_{\rho|\sigma}(x)$ for the Lorenz curve of $W_\rho(\bmx)$ with respect to $W_\sigma(\bmx)$. 
-
-We now see that $0\le L_{\rho |\sigma}(x) \le 1$ for all $x$ if and only if $\rho$ is a positive Wigner state. Moreover, the area of the function $L_{\rho|\sigma}$ above the line $y=1$ is a resource monotone in this fragment. \ddd{[expand on this -- relate to mana?]} \nick{the area depends on several positive Wigner components and cannot be written as a function of mana annoyingly - can make plot similar to 4.1 in my thesis}
-
-An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.
-<<<<<<< HEAD
-=======
-
->>>>>>> 5807c6de65b9e957e50f3469b83780682bf767bc
+A restatement of the theorem including more equivalent conditions and a proof are provided in~\cref{app:major}.
+An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.\nick{move around}
 \begin{figure}
     \centering
     \includegraphics[height=5cm]{figs/lctoy.pdf}
@@ -407,6 +378,36 @@ An example of comparison between different Lorenz curves is illustrated in~\cref
     }
     \label{fig:lctoy}
 \end{figure}
+
+\subsection{Lorenz curves for magic states in a $\sigma$--fragment}
+It is now straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment.
+As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.
+We write $\lc{\rho}{\sigma}(x)$ for the Lorenz curve of $\W{\rho}$ with respect to $\W{\sigma}$.
+
+We now establish important properties of Lorenz curves that are independent of the $\sigma$--fragment they are define in.
+\begin{proposition}\label{thm:lccont}
+	The Lorenz curve $\lc{\rho}{\sigma}$ of a state $\rho$ with respect to state $\sigma$ is uniformly continuous in $\sigma$.
+\end{proposition}
+The proof of this important result in \nick{the appendix}.
+The consequence of this statement is that infinitesimal changes in state $\sigma$ only result in infinitesimal shifts of the $\sigma$--fragment.
+Therefore, Lorenz curves and majorization analysis in general \nick{behave nicely in the presence of / are robust under} imperfections in the experimental implementation of quantum operations.
+In particular, any $\sigma_0$--fragment defined by a non full-rank state $\sigma_0$ can be approximated by a $\sigma$--fragment defined by a full-rank $\sigma$ which is arbitrarily close to $\sigma_0$, such that $\sigma = (1-\epsilon)\sigma_0 + \epsilon\frac{1}{d}\id$, for some small $\epsilon > 0$.
+Such $\sigma_0$--fragments may include important stabilizer operations such that the replacement channel defined as $\E(\rho) = \sigma_0$ for all states $\rho$.
+Normalisation of the Wigner distribution \nick{REF} ensures that for all quantum states $\rho$, $\lc{\rho}{\sigma}(x) \geq 0$ and $\lc{\rho}{\sigma}(1) = 1$.
+As a consequence, checking whether a state conversion $\rho \longrightarrow \tau$ is possible as per~\cref{thm:dmajor}, reduces to the condition $\lc{\rho}{\sigma}(x) \leq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
+
+It can further be seen that the maximum of $\lc{\rho}{\sigma}$ is independent of the $\sigma$--fragment and directly related to the state sum-negativity $\sn{\rho}$ \nick{CITE}, defined as the sum of the negative components in $\W{\rho}$.
+\begin{lemma}\label{lem:lcmax}
+	Given a quantum state $\rho$, the maximum of its Lorenz curve $\lc{\rho}{\sigma}$ is independent of the $\sigma$--fragment in which it is defined and equal to $1+\sn{\rho}$.
+\end{lemma}
+\begin{proof}
+	\nick{Proof}
+\end{proof}
+
+Therefore, it is clear that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
+The maximum of the Lorenz curve corresponds to the well established monotone of sum-negativity $\rm{sn}$ further discussed in \nick{expand}
+Moreover, the area of the function $L_{\rho|\sigma}$ above the line $y=1$ is also a resource monotone in this fragment. \ddd{[expand - relate to mana?]} \nick{the area depends on several positive Wigner components and cannot be written as a function of mana annoyingly - can make plot similar to 4.1 in my thesis}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -440,7 +441,7 @@ The most fundamental and commonly used magic monotone is the \emph{mana} of a st
 \begin{equation}
     \mana{\rho} \coloneqq \log{\left(\sum\limits_{\bmz \in \pd} \abs{\W[\bmz]{\rho}}\right)}.
 \end{equation}
-It is a monotone function of the $\ell_1$-norm of state negativity~\nick{CITE} that satisfies the additivity condition.
+It is a monotone function of the $\ell_1$-norm of the Wigner distribution that satisfies the additivity condition.
 
 \subsection{Fragments}
 
@@ -534,16 +535,10 @@ As a simple example, the dephasing channel
 \begin{equation}
 	\Delta(\rho) = \sum_{k \in \zd} \ketbra{k}{k}\rho\ketbra{k}{k}
 \end{equation}
-removes coherent phases in the computational basis and therefore only leaves invariant mixtures of computational basis states.
-If the circuit simply consists of such dephasing channels, the whole analysis could be restricted in the $\sigma$--fragments for pure computational basis states $\sigma$.
+removes coherent phases in the computational basis and therefore leaves exactly all mixtures of computational basis states invariant.
+If the circuit simply consists of such dephasing channels, the whole analysis can be restricted in the $\sigma$--fragments for pure computational basis states $\sigma$ \nick{as seen in a theorem in the appendix}.
 
-Lorenz curves provide a very efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
-Such methods are often more conclusive than magic monotones as we discuss in section~\cref{sec:scmana}.
-
-\subsection{Magic, Mana and Majorization}
-We now discuss majorization features common to all fragments, before specialising to particular $\sigma$--fragments and how analysis in them preceeds. Mana is the basic resource monotone for magic. Here we show that its basic properties are actually special cases of more general majorization features. More precisely its properties can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
-
-Lorenz curves provide a very efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
+Lorenz curves provide an efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
 Such methods are often more conclusive than magic monotones as we discuss in section~\cref{sec:scmana}.
 
 \subsection{Mana and majorization in magic theories}\label{sec:scmana}
@@ -567,17 +562,18 @@ It is shown in~\cref{app:major} that mana is an additive monotone in every $\sig
 
 A new bound can be obtained in every $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
 \begin{equation}\label{eq:majbound}
-    L_k(\rho^{\otimes k} | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2,
+    L_k(\rho^{\otimes k} | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2.
 \end{equation}
 If the Lorenz curve of the initial state is below the target curve at any point, the process is not possible.
 In general, the Wigner components of a $k$-copy state $\rho^{\otimes k}$ are calculated, along with their multiplicities, by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$.
 This follows from the multiplicativity of the Wigner distribution.
 
-The Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange} is the simplest to analyse, since it only has two distinct components $\{ -\frac{1}{3}, \frac{1}{6} \}$, the latter with a multiplicity of 8.
+As an example, consider a qutrit distillation process involving the Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange}. 
+It is the simplest non-trivial case to analyse, since the Strange state only has two distinct components $\left\{ -\frac{1}{3}, \frac{1}{6} \right\}$ with multiplicities $1$ and $8$ respectively.
 Calculating the binomial expansion for the components of $\ket{S}\bra{S}^{\otimes k}$ gives $\{(-1)^j 2^{j-k} 3^{-k}\}_{0 \leq j \leq k}$ with multiplicity $8^{k-j} \binom{k}{j}$ for the $j$-th term.
 This allows analytical calculation of all Lorenz curve points, hence the maximum of the $k$-copy state is
 \begin{equation}\label{eq:Skmax}
-    \max_k{L_k \left( \ketbra{S}^{\otimes k} \bigm| \sigma \right)} = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j: 1 \leq 2j+1 \leq k} 4^{-(2j+1)} \binom{k}{2j+1}.
+    \max_j{L_j \left( \ketbra{S}^{\otimes k} \bigm| \sigma \right)} = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j: 1 \leq 2j+1 \leq k} 4^{-(2j+1)} \binom{k}{2j+1}.
 \end{equation}
 \ddd{[We can probably put upper and lower bounds on this value fairly readily. E.g. using known sum rules. Also -- bad choice of variable $k$, using it as index and also copy number. I think $L_{\rho|\sigma}$ is a neater formulation, since you then package things into a single object -- a function.]}
 
@@ -586,12 +582,13 @@ Consider the noisy Strange state,
     \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \sigma,
 \end{equation}
 in the $\sigma$--fragment $\O_\sigma$.
-At noise level $\epsilon \leq \frac{3}{4}$, the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ contains negativities and the state can be purified so as to obtain a single-copy state with sufficiently low $\epsilon$.
+At any noise level $\epsilon \leq \frac{3}{4}$, the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ contains negativities and the state can be purified so as to obtain a single-copy state with sufficiently low $\epsilon$.
 In~\cref{fig:distill}, we examine the purifying process 
 \begin{equation}\label{eq:purify}
     \rho_{\rm{S}}^{\otimes k}(\epsilon_{\rm{th}}) \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(0.05),\ \sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id
 \end{equation}
 with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit the process for given number of copies $k$ and $\sigma$--fragment, parametrised by $p$ as a mixture of the zero and the maximally mixed states.
+Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds \nick{threshold/bound? need to define the notion of a bound precisely}.
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/ratios.pdf}
@@ -603,20 +600,22 @@ with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit
     \label{fig:distill}
 \end{figure}
 
-Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds \nick{threshold/bound? need to define the notion of a bound precisely}.
-In fact, it is clear than this is the case in any general distillation process.
+In fact, we can more generally claim that mana bounds are always weaker than bounds provided by Lorenz curve comparison for any magic state interconversion.
 \begin{theorem}\label{thm:bounds}
-    Consider the distillation process in~\cref{eq:distprocess}.
-    In any $\sigma$--fragment, $\W{\sigma}$-majorization provides a stricter bound than mana.
+    Given a magic state conversion $\rho \longrightarrow \tau$, $\W{\sigma}$--majorization provides a stricter bound than mana in any $\sigma$--fragment.
 \end{theorem}
 \begin{proof}
-    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment
-    
-    The Lorenz curve maximum can then be expressed monotonically in terms of mana,
+    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed monotonically in terms of mana,
     \begin{equation}
         \max_k{L_k(\rho | \sigma)} = 1 + \sum_{\bmz: \W[\bmz]{\rho}<0} \abs{\W[\bmz]{\rho}} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
     \end{equation}
-    Therefore, the majorization condition stated in~\cref{eq:majbound} implies that $\mana{\rho^{\otimes k}} \geq \mana{\tau}$. \ddd{[This is a bit too short]}
+    Therefore, the $\W{\sigma}$--majorization condition
+    \begin{equation}
+    	L_k(\rho | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2
+    \end{equation}
+    implies the mana condition $\mana{\rho} \geq \mana{\tau}$.
+    
+    \ddd{[This is a bit too short]}\nick{I have added~\cref{lem:lcmax}}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
