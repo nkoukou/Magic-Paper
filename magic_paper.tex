@@ -241,11 +241,8 @@ It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with 
     \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
 \end{equation}
 
-Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\mbox{\tiny max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr [ L\rho] \ge 0$ with $L \in \mathcal{B}(\mathcal{H})$.
-\nick{Unfortunately, this is not enough. 
-There are positive Wigner ditributions which correspond to invalid states i.e. they are NOT positive semi-definite.
-Therefore, there are ``holes'' in the set specified by these linear constraints.
-We need a stricter argument.}
+Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. 
+For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\rm{ max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr[ L\rho] \geq 0$ with $L \in \cal{B}(\cal{H})$, ensuring that the state is positive as well as Wigner-positive.
 
 
 Given this context we now define the following key notion, that is central to our analysis.
@@ -291,7 +288,7 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
         \includegraphics[scale=0.47
         ]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
-    Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations) involve operations within the yellow regions, with all other established magic theories between these two.
+    Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations within the yellow regions, with all other established magic theories between these two.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$ with each one extendible to a set of stochastic maps outside the $\cptp$ operations.
     Within each $\sigma$--fragment $\bmd$-majorization can be used allowing for an \nick{in-depth approach} towards the study of magic state interconversion.
     }
@@ -345,21 +342,28 @@ For simplicity we shall merge the notation into $\prec_\sigma$, as there is litt
 \end{proof}
 
 A numerically efficient reformulation of $\bmd$-majorization is provided by Lorenz curves.
-Let the vector $\bmz^\downarrow$ denote a component permutation of vector $\bmz \in \reals^d$, so that its components are arranged in non-increasing order.
+Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
-    Let $\bmz \in \reals^d$.
-    Let $\bmd \in \reals^d$ be a vector with positive components, $\pi$ a permutation mapping $(z_i/d_i) \mapsto (z_\pi(i)/d_\pi(i)) \coloneqq (z_i/d_i)^\downarrow$ for all $i=1,\dots,d$ and $D = \sum_{i=1}^d d_i$.
+    Let $\bmz, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\bmu \coloneqq (z_1/d_1, \dots, z_d/d_d)^T$ the vector of ratios between the corresponding components of $\bmz$ and $\bmd$.
     
-    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$,where
+    Finally, denote by $\pi: \zd \mapsto \zd$ the permutation that sorts $\bmu$, $(\bmu^\downarrow)_i = u_{\pi(i)}$ for all $i=1,\dots,d$.
+    
+    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$, where
     \begin{equation}\label{eq:lorenz}
         (x_k, \lc{\bmz}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k z_{\pi(i)} \right) \in \mathbb{R}^2.
     \end{equation}
-    The Lorenz curve of vector $\bmz$ with respect to $\bmd$ is then $\lc{\bmz}{\bmd}(x)$ for all $x \in [0,1]$.
+    The \emph{Lorenz curve} of vector $\bmz$ with respect to $\bmd$ is then $\lc{\bmz}{\bmd}(x)$ for all $x \in [0,1]$
+    
+    Expressed explicitly,
+    \begin{equation}
+		\lc{\rho}{\sigma}(x) = (\bmu^\downarrow)_i x + \lc{\rho}{\sigma}(i) - (\bmu^\downarrow)_i x_i,\ x \in (x_{i-1}, x_i],
+	\end{equation}
+	for all $i=1,\dots,d$ with $x_0 \coloneqq 0$.
 \end{definition}
 \nick{The discrete formulation is more useful in the whole discussion that follows, but the functional formulation is a little more elegant - what to choose?}
 Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
-In fact, one can see that the Lorenz curves $\lc{\bmz}{\bmd}$ and $\lc{\bmz \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
-Furthermore, a Lorenz curve $\lc{\bmz}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $D(\frac{z_i}{d_i})^\downarrow$ for $i=1,\dots,d$ which is non-increasing by construction.
+In fact, the Lorenz curves $\lc{\bmz}{\bmd}$ and $\lc{\bmz \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
+Furthermore, a Lorenz curve $\lc{\bmz}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\bmu^\downarrow)_i$ for $i=1,\dots,d$ which is non-increasing by definition.
 
 A vector $\bmy$ \emph{$\bmd$--majorizes} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorization into a finite set of inequalities.
 \begin{theorem}\label{thm:dmajor}
@@ -396,6 +400,7 @@ The consequence of this statement is that infinitesimal changes in state $\sigma
 Therefore, Lorenz curves and majorization analysis in general \nick{behave nicely in the presence of / are robust under} imperfections in the experimental implementation of quantum operations.
 In particular, any $\sigma_0$--fragment defined by a non full-rank state $\sigma_0$ can be approximated by a $\sigma$--fragment defined by a full-rank $\sigma$ which is arbitrarily close to $\sigma_0$, such that $\sigma = (1-\epsilon)\sigma_0 + \epsilon\frac{1}{d}\id$, for some small $\epsilon > 0$.
 Such $\sigma_0$--fragments may include important stabilizer operations such that the replacement channel defined as $\E(\rho) = \sigma_0$ for all states $\rho$.
+For simplicity, we restrict analysis to $\sigma$-fragments, where $\sigma$ is full-rank.
 
 Normalisation of the Wigner distribution \nick{REF} ensures that for all quantum states $\rho$, $\lc{\rho}{\sigma}(x) \geq 0$ and $\lc{\rho}{\sigma}(1) = 1$.
 As a consequence, checking whether a state conversion $\rho \longrightarrow \tau$ is possible as per~\cref{thm:dmajor}, reduces to the condition $\lc{\rho}{\sigma}(x) \leq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
@@ -405,10 +410,36 @@ It can further be seen that the maximum of $\lc{\rho}{\sigma}$ is independent of
 	Given a quantum state $\rho$, the maximum of its Lorenz curve $\lc{\rho}{\sigma}$ is independent of the $\sigma$--fragment in which it is defined and equal to $1+\sn{\rho}$.
 \end{lemma}
 \begin{proof}
-	\nick{Proof}
+	Borrowing the notation of~\cref{def:lc}, the derivative of the Lorenz curve $\lc{\rho}{\sigma}$ is
+	\begin{equation}
+		\frac{\rm{d}}{\rm{d}x} \lc{\rho}{\sigma}(x) = (\bmu^\downarrow)_i,\ x \in (x_{i-1}, x_i],
+	\end{equation}
+	for all $i=1,\dots,d^2$.
+	
+	Note that all components of $\W{\sigma}$ are positive, so $(\bmu^\downarrow)_i \geq 0$ if and only if $(\W{\rho})_i \geq 0$ for any $i=1,\dots,d^2$.
+
+	Suppose all components of $\W{\rho}$ are non-negative.
+	Then, $\sn{\rho}=0$ and the global maximum of the Lorenz curve is dictated by the normalisation of $\W{\rho}$ so we trivially have
+	\begin{equation}
+		\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} = 1 = 1 + \sn{\rho}.
+	\end{equation}
+	
+	Suppose that $\W{\rho}$ has at least one negative component.
+	Let $k$ be the index of the smallest non-negative component of $\bmu^\downarrow$.
+	Then the maximum of the Lorenz curve $\lc{\rho}{\sigma}$ occurs at $x_k$, just before its slope becomes negative. 
+	The $x$-coordinate $x_k$ is different for different $\sigma$--fragments but the value of the maximum is the same and is given by
+	\begin{align}
+		&\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)}
+		= \lc{\rho}{\sigma}(x_k)
+		= \sum\limits_{i=1}^k (\W{\rho})_{\pi(i)} \\
+		&= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho}
+		= 1 + \sum\limits_{\bmx: \W[\bmx]{\rho} < 0} \abs{\W[\bmx]{\rho}} \\
+		&= 1 + \sn{\rho}.
+	\end{align}
+	
 \end{proof}
 
-Therefore, it is clear that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
+We stress that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
 The maximum of the Lorenz curve corresponds to the well established monotone of sum-negativity ($\rm{sn}$) further discussed in \nick{expand - move subsection on monotones (\cref{sec:mono}) in intro}.
 Moreover, the area $\A_\sigma(\rho)$ of the function $L_{\rho|\sigma}$ above the line $y=1$ is also a resource monotone in the $\sigma$--fragment. 
 This is clear because for any state conversion $\rho \longrightarrow \tau$ for some $\E \in \O_\sigma$, the Lorenz curve $L_{\tau|\sigma}$ is lower than $L_{\rho|\sigma}$, hence $\A_\sigma(\E(\rho)) \leq \A_\sigma(\rho)$.
@@ -540,11 +571,11 @@ Important examples of resource fragments appear in several established resource 
 
 Any quantum circuit aiming at a given magic state conversion $\rho \longrightarrow \tau$ possesses certain symmetries according to~\cref{thm:frag} that allow us to study the conversion within only certain $\sigma$-fragments.
 As a simple example, the dephasing channel
-\begin{equation}
+\begin{equation}\label{eq:dephase}
 	\Delta(\rho) = \sum_{k \in \zd} \ketbra{k}{k}\rho\ketbra{k}{k}
 \end{equation}
 removes coherent phases in the computational basis and therefore leaves exactly all mixtures of computational basis states invariant.
-If the circuit simply consists of such dephasing channels, the whole analysis can be restricted in the $\sigma$--fragments for pure computational basis states $\sigma$ \nick{as seen in a theorem in the appendix}.
+A model circuit consisting only of such dephasing channels can be fully analysed in the $\sigma$--fragments for the pure computational basis states $\sigma$ \nick{as seen in a theorem in the appendix}.
 
 Lorenz curves provide an efficient method of numerically checking if a certain state conversion is impossible within a $\sigma$--fragment by exploiting the equivalence with $d$--majorization stated in~\cref{thm:dmajor}.
 Such methods are often more conclusive than magic monotones as we discuss in section~\cref{sec:scmana}.
@@ -557,23 +588,42 @@ More precisely, its properties can be viewed as majorization-based, and independ
 
 As discussed above, we know that every magic interconversion problem can be analysed across all $\sigma$--fragments that reflect symmetries of the circuit and moreover the pre-order in each such fragment is exactly specified by $d$--majorization.
 
-Consider a general magic state distillation process, \nick{Generalise discussion to any state conversion?}
-\begin{equation}\label{eq:distprocess}
-    \rho^{\otimes k} \longrightarrow \tau,
+Consider a general magic state interconversion in $\O_\sigma$, $\rho \xrightarrow{\E \in \O_\sigma} \tau$.
+It is shown in~\cref{app:major} that mana is an additive monotone in every $\sigma$--fragment under $d$--majorization, so it provides a necessary condition for the process to be possible,
+\begin{equation}\label{eq:manabound}
+    \mana{\rho} \geq \mana{\tau}. %{\rm{C}}_{\rm{mana}}(\rho, \tau, \sigma):\ 
 \end{equation}
-where $k$ noisy copies of magic state $\rho$ are converted to a single-copy magic state $\tau$.
-
-It is shown in~\cref{app:major} that mana is an additive monotone in every $\sigma$--fragment under $d$--majorization, so it provides a bound for the process,
-\begin{equation}
-    \mana{\rho} \geq \frac{1}{k} \mana{\tau}.
-\end{equation}
-
-A new bound can be obtained in every $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
+A new bound can be obtained in the $\sigma$--fragment by comparing the Lorenz curves of the initial and target states,
 \begin{equation}\label{eq:majbound}
-    L_k(\rho^{\otimes k} | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2.
+    \lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in [0,1].
 \end{equation}
-If the Lorenz curve of the initial state is below the target curve at any point, the process is not possible.
-In general, the Wigner components of a $k$-copy state $\rho^{\otimes k}$ are calculated, along with their multiplicities, by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$.
+If condition ${\rm{C}}_{\rm{maj}}$ is not satisfied, then the Lorenz curve of initial state $\rho$ is below the curve of target $\tau$ at some point $x$ and the conversion is not possible.
+
+In fact, our current setting makes it apparent that the mana condition is always weaker than the majorization condition for all magic state interconversions.
+\begin{theorem}\label{thm:bounds}
+    Given a magic state conversion $\rho \longrightarrow \tau$, the majorization condition is stronger than the mana condition in all $\sigma$--fragments.
+\end{theorem}
+\begin{proof}
+    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed as an increasing function of mana,
+    \begin{equation}
+        \max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} = 1 + \sn{\rho} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
+    \end{equation}
+    Therefore, the $\W{\sigma}$--majorization bound
+    \begin{equation}
+    	\lc{\rho}{\sigma}(x) \geq \lc{\rho}{\sigma}(x),\ x\in[0,1]
+    \end{equation}
+    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)}$ which is equivalent to the mana bound $\mana{\rho} \geq \mana{\tau}$.
+    
+    \ddd{[This is a bit too short]}\nick{I have added~\cref{lem:lcmax}}
+\end{proof}
+
+Of practical importance are magic state distillation (MSD) processes of the form
+\begin{equation}\label{eq:distprocess}
+    \rho^{\otimes k} \xrightarrow{\E \in \O_\sigma} \tau,
+\end{equation}
+where $k$ copies of a noisy magic state $\rho$ are converted into a target single-copy state $\tau$. \nick{expand?}
+
+In general, the Wigner components of a $k$-copy state $\rho^{\otimes k}$ can be calculated, along with their multiplicities, from $W_\rho$ by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$.
 This follows from the multiplicativity of the Wigner distribution.
 
 As an example, consider a qutrit distillation process involving the Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange}. 
@@ -581,22 +631,54 @@ It is the simplest non-trivial case to analyse, since the Strange state only has
 Calculating the binomial expansion for the components of $\ket{S}\bra{S}^{\otimes k}$ gives $\{(-1)^j 2^{j-k} 3^{-k}\}_{0 \leq j \leq k}$ with multiplicity $8^{k-j} \binom{k}{j}$ for the $j$-th term.
 This allows analytical calculation of all Lorenz curve points, hence the maximum of the $k$-copy state is
 \begin{equation}\label{eq:Skmax}
-    \max_j{L_j \left( \ketbra{S}^{\otimes k} \bigm| \sigma \right)} = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j: 1 \leq 2j+1 \leq k} 4^{-(2j+1)} \binom{k}{2j+1}.
+    \max_{x\in [0,1]}{\lc{\ketbra{S}^{\otimes k}} {\sigma}}(x) = 1 + \left(\frac{4}{3}\right)^k \sum\limits_{j=0}^{\floor{\frac{k-1}{2}}} 4^{-(2j+1)} \binom{k}{2j+1}.
 \end{equation}
-\ddd{[We can probably put upper and lower bounds on this value fairly readily. E.g. using known sum rules. Also -- bad choice of variable $k$, using it as index and also copy number. I think $L_{\rho|\sigma}$ is a neater formulation, since you then package things into a single object -- a function.]}
+\ddd{[We can probably put upper and lower bounds on this value fairly readily. E.g. using known sum rules.]}
 
 Consider the noisy Strange state,
 \begin{equation}
     \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \sigma,
 \end{equation}
-in the $\sigma$--fragment $\O_\sigma$.
-At any noise level $\epsilon \leq \frac{3}{4}$, the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ contains negativities and the state can be purified so as to obtain a single-copy state with sufficiently low $\epsilon$.
+in $\O_\sigma$.
+At noise levels $\epsilon \geq \frac{3}{4}$, the state is sufficiently noisy so as the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ no longer contains negativities. 
+At any $\epsilon \leq \frac{3}{4}$, we can investigate the distillation process resulting in a single-copy state with sufficiently low target $\epsilon_{\tau}$,
+\begin{equation}\label{eq:sdist}
+	\rho_{\rm{S}}(\epsilon)^{\otimes k} \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
+\end{equation}
+
+The more noisy the initial state is, the more copies needed to reach the target, therefore it makes sense to define a noise level threshold
+\begin{equation}\label{eq:ethresh}
+	\epsilon_{\rm{th}}(k, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
+\end{equation}
+so that the MSD process~(\ref{eq:sdist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(k, \epsilon_\tau, \sigma)$
+
+\nick{Condition in~\cref{eq:ethresh} is informally written. Can also define 
+\begin{equation}\label{eq:ethresh}
+	k_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{k:\ k \in \mathbb{N}, \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
+\end{equation}}
+We now examine the MSD process~(\ref{eq:sdist}) in greater detail for some important $\sigma$--fragments.
+
+\subsection{Magic in unital fragments}\label{sec:thermal}
+
+Magic state distillation circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)\nick{CITE}, depicted in~\cref{fig:zoo}.
+Operations in $\rcu$ can be expressed as
+\begin{equation}
+    \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cd.
+\end{equation}
+Depending on the symmetries of such operations, a sequence of them may belong in various $\sigma$--fragments and the majorization condition~(\ref{eq:majbound}) needs to be checked in all these $\sigma$-fragments that reflect the symmetries of the operation sequence.
+However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$
+
+If one incorporates noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} in various bases, symmetries are reduced.
+Dephasing channels and general bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
+
+\nick{Replace the following with discussion of MSD process in the unital fragment for various numbers of copies $k$ vs mana}
+
 In~\cref{fig:distill}, we examine the purifying process 
 \begin{equation}\label{eq:purify}
     \rho_{\rm{S}}^{\otimes k}(\epsilon_{\rm{th}}) \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(0.05),\ \sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id
 \end{equation}
 with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit the process for given number of copies $k$ and $\sigma$--fragment, parametrised by $p$ as a mixture of the zero and the maximally mixed states.
-Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds \nick{threshold/bound? need to define the notion of a bound precisely}.
+Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/ratios.pdf}
@@ -608,29 +690,21 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
     \label{fig:distill}
 \end{figure}
 
-In fact, we can more generally claim that mana bounds are always weaker than bounds provided by Lorenz curve comparison for any magic state interconversion.
-\begin{theorem}\label{thm:bounds}
-    Given a magic state conversion $\rho \longrightarrow \tau$, $\W{\sigma}$--majorization provides a stricter bound than mana in any $\sigma$--fragment.
-\end{theorem}
-\begin{proof}
-    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed monotonically in terms of mana,
-    \begin{equation}
-        \max_k{L_k(\rho | \sigma)} = 1 + \sum_{\bmz: \W[\bmz]{\rho}<0} \abs{\W[\bmz]{\rho}} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
-    \end{equation}
-    Therefore, the $\W{\sigma}$--majorization condition
-    \begin{equation}
-    	L_k(\rho | \sigma) \geq L_k (\tau | \sigma),\ k=1,\dots,d^2
-    \end{equation}
-    implies the mana condition $\mana{\rho} \geq \mana{\tau}$.
-    
-    \ddd{[This is a bit too short]}\nick{I have added~\cref{lem:lcmax}}
-\end{proof}
+\subsection{Magic in thermal fragments}\label{sec:thermal}
 
-\subsection{Magic in thermal fragments}
+Consider a system driven by Hamiltonian $H$ and a circuit consisting of thermal operations.
+The computational basis now coincides with the energy eigenbasis of Hamiltonian $H$.
+We denote the thermal state $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.\nick{expand}
 
-\nick{$\rcu$ and Noisy channels preserve $\frac{1}{d}\id$}
+Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}
+The Wigner distribution of thermal state $\gamma_\beta$ always consists of strictly positive components,
+\begin{equation}
+	\W[\bmx]{\gamma_\beta} = \frac{e^{-\beta \epsilon_{x_0}}}{d\Z_\beta}\ \text{for all}\ \bmx \in \pd,
+\end{equation}
+so pre-order $\prec_{\gamma_\beta}$ is well defined.
 
-\nick{Can extend to general thermal states}
+We generalise the analysis of~\cref{sec:unital} \nick{expand}.
+\nick{Include figure with noise threshold level $\epsilon_{\rm{th}}$ in $y$-axis and temperature $\beta$ in $x$-axis. for various numbers of copies $k$.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
