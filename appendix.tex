@@ -38,6 +38,25 @@ If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto it
 
 \subsection{Equivalent conditions for majorization}
 
+Any $\bmd$-majorization problem can be rephrased as a majorization problem in a higher dimensional space due to the embedding map.
+\begin{definition}
+    The embedding map $\Gamma_{\bmd}:\mathbb{R}^n \mapsto \mathbb{R}^D, D = \sum\limits_{i=1}^n d_i$ is the function
+    \begin{equation}
+        \Gamma_{\bmd}(\bmz) = \bigoplus_{i=1}^n z_i\  \frac{1}{d_i}\bm{1},
+    \end{equation}
+    where $\bm{1}/d_i$ is the $d_i$-dimensional uniform distribution.
+    The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^D \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\bmd}(\bmz)$, so that
+    \begin{equation}
+        \Gamma_{\bmd}^{-1}(\oplus_{i=1}^n z_i \bm{1}/d_i) = \bmz.
+    \end{equation}
+    This is not a right inverse, because $\Gamma_{\bmd}$ is not surjective.
+\end{definition}
+The direct sum simply amounts to listing the uniform distributions one after the other.
+The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\bmd}(\bmd) = \bm{1}/D$.
+Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ mapping $(z_i/d_i) \mapsto (z_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
+Intuitively, $\beta$-ordering tends to simply non-increasing ordering as $\beta$ tends to 0.
+This ordering naturally leads to a generalised notion of the Lorenz curve. 
+
 \begin{theorem}
 Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
  \begin{enumerate}%[\rm{(TM1)}]
@@ -66,6 +85,12 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
         and similarly for the right hand side.
     \end{enumerate}
 \end{proof}
+
+The Lorenz curve can be explicitly expressed as
+    \begin{equation}
+		\lc{\rho}{\sigma}(x) = (\bmu^\downarrow)_i x + \lc{\rho}{\sigma}(i) - (\bmu^\downarrow)_i x_i,\ x \in (x_{i-1}, x_i],
+	\end{equation}
+	for all $i=1,\dots,d$ with $x_0 \coloneqq 0$.
 
 \subsection{Mana properties}
 Mana monotonicity in any $\sigma$--fragment can be directly seen due to statement~\ref{en:tm3} in~\cref{thm:dmajor} for $t=0$.
