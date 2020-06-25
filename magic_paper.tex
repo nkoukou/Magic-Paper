@@ -202,7 +202,7 @@ The Wigner distributions of different types of qutrit states are illustrated in~
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
     \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
-    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabilizer Wigner-positive state; \subref{fig:strange} Magic strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$.
+    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabilizer Wigner-positive state; \subref{fig:strange} Magic strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$ \nick{CITE}.
     \nick{Explain what a magic / bound magic state is in intro}
     }%
     \label{fig:wstate_examples}
@@ -380,7 +380,7 @@ A vector $\bmy$ \emph{$\bmd$--majorizes} another vector $\bmx$ if and only if th
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $\lc{\bmx}{\bmd}(x) \leq \lc{\bmy}{\bmd}(x)$ for all $x \in [0,1]$ with strict equality at $x=1$.
 \end{theorem}
 A restatement of the theorem including more equivalent conditions and a proof are provided in~\cref{app:major}.
-An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.\nick{move around}
+An example of comparison between different Lorenz curves is illustrated in~\cref{fig:lctoy}.
 \begin{figure}
     \centering
     \includegraphics[height=5cm]{figs/lctoy.pdf}
@@ -462,45 +462,32 @@ We first show that the maximum of $\lc{\rho}{\sigma}$ is independent of the $\si
 	Given a quantum state $\rho$, the maximum of its Lorenz curve $\lc{\rho}{\sigma}$ is independent of the $\sigma$--fragment in which it is defined and equal to $1+\sn{\rho}$.
 \end{lemma}
 \begin{proof}
-	Borrowing notation from~\cref{def:lc}, let $k_\star$ be the index of the smallest non-negative component $\tilde{\bmz}_{\pi(i)}$ of $\tilde{\bmz}^\downarrow$.
-	It is clear by the construction of the Lorenz curve described in~\cref{def:lc} that the maximum is achieved at
+	For notational simplicity, denote $(\W{\rho})_i = \W[\bmx]{\rho},\ i = 1,\dots, d^2$ and similarly for $\W{\sigma}$.
+	We choose the index mapping so that the vector of component ratios, 
 	\begin{equation}
-		x_{k_\star} \coloneqq \sum_{i=1}^{k_\star} (\W{\sigma})_{\pi(i)},
+		\tilde{\bm{w}} \coloneqq \left(\frac{(\W{\rho})_1}{(\W{\sigma})_1}, \dots, \frac{(\W{\rho})_{d^2}}{(\W{\sigma})_{d^2}} \right)^T,
 	\end{equation}
-	and takes the value
-	Note that all components of $\W{\sigma}$ are positive, so $(\bmu^\downarrow)_i \geq 0$ if and only if $(\W{\rho})_i \geq 0$ for any $i=1,\dots,d^2$.
-
-	Suppose all components of $\W{\rho}$ are non-negative.
-	Then, $\sn{\rho}=0$ and the global maximum of the Lorenz curve is dictated by the normalisation of $\W{\rho}$ so we trivially have
-	\begin{equation}
-		\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} = 1 = 1 + \sn{\rho}.
-	\end{equation}
+	is sorted in the sense that $\tilde{\bm{w}} = \tilde{\bm{w}}^\downarrow$.
+	Note that all components of $\W{\sigma}$ are positive, so $(\tilde{\bm{w}})_i \geq 0$ if and only if $(\W{\rho})_i \geq 0$ for any $i=1,\dots,d^2$.
 	
-	Suppose that $\W{\rho}$ has at least one negative component.
-	Let $k$ be the index of the smallest non-negative component of $\bmu^\downarrow$.
-	Then the maximum of the Lorenz curve $\lc{\rho}{\sigma}$ occurs at $x_k$, just before its slope becomes negative. 
-	The $x$-coordinate $x_k$ is different for different $\sigma$--fragments but the value of the maximum is the same and is given by
-	\begin{align}
-		&\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)}
-		= \lc{\rho}{\sigma}(x_k)
-		= \sum\limits_{i=1}^k (\W{\rho})_{\pi(i)} \\
-		&= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho}
+	Let $k_\star$ be the index of the smallest non-negative component of $\tilde{\bm{w}}^\downarrow$.
+	Then, $(\W{\rho})_i < 0$ if and only if $i > k_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
+	\begin{equation}
+		\lc{\rho}{\sigma}(x_{k_\star}) = \sum_{i=1}^{k_\star} (\W{\rho})_i,
+	\end{equation}
+	and is achieved at
+	\begin{equation}\label{eq:maxloc}
+		x_{k_\star} \coloneqq \sum_{i=1}^{k_\star} (\W{\sigma})_i.
+	\end{equation}
+
+	The location of the maximum ($x=x_{k_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
+	\begin{equation}
+		\lc{\rho}{\sigma}(x_{k_\star})
+		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho}
 		= 1 + \sn{\rho}.
-	\end{align}
+	\end{equation}
 	
 \end{proof}
-\nick{Perhaps create Lorenz curve appendix and put the proof there as well as how functional form and discretised form of Lorenz curves relate}
-\ddd{[This I think is a simpler approach:]}
-The Lorenz curve of $L_{\bmx |\bmd}(x)$ is defined by piecewise linear sections sequentially linking the points $\{ (a_k,b_k)\}$ where $a_k = \sum_{i=1}^k x_i$, $ b_k = \sum_{i=1}^k d_i$ and we order the components such that $\tilde{x}_i:=x_i / d_i$ form a non-increasing sequence in $i$.
-
-Now let $k_\star$ be the index of the smallest non-negative number in $(\tilde{x}_i)$, and define 
-\begin{align}
-a_\star &:= \sum_{i=1}^{k_\star} x_i\\
-b_\star &:= \sum_{i=1}^{k_\star} d_i.
-\end{align}
-It is then clear that $L_{\rho|\sigma}(x)$ attains a maximum value of $a_\star \ge 1$ at the point $x = d_\star$.
-
-Note that since $\bmd \ge \mathbf{0}$, for $i > k_\star$ we have that $x_i \le 0$, independent of the particular $\bmd$ we use. Therefore the value of $a_\star$ is independent of the particular fragment, with only the location of the maximum ($x=b_\star$) varying from fragment to fragment. \ddd{[This method is tidier.]}
 
 We can therefore view mana as one of the features of the Lorenz curve, its maximum.
 \begin{theorem}\label{thm:bounds}
@@ -527,20 +514,18 @@ where $k$ copies of a noisy magic state $\rho$ are converted into a target singl
 In general, the Wigner components of a $k$-copy state $\rho^{\otimes k}$ can be calculated, along with their multiplicities, from $W_\rho$ by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$.
 This follows from the multiplicativity of the Wigner distribution.
 
-As an example, consider a qutrit distillation process involving the Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange}. 
-It is the simplest non-trivial case to analyse, since the Strange state only has two distinct components $\left\{ -\frac{1}{3}, \frac{1}{6} \right\}$ with multiplicities $1$ and $8$ respectively.
+As an example, consider the qutrit Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange}. 
+It is the simplest non-trivial case to analyse because the Strange state only has two distinct components $\left\{ -\frac{1}{3}, \frac{1}{6} \right\}$ with multiplicities $1$ and $8$ respectively.
 Calculating the binomial expansion for the components of $\ket{S}\bra{S}^{\otimes k}$ gives $\{(-1)^j 2^{j-k} 3^{-k}\}_{0 \leq j \leq k}$ with multiplicity $8^{k-j} \binom{k}{j}$ for the $j$-th term.
 This allows analytical calculation of all Lorenz curve points, and for the $k$-copy state we have that
 \begin{equation}\label{eq:Skmax}
     \max_x{\lc{\ketbra{S}^{\otimes k}} {\sigma}}(x) = \frac{1}{2}\left (1 + \left(\frac{5}{3}\right)^k \right),
 \end{equation}
-independent of the particular $\sigma$--fragment. \ddd{[We should also give for what value of $x$ this maximum occurs.]} 
+independent of the particular $\sigma$--fragment. \ddd{[We should also give for what value of $x$ this maximum occurs.]} \nick{It will have the form of~\cref{eq:maxloc} and probably cannot be simplified more other than finding $k_\star$ exactly.}
 %1 + \left(\frac{4}{3}\right)^k \sum\limits_{j=0}^{\floor{\frac{k-1}{2}}} 4^{-(2j+1)} \binom{k}{2j+1}
 %\sum_{n=1, n \mbox{ odd}}^k a^n \binom{k}{n} = \frac{1}{2} \left [  (1+a)^k - (1-a)^k \right ]
 
-\subsection{Distilling out magic in a fragment}
-\nick{why this new subsection?}
-Consider, as an example, the problem of purifying out magic from a noisy state of the form
+Consider the problem of purifying out magic from a noisy Strange state,
 \begin{equation}
     \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \sigma,
 \end{equation}
@@ -561,7 +546,7 @@ so that the MSD process~(\ref{eq:sdist}) is impossible for all $\epsilon > \epsi
 \begin{equation}\label{eq:ethresh}
 	k_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{k:\ k \in \mathbb{N}, \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
 \end{equation}}
-We now examine the MSD process~(\ref{eq:sdist}) in greater detail for some important $\sigma$--fragments.
+We now examine the MSD process~(\ref{eq:sdist}) in specific $\sigma$--fragments.
 
 \subsection{Magic in unital fragments}\label{sec:unital}
 
@@ -574,42 +559,48 @@ Depending on the symmetries of such operations, a sequence of them may belong in
 However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$
 
 If one incorporates noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} in various bases, symmetries are reduced.
-Dephasing channels and general bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
+Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
 
-\nick{Replace the following with discussion of MSD process in the unital fragment for various numbers of copies $k$ vs mana}
-
-In~\cref{fig:distill}, we examine the purifying process 
-\begin{equation}\label{eq:purify}
-    \rho_{\rm{S}}^{\otimes k}(\epsilon_{\rm{th}}) \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(0.05),\ \sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id
-\end{equation}
-with $\epsilon_{\rm{th}}$ being the noise level threshold that does not prohibit the process for given number of copies $k$ and $\sigma$--fragment, parametrised by $p$ as a mixture of the zero and the maximally mixed states.
+In~\cref{fig:unital_distill}, we examine the purifying process of~\cref{eq:sdist} with $\epsilon_\tau = 0.05$ which describes all circuits that respect the unital symmetry.
 Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
+\nick{Explain asymptotic behaviour?}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{figs/ratios.pdf}
-    \caption{\textbf{Noise threshold ratios.} Mana and Lorenz curve ratios for the Strange state purifying process in~\cref{eq:purify}.
-    The ratios are calculated for different numbers of initial state copies and different $\sigma$--fragments parametrised by $p$ such that $\sigma = (1-p)\ketbra{0} + p \frac{1}{3}\id$.
+    \includegraphics[scale=0.5]{figs/unital_distill.pdf}
+    \caption{\textbf{Noise thresholds in unital fragment.} Mana and Lorenz curve noise thresholds for the Strange state purification process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
     Lorenz curve comparison consistently gives stricter bounds as proven in~\cref{thm:bounds}.
-    \nick{Consider set of pure stabilizer states instead of $(1-p)\ketbra{0} + p \frac{1}{3}\id$ perhaps}
+    The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
     }
-    \label{fig:distill}
+    \label{fig:unital_distill}
 \end{figure}
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
 Consider a system driven by Hamiltonian $H$ and a circuit consisting of thermal operations.
-The computational basis now coincides with the energy eigenbasis of Hamiltonian $H$.
-We denote the thermal state $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.\nick{expand}
+The computational basis now coincides with the Hamiltonian eigenbasis.
+We denote the thermal state at temperature $\beta^{-1}$ by $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.\nick{expand}
 
-Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}
-The Wigner distribution of thermal state $\gamma_\beta$ always consists of strictly positive components,
+Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}.
+The Wigner distribution of any thermal state $\gamma_\beta$ always consists of strictly positive components,
 \begin{equation}
 	\W[\bmx]{\gamma_\beta} = \frac{e^{-\beta \epsilon_{x_0}}}{d\Z_\beta}\ \text{for all}\ \bmx \in \pd,
 \end{equation}
 so pre-order $\prec_{\gamma_\beta}$ is well defined.
 
-We generalise the analysis of~\cref{sec:unital} \nick{expand}.
-\nick{Include figure with noise threshold level $\epsilon_{\rm{th}}$ in $y$-axis and temperature $\beta$ in $x$-axis. for various numbers of copies $k$.}
+We generalise the analysis of unital fragments into any circuit with thermalisation noise parametrised by the temperature $\beta^{-1}$.
+In~\cref{fig:thermal_distill}, we examine the majorization bound for the same purification process of~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+The curves plotted suggest that there exists a fragment $\O_{\gamma_{\beta_{\rm{max}}}}$ which allows for a highest noise threshold at any given number of copies of the initial state.
+Adding more copies results in a lower optimal temperature $\beta^{-1}$.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.5]{figs/thermal_distill.pdf}
+    \caption{\textbf{Noise thresholds in thermal fragments.} Lorenz curve ratios for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+    The peaks of each curve indicate the optimal temperature $\beta_{\rm{max}}$ that allows for the highest noise threshold at every given number of initial state copies $k$.
+    The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
+    }
+    \label{fig:thermal_distill}
+\end{figure}
 
 \section{Extension to general quantum resource theories}
 \label{sec:frag}
@@ -692,9 +683,10 @@ Moreover, these obey
     \end{enumerate}
 We call $\R'$ a \emph{contravariant fragment} of $\R$.
 \end{definition}
-Note that a contravariant projection is always a surjective mapping for both states and operations, so that the conditions in~\cref{def:contraproj} make sense.
 The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
 Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
+
+\nick{Perhaps scrap definition of contravariant projection and define contravariant fragment as a subtheory $\R'$ where there exists a (injective) covariant projection from $\R'$ to parent theory $\R$. That would make every subtheory $\R' = (\F', \O')$ a contravariant fragment if $\O'$ is closed under composition, this includes $\sigma$--fragments.}
 
 \begin{proposition}\label{thm:subproj}
     Let $\R = (\F, \O)$ be a resource theory, and let $\O' \subseteq \O$ be a non-empty subset of the free operations that is closed under composition, and moreover $\O'$ is the largest such subset, in the sense that for any $\E_1 \not \in \O'$ and any $\E_2 \in \O'$ we have that both $\E_1 \circ \E_2$ and $\E_2 \circ \E_1$ are not in $\O'$. Then $\R' = (\F, \O')$ of $\R$ defines a contravariant fragment of $\R$.    
