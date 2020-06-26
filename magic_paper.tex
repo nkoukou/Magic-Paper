@@ -99,6 +99,7 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 
 \ddd{Things we must emphasize:
 \begin{enumerate}
+\item Perhaps a nice lead-in question: ``What happens if we view stabilizer states as thermodynamic equilibrium states and magic as a form of free energy?''
 \item We can tackle more `physicsy' questions like: how much magic can be distilled via free operations with some given fixed-point structure? E.g. 
 \item This allows a diagnostic on the kind of operations needed to do good distillation. I.e. what fixed point structure should they have?
 \item We go beyond magic monotones and replace a monotone with a $\sigma$-fragment.
@@ -489,9 +490,9 @@ We first show that the maximum of $\lc{\rho}{\sigma}$ is independent of the $\si
 	
 \end{proof}
 
-We can therefore view mana as one of the features of the Lorenz curve, its maximum.
+We can therefore view mana as just one of the features of the Lorenz curve, namely its maximum value. This implies the following result.
 \begin{theorem}\label{thm:bounds}
-    Given a magic state conversion $\rho \longrightarrow \tau$, the majorization condition is stronger than the mana condition in all $\sigma$--fragments.
+    Given a magic state conversion $\rho \longrightarrow \tau$, the majorization condition is stronger than the mana condition in every $\sigma$--fragment.
 \end{theorem}
 \begin{proof}
     The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed as an increasing function of mana,
@@ -521,7 +522,7 @@ This allows analytical calculation of all Lorenz curve points, and for the $k$-c
 \begin{equation}\label{eq:Skmax}
     \max_x{\lc{\ketbra{S}^{\otimes k}} {\sigma}}(x) = \frac{1}{2}\left (1 + \left(\frac{5}{3}\right)^k \right),
 \end{equation}
-independent of the particular $\sigma$--fragment. \ddd{[We should also give for what value of $x$ this maximum occurs.]} \nick{It will have the form of~\cref{eq:maxloc} and probably cannot be simplified more other than finding $k_\star$ exactly.}
+independent of the particular $\sigma$--fragment. \ddd{[We should also give for what value of $x$ this maximum occurs.]} \nick{It will have the form of~\cref{eq:maxloc} and probably cannot be simplified more other than finding $k_\star$ exactly.}\ddd{[Finding $k_\star$ is perfect. We'll always have the complexity of the free state distribution to deal with. For the unital fragment and thermal fragment this will be computable though.]}
 %1 + \left(\frac{4}{3}\right)^k \sum\limits_{j=0}^{\floor{\frac{k-1}{2}}} 4^{-(2j+1)} \binom{k}{2j+1}
 %\sum_{n=1, n \mbox{ odd}}^k a^n \binom{k}{n} = \frac{1}{2} \left [  (1+a)^k - (1-a)^k \right ]
 
@@ -536,7 +537,7 @@ At any $\epsilon \leq \frac{3}{4}$, we can investigate the distillation process 
 	\rho_{\rm{S}}(\epsilon)^{\otimes k} \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
 \end{equation}
 
-The more noisy the initial state is, the more copies needed to reach the target, therefore it makes sense to define a noise level threshold
+The more noisy the initial state is, the more copies needed to reach the target, therefore it makes sense to define a noise level threshold 
 \begin{equation}\label{eq:ethresh}
 	\epsilon_{\rm{th}}(k, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
 \end{equation}
@@ -602,6 +603,87 @@ Adding more copies results in a lower optimal temperature $\beta^{-1}$.
     \label{fig:thermal_distill}
 \end{figure}
 
+\section{Lower bounds in $\sigma$-fragments}
+\ddd{[Am throwing down some rough material, to be polished later.]}
+
+In order to obtain lower bounds one must now make precise what the free operations actually are in the  theory, beyond the condition of preserving Wigner-positivity.
+
+We first consider the unital fragment, and consider the transformations possible using Clifford unitaries, and convex mixtures of Clifford unitaries. We denote the Clifford group as $\C$, and given some quantum state $\rho$ the accessible states in the unital fragment are given by $\E(\rho) = \sum_{g \in \C} p(g) U(g) \rho U(g)^\dagger$.
+
+\subsection{Symplectic majorization of magic state Wigner distributions.}
+We now exploit the the group structure, which leads to a more general notation majorization that has been extensively studied in the classical context, but to our knowledge has not yet been used in quantum information theory.
+
+\begin{definition} Given a group $G$ that acts on a vector space $V$, we say that $\bmx$ \emph{$G$-majorises} $\bmy$ precisely when $\y \in H(\x)$, where $H(\x)$ is the convex hull of $\{g \x : g \in G\}$. We denote this as $\y \prec_G \x$.
+\end{definition}
+
+Now any quantum state $\rho$ has a Wigner distribution $W_\rho(\x)$. Given a Clifford unitary $\U \in \C$ we have that its representation in the Heisenberg-Weyl frame is given by
+\begin{equation}
+W_{\U(\rho)} (\x) = [\mbox{\ddd{fill in}}].
+\end{equation}
+
+This group action corresponds to the action of the affine symplectic group on the discrete phase space $\P_d$. To proceed we can study the discrete translational action, and the symplectic action separately.
+
+\subsection{Cyclic majorization conditions.}
+We can consider for $G$, the cyclic group of order $N$, which is described by $G= \< g | g^N = e\>$. in Terms of the Wigner distributions, this arises for the discrete lattice translations arising from displacement operators.
+
+A set of necessary and sufficient conditions for cyclic majorization has been obtained and is given as follows. \ddd{[I'll fill this out soon.]}
+\subsection{Symplectic majorization for qutrit magic}
+The qutrit system provides a good illustration of the techniques. In this case the symplectic group $SL(2,\mathbb{Z}_3)$ is isomorphic (up to $\pm \I$) the symmetry group of the tetrahedron, which in turn is isomorphic to $S_4$, the permutation group on 4 symbols. Therefore we expect in this case that symplectic majorization on $\P_3$ corresponds to a restricted form of majorization.
+
+
+\subsection{Fundamental Regions of a group $G$}
+\ddd{[This is theory for the appendices, and also to help flesh out the theory of $G$ majorization. It looks a bit technical, but the core idea is simple enough once you get it.]}
+Given a group $G$ that acts on a vector space $V$, we now have the following concept.
+\begin{definition} A \emph{fundamental region} $F$ of $G$ in $V$ is any open set $F$ such that $F \cap gF = \varnothing$ for $g \ne e$ and moreover 
+\begin{equation}
+V = \bigcup_{g} \overline{g F}.
+\end{equation}
+\end{definition}
+Here, the overline denotes the closure of a set. Loosely speaking, we can view $F$ as obtained by quotienting the vector space $V$ via the group action. We then have the following key theorem, which is proved in [CITE].
+\begin{theorem} If $G$ has a fundamental region $F$ that is unique, modulo actions of the group $F\rightarrow gF$, then $\bar{F}$ is a closed, convex cone and for any $\x, \y \in \bar{F}$ we have
+\begin{equation}
+\y \prec_G \x \Leftrightarrow \mathbf{a}\cdot \y \le \mathbf{a} \cdot \x, \mbox{ for all } \mathbf{a} \in \bar{F}.
+\end{equation}
+\end{theorem}
+If the cone $\bar{F}$ is finitely generated, namely 
+\begin{equation}
+\bar{F} = \mbox{cone}( \mathbf{c}_1, \dots, \mathbf{c}_N),
+\end{equation}
+for some finite set of vectors, then the majorization condition reduces to checking a \emph{finite} set of inequalities, namely checking $\mathbf{c}_k \cdot \y \le \mathbf{c}_k \cdot \x$ for $k=1, \dots , N$.
+
+Note now that any group action $G$ on a vector space $V$ always has a fundamental region. Consider any $\x \in V$ such that $g \x \ne \x$ unless $g =e$. For this we define
+\begin{equation}
+K = \{ \mathbf{a} \in V : \sup_g \left [ (g\mathbf{a})\cdot \x \right ] = \mathbf{a} \cdot \x \},
+\end{equation}
+then $F = K_{\mbox{\tiny int}}$ is a fundamental region of $G$ in $V$, where $ K_{\mbox{\tiny int}}$ is the interior of the set $K$. In simple terms, this fundamental region corresponds to the set of vectors that are `close' to $\x$, in the sense that any non-trivial group action $\mathbf{a} \rightarrow g \mathbf{a}$ on them moves them away from $\x$ with respect the inner product. See [CITE] for a proof of this statement.
+
+\subsection{Computing the fundamental region $F$ for the qutrit}
+Firstly, note that we actually have that $SL(2, \mathbb{Z}_3)$ is represented by $U(g)$ on $\P_3$, and so we should use that notation for precision.
+
+Since the symplectic group for $d=3$ is a reflection group, it turns out that this guarantees that an essentially unique fundamental region exists, and so we can reduce to a \emph{finite} set of majorization conditions (I think 5 in this case). Note that the $K$ defined above is always a closed, convex cone. This means it should be `easy' to determine the fundamental region. Reflection groups are Coexter groups, and I believe this set $K$ is essentially a Weyl chamber in that language. Anyhow, let's not get distracted by abstraction.
+
+
+The concrete recipe going forward:
+\begin{enumerate}
+\item Pick your favorite $\x \in P_3$ that is \emph{not} stabilized by $g\ne e$. I.e. a vector that moves under all non-trivial group actions.
+\item For each $g_k$ look for the extremal cases of $\y$ such that have constant inner product with $\x$. This corresponds to 
+\begin{equation}
+\left [ (U(g_k) -\I) \y \right ] \cdot \x = 0 \mbox{ for }k=1, \dots ,24.
+\end{equation}
+Or equivalently,
+\begin{equation}
+\y \cdot A^T\x = 0,
+\end{equation}
+where $A := U(g_k) -\I$.
+\item Write down the matrix equation for each $g_k$.
+\item Each of these conditions defines a hyperplane $H_k$ in $\P_3$ corresponding to the boundary of $K$.
+\item We possibly don't need to range over all 24 group elements....but am not sure on this.
+\item From this, we should be able to extract a generating set of vectors.
+\end{enumerate}
+
+\subsection{Symplectic majorization for $d =5$ and beyond.}
+For the case $d=5$ we also have a particularly simple group structure, where now the symplectic group $SL(2, \mathbb{Z}_5)$ is isomorphic to the symmetry group of the icosahedron. This is another reflection group and therefore we can again obtain the finite set of majorization conditions to describe it. Here the order of the group is $60$ and so we probably shouldn't make Nick compute this by hand.
+\newpage
 \section{Extension to general quantum resource theories}
 \label{sec:frag}
 
