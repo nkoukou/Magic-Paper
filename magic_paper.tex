@@ -681,6 +681,54 @@ where $A := U(g_k) -\I$.
 \item From this, we should be able to extract a generating set of vectors.
 \end{enumerate}
 
+\subsection{Toy example to see how the algorithm works}
+Okay, let's see how it works in a simple case. Let's consider the case of $V= \mathbb{R}^2$ and $G=S_2=\<g|g^2=e\>$ with the group action $g.(x,y) = (y,x)$ that swaps the components of the vector. We should get standard majorization out of this $G$--majorization.
+
+First we find an $\x$ that transforms non-trivially under non-trivial group actions. The vector $\x=(1,0)$ does this. To construct a fundamental region we now look at the equation 
+\begin{equation}
+[g.(x,y) - (x,y)] \cdot (1,0) = 0
+\end{equation}
+and solve for $x,y$. This becomes,
+\begin{equation}
+(y-x, x-y)\cdot(1,0)=0,
+\end{equation}
+which implies the hyperplane (line!) $y=x$ is the \emph{boundary} of the fundamental region. Since we decided to start with $(1,0)$ we can take the region to the right of this line, and so:
+\begin{equation}
+F = \{(x,y) : x>y \}
+\end{equation}
+where we note that we use the strict inequality to get the interior. The region $\bar{F}$ is a half-space, but this is actually a cone, and can be written as
+\begin{equation}
+F= \mbox{cone}( (1,1),(-1,-1), (5,0)).
+\end{equation}
+The first two vectors give the boundary, and we just need one other vector inside $F$ to generate it fully, chosen arbitrarily to be $(5,0)$. This last one is needed since $(1,1)$ and $(-1,-1)$ are linearly dependent! Therefore
+\begin{align}
+\mathbf{c}_1 &= (1,1) \nonumber \\
+\mathbf{c}_2 &= (-1,-1) \nonumber \\
+\mathbf{c}_3 &= (5,0).
+\end{align}
+The $S_2$--majorization ordering is then given by
+\begin{equation}
+\y \prec \x \Leftrightarrow \mathbf{c}_k \cdot \y \le  \mathbf{c}_k \cdot \x,
+\end{equation}
+for $k=1,2,3$ whenever $\x,\y \in F$. Note that is gives the ordering for all vectors in the space, since any general vector can be transformed into $F$ via a group action, since $F$ is a fundamental region. Indeed mapping an $\x$ into $F$ is simply $\x \rightarrow \x^\downarrow$, the sorting maneuver!
+The generating vectors $(1,1)$ and $(-1,-1)$ imply that both 
+\begin{equation}
+y_1 + y_2 \le x_1 +x_2,
+\end{equation}
+and
+\begin{equation}
+y_1 + y_2 \ge x_1 +x_2,
+\end{equation}
+which becomes the majorization condition
+\begin{equation}
+y_1+y_2 = x_1 + x_2.
+\end{equation}
+Easy! The final condition from $\mathbf{c}_3=(1,0)$ is then the condition that
+\begin{equation}
+5y_1 \le 5x_1 \Rightarrow y_1 \le x_1,
+\end{equation}
+which is the final majorization condition. Thus we have shown how the familiar majorization structure corresponds to the theory of $G$--majorization, and the cone ordering structure that comes from fundamental regions.
+
 \subsection{Symplectic majorization for $d =5$ and beyond.}
 For the case $d=5$ we also have a particularly simple group structure, where now the symplectic group $SL(2, \mathbb{Z}_5)$ is isomorphic to the symmetry group of the icosahedron. This is another reflection group and therefore we can again obtain the finite set of majorization conditions to describe it. Here the order of the group is $60$ and so we probably shouldn't make Nick compute this by hand.
 \newpage
