@@ -19,7 +19,18 @@ Fragments naturally link the symmetries of a gate sequence with conditions on th
 We demonstrate the power of fragments by providing exact conditions for the convertibility of single-copy qutrit magic states as well as stricter distillation bounds than the established mana monotone in any odd dimension.
 \end{abstract}
 
-\input{title}
+\preprint{APS/123-QED}
+
+\title{Thermodynamic fragments in magic state theories}
+
+\author{Nikolaos Koukoulekidis}
+	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
+	\email{nk2314@imperial.ac.uk}
+\author{David Jennings}
+	\affiliation{School of Physics and Astronomy, University of Leeds, Leeds, LS2 9JT, UK}
+	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
+
+\date{\today}
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -729,6 +740,102 @@ Easy! The final condition from $\mathbf{c}_3=(1,0)$ is then the condition that
 \end{equation}
 which is the final majorization condition. Thus we have shown how the familiar majorization structure corresponds to the theory of $G$--majorization, and the cone ordering structure that comes from fundamental regions.
 
+\subsection{Another toy example -- non-standard majorization this time}
+Okay, let's look at another option for $V=\mathbb{R}^2$. Now consider the group $G=\mathbb{Z}_2 \times \mathbb{Z}_2$ that can be represented as $G=\<g_1,g_2 | g^1=e, g_2 = e, g_1g_2 = g_2g_1\>$, and acts on vectors as $g_1.(x,y) = (-x,y), g_2.(x,y)=(x,-y)$. In other words the group just flips vectors about X/Y axes.
+
+A vector that moves under the non-trivial group actions is $(1,1)$, so we use this one and solve for $[g.(x,y) - (x,y)] \cdot (1,1) = 0$. We have for $g = g_1$ the equation
+\begin{equation}
+[(-x,y) - (x,y)]\cdot (1,1) = 0,
+\end{equation}
+which implies the line $x=0$.
+
+For $g=g_2$ we have
+\begin{equation}
+[(x,-y) - (x,y)]\cdot (1,1) = 0,
+\end{equation}
+which implies the line $y=0$.
+
+For $g=g_1g_2$ we have
+\begin{equation}
+[(-x,-y) - (x,y)]\cdot (1,1) = 0,
+\end{equation}
+which implies the line $x+y=0$. The open region bounded by these three conditions is the set
+\begin{equation}
+F := \{ (x,y) : x>0, y>0\}.
+\end{equation}
+So the positive quadrant of $\mathbb{R}^2$ is a fundamental region for $G$, which makes sense since via sign flips we can map this onto the whole plane, once we close the set. This is again a convex cone and $\bar{F} = \mbox{cone}((1,0), (0,1))$. Thus given any two vectors $\x,\y$ we first act with $G$ to flip their signs so that their components are all positive, $\x \rightarrow \x^\star\ge \mathbf{0}$, then $\y \prec_G \x$ if and only if $y_1 \le x_1$ and $y_2 \le x_2$. This implies that 
+\begin{equation}
+\y \prec_G \x \Leftrightarrow \y^\star \le \x^\star. 
+\end{equation}
+So the $G=\mathbb{Z}_2 \times \mathbb{Z}_2$ majorization gives the component-wise ordering on vectors once you sort them. It is clear that this extends to any $G=\mathbb{Z}_2^{\times n}$.
+\subsection{A more complex example $S_3$ on $\mathbb{R}^3$.}
+So the symmetric group $S_n$ always gives majorization. But the symmetric group has $|S_n| = n!$ elements to it, which is super-exponentially big in $n$. We clearly don't have to check $n!$ equations, since the majorization conditions involve just $n+1$ inequalities, and so it must be that the basic generating conditions of the group suffice to determine the fundamental region of $G$.
+
+Let's look at $V = \mathbb{R}^3$ and $G=S_3$ acting on $\x = (x_i)$ as $g.\x = (x_{g^{-1}}(i))$. A vector that transforms non-trivially under all non-trivial actions is $(2,1,0)$. Let's look at the transpositions, and the boundary planes they give first.
+
+For $g= (1\,\,2)$ we have the equation
+\begin{equation}
+[(y,x,z) - (x,y,z)] \cdot (2,1,0) = 0,
+\end{equation}
+which implies the plane $2(y-x)+ x-y = 0$, namely,
+\begin{equation}
+H_1 = \{(x,y,z) : y=x\}.
+\end{equation}
+The other choices of transpositions work the same and give the planes
+\begin{align}
+H_2 &= \{(x,y,z) : y=z\} \\
+H_3 &= \{(x,y,z) : x=z\}.
+\end{align}
+Note that their intersection gives the line $\{(x,y,z) : x=y=z\}$, which is the line of uniform vectors at the bottom of the majorization pre-order.
+
+What information do the $3$-cycles give? Okay, let's now look at $g=( 1 \,\, 2 \,\, 3)$. The core equation for this becomes
+\begin{equation}
+[(z,x,y) - (x,y,z)] \cdot (2,1,0) = 0,
+\end{equation}
+and so gives
+\begin{align}
+2(z-x) + (x-y) &= 0 \nonumber \\
+\Rightarrow x+y &=2z. 
+\end{align}
+Namely the plane
+\begin{equation}
+H_4 = \{(x,y,z) :  x+y =2z\}.
+\end{equation}The remaining $3$--cycle $(3\,\,2\,\,1)$ gives
+\begin{align}
+H_5 &= \{(x,y,z) : y+z = 2x\}.
+\end{align}
+Note that $|S_3| = 6$, but the identity element $g=e$ gives no constraint, and so there are exactly $5$ bounding planes. Note also that the line $\{ (t,t,t)\} $ is again the intersection of all the planes.
+
+These 5 planes bound a cone containing $(2,1,0)$, namely the fundamental region $F$. What's a good algorithm to obtain a generating set of vectors for this cone?
+
+Firstly, since the line $\{(t,t,t)\}$ being the intersection of all the planes, is definitely on the boundary of $F$, this means we must have $\mathbf{c}_1 = (1,1,1)$ and $\mathbf{c}_2 = (-1,-1,-1)$ in our generating set. Perhaps a good algorithm is to compute intersections, obtain generating vectors for these intersections of the hyperplanes, $H_{ij}$ and then let $K_i$ and $K_j$ be the half-spaces in which $(2,1,0)$ resides. Now the intersection of two cones, is itself a cone so we can just keep intersecting the half-space/cones. Thus, we compute
+\begin{align}
+H_{12} &:= H_1 \cap H_2 \\
+&=\{ (t,t,t) : t\in \mathbb{R}\}=:L.
+\end{align}
+Similarly, $H_{13} = H_{23}= L$. What about the other intersections? Well $H_{14} = H_{15}=L$. In fact all intersections are the same! 
+\begin{equation}
+H_{ij} = H_i \cap H_j = L \mbox{ for all } i,j.
+\end{equation}
+The fundamental region is given by the intersection of $K_1$ and $K_2$, or any other two half-spaces. This is generated by $\mathbf{c}_1$ and $\mathbf{c}_2$ above, and any two independent vectors in the intersection of these half-spaces. We can choose 
+\begin{align}
+\mathbf{c}_3 &= (1,1,0) \\
+\mathbf{c}_4 &= (1,0,0),
+\end{align}
+note that $\mathbf{c}_3 \in H_1$ and $\mathbf{c}_4 \in H_2$, while $\mathbf{c}_3 \in K_2$ and $\mathbf{c}_4 \in K_1$ and so this works correctly. We thus have
+\begin{equation}
+\bar{F} = \mbox{cone}(\mathbf{c}_1 ,\mathbf{c}_2 ,\mathbf{c}_3 ,\mathbf{c}_4 ).
+\end{equation}
+The first two inequalities give the condition that
+\begin{equation}
+x_1+x_2+x_3 = y_1+y_2+y_3,
+\end{equation}
+while the remaining two conditions give the inequalities
+\begin{align}
+y_1 &\le x_1 \\
+y_1+y_2 &\le x_1 +x_2.
+\end{align}
+This is the standard majorization relation. Geometrically, the cone $\bar{F}$ is actually a funny one to visualise: it consists of a half-line radiating out from $(0,0,0)$ to $(-1, -1, -1)$, together with the triangular ``infinite pyramid'' generated by positive combinations of $(1,1,1), (1,1,0), (1,0,0)$. But we can also take positive linear combinations of $(-1,-1,-1)$ and e.g. $(1,1,0)$ and so it is still a bit tricky to visualise.
 \subsection{Symplectic majorization for $d =5$ and beyond.}
 For the case $d=5$ we also have a particularly simple group structure, where now the symplectic group $SL(2, \mathbb{Z}_5)$ is isomorphic to the symmetry group of the icosahedron. This is another reflection group and therefore we can again obtain the finite set of majorization conditions to describe it. Here the order of the group is $60$ and so we probably shouldn't make Nick compute this by hand.
 \newpage
