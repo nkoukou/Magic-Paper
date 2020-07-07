@@ -519,23 +519,23 @@ We can therefore view mana as just one of the features of the Lorenz curve, name
 
 Of practical importance are magic state distillation (MSD) processes of the form
 \begin{equation}\label{eq:distprocess}
-    \rho^{\otimes k} \xrightarrow{\E \in \O_\sigma} \tau,
+    \rho^{\otimes n} \xrightarrow{\E \in \O_\sigma} \tau,
 \end{equation}
-where $k$ copies of a noisy magic state $\rho$ are converted into a target single-copy state $\tau$. \nick{expand?}
+where $n$ copies of a noisy magic state $\rho$ are converted into a target single-copy state $\tau$. \nick{expand?}
 
-In general, the Wigner components of a $k$-copy state $\rho^{\otimes k}$ can be calculated, along with their multiplicities, from $W_\rho$ by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$.
+In general, the Wigner components of a $n$-copy state $\rho^{\otimes n}$ can be calculated directly from $W_\rho$, along with their multiplicities, by expanding the terms in the multinomial expansion $\left( \sum_{\bm{z} \in \cal{P}_d} W_\rho(\bm{z}) \right)^n$. \nick{is this clear?}
 This follows from the multiplicativity of the Wigner distribution.
 
 As an example, consider the qutrit Strange state $\ketbra{\rm{S}}$ depicted in~\cref{fig:strange}. 
-It is the simplest non-trivial case to analyse because the Strange state only has two distinct components $\left\{ -\frac{1}{3}, \frac{1}{6} \right\}$ with multiplicities $1$ and $8$ respectively.
-Calculating the binomial expansion for the components of $\ket{S}\bra{S}^{\otimes k}$ gives $\{(-1)^j 2^{j-k} 3^{-k}\}_{0 \leq j \leq k}$ with multiplicity $8^{k-j} \binom{k}{j}$ for the $j$-th term.
-This allows analytical calculation of all Lorenz curve points, and for the $k$-copy state we have that
+It is the simplest non-trivial case to analyse because its Wigner distribution consists of two distinct components.
+Calculating the components of $\ket{S}\bra{S}^{\otimes n}$ allows for analytical calculation of the maximum of the $n$-copy state,
 \begin{equation}\label{eq:Skmax}
-    \max_x{\lc{\ketbra{S}^{\otimes k}} {\sigma}}(x) = \frac{1}{2}\left (1 + \left(\frac{5}{3}\right)^k \right),
+    \max_x{\lc{\ketbra{S}^{\otimes n}} {\sigma}}(x) = \frac{1}{2}\left (1 + \left(\frac{5}{3}\right)^n \right).
 \end{equation}
-independent of the particular $\sigma$--fragment. \ddd{[We should also give for what value of $x$ this maximum occurs.]} \nick{It will have the form of~\cref{eq:maxloc} and probably cannot be simplified more other than finding $k_\star$ exactly.}\ddd{[Finding $k_\star$ is perfect. We'll always have the complexity of the free state distribution to deal with. For the unital fragment and thermal fragment this will be computable though.]}
-%1 + \left(\frac{4}{3}\right)^k \sum\limits_{j=0}^{\floor{\frac{k-1}{2}}} 4^{-(2j+1)} \binom{k}{2j+1}
-%\sum_{n=1, n \mbox{ odd}}^k a^n \binom{k}{n} = \frac{1}{2} \left [  (1+a)^k - (1-a)^k \right ]
+Its location $x_{k_\star}$ depends on the $\sigma$--fragment and is given by~\cref{eq:maxloc} with $k_\star = \frac{1}{2}(7^n + 9^n)$.
+%1 + \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{\floor{\frac{n-1}{2}}} 4^{-(2j+1)} \binom{n}{2j+1}
+%\sum_{i=j, j: odd}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n - (1-a)^n ]
+%$\{(-1)^j 2^{j-n} 3^{-n}\}_{0 \leq j \leq n}$ with multiplicity $8^{n-j} \binom{n}{j}$ for the $j$-th term
 
 Consider the problem of purifying out magic from a noisy Strange state,
 \begin{equation}
@@ -545,18 +545,18 @@ in $\O_\sigma$.
 At noise levels $\epsilon \geq \frac{3}{4}$, the state is sufficiently noisy so as the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ no longer contains negativities. 
 At any $\epsilon \leq \frac{3}{4}$, we can investigate the distillation process resulting in a single-copy state with sufficiently low target $\epsilon_{\tau}$,
 \begin{equation}\label{eq:sdist}
-	\rho_{\rm{S}}(\epsilon)^{\otimes k} \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
 \end{equation}
 
 The more noisy the initial state is, the more copies needed to reach the target, therefore it makes sense to define a noise level threshold 
 \begin{equation}\label{eq:ethresh}
-	\epsilon_{\rm{th}}(k, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
+	\epsilon_{\rm{th}}(n, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
 \end{equation}
-so that the MSD process~(\ref{eq:sdist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(k, \epsilon_\tau, \sigma)$
+so that the MSD process~(\ref{eq:sdist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(n, \epsilon_\tau, \sigma)$
 
 \nick{Condition in~\cref{eq:ethresh} is informally written. Can also define 
 \begin{equation}\label{eq:ethresh}
-	k_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{k:\ k \in \mathbb{N}, \lc{\rho_{\rm{S}}(\epsilon)^{\otimes k}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
+	n_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{n:\ n \in \mathbb{N}, \lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
 \end{equation}}
 We now examine the MSD process~(\ref{eq:sdist}) in specific $\sigma$--fragments.
 
@@ -568,10 +568,75 @@ Operations in $\rcu$ can be expressed as
     \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cd.
 \end{equation}
 Depending on the symmetries of such operations, a sequence of them may belong in various $\sigma$--fragments and the majorization condition~(\ref{eq:majbound}) needs to be checked in all these $\sigma$-fragments that reflect the symmetries of the operation sequence.
-However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$
+However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$.
 
 If one incorporates noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} in various bases, symmetries are reduced.
 Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
+
+Lorenz curve analysis simplifies significantly in the unital fragment \nick{or so I thought initially}, because the invariant Wigner distribution is the uniform distribution depicted in~\cref{fig:maxmix}.
+Therefore, $\W[\bmu]{(\frac{1}{d}\id)^{\otimes n}} = \frac{1}{d^{2n}}$ for all $\bmu \in \pd[d^n]$ and the Lorenz curve ordering only depends on $\rho$ \nick{rephrase}
+The Lorenz curve $\lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}$ consists of $n+1$ line segments, with $n$ endpoints, or ``elbows'', between $(0,0)$ and $(1,1)$. 
+The $k_\star$-th endpoint is the maximum in~\cref{eq:Skmax} occuring at 
+\begin{equation}
+	x_{k_\star} = \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right).
+\end{equation}
+
+All $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}, are given by the following sums, $\left( x_k, \lc{\ketbra{\rm{S}^{\otimes n}}}{\frac{1}{d}\id}(k) \right) =$
+\begin{equation}\label{eq:leftelb}
+	\left( \frac{1}{9^n} \sum\limits_{j=0}^{k-1} 8^{2j} \binom{n}{2j}, \frac{1}{3^n} \sum\limits_{j=0}^{k-1} 4^{2j} \binom{n}{2j} \right)
+\end{equation}
+for all elbows left of the maximum, $k = 1, \dots, k_\star = \floor{\frac{n}{2}}+1$ and $\left( x_k, \lc{\ketbra{\rm{S}^{\otimes n}}}{\frac{1}{d}\id}(k) \right) = (x_{k_\star}, L(k_\star)) + $
+\begin{equation}\label{eq:rightelb}
+	\left( \left(\frac{8}{9}\right)^n \sum\limits_{j=0}^{k'-1} 8^{-(2j+1)} \binom{n}{2j+1}, \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{k'-1} 4^{-(2j+1)} \binom{n}{2j+1} \right),
+\end{equation}
+for all elbows right of the maximum, $k' = k_\star, \dots, n$.
+
+\begin{figure}%
+    \centering
+    \subfigure[][]{%
+    \label{fig:lcs_maxmix}%
+    \includegraphics[height=3cm]{figs/lcs_maxmix.pdf}
+    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
+    }\hspace{1pt}%
+    \subfigure[][]{%
+    \label{fig:lcs_thermal}%
+    \includegraphics[height=3cm]{figs/lcs_thermal.pdf}
+    %\caption{Zero state $\ketbra{0}{0}$}%
+    }\\
+    \subfigure[][]{%
+    \label{fig:lcs_zero}%
+    \includegraphics[height=3cm]{figs/lcs_zero.pdf}
+    %\caption{Bound state}%
+    }\hspace{1pt}%
+    \subfigure[][]{%
+    \label{fig:lcs_one}%
+    \includegraphics[height=3cm]{figs/lcs_one.pdf}
+    %\caption{Strange state $\ketbra{S}{S}$}%
+    }
+    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$.
+    Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
+    \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}). 
+    }%
+    \label{fig:wstate_examples}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
+    \caption{\textbf{Anatomy of Strange state Lorenz curve}
+    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
+    Labels $k, k'$ indicate elbows left and right of the maximum respectively.
+    Their coordinates are given in~\cref{eq:leftelb,eq:rightelb}.
+    }
+    \label{fig:lccalc}
+\end{figure}
+
+We plot the Lorenz curves of pure and noisy Strange state $n$-copy states for $n$ up to $4$ in~\cref{fig:lcs}.
+For $n=1$, the Lorenz curve is simply additive, 
+\begin{equation}
+\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
+\end{equation}
+for any $\sigma, \rho$, but for $n\geq 2$, calculations become more complicated.
 
 In~\cref{fig:unital_distill}, we examine the purifying process of~\cref{eq:sdist} with $\epsilon_\tau = 0.05$ which describes all circuits that respect the unital symmetry.
 Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
@@ -604,15 +669,49 @@ In~\cref{fig:thermal_distill}, we examine the majorization bound for the same pu
 The curves plotted suggest that there exists a fragment $\O_{\gamma_{\beta_{\rm{max}}}}$ which allows for a highest noise threshold at any given number of copies of the initial state.
 Adding more copies results in a lower optimal temperature $\beta^{-1}$.
 
-\begin{figure}[t]
+\begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/thermal_distill.pdf}
-    \caption{\textbf{Noise thresholds in thermal fragments.} Lorenz curve ratios for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+    \caption{\textbf{Threshold dependence on temperature in thermal fragments.} Lorenz curve ratios for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
     The peaks of each curve indicate the optimal temperature $\beta_{\rm{max}}$ that allows for the highest noise threshold at every given number of initial state copies $k$.
     The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
     }
     \label{fig:thermal_distill}
 \end{figure}
+
+\newpage
+
+\subsection{Magic in pure stabilizer fragments}\label{sec:magstab}
+
+There exist $d(d+1)$ pure stabilizer states for a $d$-dimensional system, all of which correspond to a uniform distribion over an affine line in the phase space \nick{CITE}.
+As an example, the distribution of the qutrit zero state $\ketbra{0}$ is illustrated in~\cref{fig:zero}.
+Any pure stabilizer state $\sigma$ is a rank--$1$ state and contains $d^2 - d$ zeros in its Wigner distribution, so we approximate it by the full--rank state $\sigma' = (1-\epsilon)\sigma + \epsilon \frac{1}{d}\id$ for some infinitesimal $\epsilon > 0$.
+
+We explore the distillation process of~\cref{eq:sdist} in these modified fragments $\O_\sigma'$ in~\cref{fig:stab_distill}.
+We repeat the plot for distillation of Norrell states in~\cref{fig:stab_distill_norrell}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/stab_distill.pdf}
+    \caption{\textbf{Strange state distillation thresholds in stabilizer fragments.} Lorenz curve thresholds for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+    All $12$ stabilizer fragments produce two distinct trends: ($k=0$ - red curve) the stabilizer states that have non-zero value at the origin of the phase space lie low and ($k=1,2$ - blue curve) the stabilizer states that have a zero value at the origin of the phase space lie high.
+    This is specific to the Strange state.
+    For high enough copies, these Lorenz curves surpass the unital noise threshold $\epsilon_{\rm{th}} = \frac{3}{4}$.
+    }
+    \label{fig:stab_distill}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/stab_distill_norrell.pdf}
+    \caption{\textbf{Norrell state distillation thresholds in stabilizer fragments.} Lorenz curve thresholds for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+    For high enough copies, certain Lorenz curves surpass the unital noise threshold $\epsilon_{\rm{th}} = \frac{3}{4}$.
+    }
+    \label{fig:stab_distill_norrell}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Lower bounds in $\sigma$-fragments}
 \ddd{[Am throwing down some rough material, to be polished later.]}
