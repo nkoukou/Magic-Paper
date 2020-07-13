@@ -581,15 +581,15 @@ The $k_\star$-th endpoint is the maximum in~\cref{eq:Skmax} occuring at
 	x_{k_\star} = \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right).
 \end{equation}
 
-All $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}, are given by the following sums, $\left( x_k, \lc{\ketbra{\rm{S}^{\otimes n}}}{\frac{1}{d}\id}(k) \right) =$
+All $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}, are given by the following sums, $\left( x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) =$
 \begin{equation}\label{eq:leftelb}
 	\left( \frac{1}{9^n} \sum\limits_{j=0}^{k-1} 8^{2j} \binom{n}{2j}, \frac{1}{3^n} \sum\limits_{j=0}^{k-1} 4^{2j} \binom{n}{2j} \right)
 \end{equation}
-for all elbows left of the maximum, $k = 1, \dots, k_\star = \floor{\frac{n}{2}}+1$ and $\left( x_k, \lc{\ketbra{\rm{S}^{\otimes n}}}{\frac{1}{d}\id}(k) \right) = (x_{k_\star}, L(k_\star)) + $
+for all elbows left of the maximum, $k = 1, \dots, k_\star = \floor{\frac{n}{2}}+1$ and $\left( x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) = (x_{k_\star}, L(k_\star)) + $
 \begin{equation}\label{eq:rightelb}
-	\left( \left(\frac{8}{9}\right)^n \sum\limits_{j=0}^{k'-1} 8^{-(2j+1)} \binom{n}{2j+1}, \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{k'-1} 4^{-(2j+1)} \binom{n}{2j+1} \right),
+	\left( \left(\frac{8}{9}\right)^n \sum\limits_{j=0}^{k' - k_\star - 1} 8^{-(2j+1)} \binom{n}{2j+1}, \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{k' - k_\star - 1} 4^{-(2j+1)} \binom{n}{2j+1} \right),
 \end{equation}
-for all elbows right of the maximum, $k' = k_\star, \dots, n$.
+for all elbows right of the maximum, $k' = k_\star + 1, \dots, n$.
 
 \begin{figure}%
     \centering
@@ -617,7 +617,7 @@ for all elbows right of the maximum, $k' = k_\star, \dots, n$.
     Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
     \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}). 
     }%
-    \label{fig:wstate_examples}
+    \label{fig:lcs}
 \end{figure}
 
 \begin{figure}
@@ -649,6 +649,15 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
     The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
     }
     \label{fig:unital_distill}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/unital_distill_copies.pdf}
+    \caption{\textbf{Copies required for Strange state distillation.} Mana and Lorenz curve copy thresholds for the Strange state purification process in~\cref{eq:sdist} with $\epsilon_\tau = 0.05$.
+    Lorenz curve comparison consistently provides higher low bounds on the number of noisy Strange state copies required.
+    }
+    \label{fig:unital_distill_copies}
 \end{figure}
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
