@@ -665,18 +665,28 @@ Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
 	\Phi(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}.
 \end{equation}
 Let $\Phi_+(m; n, p)$ denote the same sum but only considering the even indices, $j = 0, 2, \dots, m$ and similarly let $\Phi_-(m; n, p)$ denote the same sum but only considering the odd indices, $j = 1, 3, \dots, m$.
+Then,
+\begin{align}	
+	\Phi_+ + \Phi_- &= \Phi \\
+	\Phi_+ - \Phi_- &= \Phi^c \coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}.
+\end{align}
+
+\nick{$\Phi$ is bounded by the two exponentials in Wikipedia ONLY for $m\leq np$ so these bounds do not hold for $m>np$.
+
+$\Phi^c$ is NOT bounded above by setting $m=n$ (which yields $(1 - 2p)^n$) and NOT bounded below by 0 - both due to the existence of negative terms in the sum.
+It does appear however to be strictly within the open interval $(-1, 1)$.}
 
 Assume $n$ is even, so that $\bar n = n$.
 Then we can express any elbow on the $n$-copy Strange state Lorenz curve as
 \begin{align}
-	L_+(m; n) &= \left(\frac{5}{3}\right)^n \Phi_+\left(m;n,\frac{4}{5}\right) \label{eq:leftelb}\\
+	L_+(m; n) &= \left(\frac{5}{3}\right)^n \Phi_+\left(m;n,\frac{4}{5}\right), \label{eq:leftelb}\\
 	L_-(m; n) &= L_\star - \left(\frac{5}{3}\right)^n \Phi_-\left(m;n,\frac{1}{5}\right), \label{eq:rightelb}
 \end{align}
 where $L_\star = L_+(n; n)$ is the maximum of the curve and $L_+, L_-$ indicate points on the left, right of the curve respectively for some index $m$.
 
 The locations of the elbows are at
 \begin{align}
-	x_+(m; n) &= \Phi_+\left(m;n,\frac{8}{9}\right) \\
+	x_+(m; n) &= \Phi_+\left(m;n,\frac{8}{9}\right), \\
 	x_-(m; n) &= x_\star + \Phi_-\left(m;n,\frac{1}{9}\right),
 \end{align}
 where $x_\star = x_+(n; n)$ is the location of the maximum.
