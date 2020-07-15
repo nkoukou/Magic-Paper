@@ -573,23 +573,12 @@ However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$.
 If one incorporates noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} in various bases, symmetries are reduced.
 Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
 
-Lorenz curve analysis simplifies significantly in the unital fragment \nick{or so I thought initially}, because the invariant Wigner distribution is the uniform distribution depicted in~\cref{fig:maxmix}.
-Therefore, $\W[\bmu]{(\frac{1}{d}\id)^{\otimes n}} = \frac{1}{d^{2n}}$ for all $\bmu \in \pd[d^n]$ and the Lorenz curve ordering only depends on $\rho$ \nick{rephrase}
-The Lorenz curve $\lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}$ consists of $n+1$ line segments, with $n$ endpoints, or ``elbows'', between $(0,0)$ and $(1,1)$. 
-The $k_\star$-th endpoint is the maximum in~\cref{eq:Skmax} occuring at 
+We plot the Lorenz curves of pure and noisy Strange state $n$-copy states for $n$ up to $4$ in~\cref{fig:lcs}.
+For $n=1$, the Lorenz curve is simply additive, 
 \begin{equation}
-	x_{k_\star} = \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right).
+\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
 \end{equation}
-
-All $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}, are given by the following sums, $\left( x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) =$
-\begin{equation}\label{eq:leftelb}
-	\left( \frac{1}{9^n} \sum\limits_{j=0}^{k-1} 8^{2j} \binom{n}{2j}, \frac{1}{3^n} \sum\limits_{j=0}^{k-1} 4^{2j} \binom{n}{2j} \right)
-\end{equation}
-for all elbows left of the maximum, $k = 1, \dots, k_\star = \floor{\frac{n}{2}}+1$ and $\left( x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) = (x_{k_\star}, L(k_\star)) + $
-\begin{equation}\label{eq:rightelb}
-	\left( \left(\frac{8}{9}\right)^n \sum\limits_{j=0}^{k' - k_\star - 1} 8^{-(2j+1)} \binom{n}{2j+1}, \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{k' - k_\star - 1} 4^{-(2j+1)} \binom{n}{2j+1} \right),
-\end{equation}
-for all elbows right of the maximum, $k' = k_\star + 1, \dots, n$.
+for any $\sigma, \rho$, but for $n\geq 2$, calculations become more complicated.
 
 \begin{figure}%
     \centering
@@ -620,24 +609,6 @@ for all elbows right of the maximum, $k' = k_\star + 1, \dots, n$.
     \label{fig:lcs}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
-    \caption{\textbf{Anatomy of Strange state Lorenz curve}
-    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
-    Labels $k, k'$ indicate elbows left and right of the maximum respectively.
-    Their coordinates are given in~\cref{eq:leftelb,eq:rightelb}.
-    }
-    \label{fig:lccalc}
-\end{figure}
-
-We plot the Lorenz curves of pure and noisy Strange state $n$-copy states for $n$ up to $4$ in~\cref{fig:lcs}.
-For $n=1$, the Lorenz curve is simply additive, 
-\begin{equation}
-\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
-\end{equation}
-for any $\sigma, \rho$, but for $n\geq 2$, calculations become more complicated.
-
 In~\cref{fig:unital_distill}, we examine the purifying process of~\cref{eq:sdist} with $\epsilon_\tau = 0.05$ which describes all circuits that respect the unital symmetry.
 Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
 \nick{Explain asymptotic behaviour?}
@@ -659,6 +630,58 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
     }
     \label{fig:unital_distill_copies}
 \end{figure}
+
+\newpage
+
+\subsection{Lorenz curves calculations}
+
+Lorenz curve analysis simplifies significantly in the unital fragment \nick{or so I thought initially}, because the invariant Wigner distribution is the uniform distribution depicted in~\cref{fig:maxmix}.
+Therefore, $\W[\bmu]{(\frac{1}{d}\id)^{\otimes n}} = \frac{1}{d^{2n}}$ for all $\bmu \in \pd[d^n]$ and the ordering of the points on the Lorenz curve only depends on the ordering of the Wigner components of $\rho$.
+The Lorenz curve $\lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}$ consists of $n+1$ line segments, with $n$ endpoints, or ``elbows'', between $(0,0)$ and $(1,1)$. 
+The $k_\star$-th endpoint is the maximum in~\cref{eq:Skmax} occuring at 
+\begin{equation}
+	x_{k_\star} = \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right).
+\end{equation}
+
+We now investigate the location of all $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
+    \caption{\textbf{Anatomy of Strange state Lorenz curve}
+    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
+    Labels $k, k'$ indicate elbows left and right of the maximum respectively.
+    Their coordinates are given in~\cref{eq:leftelb,eq:rightelb}.
+    }
+    \label{fig:lccalc}
+\end{figure}
+
+Let $\bar n = 2\floor{\frac{n}{2}}$ be equal to $n$ if $n$ is even and $n-1$ if $n$ is odd.
+Then, the positive components of the $n$-copy Strange state Wigner distribution $\W{\ketbra{\rm{S}}}$ are, in decreasing order, $6^{-n} 2^{\bar n} 2^{-j},\ j=0, 2, \dots, \bar n$ with respective multiplicites $8^{n-\bar n} 8^j \binom{n}{\bar n - j}$.
+The negative components are, in decreasing order $-6^{-n} 2^j,\ j=1,3, \dots, n$ with respective multiplicities $8^n 8^{-j} \binom{n}{j}$.
+
+Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
+\begin{equation}
+	\Phi(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}.
+\end{equation}
+Let $\Phi_+(m; n, p)$ denote the same sum but only considering the even indices, $j = 0, 2, \dots, m$ and similarly let $\Phi_-(m; n, p)$ denote the same sum but only considering the odd indices, $j = 1, 3, \dots, m$.
+
+Assume $n$ is even, so that $\bar n = n$.
+Then we can express any elbow on the $n$-copy Strange state Lorenz curve as
+\begin{align}
+	L_+(m; n) &= \left(\frac{5}{3}\right)^n \Phi_+\left(m;n,\frac{4}{5}\right) \label{eq:leftelb}\\
+	L_-(m; n) &= L_\star - \left(\frac{5}{3}\right)^n \Phi_-\left(m;n,\frac{1}{5}\right), \label{eq:rightelb}
+\end{align}
+where $L_\star = L_+(n; n)$ is the maximum of the curve and $L_+, L_-$ indicate points on the left, right of the curve respectively for some index $m$.
+
+The locations of the elbows are at
+\begin{align}
+	x_+(m; n) &= \Phi_+\left(m;n,\frac{8}{9}\right) \\
+	x_-(m; n) &= x_\star + \Phi_-\left(m;n,\frac{1}{9}\right),
+\end{align}
+where $x_\star = x_+(n; n)$ is the location of the maximum.
+
+\newpage
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
