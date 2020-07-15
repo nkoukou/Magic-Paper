@@ -768,7 +768,49 @@ This group action corresponds to the action of the affine symplectic group on th
 \subsection{Cyclic majorization conditions.}
 We can consider for $G$, the cyclic group of order $N$, which is described by $G= \< g | g^N = e\>$. in Terms of the Wigner distributions, this arises for the discrete lattice translations arising from displacement operators.
 
-A set of necessary and sufficient conditions for cyclic majorization has been obtained and is given as follows. \ddd{[I'll fill this out soon.]}
+A set of necessary and sufficient conditions for cyclic majorization has been obtained and is given as follows. Suppose $\x, \y$ are two real vectors in $\mathbb{R}^n$. Let $\Delta$ be the elementary shift operator, defined by
+\begin{equation}
+\Delta \x = \Delta (x_1, x_2, \dots, x_n) := (x_n, x_1, x_2, \dots, x_{n-1}),
+\end{equation}
+and from this it is clear that $\Delta$ generates a representation of the abelian group $(\mathbb{Z}_n,+)$.
+We now say that $\x$ \emph{cyclically majorizes} $\y$, written $\x \succ_C \y$, if and only if 
+\begin{equation}
+\y = \sum_{k=0}^{n-1} p_k \Delta^k \x,
+\end{equation}
+for some probability distribution $p=(p_k)$. This means that $\y$ lies in the convex hull of the orbit of $\x$ under cyclic shifts. Thus, we may write this condition as $\y = L(\p) \x$, where
+\begin{equation}
+L(\p) :=  \sum_{k=0}^{n-1} p_k \Delta^k,
+\end{equation}
+is a linear operator, as a function of an unknown distribution $\p$. We now have the following key identity for linear operators of this form:
+\begin{equation}
+L(\p)\x = QL(\x) \p,
+\end{equation}
+where $Q$ is a permutation matrix sending $e_0:=(1,0,0,\dots ,0)$ to itself, and otherwise sending $e_k$ to $e_{n-1-k}$, where $e_k=  (0,0,\dots, 0,1,0,\dots, 0)$ is the $k$'th basis vector. We thus have
+\begin{align}
+\x \succ_C \y &\Leftrightarrow \y = L(\p) \x \mbox{ for some dist. } \p. \nonumber \\
+&\Leftrightarrow \y = QL(\x) \p \mbox{ for some dist. } \p. \nonumber \\
+&\Leftrightarrow [QL(\x)]^{-1}\y = \p \mbox{ for some dist. } \p. \nonumber \\
+&\Leftrightarrow [QL(\x)]^{-1}\y = \p  \ge \mathbf{0} \mbox{ and normalized}.
+\end{align}
+This implies that to check whether $\x \succ_C \y$ it suffices to compute the components of the left-hand side and ensure non-negativity (I suspect it is normalised if $\x$ and $\y$ are normalised).
+
+Note though that by using Fourier analysis we can simplify this in terms of computational demands to checking if the vector
+\begin{equation}
+\p = C(\x') Q\y,
+\end{equation}
+has non-negative components, where
+\begin{equation}
+\x' := n\F_n [\F_n\x]^{-1},
+\end{equation}
+with $\F_n$ being the discrete Fourier transform, and the bracket term $[\F_n \x]^{-1}$ denotes the vector obtained by inverting the components of $\F \x$ individually. So the recipe for cyclic majorization is:
+\begin{enumerate}
+\item Given inputs $\x$ and $\y$.
+\item Compute the vector $\x'$ via two Fourier transforms and $n$ inversions.
+\item Compute the circulant matrix $C(\x')$.
+\item Compute $\C(\x')Q \y$ and check if all components are non-negative.
+\end{enumerate}•
+
+
 \subsection{Symplectic majorization for qutrit magic}
 The qutrit system provides a good illustration of the techniques. In this case the symplectic group $SL(2,\mathbb{Z}_3)$ is isomorphic (up to $\pm \I$) the symmetry group of the tetrahedron, which in turn is isomorphic to $S_4$, the permutation group on 4 symbols. Therefore we expect in this case that symplectic majorization on $\P_3$ corresponds to a restricted form of majorization.
 
