@@ -656,19 +656,20 @@ We now investigate the location of all $n$ elbows, depicted in the diagram of~\c
     \label{fig:lccalc}
 \end{figure}
 
-Let $\bar n = 2\floor{\frac{n}{2}}$ be equal to $n$ if $n$ is even and $n-1$ if $n$ is odd.
+Let $\overline{n} = 2\floor{\frac{n}{2}}$ be equal to $n$ if $n$ is even and $n-1$ if $n$ is odd.
 Then, the positive components of the $n$-copy Strange state Wigner distribution $\W{\ketbra{\rm{S}}}$ are, in decreasing order, $6^{-n} 2^{\bar n} 2^{-j},\ j=0, 2, \dots, \bar n$ with respective multiplicites $8^{n-\bar n} 8^j \binom{n}{\bar n - j}$.
 The negative components are, in decreasing order $-6^{-n} 2^j,\ j=1,3, \dots, n$ with respective multiplicities $8^n 8^{-j} \binom{n}{j}$.
 
 Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
-\begin{equation}
-	\Phi(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}.
-\end{equation}
-Let $\Phi_+(m; n, p)$ denote the same sum but only considering the even indices, $j = 0, 2, \dots, m$ and similarly let $\Phi_-(m; n, p)$ denote the same sum but only considering the odd indices, $j = 1, 3, \dots, m$.
-Then,
+\begin{align}
+	\Phi(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \\
+	\Phi^c(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}.
+\end{align}
+Note that $\Phi(m; n, p)^c$ differs only by a factor of $(-1)^j$.
+Let $\Phi_+(m; n, p)$ and $\Phi_-(m; n, p)$ denote the partial sums of even and odd indices respectively,
 \begin{align}	
-	\Phi_+ + \Phi_- &= \Phi \\
-	\Phi_+ - \Phi_- &= \Phi^c \coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}.
+	\Phi_+(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) + \Phi^c(m; n, p) \right), \\
+	\Phi_-(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) - \Phi^c(m; n, p) \right).
 \end{align}
 
 \nick{$\Phi$ is bounded by the two exponentials in Wikipedia ONLY for $m\leq np$ so these bounds do not hold for $m>np$.
@@ -682,7 +683,7 @@ Then we can express any elbow on the $n$-copy Strange state Lorenz curve as
 	L_+(m; n) &= \left(\frac{5}{3}\right)^n \Phi_+\left(m;n,\frac{4}{5}\right), \label{eq:leftelb}\\
 	L_-(m; n) &= L_\star - \left(\frac{5}{3}\right)^n \Phi_-\left(m;n,\frac{1}{5}\right), \label{eq:rightelb}
 \end{align}
-where $L_\star = L_+(n; n)$ is the maximum of the curve and $L_+, L_-$ indicate points on the left, right of the curve respectively for some index $m$.
+where $L_\star = L_+(n; n)$ is the maximum of the curve and $L_+, L_-$ respectively indicate the elbows on the left, right of the maximum for some index $m$.
 
 The locations of the elbows are at
 \begin{align}
@@ -690,6 +691,33 @@ The locations of the elbows are at
 	x_-(m; n) &= x_\star + \Phi_-\left(m;n,\frac{1}{9}\right),
 \end{align}
 where $x_\star = x_+(n; n)$ is the location of the maximum.
+
+Clearly by definition, 
+\begin{align}
+	\Phi_+(2m+1;n,p) &= \Phi_+(2m;n,p), \\
+	\Phi_-(2m;n,p) &= \Phi_-(2m-1;n,p),
+\end{align}
+so we define the piece-wise functions
+\begin{equation}
+	L(m;n) =
+	\begin{cases}
+	L_+(m; n)&,\ m\text{: even}, \\
+	L_-(m; n)&,\ m\text{: odd}
+	\end{cases}
+\end{equation}
+and
+\begin{equation}
+	x(m;n) =
+	\begin{cases}
+	x_+(m; n)&,\ m\text{: even}, \\
+	x_-(m; n)&,\ m\text{: odd}
+	\end{cases}
+\end{equation}
+Finally, the $k$-th elbow is located at
+\begin{equation}
+	\left(x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) = \left( x(2k;n), L(2k;n) \right),
+\end{equation}
+where $2k$ is considered$\mod{(n+1)}$.
 
 \newpage
 
