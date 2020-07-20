@@ -666,16 +666,18 @@ Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
 	\Phi^c(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}.
 \end{align}
 Note that $\Phi(m; n, p)^c$ differs only by a factor of $(-1)^j$.
+It is clear that for any $n,p$ and $m \leq n$
+\begin{align}
+	&\Phi(m; n, p) + \Phi(n-m; n, 1-p) = 1, \label{eq:reversef}\\
+	&\Phi^c(m; n, p) \leq \Phi(m; n, p),
+\end{align}
+where equality in the second line holds iff $m=0$.
+
 Let $\Phi_+(m; n, p)$ and $\Phi_-(m; n, p)$ denote the partial sums of even and odd indices respectively,
 \begin{align}	
 	\Phi_+(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) + \Phi^c(m; n, p) \right), \\
 	\Phi_-(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) - \Phi^c(m; n, p) \right).
 \end{align}
-
-\nick{$\Phi$ is bounded by the two exponentials in Wikipedia ONLY for $m\leq np$ so these bounds do not hold for $m>np$.
-
-$\Phi^c$ is NOT bounded above by setting $m=n$ (which yields $(1 - 2p)^n$) and NOT bounded below by 0 - both due to the existence of negative terms in the sum.
-It does appear however to be strictly within the open interval $(-1, 1)$.}
 
 Assume $n$ is even, so that $\bar n = n$.
 Then we can express any elbow on the $n$-copy Strange state Lorenz curve as
@@ -701,31 +703,74 @@ so we define the piece-wise functions
 \begin{equation}
 	L(m;n) =
 	\begin{cases}
-	L_+(m; n)&,\ m\text{: even}, \\
-	L_-(m; n)&,\ m\text{: odd}
+	L_+(m; n),&\ m\text{: even}, \\
+	L_-(m; n),&\ m\text{: odd}
 	\end{cases}
 \end{equation}
 and
 \begin{equation}
 	x(m;n) =
 	\begin{cases}
-	x_+(m; n)&,\ m\text{: even}, \\
-	x_-(m; n)&,\ m\text{: odd}
+	x_+(m; n),&\ m\text{: even}, \\
+	x_-(m; n),&\ m\text{: odd}
 	\end{cases}
 \end{equation}
-Finally, the $k$-th elbow is located at
+Finally, the $m$-th elbow is located at
 \begin{equation}
-	\left(x_k, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(k) \right) = \left( x(2k;n), L(2k;n) \right),
+	\left(x_m, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(m) \right) = \left( x(2m;n), L(2m;n) \right),
 \end{equation}
-where $2k$ is considered$\mod{(n+1)}$.
+where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
+
+We now want to bound these points for any index $m$, so as to investigate the asymptotic behaviour of the Lorenz curve.
+We define the upper bound
+\begin{equation}
+	U(m;n,p) \coloneqq 
+	\begin{cases}
+	e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:ubd},&\ m \leq np, \\
+	1,&\ m>np.
+	\end{cases}
+\end{equation}
+\nick{we need to replace 1 with an exponential decay}
+where 
+\begin{equation}
+	S(\alpha||\beta) \coloneqq \alpha \log{\frac{\alpha}{\beta}} + (1-\alpha) \log{\frac{1-\alpha}{1-\beta}},
+\end{equation}
+is the classical relative entropy.
+
+There are two useful lower bounds for $\Phi(m;n,p)$, which we define as
+\begin{equation}
+	L(m;n,p) \coloneqq \max{\left\{ c(m;n) U(m;n,p), \\ 1 - U(n-m;n,1-p) \right\}} \label{eq:lbd},
+\end{equation}
+where
+\begin{equation}
+	c(m;n) = \left[8m\left(1-\frac{m}{n}\right)\right]^{-1/2}.
+\end{equation}
+Generally, the first expression within the $\max$ function is useful iff $m \leq np$, while the second expression is due to~\cref{eq:reversef} and thususeful iff $m \geq np$.
+So we choose $L(m;n,p$ to be the maximum of the two at any $m$.
+Figure~\cref{fig:Phi} demonstrates the upper and lower bounds for $\Phi(m;n,\frac{4}{5}$.
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/Phi.pdf}
-    \caption{Distributions $\Phi(m;n,p)$ (blue) and $\Phi^c(m;n,p)$ (orange) for $n=20$ and $p=\frac{4}{5}$.
-    The green curve is the upper bound on $\Phi$, valid for all $m \leq np = 8$.
+    \caption{Distributions $\Phi(m;n,p)$ (blue) and $\Phi^c(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
+    The upper and lower bounds on $\Phi$ are also presented. 
+    The upper bound is given by~\cref{eq:ubd} and the lower bound by~\cref{eq:lbd}.
     }
     \label{fig:Phi}
+\end{figure}
+
+We see in~\cref{fig:phicmax} that distribution $\Phi^c(m;n,p)$ is also bounded by a constant number $\epsilon$, $0<\epsilon<1$ for all $m$.
+The bound $\epsilon$ tends to decrease as $n$ increases, so that $\abs{\Phi^c(m;n,p)} \leq \frac{1}{10}$ for $n\geq 30$.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/Phic_max.pdf}
+    \caption{Maximum of the absolute value of $\Phi^c(m;n,p)$ over all $m$ for given $n$.
+    Here, we plot for all even $n$, $2\leq n\leq 30$.
+    The maximum is decreasing in $n$ and falls below $\frac{1}{10}$ for $n=30$.
+    \nick{we want to extract exponential bound from this graph instead of constant bound}.
+    }
+    \label{fig:phicmax}
 \end{figure}
 
 \begin{figure}
@@ -735,6 +780,16 @@ where $2k$ is considered$\mod{(n+1)}$.
     The green curve is the ratio of the two
     }
     \label{fig:Phi_ratio}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/Phi_nexp.pdf}
+    \caption{Distributions $\Phi_+(m;n,p)/ U(m;n,p)$ (blue) and $U(m;n,p) \Phi_-(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
+    We multiply the bound in~\cref{eq:ubd} to extract the exponential behaviour of the two distributions.
+    Here, $np = 24$, so for $m\geq 24$, $U(m;n,p) = 1$.
+    }
+    \label{fig:phinexp}
 \end{figure}
 
 \newpage
