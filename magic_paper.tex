@@ -635,6 +635,8 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 
 \subsection{Lorenz curves calculations}
 
+\subsubsection{Lorenz curve ordering and maximum}
+
 Lorenz curve analysis simplifies significantly in the unital fragment \nick{or so I thought initially}, because the invariant Wigner distribution is the uniform distribution depicted in~\cref{fig:maxmix}.
 Therefore, $\W[\bmu]{(\frac{1}{d}\id)^{\otimes n}} = \frac{1}{d^{2n}}$ for all $\bmu \in \pd[d^n]$ and the ordering of the points on the Lorenz curve only depends on the ordering of the Wigner components of $\rho$.
 The Lorenz curve $\lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}$ consists of $n+1$ line segments, with $n$ endpoints, or ``elbows'', between $(0,0)$ and $(1,1)$. 
@@ -659,6 +661,8 @@ We now investigate the location of all $n$ elbows, depicted in the diagram of~\c
 Let $\overline{n} = 2\floor{\frac{n}{2}}$ be equal to $n$ if $n$ is even and $n-1$ if $n$ is odd.
 Then, the positive components of the $n$-copy Strange state Wigner distribution $\W{\ketbra{\rm{S}}}$ are, in decreasing order, $6^{-n} 2^{\bar n} 2^{-j},\ j=0, 2, \dots, \bar n$ with respective multiplicites $8^{n-\bar n} 8^j \binom{n}{\bar n - j}$.
 The negative components are, in decreasing order $-6^{-n} 2^j,\ j=1,3, \dots, n$ with respective multiplicities $8^n 8^{-j} \binom{n}{j}$.
+
+\subsubsection{Lorenz curve in terms of a binomial cumulative distribution}
 
 Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
 \begin{align}
@@ -716,10 +720,12 @@ and
 	\end{cases}
 \end{equation}
 Finally, the $m$-th elbow is located at
-\begin{equation}
+\begin{equation}\label{eq:slc}
 	\left(x_m, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(m) \right) = \left( x(2m;n), L(2m;n) \right),
 \end{equation}
 where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
+
+\subsubsection{Bounds on cumulative distribution}
 
 We now want to bound these points for any index $m$, so as to investigate the asymptotic behaviour of the Lorenz curves.
 We first define a useful function
@@ -818,6 +824,34 @@ The bound $\epsilon$ tends to decrease as $n$ increases, so that $\abs{\Phi^c(m;
     }
     \label{fig:phinexp}
 \end{figure}
+
+\subsubsection{Noisy Strange states}
+
+Strange states of the form 
+\begin{equation}
+    \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{d}\id,
+\end{equation}
+contain two discrete Wigner components, so $n$-copy states $\rho_{\rm{S}}^{\otimes n}(\epsilon)$ contain $n+1$ discrete components~\cref{tab:swc} as in the noiseless case.
+\begin{table}[h]                           
+ \centering
+ \begin{tabular}{|c|c|}
+ \hline
+ $m_j$ & $8^{n-j}\binom{n}{j}$ \\ [0.5ex] 
+ \hline\hline
+ $w_j$ & $\left(\frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-j}\left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^{j}$ \\
+ \hline
+\end{tabular}
+ \caption{Wigner components of $\rho_{\rm{S}}^{\otimes n}(\epsilon)$}
+ \label{tab:swc}
+\end{table}
+
+Clearly, there are negative Wigner components iff $0\leq \epsilon < \frac{3}{4}$.
+At the limiting case of non-negative Wigner components $\epsilon = \frac{3}{4}$, the Lorenz curve is simply given by three points,
+\begin{equation}
+\left\{(0,0), \left(\left(\frac{8}{9}\right)^n, 1\right), (1,1) \right\}
+\end{equation}
+and exponentially tends to a step-function.
+The case of $\epsilon = 0$ is given at~\cref{eq:slc} and the noisy cases with $0 < \epsilon < \frac{3}{4}$ follow a similar analysis.
 
 \newpage
 
