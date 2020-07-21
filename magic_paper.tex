@@ -662,8 +662,8 @@ The negative components are, in decreasing order $-6^{-n} 2^j,\ j=1,3, \dots, n$
 
 Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
 \begin{align}
-	\Phi(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \\
-	\Phi^c(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}.
+	\Phi(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phi}\\
+	\Phi^c(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}. \label{eq:phic}
 \end{align}
 Note that $\Phi(m; n, p)^c$ differs only by a factor of $(-1)^j$.
 It is clear that for any $n,p$ and $m \leq n$
@@ -721,42 +721,69 @@ Finally, the $m$-th elbow is located at
 \end{equation}
 where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
 
-We now want to bound these points for any index $m$, so as to investigate the asymptotic behaviour of the Lorenz curve.
-We define the upper bound
+We now want to bound these points for any index $m$, so as to investigate the asymptotic behaviour of the Lorenz curves.
+We first define a useful function
 \begin{equation}
-	U(m;n,p) \coloneqq 
+	c(m;n) = 
 	\begin{cases}
-	e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:ubd},&\ m \leq np, \\
-	1,&\ m>np.
+		0,&\ m=0, \\
+		\left[8m\left(1-\frac{m}{n}\right)\right]^{-1/2},&\ 0<m<n, \\
+		1,&\ m=n,
 	\end{cases}
 \end{equation}
-\nick{we need to replace 1 with an exponential decay}
-where 
+as well as the classical relative entropy,
 \begin{equation}
-	S(\alpha||\beta) \coloneqq \alpha \log{\frac{\alpha}{\beta}} + (1-\alpha) \log{\frac{1-\alpha}{1-\beta}},
+	S(\alpha||\beta) \coloneqq \alpha \log{\frac{\alpha}{\beta}} + (1-\alpha) \log{\frac{1-\alpha}{1-\beta}}.
 \end{equation}
-is the classical relative entropy.
 
-There are two useful lower bounds for $\Phi(m;n,p)$, which we define as
-\begin{equation}
-	L(m;n,p) \coloneqq \max{\left\{ c(m;n) U(m;n,p), \\ 1 - U(n-m;n,1-p) \right\}} \label{eq:lbd},
-\end{equation}
-where
-\begin{equation}
-	c(m;n) = \left[8m\left(1-\frac{m}{n}\right)\right]^{-1/2}.
-\end{equation}
-Generally, the first expression within the $\max$ function is useful iff $m \leq np$, while the second expression is due to~\cref{eq:reversef} and thususeful iff $m \geq np$.
-So we choose $L(m;n,p$ to be the maximum of the two at any $m$.
-Figure~\cref{fig:Phi} demonstrates the upper and lower bounds for $\Phi(m;n,\frac{4}{5}$.
+We now define two functions that we use to bound $\Phi(m;n,p)$,
+\begin{align}
+	U(m;n,p) &\coloneqq	e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:ubd}, \\
+	L(m;n,p) &\coloneqq c(m;n)e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:lbd}.
+\end{align}
 
-\begin{figure}
+\begin{lemma}\label{lem:ulbd}
+	The cumulative distribution $\Phi(m;n,p)$ defined in~\cref{eq:phic} is exponentially bounded for all $m: 0\leq m \leq n$,
+	\begin{equation}
+		B_L(m;n,p) \leq \Phi(m;n,p) \leq B_U(m;n,p),\ m\leq np
+	\end{equation}
+	where
+	\begin{equation}
+		B_L(m;n,p) = \\
+		\begin{cases}
+			L(m;n,p),&\ m \leq np, \\
+			1 - U(n-m;n,1-p),&\ m > np,
+		\end{cases}
+	\end{equation}
+	and
+	\begin{equation}
+		B_U(m;n,p) =
+		\begin{cases}
+			U(m;n,p),&\ m \leq np, \\
+			1 - L(n-m;n,1-p),&\ m > np.
+		\end{cases}
+	\end{equation}
+\end{lemma}
+
+The bounds are demonstrated in~\cref{fig:phi} for the interesting cases of $\Phi\left(m;n,\frac{1}{5}\right),\Phi\left(m;n,\frac{4}{5}\right)$.
+
+\begin{figure}%
     \centering
-    \includegraphics[scale=0.5]{figs/Phi.pdf}
-    \caption{Distributions $\Phi(m;n,p)$ (blue) and $\Phi^c(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
-    The upper and lower bounds on $\Phi$ are also presented. 
-    The upper bound is given by~\cref{eq:ubd} and the lower bound by~\cref{eq:lbd}.
+    \subfigure[][]{%
+    \label{fig:phi1}%
+    \includegraphics[height=5cm]{figs/Phi.pdf}
+    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
+    }\\%
+    \subfigure[][]{%
+    \label{fig:phi4}%
+    \includegraphics[height=5cm]{figs/Phi2.pdf}
+    %\caption{Zero state $\ketbra{0}{0}$}%
     }
-    \label{fig:Phi}
+    \caption{Distributions $\Phi(m;n,p)$ (black) and $\Phi^c(m;n,p)$ (red) for $n=30$ and probability: 
+    \subref{fig:phi1} $p=\frac{4}{5}$; \subref{fig:phi4} $p=\frac{1}{5}$.
+    The upper and lower bounds on $\Phi(m;n,p)$ as stated in~\cref{lem:ulbd} are also presented. 
+    }%
+    \label{fig:phi}
 \end{figure}
 
 We see in~\cref{fig:phicmax} that distribution $\Phi^c(m;n,p)$ is also bounded by a constant number $\epsilon$, $0<\epsilon<1$ for all $m$.
@@ -785,8 +812,8 @@ The bound $\epsilon$ tends to decrease as $n$ increases, so that $\abs{\Phi^c(m;
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figs/Phi_nexp.pdf}
-    \caption{Distributions $\Phi_+(m;n,p)/ U(m;n,p)$ (blue) and $U(m;n,p) \Phi_-(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
-    We multiply the bound in~\cref{eq:ubd} to extract the exponential behaviour of the two distributions.
+    \caption{Distributions $\Phi_+(m;n,p)/U(m;n,p)$ (blue) and $\Phi_-(m;n,p)/U(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
+    We divide by the bound in~\cref{eq:ubd} to extract the exponential behaviour of the two distributions.
     Here, $np = 24$, so for $m\geq 24$, $U(m;n,p) = 1$.
     }
     \label{fig:phinexp}
