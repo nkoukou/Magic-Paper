@@ -24,8 +24,8 @@ We demonstrate the power of fragments by providing exact conditions for the conv
 \title{Thermodynamic fragments in magic state theories}
 
 \author{Nikolaos Koukoulekidis}
-	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
 	\email{nk2314@imperial.ac.uk}
+	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
 \author{David Jennings}
 	\affiliation{School of Physics and Astronomy, University of Leeds, Leeds, LS2 9JT, UK}
 	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
@@ -308,9 +308,10 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
         \includegraphics[scale=0.47
         ]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
-    Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations within the yellow regions, with all other established magic theories between these two.
-    We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$ with each one extendible to a set of stochastic maps outside the $\cptp$ operations.
-    Within each $\sigma$--fragment $\bmd$-majorization can be used allowing for an \nick{in-depth approach} towards the study of magic state interconversion.
+	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations denoted by the two yellow regions, with every other established magic theory  between them.
+    We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
+    Each $\O_\sigma$ is extensible to a set of stochastic maps outside the $\cptp$ operations.
+    Within each $\sigma$--fragment $\bmd$-majorization can be used allowing for an intricate, but tractable approach towards the study of magic state interconversion.
     }
     \label{fig:zoo}
 \end{figure}
@@ -352,7 +353,7 @@ For simplicity we shall merge the notation into $\prec_\sigma$, as there is litt
 
 
 \begin{theorem}\label{thm:sigmamajor}
-    Let $\R = (\F, \O)$ be a theory of magic. Then $\rho \longrightarrow \tau$ is possible then  $\W{\tau} \prec_\sigma \W{\rho}$ within a $\sigma$--fragment.
+    Let $\R = (\F, \O)$ be a theory of magic. Then $\rho \longrightarrow \tau$ is possible iff  $\W{\tau} \prec_\sigma \W{\rho}$ within a $\sigma$--fragment.
     \nick{I understand that dropping the full-rank assumption on $\sigma$ makes the statement a lot stronger, but also incorrect e.g. in the case of the replacement channel $\E(\rho) = \ketbra{0}$, since $d$-majorization in $\O_{\ketbra{0}}$ is not well-defined.}
 \end{theorem}
 \begin{proof}
@@ -632,6 +633,183 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 \end{figure}
 
 \newpage
+
+\subsection{Strange state Lorenz curves in the unital fragment}
+
+In this section we analytically investigate the behaviour of the Lorenz curve of an $n$-copy Strange state in the unital fragment, 
+\begin{equation}\label{eq:lcsu}
+	\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}} {\frac{1}{d}\id}(x).
+\end{equation}
+An analytic handle on this type of Lorenz curves, which we call ``standard'' Lorenz curves, elevates Strange states to ``standard candles'' in the context of magic state distillation \nick{expand}.
+We first present some relevant theory on error bounds of general binary codes and then show how it can be used to approximate the Lorenz curves of~\cref{eq:lcsu}.
+
+\subsubsection{Binomial distributions and error bounds}
+In this section, for any non-negative reals $a,b$ with $b\geq a$, we will denote the set of integers $n$ such that $a\leq n \leq b$ as $[a,b]$ for convenience.
+
+Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
+That could be a string of $n$ bits with bit-flip error probability $p$.
+
+The experiment is described by binomial statistics and we define the ``left'' and ``right'' tails of the cumulative binomial distribution,
+\begin{align}
+	\Phi_\ell(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phi}\\
+	\Phi_r(m; n, p) &\coloneqq \sum\limits_{j=m}^n \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phir}
+\end{align}
+where $m\in [0,n]$. 
+
+They are related by the symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution,
+\begin{equation}\label{eq:phil2phir}
+	\Phi_\ell(m; n, p) = \Phi_r(n-m; n, 1-p),\ m\in [0,n],
+\end{equation}
+as well as the normalisation condition,
+\begin{equation}
+	\Phi_\ell(m; n, p) + \Phi_r(m+1; n, p) = 1,\ m\in [0,n-1].
+\end{equation}
+
+Equivalently, we get
+\begin{align}
+	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1], \label{eq:reversephi}\\
+	\Phi_r(m; n, p) + \Phi_r(n-m+1; n, 1-p) &= 1,\ m\in [1,n]. \label{eq:reversephir}
+\end{align}
+
+The classical entropy of a $p$-coin is
+\begin{equation}\label{eq:ent}
+	S(p) \coloneqq -p\log{p} -(1-p)\log{(1-p)},
+\end{equation}
+which is symmetric, $S(p) = S(1-p)$.
+%Let $c(m; n) \coloneqq [m(1-m/n)]^{-1/2},\ m\in [1, n-1]$.
+A useful result is the entropic bound on a combination~\cite{cit:ash}.
+\begin{lemma}\label{lem:comb_bounds}
+	For all $m\in [1,n-1]$,
+	\begin{align}
+		&\left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} \leq \binom{n}{m} \leq \\
+		&\left[ 2\pi m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)}.
+	\end{align}
+\end{lemma}
+\begin{proof}
+	For $m = 1,2, n-1, n-2$ check by direct calculation.	
+	For all other cases, use Stirling's approximation.
+\end{proof}
+
+Bounds on the tails of a cumulative binomial distribution can be expressed in terms of the classical relative entropy between a $p$-coin and a $q$-coin,
+\begin{equation}\label{eq:ent_rel}
+	\ent{p}{q} \coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}.
+\end{equation}
+This entropy satisfies the identity
+\begin{equation}
+	\ent{p}{q} = \ent{1-p}{1-q}.
+\end{equation}
+We can now derive entropic bounds on binomial cumulative distributions~\cite{cit:ash}.
+\begin{lemma}\label{lem:phir_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_r$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_r(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_r(m; n, p) \leq 2^{-n\ents},\ m\in [np,n] \\
+		&\text{3. } \Phi_r(m; n, p) \leq 1 - \left[ 8(m-1)\left(1-\frac{m-1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m-1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [2,n]
+		\end{split}
+		\\
+		&\text{4. } \Phi_r(m; n, p) \geq 1 - 2^{-n\ent{\frac{m-1}{n}}{p}},\ m\in [2,np+1]
+	\end{align*}
+	
+	The asymptotic behaviour of $\Phi_r$ is determined by the relative entropy, 
+	\begin{equation}
+		\lim_{n\rightarrow\infty}{-\frac{1}{n}\log{\Phi_r(m; n, p)} = \ent{\frac{m}{n}}{p}},\ m\in [np,n]
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	For bound (1), note that
+	\begin{align*}
+		\Phi_r(m; n, p) &= \sum\limits_{j=m}^n \binom{n}{j} p^j (1-p)^{n-j} \\
+						   &\geq \binom{n}{m} p^{m} (1-p)^{n-m} \\
+						   &\geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} p^{m} (1-p)^{n-m} \\
+						   &= \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents}.
+	\end{align*}
+	The first inequality follows from the positivity of the terms in the series, the second from~\cref{lem:comb_bounds} and the equality from the entropy definitions in~\cref{eq:ent,eq:ent_rel}
+	
+	For bound (2), consider a binomial random variable $X = \sum_{i=1}^N$, where $X_i$ takes the values 1, 0 with probabilities $p$ and $1-p$ respectively.
+	Then we have
+	\begin{align*}
+		\Phi_r(m; n, p) &= P(X \geq m) = P\left(2^{rX} \geq 2^{rm}\right) \\
+						   &\leq 2^{-rm} E\left(2^{rX}\right) = 2^{-rm + n\log{(1-p+pe^r)}} \\
+						   &\leq 2^{-n\ents}.
+	\end{align*}
+	The first inequality holds for any discrete random variable $X$ with $r \geq 0$, while the second inequality involves maximisation of the exponent which occurs at $e^r = \frac{m(1-p)}{(n-m)p}$ (a non-negative $r$ exists if $np \leq m$).
+	
+	Bound 3 follows from bound 1 and~\cref{eq:reversephir}. Bound 4 follows from bound x2 and~\cref{eq:reversephir}.
+	
+	The asymptotic limit is a direct consequence of the squeeze theorem.
+\end{proof}
+
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+	
+	The asymptotic behaviour of $\Phi_\ell$ is determined by the relative entropy,
+	\begin{equation}
+		\lim_{n\rightarrow\infty}{-\frac{1}{n}\log{\Phi_r(m; n, p)} = \ent{\frac{m}{n}}{p}},\ m\in [0,np]
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	This lemma is a direct consequence of~\cref{lem:phir_bounds} and~\cref{eq:phil2phir}.
+\end{proof}
+
+We now define the alternating counterpart of the left tail distribution,
+\begin{equation}\label{eq:phialt}
+	\Phi_\ell^{\rm{alt}}(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j},
+\end{equation}
+where $m\in [0,n]$.
+$\Phi_\ell^{\rm{alt}}$ is \emph{not} the cumulative distribution of any random variable.
+It is upper bounded by $\Phi_\ell$,
+\begin{equation}\label{eq:alt_bound}
+	\abs{\Phi_\ell^{\rm{alt}}(m; n, p)} \leq \Phi(m; n, p),\ m\in [0,n]
+\end{equation}
+with equality iff $m=0$.
+
+We further define the two balanced combinations of $\Phi_\ell, \Phi_\ell^{\rm{alt}}$ for all $m\in [0,n]$,
+\begin{align}	
+	\Phi_+(m; n, p) &\coloneqq \frac{1}{2} \left( \Phi_\ell(m; n, p) + \Phi_\ell^{\rm{alt}}(m; n, p) \right), \\
+	\Phi_-(m; n, p) &\coloneqq \frac{1}{2} \left( \Phi_\ell(m; n, p) - \Phi_\ell^{\rm{alt}}(m; n, p) \right), \\
+	\Phi(m; n, p) &\coloneqq \label{eq:phi}
+	\begin{cases}
+		\Phi_+(m; n, p),\ \text{for even }m\in[0,n] \\
+		\Phi_-(m; n, p),\ \text{for odd }m\in[0,n].
+	\end{cases}
+\end{align}
+\begin{lemma}\label{lem:phi_bounds}
+	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \nick{!!!}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	Bound 1 follows directly from~\cref{lem:comb_bounds}.
+	
+	Bounds 2,3 follow from bounds 2,3 in~\cref{lem:phil_bounds} combined with~\cref{eq:phi,eq:alt_bound}.
+\end{proof}
+
+\subsubsection{Standard Lorenz curves in terms of binomial distributions}
+The coordinates of the standard Lorenz curve can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, some fixed $p$ and number of copies $n$.
+
+\null\newpage
+\null\newpage
+
 
 \subsection{Lorenz curves calculations}
 
