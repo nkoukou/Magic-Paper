@@ -794,8 +794,6 @@ We further define the two balanced combinations of $\Phi_\ell, \Phi_\ell^{\rm{al
 		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
 		&\hspace{14pt} m\in [0,n-2]
 		\end{split}
-		\\
-		&\text{4. } \nick{!!!}
 	\end{align*}
 \end{lemma}
 \begin{proof}
@@ -803,6 +801,36 @@ We further define the two balanced combinations of $\Phi_\ell, \Phi_\ell^{\rm{al
 	
 	Bounds 2,3 follow from bounds 2,3 in~\cref{lem:phil_bounds} combined with~\cref{eq:phi,eq:alt_bound}.
 \end{proof}
+\begin{lemma}\label{lem:phi_strictbounds}
+	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_+(2m; n, p) \geq \sum_{0\leq j \leq m}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} m\in [1,\left\lceil\frac{n}{2}\right\rceil] \\
+		&\text{2. } \Phi_+(2m; n, p) \leq \sum_{0\leq j \leq m}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} m\in [1,\left\lceil\frac{n}{2}\right\rceil] \\
+		&\text{3. } \Phi_-(2m+1; n, p) \geq \sum_{0\leq j \leq m}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} m\in [1,\left\lceil\frac{n-1}{2}\right\rceil] \\
+		&\text{4. } \Phi_-(2m+1; n, p) \leq \sum_{0\leq j \leq m}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} m\in [1,\left\lceil\frac{n-1}{2}\right\rceil] \\
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	The bounds are direct consequences of~\cref{lem:comb_bounds}.
+\end{proof}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figs/phi_bounds.pdf}
+    \caption{\textbf{Cumulative binomial distribution bounds}
+    Distributions $\Phi_\ell, \Phi_+$ are plotted for $n=100$ and $p=1/9$.
+    The first three bounds are given in~\cref{lem:phil_bounds,lem:phi_bounds} and are valid for both $\Phi_\ell$ and $\Phi_+$.
+    The fourth bound is given in~\cref{lem:phil_bounds} and is only valid for $\Phi_\ell$.
+    The fifth and sixth bounds are quite strict and given in~\cref{lem:phi_strictbounds} for $\Phi_+$.
+    }
+    \label{fig:lccalc}
+\end{figure}
 
 \subsubsection{Standard Lorenz curves in terms of binomial distributions}
 The coordinates of the standard Lorenz curve can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, some fixed $p$ and number of copies $n$.
