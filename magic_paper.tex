@@ -644,17 +644,117 @@ An analytic handle on this type of Lorenz curves, which we call ``standard'' Lor
 We first present some relevant theory on error bounds of general binary codes and then show how it can be used to approximate the Lorenz curves of~\cref{eq:lcsu}.
 
 \subsubsection{Binomial distributions and error bounds}
-In this section, for any non-negative reals $a,b$ with $b\geq a$, we will denote the set of integers $n$ such that $a\leq n \leq b$ as $[a,b]$ for convenience.
+\textbf{Notational convention:} For any non-negative reals $a,b$ with $b\geq a$, we will denote the set of integers $n$ such that $a\leq n \leq b$ as $[a,b]$ for convenience.\\
 
 Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
 That could be a string of $n$ bits with bit-flip error probability $p$.
 
-The experiment is described by binomial statistics and we define the ``left'' and ``right'' tails of the cumulative binomial distribution,
+The experiment is described by binomial statistics and we define the left tail of the cumulative binomial distribution,
+\begin{equation}\label{eq:phil}
+	\Phi_\ell(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j},
+\end{equation}
+where $m\in [0,n]$. 
+
+The symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution dictates that
+\begin{align}\label{eq:phi_reverse}
+	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1],
+\end{align}
+
+The classical entropy of a $p$-coin is
+\begin{equation}\label{eq:ent}
+	S(p) \coloneqq -p\log{p} -(1-p)\log{(1-p)},
+\end{equation}
+which is symmetric, $S(p) = S(1-p)$.
+%Let $c(m; n) \coloneqq [m(1-m/n)]^{-1/2},\ m\in [1, n-1]$.
+A useful result is the entropic bound on a combination~\cite{cit:ash}.
+\begin{lemma}\label{lem:comb_bounds}
+	For all $m\in [1,n-1]$,
+	\begin{align}
+		&\left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} \leq \binom{n}{m} \leq \\
+		&\left[ 2\pi m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)}.
+	\end{align}
+\end{lemma}
+\begin{proof}
+	For $m = 1,2, n-1, n-2$ check by direct calculation.	
+	For all other cases, use Stirling's approximation.
+\end{proof}
+
+Bounds on the tails of a cumulative binomial distribution can be expressed in terms of the classical relative entropy between a $p$-coin and a $q$-coin,
+\begin{equation}\label{eq:ent_rel}
+	\ent{p}{q} \coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}.
+\end{equation}
+This entropy satisfies the identity
+\begin{equation}
+	\ent{p}{q} = \ent{1-p}{1-q}.
+\end{equation}
+
+We can now derive entropic bounds on binomial cumulative distributions~\cite{cit:ash}.
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+\end{lemma}
+
+We now define the partial sums
+\begin{align}	
+	\Phi_+(m; n, p) &\coloneqq \sum\limits_{j=0}^{m/2} \binom{n}{2j} p^{2j} (1-p)^{n-2j}, \nonumber\\ 
+	&m\in[0,n]\ \text{and m even}, \label{eq:fp} \\
+	\Phi_-(m; n, p) &\coloneqq \sum\limits_{j=1}^{(m-1)/2} \binom{n}{2j+1} p^{2j+1} (1-p)^{n-(2j+1)}, \nonumber\\ 
+	&m\in[0,n]\ \text{and m odd}. \label{eq:fn2}
+\end{align}
+Index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$) and therefore we can use $\Phi_{\pm}$ to compactify statements that hold for both sums.
+In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
+\begin{lemma}\label{lem:bounds_loose}
+	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_{\pm}(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_{\pm}(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_{\pm}(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	!!!
+\end{proof}
+\begin{lemma}\label{lem:bounds_strict}
+	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_+(m; n, p) \geq \sum\limits_{j=0}^{m/2}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{2. } \Phi_+(m; n, p) \leq \sum\limits_{j=0}^{m/2}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{3. } \Phi_-(m; n, p) \geq \sum\limits_{j=1}^{(m-1)/2}\left[ 8(2j+1)\left(1-\frac{2j+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2j+1}{n}}{p}},\ \text{for all odd } m\in [1,n] \\
+		&\text{4. } \Phi_-(m; n, p) \leq \sum\limits_{j=1}^{(m-1)/2}\left[ 2\pi(2j+1)\left(1-\frac{2j+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2j+1}{n}}{p}},\ \text{for all odd } m\in [1,n]
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	!!!
+\end{proof}
+
+
+\null\newpage
+\null\newpage
+
+The experiment is described by binomial statistics and we define the left and ``right'' tails of the cumulative binomial distribution,
 \begin{align}
 	\Phi_\ell(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phi}\\
 	\Phi_r(m; n, p) &\coloneqq \sum\limits_{j=m}^n \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phir}
 \end{align}
-where $m\in [0,n]$. 
+where $m\in [0,n]$.
 
 They are related by the symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution,
 \begin{equation}\label{eq:phil2phir}
@@ -736,7 +836,7 @@ We can now derive entropic bounds on binomial cumulative distributions~\cite{cit
 	\end{align*}
 	The first inequality holds for any discrete random variable $X$ with $r \geq 0$, while the second inequality involves maximisation of the exponent which occurs at $e^r = \frac{m(1-p)}{(n-m)p}$ (a non-negative $r$ exists if $np \leq m$).
 	
-	Bound 3 follows from bound 1 and~\cref{eq:reversephir}. Bound 4 follows from bound x2 and~\cref{eq:reversephir}.
+	Bound 3 follows from bound 1 and~\cref{eq:reversephir}. Bound 4 follows from bound 2 and~\cref{eq:reversephir}.
 	
 	The asymptotic limit is a direct consequence of the squeeze theorem.
 \end{proof}
@@ -770,8 +870,8 @@ We now define the alternating counterpart of the left tail distribution,
 where $m\in [0,n]$.
 $\Phi_\ell^{\rm{alt}}$ is \emph{not} the cumulative distribution of any random variable.
 It is upper bounded by $\Phi_\ell$,
-\begin{equation}\label{eq:alt_bound}
-	\abs{\Phi_\ell^{\rm{alt}}(m; n, p)} \leq \Phi(m; n, p),\ m\in [0,n]
+\begin{equation}\label{eq:phialt_bound}
+	\abs{\Phi_\ell^{\rm{alt}}(m; n, p)} \leq \Phi_\ell(m; n, p),\ m\in [0,n]
 \end{equation}
 with equality iff $m=0$.
 
