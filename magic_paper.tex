@@ -546,18 +546,18 @@ in $\O_\sigma$.
 At noise levels $\epsilon \geq \frac{3}{4}$, the state is sufficiently noisy so as the Wigner distribution $\W{\rho_{\rm{S}}(\epsilon)}$ no longer contains negativities. 
 At any $\epsilon \leq \frac{3}{4}$, we can investigate the distillation process resulting in a single-copy state with sufficiently low target $\epsilon_{\tau}$,
 \begin{equation}\label{eq:sdist}
-	\rho_{\rm{S}}(\epsilon)^{\otimes n} \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
+	\noisysn \xrightarrow{\E \in \O_\sigma} \rho_{\rm{S}}(\epsilon_{\tau})
 \end{equation}
 
 The more noisy the initial state is, the more copies needed to reach the target, therefore it makes sense to define a noise level threshold 
 \begin{equation}\label{eq:ethresh}
-	\epsilon_{\rm{th}}(n, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
+	\epsilon_{\rm{th}}(n, \epsilon_\tau, \sigma) \coloneqq \sup{\{\epsilon:\ \lc{\noisysn}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}},
 \end{equation}
 so that the MSD process~(\ref{eq:sdist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(n, \epsilon_\tau, \sigma)$
 
 \nick{Condition in~\cref{eq:ethresh} is informally written. Can also define 
 \begin{equation}\label{eq:ethresh}
-	n_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{n:\ n \in \mathbb{N}, \lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
+	n_{\rm{th}}(\epsilon, \epsilon_\tau, \sigma) \coloneqq \min{\{n:\ n \in \mathbb{N}, \lc{\noisysn}{\sigma} \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})}{\sigma}\}}.
 \end{equation}}
 We now examine the MSD process~(\ref{eq:sdist}) in specific $\sigma$--fragments.
 
@@ -603,7 +603,7 @@ for any $\sigma, \rho$, but for $n\geq 2$, calculations become more complicated.
     \includegraphics[height=3cm]{figs/lcs_one.pdf}
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
-    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$.
+    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\noisysn$ for $n=1,2,3,4$.
     Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
     \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}). 
     }%
@@ -638,13 +638,13 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 
 In this section we analytically investigate the behaviour of the Lorenz curve of an $n$-copy Strange state in the unital fragment, 
 \begin{equation}\label{eq:lcsu}
-	\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}} {\frac{1}{d}\id}(x).
+	\lc{\noisysn}{\frac{1}{d}\id}(x).
 \end{equation}
 An analytic handle on this type of Lorenz curves, which we call ``standard'' Lorenz curves, elevates Strange states to ``standard candles'' in the context of magic state distillation \nick{expand}.
 We first present some relevant theory on error bounds of general binary codes and then show how it can be used to approximate the Lorenz curves of~\cref{eq:lcsu}.
 
 \subsubsection{Binomial distributions and error bounds}
-\textbf{Notational convention:} For any non-negative reals $a,b$ with $b\geq a$, we will denote the set of integers $n$ such that $a\leq n \leq b$ as $[a,b]$ for convenience.\\
+\textbf{Notational convention:} For any non-negative reals $a,b$ with $b\geq a$, we will denote the set of integers $n$ such that $a\leq n \leq b$ as $[a,b]$.\\
 
 Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
 That could be a string of $n$ bits with bit-flip error probability $p$.
@@ -702,15 +702,18 @@ We can now derive entropic bounds on binomial cumulative distributions~\cite{cit
 		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
 	\end{align*}
 \end{lemma}
+\begin{proof}
+	\nick{cite proof}
+\end{proof}
 
 We now define the partial sums
 \begin{align}	
 	\Phi_+(m; n, p) &\coloneqq \sum\limits_{j=0}^{m/2} \binom{n}{2j} p^{2j} (1-p)^{n-2j}, \nonumber\\ 
-	&m\in[0,n]\ \text{and m even}, \label{eq:fp} \\
+	&m\in[0,n]\ \text{and }m\text{ even}, \label{eq:fp} \\
 	\Phi_-(m; n, p) &\coloneqq \sum\limits_{j=1}^{(m-1)/2} \binom{n}{2j+1} p^{2j+1} (1-p)^{n-(2j+1)}, \nonumber\\ 
-	&m\in[0,n]\ \text{and m odd}. \label{eq:fn2}
+	&m\in[0,n]\ \text{and }m\text{ odd}. \label{eq:fn2}
 \end{align}
-Index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$) and therefore we can use $\Phi_{\pm}$ to compactify statements that hold for both sums.
+Index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$) and therefore we can use $\Phi_{\pm}$ to compactify statements that hold for both $\Phi_+, \Phi_-$.
 In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
 \begin{lemma}\label{lem:bounds_loose}
 	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
@@ -724,7 +727,7 @@ In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	!!!
+	\nick{paste proof}
 \end{proof}
 \begin{lemma}\label{lem:bounds_strict}
 	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
@@ -742,8 +745,115 @@ In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	!!!
+	\nick{paste proof}
 \end{proof}
+
+\subsubsection{Standard Lorenz curves in terms of binomial distributions}
+\textbf{Note:} We assume that the number of copies $n$ is even throughout.
+
+The Lorenz curve $\lc{\noisysn}{\frac{1}{d}\id}$ consists of $n+1$ line segments, connecting at $n$ points, called \emph{elbows}, between the endpoints $(0,0)$ and $(1,1)$, as illustrated in~\cref{fig:lcsu_elbows}. 
+\begin{figure}[b]
+    \centering
+    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
+    \caption{\textbf{Anatomy of Strange state Lorenz curve}
+    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
+    Labels $k, k'$ indicate two elbows for the $n=4$ case.
+    Their coordinates are given in~\cref{eq:lcsu_elbows}.
+    }
+    \label{fig:lcsu_elbows}
+\end{figure}
+We denote the Lorenz curve maximum as the $k_\star$-th point.
+It occurs at 
+\begin{align}\label{eq:lcsu_max}
+	x_{k_\star} &= \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right), \\
+	L_{k_\star} &\equiv \lc{\noisysn}{\frac{1}{d}\id}(x_{k_\star}) = \frac{1}{2}\left (1 + \left(\frac{15-8\epsilon}{9}\right)^n \right),
+\end{align}
+with $k_\star = n/2$.
+The coordinates of the standard Lorenz curve for a gien number of copies $n$ and noise level $\epsilon$ can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, $n$ the number of copies and some fixed $p \equiv p(\epsilon)$.
+
+The Wigner distribution of the qutrit maximally mixed state $\id/3$ is the uniform distribution $\bm{1}/9$.
+The Wigner distribution of the 1-copy noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 8 positive components ($w_+$) and 1 negative ($w_-$) with
+\begin{align}
+	w_+ &= \frac{1}{6} - \frac{1}{18}\epsilon \\
+	w_- &= -\frac{1}{3} + \frac{4}{9}\epsilon.
+\end{align}
+They are depicted in~\cref{fig:noisys}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.7]{figs/noisys.pdf}
+    \caption{\textbf{Wigner components of the noisy Strange state.} 
+    In the interval $0 \leq \epsilon < 3/7$, the negative component is larger than the positive components.
+    At $\epsilon = 3/7$ the Wigner distribution is $(-\frac{1}{7},\frac{1}{7},\dots,\frac{1}{7})$.
+    In the interval $3/7 < \epsilon < 3/4$, the positive components are larger than the negative component.
+    In the interval $3/4 \leq \epsilon \leq 1$, there is no negativity.
+    }
+    \label{fig:noisys}
+\end{figure}
+The $n+1$ distinct Wigner components ($w_j$) of $\noisysn$ along with their multiplicities ($c_j$) are given in~\cref{tab:lcsu_w}.
+\begin{table}[t]                           
+ \centering
+ \begin{tabular}{c|c|c|c}
+ $\epsilon$ & $j$ & $\left[0, \frac{n}{2}\right]$ & $\left[\frac{n}{2} + 1, n \right]$ \\ [0.5ex] 
+ \hline
+  & $w_{j}$ & $w_+^{2j}w_-^{n-2j}$ & $w_+^{n-2j}w_-^{2j}$  \\
+  $0\leq \epsilon < \frac{3}{7}$ & & & \\
+  & $c_{j}$ & $8^{2j}\binom{n}{2j}$ & $8^{n-2j}\binom{n}{2j}$ \\
+ \hline
+  & $w_{j}$ & $w_+^{n-2j}w_-^{2j}$ & $w_+^{2j}w_-^{n-2j}$  \\
+  $\frac{3}{7} \leq \epsilon < \frac{3}{4} $ & & & \\
+  & $c_{j}$ & $8^{n-2j}\binom{n}{2j}$ & $8^{2j}\binom{n}{2j}$
+\end{tabular}
+ \caption{Wigner components of $\rho_{\rm{S}}^{\otimes n}(\epsilon)$. The multiplication $2j$ is modulo $(n+1)$.}
+ \label{tab:lcsu_w}
+\end{table}
+
+To get the Lorenz curve, we need to sum up the Wigner components in decreasing order and the order depends on the noise level $\epsilon$, so we define probabilities associated with the $x$-coordinate ($p_x$) and the vertical coordinate ($p_L$) of the Lorenz curve accordingly,
+\begin{equation}
+	(p_x, p_L) \equiv \big( p_x(\epsilon), p_L(\epsilon) \big) = 
+	\begin{cases}
+		\left( \frac{8}{9}, \frac{12-4\epsilon}{15-8\epsilon} \right),\ & 0\leq \epsilon < \frac{3}{7} \\
+		\left( \frac{1}{9}, \frac{3-4\epsilon}{15-8\epsilon} \right),\ & \frac{3}{7}\leq \epsilon < \frac{3}{4} \\
+	\end{cases}	
+\end{equation}
+
+We are now in a position to express Lorenz curve coordinates in terms of phi distributions,
+\begin{equation}
+	x_k(n, \epsilon) = 
+	\begin{cases}
+		\Phi_+(k;n,p_x),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ even}, \\
+		x_{k_\star} + \Phi_-(k;n,1-p_x),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ odd}, \\
+	\end{cases}	
+\end{equation}
+and
+\begin{equation}
+	L_k(n, \epsilon) = 
+	\begin{cases}
+		\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+(k;n,p_L),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ even}, \\
+		L_{k_\star} + \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-(k;n,1-p_L),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ odd}. \\
+	\end{cases}	
+\end{equation}
+
+Finally, the $m$-th elbow is located at
+\begin{equation}\label{eq:lcsu_elbows}
+	\left(x_m, \lc{\noisysn}{\frac{1}{d}\id}(x_m) \right) = \Big( x_{2m}(n, \epsilon), L_{2m}(n, \epsilon) \Big),
+\end{equation}
+where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
+
+We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the standard Lorenz curves.
+\begin{figure}[b]
+    \centering
+    \includegraphics[scale=0.5]{figs/lc_bounds.pdf}
+    \caption{\textbf{Lorenz curves and bounding curves.} 
+    The figure explores the distillation process of a 10-copy $0.25$-noisy Strange state to a 4-copy $0.05$-noisy Strange state in the unital fragment.
+    Clearly, by looking at the Lorenz curves, the distillation process is possible.
+    However the bounding curves, derived in~\cref{lem:bounds_strict}, intersect at the end, suggesting that the process is not necessarily possible.
+    }
+    \label{fig:lc_bounds}
+\end{figure}
 
 
 \null\newpage
@@ -934,6 +1044,7 @@ We further define the two balanced combinations of $\Phi_\ell, \Phi_\ell^{\rm{al
 
 \subsubsection{Standard Lorenz curves in terms of binomial distributions}
 The coordinates of the standard Lorenz curve can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, some fixed $p$ and number of copies $n$.
+
 
 \null\newpage
 \null\newpage
