@@ -766,7 +766,7 @@ We denote the Lorenz curve maximum as the $k_\star$-th point.
 It occurs at 
 \begin{align}\label{eq:lcsu_max}
 	x_{k_\star} &= \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right), \\
-	L_{k_\star} &\equiv \lc{\noisysn}{\frac{1}{d}\id}(x_{k_\star}) = \frac{1}{2}\left (1 + \left(\frac{15-8\epsilon}{9}\right)^n \right),
+	L_{k_\star} &\equiv \lc{\noisysn}{\frac{1}{d}\id}(x_{k_\star}) = \frac{1}{2}\left (1 + \left(\frac{5}{3}-\frac{8}{9}\epsilon\right)^n \right),
 \end{align}
 with $k_\star = n/2$.
 The coordinates of the standard Lorenz curve for a gien number of copies $n$ and noise level $\epsilon$ can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, $n$ the number of copies and some fixed $p \equiv p(\epsilon)$.
@@ -832,7 +832,7 @@ and
 	\begin{cases}
 		\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+(k;n,p_L),\\
 		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ even}, \\
-		L_{k_\star} + \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-(k;n,1-p_L),\\
+		L_{k_\star} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-(k;n,1-p_L),\\
 		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ odd}. \\
 	\end{cases}	
 \end{equation}
@@ -846,7 +846,7 @@ where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
 We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the standard Lorenz curves.
 \begin{figure}[b]
     \centering
-    \includegraphics[scale=0.5]{figs/lc_bounds.pdf}
+    \includegraphics[scale=0.4]{figs/lc_bounds.pdf}
     \caption{\textbf{Lorenz curves and bounding curves.} 
     The figure explores the distillation process of a 10-copy $0.25$-noisy Strange state to a 4-copy $0.05$-noisy Strange state in the unital fragment.
     Clearly, by looking at the Lorenz curves, the distillation process is possible.
@@ -855,6 +855,45 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
     \label{fig:lc_bounds}
 \end{figure}
 
+\subsubsection{Lorenz curve comparison}
+According to~\cref{thm:dmajor}, a necessary condition for $\rho \xrightarrow{\E \in \O_\sigma} \tau$ is that $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
+We can reduce this condition to a finite set of inequalities, defined at the elbows of $\lc{\tau}{\sigma}(x)$.
+\begin{theorem}\label{thm:elbows}
+	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff the elbows of $\lc{\tau}{\sigma}(x)$ lie vertically below $\lc{\rho}{\sigma}(x)$.
+\end{theorem}
+\begin{proof}
+	Let $n$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $T \coloneqq \{x_0, x_1, \dots, x_n, x_{n+1} \}$ be the set of the elbows' $x$-coordinates including $x_0 = 0$ and $x_{n+1} = 1$.
+	
+	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ implies $\lc{\rho}{\sigma}(x_k) \geq \lc{\tau}{\sigma}(x_k)$ for all $x_k \in T$ trivially.
+	
+	Conversely, assume that $\lc{\rho}{\sigma}(x_k) \geq \lc{\tau}{\sigma}(x_k)$ for all $x_k \in T$.
+	Pick two consecutive $x$-coordinates $x_i, x_{i+1}$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_i, \lc{\tau}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_i, \lc{\rho}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
+	This is illustrated in~\cref{fig:elbows_proof}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{figs/elbows_proof.pdf}
+    \caption{\textbf{Illustration of~\cref{thm:elbows}}.
+    }
+    \label{fig:elbows_proof}
+\end{figure}
+
+	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_i, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
+	This argument can be made in all intervals $[x_i, x_{i+1}]$ with $i=0,\dots,n$, so the proof is complete.
+\end{proof}
+
+Consider now the magic state conversion,
+\begin{equation}\label{eq:su_conversion}
+	\noisysn \xrightarrow{\E \in \O_{\id/d}} \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}.
+\end{equation}
+The Lorenz curve comparison of these states gives rise to $k$ independent necessary constraints
+\begin{align}
+\lc{\noisysn}{\frac{1}{d}\id}(x_1) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_1), \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}(x_2) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_2), \nonumber\\
+&\vdotswithin{=} \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}(x_k) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_k), \nonumber
+\end{align}
+where $x_1, x_2, \dots, x_k$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$.
 
 \null\newpage
 \null\newpage
