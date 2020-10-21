@@ -856,8 +856,34 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
 \end{figure}
 
 \subsubsection{Lorenz curve comparison}
+Consider the magic state conversion,
+\begin{equation}\label{eq:su_conversion}
+	\noisysn \xrightarrow{\E \in \O_{\id/d}} \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}.
+\end{equation}
+Pointwise comparison of the initial and final state Lorenz curves is non-trivial, since the elbows of the curves do not align veritically.
+The initial state Lorenz curve consists of
+\begin{equation}
+	\sum_{j=0}^{n} c_j = 9^n
+\end{equation}
+\nick{technically $(9^n+1)$ because 0 is artificially added in the end} points with $x$-coordinates incrementing by $\frac{1}{9^n}$ which we denote as the set 
+\begin{equation}
+X \coloneqq \left\{ \sum_{i=0}^{k} \frac{i}{9^n} \right\}_{0 < k \leq 9^n}.
+\end{equation}
+
+The final state Lorenz curve consists of $9^k (< 9^n)$ points and, in order to make a pointwise comparison, we rewrite it as
+\begin{equation}
+\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k} \otimes \left( \frac{1}{d}\id\right)^{\otimes(n-k)},
+\end{equation}
+with transformed Wigner components $w_j^\prime = d^{-2(n-k)}w_j$ and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$.
+The Lorenz curve of the final state remains the same, but now it consists of $9^n$ points with the same $x$-coordinates as the initial state.
+Therefore, we can compare the curves pointwise with $9^n$ inequalities of the form
+\begin{equation}\label{eq:lc_pointwise}
+\lc{\noisysn}{\frac{1}{d}\id}(x) \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x)
+\end{equation}
+for all $x \in X$.
+
 According to~\cref{thm:dmajor}, a necessary condition for $\rho \xrightarrow{\E \in \O_\sigma} \tau$ is that $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
-We can reduce this condition to a finite set of inequalities, defined at the elbows of $\lc{\tau}{\sigma}(x)$.
+We can reduce the inequalities in~\cref{eq:lc_pointwise} significantly with the following result.
 \begin{theorem}\label{thm:elbows}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
 	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff the elbows of $\lc{\tau}{\sigma}(x)$ lie vertically below $\lc{\rho}{\sigma}(x)$.
@@ -882,18 +908,15 @@ We can reduce this condition to a finite set of inequalities, defined at the elb
 	This argument can be made in all intervals $[x_i, x_{i+1}]$ with $i=0,\dots,n$, so the proof is complete.
 \end{proof}
 
-Consider now the magic state conversion,
-\begin{equation}\label{eq:su_conversion}
-	\noisysn \xrightarrow{\E \in \O_{\id/d}} \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}.
-\end{equation}
-The Lorenz curve comparison of these states gives rise to $k$ independent necessary constraints
+
+Returning to~\ref{eq:su_conversion}, the $k$ independent necessary constraints are
 \begin{align}
 \lc{\noisysn}{\frac{1}{d}\id}(x_1) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_1), \nonumber\\
 \lc{\noisysn}{\frac{1}{d}\id}(x_2) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_2), \nonumber\\
 &\vdotswithin{=} \nonumber\\
 \lc{\noisysn}{\frac{1}{d}\id}(x_k) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_k), \nonumber
 \end{align}
-where $x_1, x_2, \dots, x_k$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$.
+where $x_1, x_2, \dots, x_k \in X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$.
 
 \null\newpage
 \null\newpage
