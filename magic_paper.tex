@@ -860,7 +860,7 @@ Consider the magic state conversion,
 \begin{equation}\label{eq:su_conversion}
 	\noisysn \xrightarrow{\E \in \O_{\id/d}} \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}.
 \end{equation}
-Pointwise comparison of the initial and final state Lorenz curves is non-trivial, since the elbows of the curves do not align veritically.
+Pointwise comparison of the initial and final state Lorenz curves is non-trivial, since the elbows of the curves do not align vertically.
 The initial state Lorenz curve consists of
 \begin{equation}
 	\sum_{j=0}^{n} c_j = 9^n
@@ -869,13 +869,18 @@ The initial state Lorenz curve consists of
 \begin{equation}
 X \coloneqq \left\{ \sum_{i=0}^{k} \frac{i}{9^n} \right\}_{0 < k \leq 9^n}.
 \end{equation}
+\ddd{[DJ: This sum can be evaluated: $\sum_{i=0}^k = \frac{1}{2}k(k+1)$. Always aim to tidy and simplify! Half of research is presenting the facts simply and clearly.]}
 
-The final state Lorenz curve consists of $9^k (< 9^n)$ points and, in order to make a pointwise comparison, we rewrite it as
+The final state Lorenz curve consists of $9^k (< 9^n)$ points and, \ddd{however since we work in the unital fragment the maximally mixed state$\frac{1}{d} \I$ is a free state and so we are free to add in arbitrary many copies to the final state. This addition does not change the total Lorenz curve of the state, but merely increases the resolution on the $x$ axis. We thus want to compute the Lorenz curve of the state}
 \begin{equation}
 \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k} \otimes \left( \frac{1}{d}\id\right)^{\otimes(n-k)},
 \end{equation}
-with transformed Wigner components $w_j^\prime = d^{-2(n-k)}w_j$ and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$.
-The Lorenz curve of the final state remains the same, but now it consists of $9^n$ points with the same $x$-coordinates as the initial state.
+with transformed Wigner components 
+\begin{equation}
+w_j^\prime = \frac{1}{d^{2(n-k)}}w_j,
+\end{equation}
+and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$. \ddd{[DJ: You've been too sloppy and rushed here. Give the explicit definition of $w'_j$. You've hit a problem almost certainly because you are not handling this technical bit carefully and explicitly - it is crucial, so really unpack it slowly!]}
+The Lorenz curve of the final state remains the same, but now it consists of $9^n$ points with the same $x$-coordinates as the initial state \ddd{[DJ: I don't think this is true. You should step through the computation of the Lorenz curve more carefully and see why]}.
 Therefore, we can compare the curves pointwise with $9^n$ inequalities of the form
 \begin{equation}\label{eq:lc_pointwise}
 \lc{\noisysn}{\frac{1}{d}\id}(x) \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x)
