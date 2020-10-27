@@ -817,7 +817,7 @@ To get the Lorenz curve, we need to sum up the Wigner components in decreasing o
 \end{equation}
 
 We are now in a position to express Lorenz curve coordinates in terms of phi distributions,
-\begin{equation}
+\begin{equation}\label{x_coord_elb}
 	x_k(n, \epsilon) = 
 	\begin{cases}
 		\Phi_+(k;n,p_x),\\
@@ -827,7 +827,7 @@ We are now in a position to express Lorenz curve coordinates in terms of phi dis
 	\end{cases}	
 \end{equation}
 and
-\begin{equation}
+\begin{equation}\label{lc_coord_elb}
 	L_k(n, \epsilon) = 
 	\begin{cases}
 		\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+(k;n,p_L),\\
@@ -863,15 +863,16 @@ Consider the magic state conversion,
 Pointwise comparison of the initial and final state Lorenz curves is non-trivial, since the elbows of the curves do not align vertically.
 The initial state Lorenz curve consists of
 \begin{equation}
-	\sum_{j=0}^{n} c_j = 9^n
+	1 + \sum_{j=0}^{n} c_j = d^{2n} + 1
 \end{equation}
-\nick{technically $(9^n+1)$ because 0 is artificially added in the end} points with $x$-coordinates incrementing by $\frac{1}{9^n}$ which we denote as the set 
+points with $x$-coordinates incrementing by $\frac{1}{9^n}$ which we denote as the set 
 \begin{equation}
-X \coloneqq \left\{ \sum_{i=0}^{k} \frac{i}{9^n} \right\}_{0 < k \leq 9^n}.
+X \coloneqq \left\{ \frac{k}{d^{2n}} \right\}_{0 \leq k \leq d^{2n}}.
 \end{equation}
-\ddd{[DJ: This sum can be evaluated: $\sum_{i=0}^k = \frac{1}{2}k(k+1)$. Always aim to tidy and simplify! Half of research is presenting the facts simply and clearly.]}
 
-The final state Lorenz curve consists of $9^k (< 9^n)$ points and, \ddd{however since we work in the unital fragment the maximally mixed state$\frac{1}{d} \I$ is a free state and so we are free to add in arbitrary many copies to the final state. This addition does not change the total Lorenz curve of the state, but merely increases the resolution on the $x$ axis. We thus want to compute the Lorenz curve of the state}
+The final state Lorenz curve consists of $9^k (< 9^n)$ points, however, since we work in the unital fragment, the maximally mixed state $\frac{1}{d}\id$ is free, so can add in arbitrary many copies to the final state. 
+This addition does not change the total Lorenz curve of the state, but merely increases the resolution on the $x$-axis. 
+We thus want to compute the Lorenz curve of the state
 \begin{equation}
 \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k} \otimes \left( \frac{1}{d}\id\right)^{\otimes(n-k)},
 \end{equation}
@@ -880,8 +881,21 @@ with transformed Wigner components
 w_j^\prime = \frac{1}{d^{2(n-k)}}w_j,
 \end{equation}
 and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$. \ddd{[DJ: You've been too sloppy and rushed here. Give the explicit definition of $w'_j$. You've hit a problem almost certainly because you are not handling this technical bit carefully and explicitly - it is crucial, so really unpack it slowly!]}
-The Lorenz curve of the final state remains the same, but now it consists of $9^n$ points with the same $x$-coordinates as the initial state \ddd{[DJ: I don't think this is true. You should step through the computation of the Lorenz curve more carefully and see why]}.
-Therefore, we can compare the curves pointwise with $9^n$ inequalities of the form
+
+Let's look at an example in~\cref{fig:lc_compare}.
+The Lorenz curve of the final state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$ remains the same when we rewrite the state as $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes (\tfrac{1}{3} \id)^{\otimes 2}$, but now it consists of $9^4$ points with the same $x$-coordinates as the initial state. \ddd{[DJ: I don't think this is true. You should step through the computation of the Lorenz curve more carefully and see why]}.
+The line segment between elbows $x_0 = 0$ and $x_1 = 1/9^2$ consists only of its endpoints for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$.
+However, for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes \left( \tfrac{1}{3} \id\right)^{\otimes 2}$ it consists of $82$ points with coordinates $(k/9^4, kw_0)$ for $k=0,\dots,9^2$.
+The same reasoning applies on all three line segments comprising the Lorenz curve.
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.6]{figs/lc_compare.pdf}
+    \caption{\textbf{Example of Lorenz curve comparison.} 
+    The upper Lorenz curve (blue -- $n=4$ and $\epsilon = 0.20$) is always higher than the lower Lorenz curve (red -- $k=2$ and $\epsilon_\tau = 0.05$).
+    }
+    \label{fig:lc_compare}
+\end{figure}
+Therefore, we can compare the curves pointwise with $9^n + 1$ inequalities of the form
 \begin{equation}\label{eq:lc_pointwise}
 \lc{\noisysn}{\frac{1}{d}\id}(x) \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x)
 \end{equation}
@@ -891,14 +905,17 @@ According to~\cref{thm:dmajor}, a necessary condition for $\rho \xrightarrow{\E 
 We can reduce the inequalities in~\cref{eq:lc_pointwise} significantly with the following result.
 \begin{theorem}\label{thm:elbows}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff the elbows of $\lc{\tau}{\sigma}(x)$ lie vertically below $\lc{\rho}{\sigma}(x)$.
+	
+	Let $k$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $T \coloneqq \{x_0, x_1, \dots, x_k, x_{k+1} \}$ be the $x$-coordinates of the elbows with $x_0 = 0$ and $x_{k+1} = 1$.
+	
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_j) \geq \lc{\tau}{\sigma}(x_j)$ for all $j =1,\dots,k$.
 \end{theorem}
-\begin{proof}
-	Let $n$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $T \coloneqq \{x_0, x_1, \dots, x_n, x_{n+1} \}$ be the set of the elbows' $x$-coordinates including $x_0 = 0$ and $x_{n+1} = 1$.
+\begin{proof}	
+	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_k) \geq \lc{\tau}{\sigma}(x_k)$ for all $k =0,\dots,n+1$.
 	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ implies $\lc{\rho}{\sigma}(x_k) \geq \lc{\tau}{\sigma}(x_k)$ for all $x_k \in T$ trivially.
+	Conversely, assume that $\lc{\rho}{\sigma}(x_j) \geq \lc{\tau}{\sigma}(x_j)$ for all $j =1,\dots,k$.
+	First, note that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{k+1}) = \lc{\tau}{\sigma}(x_{k+1}) = 1$.
 	
-	Conversely, assume that $\lc{\rho}{\sigma}(x_k) \geq \lc{\tau}{\sigma}(x_k)$ for all $x_k \in T$.
 	Pick two consecutive $x$-coordinates $x_i, x_{i+1}$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_i, \lc{\tau}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_i, \lc{\rho}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
 	This is illustrated in~\cref{fig:elbows_proof}.
 \begin{figure}[h]
@@ -910,7 +927,7 @@ We can reduce the inequalities in~\cref{eq:lc_pointwise} significantly with the 
 \end{figure}
 
 	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_i, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
-	This argument can be made in all intervals $[x_i, x_{i+1}]$ with $i=0,\dots,n$, so the proof is complete.
+	This argument can be made in all intervals $[x_i, x_{i+1}]$ with $i=0,\dots,k$, so the proof is complete.
 \end{proof}
 
 
@@ -921,7 +938,22 @@ Returning to~\ref{eq:su_conversion}, the $k$ independent necessary constraints a
 &\vdotswithin{=} \nonumber\\
 \lc{\noisysn}{\frac{1}{d}\id}(x_k) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_k), \nonumber
 \end{align}
-where $x_1, x_2, \dots, x_k \in X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$.
+where $x_1, x_2, \dots, x_k \in T \subset X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+
+The RHSs can be calculated directly by~\cref{lc_coord_elb}, but the LHSs do not correspond to elbows.
+To calculate $\lc{\noisysn}{\frac{1}{d}\id}(x_j)$ for $j=1,\dots,k$, we first need to identify the elbow of the curve just before $x_j$.
+Let $R \coloneqq \{x^{(\rho)}_0, x^{(\rho)}_1, \dots, x^{(\rho)}_n, x^{(\rho)}_{n+1}\} \subset X$ be the elbows of $\lc{\noisysn}{\frac{1}{d}\id}(x)$.
+Then, the elbow index just before $x_j$ is
+\begin{equation}
+	J = \max{\{i: x^{(\rho)}_i \leq x_j \}}.
+\end{equation}
+The slope from the $J$-th elbow to point $(x_j, \lc{\noisysn}{\frac{1}{d}\id}(x_j)$ is given by the $(J+1)$-th Wigner component, so that the LHS can be calculated as 
+\begin{equation}\label{calc_lhs}
+	L_J + d^{2n}(x_j - x_J)w_{J+1}.
+\end{equation}
+This is illustrated in~\cref{fig:lc_compare}, where we check the constarint at $x_2 = 0.8025$.
+Using~\cref{lc_coord_elb}, we find that $\lc{\rho_{\rm{S}}(\epsilon_\tau)^{\otimes 2}}{\frac{1}{d}\id}(x_2) = 1.8158$, while expression~\cref{calc_lhs} gives $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes 4}}{\frac{1}{d}\id}(x_2) = 2.235$.
+
 
 \null\newpage
 \null\newpage
