@@ -880,10 +880,11 @@ with transformed Wigner components
 \begin{equation}
 w_j^\prime = \frac{1}{d^{2(n-k)}}w_j,
 \end{equation}
-and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$. \ddd{[DJ: You've been too sloppy and rushed here. Give the explicit definition of $w'_j$. You've hit a problem almost certainly because you are not handling this technical bit carefully and explicitly - it is crucial, so really unpack it slowly!]}
+and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$. 
+\ddd{[DJ: You've been too sloppy and rushed here. Give the explicit definition of $w'_j$. You've hit a problem almost certainly because you are not handling this technical bit carefully and explicitly - it is crucial, so really unpack it slowly!]} \nick{I don't think it gets more explicit, you just split the line segments uniformly into $d^{2(n-k)}$ segments of length equal to $1/d^{2(n-k)}$ of the total length.}
 
 Let's look at an example in~\cref{fig:lc_compare}.
-The Lorenz curve of the final state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$ remains the same when we rewrite the state as $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes (\tfrac{1}{3} \id)^{\otimes 2}$, but now it consists of $9^4$ points with the same $x$-coordinates as the initial state. \ddd{[DJ: I don't think this is true. You should step through the computation of the Lorenz curve more carefully and see why]}.
+The Lorenz curve of the final state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$ remains the same when we rewrite the state as $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes (\tfrac{1}{3} \id)^{\otimes 2}$, but now it consists of $9^4$ points with the same $x$-coordinates as the initial state.
 The line segment between elbows $x_0 = 0$ and $x_1 = 1/9^2$ consists only of its endpoints for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$.
 However, for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes \left( \tfrac{1}{3} \id\right)^{\otimes 2}$ it consists of $82$ points with coordinates $(k/9^4, kw_0)$ for $k=0,\dots,9^2$.
 The same reasoning applies on all three line segments comprising the Lorenz curve.
@@ -942,10 +943,10 @@ where $x_1, x_2, \dots, x_k \in T \subset X$ are the locations of the elbows of 
 
 The RHSs can be calculated directly by~\cref{lc_coord_elb}, but the LHSs do not correspond to elbows.
 To calculate $\lc{\noisysn}{\frac{1}{d}\id}(x_j)$ for $j=1,\dots,k$, we first need to identify the elbow of the curve just before $x_j$.
-Let $R \coloneqq \{x^{(\rho)}_0, x^{(\rho)}_1, \dots, x^{(\rho)}_n, x^{(\rho)}_{n+1}\} \subset X$ be the elbows of $\lc{\noisysn}{\frac{1}{d}\id}(x)$.
+Let $R \coloneqq \{y_0, y_1, \dots, y_n, y_{n+1}\} \subset X$ be the elbows of $\lc{\noisysn}{\frac{1}{d}\id}(x)$.
 Then, the elbow index just before $x_j$ is
 \begin{equation}
-	J = \max{\{i: x^{(\rho)}_i \leq x_j \}}.
+	J = \max{\{i: y_i \leq x_j \}}.
 \end{equation}
 The slope from the $J$-th elbow to point $(x_j, \lc{\noisysn}{\frac{1}{d}\id}(x_j)$ is given by the $(J+1)$-th Wigner component, so that the LHS can be calculated as 
 \begin{equation}\label{calc_lhs}
