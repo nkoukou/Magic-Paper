@@ -749,27 +749,6 @@ In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
 \end{proof}
 
 \subsubsection{Standard Lorenz curves in terms of binomial distributions}
-\textbf{Note:} We assume that the number of copies $n$ is even throughout.
-
-The Lorenz curve $\lc{\noisysn}{\frac{1}{d}\id}$ consists of $n+1$ line segments, connecting at $n$ points, called \emph{elbows}, between the endpoints $(0,0)$ and $(1,1)$, as illustrated in~\cref{fig:lcsu_elbows}. 
-\begin{figure}[b]
-    \centering
-    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
-    \caption{\textbf{Anatomy of Strange state Lorenz curve}
-    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
-    Labels $k, k'$ indicate two elbows for the $n=4$ case.
-    Their coordinates are given in~\cref{eq:lcsu_elbows}.
-    }
-    \label{fig:lcsu_elbows}
-\end{figure}
-We denote the Lorenz curve maximum as the $k_\star$-th point.
-It occurs at 
-\begin{align}\label{eq:lcsu_max}
-	x_{k_\star} &= \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right), \\
-	L_{k_\star} &\equiv \lc{\noisysn}{\frac{1}{d}\id}(x_{k_\star}) = \frac{1}{2}\left (1 + \left(\frac{5}{3}-\frac{8}{9}\epsilon\right)^n \right),
-\end{align}
-with $k_\star = n/2$.
-The coordinates of the standard Lorenz curve for a gien number of copies $n$ and noise level $\epsilon$ can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, $n$ the number of copies and some fixed $p \equiv p(\epsilon)$.
 
 The Wigner distribution of the qutrit maximally mixed state $\id/3$ is the uniform distribution $\bm{1}/9$.
 The Wigner distribution of the 1-copy noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 8 positive components ($w_+$) and 1 negative ($w_-$) with
@@ -790,7 +769,7 @@ They are depicted in~\cref{fig:noisys}.
     \label{fig:noisys}
 \end{figure}
 The $n+1$ distinct Wigner components ($w_j$) of $\noisysn$ along with their multiplicities ($c_j$) are given in~\cref{tab:lcsu_w}.
-\begin{table}[t]                           
+\begin{table}[b]                           
  \centering
  \begin{tabular}{c|c|c|c}
  $\epsilon$ & $j$ & $\left[0, \frac{n}{2}\right]$ & $\left[\frac{n}{2} + 1, n \right]$ \\ [0.5ex] 
@@ -817,7 +796,7 @@ To get the Lorenz curve, we need to sum up the Wigner components in decreasing o
 \end{equation}
 
 We are now in a position to express Lorenz curve coordinates in terms of phi distributions,
-\begin{equation}\label{x_coord_elb}
+\begin{equation}\label{eq:x_coord_elb}
 	x_k(n, \epsilon) = 
 	\begin{cases}
 		\Phi_+(k;n,p_x),\\
@@ -827,7 +806,7 @@ We are now in a position to express Lorenz curve coordinates in terms of phi dis
 	\end{cases}	
 \end{equation}
 and
-\begin{equation}\label{lc_coord_elb}
+\begin{equation}\label{eq:lc_coord_elb}
 	L_k(n, \epsilon) = 
 	\begin{cases}
 		\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+(k;n,p_L),\\
@@ -855,55 +834,113 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
     \label{fig:lc_bounds}
 \end{figure}
 
-\subsubsection{Lorenz curve comparison}
-Consider the magic state conversion,
-\begin{equation}\label{eq:su_conversion}
-	\noisysn \xrightarrow{\E \in \O_{\id/d}} \rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}.
-\end{equation}
-Pointwise comparison of the initial and final state Lorenz curves is non-trivial, since the elbows of the curves do not align vertically.
-The initial state Lorenz curve consists of
-\begin{equation}
-	1 + \sum_{j=0}^{n} c_j = d^{2n} + 1
-\end{equation}
-points with $x$-coordinates incrementing by $\frac{1}{9^n}$ which we denote as the set 
-\begin{equation}
-X \coloneqq \left\{ \frac{k}{d^{2n}} \right\}_{0 \leq k \leq d^{2n}}.
-\end{equation}
+\subsubsection{Pointwise Lorenz curve comparison}
 
-The final state Lorenz curve consists of $9^k (< 9^n)$ points, however, since we work in the unital fragment, the maximally mixed state $\frac{1}{d}\id$ is free, so can add in arbitrary many copies to the final state. 
-This addition does not change the total Lorenz curve of the state, but merely increases the resolution on the $x$-axis. 
-We thus want to compute the Lorenz curve of the state
-\begin{equation}
-\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k} \otimes \left( \frac{1}{d}\id\right)^{\otimes(n-k)},
-\end{equation}
-with transformed Wigner components 
-\begin{equation}
-w_j^\prime = \frac{1}{d^{2(n-k)}}w_j,
-\end{equation}
-and multiplicities $c_j^\prime = d^{2(n-k)}c_j$, where $w_j, c_j$ are given in~\cref{tab:lcsu_w} for $j=0,\dots,k$. 
-\ddd{[DJ: You've been too sloppy and rushed here. Give the explicit definition of $w'_j$. You've hit a problem almost certainly because you are not handling this technical bit carefully and explicitly - it is crucial, so really unpack it slowly!]} \nick{I don't think it gets more explicit, you just split the line segments uniformly into $d^{2(n-k)}$ segments of length equal to $1/d^{2(n-k)}$ of the total length.}
+In this subsection, we obtain explicit coordinates for all points on the Lorenz curve.
 
-Let's look at an example in~\cref{fig:lc_compare}.
-The Lorenz curve of the final state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$ remains the same when we rewrite the state as $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes (\tfrac{1}{3} \id)^{\otimes 2}$, but now it consists of $9^4$ points with the same $x$-coordinates as the initial state.
-The line segment between elbows $x_0 = 0$ and $x_1 = 1/9^2$ consists only of its endpoints for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2}$.
-However, for state $\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes 2} \otimes \left( \tfrac{1}{3} \id\right)^{\otimes 2}$ it consists of $82$ points with coordinates $(k/9^4, kw_0)$ for $k=0,\dots,9^2$.
-The same reasoning applies on all three line segments comprising the Lorenz curve.
-\begin{figure}[t]
+Consider the $\epsilon$-noisy, $n$-copy Strange state
+\begin{equation}
+    \noisysn = \left( (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right)^{\otimes n},
+\end{equation}
+with Wigner distribution
+\begin{equation}
+	\begin{split}
+		\W{\noisysn} &= \left( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \right)^{\otimes n} \\
+		&= \rm{W}^+_{\noisysn} + \rm{W}^-_{\noisysn},
+	\end{split}
+\end{equation}
+where we split non-negative and negative components into $\rm{W}^+_{\noisysn}$ and $\rm{W}^-_{\noisysn}$.
+
+As a simple example, we split the Wigner distribution of state $\rho_{\rm{S}}(0)^{\otimes 2}$,
+\begin{equation*}
+	\begin{split}
+    &\rm{W}^+_{\rho_{\rm{S}}(0)^{\otimes 2}} = \left( \overbrace{\left( -\frac{1}{3} \right)^2}^1, \overbrace{\left( \frac{1}{6} \right)^2, \dots, \left( \frac{1}{6} \right)^2}^{64} \right) \text{ and } \\
+    &\rm{W}^-_{\rho_{\rm{S}}(0)^{\otimes 2}} = \left( \overbrace{ -\frac{1}{3} \cdot \frac{1}{6}, \dots, -\frac{1}{3} \cdot \frac{1}{6}}^{16} \right)
+    \end{split}
+\end{equation*}
+
+For now, we restrict to the non-negative Wigner components $\rm{W}^+_{\noisysn}$ [i.e. the ``LHS of the Lorenz curve''] and we drop superscript $+$ for clarity.
+Assume: 
+\begin{itemize}
+    \item $n$ is even [ensures Lorenz curve coordinates can be expressed in terms of $\Phi_{\pm}$ distributions];
+    \item $0 \leq \epsilon \leq \frac{3}{7}$ [ensures closed-form expressions for Lorenz curve coordinates];
+\end{itemize}
+There are $\frac{n}{2}+1$ distinct non-negative components in the Wigner distribution $\W{\noisysn}$.\\
+
+We can rewrite the non-negative part of the Wigner distribution $\W{\noisysn}$ in a compact form, by simply listing the distinct Wigner components $w(k; n, \epsilon)$ along with their multiplicities $m(k; n)$:
+\begin{align}
+    &{\W{\noisysn}} = \\ 
+    &\big\{\left( m_k, w_k \right)\big\}_{k=0,\dots,n/2} = \nonumber\\ 
+    &\big\{\left( m(k; n), w(k; n, \epsilon) \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( 8^{n-2k}\binom{n}{2k}, \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2k}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2k} \right) \right\}_{k=0,\dots,n/2}. \nonumber
+\end{align}
+
+The expressions for the Lorenz curve elbows in the unital fragment are then known:
+\begin{align}
+    &{\rm{L}_{\noisysn}} = \\
+    &\big\{\left( x_k, L_k \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\big\{\left( x(k; n), L(k; n, \epsilon) \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( \frac{1}{9^n}\sum\limits_{j=0}^k m_j, \sum\limits_{j=0}^k m_j w_j \right) \right\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( \Phi_+\left(2k;n,\frac{8}{9}\right), \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2k;n,4\frac{3-\epsilon}{15-8\epsilon}\right) \right) \right\}_{k=0,\dots,n/2}. \nonumber
+\end{align}
+We include the origin in the Lorenz curve as it does not arise from the above expressions, denoting it by $(x_{-1}, L_{-1}) \coloneqq (0,0)$.
+
+We can get explicit expressions for all $\frac{1}{2}(7^n + 9^n)$ points of the Lorenz curve, using a two-index parameterisation:
+\begin{align}
+    x_{k,\alpha} &= \left( 1-\frac{\alpha}{m_k} \right) x_{k-1} + \frac{\alpha}{m_k} x_k \label{eq:x}\\
+    L_{k,\alpha} &= \left( 1-\frac{\alpha}{m_k} \right) L_{k-1} + \frac{\alpha}{m_k} L_k \label{eq:l}\\
+    &\text{for } k=0,\dots,\frac{n}{2} \text{ and } \alpha = 1,\dots,m_k. \nonumber
+\end{align}
+
+As a simple example, we plot the Lorenz curve of state $\rho_{\rm{S}}(0)^{\otimes 2}$,
+\begin{figure}[h]
     \centering
-    \includegraphics[scale=0.6]{figs/lc_compare.pdf}
-    \caption{\textbf{Example of Lorenz curve comparison.} 
-    The upper Lorenz curve (blue / $n=4$ and $\epsilon = 0.20$) is always higher than the lower Lorenz curve (red / $k=2$ and $\epsilon_\tau = 0.05$).
+    \includegraphics[scale=0.6]{figs/lcpoints.pdf}
+    \caption{\textbf{All points on the Lorenz curve are uniformly distributed.}
+    \cref{eq:x,eq:l}) capture the coordinates of all points up to the maximum.
     }
-    \label{fig:lc_compare}
+    \label{fig:lc}
 \end{figure}
-Therefore, we can compare the curves pointwise with $9^n + 1$ inequalities of the form
-\begin{equation}\label{eq:lc_pointwise}
-\lc{\noisysn}{\frac{1}{d}\id}(x) \geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x)
-\end{equation}
-for all $x \in X$.
 
-According to~\cref{thm:dmajor}, a necessary condition for $\rho \xrightarrow{\E \in \O_\sigma} \tau$ is that $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$.
-We can reduce the inequalities in~\cref{eq:lc_pointwise} significantly with the following result.
+Consider now the state 
+\begin{equation}
+    \rho(m, \epsilon, s) = \rho_{\rm{S}}(\epsilon)^{\otimes m} \otimes \left( \frac{1}{3}\id \right)^{\otimes s}.
+\end{equation}
+
+Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
+The new point coordinates are given by:
+\begin{align}
+    x_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta}\right) x_{k-1} + p_{k,\alpha, \beta} x_k \\
+    L_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta} \right) L_{k-1} + p_{k,\alpha, \beta} L_k, \\
+    &\text{where } p(k, \alpha, \beta) = \frac{(\alpha-1)9^s + \beta}{9^s m_k} \\
+    &\text{for } k=0,\dots,\frac{n}{2},\ \alpha = 1,\dots,m_k \text{ and } \beta = 1,\dots,9^s. \nonumber
+\end{align}
+
+We can unify the indices, by introducing a single index
+\begin{equation}
+    i(k,\alpha,\beta) \coloneqq \beta + \left[ (\alpha-1) + \sum_{j=0}^{k-1} 8^{m-2j}\binom{m}{2j} \right]9^s,
+\end{equation}
+so that $i=1,2,\dots, \frac{1}{2}(7^{m+s} + 9^{m+s})$.
+The $\frac{m}{2}$ elbows correspond to $\beta=0,\ \alpha=1$.
+This index function is bijective.
+
+\section*{Strange state Lorenz curve comparison in the unital fragment}
+
+Consider the Strange state purification process in the unital fragment,
+\begin{equation}\label{eq:su_conversion}
+    \noisysn \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(m, \epsilon', s).
+\end{equation}
+In order to get Lorenz curve constraints on this state conversion, we need to match up the indices for the two states.
+We use non-primed indices for the initial state and primed indices for the target state,
+\begin{align}
+    i(k, \alpha) &= (\alpha-1) + \sum_{j=0}^{k-1} 8^{n-2j}\binom{n}{2j}, \\
+    i'(k',\alpha',\beta') &= \beta' + \left[ (\alpha'-1) + \sum_{j'=0}^{k'-1} 8^{m-2j'}\binom{m}{2j'} \right]9^s,
+\end{align}
+
+The question is: \emph{Given a triplet $(k', \alpha', \beta')$, what is the tuple $(k, \alpha)$ such that $i(k, \alpha) = i'(k',\alpha',\beta')$?}
+
+\newpage
+
 \begin{theorem}\label{thm:elbows}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
 	
@@ -932,445 +969,14 @@ We can reduce the inequalities in~\cref{eq:lc_pointwise} significantly with the 
 \end{proof}
 
 
-Returning to~\ref{eq:su_conversion}, the $k$ independent necessary constraints are
+Returning to~\cref{eq:su_conversion}, the $k$ independent necessary constraints are
 \begin{align}
-\lc{\noisysn}{\frac{1}{d}\id}(x_1) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_1), \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}(x_2) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_2), \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}(x_{1,0,0}) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_{1,0,0}), \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}(x_{2,0,0}) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_{2,0,0}), \nonumber\\
 &\vdotswithin{=} \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}(x_k) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_k), \nonumber
+\lc{\noisysn}{\frac{1}{d}\id}(x_{m,0,0}) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}(x_{m,0,0}), \nonumber
 \end{align}
-where $x_1, x_2, \dots, x_k \in T \subset X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
-
-The RHSs can be calculated directly by~\cref{lc_coord_elb}, but the LHSs do not correspond to elbows.
-To calculate $\lc{\noisysn}{\frac{1}{d}\id}(x_j)$ for $j=1,\dots,k$, we first need to identify the elbow of the curve just before $x_j$.
-Let $R \coloneqq \{y_0, y_1, \dots, y_n, y_{n+1}\} \subset X$ be the elbows of $\lc{\noisysn}{\frac{1}{d}\id}(x)$.
-Then, the elbow index just before $x_j$ is
-\begin{equation}
-	J = \max{\{i: y_i \leq x_j \}}.
-\end{equation}
-The slope from the $J$-th elbow to point $(x_j, \lc{\noisysn}{\frac{1}{d}\id}(x_j)$ is given by the $(J+1)$-th Wigner component, so that the LHS can be calculated as 
-\begin{equation}\label{calc_lhs}
-	L_J + d^{2n}(x_j - x_J)w_{J+1}.
-\end{equation}
-This is illustrated in~\cref{fig:lc_compare}, where we check the constraint at $x_2 = 0.8025$.
-Using~\cref{lc_coord_elb}, we find that $\lc{\rho_{\rm{S}}(\epsilon_\tau)^{\otimes 2}}{\frac{1}{d}\id}(x_2) = 1.8158$, while expression~\cref{calc_lhs} gives $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes 4}}{\frac{1}{d}\id}(x_2) = 2.235$.
-
-
-\null\newpage
-\null\newpage
-
-The experiment is described by binomial statistics and we define the left and ``right'' tails of the cumulative binomial distribution,
-\begin{align}
-	\Phi_\ell(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phi}\\
-	\Phi_r(m; n, p) &\coloneqq \sum\limits_{j=m}^n \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phir}
-\end{align}
-where $m\in [0,n]$.
-
-They are related by the symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution,
-\begin{equation}\label{eq:phil2phir}
-	\Phi_\ell(m; n, p) = \Phi_r(n-m; n, 1-p),\ m\in [0,n],
-\end{equation}
-as well as the normalisation condition,
-\begin{equation}
-	\Phi_\ell(m; n, p) + \Phi_r(m+1; n, p) = 1,\ m\in [0,n-1].
-\end{equation}
-
-Equivalently, we get
-\begin{align}
-	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1], \label{eq:reversephi}\\
-	\Phi_r(m; n, p) + \Phi_r(n-m+1; n, 1-p) &= 1,\ m\in [1,n]. \label{eq:reversephir}
-\end{align}
-
-The classical entropy of a $p$-coin is
-\begin{equation}\label{eq:ent}
-	S(p) \coloneqq -p\log{p} -(1-p)\log{(1-p)},
-\end{equation}
-which is symmetric, $S(p) = S(1-p)$.
-%Let $c(m; n) \coloneqq [m(1-m/n)]^{-1/2},\ m\in [1, n-1]$.
-A useful result is the entropic bound on a combination~\cite{cit:ash}.
-\begin{lemma}\label{lem:comb_bounds}
-	For all $m\in [1,n-1]$,
-	\begin{align}
-		&\left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} \leq \binom{n}{m} \leq \\
-		&\left[ 2\pi m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)}.
-	\end{align}
-\end{lemma}
-\begin{proof}
-	For $m = 1,2, n-1, n-2$ check by direct calculation.	
-	For all other cases, use Stirling's approximation.
-\end{proof}
-
-Bounds on the tails of a cumulative binomial distribution can be expressed in terms of the classical relative entropy between a $p$-coin and a $q$-coin,
-\begin{equation}\label{eq:ent_rel}
-	\ent{p}{q} \coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}.
-\end{equation}
-This entropy satisfies the identity
-\begin{equation}
-	\ent{p}{q} = \ent{1-p}{1-q}.
-\end{equation}
-We can now derive entropic bounds on binomial cumulative distributions~\cite{cit:ash}.
-\begin{lemma}\label{lem:phir_bounds}
-	Given fixed $n>0$ and $p$, $\Phi_r$ satisfies the following bounds:
-	\begin{align*}
-		\begin{split}
-		&\text{1. } \Phi_r(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi_r(m; n, p) \leq 2^{-n\ents},\ m\in [np,n] \\
-		&\text{3. } \Phi_r(m; n, p) \leq 1 - \left[ 8(m-1)\left(1-\frac{m-1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m-1}{n}}{p}}, \\
-		&\hspace{14pt} m\in [2,n]
-		\end{split}
-		\\
-		&\text{4. } \Phi_r(m; n, p) \geq 1 - 2^{-n\ent{\frac{m-1}{n}}{p}},\ m\in [2,np+1]
-	\end{align*}
-	
-	The asymptotic behaviour of $\Phi_r$ is determined by the relative entropy, 
-	\begin{equation}
-		\lim_{n\rightarrow\infty}{-\frac{1}{n}\log{\Phi_r(m; n, p)} = \ent{\frac{m}{n}}{p}},\ m\in [np,n]
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	For bound (1), note that
-	\begin{align*}
-		\Phi_r(m; n, p) &= \sum\limits_{j=m}^n \binom{n}{j} p^j (1-p)^{n-j} \\
-						   &\geq \binom{n}{m} p^{m} (1-p)^{n-m} \\
-						   &\geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} p^{m} (1-p)^{n-m} \\
-						   &= \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents}.
-	\end{align*}
-	The first inequality follows from the positivity of the terms in the series, the second from~\cref{lem:comb_bounds} and the equality from the entropy definitions in~\cref{eq:ent,eq:ent_rel}
-	
-	For bound (2), consider a binomial random variable $X = \sum_{i=1}^N$, where $X_i$ takes the values 1, 0 with probabilities $p$ and $1-p$ respectively.
-	Then we have
-	\begin{align*}
-		\Phi_r(m; n, p) &= P(X \geq m) = P\left(2^{rX} \geq 2^{rm}\right) \\
-						   &\leq 2^{-rm} E\left(2^{rX}\right) = 2^{-rm + n\log{(1-p+pe^r)}} \\
-						   &\leq 2^{-n\ents}.
-	\end{align*}
-	The first inequality holds for any discrete random variable $X$ with $r \geq 0$, while the second inequality involves maximisation of the exponent which occurs at $e^r = \frac{m(1-p)}{(n-m)p}$ (a non-negative $r$ exists if $np \leq m$).
-	
-	Bound 3 follows from bound 1 and~\cref{eq:reversephir}. Bound 4 follows from bound 2 and~\cref{eq:reversephir}.
-	
-	The asymptotic limit is a direct consequence of the squeeze theorem.
-\end{proof}
-
-\begin{lemma}\label{lem:phil_bounds}
-	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
-	\begin{align*}
-		\begin{split}
-		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
-		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
-		&\hspace{14pt} m\in [0,n-2]
-		\end{split}
-		\\
-		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
-	\end{align*}
-	
-	The asymptotic behaviour of $\Phi_\ell$ is determined by the relative entropy,
-	\begin{equation}
-		\lim_{n\rightarrow\infty}{-\frac{1}{n}\log{\Phi_r(m; n, p)} = \ent{\frac{m}{n}}{p}},\ m\in [0,np]
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	This lemma is a direct consequence of~\cref{lem:phir_bounds} and~\cref{eq:phil2phir}.
-\end{proof}
-
-We now define the alternating counterpart of the left tail distribution,
-\begin{equation}\label{eq:phialt}
-	\Phi_\ell^{\rm{alt}}(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j},
-\end{equation}
-where $m\in [0,n]$.
-$\Phi_\ell^{\rm{alt}}$ is \emph{not} the cumulative distribution of any random variable.
-It is upper bounded by $\Phi_\ell$,
-\begin{equation}\label{eq:phialt_bound}
-	\abs{\Phi_\ell^{\rm{alt}}(m; n, p)} \leq \Phi_\ell(m; n, p),\ m\in [0,n]
-\end{equation}
-with equality iff $m=0$.
-
-We further define the two balanced combinations of $\Phi_\ell, \Phi_\ell^{\rm{alt}}$ for all $m\in [0,n]$,
-\begin{align}	
-	\Phi_+(m; n, p) &\coloneqq \frac{1}{2} \left( \Phi_\ell(m; n, p) + \Phi_\ell^{\rm{alt}}(m; n, p) \right), \\
-	\Phi_-(m; n, p) &\coloneqq \frac{1}{2} \left( \Phi_\ell(m; n, p) - \Phi_\ell^{\rm{alt}}(m; n, p) \right), \\
-	\Phi(m; n, p) &\coloneqq \label{eq:phi}
-	\begin{cases}
-		\Phi_+(m; n, p),\ \text{for even }m\in[0,n] \\
-		\Phi_-(m; n, p),\ \text{for odd }m\in[0,n].
-	\end{cases}
-\end{align}
-\begin{lemma}\label{lem:phi_bounds}
-	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
-	\begin{align*}
-		\begin{split}
-		&\text{1. } \Phi(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
-		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
-		&\hspace{14pt} m\in [0,n-2]
-		\end{split}
-	\end{align*}
-\end{lemma}
-\begin{proof}
-	Bound 1 follows directly from~\cref{lem:comb_bounds}.
-	
-	Bounds 2,3 follow from bounds 2,3 in~\cref{lem:phil_bounds} combined with~\cref{eq:phi,eq:alt_bound}.
-\end{proof}
-\begin{lemma}\label{lem:phi_strictbounds}
-	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
-	\begin{align*}
-		\begin{split}
-		&\text{1. } \Phi_+(2m; n, p) \geq \sum_{0\leq j \leq m}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
-		&\hspace{14pt} m\in [1,\left\lceil\frac{n}{2}\right\rceil] \\
-		&\text{2. } \Phi_+(2m; n, p) \leq \sum_{0\leq j \leq m}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
-		&\hspace{14pt} m\in [1,\left\lceil\frac{n}{2}\right\rceil] \\
-		&\text{3. } \Phi_-(2m+1; n, p) \geq \sum_{0\leq j \leq m}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
-		&\hspace{14pt} m\in [1,\left\lceil\frac{n-1}{2}\right\rceil] \\
-		&\text{4. } \Phi_-(2m+1; n, p) \leq \sum_{0\leq j \leq m}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
-		&\hspace{14pt} m\in [1,\left\lceil\frac{n-1}{2}\right\rceil] \\
-		\end{split}
-	\end{align*}
-\end{lemma}
-\begin{proof}
-	The bounds are direct consequences of~\cref{lem:comb_bounds}.
-\end{proof}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/phi_bounds.pdf}
-    \caption{\textbf{Cumulative binomial distribution bounds}
-    Distributions $\Phi_\ell, \Phi_+$ are plotted for $n=100$ and $p=1/9$.
-    The first three bounds are given in~\cref{lem:phil_bounds,lem:phi_bounds} and are valid for both $\Phi_\ell$ and $\Phi_+$.
-    The fourth bound is given in~\cref{lem:phil_bounds} and is only valid for $\Phi_\ell$.
-    The fifth and sixth bounds are quite strict and given in~\cref{lem:phi_strictbounds} for $\Phi_+$.
-    }
-    \label{fig:lccalc}
-\end{figure}
-
-\subsubsection{Standard Lorenz curves in terms of binomial distributions}
-The coordinates of the standard Lorenz curve can be directly expressed in terms of $\Phi_+, \Phi_-$, for all $m$, some fixed $p$ and number of copies $n$.
-
-
-\null\newpage
-\null\newpage
-
-
-\subsection{Lorenz curves calculations}
-
-\subsubsection{Lorenz curve ordering and maximum}
-
-Lorenz curve analysis simplifies significantly in the unital fragment \nick{or so I thought initially}, because the invariant Wigner distribution is the uniform distribution depicted in~\cref{fig:maxmix}.
-Therefore, $\W[\bmu]{(\frac{1}{d}\id)^{\otimes n}} = \frac{1}{d^{2n}}$ for all $\bmu \in \pd[d^n]$ and the ordering of the points on the Lorenz curve only depends on the ordering of the Wigner components of $\rho$.
-The Lorenz curve $\lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}$ consists of $n+1$ line segments, with $n$ endpoints, or ``elbows'', between $(0,0)$ and $(1,1)$. 
-The $k_\star$-th endpoint is the maximum in~\cref{eq:Skmax} occuring at 
-\begin{equation}
-	x_{k_\star} = \frac{1}{2}\left(1 + \left( \frac{7}{9} \right)^n \right).
-\end{equation}
-
-We now investigate the location of all $n$ elbows, depicted in the diagram of~\cref{fig:lccalc}.
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/lccalcdiagram.pdf}
-    \caption{\textbf{Anatomy of Strange state Lorenz curve}
-    There are $n$ ``elbows'' in this Lorenz curve of an $n$-copy Strange state.
-    Labels $k, k'$ indicate elbows left and right of the maximum respectively.
-    Their coordinates are given in~\cref{eq:leftelb,eq:rightelb}.
-    }
-    \label{fig:lccalc}
-\end{figure}
-
-Let $\overline{n} = 2\floor{\frac{n}{2}}$ be equal to $n$ if $n$ is even and $n-1$ if $n$ is odd.
-Then, the positive components of the $n$-copy Strange state Wigner distribution $\W{\ketbra{\rm{S}}}$ are, in decreasing order, $6^{-n} 2^{\bar n} 2^{-j},\ j=0, 2, \dots, \bar n$ with respective multiplicites $8^{n-\bar n} 8^j \binom{n}{\bar n - j}$.
-The negative components are, in decreasing order $-6^{-n} 2^j,\ j=1,3, \dots, n$ with respective multiplicities $8^n 8^{-j} \binom{n}{j}$.
-
-\subsubsection{Lorenz curve in terms of a binomial cumulative distribution}
-
-Denote by $\Phi(m; n, p)$ the cumulative binomial distribution,
-\begin{align}
-	\Phi(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j}, \label{eq:phi}\\
-	\Phi^c(m; n, p) &\coloneqq \sum\limits_{j=0}^m \binom{n}{j} (-p)^j (1-p)^{n-j}. \label{eq:phic}
-\end{align}
-Note that $\Phi(m; n, p)^c$ differs only by a factor of $(-1)^j$.
-It is clear that for any $n,p$ and $m \leq n$
-\begin{align}
-	&\Phi(m; n, p) + \Phi(n-m; n, 1-p) = 1, \label{eq:reversef}\\
-	&\Phi^c(m; n, p) \leq \Phi(m; n, p),
-\end{align}
-where equality in the second line holds iff $m=0$.
-
-Let $\Phi_+(m; n, p)$ and $\Phi_-(m; n, p)$ denote the partial sums of even and odd indices respectively,
-\begin{align}	
-	\Phi_+(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) + \Phi^c(m; n, p) \right), \\
-	\Phi_-(m; n, p) &= \frac{1}{2} \left( \Phi(m; n, p) - \Phi^c(m; n, p) \right).
-\end{align}
-
-Assume $n$ is even, so that $\bar n = n$.
-Then we can express any elbow on the $n$-copy Strange state Lorenz curve as
-\begin{align}
-	L_+(m; n) &= \left(\frac{5}{3}\right)^n \Phi_+\left(m;n,\frac{4}{5}\right), \label{eq:leftelb}\\
-	L_-(m; n) &= L_\star - \left(\frac{5}{3}\right)^n \Phi_-\left(m;n,\frac{1}{5}\right), \label{eq:rightelb}
-\end{align}
-where $L_\star = L_+(n; n)$ is the maximum of the curve and $L_+, L_-$ respectively indicate the elbows on the left, right of the maximum for some index $m$.
-
-The locations of the elbows are at
-\begin{align}
-	x_+(m; n) &= \Phi_+\left(m;n,\frac{8}{9}\right), \\
-	x_-(m; n) &= x_\star + \Phi_-\left(m;n,\frac{1}{9}\right),
-\end{align}
-where $x_\star = x_+(n; n)$ is the location of the maximum.
-
-Clearly by definition, 
-\begin{align}
-	\Phi_+(2m+1;n,p) &= \Phi_+(2m;n,p), \\
-	\Phi_-(2m;n,p) &= \Phi_-(2m-1;n,p),
-\end{align}
-so we define the piece-wise functions
-\begin{equation}
-	L(m;n) =
-	\begin{cases}
-	L_+(m; n),&\ m\text{: even}, \\
-	L_-(m; n),&\ m\text{: odd}
-	\end{cases}
-\end{equation}
-and
-\begin{equation}
-	x(m;n) =
-	\begin{cases}
-	x_+(m; n),&\ m\text{: even}, \\
-	x_-(m; n),&\ m\text{: odd}
-	\end{cases}
-\end{equation}
-Finally, the $m$-th elbow is located at
-\begin{equation}\label{eq:slc}
-	\left(x_m, \lc{\ketbra{\rm{S}}^{\otimes n}}{\frac{1}{d}\id}(m) \right) = \left( x(2m;n), L(2m;n) \right),
-\end{equation}
-where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
-
-\subsubsection{Bounds on cumulative distribution}
-
-We now want to bound these points for any index $m$, so as to investigate the asymptotic behaviour of the Lorenz curves.
-We first define a useful function
-\begin{equation}
-	c(m;n) = 
-	\begin{cases}
-		0,&\ m=0, \\
-		\left[8m\left(1-\frac{m}{n}\right)\right]^{-1/2},&\ 0<m<n, \\
-		1,&\ m=n,
-	\end{cases}
-\end{equation}
-as well as the classical relative entropy,
-\begin{equation}
-	S(\alpha||\beta) \coloneqq \alpha \log{\frac{\alpha}{\beta}} + (1-\alpha) \log{\frac{1-\alpha}{1-\beta}}.
-\end{equation}
-
-We now define two functions that we use to bound $\Phi(m;n,p)$,
-\begin{align}
-	U(m;n,p) &\coloneqq	e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:ubd}, \\
-	L(m;n,p) &\coloneqq c(m;n)e^{-nS\left(\frac{m}{n}||p \right)} \label{eq:lbd}.
-\end{align}
-
-\begin{lemma}\label{lem:ulbd}
-	The cumulative distribution $\Phi(m;n,p)$ defined in~\cref{eq:phic} is exponentially bounded for all $m: 0\leq m \leq n$,
-	\begin{equation}
-		B_L(m;n,p) \leq \Phi(m;n,p) \leq B_U(m;n,p),\ m\leq np
-	\end{equation}
-	where
-	\begin{equation}
-		B_L(m;n,p) = \\
-		\begin{cases}
-			L(m;n,p),&\ m \leq np, \\
-			1 - U(n-m;n,1-p),&\ m > np,
-		\end{cases}
-	\end{equation}
-	and
-	\begin{equation}
-		B_U(m;n,p) =
-		\begin{cases}
-			U(m;n,p),&\ m \leq np, \\
-			1 - L(n-m;n,1-p),&\ m > np.
-		\end{cases}
-	\end{equation}
-\end{lemma}
-
-The bounds are demonstrated in~\cref{fig:phi} for the interesting cases of $\Phi\left(m;n,\frac{1}{5}\right),\Phi\left(m;n,\frac{4}{5}\right)$.
-
-\begin{figure}%
-    \centering
-    \subfigure[][]{%
-    \label{fig:phi1}%
-    \includegraphics[height=5cm]{figs/Phi.pdf}
-    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
-    }\\%
-    \subfigure[][]{%
-    \label{fig:phi4}%
-    \includegraphics[height=5cm]{figs/Phi2.pdf}
-    %\caption{Zero state $\ketbra{0}{0}$}%
-    }
-    \caption{Distributions $\Phi(m;n,p)$ (black) and $\Phi^c(m;n,p)$ (red) for $n=30$ and probability: 
-    \subref{fig:phi1} $p=\frac{4}{5}$; \subref{fig:phi4} $p=\frac{1}{5}$.
-    The upper and lower bounds on $\Phi(m;n,p)$ as stated in~\cref{lem:ulbd} are also presented. 
-    }%
-    \label{fig:phi}
-\end{figure}
-
-We see in~\cref{fig:phicmax} that distribution $\Phi^c(m;n,p)$ is also bounded by a constant number $\epsilon$, $0<\epsilon<1$ for all $m$.
-The bound $\epsilon$ tends to decrease as $n$ increases, so that $\abs{\Phi^c(m;n,p)} \leq \frac{1}{10}$ for $n\geq 30$.
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/Phic_max.pdf}
-    \caption{Maximum of the absolute value of $\Phi^c(m;n,p)$ over all $m$ for given $n$.
-    Here, we plot for all even $n$, $2\leq n\leq 30$.
-    The maximum is decreasing in $n$ and falls below $\frac{1}{10}$ for $n=30$.
-    \nick{we want to extract exponential bound from this graph instead of constant bound}.
-    }
-    \label{fig:phicmax}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/Phi_ratio.pdf}
-    \caption{Distributions $\Phi_+(m;n,p)$ (blue) and $\Phi_-(m;n,p)$ (orange) for $n=20$ and $p=\frac{4}{5}$.
-    The green curve is the ratio of the two
-    }
-    \label{fig:Phi_ratio}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{figs/Phi_nexp.pdf}
-    \caption{Distributions $\Phi_+(m;n,p)/U(m;n,p)$ (blue) and $\Phi_-(m;n,p)/U(m;n,p)$ (orange) for $n=30$ and $p=\frac{4}{5}$.
-    We divide by the bound in~\cref{eq:ubd} to extract the exponential behaviour of the two distributions.
-    Here, $np = 24$, so for $m\geq 24$, $U(m;n,p) = 1$.
-    }
-    \label{fig:phinexp}
-\end{figure}
-
-\subsubsection{Noisy Strange states}
-
-Strange states of the form 
-\begin{equation}
-    \rho_{\rm{S}}(\epsilon) = (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{d}\id,
-\end{equation}
-contain two discrete Wigner components, so $n$-copy states $\rho_{\rm{S}}^{\otimes n}(\epsilon)$ contain $n+1$ discrete components~\cref{tab:swc} as in the noiseless case.
-\begin{table}[h]                           
- \centering
- \begin{tabular}{|c|c|}
- \hline
- $m_j$ & $8^{n-j}\binom{n}{j}$ \\ [0.5ex] 
- \hline\hline
- $w_j$ & $\left(\frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-j}\left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^{j}$ \\
- \hline
-\end{tabular}
- \caption{Wigner components of $\rho_{\rm{S}}^{\otimes n}(\epsilon)$}
- \label{tab:swc}
-\end{table}
-
-Clearly, there are negative Wigner components iff $0\leq \epsilon < \frac{3}{4}$.
-At the limiting case of non-negative Wigner components $\epsilon = \frac{3}{4}$, the Lorenz curve is simply given by three points,
-\begin{equation}
-\left\{(0,0), \left(\left(\frac{8}{9}\right)^n, 1\right), (1,1) \right\}
-\end{equation}
-and exponentially tends to a step-function.
-The case of $\epsilon = 0$ is given at~\cref{eq:slc} and the noisy cases with $0 < \epsilon < \frac{3}{4}$ follow a similar analysis.
-
-\newpage
+where $x_{1,0,0}, x_{2,0,0}, \dots, x_{m,0,0} \in T \subset X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
