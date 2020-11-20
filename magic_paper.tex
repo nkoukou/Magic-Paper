@@ -910,8 +910,8 @@ Consider now the state
 Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
 The new point coordinates are given by:
 \begin{align}
-    x_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta}\right) x_{k-1} + p_{k,\alpha, \beta} x_k \\
-    L_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta} \right) L_{k-1} + p_{k,\alpha, \beta} L_k, \\
+    x_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta}\right) x_{k-1} + p_{k,\alpha, \beta} x_k \label{eq:lcsu_xcoord}\\
+    L_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta} \right) L_{k-1} + p_{k,\alpha, \beta} L_k, \label{eq:lcsu_lcoord}\\
     &\text{where } p(k, \alpha, \beta) = \frac{(\alpha-1)9^s + \beta}{9^s m_k} \\
     &\text{for } k=0,\dots,\frac{r}{2},\ \alpha = 1,\dots,m_k \text{ and } \beta = 1,\dots,9^s. \nonumber
 \end{align}
@@ -925,7 +925,10 @@ The $\frac{r}{2}$ elbows correspond to
 \begin{equation}
 	i(k, \alpha, \beta) = i(\kappa, m_{\kappa}, 9^s) \equiv \sum_{j=0}^{\kappa} m_j,\ \kappa = 0,\dots,\frac{r}{2}.
 \end{equation}
-This index function is bijective.
+This index function is bijective, i.e.
+\begin{equation}
+	(k, \alpha, \beta) = (k', \alpha', \beta') \Leftrightarrow i(k, \alpha, \beta) = i(k', \alpha', \beta').
+\end{equation}
 
 \section*{Strange state Lorenz curve comparison in the unital fragment}
 
@@ -933,32 +936,45 @@ Consider the Strange state purification process in the unital fragment,
 \begin{equation}\label{eq:su_conversion}
     \noisysn \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(r, \epsilon', s),\ n = r + s.
 \end{equation}
-In order to get Lorenz curve constraints on this state conversion, we need to match up the indices for the two states.
+In order to get Lorenz curve constraints on this state conversion, we need a method to match up indices between the two curves.
 We use non-primed indices for the initial state and primed indices for the target state,
 \begin{align}
-    i(k, \alpha) &= 1 + (\alpha-1) + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j}, \\
+    i(k, \alpha, \beta=1) &= 1 + (\alpha-1) + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j}, \\
     i'(k',\alpha',\beta') &= \beta' + \left[ (\alpha'-1) + \sum_{j'=0}^{k'-1} 8^{2j'}\binom{r}{2j'} \right]9^s,
 \end{align}
 for $i,i' = 1,2,\dots, \frac{1}{2}(7^{n} + 9^{n})$.
 
-We need $x_{i(k, \alpha)} = x_{i'(k', \alpha', \beta')}$, so the question is: \emph{Given a triplet $(k', \alpha', \beta')$, what is the tuple $(k, \alpha)$ such that $i(k, \alpha) = i'(k',\alpha',\beta')$?}
+For pointwise comparison of the two curves, we require $x_{i(k, \alpha)} = x_{i'(k', \alpha', \beta')}$, so the question is: \emph{Given a triplet $(k', \alpha', \beta')$, what is the tuple $(k, \alpha)$ such that $i(k, \alpha) = i'(k',\alpha',\beta')$?}
 
 In other words, we choose a fixed $i'(k',\alpha',\beta')$ and we are searching for $i(k, \alpha)$ such that 
 \begin{equation}
-	i(k, \alpha) \equiv \alpha + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j} = i'(k',\alpha',\beta').
+	i(k, \alpha) = \alpha + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j} \overset{!}{=} i'(k',\alpha',\beta').
 \end{equation}
 
-As an example, consider the process 
+As a basic example, consider the process 
 \begin{equation}
 \rho_{\rm{S}}(\epsilon)^{\otimes 4} \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(\epsilon')^{\otimes 2} \otimes \left( \frac{1}{3}\id \right)^{\otimes 2}.
 \end{equation}
-We want to check which Lorenz curve is higher at the first two elbows of the target state, i.e. we want to verify or reject the inequalities
-\begin{align}
-	L_{i(k_0, \alpha_0)} &\geq L_{i'(0, 1, 81)}, \\
-	L_{i(k_1, \alpha_1)} &\geq L_{i'(1, 64, 81)},
-\end{align}
-where the first two multiplicities of the target state are $1$ and $64$.
-The challenge is to find $k_0, \alpha_0$ such that $i(k_0, \alpha_0) = i'(0,1,81)$ and $k_1, \alpha_1$ such that $i(k_1, \alpha_1) = i'(1,64,81)$
+We want to check which Lorenz curve is higher at the first elbows of the target state, i.e. we want to verify or reject the first inequality below:
+\begin{equation}
+	L_{i(k, \alpha)} \geq L'_{i'(0, 1, 81)}
+\end{equation}
+where the first multiplicity of the target state is $m_0 = 1$.
+The multiplicities of the initial state are $(1, 384, 4096)$
+Note that the second elbow of the target state (its maximum) lies on the RHS of the initial state curve's maximum, hence our expressions do not work on the coordinates of the initial state curve at that point \nick{yet}.
+
+The challenge is to find $k, \alpha$ such that $i(k, \alpha) = i'(0,1,81)$.
+\nick{By trial and error}, we find that $(k, \alpha) = (1, 80)$.
+Now we can use~\cref{eq:lcsu_lcoord} to directly calculate
+\begin{align*}
+	L'_{i'(0,1,81)} &= L'_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^2 \Phi_+\left(0;2,4\frac{3-\epsilon}{15-8\epsilon}\right), \\
+	L_{i(1, 80)} &= \left(1-\frac{80}{384} \right) L_0 + \frac{80}{384} L_1 \\
+	\begin{split}
+	&= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^4 \bigg[ \frac{19}{24} \Phi_+\left(0;4,4\frac{3-\epsilon}{15-8\epsilon}\right) \\ 
+	&\qquad + \frac{5}{24}\Phi_+\left(2;4,4\frac{3-\epsilon}{15-8\epsilon}\right) \bigg],
+	\end{split}
+\end{align*}
+and then compare them.
 
 \newpage
 
@@ -992,12 +1008,12 @@ The challenge is to find $k_0, \alpha_0$ such that $i(k_0, \alpha_0) = i'(0,1,81
 
 Returning to~\cref{eq:su_conversion}, the $r$ independent necessary constraints are
 \begin{align}
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{(0, m'_{0}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{(0, m'_{0}, 9^{s})}\right), \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{(1, m'_{1}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{(1, m'_{1}, 9^{s})}\right), \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right), \nonumber\\
+\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right), \nonumber\\
 &\vdotswithin{=} \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{(r, m'_{r}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{(r, m'_{r}, 9^{s})}\right), \nonumber
+\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(r, m'_{r}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes k}}{\frac{1}{d}\id}\left(x_{i'(r, m'_{r}, 9^{s})}\right), \nonumber
 \end{align}
-where $x_{(0, m'_{0}, 9^{s'})}, x_{(1, m'_{1}, 9^{s'})}, \dots, x_{(r, m'_{r}, 9^{s'})} \in T \subset X$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon_{\tau})^{\otimes r}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+where $x_{i'(0, m'_{0}, 9^{s'})}, x_{i'(1, m'_{1}, 9^{s'})}, \dots, x_{i'(r, m'_{r}, 9^{s'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes r}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
 \null\newpage
 \null\newpage
