@@ -163,6 +163,24 @@ It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not co
 \section{Area monotone}
 \label{app:areamono}
 
+\begin{figure}[t]%
+    \centering
+    \subfigure[][]{%
+    \label{fig:test1}%
+    \includegraphics[height=3cm]{figs/negmasking_rho_strange_lc.pdf}
+    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
+    }\hspace{8pt}%
+    \subfigure[][]{%
+    \label{fig:test2}%
+    \includegraphics[height=3cm]{figs/negmasking_rho_strange_meas.pdf}
+    %\caption{Zero state $\ketbra{0}{0}$}%
+    }
+    \caption{\subref{fig:test1} Lorenz curve of $p\ketbra{\rm{S}} + (1-p) \frac{1}{d}\id$ for $p$ given in the legend.\subref{fig:test2} Different measures for the states on the left. \\
+    \nick{can replace~\cref{fig:lctoy} with a more informative version of this figure}
+    }%
+    \label{fig:test}
+\end{figure}
+
 Let $L_{>1}$ be the set of points on the Lorenz curve $\lc{\rho}{\sigma}(k)$ that lie above $1$ of state $\rho$ in the $\sigma$--fragment. 
 If $\rho$ is a free state, $L_{>1}$ is empty and $\A_\sigma(\rho) = 0$. 
 Otherwise, $\A_\sigma(\rho) > 0$ and it can be calculated exactly using the trapezium rule or the shoelace formula. 
@@ -183,29 +201,265 @@ Then,
 	\A_\sigma(\rho) = \frac{1}{2} \sum\limits_{i=0}^n (x_{i+1} y_i - x_i y_{i+1}).
 \end{equation}
 
-\begin{figure}%
+\section{Technical derivations for standard Lorenz curves}
+\label{app:lcsu_technical}
+
+\subsubsection{Binomial distributions and error bounds}
+Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
+This scenario describes the construction of an $n$-copy Strange state Wigner distribution from a single-copy as presented in~\cref{sec:lcsu}.
+The experiment is described by binomial statistics and we write down the sum over an even number of successful trials $\Phi_+$ (over an odd number of successful trials $\Phi_-$),
+\begin{align}	
+	\Phi_+(m; n, p) &\coloneqq \sum\limits_{j=0}^{m/2} \binom{n}{2j} p^{2j} (1-p)^{n-2j}, \nonumber\\ 
+	&\text{for even integers } m\in[0,n], \label{eq:fp} \\
+	\Phi_-(m; n, p) &\coloneqq \sum\limits_{j=1}^{(m-1)/2} \binom{n}{2j+1} p^{2j+1} (1-p)^{n-(2j+1)}, \nonumber\\ 
+	&\text{for odd integers } m\in[0,n]. \label{eq:fn2}
+\end{align}
+Note that index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
+$\Phi_+$ describes the elbow coordinates on the LHS of the curve maximum, including the maximum, while $\Phi_-$.
+
+We define the classical relative entropy between a $p$-coin and a $q$-coin as
+\begin{equation}\label{eq:ent_rel}
+	\ent{p}{q} \coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}.
+\end{equation}
+It satisfies the identity $\ent{p}{q} = \ent{1-p}{1-q}$.
+
+The classical entropy of a $p$-coin is
+\begin{equation}\label{eq:ent}
+	S(p) \coloneqq -p\log{p} -(1-p)\log{(1-p)},
+\end{equation}
+which is symmetric, $S(p) = S(1-p)$.
+%Let $c(m; n) \coloneqq [m(1-m/n)]^{-1/2},\ m\in [1, n-1]$.
+A useful result is the entropic bound on a combination~\cite{cit:ash}.
+\begin{lemma}\label{lem:comb_bounds}
+	For all $m\in [1,n-1]$,
+	\begin{align}
+		&\left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)} \leq \binom{n}{m} \leq \\
+		&\left[ 2\pi m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{nS\left(\frac{m}{n}\right)}.
+	\end{align}
+\end{lemma}
+\begin{proof}
+	For $m = 1,2, n-1, n-2$ check by direct calculation.	
+	For all other cases, use Stirling's approximation.
+\end{proof}
+
+Bounds on the tails of a cumulative binomial distribution can be expressed in
+
+and therefore we can use $\Phi_{\pm}$ to compactify statements that hold for both $\Phi_+, \Phi_-$.
+
+\iffalse
+The experiment is described by binomial statistics and we define the left tail of the cumulative binomial distribution,
+\begin{equation}\label{eq:phil}
+	\Phi_\ell(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j},
+\end{equation}
+where $m\in [0,n]$. 
+
+The symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution dictates that
+\begin{align}\label{eq:phi_reverse}
+	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1],
+\end{align}
+Entropic bounds on $\Phi_\ell$~\cite{cit:ash}.
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\nick{cite proof}
+\end{proof}
+
+In particular, we derive ``loose'' and ``strict'' bounds on $\Phi_{\pm}$.
+\begin{lemma}\label{lem:bounds_loose}
+	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_{\pm}(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_{\pm}(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_{\pm}(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\nick{paste proof}
+\end{proof}
+\begin{lemma}\label{lem:bounds_strict}
+	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_+(m; n, p) \geq \sum\limits_{j=0}^{m/2}\left[ 8(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{2. } \Phi_+(m; n, p) \leq \sum\limits_{j=0}^{m/2}\left[ 2\pi(2j)\left(1-\frac{2j}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2j}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{3. } \Phi_-(m; n, p) \geq \sum\limits_{j=1}^{(m-1)/2}\left[ 8(2j+1)\left(1-\frac{2j+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2j+1}{n}}{p}},\ \text{for all odd } m\in [1,n] \\
+		&\text{4. } \Phi_-(m; n, p) \leq \sum\limits_{j=1}^{(m-1)/2}\left[ 2\pi(2j+1)\left(1-\frac{2j+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2j+1}{n}}{p}},\ \text{for all odd } m\in [1,n]
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\nick{paste proof}
+\end{proof}
+\fi
+
+They are depicted in~\cref{fig:noisys}.
+\begin{figure}[t]
     \centering
-    \subfigure[][]{%
-    \label{fig:test1}%
-    \includegraphics[height=3cm]{figs/negmasking_rho_strange_lc.pdf}
-    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
-    }\hspace{8pt}%
-    \subfigure[][]{%
-    \label{fig:test2}%
-    \includegraphics[height=3cm]{figs/negmasking_rho_strange_meas.pdf}
-    %\caption{Zero state $\ketbra{0}{0}$}%
+    \includegraphics[scale=0.7]{figs/noisys.pdf}
+    \caption{\textbf{Wigner components of the noisy Strange state.} 
+    In the interval $0 \leq \epsilon < 3/7$, the negative component is larger than the positive components.
+    At $\epsilon = 3/7$ the Wigner distribution is $(-\frac{1}{7},\frac{1}{7},\dots,\frac{1}{7})$.
+    In the interval $3/7 < \epsilon < 3/4$, the positive components are larger than the negative component.
+    In the interval $3/4 \leq \epsilon \leq 1$, there is no negativity.
     }
-    \caption{\subref{fig:test1} Lorenz curve of $p\ketbra{\rm{S}} + (1-p) \frac{1}{d}\id$ for $p$ given in the legend.\subref{fig:test2} Different measures for the states on the left. \\
-    \nick{can replace~\cref{fig:lctoy} with a more informative version of this figure}
-    }%
-    \label{fig:test}
+    \label{fig:noisys}
+\end{figure}
+The $n+1$ distinct Wigner components ($w_j$) of $\noisysn$ along with their multiplicities ($m_j$) are given in~\cref{tab:lcsu_w}.
+\begin{table}[b]                           
+ \centering
+ \begin{tabular}{c|c|c|c}
+ $\epsilon$ & $j$ & $\left[0, \frac{n}{2}\right]$ & $\left[\frac{n}{2} + 1, n \right]$ \\ [0.5ex] 
+ \hline
+  & $w_{j}$ & $w_+^{2j}w_-^{n-2j}$ & $w_+^{n-2j}w_-^{2j}$  \\
+  $0\leq \epsilon < \frac{3}{7}$ & & & \\
+  & $m_{j}$ & $8^{2j}\binom{n}{2j}$ & $8^{n-2j}\binom{n}{2j}$ \\
+ \hline
+  & $w_{j}$ & $w_+^{n-2j}w_-^{2j}$ & $w_+^{2j}w_-^{n-2j}$  \\
+  $\frac{3}{7} \leq \epsilon < \frac{3}{4} $ & & & \\
+  & $m_{j}$ & $8^{n-2j}\binom{n}{2j}$ & $8^{2j}\binom{n}{2j}$
+\end{tabular}
+ \caption{Wigner components of $\noisysn$. The multiplication $2j$ is modulo $(n+1)$.}
+ \label{tab:lcsu_w}
+\end{table}
+
+
+
+To get the Lorenz curve, we need to sum up the Wigner components in decreasing order and the order depends on the noise level $\epsilon$, so we define probabilities associated with the $x$-coordinate ($p_x$) and the vertical coordinate ($p_L$) of the Lorenz curve accordingly,
+\begin{equation}
+	(p_x, p_L) \equiv \big( p_x(\epsilon), p_L(\epsilon) \big) = 
+	\begin{cases}
+		\left( \frac{8}{9}, \frac{12-4\epsilon}{15-8\epsilon} \right),\ & 0\leq \epsilon < \frac{3}{7} \\
+		\left( \frac{1}{9}, \frac{3-4\epsilon}{15-8\epsilon} \right),\ & \frac{3}{7}\leq \epsilon < \frac{3}{4} \\
+	\end{cases}	
+\end{equation}
+
+We are now in a position to express Lorenz curve coordinates in terms of phi distributions,
+\begin{equation}\label{eq:x_coord_elb}
+	x_k(n, \epsilon) = 
+	\begin{cases}
+		\Phi_+(k;n,p_x),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ even}, \\
+		x_{k_\star} + \Phi_-(k;n,1-p_x),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ odd}, \\
+	\end{cases}	
+\end{equation}
+and
+\begin{equation}\label{eq:lc_coord_elb}
+	L_k(n, \epsilon) = 
+	\begin{cases}
+		\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+(k;n,p_L),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ even}, \\
+		L_{k_\star} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-(k;n,1-p_L),\\
+		\hspace{20pt} k\in[0,n]\ \text{and }k\text{ odd}. \\
+	\end{cases}	
+\end{equation}
+
+Finally, the $m$-th elbow is located at
+\begin{equation}\label{eq:lcsu_elbows}
+	\left(x_m, \lc{\noisysn}{\frac{1}{d}\id}(x_m) \right) = \Big( x_{2m}(n, \epsilon), L_{2m}(n, \epsilon) \Big),
+\end{equation}
+where $2m$ is considered \hspace{-7pt}$\mod{(n+1)}$.
+
+We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the standard Lorenz curves.
+\begin{figure}[b]
+    \centering
+    \includegraphics[scale=0.4]{figs/lc_bounds.pdf}
+    \caption{\textbf{Lorenz curves and bounding curves.} 
+    The figure explores the distillation process of a 10-copy $0.25$-noisy Strange state to a 4-copy $0.05$-noisy Strange state in the unital fragment.
+    Clearly, by looking at the Lorenz curves, the distillation process is possible.
+    However the bounding curves, derived in~\cref{lem:bounds_strict}, intersect at the end, suggesting that the process is not necessarily possible.
+    }
+    \label{fig:lc_bounds}
 \end{figure}
 
 
+Assume: 
+\begin{itemize}
+    \item $n$ is even [ensures Lorenz curve coordinates can be expressed in terms of $\Phi_{\pm}$ distributions];
+    \item $0 \leq \epsilon \leq \frac{3}{7}$ [ensures closed-form expressions for Lorenz curve coordinates];
+\end{itemize}
+There are $\frac{n}{2}+1$ distinct non-negative components in the Wigner distribution $\W{\noisysn}$.\\
 
+We can rewrite the non-negative part of the Wigner distribution $\W{\noisysn}$ in a compact form, by simply listing the distinct Wigner components $w(k; n, \epsilon)$ along with their multiplicities $m(k; n)$:
+\begin{align}
+    &{\W{\noisysn}} = \\ 
+    &\big\{\left( m_k, w_k \right)\big\}_{k=0,\dots,n/2} = \nonumber\\ 
+    &\big\{\left( m(k; n), w(k; n, \epsilon) \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( 8^{2k}\binom{n}{2k}, \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2k}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2k} \right) \right\}_{k=0,\dots,n/2}. \nonumber
+\end{align}
 
+The expressions for the Lorenz curve elbows in the unital fragment are then known:
+\begin{align}
+    &{\rm{L}_{\noisysn}} = \\
+    &\big\{\left( x_k, L_k \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\big\{\left( x(k; n), L(k; n, \epsilon) \right)\big\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( \frac{1}{9^n}\sum\limits_{j=0}^k m_j, \sum\limits_{j=0}^k m_j w_j \right) \right\}_{k=0,\dots,n/2} = \nonumber\\
+    &\left\{ \left( \Phi_+\left(2k;n,\frac{8}{9}\right), \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2k;n,4\frac{3-\epsilon}{15-8\epsilon}\right) \right) \right\}_{k=0,\dots,n/2}. \nonumber
+\end{align}
+We include the origin in the Lorenz curve as it does not arise from the above expressions, denoting it by $(x_{-1}, L_{-1}) \coloneqq (0,0)$.
 
+We can get explicit expressions for all $\frac{1}{2}(7^n + 9^n)$ points of the Lorenz curve, using a two-index parameterisation:
+\begin{align}
+    x_{k,\alpha} &= \left( 1-\frac{\alpha}{m_k} \right) x_{k-1} + \frac{\alpha}{m_k} x_k \label{eq:x}\\
+    L_{k,\alpha} &= \left( 1-\frac{\alpha}{m_k} \right) L_{k-1} + \frac{\alpha}{m_k} L_k \label{eq:l}\\
+    &\text{for } k=0,\dots,\frac{n}{2} \text{ and } \alpha = 1,\dots,m_k. \nonumber
+\end{align}
 
+As a simple example, we plot the Lorenz curve of state $\noisys(0)\too{2}$,
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{figs/lcpoints.pdf}
+    \caption{\textbf{All points on the Lorenz curve are uniformly distributed.}
+    \cref{eq:x,eq:l}) capture the coordinates of all points up to the maximum.
+    }
+    \label{fig:lc}
+\end{figure}
+
+Consider now the state 
+\begin{equation}
+    \noisys(r, \epsilon, s) = \noisys(\epsilon)\too{r} \otimes \left( \frac{1}{3}\id \right)\too{s}.
+\end{equation}
+
+Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
+The new point coordinates are given by:
+\begin{align}
+    x_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta}\right) x_{k-1} + p_{k,\alpha, \beta} x_k \label{eq:lcsu_xcoord}\\
+    L_{k,\alpha, \beta} &= \left( 1-p_{k,\alpha, \beta} \right) L_{k-1} + p_{k,\alpha, \beta} L_k, \label{eq:lcsu_lcoord}\\
+    &\text{where } p(k, \alpha, \beta) = \frac{(\alpha-1)9^s + \beta}{9^s m_k} \\
+    &\text{for } k=0,\dots,\frac{r}{2},\ \alpha = 1,\dots,m_k \text{ and } \beta = 1,\dots,9^s. \nonumber
+\end{align}
+
+We can unify the indices, by introducing a single index
+\begin{equation}
+    i(k,\alpha,\beta) \coloneqq \beta + \left[ (\alpha-1) + \sum_{j=0}^{k-1} 8^{2j}\binom{r}{2j} \right]9^s,
+\end{equation}
+so that $i=1,2,\dots, \frac{1}{2}9^s(7^{r} + 9^{r})$.
+The $\frac{r}{2}$ elbows correspond to 
+\begin{equation}
+	i(k, \alpha, \beta) = i(\kappa, m_{\kappa}, 9^s) \equiv \sum_{j=0}^{\kappa} m_j,\ \kappa = 0,\dots,\frac{r}{2}.
+\end{equation}
+This index function is bijective, i.e.
+\begin{equation}
+	(k, \alpha, \beta) = (k', \alpha', \beta') \Leftrightarrow i(k, \alpha, \beta) = i(k', \alpha', \beta').
+\end{equation}
 
 
 

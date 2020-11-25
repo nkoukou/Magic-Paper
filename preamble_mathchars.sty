@@ -9,7 +9,23 @@
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ent}[2]{S\left( #1 \middle\vert\middle\vert #2 \right)}
 \newcommand{\ents}{{\ent{\frac{m}{n}}{p}}}
-\newcommand{\noisysn}{\rho_{\rm{S}}(\epsilon)^{\otimes n}}
+
+\def\ii{i}
+\def\jj{j}
+\def\kk{k}
+\def\aa{a}
+\def\bb{b}
+\def\cc{c}
+\def\nn{n}
+\def\NN{N}
+\def\aaa{\alpha}
+\def\bbb{\beta}
+\def\ccc{\gamma}
+
+\newcommand{\too}[1]{^{\otimes #1}}
+\newcommand{\noisys}{\rho_{\rm{S}}}
+\newcommand{\noisysn}{\rho_{\rm{S}}(\epsilon)^{\otimes \nn}}
+\newcommand{\noisysN}{\rho_{\rm{S}}(\epsilon)^{\otimes \NN}}
 
 \newcommand{\spanv}[1]{
     {{\rm{span}}\left\{#1\right\}}
