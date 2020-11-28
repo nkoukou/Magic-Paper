@@ -479,36 +479,15 @@ New bounds can be obtained in the $\sigma$--fragment by pointwise Lorenz curve c
     \lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in [0,1].
 \end{equation}
 This inequality is parametrised by $x$ and if it is not satisfied at any point $x$, then the Lorenz curves intersect and the conversion is impossible.
-
-We can reduce the number of independent constraints stemming from this inequality down to the number of elbows of the target state.
+We can refine the independent constraints stemming from this inequality and consider it at only the locations of the target state elbows.
 \begin{theorem}\label{thm:elbows}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
 	
-	Let $r$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $E \coloneqq \{x_1, \dots, x_\kk\}$ be their locations.
+	Let $\tt$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $E \coloneqq \{x_1, \dots, x_\tt\}$ be their locations.
 	
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_j) \geq \lc{\tau}{\sigma}(x_j)$ for all $j =1,\dots,\kk$.
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{\ii}) \geq \lc{\tau}{\sigma}(x_{\ii})$ for all $\ii =1,\dots,\tt$.
 \end{theorem}
-\begin{proof}	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_j) \geq \lc{\tau}{\sigma}(x_j)$ for all $j =1,\dots,\kk$.
-	
-	Conversely, assume that $\lc{\rho}{\sigma}(x_j) \geq \lc{\tau}{\sigma}(x_j)$ for all $j =1,\dots,r$.
-	First, let $x_0 = 0$ and $x_{\kk+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{\kk+1}) = \lc{\tau}{\sigma}(x_{\kk+1}) = 1$.
-	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{\kk+1}\}$.
-	
-	Pick two consecutive locations $x_i, x_{i+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_i, \lc{\tau}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_i, \lc{\rho}{\sigma}(x_i))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
-	This is illustrated in~\cref{fig:elbows_proof}.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.6]{figs/elbows_proof.pdf}
-    \caption{\textbf{Illustration of~\cref{thm:elbows}}.
-    }
-    \label{fig:elbows_proof}
-\end{figure}
-
-	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_i, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
-	This argument can be made in all intervals $[x_i, x_{i+1}]$ with $i=0,\dots,\kk$, so the proof is complete.
-\end{proof}
-This theorem is of practical importance in checking Lorenz curve bounds, and it is used in the discussion of standard Lorenz curves in~\cref{sec:lcsu}.
+A proof is provided in~\cref{app:lc_constraints}.
 
 \nick{We can skip mana and just discuss sum-negativity}
 
@@ -538,19 +517,19 @@ We first show that the Lorenz curve maximum of state $\rho$ is independent of th
 	is sorted in the sense that $\tilde{\bm{w}} = \tilde{\bm{w}}^\downarrow$.
 	Note that all components of $\W{\sigma}$ are positive, so $(\tilde{\bm{w}})_i \geq 0$ if and only if $(\W{\rho})_i \geq 0$ for any $i=1,\dots,d^2$.
 	
-	Let $\jj_\star$ be the index of the smallest non-negative component of $\tilde{\bm{w}}^\downarrow$.
-	Then, $(\W{\rho})_i < 0$ if and only if $i > \jj_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
+	Let $\ii_\star$ be the index of the smallest non-negative component of $\tilde{\bm{w}}^\downarrow$.
+	Then, $(\W{\rho})_i < 0$ if and only if $i > \ii_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
 	\begin{equation}
-		\lc{\rho}{\sigma}(x_{\jj_\star}) = \sum_{i=1}^{\jj_\star} (\W{\rho})_i,
+		\lc{\rho}{\sigma}(x_{\ii_\star}) = \sum_{i=1}^{\ii_\star} (\W{\rho})_i,
 	\end{equation}
 	and is achieved at
 	\begin{equation}\label{eq:maxloc}
-		x_{\jj_\star} \coloneqq \sum_{i=1}^{\jj_\star} (\W{\sigma})_i.
+		x_{\ii_\star} \coloneqq \sum_{i=1}^{\ii_\star} (\W{\sigma})_i.
 	\end{equation}
 
-	The location of the maximum ($x=x_{k_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
+	The location of the maximum ($x=x_{\ii_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
 	\begin{equation}
-		\lc{\rho}{\sigma}(x_{k_\star})
+		\lc{\rho}{\sigma}(x_{\ii_\star})
 		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho}
 		= 1 + \sn{\rho}.
 	\end{equation}
@@ -569,9 +548,9 @@ This implies the following result.
     \end{equation}
     Therefore, the majorization bound
     \begin{equation}
-    	\lc{\rho}{\sigma}(x) \geq \lc{\rho}{\sigma}(x),\ x\in[0,1]
+    	\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in[0,1]
     \end{equation}
-    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)}$ which is equivalent to the mana bound $\mana{\rho} \geq \mana{\tau}$.
+    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\tau}{\sigma}(x)}$, equivalent to the mana condition $\mana{\rho} \geq \mana{\tau}$.
 \end{proof}
 
 Denote an $n$-copy, $\epsilon$-noisy magic state $\rho$ in the $\sigma$--fragment by
@@ -580,26 +559,26 @@ Denote an $n$-copy, $\epsilon$-noisy magic state $\rho$ in the $\sigma$--fragmen
 \end{equation}
 and consider the general magic state distillation (MSD) / purification process
 \begin{equation}
-		\rho(\epsilon)\too{\nn} \xrightarrow{\E \in \O_\sigma} \rho(\epsilon')\too{\kk},
+		\rho(\epsilon)\too{\nn} \xrightarrow{\E \in \O_\sigma} \rho(\epsilon')\too{\tt},
 \end{equation}
-where it is converted into a $\kk$-copy, $\epsilon'$-noisy state, such that the number of copies has decreased ($\kk < \nn$), but the state is less noisy ($\epsilon' < \epsilon$).
+where it is converted into a $\tt$-copy, $\epsilon'$-noisy state, such that the number of copies has decreased ($\tt < \nn$), but the state is less noisy ($\epsilon' < \epsilon$).
 
 The more noisy the initial state is, the more copies needed to reach the target. 
 We make this idea precise by defining the \emph{noise level threshold} as
 \begin{equation}\label{eq:ethresh}
 	\begin{split}
-	\epsilon_{\rm{th}}(\nn, \kk, \epsilon', \sigma) \coloneqq &\sup{\{\epsilon:\ \lc{\rho(\epsilon)\too{\nn}}{\sigma}}(x) \geq \\
-	&{\lc{\rho(\epsilon')\too{\kk}}{\sigma}(x),\ x\in[0,1]\}}.
+	\epsilon_{\rm{th}}(\nn, \tt, \epsilon', \sigma) \coloneqq &\sup{\{\epsilon:\ \lc{\rho(\epsilon)\too{\nn}}{\sigma}}(x) \geq \\
+	&{\lc{\rho(\epsilon')\too{\tt}}{\sigma}(x),\ x\in[0,1]\}}.
 	\end{split}
 \end{equation}
-The MSD process~(\ref{eq:dist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(\nn, \kk, \epsilon', \sigma)$.
+The MSD process~(\ref{eq:dist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(\nn, \tt, \epsilon', \sigma)$.
 
 \nick{Can also define a distillation bound
 \begin{equation}\label{eq:ethresh}
-	\nn_{\rm{th}}(\epsilon, \epsilon', \sigma) \coloneqq \min{\{\nn:\ \nn \in \mathbb{N}, \lc{\noisysn}{\sigma} \geq \lc{\noisys(\epsilon')}{\sigma}\}}.
+	\nn_{\rm{th}}(\epsilon, \epsilon', \sigma) \coloneqq \min{\{\nn: \lc{\noisysn}{\sigma} \geq \lc{\noisys(\epsilon')}{\sigma}\}}.
 \end{equation}}
 
-In general, the Wigner components of an $n$-copy state $\rho\too{n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
+In general, the Wigner components of an $\NN$-copy state $\rho\too{\NN}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
 \begin{equation}
 	\W{\rho\too{\NN}} = \rm{W}_{\rho}\too{\NN},
 \end{equation}
@@ -641,9 +620,10 @@ In~\cref{fig:lcs}, we illustrate the Lorenz curves of pure and noisy $n$-copy St
     \includegraphics[height=3cm]{figs/lcs_one.pdf}
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
-    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\noisysn$ for $n=1,2,3,4$.
+    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\noisysn$ for $\nn=1,2,3,4$.
     Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
-    \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}). 
+    \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}).
+    The elbows of a curve are the non-differentiable points that form ``angles'' between consecutive line segments.
     }%
     \label{fig:lcs}
 \end{figure}
@@ -651,23 +631,31 @@ In~\cref{fig:lcs}, we illustrate the Lorenz curves of pure and noisy $n$-copy St
 In the following sections, we address the question of state interconversions in various $\sigma$--fragments, including concrete examples of the Strange state distillation process. \nick{adapt}
 
 \subsection{Magic in the unital fragment}\label{sec:unital}
+The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
 
-Magic state distillation circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)\nick{CITE}, depicted in~\cref{fig:zoo}.
+MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)\nick{CITE}, depicted in~\cref{fig:zoo}.
 Operations in $\rcu$ can be expressed as
 \begin{equation}
     \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cd.
 \end{equation}
-Depending on the symmetries of such operations, a sequence of them may belong in various $\sigma$--fragments and the majorization condition~(\ref{eq:majbound}) needs to be checked in all these $\sigma$-fragments that reflect the symmetries of the operation sequence.
-However, they always belong to the \emph{unital fragment} $\O_{\frac{1}{d}\id}$.
+Depending on the symmetries of such operations, a Clifford sequence may belong in other $\sigma$--fragments as well.
+In this case, the majorization condition~(\ref{eq:majbound}) needs to be checked in all the $\sigma$-fragments that reflect the symmetries of the operation sequence.
 
-If one incorporates noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} in various bases, symmetries are reduced.
+In general, noisy circuits are well-described by the unital fragment.
+To see this, consider incorporating noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} defined in different bases.
+This process destroys the circuit symmetries, except for the invariance of the maximally mixed state.
 Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
-\begin{figure}[b]
+
+In~\cref{fig:unital_distill}, we examine the Strange state distillation process of~\cref{eq:dist} with $\epsilon' = 0.05$ which describes all circuits that respect the unital symmetry.
+Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
+\nick{Explain asymptotic behaviour?}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/unital_distill.pdf}
-    \caption{\textbf{Noise thresholds in unital fragment.} Mana and Lorenz curve noise thresholds for the Strange state purification process in~\cref{eq:sdist} with $\epsilon' = 0.05$.
+    \caption{\textbf{Noise thresholds in unital fragment.} Mana and Lorenz curve noise thresholds for the Strange state purification process in~\cref{eq:dist} with $\epsilon' = 0.05$.
     Lorenz curve comparison consistently gives stricter bounds as proven in~\cref{thm:bounds}.
-    The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
+    The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities. 
+    \nick{Redo figure}
     }
     \label{fig:unital_distill}
 \end{figure}
@@ -684,104 +672,66 @@ Dephasing and bit-flip error channels are examples of the many error-inducing ch
 \end{figure}
 \fi
 
-In~\cref{fig:unital_distill}, we examine the Strange state distillation process of~\cref{eq:dist} with $\epsilon' = 0.05$ which describes all circuits that respect the unital symmetry.
-Thresholds provided by Lorenz curve comparison are always much stricter than mana thresholds.
-\nick{Explain asymptotic behaviour?}
-
-\nick{We devote a section on Strange state Lorenz curve analysis in the unital fragment}
-
 \null\newpage
 
-\subsection{Strange state interconversions in the unital fragment}\label{sec:lcsu}
+\subsubsection*{Strange state distillation in the unital fragment}\label{sec:lcsu}
 
-In this section we analytically investigate the behaviour of the Lorenz curve of an $n$-copy Strange state in the unital fragment ($\sigma = \id/3$), 
-\begin{equation}\label{eq:lcsu}
-	\lc{\noisysn}{\frac{1}{d}\id}(x),\ x\in[0,1].
-\end{equation}
-We recognise Lorenz curve of this type as ``standard candles'' in the context of magic state distillation and call them the \emph{standard Lorenz curves} \nick{expand}.
-
-The aim is to study the MSD process,
+In this section we study the MSD process,
 \begin{equation}\label{eq:sudist}
-	\noisysn \xrightarrow{\E \in \O_{\id/3}} \noisys(\epsilon')\too{\kk},
+	\noisysn \xrightarrow{\E \in \O_{\id/3}} \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm},\ \nn = \tt + \mm,
 \end{equation}
-in the regime where $0 \leq \epsilon \leq \tfrac{3}{4}$.
-For $\tfrac{3}{4} \leq \epsilon < 1$, the noisy Strange state $\noisys(\epsilon)$ contains no Wigner negativities in the unital fragment as seen in~\cref{eq:wsu}.
+where we have uniformised the number of qutrits on both sides of the process.
 
-\subsubsection{Coordinate expressions for standard Lorenz curves}
-The Wigner distribution of the $\NN$-copy qutrit maximally mixed state $\left(\id/3\right)\too{\NN}$ is the uniform distribution 
-\begin{equation}\label{eq:wu}
-	\W{\left(\id/3\right)\too{\NN}} = \left( \overbrace{\frac{1}{9^\NN}, \dots, \frac{1}{9^\NN}}^{9^\NN} \right).
+In~\cref{app:lcsu_technical}, we define explicit expressions for the Lorenz curve of the $n$-copy, $\epsilon$-noisy Strange state in the unital fragment, 
+\begin{equation}\label{eq:lcsu}
+	\lc{\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}}{\frac{1}{d}\id}(x),\ x\in[0,1].
 \end{equation}
-The Wigner distribution of the 1-copy $\epsilon$-noisy Strange state $\noisys(\epsilon)$ in the unital fragment is a permutation of 
-\begin{equation}\label{eq:wsu}
-	\W{\noisys(\epsilon)} = \left( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \right)
-\end{equation}
-The Wigner distribution of the $\NN$-copy $\epsilon$-noisy Strange state $\noisysN$ in the unital fragment is the $n$-th convolution $\W{\noisysN} = \rm{W}_{\noisys(\epsilon)}\too{N}$.
+We call Lorenz curves of this type \emph{standard Lorenz curves}. \nick{expand (non-uniformity)}
 
-For example, the Wigner distribution of state $\noisys(0)\too{2}$ is
-\begin{equation*}
-	\rm{W}_{\noisys(0)\too{2}} = \left( \overbrace{\left( -\frac{1}{3} \right)^2}^1, \overbrace{\left( \frac{1}{6} \right)^2, \dots, \left( \frac{1}{6} \right)^2}^{64}, \overbrace{ -\frac{1}{3} \cdot \frac{1}{6}, \dots, -\frac{1}{3} \cdot \frac{1}{6}}^{16} \right)
-\end{equation*}
-
-In~\cref{app:lcsu_technical}, we derive explicit expressions for the coordinates of standard Lorenz curves, which we present here.
-
-\nick{noisy maximum}
-Calculating the components of $\ket{S}\bra{S}\too{n}$ allows for analytical calculation of the maximum of the $n$-copy state,
-\begin{equation}\label{eq:Skmax}
-    \max_x{\lc{\ketbra{S}\too{n}} {\sigma}}(x) = \frac{1}{2}\left (1 + \left(\frac{5}{3}\right)^n \right).
-\end{equation}
-Its location $x_{k_\star}$ depends on the $\sigma$--fragment and is given by~\cref{eq:maxloc} with $k_\star = \frac{1}{2}(7^n + 9^n)$.
-%1 + \left(\frac{4}{3}\right)^n \sum\limits_{j=0}^{\floor{\frac{n-1}{2}}} 4^{-(2j+1)} \binom{n}{2j+1}
-%\sum_{i=j, j: odd}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n - (1-a)^n ]
-%$\{(-1)^j 2^{j-n} 3^{-n}\}_{0 \leq j \leq n}$ with multiplicity $8^{n-j} \binom{n}{j}$ for the $j$-th term
-
-\subsubsection{Standard Lorenz curve comparison}
-
-Consider the Strange state purification process in the unital fragment,
-\begin{equation}\label{eq:su_conversion}
-    \noisysn \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(r, \epsilon', s),\ n = r + s.
-\end{equation}
-In order to get Lorenz curve constraints on this state conversion, we need a method to match up indices between the two curves.
-We use non-primed indices for the initial state and primed indices for the target state,
-\begin{align}
-    i(k, \alpha, \beta=1) &= 1 + (\alpha-1) + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j}, \\
-    i'(k',\alpha',\beta') &= \beta' + \left[ (\alpha'-1) + \sum_{j'=0}^{k'-1} 8^{2j'}\binom{r}{2j'} \right]9^s,
+It is clear in~\cref{fig:lcs} that Lorenz curves are fully defined by the coordinates of their elbows.
+For standard Lorenz curves, elbow coordinates are defined in terms of the two functions,
+\begin{align}	
+	\Phi_+(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}, \nonumber\\ 
+	&\text{for even integers } \mmf\in[0,\nnf], \label{eq:fp} \\
+	\Phi_-(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=1}^{(\mmf-1)/2} \binom{\nnf}{2\dummy+1} p^{2\dummy+1} (1-p)^{\nnf-(2\dummy+1)}, \nonumber\\ 
+	&\text{for odd integers } \mmf\in[1,\nnf]. \label{eq:fn}
 \end{align}
-for $i,i' = 1,2,\dots, \frac{1}{2}(7^{n} + 9^{n})$.
+Note that index $\mmf$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
+The exact expresions depend on the noise level $\epsilon$, the parity of the number of copies $\NN$ and whether the location of the elbow relative to the curve maximum (LHS vs RHS).
+All cases are presented in~\cref{tab:lcsu_coord_elb}.
+\begin{table}[h]
+  \def\arraystretch{1.5}
+  \centering
+  \begin{tabular}{c|c|c|r|r}
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{\ii}$} & \multicolumn{1}{|c}{$L_{\ii}$} \\[0.5ex]\hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\NN/2} + \Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+  \end{tabular}
+  \caption{Standard Lorenz curves elbow coordinates.
+  Multiplication $2\ii$ is considered modulo $(\NN+1)$.
+  Note that the Lorenz curve boundary points are $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{\NN}, L_{\NN}) = (1,1)$.
+  }
+  \label{tab:lcsu_coord_elb}
+\end{table}
 
-For pointwise comparison of the two curves, we require $x_{i(k, \alpha)} = x_{i'(k', \alpha', \beta')}$, so the question is: \emph{Given a triplet $(k', \alpha', \beta')$, what is the tuple $(k, \alpha)$ such that $i(k, \alpha) = i'(k',\alpha',\beta')$?}
+The coordinates of any point on the standard Lorenz curve is given by
 
-In other words, we choose a fixed $i'(k',\alpha',\beta')$ and we are searching for $i(k, \alpha)$ such that 
 \begin{equation}
-	i(k, \alpha) = \alpha + \sum_{j=0}^{k-1} 8^{2j}\binom{n}{2j} \overset{!}{=} i'(k',\alpha',\beta').
+    \II(\ii,\jj,\kk) \coloneqq \kk + \left[ (\jj-1) + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\tt}{2\dummy} \right]9^{\mm},
 \end{equation}
 
-As a basic example, consider the process 
-\begin{equation}
-\rho_{\rm{S}}(\epsilon)\too{4} \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(\epsilon')\too{2} \otimes \left( \frac{1}{3}\id \right)\too{2}.
-\end{equation}
-We want to check which Lorenz curve is higher at the first elbows of the target state, i.e. we want to verify or reject the first inequality below:
-\begin{equation}
-	L_{i(k, \alpha)} \geq L'_{i'(0, 1, 81)}
-\end{equation}
-where the first multiplicity of the target state is $m_0 = 1$.
-The multiplicities of the initial state are $(1, 384, 4096)$
-Note that the second elbow of the target state (its maximum) lies on the RHS of the initial state curve's maximum, hence our expressions do not work on the coordinates of the initial state curve at that point \nick{yet}.
-
-The challenge is to find $k, \alpha$ such that $i(k, \alpha) = i'(0,1,81)$.
-\nick{By trial and error}, we find that $(k, \alpha) = (1, 80)$.
-Now we can use~\cref{eq:lcsu_lcoord} to directly calculate
-\begin{align*}
-	L'_{i'(0,1,81)} &= L'_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^2 \Phi_+\left(0;2,4\frac{3-\epsilon}{15-8\epsilon}\right), \\
-	L_{i(1, 80)} &= \left(1-\frac{80}{384} \right) L_0 + \frac{80}{384} L_1 \\
-	\begin{split}
-	&= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^4 \bigg[ \frac{19}{24} \Phi_+\left(0;4,4\frac{3-\epsilon}{15-8\epsilon}\right) \\ 
-	&\qquad + \frac{5}{24}\Phi_+\left(2;4,4\frac{3-\epsilon}{15-8\epsilon}\right) \bigg],
-	\end{split}
-\end{align*}
-and then compare them.
-
-\nick{Returning to~\cref{eq:su_conversion}, and }using~\cref{thm:elbows}, the $r$ independent necessary constraints are
+\begin{align}
+    \II(\ii,\jj,\kk=1) &= \jj + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\nn}{2\dummy}, \\
+    \II'(\ii',\jj',\kk') &= \kk' + \left[ (\jj'-1) + \sum_{\dummy=0}^{\ii'-1} 8^{2\dummy}\binom{\tt}{2\dummy} \right]9^{\mm}.
+\end{align}
+ 
+In particular, it can used in the discussion of standard Lorenz curves to set the necessary constraints,
 \begin{align}
 \lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon')\too{k}}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right), \nonumber\\
 \lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon')\too{k}}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right), \nonumber\\
@@ -811,7 +761,7 @@ In~\cref{fig:thermal_distill}, we examine the majorization bound for the same pu
 The curves plotted suggest that there exists a fragment $\O_{\gamma_{\beta_{\rm{max}}}}$ which allows for a highest noise threshold at any given number of copies of the initial state.
 Adding more copies results in a lower optimal temperature $\beta^{-1}$.
 
-\begin{figure}[b]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/thermal_distill.pdf}
     \caption{\textbf{Threshold dependence on temperature in thermal fragments.} Lorenz curve ratios for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon' = 0.05$.
@@ -833,7 +783,7 @@ We explore the distillation process of~\cref{eq:sdist} in these modified fragmen
 We repeat the plot for distillation of Norrell states in~\cref{fig:stab_distill_norrell}.
 
 
-\begin{figure}[b]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/stab_distill.pdf}
     \caption{\textbf{Strange state distillation thresholds in stabilizer fragments.} Lorenz curve thresholds for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon' = 0.05$.
@@ -844,7 +794,7 @@ We repeat the plot for distillation of Norrell states in~\cref{fig:stab_distill_
     \label{fig:stab_distill}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/stab_distill_norrell.pdf}
     \caption{\textbf{Norrell state distillation thresholds in stabilizer fragments.} Lorenz curve thresholds for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon' = 0.05$.
