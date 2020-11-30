@@ -701,7 +701,7 @@ In this case, the elbow expressions of the standard Lorenz curve in~\cref{eq:lcs
 \end{align}
 for $i=0,\dots,\frac{\NN}{2}$, where
 \begin{equation}
-	\Phi_+(\mmf; \nnf, p) \coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}.
+	\Phi_+(2\mmf; \nnf, p) \coloneqq \sum\limits_{\dummy=0}^{\mmf} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}.
 \end{equation}
 Conventionally, we set $(x_{-1}, L_{-1}) = (0,0)$.
 
@@ -715,12 +715,18 @@ Therefore, for the initial state $\noisysn$ we have
 \begin{equation}
 	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{\nn}{2\ii}},
 \end{equation}
-with $\ii=0,\dots,\nn,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\nn}{2\ii}$ and $\kk = 1$.
+with $\ii=0,\dots,\frac{\nn}{2},\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\nn}{2\ii}$ and $\kk = 1$.
 For the target state $\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}$,
 \begin{equation}
-	p_{\ii\jj\kk} = \frac{\kk + (\jj-1)9^{\mm}}{9^{\mm} 8^{2\ii}\binom{\tt}{2\ii}}
+	p_{\ii'\jj'\kk'} = \frac{\kk' + (\jj'-1)9^{\mm}}{9^{\mm} 8^{2\ii'}\binom{\tt}{2\ii'}}
 \end{equation}
-with $\ii=0,\dots,\tt,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\tt}{2\ii}$ and $\kk = 1,\dots,9^{\mm}$.
+with $\ii'=0,\dots,\frac{\tt}{2},\ \jj'(\ii') = 1,\dots,8^{2\ii'}\binom{\tt}{2\ii'}$ and $\kk' = 1,\dots,9^{\mm}$.
+
+Pointwise Lorenz curve comparison requires $x_{\ii\jj\kk} = x_{\ii'\jj'\kk'}$, so we need ot match up the indices appropriately in order to compare $L_{\ii\jj\kk}$ and $L_{\ii'\jj'\kk'}$.
+In~\cref{app:lc_compare}, we show that the requirement on the indices is finding a tuple $(\ii, \jj(\ii))$, such that for a given $\ii' = 0,\dots,\frac{\tt}{2}$,
+\begin{equation}
+	\jj + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\nn}{2\dummy} = \sum_{\dummy=0}^{\ii'} 8^{2\dummy}\binom{\tt}{2\dummy}.
+\end{equation}
 
 
 \null\newpage

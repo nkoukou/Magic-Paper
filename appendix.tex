@@ -473,9 +473,14 @@ Pointwise Lorenz curve comparison requires $x_{\II} = x_{\II'}$, so the question
 \emph{Given a triplet $(\ii',\jj',\kk')$, what is the tuple $(\ii,\jj)$ such that $\II(\ii,\jj) = \II'(\ii',\jj',\kk')$?}
 \end{center}
 
+According to~\cref{thm:elbows} which is proved in~\cref{app:lc_constraints}, for standard Lorenz curves, we need to match indices at the target state elbows, so the requirement on the indices is finding a tuple $(\ii, \jj)$, such that for a given $\ii' = 0,\dots,\tt$,
+\begin{equation}
+	\jj + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\nn, \epsilon) = \sum_{\dummy=0}^{\ii'} \mlt_{\dummy}(\tt, \epsilon').
+\end{equation}
+
 As a basic example, consider the process 
 \begin{equation}
-\rho_{\rm{S}}(\epsilon)\too{4} \xrightarrow{\mathcal{O}_{\id/d}} \rho_{\rm{S}}(\epsilon')\too{2} \otimes \left( \frac{1}{3}\id \right)\too{2}.
+\rho_{\rm{S}}(\epsilon)\too{4} \xrightarrow{\mathcal{O}_{\id/3}} \rho_{\rm{S}}(\epsilon')\too{2} \otimes \left( \frac{1}{3}\id \right)\too{2}.
 \end{equation}
 We want to check which Lorenz curve is higher at the first elbows of the target state, i.e. we want to verify or reject the first inequality below:
 \begin{equation}
@@ -530,12 +535,12 @@ This theorem is of practical importance in calculating the necessary distillatio
 
 In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
 \begin{align}
-L\left(x_{i'(0, \mlt'_{0}, 9^{\mm})}\right) &\geq L\left(x_{i'(0, m'_{0}, 9^{\mm})}\right), \nonumber\\
-L\left(x_{i'(1, \mlt'_{1}, 9^{\mm})}\right) &\geq L\left(x_{i'(1, m'_{1}, 9^{\mm})}\right), \nonumber\\
+L\left(x_{\II'(0, \mlt'_{0}, 9^{\mm})}\right) &\geq L\left(x_{\II'(0, m'_{0}, 9^{\mm})}\right), \nonumber\\
+L\left(x_{\II'(1, \mlt'_{1}, 9^{\mm})}\right) &\geq L\left(x_{\II'(1, m'_{1}, 9^{\mm})}\right), \nonumber\\
 &\vdotswithin{=} \nonumber\\
-L\left(x_{i'(\tt, \mlt'_{r}, 9^{\mm})}\right) &\geq L\left(x_{i'(\tt, m'_{\tt}, 9^{\mm})}\right), \nonumber
+L\left(x_{\II'(\tt, \mlt'_{r}, 9^{\mm})}\right) &\geq L\left(x_{\II'(\tt, m'_{\tt}, 9^{\mm})}\right), \nonumber
 \end{align}
-where $x_{i'(0, \mlt'_{0}, 9^{\mm'})}, x_{i'(1, \mlt'_{1}, 9^{\mm'})}, \dots, x_{i'(\tt, \mlt'_{\tt}, 9^{\mm'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+where $x_{\II'(0, \mlt'_{0}, 9^{\mm'})}, x_{\II'(1, \mlt'_{1}, 9^{\mm'})}, \dots, x_{\II'(\tt, \mlt'_{\tt}, 9^{\mm'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
 
 
