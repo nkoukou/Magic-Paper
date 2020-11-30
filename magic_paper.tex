@@ -488,6 +488,7 @@ We can refine the independent constraints stemming from this inequality and cons
 	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{\ii}) \geq \lc{\tau}{\sigma}(x_{\ii})$ for all $\ii =1,\dots,\tt$.
 \end{theorem}
 A proof is provided in~\cref{app:lc_constraints}.
+Any of the $t$ inequalities in the theorem provides a valid contraint leading to some upper distillation bound, and the more one cosiders, the stricter the bound is.
 
 \nick{We can skip mana and just discuss sum-negativity}
 
@@ -682,63 +683,45 @@ In this section we study the MSD process,
 \end{equation}
 where we have uniformised the number of qutrits on both sides of the process.
 
-In~\cref{app:lcsu_technical}, we define explicit expressions for the Lorenz curve of the $n$-copy, $\epsilon$-noisy Strange state in the unital fragment, 
+In~\cref{app:lcsu_technical}, we define explicit expressions for the Lorenz curve of the $\NN$-copy, $\epsilon$-noisy Strange state in the unital fragment, 
 \begin{equation}\label{eq:lcsu}
 	\lc{\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}}{\frac{1}{d}\id}(x),\ x\in[0,1].
 \end{equation}
 We call Lorenz curves of this type \emph{standard Lorenz curves}. \nick{expand (non-uniformity)}
 
-It is clear in~\cref{fig:lcs} that Lorenz curves are fully defined by the coordinates of their elbows.
-For standard Lorenz curves, elbow coordinates are defined in terms of the two functions,
-\begin{align}	
-	\Phi_+(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}, \nonumber\\ 
-	&\text{for even integers } \mmf\in[0,\nnf], \label{eq:fp} \\
-	\Phi_-(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=1}^{(\mmf-1)/2} \binom{\nnf}{2\dummy+1} p^{2\dummy+1} (1-p)^{\nnf-(2\dummy+1)}, \nonumber\\ 
-	&\text{for odd integers } \mmf\in[1,\nnf]. \label{eq:fn}
+Lorenz curves are fully defined by the coordinates of their elbows which is clear in~\cref{fig:lcs} for the Strange state in particular.
+The exact expressions for the elbow coordinates of a standard Lorenz curve can take $2^3 = 8$ different forms, depending on whether the noise level $\epsilon$ is low/high, the parity of the number of copies $\NN$ is even/odd and the location of the elbow relative to the maximum is on the left hand side (LHS -- includes maximum) / right hand side (RHS).
+They are given in full detail in~\cref{app:lcsu_coord_elb}.
+
+Here we focus on the part of the process described by the LHS of the Lorenz curves, in low noise regimes ($0 \leq \epsilon < 3/7$) with even numbers of initial and target copies.
+In this case, the elbow expressions of the standard Lorenz curve in~\cref{eq:lcsu} are given by
+\begin{align}
+	x_i &= \Phi_+\left(2\ii;\NN,\frac{8}{9}\right), \\
+	L_i &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right),
 \end{align}
-Note that index $\mmf$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
-The exact expresions depend on the noise level $\epsilon$, the parity of the number of copies $\NN$ and whether the location of the elbow relative to the curve maximum (LHS vs RHS).
-All cases are presented in~\cref{tab:lcsu_coord_elb}.
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{\ii}$} & \multicolumn{1}{|c}{$L_{\ii}$} \\[0.5ex]\hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
-  \end{tabular}
-  \caption{Standard Lorenz curves elbow coordinates.
-  Multiplication $2\ii$ is considered modulo $(\NN+1)$.
-  Note that the Lorenz curve boundary points are $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{\NN}, L_{\NN}) = (1,1)$.
-  }
-  \label{tab:lcsu_coord_elb}
-\end{table}
-
-The coordinates of any point on the standard Lorenz curve is given by
-
+for $i=0,\dots,\frac{\NN}{2}$, where
 \begin{equation}
-    \II(\ii,\jj,\kk) \coloneqq \kk + \left[ (\jj-1) + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\tt}{2\dummy} \right]9^{\mm},
+	\Phi_+(\mmf; \nnf, p) \coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}.
 \end{equation}
+Conventionally, we set $(x_{-1}, L_{-1}) = (0,0)$.
 
+The coordinates of any point on the Lorenz curve LHS can be expressed as convex sums of the neighbouring elbows,
 \begin{align}
-    \II(\ii,\jj,\kk=1) &= \jj + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\nn}{2\dummy}, \\
-    \II'(\ii',\jj',\kk') &= \kk' + \left[ (\jj'-1) + \sum_{\dummy=0}^{\ii'-1} 8^{2\dummy}\binom{\tt}{2\dummy} \right]9^{\mm}.
+    x_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk}\right) x_{\ii-1} + p_{\ii\jj\kk} x_{\ii} \label{eq:lcsu_xcoord}\\
+    L_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk} \right) L_{\ii-1} + p_{\ii\jj\kk} L_{\ii}, \label{eq:lcsu_lcoord}
 \end{align}
- 
-In particular, it can used in the discussion of standard Lorenz curves to set the necessary constraints,
-\begin{align}
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon')\too{k}}{\frac{1}{d}\id}\left(x_{i'(0, m'_{0}, 9^{s})}\right), \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon')\too{k}}{\frac{1}{d}\id}\left(x_{i'(1, m'_{1}, 9^{s})}\right), \nonumber\\
-&\vdotswithin{=} \nonumber\\
-\lc{\noisysn}{\frac{1}{d}\id}\left(x_{i'(r, m'_{r}, 9^{s})}\right) &\geq \lc{\rho_{\rm{S}}(\epsilon')\too{k}}{\frac{1}{d}\id}\left(x_{i'(r, m'_{r}, 9^{s})}\right), \nonumber
-\end{align}
-where $x_{i'(0, m'_{0}, 9^{s'})}, x_{i'(1, m'_{1}, 9^{s'})}, \dots, x_{i'(r, m'_{r}, 9^{s'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{r}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+where we use a three-index parametrisation for the coordinates, with $\ii$ determined by the count of the elbow that follows, $\jj$ by the number of Strange state copies and $\kk$ by the number of tensored maximally mixed state copies.
+Therefore, for the initial state $\noisysn$ we have
+\begin{equation}
+	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{\nn}{2\ii}},
+\end{equation}
+with $\ii=0,\dots,\nn,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\nn}{2\ii}$ and $\kk = 1$.
+For the target state $\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}$,
+\begin{equation}
+	p_{\ii\jj\kk} = \frac{\kk + (\jj-1)9^{\mm}}{9^{\mm} 8^{2\ii}\binom{\tt}{2\ii}}
+\end{equation}
+with $\ii=0,\dots,\tt,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\tt}{2\ii}$ and $\kk = 1,\dots,9^{\mm}$.
+
 
 \null\newpage
 \null\newpage

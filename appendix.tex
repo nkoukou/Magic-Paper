@@ -214,7 +214,7 @@ The experiment is described by binomial statistics and we write down the sum ove
 	\Phi_+(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}, \nonumber\\ 
 	&\text{for even integers } \mmf\in[0,\nnf], \label{eq:fp_app} \\
 	\Phi_-(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=1}^{(\mmf-1)/2} \binom{\nnf}{2\dummy+1} p^{2\dummy+1} (1-p)^{\nnf-(2\dummy+1)}, \nonumber\\ 
-	&\text{for odd integers } \mmf\in[1,\nnf]. \label{eq:fn_app}
+	&\text{for odd integers } \mmf\in[0,\nnf]. \label{eq:fn_app}
 \end{align}
 Note that index $\mmf$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
 In~\cref{app:lcsu_coord_elb}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of standard Lorenz curves.
@@ -228,14 +228,14 @@ They are symmetric in the sense that $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}
 
 A useful result is the entropic bound on a combination~\cite{cit:ash}.
 \begin{lemma}\label{lem:comb_bounds}
-	For all $\mmf\in [1,\nnf-1]$,
+	For all $\dummy\in [1,\nnf-1]$,
 	\begin{align}
-		&\left[ 8\mmf\left(1-\frac{\mmf}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\mmf}{\nnf}\right)} \leq \binom{\nnf}{\mmf} \leq \\
-		&\left[ 2\pi \mmf\left(1-\frac{\mmf}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\mmf}{\nnf}\right)}.
+		&\left[ 8\dummy\left(1-\frac{\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\dummy}{\nnf}\right)} \leq \binom{\nnf}{\dummy} \leq \\
+		&\left[ 2\pi \dummy\left(1-\frac{\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\dummy}{\nnf}\right)}.
 	\end{align}
 \end{lemma}
 \begin{proof}
-	For $\mmf = 1,2, \nnf-1, \nnf-2$ check by direct calculation.	
+	For $\dummy = 1,2, \nnf-1, \nnf-2$ check by direct calculation.	
 	For all other cases, use Stirling's approximation. 
 	\nick{CITE}
 \end{proof}
@@ -528,6 +528,14 @@ and then compare them.
 \end{proof}
 This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization.
 
+In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
+\begin{align}
+L\left(x_{i'(0, \mlt'_{0}, 9^{\mm})}\right) &\geq L\left(x_{i'(0, m'_{0}, 9^{\mm})}\right), \nonumber\\
+L\left(x_{i'(1, \mlt'_{1}, 9^{\mm})}\right) &\geq L\left(x_{i'(1, m'_{1}, 9^{\mm})}\right), \nonumber\\
+&\vdotswithin{=} \nonumber\\
+L\left(x_{i'(\tt, \mlt'_{r}, 9^{\mm})}\right) &\geq L\left(x_{i'(\tt, m'_{\tt}, 9^{\mm})}\right), \nonumber
+\end{align}
+where $x_{i'(0, \mlt'_{0}, 9^{\mm'})}, x_{i'(1, \mlt'_{1}, 9^{\mm'})}, \dots, x_{i'(\tt, \mlt'_{\tt}, 9^{\mm'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
 
 
