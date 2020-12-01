@@ -537,5 +537,64 @@ L\left(x_{i'(\tt, \mlt'_{r}, 9^{\mm})}\right) &\geq L\left(x_{i'(\tt, m'_{\tt}, 
 \end{align}
 where $x_{i'(0, \mlt'_{0}, 9^{\mm'})}, x_{i'(1, \mlt'_{1}, 9^{\mm'})}, \dots, x_{i'(\tt, \mlt'_{\tt}, 9^{\mm'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
+\section{Theory on bounding the core functions}
+The core function is $\Phi_+$ which is an even power cumulative function. We have good asymptotic bounds on the behaviour of the standard cumulative function $\Phi$, and the difference between these two functions is essentially given by the function
+\begin{equation}
+S(a,r,n) := \sum_{k=0}^r \binom{n}{k} (-a)^k.
+\end{equation}
+If we define the cumulative distribution function as
+\begin{equation} 
+\Phi(a,r,n) := \sum_{k=0}^r \binom{n}{k} a^k,
+\end{equation}
+then we have the simple relation
+\begin{equation}
+\Phi_+(a,r,n) = \frac{1}{2}( \Phi(a,r,n)  + S(a,r,n)).
+\end{equation}
+We would like some theory that estimates the value of this function for different parameter regimes. We can consider the function $f(x) = (1+x)^n$ and note that the function $S(a,r,n)$ is the $r$'th partial sum of this expansion at the point $x=-a$.
 
+The truncated Taylor series tells us (e.g. see Wolfram MathWorld) that
+\begin{equation}
+f(x) = f(x_0) + (x-x_0) f'(x_0) + \dots \frac{(x-x_0)^r}{r!}f^{(r)}(x_0) + R_r(x)
+\end{equation}
+with a remainder term
+\begin{align}
+R_r (x)&= \int_{x_0}^x dt f^{(r+1)}(t) \frac{(x-t)^r}{r!} \\
+&= \frac{(x-x_0)^{r+1}}{(r+1)!} f^{(r+1)}(x_*),
+\end{align}
+where in the second expression $x_* \in [x_0,x]$ is an implicit point that comes from the Mean Value Theorem.
 
+Applying this to the function $f(x) = (1+x)^n$ with $x_0=0$ gives
+\begin{equation}
+(1+x)^n = \sum_{k=0}^r \binom{n}{k} x^k + R_r.
+\end{equation}
+Evaluating at $x=-a$ then gives us
+\begin{equation}
+S(a,r,n) = (1-a)^n - R_r(-a),
+\end{equation}
+where the key remainder term is given by
+\begin{align}
+R_r(-a) &= \int_0^{-a} dt f^{(r+1)}(t) \frac{(-a-t)^r}{r!} \\
+&= \frac{(-a)^{r+1}}{(r+1)!} f^{(r+1)}(x_*).
+\end{align}
+We can also compute the derivative $f^{(r+1)}(x)$ explicitly, and get
+\begin{equation}
+f^{(r+1)}(x) = \frac{n!}{(n-r-1)!}(1+x)^{n-r-1}.
+\end{equation}
+Therefore, we have that
+\begin{align}
+R_r(-a) &= \frac{(-1)^r n!}{r!(n-r-1)!}\int_0^{-a} dt(1+t)^{n-r-1} (a+t)^r \\
+&= \frac{(-a)^{r+1}}{r!} \binom{n}{r+1}(1+x_*)^{n-r-1},
+\end{align}
+where in the latter expression $x_* \in [-a,0]$. Also note that the first integral expression can be estimated via either Cauchy-Schwarz or the Hoelder inequality. Therefore, we can either work with an explicit form with an unknown (but bounded) parameter $x_*$, or we can use the integral form and provide concrete estimates on it value.
+
+A very simple estimate, based on $x_*$ lying in the interval $[-a,0]$ gives
+\begin{equation}
+\frac{(-a)^{r+1}}{r!} \binom{n}{r+1} (1-a_*)^{n-r-1}\le R_r(-a) \le  \frac{(-a)^{r+1}}{r!} \binom{n}{r+1}.
+\end{equation}
+
+This in turn leads to the following bounds on $\Phi_+(a,r,n)$:
+\begin{align}
+\hspace{-2cm}2\Phi_+(a,r,n) &\le \Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} (1-a)^{n-r-1} \nonumber \\
+2\Phi_+(a,r,n) & \ge\Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} .
+\end{align}
+Details need checking to see if I dropped any constants/signs. Are these bounds good in practice? Asymptotically?

@@ -675,35 +675,44 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 
 \null\newpage
 
-\subsubsection*{Strange state distillation in the unital fragment}\label{sec:lcsu}
+\subsection{Strange state distillation in the unital fragment}\label{sec:lcsu}
 
-In this section we study the MSD process,
+We would now like to study the constraints coming soley from majorization in the unital fragment. We consider the problem of purifying $n$ copies of a noisy strange state $\rho(\epsilon)^{\otimes n}$ into a smaller number of $t$ copies of a less noisy strange state $\rho(\epsilon')^{\otimes t}$, with $\epsilon' \le \epsilon$. Since the state $\frac{1}{3} \I$ is  free state in this fragment the interconversion problem is unaffected if we tensor in copies of this maximally mixed state. This turns out to simply the Lorenz curve analysis, and so we focus on the process,
 \begin{equation}\label{eq:sudist}
-	\noisysn \xrightarrow{\E \in \O_{\id/3}} \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm},\ \nn = \tt + \mm,
+	\rho_S(\epsilon)^{\otimes 2n} \longrightarrow\sigma(\epsilon', n, t):=  \rho_S(\epsilon')^{\otimes 2t} \otimes \left( \frac{1}{3}\id \right)^{\otimes2n-2t}.
 \end{equation}
-where we have uniformised the number of qutrits on both sides of the process.
+Since the state on left-hand side of this of the form $\sigma(\epsilon, n, 0)$ it suffices to construct the Lorenz curve $L_\sigma(x)$ for the generic noisy strange state $\sigma(\epsilon, n ,t)$. For simplicity we assume that $\epsilon \le 3/7$, which is the threshold below which negativity is present in the state.
+
+The state $\sigma(\epsilon, n, t)$ has the following Wigner quasi-distribution takes on values $w_k$, with associated multiplicities $m_k$ where
+\begin{align}
+w_k &=  \\
+m_k &=
+\end{align}
+From this, it is readily seen that $L_\sigma(x)$ has elbows to the left-hand side of its peak located at points $x=x_i$ where
+\begin{equation}
+x_i = \Phi_+ (i, n , \frac{8}{9}),
+\end{equation}
+with $ i = 0,1, \dots , n$ and where $\Phi_+(i,n,p)$ is an even-power cumulant distribution function given by
+\begin{equation}
+\Phi_+( i, n,p) := \sum_{k=0}^{i} \binom{2n}{2k} p ^{2k} (1-p)^{2n-2k}.
+\end{equation}
+The value of the Lorenz curve at an elbow is given by
+\begin{equation}
+L_\sigma(x_i) \equiv L_i =  \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{2n} \Phi_+\left(i;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right),
+\end{equation}
+and we define $(x_{-1}, L_{-1}) = (0,0)$.
 
 In~\cref{app:lcsu_technical}, we define explicit expressions for the Lorenz curve of the $\NN$-copy, $\epsilon$-noisy Strange state in the unital fragment, 
 \begin{equation}\label{eq:lcsu}
-	\lc{\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}}{\frac{1}{d}\id}(x),\ x\in[0,1].
+	\lc{\noisys(\epsilon')\too {\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}}{\frac{1}{d}\id}(x),\ x\in[0,1].
 \end{equation}
-We call Lorenz curves of this type \emph{standard Lorenz curves}. \nick{expand (non-uniformity)}
+
 
 Lorenz curves are fully defined by the coordinates of their elbows which is clear in~\cref{fig:lcs} for the Strange state in particular.
 The exact expressions for the elbow coordinates of a standard Lorenz curve can take $2^3 = 8$ different forms, depending on whether the noise level $\epsilon$ is low/high, the parity of the number of copies $\NN$ is even/odd and the location of the elbow relative to the maximum is on the left hand side (LHS -- includes maximum) / right hand side (RHS).
 They are given in full detail in~\cref{app:lcsu_coord_elb}.
 
-Here we focus on the part of the process described by the LHS of the Lorenz curves, in low noise regimes ($0 \leq \epsilon < 3/7$) with even numbers of initial and target copies.
-In this case, the elbow expressions of the standard Lorenz curve in~\cref{eq:lcsu} are given by
-\begin{align}
-	x_i &= \Phi_+\left(2\ii;\NN,\frac{8}{9}\right), \\
-	L_i &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right),
-\end{align}
-for $i=0,\dots,\frac{\NN}{2}$, where
-\begin{equation}
-	\Phi_+(\mmf; \nnf, p) \coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}.
-\end{equation}
-Conventionally, we set $(x_{-1}, L_{-1}) = (0,0)$.
+
 
 The coordinates of any point on the Lorenz curve LHS can be expressed as convex sums of the neighbouring elbows,
 \begin{align}
