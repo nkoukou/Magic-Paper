@@ -344,8 +344,8 @@ In general, $\noisysN$ contains $\NN + 1$ distinct components, labelled $0,\dots
 We present the distinct Wigner components of $\noisysN$ along with their multiplicites in~\cref{tab:lcsu}.
 Note that LHS (RHS) refers to elbow coordinates $\ii$ on the left of and including (right of) the maximum, precisely
 \begin{align}
-&\text{LHS: } 0 \leq \ii \leq \frac{\lfloor \NN \rfloor}{2}; \\
-&\text{RHS: } \frac{\lfloor \NN \rfloor}{2}+1 \leq \ii \leq \NN.
+&\text{LHS: } 0 \leq \ii \leq \left\lfloor \frac{\NN}{2} \right\rfloor ; \\
+&\text{RHS: } \left\lfloor \frac{\NN}{2} \right\rfloor +1 \leq \ii \leq \NN.
 \end{align}
 \begin{table}[h]
   \def\arraystretch{1.5}
@@ -394,13 +394,13 @@ Expressions for all the elbow coordinates follow from summing up the Wigner comp
   \begin{tabular}{c|c|c|r|r}
     \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{\ii}$} & \multicolumn{1}{|c}{$L_{\ii}$} \\[0.5ex]\hline
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\NN/2} + \Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\NN/2} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
   \caption{Standard Lorenz curves elbow coordinates.
   The expresion depends on the noise level $\epsilon$, the parity of the number of copies $\NN$ and the location of the elbow relative to the maximum (LHS vs RHS).
@@ -430,27 +430,26 @@ For visualisation purposes, we plot the Lorenz curve of state $\noisys(0)\too{2}
 
 Consider the state 
 \begin{equation*}
-    \noisys(\epsilon)\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm},
-\end{equation*} %\noisys(\tt, \epsilon, \mm) \coloneqq 
-with $\tt + \mm = \NN$.
+\noisys(\tt, \epsilon, \nn-\tt) \coloneqq \noisys(\epsilon)\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(\nn-\tt)},
+\end{equation*}
 
 Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
 The new point coordinates are given by:
 \begin{align}
     &x_{\ii\jj\kk} = \left( 1-p_{\ii\jj\kk}\right) x_{\ii-1} + p_{\ii\jj\kk} x_{\ii} \label{eq:lcsu_xcoord}\\
     &L_{\ii\jj\kk} = \left( 1-p_{\ii\jj\kk} \right) L_{\ii-1} + p_{\ii\jj\kk} L_{\ii}, \label{eq:lcsu_lcoord}\\
-    &\text{where } p_{\ii\jj\kk} = \frac{\kk + (\jj-1)9^{\mm}}{9^{\mm} \mlt_{\ii}} \nonumber\\
-    &\text{for } \ii=0,\dots,\tt,\ \jj = 1,\dots,\mlt_{\ii}(\tt, \epsilon') \text{ and } \kk = 1,\dots,9^{\mm}. \nonumber
+    &\text{where } p_{\ii\jj\kk} = \frac{\kk + (\jj-1)9^{\nn-\tt}}{9^{\nn-\tt} \mlt_{\ii}} \nonumber\\
+    &\text{for } \ii=0,\dots,\tt,\ \jj = 1,\dots,\mlt_{\ii}(\tt, \epsilon') \text{ and } \kk = 1,\dots,9^{\nn-\tt}. \nonumber
 \end{align}
 
 We can unify the indices, by introducing a single index
 \begin{equation}
-    \II(\ii,\jj,\kk) \coloneqq \kk + \left[ (\jj-1) + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\mm},
+    \II(\ii,\jj,\kk) \coloneqq \kk + \left[ (\jj-1) + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\nn-\tt},
 \end{equation}
 so that $\II=1,2,\dots, 9^{\NN}$.
 The elbow coordinates correspond to 
 \begin{equation}
-	\II(\ii, \mlt_{\ii}(\tt, \epsilon'), 9^{\mm}) = \sum_{\dummy=0}^{\ii} \mlt_{\dummy}(\tt, \epsilon'),\ \ii= 0,\dots,\tt.
+	\II(\ii, \mlt_{\ii}(\tt, \epsilon'), 9^{\nn-\tt}) = \sum_{\dummy=0}^{\ii} \mlt_{\dummy}(\tt, \epsilon'),\ \ii= 0,\dots,\tt.
 \end{equation}
 The index function $\II$ is bijective, i.e.
 \begin{equation}
@@ -460,12 +459,12 @@ The index function $\II$ is bijective, i.e.
 \subsection{Strange state MSD in the unital fragment}\label{app:lc_compare}
 Consider the Strange state MSD process in the unital fragment,
 \begin{equation}\label{eq:su_conversion}
-    \noisysn \xrightarrow{\mathcal{O}_{\id/3}} \noisys(\tt, \epsilon', \mm),\ \nn = \tt + \mm.
+    \noisys(\tt, \epsilon, 0) \xrightarrow{\mathcal{O}_{\id/3}} \noisys(\tt, \epsilon', \nn-\tt).
 \end{equation}
 We denote initial state indices without a prime and target state indices with a prime,
 \begin{align}
     \II(\ii,\jj,\kk=1) &= \jj + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\nn, \epsilon), \\
-    \II'(\ii',\jj',\kk') &= \kk' + \left[ (\jj'-1) + \sum_{\dummy=0}^{\ii'-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\mm}.
+    \II'(\ii',\jj',\kk') &= \kk' + \left[ (\jj'-1) + \sum_{\dummy=0}^{\ii'-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\nn-\tt}.
 \end{align}
 
 Pointwise Lorenz curve comparison requires $x_{\II} = x_{\II'}$, so the question is: 
@@ -535,12 +534,91 @@ This theorem is of practical importance in calculating the necessary distillatio
 
 In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
 \begin{align}
-L\left(x_{\II'(0, \mlt'_{0}, 9^{\mm})}\right) &\geq L\left(x_{\II'(0, m'_{0}, 9^{\mm})}\right), \nonumber\\
-L\left(x_{\II'(1, \mlt'_{1}, 9^{\mm})}\right) &\geq L\left(x_{\II'(1, m'_{1}, 9^{\mm})}\right), \nonumber\\
+L\left(x_{\II'(0, \mlt'_{0}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(0, m'_{0}, 9^{\nn-\tt})}\right), \nonumber\\
+L\left(x_{\II'(1, \mlt'_{1}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(1, m'_{1}, 9^{\nn-\tt})}\right), \nonumber\\
 &\vdotswithin{=} \nonumber\\
-L\left(x_{\II'(\tt, \mlt'_{r}, 9^{\mm})}\right) &\geq L\left(x_{\II'(\tt, m'_{\tt}, 9^{\mm})}\right), \nonumber
+L\left(x_{\II'(\tt, \mlt'_{r}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(\tt, m'_{\tt}, 9^{\nn-\tt})}\right), \nonumber
 \end{align}
-where $x_{\II'(0, \mlt'_{0}, 9^{\mm'})}, x_{\II'(1, \mlt'_{1}, 9^{\mm'})}, \dots, x_{\II'(\tt, \mlt'_{\tt}, 9^{\mm'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+where $x_{\II'(0, \mlt'_{0}, 9^{\nn - \tt})}, x_{\II'(1, \mlt'_{1}, 9^{\nn - \tt})}, \dots, x_{\II'(\tt, \mlt'_{\tt}, 9^{\nn - \tt})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
+\section{Theory on bounding the core functions}
+The core functions are $\Phi_{\pm}$ which is an even power cumulative function. 
+We can rewrite it as
+\begin{equation}
+\Phi_{\pm}(m; n, a) = \frac{1}{2}( \Phi(m; n, a) \pm (1+a)^{-n} S(m; n, a) ),
+\end{equation}
+where we have substituted $a = p/(1-p)$. 
+$\Phi$ is the standard cumulative function 
+\begin{equation}
+	\Phi(m; n, a) = (1+a)^{-n} \sum_{k=0}^m \binom{n}{k} a^k,
+\end{equation}
+and the remainder term is
+\begin{equation}
+S(m; n, a) \coloneqq \sum_{k=0}^m \binom{n}{k} (-a)^k.
+\end{equation}
+We have good asymptotic bounds on the behaviour of $\Phi$~\cite{cit:ash},
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+\end{lemma}
 
+We would like some theory that estimates the value of $S(m; n, a)$ for different parameter regimes. 
+We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$.
 
+The truncated Maclaurin series of a general function $f(x)$ is
+\begin{equation}
+	f(x) = f(0) + x f'(0) + \dots \frac{x^m}{m!}f^{(m)}(0) + R_m(x)
+\end{equation}
+with a remainder term
+\begin{align}
+	R_m (x)&= \int_{0}^x dt f^{(m+1)}(t) \frac{(x-t)^r}{r!} \\
+	&= \frac{x^{m+1}}{(m+1)!} f^{(m+1)}(x_*),
+\end{align}
+where in the second expression, $x_*$ is an implicit point that lies between $0$ and $x$ that comes from the Mean Value Theorem.
+
+Applying this to the function $f(x) = (1+x)^n$ gives
+\begin{equation}
+	(1+x)^n = \sum_{k=0}^m \binom{n}{k} x^k + R_m.
+\end{equation}
+Evaluating at $x=-a$ gives
+\begin{equation}
+	S(m; n, a) = (1-a)^n - R_m(-a),
+\end{equation}
+where the key remainder term is given by
+\begin{align}
+	R_m(-a) &= \int_0^{-a} dt f^{(m+1)}(t) \frac{(-a-t)^m}{m!} \\
+&= \frac{(-a)^{m+1}}{(m+1)!} f^{(m+1)}(x_*).
+\end{align}
+We can also compute the derivative $f^{(m+1)}(x)$ explicitly,
+\begin{equation}
+	f^{(m+1)}(x) = (m+1)!\binom{n}{m+1}(1+x)^{n-m-1}.
+\end{equation}
+Therefore, we have that
+\begin{align}
+	R_m(-a) &= (-1)^{m+1}(m+1)\binom{n}{m+1}\int_{-a}^0 dt (1+t)^{n-m-1}(a+t)^m \\
+&= \binom{n}{m+1}(-a)^{m+1}(1+x_*)^{n-m-1},
+\end{align}
+where in the latter expression $x_* \in [-a,0]$. 
+Note that the first integral expression can be estimated via the Cauchy-Schwarz or the Hoelder inequality. 
+Therefore, we can either work with an explicit form with an unknown (but bounded) parameter $x_*$, or we can use the integral form and provide concrete estimates on it value.
+
+A very simple estimate, based on $x_*$ lying in the interval $[-a,0]$ gives
+\begin{equation}
+\binom{n}{m+1}(-a)^{m+1}(1-a)^{n-m-1} \leq R_m(-a) \le  \binom{n}{m+1}(-a)^{m+1}.
+\end{equation}
+
+This in turn leads to the following bounds on $\Phi_+(a,r,n)$:
+\begin{align}
+\hspace{-2cm}2\Phi_+(a,r,n) &\le \Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} (1-a)^{n-r-1} \nonumber \\
+2\Phi_+(a,r,n) & \ge\Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} .
+\end{align}
+Details need checking to see if I dropped any constants/signs. Are these bounds good in practice? Asymptotically?

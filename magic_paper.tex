@@ -675,58 +675,56 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 
 \null\newpage
 
-\subsubsection*{Strange state distillation in the unital fragment}\label{sec:lcsu}
+\subsection{Strange state distillation in the unital fragment}\label{sec:lcsu}
 
-In this section we study the MSD process,
+We would now like to study the constraints coming solely from majorization in the unital fragment. 
+We consider the problem of purifying $\NN$ copies of a noisy strange state $\noisysN$ into a smaller number of $\tt$ copies of a less noisy strange state $\rho(\epsilon')\too{\tt}$, with $\epsilon' \le \epsilon$ and $\tt \leq \nn$. 
+Since the state $\frac{1}{3} \I$ is free in this fragment, the interconversion problem is unaffected if we tensor in copies of it. 
+This turns out to simplify the Lorenz curve analysis, and so we focus on the process,
 \begin{equation}\label{eq:sudist}
-	\noisysn \xrightarrow{\E \in \O_{\id/3}} \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm},\ \nn = \tt + \mm,
+	\noisys\too{2\nn} \longrightarrow \noisys(\tt, \epsilon', \nn) \coloneqq  \noisys(\epsilon')\too{2\tt} \otimes \left( \frac{1}{3}\id \right)\too{2(n-t)},
 \end{equation}
-where we have uniformised the number of qutrits on both sides of the process.
+where all copies are even.
+Since the initial state can be written in the form $\noisys(2\nn, \epsilon, 0)$, it suffices to construct the Lorenz curve $\lc{\rho}{\id/3}(x)$ for the generic noisy strange state $\noisys(\nn, \epsilon ,\tt)$.
+The exact expressions for the coordinates of this Lorenz curve can take $2^3 = 8$ different forms, depending on whether the noise level $\epsilon$ is lower/higher than $3/7$, the parity of the number of copies $\NN$ is even/odd and the location relative to the curve peak is on the left hand side (LHS -- including the maximum) / right hand side (RHS).
+They are given in full detail in~\cref{app:lcsu_technical}.
 
-In~\cref{app:lcsu_technical}, we define explicit expressions for the Lorenz curve of the $\NN$-copy, $\epsilon$-noisy Strange state in the unital fragment, 
-\begin{equation}\label{eq:lcsu}
-	\lc{\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}}{\frac{1}{d}\id}(x),\ x\in[0,1].
-\end{equation}
-We call Lorenz curves of this type \emph{standard Lorenz curves}. \nick{expand (non-uniformity)}
-
-Lorenz curves are fully defined by the coordinates of their elbows which is clear in~\cref{fig:lcs} for the Strange state in particular.
-The exact expressions for the elbow coordinates of a standard Lorenz curve can take $2^3 = 8$ different forms, depending on whether the noise level $\epsilon$ is low/high, the parity of the number of copies $\NN$ is even/odd and the location of the elbow relative to the maximum is on the left hand side (LHS -- includes maximum) / right hand side (RHS).
-They are given in full detail in~\cref{app:lcsu_coord_elb}.
-
-Here we focus on the part of the process described by the LHS of the Lorenz curves, in low noise regimes ($0 \leq \epsilon < 3/7$) with even numbers of initial and target copies.
-In this case, the elbow expressions of the standard Lorenz curve in~\cref{eq:lcsu} are given by
+Here we focus on the case of LHS points on Lorenz curves of even copies and noise levels $\epsilon \leq 3/7$.
+The state $\rho(2\nn, \epsilon ,2\tt)$ has a Wigner distribution that takes on values $w_\ii$, with associated multiplicities $\mlt_\ii$, where
 \begin{align}
-	x_i &= \Phi_+\left(2\ii;\NN,\frac{8}{9}\right), \\
-	L_i &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right),
+w_\ii &= \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2(\nn-\ii)} \\
+m_\ii &= 8^{2\ii}\binom{2\nn}{2\ii}
 \end{align}
-for $i=0,\dots,\frac{\NN}{2}$, where
+From this, it is readily seen that $L_\sigma(x)$ has elbows on the LHS of its peak located at points $x=x_\ii$, where
 \begin{equation}
-	\Phi_+(2\mmf; \nnf, p) \coloneqq \sum\limits_{\dummy=0}^{\mmf} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}.
+x_\ii = \Phi_+ (\ii, \nn , \frac{8}{9}),
 \end{equation}
-Conventionally, we set $(x_{-1}, L_{-1}) = (0,0)$.
+with $\ii = 0,1, \dots , n$ and where $\Phi_+(i,n,p)$ is an even-power cumulant distribution function given by
+\begin{equation}
+\Phi_+(\ii, \nn, p) \coloneqq \sum_{\dummy=0}^{\ii} \binom{2\nn}{2\dummy} p ^{2\ii} (1-p)^{2(\nn-\ii)}.
+\end{equation}
+The value of the Lorenz curve at an elbow is given by
+\begin{equation}
+\lc{\rho}{\id/3}(x_{\ii}) \equiv L_{\ii} =  \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{2\nn} \Phi_+\left(i;\nn,\frac{12-4\epsilon}{15-8\epsilon}\right),
+\end{equation}
+and we define $(x_{-1}, L_{-1}) = (0,0)$.
 
 The coordinates of any point on the Lorenz curve LHS can be expressed as convex sums of the neighbouring elbows,
 \begin{align}
     x_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk}\right) x_{\ii-1} + p_{\ii\jj\kk} x_{\ii} \label{eq:lcsu_xcoord}\\
     L_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk} \right) L_{\ii-1} + p_{\ii\jj\kk} L_{\ii}, \label{eq:lcsu_lcoord}
 \end{align}
-where we use a three-index parametrisation for the coordinates, with $\ii$ determined by the count of the elbow that follows, $\jj$ by the number of Strange state copies and $\kk$ by the number of tensored maximally mixed state copies.
-Therefore, for the initial state $\noisysn$ we have
+where we use a three-index parametrisation for the coordinates, with $\ii$ the index of the elbow that follows, $\jj = 1,\dots,\mlt_\ii$ and $\kk=1,\dots,9^{2(\nn-\tt)}$.
+Therefore, for the initial state $\noisys\too{2\nn}$ we have
 \begin{equation}
-	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{\nn}{2\ii}},
+	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{2\nn}{2\ii}},
 \end{equation}
-with $\ii=0,\dots,\frac{\nn}{2},\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{\nn}{2\ii}$ and $\kk = 1$.
-For the target state $\noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{\mm}$,
+with $\ii=0,\dots,\nn,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{2\nn}{2\ii}$ and $\kk = 1$.
+For the target state $\noisys(\epsilon')\too{2\tt} \otimes \left( \frac{1}{3}\id \right)\too{2(\nn-\tt)}$,
 \begin{equation}
-	p_{\ii'\jj'\kk'} = \frac{\kk' + (\jj'-1)9^{\mm}}{9^{\mm} 8^{2\ii'}\binom{\tt}{2\ii'}}
+	p_{\ii'\jj'\kk'} = \frac{\kk' + (\jj'-1)9^{2(\nn-\tt)}}{9^{2(\nn-\tt)} 8^{2\ii'}\binom{2\tt}{2\ii'}}
 \end{equation}
-with $\ii'=0,\dots,\frac{\tt}{2},\ \jj'(\ii') = 1,\dots,8^{2\ii'}\binom{\tt}{2\ii'}$ and $\kk' = 1,\dots,9^{\mm}$.
-
-Pointwise Lorenz curve comparison requires $x_{\ii\jj\kk} = x_{\ii'\jj'\kk'}$, so we need ot match up the indices appropriately in order to compare $L_{\ii\jj\kk}$ and $L_{\ii'\jj'\kk'}$.
-In~\cref{app:lc_compare}, we show that the requirement on the indices is finding a tuple $(\ii, \jj(\ii))$, such that for a given $\ii' = 0,\dots,\frac{\tt}{2}$,
-\begin{equation}
-	\jj + \sum_{\dummy=0}^{\ii-1} 8^{2\dummy}\binom{\nn}{2\dummy} = \sum_{\dummy=0}^{\ii'} 8^{2\dummy}\binom{\tt}{2\dummy}.
-\end{equation}
+with $\ii'=0,\dots,\tt,\ \jj'(\ii') = 1,\dots,8^{2\ii'}\binom{\tt}{2\ii'}$ and $\kk' = 1,\dots,9^{2(\nn-\tt)}$.
 
 
 \null\newpage
