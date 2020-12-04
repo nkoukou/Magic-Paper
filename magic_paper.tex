@@ -743,9 +743,12 @@ The initial state Lorenz curve coordinate at this location is
 	L_\star = L_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{\nn} \Phi_+\left(0;\nn,\frac{12-4\epsilon}{15-8\epsilon}\right) = \left(\frac{3-4\epsilon}{9}\right)^\nn
 \end{equation}
 
-The first elbow of the target state is located at $x'_0 = \frac{1}{9^{\tt}} < x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$, we can always interpolate between the origin and the first target state elbow, so that
+The first elbow of the target state is located at $x'_0 = \frac{1}{9^{\tt}} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can always interpolate between the origin and the first target state elbow, 
 \begin{equation}
-	L'_\star = \frac{x_\star}{x'_0}L_0 = \frac{1}{9^{\nn-\tt}}\Phi_+\left(0;\tt,\frac{12-4\epsilon}{15-8\epsilon}\right) = \frac{(3-4\epsilon)^{\tt}}{9^{\nn}}.
+	\begin{split}
+	L'_\star &= \frac{x_\star}{x'_0}L'_0 = \frac{1}{9^{\nn-\tt}}\left( \frac{5}{3} - \frac{8}{9}\epsilon'\ \right)^{\tt}\Phi_+\left(0;\tt,\frac{12-4\epsilon'}{15-8\epsilon'}\right) \\
+	&= \frac{(3-4\epsilon')^{\tt}}{9^{\nn}}.
+	\end{split}
 \end{equation}
 The process in~\cref{eq:sudist} is therefore possible if $L_\star \geq L'_\star$ or equivalently,
 \begin{align}
