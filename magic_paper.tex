@@ -760,18 +760,18 @@ The process in~\cref{eq:sudist} is therefore possible only if $L_\star \geq L'_\
 As an example, the process with $(\nn, \tt) = (12, 4)$ and $\epsilon' = 0.05$ yields $\epsilon \leq 0.398$.
 Numerical comparison of the curves with varying $\epsilon$ suggests that we require $\epsilon \leq 0.373$ for the process to be possible.
 
-Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain a \nick{lower} bound on the unital fragment distillation rate $R=n/n'$ given by
+Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain a upper bound on the unital fragment distillation rate $R=n'/n$ given by
 \begin{equation}
-R \geq \frac{\ln (3-4 \epsilon)}{\ln 3},
+R \leq \frac{\ln 3}{\ln (3-4 \epsilon)},
 \end{equation}
 which holds for all finite $n$. 
 In comparison, the bound from mana gives 
 \begin{equation}
-	R_{\rm{mana}} \geq \frac{\ln \left(\frac{5}{3} - \frac{8}{9}\epsilon \right)}{\ln \frac{5}{3}},
+	R_{\rm{mana}} \leq \frac{\ln \frac{5}{3}}{\ln \left(\frac{5}{3} - \frac{8}{9}\epsilon \right)},
 \end{equation}
-a threshold which is lower/looser than the one provided by majorization for all $\epsilon > 0$.
+a threshold which is looser than the one provided by majorization for all $\epsilon > 0$. For example, for $\epsilon = 0.4$ we obtain $R\le 3.27 $ while the mana bound gives $R_{\rm{mana}} \le 1.89$. \ddd{[Am I making some mistake here?? Mana does better according to these numbers? Does it only do better for a region of $\epsilon$ values? Perhaps plot the functions together.]}
 
-\ddd{[This is good, and the bound coming from the first elbow seems very easy to obtain. Going forward:
+\ddd{[Going forward:
 \begin{enumerate}
 \item Does the ``last elbow'' give the same bound? Is it as simple?
 \item Numerically is this about as good as it gets from majorization?
@@ -785,12 +785,12 @@ Consider a system driven by Hamiltonian $H$ and a circuit consisting of thermal 
 The computational basis now coincides with the Hamiltonian eigenbasis.
 We denote the thermal state at temperature $\beta^{-1}$ by $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.\nick{expand}
 
-Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}.
+Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}. \ddd{[Completely vital. What Hamiltonian are you choosing? Note you can choose it to make life easy for yourself. E.g. $H=Z$ for example.]}
 The Wigner distribution of any thermal state $\gamma_\beta$ always consists of strictly positive components,
 \begin{equation}
 	\W[\bmx]{\gamma_\beta} = \frac{e^{-\beta \epsilon_{x_0}}}{d\Z_\beta}\ \text{for all}\ \bmx \in \pd,
 \end{equation}
-so pre-order $\prec_{\gamma_\beta}$ is well defined.
+so pre-order $\prec_{\gamma_\beta}$ is well defined. \ddd{[Not clear where this equation comes from.]}
 
 For a qutrit, let the energy spectrum be $E_0 \geq E_1 \geq E_2$. 
 Then, we can explicitly write the thermal Wigner distribution as
@@ -811,7 +811,7 @@ However, higher copies are not sorted, for example
 	 &\overbrace{\overbrace{e^{-\beta (E_2 + E_0)}}^3, \overbrace{e^{-\beta (E_2 + E_1)}}^3, \overbrace{e^{-\beta 2E_2}}^3}^3 \Bigg).
 	\end{split}
 \end{equation}
-For the Strange state we have
+\ddd{[Definitely impressed by this Latexing...but perhaps just give the multiplicities and spectrum values. I.e. ``(blah) with multiplicity (blah) and ...'']} For the Strange state we have
 \begin{equation}
 	\begin{split}
 	\W{\noisys(\epsilon)\too{2}} = \Bigg( &\overbrace{\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^2}^1, \overbrace{ \left( -\frac{1}{3} + \frac{4}{9}\epsilon \right) \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)}^{8}, \\
