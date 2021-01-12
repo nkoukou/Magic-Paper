@@ -801,6 +801,28 @@ The Wigner distribution of any thermal state $\gamma_\beta$ is calculated direct
 \end{equation}
 and always consists of strictly positive components, so pre-order $\prec_{\gamma_\beta}$ is well defined.
 
+Take the simplest scenario, where Hamiltonian $H$ has spectrum $(1,0,0)$.
+Then, $\Z_\beta = 2 + e^{-\beta}$ and the 1-copy Wigner distributions are depicted in~\cref{tab:thermal_w}.
+\begin{table}[h]
+  \def\arraystretch{1.5}
+  \centering
+  \begin{tabular}{c|c|c|c}
+    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma_\beta}(\bmx)$ & $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$ \\
+    \hline
+    $(0,0)$ & $-\frac{1}{3}$ & $\frac{1}{3(1+2e^\beta)}$ & $-\frac{1}{1+2e^\beta}$ \\
+    \hline
+    \makecell{$(0,1)$ \\ $(0,2)$} & $\frac{1}{6}$ & $\frac{1}{3(1+2e^\beta)}$ & $\frac{1}{2(1+2e^\beta)}$ \\
+    \hline
+    \makecell{$(1,0)$ \\ $\vdots$ \\ $(2,2)$} & $\frac{1}{6}$ & $\frac{1}{3(2+e^{-\beta})}$ & $\frac{1}{2(2+e^{-\beta})}$
+  \end{tabular}
+  \caption{Wigner components $W_{\gamma_\beta}(\bmx)$, $W_{\noisys}(\bmx)$ and their ratio $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$.
+  The order of the ratio depends on temperature $\beta$ with a threshold value of $\beta_{\rm{thr}} \approx 0.48$.}
+  \label{tab:thermal_w}
+\end{table}
+To construct the Lorenz curves, we need to sort the ratio $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$, but sorting depends on temperature $\beta$. 
+
+\newpage
+
 For a qutrit, let the energy spectrum be $E_0 \geq E_1 \geq E_2$. 
 Then, we can explicitly write the thermal Wigner distribution as
 \begin{equation}
