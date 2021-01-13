@@ -746,7 +746,7 @@ The initial state Lorenz curve coordinate at this location is
 \end{equation}
 
 The first elbow of the target state is located at $x'_0 = \frac{1}{9^{\tt}} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the first target state elbow, 
-\begin{equation}
+\begin{equation}\label{eq:constraint_deriv}
 	\begin{split}
 	L'_\star &= \frac{x_\star}{x'_0}L'_0 = \frac{1}{9^{\nn-\tt}}\left( \frac{5}{3} - \frac{8}{9}\epsilon'\ \right)^{\tt}\Phi_+\left(0;\tt,\frac{12-4\epsilon'}{15-8\epsilon'}\right) \\
 	&= \frac{(3-4\epsilon')^{\tt}}{9^{\nn}}.
@@ -795,20 +795,27 @@ The computational basis now coincides with the Hamiltonian eigenbasis.
 We denote the thermal state at temperature $\beta^{-1}$ by $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.
 Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}. 
 
-Consider a general qutrit Hamiltonian $H$ with spectrum $(E_0, E_1, E_2)$.
+Consider a general qutrit Hamiltonian 
+\begin{equation}
+	H = E_0 \ketbra{0} + E_1 \ketbra{1} + E_2 \ketbra{2},
+\end{equation}
+where the eigenbasis coincides with the computation basis of the Pauli Z operator.
 The Wigner distribution of any qutrit thermal state $\gamma_\beta$ is calculated directly by the definition in~\cref{eq:wstate},
 \begin{equation}
 	\W[\bmx]{\gamma_\beta} = \frac{e^{-\beta E_{x_0}}}{d\Z_\beta}\ \text{for all}\ \bmx \in \pd,
 \end{equation}
 and always consists of strictly positive components, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
 
-Consider the simple scenario, where $H$ has the spectrum $(1,0,0)$.
+Consider the simple scenario, where $H$ has the spectrum 
+\begin{equation}
+	(E_0, E_1, E_2) = (1,0,0).
+\end{equation}
 Then, $\Z_\beta = 2 + e^{-\beta}$ and the 1-copy Wigner distributions are depicted in~\cref{tab:thermal_w}.
 \begin{table}[h]
   \def\arraystretch{2}
   \centering
   \begin{tabular}{c|c|c|c}
-    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma_\beta}(\bmx)$ & $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$ \\
+    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma_\beta}(\bmx)$ & $W_{\noisys(\epsilon)}(\bmx)/W_{\gamma_\beta}(\bmx)$ \\
     \hline
     \makecell{$(0,0)$ \\ \vdots \\ $(0,2)$} & $\displaystyle \frac{1}{6} - \frac{1}{18}\epsilon$ & $\displaystyle \frac{1}{3(1+2e^\beta)}$ & $\displaystyle \left(\frac{1}{2}-\frac{1}{6}\epsilon \right)(1+2e^\beta)$ \\
     \hline
@@ -817,10 +824,29 @@ Then, $\Z_\beta = 2 + e^{-\beta}$ and the 1-copy Wigner distributions are depict
     $(2,2)$ & $\displaystyle -\frac{1}{3} + \frac{4}{9}\epsilon$ & $\displaystyle \frac{1}{3(2+e^{-\beta})}$ & $\displaystyle \left(-1 + \frac{4}{3}\epsilon \right)(2+e^{-\beta})$ \\
     \hline
   \end{tabular}
-  \caption{Wigner components $W_{\gamma_\beta}(\bmx)$, $W_{\noisys}(\bmx)$ and their ratio $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$ listed in order of decreasing ratio (holds for all $\beta$).}
+  \caption{Wigner components $W_{\gamma_\beta}(\bmx)$, $W_{\noisys}(\bmx)$ and the associated slope $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$ listed in order of decreasing slope (holds for all $\beta$).}
   \label{tab:thermal_w}
 \end{table}
-To construct the Lorenz curves, we simply take the cumulative sum of the Wigner components in order of increasing ratio. 
+
+To construct the 1-copy Lorenz curve $\lc{\noisys(\epsilon)}{\gamma_\beta}$, we simply take the cumulative sum of the Wigner components in order of decreasing slope $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$.
+The first elbow of the 1-copy Lorenz curve is
+\begin{equation}
+	(x_0, L_0) = \left( \frac{1}{1+2e^\beta}, \frac{1}{2} - \frac{1}{6}\epsilon \right).
+\end{equation}
+
+In order to construct the 2-copy Lorenz curve, we first obtain the 2-copy Wigner distribution as a convolution of the 1-copy Wigner distribution (between two identical systems A and B) and then take again the cumulative sum of the Wigner components in order of decreasing slope $W_{\noisys\too{2}}(\bmx_A \oplus \bmx_B)/W_{\gamma_\beta\too{2}}(\bmx_A \oplus \bmx_B)$.
+This order, hence the first elbow depends on the temperature,
+\begin{equation}
+	(x_0, L_0) = 
+	\begin{cases}
+		\left( \frac{1}{9(2+e^{-\beta})^2}, \left(\frac{1}{3} - \frac{4}{9}\epsilon \right)^2 \right),\ &\beta \leq \ln{\left(8-\frac{18}{3-\epsilon}\right)}, \\
+		\left( \frac{1}{(1+2e^\beta)^2}, \left(\frac{1}{2} - \frac{1}{6}\epsilon \right)^2 \right),\ &\beta \geq \ln{\left(8-\frac{18}{3-\epsilon}\right)}.
+	\end{cases}
+\end{equation}
+
+\nick{Unfortunately, performing the same calculation as in~\cref{eq:constraint_deriv} for $\beta \leq \ln{\left(8-\frac{18}{3-\epsilon}\right)}$, yields a very loose bound.
+The first elbow is not a good indicator in this case, points closer to the peak intersect first.}
+
 
 \newpage
 
