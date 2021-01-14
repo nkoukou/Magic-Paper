@@ -790,49 +790,67 @@ If this bound is better than existing literature then great. I suspect not thoug
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
-Consider a system driven by Hamiltonian $H$ and a circuit consisting of thermal operations.
-The computational basis now coincides with the Hamiltonian eigenbasis.
-We denote the thermal state at temperature $\beta^{-1}$ by $\gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z_\beta = \tr[e^{-\beta H}]$.
-Thermal operations coincide with fragment $\O_{\gamma_\beta}$ \nick{expand}. 
+Consider a system with Hamiltonian $H$ and in contact with a thermal bath of temperature $\beta^{-1}$.
+We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z \equiv \Z_\beta = \tr[e^{-\beta H}]$.
+As long as the thermal state is free, it is associated with a set of free, thermal operations and the dynamics of the system can be described within the fragment $\O_{\gamma}$.
 
-Consider a general qutrit Hamiltonian 
+We want to focus on qutrit interconversions and extract a temperature-dependent distillation bound.
+To this end, consider the qutrit Hamiltonian
 \begin{equation}
 	H = E_0 \ketbra{0} + E_1 \ketbra{1} + E_2 \ketbra{2},
 \end{equation}
-where the eigenbasis coincides with the computation basis of the Pauli Z operator.
-The Wigner distribution of any qutrit thermal state $\gamma_\beta$ is calculated directly by the definition in~\cref{eq:wstate},
-\begin{equation}
-	\W[\bmx]{\gamma_\beta} = \frac{e^{-\beta E_{x_0}}}{d\Z_\beta}\ \text{for all}\ \bmx \in \pd,
-\end{equation}
-and always consists of strictly positive components, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
+where the eigenbasis coincides with the computational ($Z$) basis.
+The thermal state associated with this Hamiltonian is
+\begin{align}
+	\gamma &= \frac{e^{-\beta H}}{\Z} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{\Z} \\
+	&= \frac{e^{-\beta E_0}}{\Z}\ketbra{0} + \frac{e^{-\beta E_1}}{\Z}\ketbra{1} + \frac{e^{-\beta E_2}}{\Z}\ketbra{2},
+\end{align}
+where $\Z = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
 
-Consider the simple scenario, where $H$ has the spectrum 
+The Wigner distribution of state $\gamma$ can be seen as the ensemble average of the distributions of the computational basis states,
+\begin{align}
+	\W[\bmx]{\gamma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}\W[\bmx]{\ketbra{k}} \\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{d\Z},
+\end{align}
+for all $\bmx \in \pd$. 
+All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
+
+Consider the simple energy spectrum 
 \begin{equation}
 	(E_0, E_1, E_2) = (1,0,0).
 \end{equation}
-Then, $\Z_\beta = 2 + e^{-\beta}$ and the 1-copy Wigner distributions are depicted in~\cref{tab:thermal_w}.
+Then, $Z = 2 + e^{-\beta}$.
+Furthermore, for clarity, let $\chi \coloneqq \frac{1}{6}-\frac{1}{18}\epsilon$ be the positive and $-\psi \coloneqq -\frac{1}{3} + \frac{4}{9}\epsilon$ the negative Wigner components of $\noisys(\epsilon)$.
+The 1-copy Wigner distributions in this scenario are depicted in~\cref{tab:thermal_w}.
 \begin{table}[h]
   \def\arraystretch{2}
   \centering
   \begin{tabular}{c|c|c|c}
-    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma_\beta}(\bmx)$ & $W_{\noisys(\epsilon)}(\bmx)/W_{\gamma_\beta}(\bmx)$ \\
+    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma}(\bmx)$ & $\tilde{\bmw}$ \\
     \hline
-    \makecell{$(0,0)$ \\ \vdots \\ $(0,2)$} & $\displaystyle \frac{1}{6} - \frac{1}{18}\epsilon$ & $\displaystyle \frac{1}{3(1+2e^\beta)}$ & $\displaystyle \left(\frac{1}{2}-\frac{1}{6}\epsilon \right)(1+2e^\beta)$ \\
+    \makecell{$(0,0)$ \\ \vdots \\ $(0,2)$} & $\displaystyle \chi$ & $\displaystyle \frac{e^{-\beta}}{3Z}$ & $\displaystyle 3Z \chi e^{\beta}$ \\
     \hline
-    \makecell{$(1,0)$ \\ $\vdots$ \\ $(2,1)$} & $\displaystyle \frac{1}{6} - \frac{1}{18}\epsilon$ & $\displaystyle \frac{1}{3(2+e^{ -\beta})}$ & $\displaystyle \left(\frac{1}{2}-\frac{1}{6}\epsilon \right)(2+e^{-\beta})$ \\
+    \makecell{$(1,0)$ \\ $\vdots$ \\ $(2,1)$} & $\displaystyle \chi$ & $\displaystyle \frac{1}{3Z}$ & $\displaystyle 3Z \chi$ \\
     \hline
-    $(2,2)$ & $\displaystyle -\frac{1}{3} + \frac{4}{9}\epsilon$ & $\displaystyle \frac{1}{3(2+e^{-\beta})}$ & $\displaystyle \left(-1 + \frac{4}{3}\epsilon \right)(2+e^{-\beta})$ \\
+    $(2,2)$ & $\displaystyle -\psi$ & $\displaystyle \frac{1}{3Z}$ & $\displaystyle 3Z (-\psi)$ \\
     \hline
   \end{tabular}
-  \caption{Wigner components $W_{\gamma_\beta}(\bmx)$, $W_{\noisys}(\bmx)$ and the associated slope $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$ listed in order of decreasing slope (holds for all $\beta$).}
+  \caption{Wigner components $W_{\gamma}(\bmx)$, $W_{\noisys}(\bmx)$ and the associated slope $\tilde{\bmw}$ listed in order of decreasing slope (holds for all temperatures $\beta^{-1}$).}
   \label{tab:thermal_w}
 \end{table}
 
-To construct the 1-copy Lorenz curve $\lc{\noisys(\epsilon)}{\gamma_\beta}$, we simply take the cumulative sum of the Wigner components in order of decreasing slope $W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$.
+To construct the 1-copy Lorenz curve $\lc{\noisys(\epsilon)}{\gamma_\beta}$, we simply add up the Wigner components in order of decreasing slope $\tilde{\bmw} \coloneqq W_{\noisys}(\bmx)/W_{\gamma_\beta}(\bmx)$.
 The first elbow of the 1-copy Lorenz curve is
 \begin{equation}
-	(x_0, L_0) = \left( \frac{1}{1+2e^\beta}, \frac{1}{2} - \frac{1}{6}\epsilon \right).
+	(x_0, L_0) = \left( \frac{e^{-\beta}}{Z}, 3\chi \right).
 \end{equation}
+
+Notice that the slope of the $n$-copy Lorenz curve can be expressed as a self-convolution of the 1-copy Lorenz curve slope $n$ times,
+\begin{equation}
+	\tilde{\bmw\too{n}} = \frac{W_{\noisys\too{n}}(\bmx)}{W_{\gamma\too{n}}(\bmx)} = \left( \frac{W_{\noisys}(\bmx)}{W_{\gamma}(\bmx)} \right)\too{n} = \tilde{\bmw}\too{n}.
+\end{equation}
+
+According to~\cref{def:lc}, to construct the $n$-copy Lorenz curve, we need to sort $\tilde{\bmw\too{n}}$ in decreasing order and take the cumulative sum of the corresponding components $W_{\noisys\too{n}}(\bmx)$ and $W_{\gamma\too{n}}(\bmx)$.
 
 In order to construct the 2-copy Lorenz curve, we first obtain the 2-copy Wigner distribution as a convolution of the 1-copy Wigner distribution (between two identical systems A and B) and then take again the cumulative sum of the Wigner components in order of decreasing slope $W_{\noisys\too{2}}(\bmx_A \oplus \bmx_B)/W_{\gamma_\beta\too{2}}(\bmx_A \oplus \bmx_B)$.
 This order, hence the first elbow depends on the temperature,
