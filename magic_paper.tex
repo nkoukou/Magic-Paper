@@ -791,7 +791,7 @@ If this bound is better than existing literature then great. I suspect not thoug
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
 Consider a system with Hamiltonian $H$ and in contact with a thermal bath of temperature $\beta^{-1}$.
-We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{\Z_\beta}$, where $\Z \equiv \Z_\beta = \tr[e^{-\beta H}]$.
+We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{E_\beta}$, where $E \equiv E_\beta = \tr[e^{-\beta H}]$.
 As long as the thermal state is free, it is associated with a set of free, thermal operations and the dynamics of the system can be described within the fragment $\O_{\gamma}$.
 
 We want to focus on qutrit interconversions and extract a temperature-dependent distillation bound.
@@ -799,18 +799,18 @@ To this end, consider the qutrit Hamiltonian
 \begin{equation}
 	H = E_0 \ketbra{0} + E_1 \ketbra{1} + E_2 \ketbra{2},
 \end{equation}
-where the eigenbasis coincides with the computational ($Z$) basis.
+where the eigenbasis coincides with the computational basis.
 The thermal state associated with this Hamiltonian is
 \begin{align}
-	\gamma &= \frac{e^{-\beta H}}{\Z} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{\Z} \\
-	&= \frac{e^{-\beta E_0}}{\Z}\ketbra{0} + \frac{e^{-\beta E_1}}{\Z}\ketbra{1} + \frac{e^{-\beta E_2}}{\Z}\ketbra{2},
+	\gamma &= \frac{e^{-\beta H}}{E} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{E} \\
+	&= \frac{e^{-\beta E_0}}{E}\ketbra{0} + \frac{e^{-\beta E_1}}{E}\ketbra{1} + \frac{e^{-\beta E_2}}{E}\ketbra{2},
 \end{align}
-where $\Z = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
+where $E = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
 
 The Wigner distribution of state $\gamma$ can be seen as the ensemble average of the distributions of the computational basis states,
 \begin{align}
-	\W[\bmx]{\gamma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}\W[\bmx]{\ketbra{k}} \\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{d\Z},
+	\W[\bmx]{\gamma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{E}\W[\bmx]{\ketbra{k}} \\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{E} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{dE},
 \end{align}
 for all $\bmx \in \pd$. 
 All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
@@ -820,7 +820,7 @@ Consider the simple energy spectrum
 	(E_0, E_1, E_2) = (1,0,0).
 \end{equation}
 Then, $Z = 2 + e^{-\beta}$.
-Furthermore, for clarity, let $\chi \coloneqq \frac{1}{6}-\frac{1}{18}\epsilon$ be the positive and $-\psi \coloneqq -\frac{1}{3} + \frac{4}{9}\epsilon$ the negative Wigner components of $\noisys(\epsilon)$.
+Furthermore, for clarity, let $\chi \coloneqq \frac{1}{6}-\frac{1}{18}\epsilon$ be the positive and $-\nu \coloneqq -\frac{1}{3} + \frac{4}{9}\epsilon$ the negative Wigner components of $\noisys(\epsilon)$.
 The 1-copy Wigner distributions in this scenario are depicted in~\cref{tab:thermal_w}.
 \begin{table}[h]
   \def\arraystretch{2}
@@ -832,7 +832,7 @@ The 1-copy Wigner distributions in this scenario are depicted in~\cref{tab:therm
     \hline
     \makecell{$(1,0)$ \\ $\vdots$ \\ $(2,1)$} & $\displaystyle \chi$ & $\displaystyle \frac{1}{3Z}$ & $\displaystyle 3Z \chi$ \\
     \hline
-    $(2,2)$ & $\displaystyle -\psi$ & $\displaystyle \frac{1}{3Z}$ & $\displaystyle 3Z (-\psi)$ \\
+    $(2,2)$ & $\displaystyle -\nu$ & $\displaystyle \frac{1}{3Z}$ & $\displaystyle 3Z (-\nu)$ \\
     \hline
   \end{tabular}
   \caption{Wigner components $W_{\gamma}(\bmx)$, $W_{\noisys}(\bmx)$ and the associated slope $\tilde{\bmw}$ listed in order of decreasing slope (holds for all temperatures $\beta^{-1}$).}
@@ -847,10 +847,25 @@ The first elbow of the 1-copy Lorenz curve is
 
 Notice that the slope of the $n$-copy Lorenz curve can be expressed as a self-convolution of the 1-copy Lorenz curve slope $n$ times,
 \begin{equation}
-	\tilde{\bmw\too{n}} = \frac{W_{\noisys\too{n}}(\bmx)}{W_{\gamma\too{n}}(\bmx)} = \left( \frac{W_{\noisys}(\bmx)}{W_{\gamma}(\bmx)} \right)\too{n} = \tilde{\bmw}\too{n}.
+	\widetilde{\bmw\too{n}} = \frac{W_{\noisys\too{n}}(\bmx)}{W_{\gamma\too{n}}(\bmx)} = \left( \frac{W_{\noisys}(\bmx)}{W_{\gamma}(\bmx)} \right)\too{n} = \widetilde{\bmw}\too{n}.
 \end{equation}
 
-According to~\cref{def:lc}, to construct the $n$-copy Lorenz curve, we need to sort $\tilde{\bmw\too{n}}$ in decreasing order and take the cumulative sum of the corresponding components $W_{\noisys\too{n}}(\bmx)$ and $W_{\gamma\too{n}}(\bmx)$.
+According to~\cref{def:lc}, to construct the $n$-copy Lorenz curve, we need to sort $\widetilde{\bmw\too{n}}$ in decreasing order and take the cumulative sum of the corresponding components $W_{\noisys\too{n}}(\bmx)$ and $W_{\gamma\too{n}}(\bmx)$.
+
+We can therefore construst a trinomial generating function that returns the values and the multiplicities of the distinct Wigner components for a general $n$-copy $\epsilon$-noisy Strange state in a $\gamma_\beta$-fragment.
+\begin{equation}
+	\tilde{w}(X,Y) \coloneqq (3Z)^n (-\nu + 5\chi X + 3\chi e^\beta Y)^n
+\end{equation}
+There are $\frac{(n+1)(n+2)}{2}$ distinct $X^i Y^j$ terms ($i,j = 0,\dots,n$ with $i+j \leq n$) with the coefficients of these terms representing the multiplicities and values of the different ratios.
+
+We can inductively show that the ``start of the Lorenz curve'' corresponds to $\nu^n$ for even $n$ and $\nu^(n-1) \chi e^\beta$ for 
+\begin{equation}
+	\beta \leq \ln{\left(8-\frac{18}{3-\epsilon}\right)}
+\end{equation}
+\nick{Not good enough to restrict to the start of the curve (show why)}
+
+\nick{coordinate generating functions}
+
 
 In order to construct the 2-copy Lorenz curve, we first obtain the 2-copy Wigner distribution as a convolution of the 1-copy Wigner distribution (between two identical systems A and B) and then take again the cumulative sum of the Wigner components in order of decreasing slope $W_{\noisys\too{2}}(\bmx_A \oplus \bmx_B)/W_{\gamma_\beta\too{2}}(\bmx_A \oplus \bmx_B)$.
 This order, hence the first elbow depends on the temperature,
@@ -871,7 +886,7 @@ The first elbow is not a good indicator in this case, points closer to the peak 
 For a qutrit, let the energy spectrum be $E_0 \geq E_1 \geq E_2$. 
 Then, we can explicitly write the thermal Wigner distribution as
 \begin{equation}
-	\W{\gamma_\beta} = \frac{1}{3\Z_\beta} \big( \overbrace{e^{-\beta E_0}}^3, \overbrace{e^{-\beta E_1}}^3, \overbrace{e^{-\beta E_2}}^3 \big),
+	\W{\gamma_\beta} = \frac{1}{3E_\beta} \big( \overbrace{e^{-\beta E_0}}^3, \overbrace{e^{-\beta E_1}}^3, \overbrace{e^{-\beta E_2}}^3 \big),
 \end{equation}
 which is sorted in decreasing order.
 We choose the Strange state where the negativity is in the first component of its Wigner distribution
@@ -882,7 +897,7 @@ We choose the Strange state where the negativity is in the first component of it
 However, higher copies are not sorted, for example
 \begin{equation}
 	\begin{split}
-	\W{\gamma_\beta\too{2}} = \frac{1}{9\Z_\beta^2} \Bigg( &\overbrace{\overbrace{e^{-\beta 2E_0}}^3, \overbrace{e^{-\beta (E_0 + E_1)}}^3, \overbrace{e^{-\beta (E_0 + E_2)}}^3}^3, \\
+	\W{\gamma_\beta\too{2}} = \frac{1}{9E_\beta^2} \Bigg( &\overbrace{\overbrace{e^{-\beta 2E_0}}^3, \overbrace{e^{-\beta (E_0 + E_1)}}^3, \overbrace{e^{-\beta (E_0 + E_2)}}^3}^3, \\
 	 &\overbrace{\overbrace{e^{-\beta (E_1 + E_0)}}^3, \overbrace{e^{-\beta 2E_1}}^3, \overbrace{e^{-\beta (E_1 + E_2)}}^3}^3, \\
 	 &\overbrace{\overbrace{e^{-\beta (E_2 + E_0)}}^3, \overbrace{e^{-\beta (E_2 + E_1)}}^3, \overbrace{e^{-\beta 2E_2}}^3}^3 \Bigg).
 	\end{split}
