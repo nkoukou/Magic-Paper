@@ -760,7 +760,7 @@ The process in~\cref{eq:sudist} is therefore possible only if $L_\star \geq L'_\
 As an example, the process with $(\nn, \tt) = (12, 4)$ and $\epsilon' = 0.05$ yields $\epsilon \leq 0.398$.
 Numerical comparison of the curves with varying $\epsilon$ suggests that we require $\epsilon \leq 0.373$ for the process to be possible.
 
-Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain a upper bound on the unital fragment distillation rate $R=n'/n$ given by
+Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain an upper bound on the unital fragment distillation rate $R=n'/n$ given by
 \begin{equation}
 R \leq \frac{\ln (3-4 \epsilon)}{\ln 3},
 \end{equation}
@@ -918,8 +918,49 @@ The values of the slope correspond to terms $X^0Y^0 = 1$ and $X^0Y^n = Y^n$ resp
 \end{equation}
 
 Note that as $\beta$ tends to $0$, we get the first elbow coordinates that we found for the unital fragment, $(9^{-n}, \nu^n)$.
+We can also invert the temperature constraint into a noise constraint for the state,
+\begin{equation}\label{eq:tempregime}
+	\beta \leq \ln{\left(8-\frac{18}{3-\epsilon}\right)} \Leftrightarrow \epsilon \leq 3 - \frac{18}{8-e^{\beta}}.
+\end{equation}
 
-\nick{Not good enough. For curves to intersect must have such high noise that condition~\cref{eq:temp_regime} does not hold anymore. Need to tweak.}
+Consider the Strange state distillation process
+\begin{equation}\label{eq:stdist}
+	\noisys\too{\nn} \longrightarrow \noisys(\tt, \epsilon', \nn - \nn') \coloneqq  \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(\nn-\tt)},
+\end{equation}
+in the thermal fragment $\O_{\gamma_\beta}$.
+We are now in a position to extract a distillation bound that takes the temperature $\beta$ into account in an analogous method as the one used for the unital fragment distillation bound.
+
+We choose the temperature regime in~\cref{eq:tempregime} and we pick the location $x_\star = x_0 = (3Z)^{-\nn} = (3(2+e^{-\beta}))^{-\nn}$ of the first elbow of the initial state $\noisys(\nn, \epsilon, 0)$ and write down the necessary distillation constraint, 
+\begin{equation}
+	\lc{\noisys(\nn, \epsilon, 0)}{\gamma_\beta}(x_\star) \geq \lc{\noisys(\tt, \epsilon', \nn-\tt)}{\gamma_\beta}(x_\star).
+\end{equation}
+
+The initial state Lorenz curve coordinate at this location is $L_\star = L_0 = (1/3 - 4\epsilon/9)^{\nn}$.
+
+The first elbow of the target state is located at $x'_0 = (3Z)^{-\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the first target state elbow, 
+\begin{equation}\label{eq:constraint_deriv_temp}
+	L'_\star = \frac{x_\star}{x'_0}L'_0 = (3(2+e^{-\beta}))^{\tt-\nn} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
+\end{equation}
+The process in~\cref{eq:stdist} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
+\begin{align}
+	\frac{n}{n'} \geq \frac{\ln{\Big[ (1-\frac{4}{3}\epsilon')(2+e^{-\beta}) \Big]}}{\ln{\Big[ (1-\frac{4}{3}\epsilon)(2+e^{-\beta}) \Big]}},
+\end{align}
+with $\tt \leq \nn$ and $\epsilon' \leq \epsilon \leq 3 - 18/\big(8-e^{\beta}\big)$.
+
+Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain an upper bound on the unital fragment distillation rate $R=n'/n$ given by
+\begin{equation}
+	R \leq R(\beta) \coloneqq \frac{\ln{\Big[ (1-\frac{4}{3}\epsilon)(2+e^{-\beta}) \Big]}}{\ln{(2+e^{-\beta})}},
+\end{equation}
+which holds for all finite $n$. 
+We compare $R(\beta)$ with the mana bound $R_{\rm{mana}}$ for different values of $\beta$ in~\cref{fig:distill_bounds_temp}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/distill_bounds_temp.pdf}
+    \caption{\textbf{Distillation rate in thermal fragments.} Distillation rates obtained by mana and majorization are plotted for $\epsilon' = 0$, up to noise levels $\epsilon_{\rm{max}} = 8-\frac{18}{3-e^{\beta}}$.
+    As $\beta$ increases, the range of noise levels that our bound is valid in decreases and the distillation bound becomes stricter.
+    }
+    \label{fig:distill_bounds_temp}
+\end{figure}
 
 \null\newpage
 \null\newpage
