@@ -791,7 +791,7 @@ If this bound is better than existing literature then great. I suspect not thoug
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
 Consider a system with Hamiltonian $H$ and in contact with a thermal bath of temperature $\beta^{-1}$.
-We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{E_\beta}$, where $E \equiv E_\beta = \tr[e^{-\beta H}]$.
+We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{Z_\beta}$, where $Z \equiv Z_\beta = \tr[e^{-\beta H}]$.
 As long as the thermal state is free, it is associated with a set of free, thermal operations and the dynamics of the system can be described within the fragment $\O_{\gamma}$.
 
 We want to focus on qutrit interconversions and extract a temperature-dependent distillation bound.
@@ -802,15 +802,15 @@ To this end, consider the qutrit Hamiltonian
 where the eigenbasis coincides with the computational basis.
 The thermal state associated with this Hamiltonian is
 \begin{align}
-	\gamma &= \frac{e^{-\beta H}}{E} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{E} \\
-	&= \frac{e^{-\beta E_0}}{E}\ketbra{0} + \frac{e^{-\beta E_1}}{E}\ketbra{1} + \frac{e^{-\beta E_2}}{E}\ketbra{2},
+	\gamma &= \frac{e^{-\beta H}}{Z} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{Z} \\
+	&= \frac{e^{-\beta E_0}}{Z}\ketbra{0} + \frac{e^{-\beta E_1}}{Z}\ketbra{1} + \frac{e^{-\beta E_2}}{Z}\ketbra{2},
 \end{align}
-where $E = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
+where $Z = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
 
 The Wigner distribution of state $\gamma$ can be seen as the ensemble average of the distributions of the computational basis states,
 \begin{align}
-	\W[\bmx]{\gamma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{E}\W[\bmx]{\ketbra{k}} \\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{E} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{dE},
+	\W[\bmx]{\gamma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{Z}\W[\bmx]{\ketbra{k}} \\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{Z} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{dZ},
 \end{align}
 for all $\bmx \in \pd$. 
 All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
@@ -961,6 +961,97 @@ We compare $R(\beta)$ with the mana bound $R_{\rm{mana}}$ for different values o
     }
     \label{fig:distill_bounds_temp}
 \end{figure}
+
+\subsubsection{General case}
+
+Let's return to the general qutrit Hamiltonian
+\begin{equation}\label{eq:h_thermal_general}
+	H = E_0 \ketbra{0} + E_1 \ketbra{1} + E_2 \ketbra{2},
+\end{equation}
+defined on the computational basis.
+For the moment, we do not need to define an order between the energy eigenvalues.
+The thermal state is
+\begin{equation}
+	\gamma = \frac{e^{-\beta E_0}}{Z}\ketbra{0} + \frac{e^{-\beta E_1}}{Z}\ketbra{1} + \frac{e^{-\beta E_2}}{Z}\ketbra{2},
+\end{equation}
+where $\Z = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
+
+We choose the Strange state where the negative component lies at phase space point $(2,2)$, i.e. it aligns with a thermal Wigner component associated with energy $E_2$.
+However, the analysis that follows is general in the sense that choosing a different Strange state permutation is equivalent to changing the order between energy eigenvalues.
+
+There are now 4 phase space different regions for the 1-copy case, listed in~\cref{tab:thermal_w_general}.
+\begin{table}[h]
+  \def\arraystretch{2}
+  \centering
+  \begin{tabular}{c|c|c|c}
+    $\bmx = (x_0, x_1)$ & $W_{\noisys}(\bmx)$ & $W_{\gamma}(\bmx)$ & $\tilde{\bmw}$ \\
+    \hline
+    \makecell{$(0,0)$ \\ \vdots \\ $(0,2)$} & $\displaystyle \chi$ & $\displaystyle \frac{e^{-\beta E_0}}{3\Z}$ & $\displaystyle 3\Z e^{\beta E_0} \chi$ \\
+    \hline
+    \makecell{$(1,0)$ \\ \vdots \\ $(1,2)$} & $\displaystyle \chi$ & $\displaystyle \frac{e^{-\beta E_1}}{3\Z}$ & $\displaystyle 3\Z e^{\beta E_1} \chi$ \\
+    \hline
+    \makecell{$(2,0)$ \\ $(2,1)$} & $\displaystyle \chi$ & $\displaystyle \frac{e^{-\beta E_2}}{3\Z}$ & $\displaystyle 3\Z e^{\beta E_2} \chi$ \\
+    \hline
+    $(2,2)$ & $\displaystyle -\nu$ & $\displaystyle \frac{e^{-\beta E_2}}{3\Z}$ & $\displaystyle 3\Z e^{\beta E_2} (-\nu)$ \\
+    \hline
+  \end{tabular}
+  \caption{Wigner components $W_{\gamma}(\bmx)$, $W_{\noisys}(\bmx)$ and the associated slope $\widetilde{\bmw}$ for Hamiltonian $H$ in~\cref{eq:h_thermal_general}. 
+  Ordering depends on the energy ordering.}
+  \label{tab:thermal_w_general}
+\end{table}
+
+The generating functions are
+\begin{widetext}
+\begin{align}
+	&G(X,Y; \noisys) \coloneqq (-\nu + 3\chi X + 3\chi Y + 2\chi Z)^n \nonumber\\
+	&= \sum\limits_{\substack{i,j,k = 0,\dots,n \\ i+j+k \leq n}} m_{ijk} \big[(-\nu)^{n-i-j-k} \chi^{i+j+k} \big] X^i Y^j Z^k, \\
+	&G(X,Y; \gamma) \coloneqq \left( \frac{e^{\beta E_2}}{3\Z} + 3\frac{e^{\beta E_0}}{3\Z} X + 3\frac{e^{\beta E_1}}{3\Z} Y + 2\frac{e^{\beta E_2}}{3\Z} Z \right)^n \nonumber\\
+	&= (3\Z)^{-n}\sum\limits_{\substack{i,j,k = 0,\dots,n \\ i+j+k \leq n}} m_{ijk} e^{-\beta [ i E_0 + j E_2 + (n-i-j) E_3 ]} X^i Y^j Z^k, \\
+	&G(X,Y; \widetilde{\bmw}) \coloneqq \Big( 3\Z e^{\beta E_2}(-\nu) + 3(3\Z e^{\beta E_0}\chi) X + 3(3\Z e^{\beta E_1}\chi + 2(3\Z e^{\beta E_2}\chi) e^\beta Z \Big)^n \nonumber\\
+	&= (3\Z)^n \sum\limits_{\substack{i,j,k = 0,\dots,n \\ i+j+k \leq n}} m_{ijk} \big[(-\nu)^{n-i-j-k} \chi^{i+j+k} e^{\beta [(n-i-j)E_2 + iE_0 + jE_1]} \big] X^i Y^j Z^k,
+\end{align}
+\end{widetext}
+where the $(i,j,k)$-th term multiplicity $m_{ij}$ is given by
+\begin{equation}
+	m_{ijk} \coloneqq \frac{n!}{i!j!k!(n-i-j-k)!} 3^i 3^j 2^k.
+\end{equation}
+
+In order to find the first elbow coordinates, we need to find the maximum value of the term
+\begin{equation}
+	\tilde{w} \coloneqq (-\nu)^{n-i-j-k} \chi^{i+j+k} e^{\beta [(n-i-j)E_2 + iE_0 + jE_1]}
+\end{equation}
+over all $i,j,k = 0,\dots,n$ with the constraint $i+j+k \leq n$.
+This optimisation depends on the ordering of the energy eigenvalues.
+We restrict to even $n$ now.
+Specifically, there are two scenarios:
+\begin{itemize}
+	\item The eigenvalue ($E_2$) corresponding to the subspace of the negative Strange Wigner component is largest.
+	In this case, $\tilde{w}$ attains its maximum value $\nu^n e^{n\beta E_2}$ for $i=j=k=0$.
+	\item The eigenvalue ($E_2$) corresponding to the subspace of the negative Strange Wigner component is not largest.
+	In this case, (wlog assume $E_0$ is largest)
+	\begin{equation}
+	  \tilde{w} =
+     \begin{cases}
+		\nu^n, &\beta E_0 \leq \ln{\left(8-\frac{18}{3-\epsilon}\right)}, \\
+		\chi^n e^{n\beta E_0}, &\beta E_0 > \ln{\left(8-\frac{18}{3-\epsilon}\right)}.
+	  \end{cases}
+	\end{equation}
+	The first case corresponds to $i=j=k=0$, and the second case to $i=n,j=k=0$.
+\end{itemize}
+In both scenarios, for small enough $\beta$, the first elbow is given by the term with $i=j=k=0$.
+The coordinates are
+\begin{equation}
+	(x_0, L_0) = ((3\Z)^n, \nu^n)
+\end{equation}
+and therefore the first elbow constraint $L_\star \geq L'_\star$ gives
+\begin{align}
+	\frac{n}{n'} \geq \frac{\ln{\Big[ (1-\frac{4}{3}\epsilon')\Z_\beta \Big]}}{\ln{\Big[ (1-\frac{4}{3}\epsilon)\Z_\beta \Big]}},
+\end{align}
+with $\tt \leq \nn$ and $\epsilon' \leq \epsilon$. 
+Moreover, if $E_2$ is not largest, we have the additional constarint $\epsilon \leq 3 - 18/\big(8-e^{\beta}\big)$.
+This agrees with the previous scenario where the energy spectrum was $(1,0,0)$.
+
+
 
 \null\newpage
 \null\newpage
