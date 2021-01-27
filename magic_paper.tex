@@ -790,6 +790,102 @@ If this bound is better than existing literature then great. I suspect not thoug
 
 \subsection{Magic in thermal fragments}\label{sec:thermal}
 
+Consider a qutrit system with maximally Wigner-negative magic state $\ket{\rm{S}} = \frac{1}{\sqrt{2}}(\ket{0} - \omega^2 \ket{1})$.
+It can be written in density operator form as
+\begin{align}
+	\ketbra{\rm{S}} = \sum_{\bmx \neq (2,2)} \frac{1}{6} A_{\bmx} - \frac{1}{3} A_{(2,2)},
+\end{align}
+where $\bmx$ ranges in the $3$-dimensional phase space $\pd[3]$.
+This is a permutation of the pure Strange state visualised in~\cref{fig:strange}.
+We allow for isotropic (uniform) noise, so that the system state is a convex sum of the pure Strange state and the maximally mixed state,
+\begin{equation}
+	\noisys(\epsilon) \coloneqq (1-\epsilon)\ketbra{\rm{S}} + \epsilon \frac{1}{3}\id,
+\end{equation}
+where we choose to restrict the noise level, $0 \leq \epsilon \leq \frac{3}{7}$, so that the Wigner distribution of the state always contains a negative component which is greater than the 8 positive components of the state.
+
+In particular, the Wigner distribution of the state can be written as 
+\begin{equation}
+	\W[\bmx]{\noisys(\epsilon)} = (1-\epsilon)\W[\bmx]{\ketbra{\rm{S}}} + \epsilon\W[\bmx]{\frac{1}{3}\id},
+\end{equation}
+so we get positive components
+\begin{equation}
+	w_+(\epsilon) = \frac{1}{6} -\frac{1}{18}\epsilon
+\end{equation}
+at the 8 phase space points $\bmx \in \pd[3] \setminus \{(2,2)\}$ and a negative component
+\begin{equation}
+	- w_-(\epsilon) = - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
+\end{equation}
+at point $\bmx = (2,2)$.
+
+We are interested in studying Strange state distillation in general thermal fragments $\O_{\gamma_\beta}$ where the thermal state is
+\begin{equation}
+	\gamma_\beta \coloneqq \frac{e^{-\beta H}}{\Z_\beta},
+\end{equation}
+with partition function $\Z_\beta = \tr \big[e^{-\beta H} \big]$, defined in terms of some Hamiltonian $H$ and temperature $\beta^{-1}$.
+
+To this end, consider the general qutrit Hamiltonian
+\begin{equation}
+	H = E_0 \ketbra{0} + E_1 \ketbra{1} + E_2 \ketbra{2},
+\end{equation}
+where the energy eigenbasis coincides with the computational basis.
+We have that energy eigenvalues $E_i \geq 0$, but impose no order between them.
+
+The thermal state associated with this Hamiltonian is
+\begin{align}
+	\gamma_\beta &= \frac{e^{-\beta H}}{\Z_\beta} = \frac{e^{-\beta \sum\limits_{k=0}^2 E_k \ketbra{k}}}{\Z_\beta} \\
+	&= \frac{e^{-\beta E_0}}{\Z_\beta}\ketbra{0} + \frac{e^{-\beta E_1}}{\Z_\beta}\ketbra{1} + \frac{e^{-\beta E_2}}{\Z_\beta}\ketbra{2},
+\end{align}
+where $\Z_\beta = e^{-\beta E_0} + e^{-\beta E_1} + e^{-\beta E_2}$.
+
+The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble average of the distributions of the computational basis states,
+\begin{align}
+	\W[\bmx]{\gamma_\beta} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}\W[\bmx]{\ketbra{k}} \\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{3\Z_\beta},
+\end{align}
+for all $\bmx \in \pd[3]$. 
+All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
+
+We are now in a position to consider the Strange state distillation process
+\begin{equation}\label{eq:msd_thermal}
+		\noisys(\epsilon)\too{\nn} \xrightarrow{\E \in \O_{\gamma_\beta}} \noisys(\epsilon')\too{\tt} \otimes \gamma_\beta\too{\nn-\tt},
+\end{equation}
+where we are allowed to tensor in copies of the thermal state $\gamma_\beta$, since it is free in fragment $\O_{\gamma_\beta}$.
+
+Our aim is to obtain a distillation bound for~\cref{eq:msd_thermal} which depends on variables $\nn, \tt, \epsilon, \epsilon'$ as well as $\beta$.
+In the analysis that follows, we drop obvious variable dependencies for clarity.
+
+Consider a general $\epsilon$-noisy Strange state $\noisys$ in a thermal fragment $\O_{\gamma}$.
+We can construct the Gibbs-rescaled distribution 
+\begin{equation}
+	\widetilde{\rm{W}}(\bmx) \coloneqq \frac{\W[\bmx]{\noisys}}{\W[\bmx]{\gamma}},
+\end{equation}
+which naturally splits the phase space $\pd[3]$ into four regions of different ``slopes'', i.e. values of the Gibbs-rescaled distribution, as illustrated in~\cref{fig:pd_split_thermal}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/pd_split_thermal.pdf}
+    \caption{\textbf{Qutrit phase space regions with different Gibbs-rescaled values.}
+    }
+    \label{fig:pd_split_thermal}
+\end{figure}
+
+An $n$-copy system is described over a phase space given by the $n$-times Cartesian product $\pd[3]^{\times n}$) which contains more regions of different slope.
+In particular, it contains exactly the regions $X^i Y^j Z^k$, where $i,j,k = 0,\dots,n$ and $i+j+k \leq n$. 
+For example, region $XY$ consists of all points expressed as the direct sum $\bmx \oplus \bmy$, where $\bmx \in X$ and $\bmy \in Y$.
+
+The $n$-copy Gibbs-rescaled distribution can be written as a self-convolution,
+\begin{equation}
+	\widetilde{\rm{W}}(\bmx) = \frac{\W{\noisys\too{n}}(\bmx)}{\W{\gamma\too{n}}(\bmx)} = \left( \frac{\W{\noisys}(\bmx)}{\W{\gamma}(\bmx)} \right)\too{n} = \widetilde{\bmw}\too{n}.
+\end{equation}
+Therefore, the regions of different slope in an $n$-copy phase space are generated by the 1-copy phase space regions.
+
+
+
+
+
+
+
+\subsection{OLD Magic in thermal fragments}
+
 Consider a system with Hamiltonian $H$ and in contact with a thermal bath of temperature $\beta^{-1}$.
 We denote the thermal state at that temperature by $\gamma \equiv \gamma_\beta = \frac{e^{-\beta H}}{Z_\beta}$, where $Z \equiv Z_\beta = \tr[e^{-\beta H}]$.
 As long as the thermal state is free, it is associated with a set of free, thermal operations and the dynamics of the system can be described within the fragment $\O_{\gamma}$.
