@@ -556,27 +556,27 @@ This implies the following result.
 
 Denote an $n$-copy, $\epsilon$-noisy magic state $\rho$ in the $\sigma$--fragment by
 \begin{equation}\label{eq:dist}
-    \rho(\epsilon)\too{\nn} = \left[ (1 - \epsilon) \rho + \epsilon \sigma \right]\too{\nn},
+    \rho(\epsilon)\too{n} = \left[ (1 - \epsilon) \rho + \epsilon \sigma \right]\too{n},
 \end{equation}
 and consider the general magic state distillation (MSD) / purification process
 \begin{equation}
-		\rho(\epsilon)\too{\nn} \xrightarrow{\E \in \O_\sigma} \rho(\epsilon')\too{\tt},
+		\rho(\epsilon)\too{n} \xrightarrow{\E \in \O_\sigma} \rho(\epsilon')\too{\tt},
 \end{equation}
-where it is converted into a $\tt$-copy, $\epsilon'$-noisy state, such that the number of copies has decreased ($\tt < \nn$), but the state is less noisy ($\epsilon' < \epsilon$).
+where it is converted into a $\tt$-copy, $\epsilon'$-noisy state, such that the number of copies has decreased ($\tt < n$), but the state is less noisy ($\epsilon' < \epsilon$).
 
 The more noisy the initial state is, the more copies needed to reach the target. 
 We make this idea precise by defining the \emph{noise level threshold} as
 \begin{equation}\label{eq:ethresh}
 	\begin{split}
-	\epsilon_{\rm{th}}(\nn, \tt, \epsilon', \sigma) \coloneqq &\sup{\{\epsilon:\ \lc{\rho(\epsilon)\too{\nn}}{\sigma}}(x) \geq \\
+	\epsilon_{\rm{th}}(n, \tt, \epsilon', \sigma) \coloneqq &\sup{\{\epsilon:\ \lc{\rho(\epsilon)\too{n}}{\sigma}}(x) \geq \\
 	&{\lc{\rho(\epsilon')\too{\tt}}{\sigma}(x),\ x\in[0,1]\}}.
 	\end{split}
 \end{equation}
-The MSD process~(\ref{eq:dist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(\nn, \tt, \epsilon', \sigma)$.
+The MSD process~(\ref{eq:dist}) is impossible for all $\epsilon > \epsilon_{\rm{th}}(n, \tt, \epsilon', \sigma)$.
 
 \nick{Can also define a distillation bound
 \begin{equation}\label{eq:ethresh}
-	\nn_{\rm{th}}(\epsilon, \epsilon', \sigma) \coloneqq \min{\{\nn: \lc{\noisysn}{\sigma} \geq \lc{\noisys(\epsilon')}{\sigma}\}}.
+	n_{\rm{th}}(\epsilon, \epsilon', \sigma) \coloneqq \min{\{n: \lc{\noisysn}{\sigma} \geq \lc{\noisys(\epsilon')}{\sigma}\}}.
 \end{equation}}
 
 In general, the Wigner components of an $\NN$-copy state $\rho\too{\NN}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
@@ -621,7 +621,7 @@ In~\cref{fig:lcs}, we illustrate the Lorenz curves of pure and noisy $n$-copy St
     \includegraphics[height=3cm]{figs/lcs_one.pdf}
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
-    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\noisysn$ for $\nn=1,2,3,4$.
+    \caption{\textbf{Lorenz curves of Strange state copies.} Lorenz curves of $\noisysn$ for $n=1,2,3,4$.
     Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
     \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$ (corresponds to red curve in~\cref{fig:stab_distill}); \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$ (corresponds to blue curve in~\cref{fig:stab_distill}).
     The elbows of a curve are the non-differentiable points that form ``angles'' between consecutive line segments.
@@ -678,38 +678,38 @@ Thresholds provided by Lorenz curve comparison are always much stricter than man
 \subsection{Distillation rate bounds in the unital fragment}\label{sec:lcsu}
 
 We would now like to study the constraints coming solely from majorization in the unital fragment. 
-We consider the problem of purifying $\nn$ copies of a noisy strange state $\noisysn$ into a smaller number of copies $\tt$ of a less noisy strange state $\noisys(\epsilon')\too{\tt}$, with $\epsilon' \le \epsilon$ and $\tt \leq \nn$. 
+We consider the problem of purifying $n$ copies of a noisy strange state $\noisysn$ into a smaller number of copies $\tt$ of a less noisy strange state $\noisys(\epsilon')\too{\tt}$, with $\epsilon' \le \epsilon$ and $\tt \leq n$. 
 Since the state $\frac{1}{3} \id$ is free, the interconversion problem is unaffected if we tensor in copies of it. More precisely the associated Lorenz curve in invariant under tensoring in arbitrary many copies of this free state.
 This turns out to simplify the Lorenz curve analysis, and so we focus on the process,
 \begin{equation}\label{eq:sudist}
-	\noisys\too{\nn} \longrightarrow \noisys(\tt, \epsilon', \nn - \nn') \coloneqq  \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(\nn-\tt)},
+	\noisys\too{n} \longrightarrow \noisys(\tt, \epsilon', n - n') \coloneqq  \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(n-\tt)},
 \end{equation}
-where all copies $\nn, \tt, \nn - \tt$ are even.
-Since the initial state can be written in the form $\noisys(\nn, \epsilon, 0)$, it suffices to construct the Lorenz curve $\lc{\noisys}{\id/3}(x)$ for the generic noisy strange state $\noisys(\nn, \epsilon ,\tt)$.
-This curve is defined at $9^\nn$ points between $0$ and $1$.
-The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater than or less than $\frac{3}{7}$, the parity of the number of copies $\nn$ is even/odd and the location relative to the curve peak is on the left hand side (LHS -- including the maximum) / right hand side (RHS).
+where all copies $n, \tt, n - \tt$ are even.
+Since the initial state can be written in the form $\noisys(n, \epsilon, 0)$, it suffices to construct the Lorenz curve $\lc{\noisys}{\id/3}(x)$ for the generic noisy strange state $\noisys(n, \epsilon ,\tt)$.
+This curve is defined at $9^n$ points between $0$ and $1$.
+The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater than or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even/odd and the location relative to the curve peak is on the left hand side (LHS -- including the maximum) / right hand side (RHS).
 The full details are provided in~\cref{app:lcsu_technical}.
 
-Here we focus on the case of Lorenz curves of even copies $\nn, \tt$ and low noise levels ($\epsilon \leq 3/7$).
+Here we focus on the case of Lorenz curves of even copies $n, \tt$ and low noise levels ($\epsilon \leq 3/7$).
 The part of the curve on the LHS of its peak is constructed by the positive components of the state Wigner distribution that take values $w_\ii$, with associated multiplicities $\mlt_\ii$,
 \begin{align}
-	w_\ii &= \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{\nn-2\ii}, \\
-	m_\ii &= 8^{2\ii}\binom{\nn}{2\ii},
+	w_\ii &= \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2\ii}, \\
+	m_\ii &= 8^{2\ii}\binom{n}{2\ii},
 \end{align}
 where $i=0,\dots,\frac{n}{2}$.
 From this, it is readily seen that $\lc{\rho}{\id/3}(x)$ has elbows on the LHS of its peak located at points $x=x_\ii$, where
 \begin{equation}
-	x_\ii = \Phi_+ \left( 2\ii; \nn , \frac{8}{9} \right),
+	x_\ii = \Phi_+ \left( 2\ii; n , \frac{8}{9} \right),
 \end{equation}
 with $\ii = 0,1, \dots , n$ and where $\Phi_+(i,n,p)$ is an even-power cumulant distribution function given by
 \begin{equation}
-	\Phi_+(2\ii; \nn, p) \coloneqq \sum_{\dummy=0}^{\ii} \binom{\nn}{2\dummy} p ^{2\dummy} (1-p)^{\nn-2\dummy}.
+	\Phi_+(2\ii; n, p) \coloneqq \sum_{\dummy=0}^{\ii} \binom{n}{2\dummy} p ^{2\dummy} (1-p)^{n-2\dummy}.
 \end{equation}
 We provide technical details on the function $\Phi_+$ in the appendices.
 
 The value of the Lorenz curve at an elbow is given by
 \begin{equation}
-	\lc{\rho}{\id/3}(x_{\ii}) \equiv L_{\ii} =  \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{\nn} \Phi_+\left(2i;\nn,\frac{12-4\epsilon}{15-8\epsilon}\right),
+	\lc{\rho}{\id/3}(x_{\ii}) \equiv L_{\ii} =  \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{n} \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right),
 \end{equation}
 and we define $(x_{-1}, L_{-1}) = (0,0)$.
 
@@ -719,45 +719,45 @@ The coordinates of any point on the Lorenz curve LHS can be expressed as convex 
     x_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk}\right) x_{\ii-1} + p_{\ii\jj\kk} x_{\ii} \label{eq:lcsu_xcoord}\\
     L_{\ii\jj\kk} &= \left( 1-p_{\ii\jj\kk} \right) L_{\ii-1} + p_{\ii\jj\kk} L_{\ii}, \label{eq:lcsu_lcoord}
 \end{align}
-where we use a three-index parametrisation for the coordinates, with $\ii$ the index of the elbow that follows, $\jj = 1,\dots,\mlt_\ii$ and $\kk=1,\dots,9^{2(\nn-\tt)}$.
-Therefore, for the initial state $\noisys\too{2\nn}$ we have
+where we use a three-index parametrisation for the coordinates, with $\ii$ the index of the elbow that follows, $\jj = 1,\dots,\mlt_\ii$ and $\kk=1,\dots,9^{2(n-\tt)}$.
+Therefore, for the initial state $\noisys\too{2n}$ we have
 \begin{equation}
-	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{2\nn}{2\ii}},
+	p_{\ii\jj\kk} = \frac{\jj}{8^{2\ii}\binom{2n}{2\ii}},
 \end{equation}
-with $\ii=0,\dots,\nn,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{2\nn}{2\ii}$ and $\kk = 1$.
-For the target state $\noisys(\epsilon')\too{2\tt} \otimes \left( \frac{1}{3}\id \right)\too{2(\nn-\tt)}$,
+with $\ii=0,\dots,n,\ \jj(\ii) = 1,\dots,8^{2\ii}\binom{2n}{2\ii}$ and $\kk = 1$.
+For the target state $\noisys(\epsilon')\too{2\tt} \otimes \left( \frac{1}{3}\id \right)\too{2(n-\tt)}$,
 \begin{equation}
-	p'_{\ii'\jj'\kk'} = \frac{\kk' + (\jj'-1)9^{2(\nn-\tt)}}{9^{2(\nn-\tt)} 8^{2\ii'}\binom{2\tt}{2\ii'}}
+	p'_{\ii'\jj'\kk'} = \frac{\kk' + (\jj'-1)9^{2(n-\tt)}}{9^{2(n-\tt)} 8^{2\ii'}\binom{2\tt}{2\ii'}}
 \end{equation}
-with $\ii'=0,\dots,\tt,\ \jj'(\ii') = 1,\dots,8^{2\ii'}\binom{\tt}{2\ii'}$ and $\kk' = 1,\dots,9^{2(\nn-\tt)}$.
+with $\ii'=0,\dots,\tt,\ \jj'(\ii') = 1,\dots,8^{2\ii'}\binom{\tt}{2\ii'}$ and $\kk' = 1,\dots,9^{2(n-\tt)}$.
 \fi
 
-Lorenz curve comparison provides $9^\nn$ necessary constraints for the process~\cref{eq:sudist}.
+Lorenz curve comparison provides $9^n$ necessary constraints for the process~\cref{eq:sudist}.
 \cref{thm:elbows} shows that they can be reduced to $\tt$ independent constraints.
 However, in principle we can pick any location $x_\star \in [0,1]$ at which the Lorenz curves are defined and we then get a necessary distillation constraint, 
 \begin{equation}
-	\lc{\noisys(\nn, \epsilon, 0)}{\frac{\id}{3}}(x_\star) \geq \lc{\noisys(\tt, \epsilon', \nn-\tt)}{\frac{\id}{3}}(x_\star).
+	\lc{\noisys(n, \epsilon, 0)}{\frac{\id}{3}}(x_\star) \geq \lc{\noisys(\tt, \epsilon', n-\tt)}{\frac{\id}{3}}(x_\star).
 \end{equation}
 
-We choose $x_\star = x_0 = \Phi_+(0, \nn, \frac{8}{9}) = \frac{1}{9^{\nn}}$, the location of the first elbow of the initial state $\noisys(\nn, \epsilon, 0)$.
+We choose $x_\star = x_0 = \Phi_+(0, n, \frac{8}{9}) = \frac{1}{9^{n}}$, the location of the first elbow of the initial state $\noisys(n, \epsilon, 0)$.
 The initial state Lorenz curve coordinate at this location is
 \begin{equation}
-	L_\star = L_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{\nn} \Phi_+\left(0;\nn,\frac{12-4\epsilon}{15-8\epsilon}\right) = \left(\frac{3-4\epsilon}{9}\right)^\nn
+	L_\star = L_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^{n} \Phi_+\left(0;n,\frac{12-4\epsilon}{15-8\epsilon}\right) = \left(\frac{3-4\epsilon}{9}\right)^n
 \end{equation}
 
 The first elbow of the target state is located at $x'_0 = \frac{1}{9^{\tt}} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the first target state elbow, 
 \begin{equation}\label{eq:constraint_deriv}
 	\begin{split}
-	L'_\star &= \frac{x_\star}{x'_0}L'_0 = \frac{1}{9^{\nn-\tt}}\left( \frac{5}{3} - \frac{8}{9}\epsilon'\ \right)^{\tt}\Phi_+\left(0;\tt,\frac{12-4\epsilon'}{15-8\epsilon'}\right) \\
-	&= \frac{(3-4\epsilon')^{\tt}}{9^{\nn}}.
+	L'_\star &= \frac{x_\star}{x'_0}L'_0 = \frac{1}{9^{n-\tt}}\left( \frac{5}{3} - \frac{8}{9}\epsilon'\ \right)^{\tt}\Phi_+\left(0;\tt,\frac{12-4\epsilon'}{15-8\epsilon'}\right) \\
+	&= \frac{(3-4\epsilon')^{\tt}}{9^{n}}.
 	\end{split}
 \end{equation}
 The process in~\cref{eq:sudist} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
 \begin{align}
 	\frac{n}{n'} &\geq \frac{\ln{(3-4\epsilon')}}{\ln{(3-4\epsilon)}}, \text{ or}\\
-	\epsilon &\leq \frac{3}{4} - \frac{1}{4}(3-4\epsilon')^{\frac{\tt}{\nn}}.
+	\epsilon &\leq \frac{3}{4} - \frac{1}{4}(3-4\epsilon')^{\frac{\tt}{n}}.
 \end{align}
-As an example, the process with $(\nn, \tt) = (12, 4)$ and $\epsilon' = 0.05$ yields $\epsilon \leq 0.398$.
+As an example, the process with $(n, \tt) = (12, 4)$ and $\epsilon' = 0.05$ yields $\epsilon \leq 0.398$.
 Numerical comparison of the curves with varying $\epsilon$ suggests that we require $\epsilon \leq 0.373$ for the process to be possible.
 
 Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain an upper bound on the unital fragment distillation rate $R=n'/n$ given by
@@ -809,11 +809,11 @@ In particular, the Wigner distribution of the state can be written as
 \end{equation}
 so we get positive components
 \begin{equation}
-	w_+(\epsilon) = \frac{1}{6} -\frac{1}{18}\epsilon
+	\wp(\epsilon) = \frac{1}{6} -\frac{1}{18}\epsilon
 \end{equation}
 at the 8 phase space points $\bmx \in \pd[3] \setminus \{(2,2)\}$ and a negative component
 \begin{equation}
-	- w_-(\epsilon) = - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
+	- \wn(\epsilon) = - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
 \end{equation}
 at point $\bmx = (2,2)$.
 
@@ -847,36 +847,103 @@ All Wigner components are strictly positive, therefore the pre-order $\prec_{\ga
 
 We are now in a position to consider the Strange state distillation process
 \begin{equation}\label{eq:msd_thermal}
-		\noisys(\epsilon)\too{\nn} \xrightarrow{\E \in \O_{\gamma_\beta}} \noisys(\epsilon')\too{\tt} \otimes \gamma_\beta\too{\nn-\tt},
+		\noisys(\epsilon)\too{n} \xrightarrow{\E \in \O_{\gamma_\beta}} \noisys(\epsilon')\too{\tt} \otimes \gamma_\beta\too{(n-\tt)},
 \end{equation}
 where we are allowed to tensor in copies of the thermal state $\gamma_\beta$, since it is free in fragment $\O_{\gamma_\beta}$.
 
-Our aim is to obtain a distillation bound for~\cref{eq:msd_thermal} which depends on variables $\nn, \tt, \epsilon, \epsilon'$ as well as $\beta$.
+Our aim is to obtain a distillation bound for~\cref{eq:msd_thermal} which depends on variables $n, \tt, \epsilon, \epsilon'$ as well as $\beta$.
 In the analysis that follows, we drop obvious variable dependencies for clarity.
 
 Consider a general $\epsilon$-noisy Strange state $\noisys$ in a thermal fragment $\O_{\gamma}$.
 We can construct the Gibbs-rescaled distribution 
 \begin{equation}
-	\widetilde{\rm{W}}(\bmx) \coloneqq \frac{\W[\bmx]{\noisys}}{\W[\bmx]{\gamma}},
+	\widetilde{\rm{W}}_{\noisys|\gamma}(\bmx) = \widetilde{\rm{W}}_1(\bmx) \coloneqq \frac{\W[\bmx]{\noisys}}{\W[\bmx]{\gamma}},
 \end{equation}
-which naturally splits the phase space $\pd[3]$ into four regions of different ``slopes'', i.e. values of the Gibbs-rescaled distribution, as illustrated in~\cref{fig:pd_split_thermal}.
+which naturally splits the phase space $\pd[3]$ into four regions where the ``slope'', i.e. the value of the Gibbs-rescaled distribution, is different.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/pd_split_thermal.pdf}
     \caption{\textbf{Qutrit phase space regions with different Gibbs-rescaled values.}
+    The slope is positive in regions $X,Y,Z$, but attains a different value in each region and the slope is negative in region $1$.
+    The distribution values and multiplicites (i.e. the numpber of phase space points contained in the region) can be read off as the term coefficients in~\cref{eq:g1}.
     }
     \label{fig:pd_split_thermal}
 \end{figure}
+In each region, we want to keep track of the corresponding values and multiplicities of Wigner distributions $\W{\noisys}, \W{\gamma}$ and Gibbs-rescaled distribution $\widetilde{\rm{W}}_1$. 
+To this end, we label the four regions using variables $1,X,Y,Z$ as illustrated in~\cref{fig:pd_split_thermal}, and we write down the expressions:
+\begin{align}\label{eq:g1}
+	G_1(\noisys) &\coloneqq -\wn + 3\wp X + 3\wp Y + 2\wp Z \\
+	\begin{split}
+	G_1(\gamma) &\coloneqq (3\Z)^{-1} \big( e^{-\beta E_2} + 3e^{-\beta E_0} X \\
+	&\hspace{49pt} + 3e^{-\beta E_1} Y + 2e^{-\beta E_2} Z \big) 
+	\end{split}
+	\\
+	\begin{split}
+	G_1(\noisys|\gamma) &\coloneqq (3\Z) \big( -\wn e^{\beta E_2} + 3\wp e^{\beta E_0} X \\
+	&\hspace{41pt} + 3\wp e^{\beta E_1} Y + 2\wp e^{\beta E_2} Z \big)
+	\end{split}
+\end{align}
+The coefficient of each term reads as the multiplicity times the value of the desired distribution in the corresponding region.
 
-An $n$-copy system is described over a phase space given by the $n$-times Cartesian product $\pd[3]^{\times n}$) which contains more regions of different slope.
-In particular, it contains exactly the regions $X^i Y^j Z^k$, where $i,j,k = 0,\dots,n$ and $i+j+k \leq n$. 
-For example, region $XY$ consists of all points expressed as the direct sum $\bmx \oplus \bmy$, where $\bmx \in X$ and $\bmy \in Y$.
-
-The $n$-copy Gibbs-rescaled distribution can be written as a self-convolution,
+An $n$-copy system is described over a phase space given by the $n$-times Cartesian product $\pd[3]^{\times n}$ which generates new regions of different slope.
+In particular, it comprises exactly the regions $X^i Y^j Z^k$, where $i,j,k = 0,\dots,n$ and 
 \begin{equation}
-	\widetilde{\rm{W}}(\bmx) = \frac{\W{\noisys\too{n}}(\bmx)}{\W{\gamma\too{n}}(\bmx)} = \left( \frac{\W{\noisys}(\bmx)}{\W{\gamma}(\bmx)} \right)\too{n} = \widetilde{\bmw}\too{n}.
+	\alpha \coloneqq i+j+k \leq n.
+\end{equation} 
+For example, region $YZ$ consists of all points expressed as the direct sum $\bmy \oplus \bmz$, where $\bmy \in Y$ and $\bmz \in Z$. \nick{abuse of notation: I use X,Y,Z as sets and as variables that represent those sets}
+
+The $n$-copy Wigner distributions, and therefore the $n$-copy Gibbs-rescaled distribution can be written as self-convolutions,
+\begin{align}
+	\W{\noisys\too{n}}(\bmx) &= \W{\noisys}(\bmx)\too{n} \\
+	\W{\gamma\too{n}}(\bmx) &= \W{\gamma}(\bmx)\too{n} \\
+	\begin{split}
+	\widetilde{\rm{W}}_{\noisys\too{n}|\gamma\too{n}}(\bmx) &= \widetilde{\rm{W}}_n(\bmx) = \frac{\W{\noisys\too{n}}(\bmx)}{\W{\gamma\too{n}}(\bmx)} \\
+	&= \left( \frac{\W{\noisys}(\bmx)}{\W{\gamma}(\bmx)} \right)\too{n} = \left( \widetilde{\rm{W}}_1(\bmx)\right) \too{n}.
+	\end{split}
+\end{align}
+Therefore, the values and multiplicites of the $n$-copy distributions are generated directly as a multinomial expansion of the $1$-copy expressions in~\cref{eq:g1}.
+\begin{align}\label{eq:gn}
+	&G_n(\noisys) \coloneqq G_1(\noisys)^n = \\
+	&\sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \big[(-\wn)^{n-\alpha} \wp^{\alpha} \big] X^i Y^j Z^k, \nonumber
+	\\[10pt]
+	&G_n(\gamma) \coloneqq G_1(\gamma)^n = \\
+	&(3\Z)^{-n}\hspace{-10pt} \sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \Big[ e^{-\beta ( i E_0 + j E_1 + k E_2 )} e^{-\beta (n-\alpha)E_2} \Big] X^i Y^j Z^k, \nonumber
+	\\[10pt]
+	&G_n(\noisys|\gamma) \coloneqq G_1(\noisys|\gamma)^n = \\
+	&(3\Z)^{n}\hspace{-10pt} \sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \Big[ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_2} \times \nonumber\\[-15pt]
+	&\hspace{80pt} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big] X^i Y^j Z^k, \nonumber
+\end{align}
+where the $(i,j,k)$-th term multiplicity $m_{ijk}$ (i.e. the number of phase space points contained in region $X^i Y^j Z^k$) is given by
+\begin{equation}
+	m_{ijk} \coloneqq \frac{n!}{i!j!k!(n-\alpha)!} 3^i 3^j 2^k.
 \end{equation}
-Therefore, the regions of different slope in an $n$-copy phase space are generated by the 1-copy phase space regions.
+
+In order to construct the Lorenz curve of a Strange state in a thermal fragment we need to sort the components of $\widetilde{W}_n$ in decreasing order.
+In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the greatest component,
+\begin{equation}\label{eq:max_slope}
+	\widetilde{W}_{\rm{max}} \coloneqq \max\limits_{i,j,k}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_2} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}}
+\end{equation}
+Notice that for $0 \leq \epsilon \leq \frac{3}{7}$, we have $\wn \geq \wp$.
+Assume that $n$ is even (the analysis is similar for odd $n$). 
+We then need the sum $\alpha = i+j+k$ to be even, so that the expression remains positive.
+
+Given a value for the sum $\alpha$, the term $\wn^{n-\alpha} \wp^{\alpha} e^{-\beta (n-\alpha)E_2}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
+Hence, we have
+\begin{align}
+	\widetilde{W}_{\rm{max}} &= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_2} e^{\beta \alpha E_{\rm{max}}} \Big\}} \\
+	&= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \wn^n e^{\beta n E_2} \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_2)} \right)^{\alpha} \Big\}}
+\end{align}
+The last expression is clearly maximised for $\alpha = 0$ ($\alpha = n$) when the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_2)} \leq 1$ ($>1$).
+Therefore, we have
+\begin{equation}
+\widetilde{W}_{\rm{max}} =
+	\begin{cases}
+		\wn^n e^{n\beta E_2},\ &\beta \leq \frac{1}{E_{\rm{max}} - E_2}\ln{\left( 8-\frac{18}{3-\epsilon} \right)} \\
+		\wp^n e^{n\beta E_{\rm{max}}},\ &\beta > \frac{1}{E_{\rm{max}} - E_2}\ln{\left( 8-\frac{18}{3-\epsilon} \right)}
+	\end{cases}
+\end{equation}
+
+
 
 
 
@@ -1021,27 +1088,27 @@ We can also invert the temperature constraint into a noise constraint for the st
 
 Consider the Strange state distillation process
 \begin{equation}\label{eq:stdist}
-	\noisys\too{\nn} \longrightarrow \noisys(\tt, \epsilon', \nn - \nn') \coloneqq  \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(\nn-\tt)},
+	\noisys\too{n} \longrightarrow \noisys(\tt, \epsilon', n - n') \coloneqq  \noisys(\epsilon')\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(n-\tt)},
 \end{equation}
 in the thermal fragment $\O_{\gamma_\beta}$.
 We are now in a position to extract a distillation bound that takes the temperature $\beta$ into account in an analogous method as the one used for the unital fragment distillation bound.
 
-We choose the temperature regime in~\cref{eq:tempregime} and we pick the location $x_\star = x_0 = (3Z)^{-\nn} = (3(2+e^{-\beta}))^{-\nn}$ of the first elbow of the initial state $\noisys(\nn, \epsilon, 0)$ and write down the necessary distillation constraint, 
+We choose the temperature regime in~\cref{eq:tempregime} and we pick the location $x_\star = x_0 = (3Z)^{-n} = (3(2+e^{-\beta}))^{-n}$ of the first elbow of the initial state $\noisys(n, \epsilon, 0)$ and write down the necessary distillation constraint, 
 \begin{equation}
-	\lc{\noisys(\nn, \epsilon, 0)}{\gamma_\beta}(x_\star) \geq \lc{\noisys(\tt, \epsilon', \nn-\tt)}{\gamma_\beta}(x_\star).
+	\lc{\noisys(n, \epsilon, 0)}{\gamma_\beta}(x_\star) \geq \lc{\noisys(\tt, \epsilon', n-\tt)}{\gamma_\beta}(x_\star).
 \end{equation}
 
-The initial state Lorenz curve coordinate at this location is $L_\star = L_0 = (1/3 - 4\epsilon/9)^{\nn}$.
+The initial state Lorenz curve coordinate at this location is $L_\star = L_0 = (1/3 - 4\epsilon/9)^{n}$.
 
 The first elbow of the target state is located at $x'_0 = (3Z)^{-\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the first target state elbow, 
 \begin{equation}\label{eq:constraint_deriv_temp}
-	L'_\star = \frac{x_\star}{x'_0}L'_0 = (3(2+e^{-\beta}))^{\tt-\nn} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
+	L'_\star = \frac{x_\star}{x'_0}L'_0 = (3(2+e^{-\beta}))^{\tt-n} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
 \end{equation}
 The process in~\cref{eq:stdist} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
 \begin{align}
 	\frac{n}{n'} \geq \frac{\ln{\Big[ (1-\frac{4}{3}\epsilon')(2+e^{-\beta}) \Big]}}{\ln{\Big[ (1-\frac{4}{3}\epsilon)(2+e^{-\beta}) \Big]}},
 \end{align}
-with $\tt \leq \nn$ and $\epsilon' \leq \epsilon \leq 3 - 18/\big(8-e^{\beta}\big)$.
+with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq 3 - 18/\big(8-e^{\beta}\big)$.
 
 Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain an upper bound on the unital fragment distillation rate $R=n'/n$ given by
 \begin{equation}
@@ -1143,7 +1210,7 @@ and therefore the first elbow constraint $L_\star \geq L'_\star$ gives
 \begin{align}
 	\frac{n}{n'} \geq \frac{\ln{\Big[ (1-\frac{4}{3}\epsilon')\Z_\beta \Big]}}{\ln{\Big[ (1-\frac{4}{3}\epsilon)\Z_\beta \Big]}},
 \end{align}
-with $\tt \leq \nn$ and $\epsilon' \leq \epsilon$. 
+with $\tt \leq n$ and $\epsilon' \leq \epsilon$. 
 Moreover, if $E_2$ is not largest, we have the additional constarint $\epsilon \leq 3 - 18/\big(8-e^{\beta}\big)$.
 This agrees with the previous scenario where the energy spectrum was $(1,0,0)$.
 
