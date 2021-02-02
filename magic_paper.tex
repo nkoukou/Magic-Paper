@@ -995,6 +995,7 @@ We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\r
     \includegraphics[scale=0.5]{figs/distill_bounds_temp.pdf}
     \caption{\textbf{Distillation rate with low noise in thermal fragments.} Distillation rates obtained by majorization $R(\beta)$ for low noise levels $\epsilon \leq \epsilon_{\rm{th}}$ are plotted for different temperatures $\beta^{-1}$ such that $0 \leq \beta \leq \beta_{\rm{th}}$.
     The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
+    The Hamiltonian spectrum is simple harmonic, $(E_0, E_1, E_2) = (0,1,2)$.
     As $\beta$ increases, the range of noise levels for which $R(\beta)$ is valid decreases and the distillation bound becomes stricter.
     }
     \label{fig:distill_bounds_temp}
@@ -1039,14 +1040,16 @@ It is given by
 \begin{equation}
 	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\big(\frac{3}{3-\epsilon} \big)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
 \end{equation}
-which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon$. 
+which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
+At the zero temperature limit, $F_\beta$ tends to the lowest eigen-energy, $R(\beta) \xrightarrow{\beta \rightarrow \infty} 1$.
 We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_lowtemp}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/distill_bounds_lowtemp.pdf}
     \caption{\textbf{Distillation rate for low temperatures in thermal fragments.} Distillation rates obtained by majorization $R(\beta)$ in the temperature regime $\beta \geq \beta_{\rm{th}}$ are plotted for different temperatures $\beta^{-1}$.
     The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
-    \nick{Terrible bound for low temperatures. I'll check for possible calculation errors.}
+    The Hamiltonian spectrum is simple harmonic, $(E_0, E_1, E_2) = (0,1,2)$.
+    \nick{Terrible bound for low temperatures.}
     }
     \label{fig:distill_bounds_lowtemp}
 \end{figure}
