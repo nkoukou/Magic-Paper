@@ -974,7 +974,7 @@ The first elbow of the target state is located at $x'_0 = (3Z)^{-\tt} > x_\star$
 \begin{equation}\label{eq:constraint_deriv_temp}
 	L'_\star = \frac{x_\star}{x'_0}L'_0 = (3\Z_\beta)^{\tt-n} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
 \end{equation}
-The process in~\cref{eq:stdist} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
+The process in~\cref{eq:msd_thermal} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
 \begin{align}
 	\frac{n}{n'} \geq \frac{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon' \big)\Z_\beta \Big]}}{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon \big)\Z_\beta \Big]}} = \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} - \beta F_\beta}{\ln{\big( 1-\frac{4}{3}\epsilon \big)} - \beta F_\beta},
 \end{align}
@@ -983,6 +983,22 @@ The free energy of thermal state $\gamma_\beta$ is denoted by
 \begin{equation}
 	F_\beta \coloneqq \tr[\gamma_\beta H] - \beta^{-1} \tr[\gamma_\beta \log{\gamma_\beta}].
 \end{equation}
+
+Moreover, we can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) given by
+\begin{equation}
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\big( 1-\frac{4}{3}\epsilon \big)}}{\beta F_\beta},
+\end{equation}
+which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. 
+We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_temp}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/distill_bounds_temp.pdf}
+    \caption{\textbf{Distillation rate with low noise in thermal fragments.} Distillation rates obtained by majorization $R(\beta)$ for low noise levels $\epsilon \leq \epsilon_{\rm{th}}$ are plotted for different temperatures $\beta^{-1}$ such that $0 \leq \beta \leq \beta_{\rm{th}}$.
+    The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
+    As $\beta$ increases, the range of noise levels for which $R(\beta)$ is valid decreases and the distillation bound becomes stricter.
+    }
+    \label{fig:distill_bounds_temp}
+\end{figure}
 
 Our approach also allows for analysis at the limit of low temperature, $\beta \rightarrow \infty$.
 In fact, for any
@@ -1011,12 +1027,29 @@ The first elbow of the target state is located at $x'_0 = (2e^{-\beta E_0} / (2\
 \begin{equation}\label{eq:constraint_deriv_lowtemp}
 	L'_\star = \frac{x_\star}{x'_0}L'_0 = 2^n \left(\frac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-\tt} \left( \frac{1}{6} - \frac{1}{18}\epsilon' \right)^{\tt}.
 \end{equation}
-Therefore, in the low temperature scenario $\beta \geq \beta_{\rm{th}}$, the distillation process in~\cref{eq:stdist} is possible only if $L_\star \geq L'_\star$ or equivalently,
+Therefore, in the low temperature scenario $\beta \geq \beta_{\rm{th}}$, the distillation process in~\cref{eq:msd_thermal} is possible only if $L_\star \geq L'_\star$ or equivalently,
 \begin{align}
 	\frac{n}{n'} &\geq \frac{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}}{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}} \nonumber\\
-	&= \frac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} - \beta F_\beta + \beta E_{\rm{max}}}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} - \beta F_\beta + \beta E_{\rm{max}}},
+	&= \frac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)},
 \end{align}
 with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
+
+We can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) in this regime as well. 
+It is given by
+\begin{equation}
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\big(\frac{3}{3-\epsilon} \big)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
+\end{equation}
+which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon$. 
+We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_lowtemp}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/distill_bounds_lowtemp.pdf}
+    \caption{\textbf{Distillation rate for low temperatures in thermal fragments.} Distillation rates obtained by majorization $R(\beta)$ in the temperature regime $\beta \geq \beta_{\rm{th}}$ are plotted for different temperatures $\beta^{-1}$.
+    The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
+    \nick{Terrible bound for low temperatures. I'll check for possible calculation errors.}
+    }
+    \label{fig:distill_bounds_lowtemp}
+\end{figure}
 
 
 
