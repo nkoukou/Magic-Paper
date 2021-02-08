@@ -494,7 +494,7 @@ Any of the $t$ inequalities in the theorem provides a valid contraint leading to
 
 One of the most fundamental and commonly used magic monotones is the \emph{mana} of a state \nick{CITE}, defined as
 \begin{equation}
-    \mana{\rho} \coloneqq \log{(2\sn{\rho}+1)},
+    \mana{\rho} \coloneqq \ln{(2\sn{\rho}+1)},
 \end{equation}
 where the \emph{sum-negativity} ($\rm{sn}$) \nick{CITE} is the sum of the negative components in $\W{\rho}$,
 \begin{equation}
@@ -942,53 +942,86 @@ Hence, we have
 	\widetilde{W}_{\rm{max}} &= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta \alpha E_{\rm{max}}} \Big\}} \\
 	&= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \wn^n e^{n\beta E_0} \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}
 \end{align}
-The last expression is clearly maximised for $\alpha = 0$ ($\alpha = n$) when the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than or equal to $1$ (greater than $1$).
+The last expression is maximised for $\alpha = 0$ ($\alpha = n$) when the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than or equal to $1$ (greater than $1$).
 We want to rewrite the expression as a noise level $\epsilon$ constraint with respect to temperature $\beta^{-1}$, where the noise threshold is
 \begin{equation}
 	\epsilon_{\rm{th}} \coloneqq 3 - \dfrac{18}{8-e^{(E_{\rm{max}} - E_0)\beta}}.
 	%\beta \leq \frac{1}{E_{\rm{max}} - E_0}\ln{\left( 8-\frac{18}{3-\epsilon} \right)}
 \end{equation}
-The noise threshold $\epsilon_{\rm{th}}$ is an increasing function of temperature $\beta^{-1}$.
+The noise threshold $\epsilon_{\rm{th}}$ is a decreasing function of $\beta$.
+It achieves its maximum value $3/7$ for $(E_{\rm{max}} - E_0)\beta = 0$, and its minimum value $0$ for
+\begin{equation}
+	\beta_{\rm{th}} \coloneqq \frac{1}{E_{\rm{max}} - E_0} \ln2.
+\end{equation}
 We have
 \begin{equation}
 \widetilde{W}_{\rm{max}} =
 	\begin{cases}
-		\wn^n e^{n\beta E_0}, &\epsilon \leq \epsilon_{\rm{th}}, 	\\
-		\wp^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\rm{th}}.
+		\wn^n e^{n\beta E_0}, &\epsilon \leq \epsilon_{\rm{th}},\ \hspace{30pt}\rm{(C1)}	\\
+		\wp^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\rm{th}}.\ \hspace{32pt}\rm{(C2)} 
+	\end{cases}
+\end{equation}
+Case 1 $\rm{(C1)}$ corresponds to the region labelled by $(i,j,k) = (0,0,0)$.
+Case 2 $\rm{(C2)}$ corresponds to the region labelled by 
+\begin{equation}
+	(i,j,k) = 
+	\begin{cases}
+	(0,n,0), &\text{if } E_{\rm{max}} = E_1, \\
+	(0,0,n), &\text{if } E_{\rm{max}} = E_2.
+	\end{cases}
+\end{equation}
+Note that if $E_{\rm{max}} = E_0$, we get $\epsilon_{\rm{th}} = 3/7$ and $\rm{(C1)}$ holds for all $\epsilon$ and $\beta$.
+Assuming $E_{\rm{max}} > E_0$, we get the cases:
+\begin{itemize}
+	\item $\beta = 0$. Then, $\epsilon_{\rm{th}} = 3/7$ and $\rm{(C1)}$ holds for all noise levels $\epsilon$.
+	This is the unital fragment.
+	\item $0 < \beta < \beta_{\rm{th}}$. Then, $0 < \epsilon_{\rm{th}} < 3/7$ and $\rm{(C1)}$ holds for $\epsilon \leq \epsilon_{\rm{th}}$, while $\rm{(C2)}$ holds for $\epsilon \geq \epsilon_{\rm{th}}$.
+	\item $\beta \geq \beta_{\rm{th}}$. Then, $ \epsilon_{\rm{th}} \leq 0$ and $\rm{(C2)}$ holds for all $\epsilon$.
+\end{itemize}
+
+Whenever the set of physical parameters falls under $\rm{(C1)}$, the multiplicity is $m_{000} = 1$ and the first elbow coordinates can be read off the $X^0Y^0Z^0$ term in generating functions $G_n(\noisys), G_n(\gamma)$.
+If it falls under $\rm{(C2)}$, then $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$), the multiplicity is $m_{0n0} = 3^n$ ($m_{00n} = 3^n$) and the first elbow coordinates can be read off the $X^0Y^nZ^0$ ($X^0Y^0Z^n$) term in generating functions $G_n(\noisys), G_n(\gamma)$,
+\begin{equation}
+	(x_0, L_0) =
+	\begin{cases}
+		\left( \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^n, \wn^n \right), &\rm{(C1)}	\vspace{10pt}\\
+		\left( \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n, (3u)^n \right). &\rm{(C2)} 
 	\end{cases}
 \end{equation}
 
-For low noise levels $\epsilon \leq \epsilon_{\rm{th}}$, we get $\widetilde{W}_{\rm{max}} = \wn^n e^{n\beta E_0}$ occuring in the region labelled by $(i,j,k) = (0,0,0)$.
-This scenario includes the unital fragment, defined at the limit $\beta \rightarrow 0$, because for $\beta = 0$, we have $\epsilon_{\rm{th}} = 3/7$, so $\epsilon \leq \epsilon_{\rm{th}}$ always holds.
-
-In the low noise level scenario, the multiplicity is $m_{000} = 1$ and the first elbow coordinates can be read off the $X^0Y^0Z^0$ term in generating functions $G_n(\noisys), G_n(\gamma)$,
-\begin{equation}
-	(x_0, L_0) = ((3\Z)^{-n}, \wn^n)
-\end{equation}
-and the necessary distillation constraint defined at the location $x_\star = x_0$ of the initial state's first elbow is
+Considering the distillation process in~\cref{eq:msd_thermal}, the Lorenz curves of the initial and target states may each be described by either $\rm{(C1)}$ or $\rm{(C2)}$.
+In any case, a necessary distillation constraint can be defined at the location $x_\star = x_0$ of the initial state's first elbow and be expressed as
 \begin{equation}\label{eq:first_elbow_constraint}
 	\lc{\noisys(\epsilon)\too{n}}{\gamma_\beta}(x_\star) \geq \lc{\noisys(\epsilon')\too{\tt}}{\gamma_\beta}(x_\star).
 \end{equation}
 
+Let's focus on the case where both Lorenz curves are described by $\rm{(C1)}$.
+This case includes the unital fragment.
+
 The first elbow of the target state is located at $x'_0 = (3Z)^{-\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the target state's first elbow, 
 \begin{equation}\label{eq:constraint_deriv_temp}
-	L'_\star = \frac{x_\star}{x'_0}L'_0 = (3\Z_\beta)^{\tt-n} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
+	L'_\star = \frac{x_\star}{x'_0}L'_0 = \left(\frac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-\tt} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
 \end{equation}
-The process in~\cref{eq:msd_thermal} is therefore possible only if $L_\star \geq L'_\star$ or equivalently,
+The constraint in~\cref{eq:first_elbow_constraint} therefore holds only if
 \begin{align}
-	\frac{n}{n'} \geq \frac{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon' \big)\Z_\beta \Big]}}{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon \big)\Z_\beta \Big]}} = \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} - \beta F_\beta}{\ln{\big( 1-\frac{4}{3}\epsilon \big)} - \beta F_\beta},
+	\frac{n}{n'} &\geq \frac{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon' \big)\Z_\beta  e^{\beta E_0} \Big]}}{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon \big)\Z_\beta e^{\beta E_0} \Big]}} \\
+	&= \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} - \beta (F_\beta - E_0)}{\ln{\big( 1-\frac{4}{3}\epsilon \big)} - \beta (F_\beta - E_0)},
 \end{align}
 with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. 
 The free energy of thermal state $\gamma_\beta$ is denoted by
 \begin{equation}
-	F_\beta \coloneqq \tr[\gamma_\beta H] - \beta^{-1} \tr[\gamma_\beta \log{\gamma_\beta}].
+	F_\beta \coloneqq \tr[\gamma_\beta H] + \beta^{-1} \tr[\gamma_\beta \ln{\gamma_\beta}] = -\beta^{-1} \ln{\Z_\beta}.
 \end{equation}
 
 Moreover, we can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) given by
 \begin{equation}
-	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\big( 1-\frac{4}{3}\epsilon \big)}}{\beta F_\beta},
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left( \frac{1}{1 - \frac{4}{3}\epsilon} \right)}}{\beta (E_0 - F_\beta)},
 \end{equation}
-which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. 
+which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. \nick{In fact, it holds for $0 \leq \epsilon \leq \epsilon_*$, where $\epsilon_\star$ is the noise level (lower than $\epsilon_{\rm{th}}$) at which the state conversion turns from $\rm{(C1)} \rightarrow \rm{(C1)}$ to $\rm{(C1)} \rightarrow \rm{(C2)}$. Need to adjust~\cref{fig:distill_bounds_temp} accordingly}
+At the limit of high temperature, $\beta \rightarrow 0$, we get $\beta F_\beta \rightarrow -\ln{3}$, and we retrieve the unital fragment bound,
+\begin{equation}
+	R(\beta) \xrightarrow{\beta \rightarrow 0} \frac{\ln{(3-4\epsilon)}}{\ln{3}}.
+\end{equation}
 We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_temp}.
 \begin{figure}[h]
     \centering
@@ -1001,34 +1034,17 @@ We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\r
     \label{fig:distill_bounds_temp}
 \end{figure}
 
-Our approach also allows for analysis at the limit of low temperature, $\beta \rightarrow \infty$.
-In fact, for any
-\begin{equation}
-	\beta \geq \beta_{\rm{th}} \coloneqq \frac{1}{E_{\rm{max}} - E_0} \ln2,
-\end{equation}
-we always have $\epsilon_{\rm{th}} \leq 0$, so $\epsilon \geq \epsilon_{\rm{th}}$.
-Note that if $E_{\rm{max}} = E_0$, the bound is infinite, simply meaning that $\epsilon = \epsilon_{\rm{th}}$ at the limit $\beta = \infty$.
-In the low temperature scenario, we get $\widetilde{W}_{\rm{max}} = \wn^p e^{n\beta E_{\rm{max}}}$ occuring in a region labelled by 
-\begin{equation}
-	(i,j,k) = 
-	\begin{cases}
-	(n,0,0), &E_{\rm{max}} = E_0, \\
-	(0,n,0), &E_{\rm{max}} = E_1, \\
-	(0,0,n), &E_{\rm{max}} = E_2.
-	\end{cases}
-\end{equation}
-The bound expression does not depend on which energy is the highest so, without loss of generality, assume that $E_{\rm{max}} = E_0$.
-Then, the multiplicity is $m_{n00} = 2^n$ and the first elbow coordinates can be read off the $X^nY^0Z^0$ term in generating functions $G_n(\noisys), G_n(\gamma)$,
-\begin{equation}
-	(x_0, L_0) = \left( \left(\frac{2}{3}\frac{e^{-\beta E_0}}{\Z_\beta}\right)^n, (2u)^n \right)
-\end{equation}
-and the distillation constraint is defined at the location $x_\star = x_0$ of the initial state's first elbow as in~\cref{eq:first_elbow_constraint}.
+Our approach also allows for analysis at the limit of low temperature, $\beta \rightarrow \infty$, which is a limit case of $\rm{(C2)}$ with $\beta \geq \beta_{\rm{th}}$.
 
-The first elbow of the target state is located at $x'_0 = (2e^{-\beta E_0} / (2\Z_\beta))^{\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the target state's first elbow, 
-\begin{equation}\label{eq:constraint_deriv_lowtemp}
-	L'_\star = \frac{x_\star}{x'_0}L'_0 = 2^n \left(\frac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-\tt} \left( \frac{1}{6} - \frac{1}{18}\epsilon' \right)^{\tt}.
+We consider 
+\begin{equation}
+	x_\star = x_0 = (e^{-\beta E_{\rm{max}}} / \Z_\beta)^{n}.
 \end{equation}
-Therefore, in the low temperature scenario $\beta \geq \beta_{\rm{th}}$, the distillation process in~\cref{eq:msd_thermal} is possible only if $L_\star \geq L'_\star$ or equivalently,
+The first elbow of the target state is located at $x'_0 = (e^{-\beta E_{\rm{max}}} / \Z_\beta)^{\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the target state's first elbow, 
+\begin{equation}\label{eq:constraint_deriv_lowtemp}
+	L'_\star = \frac{x_\star}{x'_0}L'_0 = \left(\frac{e^{-\beta E_2}}{\Z_\beta}\right)^{n-\tt} \left( \frac{1}{2} - \frac{1}{6}\epsilon' \right)^{\tt}.
+\end{equation}
+Therefore, in the low temperature scenario $\beta \geq \beta_{\rm{th}}$, the constraint in~\cref{eq:first_elbow_constraint} holds only if
 \begin{align}
 	\frac{n}{n'} &\geq \frac{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}}{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}} \nonumber\\
 	&= \frac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)},
@@ -1038,10 +1054,10 @@ with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
 We can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) in this regime as well. 
 It is given by
 \begin{equation}
-	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\big(\frac{3}{3-\epsilon} \big)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left(\frac{1}{1-\frac{1}{3}\epsilon} \right)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
 \end{equation}
 which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
-At the zero temperature limit, $F_\beta$ tends to the lowest eigen-energy, $R(\beta) \xrightarrow{\beta \rightarrow \infty} 1$.
+At the zero temperature limit, $F_\beta$ tends to zero, so $R(\beta) \xrightarrow{\beta \rightarrow \infty} 1$.
 We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_lowtemp}.
 \begin{figure}[h]
     \centering
@@ -1049,7 +1065,7 @@ We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\r
     \caption{\textbf{Distillation rate for low temperatures in thermal fragments.} Distillation rates obtained by majorization $R(\beta)$ in the temperature regime $\beta \geq \beta_{\rm{th}}$ are plotted for different temperatures $\beta^{-1}$.
     The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
     The Hamiltonian spectrum is simple harmonic, $(E_0, E_1, E_2) = (0,1,2)$.
-    \nick{Terrible bound for low temperatures.}
+    \nick{Not-so-good bound for low temperatures, other elbows perform a lot better numerically.}
     }
     \label{fig:distill_bounds_lowtemp}
 \end{figure}
