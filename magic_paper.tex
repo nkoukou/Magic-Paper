@@ -1014,8 +1014,9 @@ We then need the sum $\alpha = i+j+k$ to be even, so that the expression remains
 Given an even value $\alpha$ for the sum, the term $\wn^{n-\alpha} \wp^{\alpha} e^{-\beta (n-\alpha)E_0}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
 Hence, we have
 \begin{align}
-	\widetilde{W}_{\rm{max}} &= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta \alpha E_{\rm{max}}} \Big\}} \\
-	&= \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \wn^n e^{n\beta E_0} \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}
+	&\bmw(\noisys | \gamma)_{\rm{max}} = \nonumber\\
+	&\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta \alpha E_{\rm{max}}} \Big\}} = \nonumber\\
+	&\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \wn^n e^{n\beta E_0} \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}
 \end{align}
 The last expression is maximised for $\alpha = 0$ ($\alpha = n$) when the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than $1$ (greater than $1$).
 The threshold value of $1$ is achieved when the noise level $\epsilon$ is equal to
@@ -1036,7 +1037,7 @@ We highlight that the threshold becomes $0$ when the difference between the maxi
 
 The maximum slope finally is
 \begin{equation}
-\widetilde{W}_{\rm{max}} =
+\bmw(\noisys | \gamma)_{\rm{max}} =
 	\begin{cases}
 		\wn^n e^{n\beta E_0}, &\epsilon \leq \epsilon_{\rm{th}},\ \hspace{30pt}\rm{(C1)}	\\
 		\wp^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\rm{th}}.\ \hspace{32pt}\rm{(C2)} 
@@ -1060,9 +1061,10 @@ Assuming $E_{\rm{max}} > E_0$, we get the cases:
 	\item $\beta \geq \beta_{\rm{th}}$. Then, $ \epsilon_{\rm{th}} \leq 0$ and $\rm{(C2)}$ holds for all $\epsilon$.
 \end{itemize}
 
-Whenever the set of physical parameters falls under $\rm{(C1)}$, the multiplicity is $m_{000} = 1$ and the first elbow coordinates can be read off the $X^0Y^0Z^0$ term in generating functions $G_n(\noisys), G_n(\gamma)$.
-If it falls under $\rm{(C2)}$, then $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$), the multiplicity is $m_{0n0} = 3^n$ ($m_{00n} = 3^n$) and the first elbow coordinates can be read off the $X^0Y^nZ^0$ ($X^0Y^0Z^n$) term in generating functions $G_n(\noisys), G_n(\gamma)$,
-\begin{equation}
+In $\rm{(C1)}$, the multiplicity is $m_{000} = 1$ and the corresponding Wigner components are $\bmw(\noisys)_{000}, \bmw(\gamma)_{000}$.
+In $\rm{(C2)}$, we have $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$), the multiplicity is $m_{0n0} = 3^n$ ($m_{00n} = 3^n$) and the corresponding Wigner components are $\bmw(\noisys)_{0n0}, \bmw(\gamma)_{0n0}$ ($\bmw(\noisys)_{00n}, \bmw(\gamma)_{00n}$).
+The first elbow coordinate expression can finally be expressed as
+\begin{equation}\label{eq:first_elb_coords}
 	(x_0, L_0) =
 	\begin{cases}
 		\left( \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^n, \wn^n \right), &\rm{(C1)}	\vspace{10pt}\\
@@ -1070,40 +1072,111 @@ If it falls under $\rm{(C2)}$, then $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$),
 	\end{cases}
 \end{equation}
 
-Considering the distillation process in~\cref{eq:msd_thermal}, the Lorenz curves of the initial and target states may each be described by either $\rm{(C1)}$ or $\rm{(C2)}$.
-In any case, a necessary distillation constraint can be defined at the location $x_\star = x_0$ of the initial state's first elbow and be expressed as
+Consider the distillation process in~\cref{eq:msd_thermal},
+\begin{equation*}
+		\noisys(\epsilon)\too{n} \xrightarrow{\E \in \O_{\gamma_\beta}} \noisys(\epsilon')\too{\tt} \otimes \gamma_\beta\too{(n-\tt)},
+\end{equation*}
+with $n > n'$ and $\epsilon > epsilon'$.
+A necessary distillation constraint can be defined at the location $x_\star = x_0$ of the initial state's first elbow, expressed as
 \begin{equation}\label{eq:first_elbow_constraint}
 	\lc{\noisys(\epsilon)\too{n}}{\gamma_\beta}(x_\star) \geq \lc{\noisys(\epsilon')\too{\tt}}{\gamma_\beta}(x_\star).
 \end{equation}
 
-Let's focus on the case where both Lorenz curves are described by $\rm{(C1)}$.
-This case includes the unital fragment.
+The Lorenz curves of the initial and target states may each be described by either $\rm{(C1)}$ or $\rm{(C2)}$, depending on the physical parameters $\epsilon, \epsilon', \beta$.
+Specifically, we can get three scenarios:
+\begin{enumerate}
+	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_0$ OR $E_{\rm{max}} > E_0$, $\beta < \beta_{\rm{th}}$ and $\epsilon' < \epsilon  \leq \epsilon_{\rm{th}}$.
+	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_0$, $\beta < \beta_{\rm{th}}$ and $\epsilon' \leq \epsilon_{\rm{th}} < \epsilon$.
+	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_0$, $\beta \geq \beta_{\rm{th}}$.
+\end{enumerate}
+Note that $\rm{(C1)} \rightarrow \rm{(C2)}$ is impossible because it would imply $\epsilon \leq \epsilon_{\rm{th}} \leq \epsilon' < \epsilon$, a contradiction.
 
-The first elbow of the target state is located at $x'_0 = (3Z)^{-\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the target state's first elbow, 
+In all three scenarios, it is simple to check that the first elbow of the initial state is always located closer to $0$ compared to the first elbow of the target state, $x_0 \leq x_0'$:
+\begin{enumerate}
+	\item $\rm{(C1)} \rightarrow \rm{(C1)}$. 
+	It is always true that $e^{-\beta E_0} / \Z_\beta \leq 1$, so
+	\begin{align*}
+		x_0 &= \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-\tt} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} \\
+		&< \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} = x_0'		
+	\end{align*}
+	\item $\rm{(C2)} \rightarrow \rm{(C1)}$.
+	It is always true that
+	\begin{align*}
+		&\Z_\beta^{n-\tt} > (e^{-\beta E_{\rm{max}}})^{n-\tt} = e^{-\beta (n-\tt) E_{\rm{max}}}, \text{ so} \\
+		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \dfrac{e^{-\beta(n E_{\rm{max}} - \tt E_0)}}{\Z_\beta^{n-\tt}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} \\
+		&< \dfrac{e^{-\beta(n E_{\rm{max}} - \tt E_0)}}{e^{-\beta (n-\tt) E_{\rm{max}}}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} \\
+		&= e^{-\beta \tt (E_{\rm{max}} - E_0)} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} \\
+		&< \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{\tt} = x_0'.
+	\end{align*}
+	\item $\rm{(C2)} \rightarrow \rm{(C2)}$.
+	It is always true that $e^{-\beta E_{\rm{max}}} / \Z_\beta \leq 1$, so
+	\begin{align*}
+		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n-\tt} \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{\tt} \\
+		&\leq \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{\tt} = x_0'	
+	\end{align*}
+\end{enumerate}
+We can thus find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$ by interpolating between the origin and the target state's first elbow, 
 \begin{equation}\label{eq:constraint_deriv_temp}
-	L'_\star = \frac{x_\star}{x'_0}L'_0 = \left(\frac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-\tt} \left( \frac{1}{3} - \frac{4}{9} \epsilon' \right)^{\tt}.
+	L'_\star = \frac{x_\star}{x'_0}L'_0.
 \end{equation}
-The constraint in~\cref{eq:first_elbow_constraint} therefore holds only if
-\begin{align}
-	\frac{n}{n'} &\geq \frac{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon' \big)\Z_\beta  e^{\beta E_0} \Big]}}{\ln{\Big[ \big( 1-\frac{4}{3}\epsilon \big)\Z_\beta e^{\beta E_0} \Big]}} \\
-	&= \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} - \beta (F_\beta - E_0)}{\ln{\big( 1-\frac{4}{3}\epsilon \big)} - \beta (F_\beta - E_0)},
-\end{align}
-with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. 
-The free energy of thermal state $\gamma_\beta$ is denoted by
+We need $L_0 \geq L_\star'$. Therefore, restricting to the first elbow, the necessary distillation condition in~\cref{eq:first_elbow_constraint} simply becomes
+\begin{equation}\label{eq:first_elb_bound}
+	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
+\end{equation}
+Involving more elbows gives stricter, but more convoluted necessary distillation constraints.
+
+We now compute distillation bounds based on the first elbow constraint in the three possible scenarios.
+We express them in terms of the free energy of thermal state $\gamma_\beta$ denoted by
 \begin{equation}
 	F_\beta \coloneqq \tr[\gamma_\beta H] + \beta^{-1} \tr[\gamma_\beta \ln{\gamma_\beta}] = -\beta^{-1} \ln{\Z_\beta}.
 \end{equation}
-
-Moreover, we can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) given by
+Substituting coordinates from~\cref{eq:first_elb_coords} appropriately in~\cref{eq:first_elb_bound}, we get the following necessary conditions:
+\begin{enumerate}
+	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_0$ OR $E_{\rm{max}} > E_0$, $\beta < \beta_{\rm{th}}$ and $\epsilon' < \epsilon  \leq \epsilon_{\rm{th}}$.
+	
+\begin{align}
+	\frac{n}{n'} &\geq \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)}{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_0 - F_\beta)}, \text{ or} \\
+	\epsilon &\leq \frac{3}{4} - \frac{3}{4} \left( 1 - \frac{4}{3}\epsilon' \right)^{\frac{\tt}{n}} \left( \frac{e^{-\beta E_0}}{\Z_\beta} \right)^{1 - \frac{\tt}{n}}	
+\end{align}
+This leads to an upper bound for the distillation rate $R=n'/n$ of pure Strange states ($\epsilon' = 0$),
 \begin{equation}
 	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left( \frac{1}{1 - \frac{4}{3}\epsilon} \right)}}{\beta (E_0 - F_\beta)},
 \end{equation}
-which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon \leq \epsilon_{\rm{th}}$. \nick{In fact, it holds for $0 \leq \epsilon \leq \epsilon_*$, where $\epsilon_\star$ is the noise level (lower than $\epsilon_{\rm{th}}$) at which the state conversion turns from $\rm{(C1)} \rightarrow \rm{(C1)}$ to $\rm{(C2)} \rightarrow \rm{(C1)}$. Need to adjust~\cref{fig:distill_bounds_temp} accordingly}
-At the limit of high temperature, $\beta \rightarrow 0$, we get $\beta F_\beta \rightarrow -\ln{3}$, and we retrieve the unital fragment bound,
+	
+	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_0$, $\beta < \beta_{\rm{th}}$ and $\epsilon' \leq \epsilon_{\rm{th}} < \epsilon$.
+	
+\begin{align}
+	\frac{n}{n'} &\geq \frac{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)}, \text{ or} \\
+	\epsilon &\leq 3 - 6 \left( 1 - \frac{4}{3}\epsilon' \right)^{\frac{\tt}{n}} \frac{e^{-\beta E_{\rm{max}}} e^{\frac{\tt}{n}\beta E_0}}{\Z_\beta^{1-\frac{\tt}{n}}}	
+\end{align}
+This leads to an upper bound for the distillation rate $R=n'/n$ of pure Strange states ($\epsilon' = 0$),
+\begin{equation}
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left(\frac{1}{1-\frac{1}{3}\epsilon} \right)} + (E_{\rm{max}} - E_0)(\beta_{\rm{th}} - \beta)}{\beta (E_0 - F_\beta)},
+\end{equation}
+
+	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_0$, $\beta \geq \beta_{\rm{th}}$.
+	
+\begin{align}
+	\frac{n}{n'} &\geq \frac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)}, \text{ or} \\
+	\epsilon &\leq 3 - 6 \left( \frac{1}{2} - \frac{1}{6}\epsilon' \right)^{\frac{\tt}{n}} \left( \frac{e^{-\beta E_{\rm{max}}}}{\Z_\beta} \right)^{1 - \frac{\tt}{n}}	
+\end{align}
+This leads to an upper bound for the distillation rate $R=n'/n$ of pure Strange states ($\epsilon' = 0$),
+\begin{equation}
+	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left(\frac{1}{1-\frac{1}{3}\epsilon} \right)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
+\end{equation}
+\end{enumerate}
+
+Consider pure Strange state distillation at high temperatures, $\beta \leq \beta_{\rm{th}}$.
+Depending on the noise level of the initial state, we have either a $\rm{(C1)} \rightarrow \rm{(C1)}$ or a $\rm{(C2)} \rightarrow \rm{(C1)}$ scenario.
+
+We compare $R(\beta)$ for different temperatures with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_temp}.
+At every $\beta > 0$, the rates indicate a transition at $\epsilon_{\rm{th}}$.
+As $\beta$ increases, the rate becomes stricter.
+At the high temperature limit, $\beta \rightarrow 0$, we get $\beta F_\beta \rightarrow -\ln{3}$, and we retrieve the unital fragment bound,
 \begin{equation}
 	R(\beta) \xrightarrow{\beta \rightarrow 0} \frac{\ln{(3-4\epsilon)}}{\ln{3}}.
 \end{equation}
-We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_temp}.
+
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/distill_bounds_temp.pdf}
@@ -1111,35 +1184,18 @@ We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\r
     The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
     The Hamiltonian spectrum is simple harmonic, $(E_0, E_1, E_2) = (0,1,2)$.
     As $\beta$ increases, the range of noise levels for which $R(\beta)$ is valid decreases and the distillation bound becomes stricter.
+\nick{it holds for $0 \leq \epsilon \leq \epsilon_*$, where $\epsilon_\star$ is the noise level ($ \leq \epsilon_{\rm{th}}$) at which the state conversion turns from $\rm{(C1)} \rightarrow \rm{(C1)}$ to $\rm{(C2)} \rightarrow \rm{(C1)}$. Need to adjust~\cref{fig:distill_bounds_temp} accordingly}
     }
     \label{fig:distill_bounds_temp}
 \end{figure}
 
-Our approach also allows for analysis at the limit of low temperature, $\beta \rightarrow \infty$, which is a limit case of $\rm{(C2)}$ with $\beta \geq \beta_{\rm{th}}$.
+Consider pure Strange state distillation at low temperatures, $\beta \rightarrow \infty$.
+Independently of the noise level of the initial state, we have a $\rm{(C2)} \rightarrow \rm{(C2)}$ scenario.
 
-We consider 
-\begin{equation}
-	x_\star = x_0 = (e^{-\beta E_{\rm{max}}} / \Z_\beta)^{n}.
-\end{equation}
-The first elbow of the target state is located at $x'_0 = (e^{-\beta E_{\rm{max}}} / \Z_\beta)^{\tt} > x_\star$, so in order to find the target state Lorenz curve coordinate $L'_\star$ at location $x_\star$, we can interpolate between the origin and the target state's first elbow, 
-\begin{equation}\label{eq:constraint_deriv_lowtemp}
-	L'_\star = \frac{x_\star}{x'_0}L'_0 = \left(\frac{e^{-\beta E_2}}{\Z_\beta}\right)^{n-\tt} \left( \frac{1}{2} - \frac{1}{6}\epsilon' \right)^{\tt}.
-\end{equation}
-Therefore, in the low temperature scenario $\beta \geq \beta_{\rm{th}}$, the constraint in~\cref{eq:first_elbow_constraint} holds only if
-\begin{align}
-	\frac{n}{n'} &\geq \frac{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}}{\ln{\Big[ \big( \frac{1}{2}-\frac{1}{6}\epsilon \big)\Z_\beta e^{\beta E_{\rm{max}}} \Big]}} \nonumber\\
-	&= \frac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)},
-\end{align}
-with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
-
-We can obtain an upper bound on thermal fragment distillation rate $R=n'/n$ for pure target Strange states ($\epsilon' = 0$) in this regime as well. 
-It is given by
-\begin{equation}
-	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left(\frac{1}{1-\frac{1}{3}\epsilon} \right)}}{-\ln{2} + \beta (E_{\rm{max}} - F_\beta)},
-\end{equation}
-which holds for all finite $n$ with $\tt \leq n$ and $\epsilon' \leq \epsilon$.
+We compare $R(\beta)$ for different temperatures with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_lowtemp}.
+As $\beta$ decreases, the rate becomes stricter.
 At the zero temperature limit, $F_\beta$ tends to zero, so $R(\beta) \xrightarrow{\beta \rightarrow \infty} 1$.
-We compare $R(\beta)$ for different values of $\beta$ with the mana bound $R_{\rm{mana}}$ in~\cref{fig:distill_bounds_lowtemp}.
+
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/distill_bounds_lowtemp.pdf}
