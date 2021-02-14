@@ -854,7 +854,7 @@ All Wigner components are strictly positive, therefore the pre-order $\prec_{\ga
 \nick{Probably will move this subsection to the earlier section where we discuss phase spaces in general}
 
 In general, a $1$-copy $d$-dimensional state is defined exactly by its $d^2$ Wigner distribution $W$. 
-The distribution $W$ can always be described by a set of $D \leq d^2$ component-multiplicity pairs denoted by $\{(w_i, m_i)\}_{i=1,\dots,D}$.
+The distribution $W$ can always be described by a Wigner-component vector $\bmw = (w_i)_{i=1,\dots,D}$ and a multiplicity vector $\bmm = (m_i)_{i=1,\dots,D}$, where $D \leq d^2$ and they form component-multiplicity pairs denoted by $\{(w_i, m_i)\}_{i=1,\dots,D}$.
 \begin{definition}
 	Consider a $d^2$-dimensional distribution $W$ and a positive integer $D$. 
 	We call the set of order pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ a \emph{complete set of component-multiplicity pairs}, if $W$ contains $m_i$ components $w_i$ and $\sum_{i=0}^D m_i = d^2$.
@@ -960,47 +960,53 @@ Notice that the Gibbs-rescaled distribution is multiplicative in general,
 	&\frac{\W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}}{\W[\bmx_A]{\gamma_A}\W[\bmx_B]{\gamma_B}} = \widetilde{\rm{W}}_{\rho_A | \gamma_A}(\bmx_A)\widetilde{\rm{W}}_{\rho_B  | \gamma_B}(\bmx_B).
 \end{align}
 
-We construct complete sets of component-multiplicity pairs and based on the distinct components of the Gibbs-rescaled distribution,
+We construct component and multiplicity vectors based on the distinct components of the Gibbs-rescaled distribution,
 \begin{align}
-	S(\noisys) &\coloneqq \{ (-\wn, 1), (\wp, 2), (\wp, 3), (\wp, 3) \} \\
-	S(\gamma) &\coloneqq \Big\{ \left( \frac{e^{-\beta E_0}}{3\Z}, 1 \right), \left( \frac{e^{-\beta E_0}}{3\Z}, 2 \right), \nonumber\\
-	&\hspace{23pt} \left( \frac{e^{-\beta E_1}}{3\Z}, 3 \right), \left( \frac{e^{-\beta E_2}}{3\Z}, 3 \right) \Big\} \\
-	S(\noisys | \gamma) &\coloneqq \{ (-\wn 3\Z e^{\beta E_0}, 1), (\wp 3\Z e^{\beta E_0}, 2), \nonumber\\
-	&\hspace{21pt} (\wp 3\Z e^{\beta E_1}, 3), (\wp 3\Z e^{\beta E_2}, 3) \}
+	\bmm &\coloneqq (1,2,3,3) \\
+	\bmw(\noisys) &\coloneqq (-\wn, \wp, \wp, \wp) \\
+	\bmw(\gamma) &\coloneqq \frac{1}{3\Z} \left( e^{-\beta E_0}, e^{-\beta E_0}, e^{-\beta E_1}, e^{-\beta E_2} \right) \\
+	\bmw(\noisys | \gamma) &\coloneqq 3\Z \left( -\wn e^{\beta E_0}, \wp e^{\beta E_0}, \wp e^{\beta E_1}, \wp e^{\beta E_2} \right) \label{eq:bmw_rescaled}
 \end{align}
 
-There are four distinct component-multiplicity pairs for the Gibbs-rescaled distribution, so in order to use~\cref{lem:ncopycomponents} to find the components of the $n$-copy distributions, we first define an index vector
+There are four distinct values of the Gibbs-rescaled distribution on the phase space, with the negative Strange component $-\wn$ corresponding to energy $E_0$ as illustrated in the phase space split in~\cref{fig:pd_split_thermal}.
+The Wigner-component vectors $\bmw(\noisys), \bmw(\gamma)$ are then constructed so as to match the four phase space regions.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/pd_split_thermal.pdf}
+    \caption{\textbf{Qutrit phase space regions with different Gibbs-rescaled values.}
+    The slope is negative in region $1$ and positive in regions $X,Y,Z$.
+    It attains a unique value in each region, given by~\cref{eq:bmw_rescaled} respectively.
+    }
+    \label{fig:pd_split_thermal}
+\end{figure}
+
+For notational convenience, we define the index vector
 \begin{equation}
 	\bmq \coloneqq (n-\alpha,i,j,k),
 \end{equation}
-where $i,j,k$ are non-negative integers that satisfy 
+where $i,j,k$ are non-negative integers and
 \begin{equation*}
-	i+j+k \eqqcolon \alpha \leq n.
+	\alpha \coloneqq i+j+k \leq n.
 \end{equation*}
-The $n$-copy 
-
-\begin{align}\label{eq:gn}
-	&G_n(\noisys) \coloneqq G_1(\noisys)^n = \\
-	&\sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \big[(-\wn)^{n-\alpha} \wp^{\alpha} \big] X^i Y^j Z^k, \nonumber
-	\\[10pt]
-	&G_n(\gamma) \coloneqq G_1(\gamma)^n = \\
-	&(3\Z)^{-n}\hspace{-10pt} \sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \Big[ e^{-\beta ( i E_0 + j E_1 + k E_2 )} e^{-\beta (n-\alpha)E_0} \Big] X^i Y^j Z^k, \nonumber
-	\\[10pt]
-	&G_n(\noisys|\gamma) \coloneqq G_1(\noisys|\gamma)^n = \\
-	&(3\Z)^{n}\hspace{-10pt} \sum\limits_{\substack{i,j,k = 0,\dots,n \\ \alpha \leq n}}\hspace{-10pt} m_{ijk} \Big[ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} \times \nonumber\\[-15pt]
-	&\hspace{80pt} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big] X^i Y^j Z^k, \nonumber
-\end{align}
-where the $(i,j,k)$-th term multiplicity $m_{ijk}$ (i.e. the number of phase space points contained in region $X^i Y^j Z^k$) is given by
+The Wigner components of the $n$-copy distributions are now readily provided by~\cref{lem:ncopycomponents}.
+Firstly, the $n$-copy multiplicity is given according to~\cref{eq:M} by
 \begin{equation}
-	m_{ijk} \coloneqq \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k.
+	m_{ijk} \coloneqq M_{\bmq} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k.
 \end{equation}
+The distribution values that correspond to the same index $\bmq$ are given according to~\cref{eq:W} by
+\begin{align}
+	w(\noisys)_{ijk} &= (-\wn)^{n-\alpha} \wp^{\alpha} \\
+	w(\gamma)_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_0} e^{-\beta ( i E_0 + j E_1 + k E_2 )} \\
+	w(\noisys | \gamma)_{ijk} &= (3\Z)^{n} (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )}
+\end{align}
 
-In order to construct the Lorenz curve of a Strange state in a thermal fragment we need to sort the components of $\widetilde{W}_n$ in decreasing order.
+In order to construct the $n$-copy Lorenz curve of a Strange state in a thermal fragment we need to sort the components of the $n$-copy Gibbs-rescaled distribution, $w(\noisys | \gamma)_{ijk}$ in decreasing order.
 In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the greatest component,
-\begin{equation}\label{eq:max_slope}
-	\widetilde{W}_{\rm{max}} \coloneqq \max\limits_{i,j,k}{\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}},
-\end{equation}
-where $0 \leq i,j,k \leq n$ and $i+j+k \eqqcolon \alpha \leq n$.
+\begin{align}
+	&\bmw(\noisys | \gamma)_{\rm{max}} \coloneqq \label{eq:max_slope}\\
+	&(3\Z)^{n} \max\limits_{i,j,k}\Big\{ (-\wn)^{n-\alpha} \wp^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \nonumber
+\end{align}
+where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
 Notice that for $0 \leq \epsilon \leq 3/7$, we have $\wn \geq \wp$.
 Assume that $n$ is even. 
 We then need the sum $\alpha = i+j+k$ to be even, so that the expression remains positive.
