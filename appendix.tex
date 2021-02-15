@@ -211,12 +211,12 @@ Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is 
 This scenario describes the construction of an $n$-copy Strange state Wigner distribution from a single-copy as presented in~\cref{sec:lcsu}.
 The experiment is described by binomial statistics and we write down the sum over an even number of successful trials $\Phi_+$ (over an odd number of successful trials $\Phi_-$),
 \begin{align}	
-	\Phi_+(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=0}^{\mmf/2} \binom{\nnf}{2\dummy} p^{2\dummy} (1-p)^{\nnf-2\dummy}, \nonumber\\ 
-	&\text{for even integers } \mmf\in[0,\nnf], \label{eq:fp_app} \\
-	\Phi_-(\mmf; \nnf, p) &\coloneqq \sum\limits_{\dummy=1}^{(\mmf-1)/2} \binom{\nnf}{2\dummy+1} p^{2\dummy+1} (1-p)^{\nnf-(2\dummy+1)}, \nonumber\\ 
-	&\text{for odd integers } \mmf\in[0,\nnf]. \label{eq:fn_app}
+	\Phi_+(af; nf, p) &\coloneqq \sum\limits_{\ell=0}^{af/2} \binom{nf}{2\ell} p^{2\ell} (1-p)^{nf-2\ell}, \nonumber\\ 
+	&\text{for even integers } af\in[0,nf], \label{eq:fp_app} \\
+	\Phi_-(af; nf, p) &\coloneqq \sum\limits_{\ell=1}^{(af-1)/2} \binom{nf}{2\ell+1} p^{2\ell+1} (1-p)^{nf-(2\ell+1)}, \nonumber\\ 
+	&\text{for odd integers } af\in[0,nf]. \label{eq:fn_app}
 \end{align}
-Note that index $\mmf$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
+Note that index $af$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
 In~\cref{app:lcsu_coord_elb}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of standard Lorenz curves.
 
 We define the classical entropy of a $p$-coin as well as the classical relative entropy between a $p$-coin and a $q$-coin,
@@ -228,14 +228,14 @@ They are symmetric in the sense that $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}
 
 A useful result is the entropic bound on a combination~\cite{cit:ash}.
 \begin{lemma}\label{lem:comb_bounds}
-	For all $\dummy\in [1,\nnf-1]$,
+	For all $\ell\in [1,nf-1]$,
 	\begin{align}
-		&\left[ 8\dummy\left(1-\frac{\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\dummy}{\nnf}\right)} \leq \binom{\nnf}{\dummy} \leq \\
-		&\left[ 2\pi \dummy\left(1-\frac{\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{\nnf S\left(\frac{\dummy}{\nnf}\right)}.
+		&\left[ 8\ell\left(1-\frac{\ell}{nf}\right) \right]^{-\frac{1}{2}} 2^{nf S\left(\frac{\ell}{nf}\right)} \leq \binom{nf}{\ell} \leq \\
+		&\left[ 2\pi \ell\left(1-\frac{\ell}{nf}\right) \right]^{-\frac{1}{2}} 2^{nf S\left(\frac{\ell}{nf}\right)}.
 	\end{align}
 \end{lemma}
 \begin{proof}
-	For $\dummy = 1,2, \nnf-1, \nnf-2$ check by direct calculation.	
+	For $\ell = 1,2, nf-1, nf-2$ check by direct calculation.	
 	For all other cases, use Stirling's approximation. 
 	\nick{CITE}
 \end{proof}
@@ -244,14 +244,14 @@ With the help of this lemma, we directly arrive at
 	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
 	\begin{align*}
 		\begin{split}
-		&\text{1. } \Phi_+(\mmf; \nnf, p) \geq \sum\limits_{\dummy=0}^{\mmf/2}\left[ 16\dummy\left(1-\frac{2\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{-\nnf\ent{\frac{2\dummy}{\nnf}}{p}}, \\
-		&\hspace{14pt} \text{for all even } \mmf\in [2,\nnf] \\
-		&\text{2. } \Phi_+(\mmf; \nnf, p) \leq \sum\limits_{\dummy=0}^{\mmf/2}\left[ 4\pi\dummy\left(1-\frac{2\dummy}{\nnf}\right) \right]^{-\frac{1}{2}} 2^{-\nnf\ent{\frac{2\dummy}{\nnf}}{p}}, \\
-		&\hspace{14pt} \text{for all even } \mmf\in [2,\nnf] \\
-		&\text{3. } \Phi_-(\mmf; \nnf, p) \geq \sum\limits_{\dummy=1}^{(\mmf-1)/2}\left[ 16(\dummy+1)\left(1-\frac{2\dummy+1}{\nnf}\right) \right]^{-\frac{1}{2}} \times \\
-		&\hspace{14pt} \times 2^{-\nnf\ent{\frac{2\dummy+1}{\nnf}}{p}},\ \text{for all odd }\mmf\in [1,\nnf] \\
-		&\text{4. } \Phi_-(\mmf; \nnf, p) \leq \sum\limits_{\dummy=1}^{(\mmf-1)/2}\left[ 4\pi(\dummy+1)\left(1-\frac{2\dummy+1}{\nnf}\right) \right]^{-\frac{1}{2}} \times \\
-		&\hspace{14pt} \times 2^{-\nnf\ent{\frac{2\dummy+1}{\nnf}}{p}},\ \text{for all odd } \mmf\in [1,\nnf]
+		&\text{1. } \Phi_+(af; nf, p) \geq \sum\limits_{\ell=0}^{af/2}\left[ 16\ell\left(1-\frac{2\ell}{nf}\right) \right]^{-\frac{1}{2}} 2^{-nf\ent{\frac{2\ell}{nf}}{p}}, \\
+		&\hspace{14pt} \text{for all even } af\in [2,nf] \\
+		&\text{2. } \Phi_+(af; nf, p) \leq \sum\limits_{\ell=0}^{af/2}\left[ 4\pi\ell\left(1-\frac{2\ell}{nf}\right) \right]^{-\frac{1}{2}} 2^{-nf\ent{\frac{2\ell}{nf}}{p}}, \\
+		&\hspace{14pt} \text{for all even } af\in [2,nf] \\
+		&\text{3. } \Phi_-(af; nf, p) \geq \sum\limits_{\ell=1}^{(af-1)/2}\left[ 16(\ell+1)\left(1-\frac{2\ell+1}{nf}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-nf\ent{\frac{2\ell+1}{nf}}{p}},\ \text{for all odd }af\in [1,nf] \\
+		&\text{4. } \Phi_-(af; nf, p) \leq \sum\limits_{\ell=1}^{(af-1)/2}\left[ 4\pi(\ell+1)\left(1-\frac{2\ell+1}{nf}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-nf\ent{\frac{2\ell+1}{nf}}{p}},\ \text{for all odd } af\in [1,nf]
 		\end{split}
 	\end{align*}
 \end{theorem}
@@ -317,13 +317,13 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
 \fi % LOOSE BOUNDS & PLOT - END
 
 \subsection{Standard Lorenz curve elbow coordinates}\label{app:lcsu_coord_elb}
-The Wigner distribution of the $\NN$-copy qutrit maximally mixed state $\left(\id/3\right)\too{\NN}$ is the uniform distribution 
+The Wigner distribution of the $n$-copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform distribution 
 \begin{equation}\label{eq:wu}
-	\W{\left(\id/3\right)\too{\NN}} = \Bigg( \overbrace{\frac{1}{9^\NN}, \dots, \frac{1}{9^\NN}}^{9^\NN} \Bigg).
+	\W{\left(\id/3\right)^{\otimes n}} = \Bigg( \overbrace{\frac{1}{9^n}, \dots, \frac{1}{9^n}}^{9^n} \Bigg).
 \end{equation}
-The Wigner distribution of the 1-copy $\epsilon$-noisy Strange state $\noisys(\epsilon)$ in the unital fragment is a permutation of 
+The Wigner distribution of the 1-copy $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 
 \begin{equation}\label{eq:wsu}
-	\W{\noisys(\epsilon)} = \Bigg( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \Bigg)
+	\W{\rho_{\rm{S}}(\epsilon)} = \Bigg( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \Bigg)
 \end{equation}
 The two distinct components are plotted~\cref{fig:noisys} as a function of noise. 
 It is clear that in the unital fragment the Strange state contains Wigner negativities in the regime $0 \leq \epsilon \leq \tfrac{3}{4}$.
@@ -339,51 +339,51 @@ It is clear that in the unital fragment the Strange state contains Wigner negati
     \label{fig:noisys}
 \end{figure}
 
-The Wigner distribution of the $\NN$-copy $\epsilon$-noisy Strange state $\noisysN$ in the unital fragment is given by the convolution $\W{\noisysN} = \rm{W}_{\noisys(\epsilon)}\too{\NN}$.
-In general, $\noisysN$ contains $\NN + 1$ distinct components, labelled $0,\dots, \NN$.
-We present the distinct Wigner components of $\noisysN$ along with their multiplicites in~\cref{tab:lcsu}.
-Note that LHS (RHS) refers to elbow coordinates $\ii$ on the left of and including (right of) the maximum, precisely
+The Wigner distribution of the $n$-copy $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by the convolution $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = \rm{W}_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
+In general, $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ contains $n + 1$ distinct components, labelled $0,\dots, n$.
+We present the distinct Wigner components of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicites in~\cref{tab:lcsu}.
+Note that LHS (RHS) refers to elbow coordinates $i$ on the left of and including (right of) the maximum, precisely
 \begin{align}
-&\text{LHS: } 0 \leq \ii \leq \left\lfloor \frac{\NN}{2} \right\rfloor ; \\
-&\text{RHS: } \left\lfloor \frac{\NN}{2} \right\rfloor +1 \leq \ii \leq \NN.
+&\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor ; \\
+&\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
 \end{align}
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$\mlt_{\ii}(\NN, \epsilon)$} & \multicolumn{1}{|c}{$w_{\ii}(\NN, \epsilon)$} \\[0.5ex]\hline
-    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$\NN$ even}}}\hspace{0.8ex} & LHS & $8^{2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{\NN-2\ii}$ \\
-    & & RHS & $8^{\NN-2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{\NN-2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2\ii}$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $8^{2\ii+1}\binom{\NN}{2\ii+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii+1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{\NN-2\ii-1}$ \\
-    & & RHS & $8^{\NN-2\ii-1}\binom{\NN}{2\ii+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{\NN-2\ii-1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2\ii+1}$ \\ \hline
-    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$\NN$ even}}} & LHS & $8^{\NN-2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{\NN-2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2\ii}$ \\
-    & & RHS & $8^{2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{\NN-2\ii}$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $8^{\NN-2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{\NN-2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2\ii}$ \\
-    & & RHS & $8^{2\ii}\binom{\NN}{2\ii}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2\ii}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{\NN-2\ii}$ \\ \hline
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$m_{i}(n, \epsilon)$} & \multicolumn{1}{|c}{$w_{i}(n, \epsilon)$} \\[0.5ex]\hline
+    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\
+    & & RHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{2i+1}\binom{n}{2i+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i+1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i-1}$ \\
+    & & RHS & $8^{n-2i-1}\binom{n}{2i+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i-1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i+1}$ \\ \hline
+    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\
+    & & RHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\
+    & & RHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\ \hline
   \end{tabular}
-  \caption{Wigner components $w_{\ii}(\NN, \epsilon)$ of $\noisysN$ along with their multiplicities $\mlt_{\ii}(\NN, \epsilon)$ in decreasing order in $\ii,\ 0 \leq \ii \leq \NN$.
-  The order changes depending on the noise level $\epsilon$, the parity of the number of copies $\NN$ and the parity of the components (LHS vs RHS).
-  Multiplication $2\ii$ is considered modulo $(\NN+1)$.}
+  \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$ in decreasing order in $i,\ 0 \leq i \leq n$.
+  The order changes depending on the noise level $\epsilon$, the parity of the number of copies $n$ and the parity of the components (LHS vs RHS).
+  Multiplication $2i$ is considered modulo $(n+1)$.}
   \label{tab:lcsu}
 \end{table}
 
-For example, the distribution of state $\noisys(0)\too{2}$ is
+For example, the distribution of state $\rho_{\rm{S}}(0)^{\otimes 2}$ is
 \begin{equation*}
 	\begin{split}
-	\rm{W}_{\noisys(0)\too{2}} = \Bigg( &\overbrace{\left( -\frac{1}{3} \right)^2}^1, \overbrace{\left( \frac{1}{6} \right)^2, \dots, \left( \frac{1}{6} \right)^2}^{64}, \\
+	\rm{W}_{\rho_{\rm{S}}(0)^{\otimes 2}} = \Bigg( &\overbrace{\left( -\frac{1}{3} \right)^2}^1, \overbrace{\left( \frac{1}{6} \right)^2, \dots, \left( \frac{1}{6} \right)^2}^{64}, \\
 	&\overbrace{ -\frac{1}{3} \cdot \frac{1}{6}, \dots, -\frac{1}{3} \cdot \frac{1}{6}}^{16} \Bigg)
 	\end{split}
 \end{equation*}
 
-Every standard Lorenz curve contains $\NN$ elbows, labelled by 
+Every standard Lorenz curve contains $n$ elbows, labelled by 
 \begin{equation*}
-\{(x_{\ii}, L_{\ii})\}_{\ii=-1,0,\dots,\NN}\ ,
+\{(x_{i}, L_{i})\}_{i=-1,0,\dots,n}\ ,
 \end{equation*}
-where the boundary points $(x_{-1}, L_{-1}) = (0,0)$ and $(x_{\NN}, L_{\NN}) = (1,1)$ are also included.
-The maximum is the $(\lfloor \NN/2 \rfloor)$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
+where the boundary points $(x_{-1}, L_{-1}) = (0,0)$ and $(x_{n}, L_{n}) = (1,1)$ are also included.
+The maximum is the $(\lfloor n/2 \rfloor)$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
 \begin{align}
-	x_{\lfloor \NN/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^\NN\right), \\
-	L_{\lfloor \NN/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^\NN \right).
+	x_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^n\right), \\
+	L_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^n \right).
 \end{align}
 %\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
@@ -392,33 +392,33 @@ Expressions for all the elbow coordinates follow from summing up the Wigner comp
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{\ii}$} & \multicolumn{1}{|c}{$L_{\ii}$} \\[0.5ex]\hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{1}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ even}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_-\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_-\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$\NN$ odd}}} & LHS & $\Phi_+\left(2\ii;\NN,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN \Phi_+\left(2\ii;\NN,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor \NN/2 \rfloor} + \Phi_+\left(2\ii;\NN,\frac{8}{9}\right)$ & $L_{\lfloor \NN/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^\NN\Phi_+\left(2\ii;\NN,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{i}$} & \multicolumn{1}{|c}{$L_{i}$} \\[0.5ex]\hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
   \caption{Standard Lorenz curves elbow coordinates.
-  The expresion depends on the noise level $\epsilon$, the parity of the number of copies $\NN$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2\ii$ is considered modulo $(\NN+1)$.
-  Note that the Lorenz curve boundary points are $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{\NN}, L_{\NN}) = (1,1)$.
+  The expresion depends on the noise level $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
+  Multiplication $2i$ is considered modulo $(n+1)$.
+  Note that the Lorenz curve boundary points are $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{n}, L_{n}) = (1,1)$.
   }
   \label{tab:lcsu_coord_elb_app}
 \end{table}
 
 \subsection{Standard Lorenz curve coordinates}\label{app:lcsu_coord}
-We can get explicit expressions for all $9^{\NN}$ points of the standard Lorenz curve $\lc{\noisysN}{\id/3}$, in terms of the elbow coordinates:
+We can get explicit expressions for all $9^{n}$ points of the standard Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\id/3}$, in terms of the elbow coordinates:
 \begin{align}
-    x_{\ii\jj} &= \left( 1-\frac{\jj}{\mlt_{\ii}} \right) x_{\ii-1} + \frac{\jj}{\mlt_{\ii}} x_{\ii}, \label{eq:x}\\
-    L_{\ii\jj} &= \left( 1-\frac{\jj}{\mlt_{\ii}} \right) L_{\ii-1} + \frac{\jj}{\mlt_{\ii}} L_{\ii} \label{eq:l}
+    x_{ij} &= \left( 1-\frac{j}{m_{i}} \right) x_{i-1} + \frac{j}{m_{i}} x_{i}, \label{eq:x}\\
+    L_{ij} &= \left( 1-\frac{j}{m_{i}} \right) L_{i-1} + \frac{j}{m_{i}} L_{i} \label{eq:l}
 \end{align}
-for $\jj = 1,\dots,\mlt_{\ii}$ and $\ii=0,\dots,\NN$, where multiplicities $\mlt_\ii = \mlt_\ii(\NN, \epsilon)$ are given in~\cref{tab:lcsu}.
+for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i = m_i(n, \epsilon)$ are given in~\cref{tab:lcsu}.
 
-For visualisation purposes, we plot the Lorenz curve of state $\noisys(0)\too{2}$.
+For visualisation purposes, we plot the Lorenz curve of state $\rho_{\rm{S}}(0)^{\otimes 2}$.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.6]{figs/lcpoints.pdf}
@@ -430,66 +430,66 @@ For visualisation purposes, we plot the Lorenz curve of state $\noisys(0)\too{2}
 
 Consider the state 
 \begin{equation*}
-\noisys(\tt, \epsilon, \nn-\tt) \coloneqq \noisys(\epsilon)\too{\tt} \otimes \left( \frac{1}{3}\id \right)\too{(\nn-\tt)},
+\rho_{\rm{S}}(n', \epsilon, n-n') \coloneqq \rho_{\rm{S}}(\epsilon)^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation*}
 
 Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
 The new point coordinates are given by:
 \begin{align}
-    &x_{\ii\jj\kk} = \left( 1-p_{\ii\jj\kk}\right) x_{\ii-1} + p_{\ii\jj\kk} x_{\ii} \label{eq:lcsu_xcoord}\\
-    &L_{\ii\jj\kk} = \left( 1-p_{\ii\jj\kk} \right) L_{\ii-1} + p_{\ii\jj\kk} L_{\ii}, \label{eq:lcsu_lcoord}\\
-    &\text{where } p_{\ii\jj\kk} = \frac{\kk + (\jj-1)9^{\nn-\tt}}{9^{\nn-\tt} \mlt_{\ii}} \nonumber\\
-    &\text{for } \ii=0,\dots,\tt,\ \jj = 1,\dots,\mlt_{\ii}(\tt, \epsilon') \text{ and } \kk = 1,\dots,9^{\nn-\tt}. \nonumber
+    &x_{ijk} = \left( 1-p_{ijk}\right) x_{i-1} + p_{ijk} x_{i} \label{eq:lcsu_xcoord}\\
+    &L_{ijk} = \left( 1-p_{ijk} \right) L_{i-1} + p_{ijk} L_{i}, \label{eq:lcsu_lcoord}\\
+    &\text{where } p_{ijk} = \frac{k + (j-1)9^{n-n'}}{9^{n-n'} m_{i}} \nonumber\\
+    &\text{for } i=0,\dots,n',\ j = 1,\dots,m_{i}(n', \epsilon') \text{ and } k = 1,\dots,9^{n-n'}. \nonumber
 \end{align}
 
 We can unify the indices, by introducing a single index
 \begin{equation}
-    \II(\ii,\jj,\kk) \coloneqq \kk + \left[ (\jj-1) + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\nn-\tt},
+    I(i,j,k) \coloneqq k + \left[ (j-1) + \sum_{\ell=0}^{i-1} m_{\ell}(n', \epsilon') \right]9^{n-n'},
 \end{equation}
-so that $\II=1,2,\dots, 9^{\NN}$.
+so that $I=1,2,\dots, 9^{n}$.
 The elbow coordinates correspond to 
 \begin{equation}
-	\II(\ii, \mlt_{\ii}(\tt, \epsilon'), 9^{\nn-\tt}) = \sum_{\dummy=0}^{\ii} \mlt_{\dummy}(\tt, \epsilon'),\ \ii= 0,\dots,\tt.
+	I(i, m_{i}(n', \epsilon'), 9^{n-n'}) = \sum_{\ell=0}^{i} m_{\ell}(n', \epsilon'),\ i= 0,\dots,n'.
 \end{equation}
-The index function $\II$ is bijective, i.e.
+The index function $I$ is bijective, i.e.
 \begin{equation}
-	(\ii,\jj,\kk) = (\ii',\jj',\kk') \Leftrightarrow \II(\ii,\jj,\kk) = \II(\ii',\jj',\kk').
+	(i,j,k) = (i',j',k') \Leftrightarrow I(i,j,k) = I(i',j',k').
 \end{equation}
 
 \subsection{Strange state MSD in the unital fragment}\label{app:lc_compare}
 Consider the Strange state MSD process in the unital fragment,
 \begin{equation}\label{eq:su_conversion}
-    \noisys(\tt, \epsilon, 0) \xrightarrow{\mathcal{O}_{\id/3}} \noisys(\tt, \epsilon', \nn-\tt).
+    \rho_{\rm{S}}(n', \epsilon, 0) \xrightarrow{\mathcal{O}_{\id/3}} \rho_{\rm{S}}(n', \epsilon', n-n').
 \end{equation}
 We denote initial state indices without a prime and target state indices with a prime,
 \begin{align}
-    \II(\ii,\jj,\kk=1) &= \jj + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\nn, \epsilon), \\
-    \II'(\ii',\jj',\kk') &= \kk' + \left[ (\jj'-1) + \sum_{\dummy=0}^{\ii'-1} \mlt_{\dummy}(\tt, \epsilon') \right]9^{\nn-\tt}.
+    I(i,j,k=1) &= j + \sum_{\ell=0}^{i-1} m_{\ell}(n, \epsilon), \\
+    I'(i',j',k') &= k' + \left[ (j'-1) + \sum_{\ell=0}^{i'-1} m_{\ell}(n', \epsilon') \right]9^{n-n'}.
 \end{align}
 
-Pointwise Lorenz curve comparison requires $x_{\II} = x_{\II'}$, so the question is: 
+Pointwise Lorenz curve comparison requires $x_{I} = x_{I'}$, so the question is: 
 \begin{center}
-\emph{Given a triplet $(\ii',\jj',\kk')$, what is the tuple $(\ii,\jj)$ such that $\II(\ii,\jj) = \II'(\ii',\jj',\kk')$?}
+\emph{Given a triplet $(i',j',k')$, what is the tuple $(i,j)$ such that $I(i,j) = I'(i',j',k')$?}
 \end{center}
 
-According to~\cref{thm:elbows} which is proved in~\cref{app:lc_constraints}, for standard Lorenz curves, we need to match indices at the target state elbows, so the requirement on the indices is finding a tuple $(\ii, \jj)$, such that for a given $\ii' = 0,\dots,\tt$,
+According to~\cref{thm:elbows} which is proved in~\cref{app:lc_constraints}, for standard Lorenz curves, we need to match indices at the target state elbows, so the requirement on the indices is finding a tuple $(i, j)$, such that for a given $i' = 0,\dots,n'$,
 \begin{equation}
-	\jj + \sum_{\dummy=0}^{\ii-1} \mlt_{\dummy}(\nn, \epsilon) = \sum_{\dummy=0}^{\ii'} \mlt_{\dummy}(\tt, \epsilon').
+	j + \sum_{\ell=0}^{i-1} m_{\ell}(n, \epsilon) = \sum_{\ell=0}^{i'} m_{\ell}(n', \epsilon').
 \end{equation}
 
 As a basic example, consider the process 
 \begin{equation}
-\rho_{\rm{S}}(\epsilon)\too{4} \xrightarrow{\mathcal{O}_{\id/3}} \rho_{\rm{S}}(\epsilon')\too{2} \otimes \left( \frac{1}{3}\id \right)\too{2}.
+\rho_{\rm{S}}(\epsilon)^{\otimes 4} \xrightarrow{\mathcal{O}_{\id/3}} \rho_{\rm{S}}(\epsilon')^{\otimes 2} \otimes \left( \frac{1}{3}\id \right)^{\otimes 2}.
 \end{equation}
 We want to check which Lorenz curve is higher at the first elbows of the target state, i.e. we want to verify or reject the first inequality below:
 \begin{equation}
-	L_{\II(\ii,\jj)} \geq L'_{\II'(0, 1, 81)}
+	L_{I(i,j)} \geq L'_{I'(0, 1, 81)}
 \end{equation}
 where the first multiplicity of the target state is $m_0 = 1$.
 The multiplicities of the initial state are $(1, 384, 4096)$.
 
-The challenge is to find $\ii,\jj$ such that $i(\ii,\jj) = i'(0,1,81)$.
-\nick{By trial and error}, we find that $(\ii,\jj) = (1, 80)$.
+The challenge is to find $i,j$ such that $i(i,j) = i'(0,1,81)$.
+\nick{By trial and error}, we find that $(i,j) = (1, 80)$.
 Now we can use~\cref{eq:lcsu_lcoord} to directly calculate
 \begin{align*}
 	L'_{i'(0,1,81)} &= L'_0 = \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^2 \Phi_+\left(0;2,4\frac{3-\epsilon}{15-8\epsilon}\right), \\
@@ -506,18 +506,18 @@ and then compare them.
 \begin{theorem}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$-fragment.
 	
-	Let $\tt$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $E \coloneqq \{x_1, \dots, x_\tt\}$ be their locations.
+	Let $n'$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ and $E \coloneqq \{x_1, \dots, x_n'\}$ be their locations.
 	
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{\ii}) \geq \lc{\tau}{\sigma}(x_{\ii})$ for all $\ii =1,\dots,\tt$.
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i =1,\dots,n'$.
 \end{theorem}
 \begin{proof}	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{\ii}) \geq \lc{\tau}{\sigma}(x_{\ii})$ for all $\ii = 1,\dots,\tt$.
+	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,n'$.
 	
-	Conversely, assume that $\lc{\rho}{\sigma}(x_{\ii}) \geq \lc{\tau}{\sigma}(x_{\ii})$ for all $\ii = 1,\dots,r$.
-	First, let $x_0 = 0$ and $x_{\tt+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{\tt+1}) = \lc{\tau}{\sigma}(x_{\tt+1}) = 1$.
-	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{\tt+1}\}$.
+	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,r$.
+	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\tau}{\sigma}(x_{n'+1}) = 1$.
+	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
 	
-	Pick two consecutive locations $x_{\ii}, x_{\ii+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_{\ii}, \lc{\tau}{\sigma}(x_{\ii}))$ and $(x_{\ii+1}, \lc{\tau}{\sigma}(x_{\ii+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{\ii}, \lc{\rho}{\sigma}(x_{\ii}))$ and $(x_{\ii+1}, \lc{\rho}{\sigma}(x_{\ii+1}))$.
+	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_{i}, \lc{\tau}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
 	This is illustrated in~\cref{fig:elbows_proof}.
 \begin{figure}[h]
     \centering
@@ -527,19 +527,19 @@ and then compare them.
     \label{fig:elbows_proof}
 \end{figure}
 
-	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{\ii}, x_{\ii+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
-	This argument can be made in all intervals $[x_{\ii}, x_{\ii+1}]$ with $\ii=0,\dots,\tt$, so the proof is complete.
+	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
+	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
 \end{proof}
 This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization.
 
 In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
 \begin{align}
-L\left(x_{\II'(0, \mlt'_{0}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(0, m'_{0}, 9^{\nn-\tt})}\right), \nonumber\\
-L\left(x_{\II'(1, \mlt'_{1}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(1, m'_{1}, 9^{\nn-\tt})}\right), \nonumber\\
+L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right) &\geq L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right), \nonumber\\
+L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right), \nonumber\\
 &\vdotswithin{=} \nonumber\\
-L\left(x_{\II'(\tt, \mlt'_{r}, 9^{\nn-\tt})}\right) &\geq L\left(x_{\II'(\tt, m'_{\tt}, 9^{\nn-\tt})}\right), \nonumber
+L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
 \end{align}
-where $x_{\II'(0, \mlt'_{0}, 9^{\nn - \tt})}, x_{\II'(1, \mlt'_{1}, 9^{\nn - \tt})}, \dots, x_{\II'(\tt, \mlt'_{\tt}, 9^{\nn - \tt})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')\too{\tt}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
 
 \section{Theory on bounding the core functions}
 The core functions are $\Phi_{\pm}$ which is an even power cumulative function. 
