@@ -786,10 +786,39 @@ For example, for $\epsilon = 0.4$ we obtain $R\le 0.31 $ while the mana bound gi
 \item Does the ``last elbow'' give the same bound? Is it as simple?
 \item Numerically is this about as good as it gets from majorization?
 \item How does this rate compare with existing literature?
-\end{enumerate}
-If this bound is better than existing literature then great. I suspect not though. However, remember the core message of our work is that we're ``incorporating physical restrictions'' into the magic analysis. Given this, one thing that would round the paper off could be if we re-played the ``first elbow'' bound for some non-trivial temperature. Meaning: choose a ``nice'' Hamiltonian and compute the first elbow constraint via the thermo-majorization distortion of the Wigner components. This would then give us something clearly new -- namely a bound with temperature dependence! People would find this interesting since nothing like it exists yet.}
+\end{enumerate}}
 
-\subsection{Magic in thermal fragments}\label{sec:thermal}
+\newpage
+\section{Magic bounds in arbitrary stabilizer fragments}\label{sec:thermal}
+
+We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabilizer fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \rm{STAB}$. In other words we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
+
+These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. Without loss of generality we can always write $\sigma = \frac{1}{\Z} e^{-\beta H}$ for some $\beta \ge 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
+
+Given this context, we can now state the following result, which is dependent on the free energy $F_\beta$ of a Gibbs state $\sigma$ where $ \beta F_\beta =  \beta\tr[H \sigma] - S(\sigma)$. We also fix the noisy Strange state to be of the form 
+\begin{equation}
+	\rho_{\rm{S}}(\epsilon) \coloneqq (1-\epsilon)\ketbra{\rm{S}} + \epsilon \frac{1}{3}\id,
+\end{equation}
+but more general states can be handled in exactly the same manner.
+\begin{theorem}Let $\sigma$ be a qutrit stabilizer state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. Then any distillation rate $R$ in the $\sigma$-fragment is bounded as follows.
+If \ddd{[Conditions]}
+\begin{equation}
+	R \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_0 - F_\beta)},
+\end{equation}
+Or if \ddd{[I need to insert conditions]}
+\begin{equation}
+	R \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} + (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)},
+\end{equation}
+Or finally if \ddd{[I need to insert conditions]}
+\begin{equation}
+	R \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F_\beta)},
+\end{equation}
+where
+\begin{equation}
+	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_2 - E_0)\beta}}.
+\end{equation}
+is a threshold error rate.
+\end{theorem}
 
 Consider a qutrit system with maximally Wigner-negative magic state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$.
 It can be written in density operator form as
@@ -1021,18 +1050,23 @@ Hence, we have
 	&(3\Z)^{n} \max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ v^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta \alpha E_{\rm{max}}} \Big\}} =  \nonumber\\
 	&(3\Z)^{n} v^n e^{n\beta E_0}\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}
 \end{align}
-If the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than $1$ then the maximum occurs at $\alpha=0$, and otherwise the maximum occurs at $\alpha = n$.
-The threshold value of $1$ is achieved for this term when the noise level $\epsilon$ is equal to
+If the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than $1$ then the maximum occurs at $\alpha=0$, and otherwise the maximum occurs at $\alpha = n$. To determine this transition we set
+\begin{equation}
+\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_0)} =1,
+\end{equation}
+and solve for $\epsilon$ as a function of $\beta$. We denote the value value of $\epsilon$ for which this occurs $\epsilon_{\star}$ and find that it is equal to
 \begin{equation}
 	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_{\rm{max}} - E_0)\beta}}.
-	%\beta \leq \frac{1}{E_{\rm{max}} - E_0}\ln{\left( 8-\frac{18}{3-\epsilon} \right)}
 \end{equation}
-For the case $E_{\rm{max}} = E_0$ this threshold is constant in temperature and given by Since $ E_{\rm max} - E_0 \ge 0$ the threshold $\epsilon_{\star}$ is a decreasing function of $\beta$, and it achieves its maximum value $3/7$ for $(E_{\rm{max}} - E_0)\beta = 0$, and a value equal to $0$ for
+For the case $E_{\rm{max}} = E_0$, namely the negative component overlaps the highest energy state distribution, this threshold is constant in temperature and given by $\epsilon_{\star} = 3/7$. 
+
+Otherwise, we have that the negative component does not overlap with the highest energy state and so $ E_{\rm max} - E_0 > 0$. For this regime the threshold $\epsilon_{\star} (\beta)$ is a decreasing function of $\beta$, and it achieves its maximum value $3/7$ for $\beta = 0$, namely on the unital fragment. It also attains a value $0$ for
 \begin{equation}
 	\beta_{\star} \coloneqq \frac{1}{E_{\rm{max}} - E_0} \ln2.
 \end{equation}
-For $\beta > \beta_{\star}$, $\epsilon_{\star}$ is negative, meaning that the noise level $\epsilon$ will always be higher than the threshold.
-We highlight that the threshold becomes $0$ when the difference between the maximum energy level and the level associated with the state negativity is equal to the energy extracted from a single particle Szilard's engine,
+For $\beta > \beta_{\star}$, $\epsilon_{\star}$ is negative, meaning that the noise level $\epsilon$ will always be higher than the threshold. \ddd{For $\beta \rightarrow \infty$ surely $\epsilon_{\star} \rightarrow 3$, and so it goes negative, but then goes positive again? I.e. there's another temperature region to consider. What am I missing here?}
+
+We note that the threshold becomes $0$ when the difference between the maximum energy level and the level associated with the state negativity is equal to the energy extracted from a single particle Szilard's engine,
 \begin{equation}
 	E_{\rm{max}} - E_0 = kT_{\star} \ln2.
 \end{equation}
@@ -1126,7 +1160,7 @@ We need $L_0 \geq L_\star'$. Therefore, restricting to the first elbow, the nece
 \end{equation}
 Involving more elbows gives stricter, but more convoluted necessary distillation constraints.
 
-We now compute distillation bounds based on the first elbow constraint in the three possible scenarios.
+We now compute distillation bounds based on the first elbow constraint in the three possible scenarios. \ddd{[Does anything special happen if we have degeneracies in energy? ]}
 We express them in terms of the free energy of thermal state $\gamma_\beta$ denoted by
 \begin{equation}
 	F_\beta \coloneqq \tr[\gamma_\beta H] + \beta^{-1} \tr[\gamma_\beta \ln{\gamma_\beta}] = -\beta^{-1} \ln{\Z_\beta}.
