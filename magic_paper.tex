@@ -801,21 +801,25 @@ Given this context, we can now state the following result, which is dependent on
 \end{equation}
 but more general states can be handled in exactly the same manner.
 \begin{theorem}Let $\sigma$ be a qutrit stabilizer state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. Then any distillation rate $R$ in the $\sigma$-fragment is bounded as follows.
-If \ddd{[Conditions]}
+If $\beta \leq \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$,
 \begin{equation}
 	R \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_0 - F_\beta)},
 \end{equation}
-Or if \ddd{[I need to insert conditions]}
+Or if $\beta \leq \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$
 \begin{equation}
-	R \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} + (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)},
+	R \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)},
 \end{equation}
-Or finally if \ddd{[I need to insert conditions]}
+Or finally if $\beta > \beta_{\star}$
 \begin{equation}
 	R \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F_\beta)},
 \end{equation}
 where
 \begin{equation}
-	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_2 - E_0)\beta}}.
+	\beta_\star \coloneqq \frac{1}{E_2 - E_0} \ln{2}
+\end{equation}
+is a threshold temperature and for $\beta \leq \beta_\star$,
+\begin{equation}
+	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_2 - E_0)\beta}}.
 \end{equation}
 is a threshold error rate.
 \end{theorem}
@@ -969,7 +973,7 @@ Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set o
 \end{proof}
 
 \ddd{Note the following is relevant: you might have $W_{\bmq} = W_{\bmq'}$ for two different $\bmq$, $\bmq'$. This would make a difference to our calculations for the first elbow. Check this doesn't occur. (If it does, our analysis is still correct, but it simply could be improved).}
-\nick{This is in general true, will check if in our case it makes a difference}
+\nick{It can occur accidentally, but it doesn't make a difference for first elbow analysis, as we ``bring the top Lorenz curve down till its first elbow touches the bottom Lorenz curve''. Basically, Lorenz curves have fewer elbows, but because the first elbow constraint boils down to a ratio comparison~\cref{eq:first_elb_bound} it doesn't change the analysis.}
 
 \subsubsection{Distillation bounds}
 
@@ -1007,8 +1011,7 @@ The Wigner-component vectors $\bmw(\rho_{\rm{S}}), \bmw(\gamma)$ are then constr
     \centering
     \includegraphics[scale=0.5]{figs/pd_split_thermal.pdf}
     \caption{\textbf{Qutrit phase space regions with different Gibbs-rescaled values.}
-    The slope is negative in region $1$ and positive in regions $X,Y,Z$.
-    It attains a unique value in each region, given by~\cref{eq:bmw_rescaled} respectively.
+    The Gibbs-rescaled distribution attains a unique value in each region $1,X,Y,Z$, given by~\cref{eq:bmw_rescaled} respectively.
     }
     \label{fig:pd_split_thermal}
 \end{figure}
@@ -1052,24 +1055,37 @@ Hence, we have
 \end{align}
 If the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than $1$ then the maximum occurs at $\alpha=0$, and otherwise the maximum occurs at $\alpha = n$. To determine this transition we set
 \begin{equation}
-\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_0)} =1,
+	\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_0)} = 1.
 \end{equation}
-and solve for $\epsilon$ as a function of $\beta$. We denote the value value of $\epsilon$ for which this occurs $\epsilon_{\star}$ and find that it is equal to
-\begin{equation}
-	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_{\rm{max}} - E_0)\beta}}.
+This can be rewritten as
+\begin{equation}\label{eq:noise_transition}
+	\frac{3-\epsilon}{6-8\epsilon} e^{\beta (E_{\rm{max}} - E_0)} = 1.
 \end{equation}
-For the case $E_{\rm{max}} = E_0$, namely the negative component overlaps the highest energy state distribution, this threshold is constant in temperature and given by $\epsilon_{\star} = 3/7$. 
+The function $(3-\epsilon) / (6-8\epsilon)$ is increasing in $\epsilon$, achieving its minimum value $1/2$ at $\epsilon = 0$ and its maximum value $1$ at $\epsilon = 3/7$.
+We want to find in which cases there exists a threshold noise level $\epsilon_\star$ at which the transition in~\cref{eq:noise_transition} occurs.
 
-Otherwise, we have that the negative component does not overlap with the highest energy state and so $ E_{\rm max} - E_0 > 0$. For this regime the threshold $\epsilon_{\star} (\beta)$ is a decreasing function of $\beta$, and it achieves its maximum value $3/7$ for $\beta = 0$, namely on the unital fragment. It also attains a value $0$ for
+For the case $E_{\rm{max}} = E_0$, namely when the negative component overlaps the highest energy state distribution, this threshold is constant in temperature and given by $\epsilon_{\star} = 3/7$. 
+
+There is a threshold temperature value $\beta_\star$ given by
 \begin{equation}
 	\beta_{\star} \coloneqq \frac{1}{E_{\rm{max}} - E_0} \ln2.
 \end{equation}
-For $\beta > \beta_{\star}$, $\epsilon_{\star}$ is negative, meaning that the noise level $\epsilon$ will always be higher than the threshold. \ddd{For $\beta \rightarrow \infty$ surely $\epsilon_{\star} \rightarrow 3$, and so it goes negative, but then goes positive again? I.e. there's another temperature region to consider. What am I missing here?}
+Below the threshold temperature, $0 \leq \beta \leq \beta_\star$, the transition is well defined and the threshold noise level at which it occurs is given by
+\begin{equation}
+	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_{\rm{max}} - E_0)\beta}}.
+\end{equation}
+This encompasses the case $E_{\rm{max}} = E_0$.
 
-We note that the threshold becomes $0$ when the difference between the maximum energy level and the level associated with the state negativity is equal to the energy extracted from a single particle Szilard's engine,
+We note that the threshold noise level $\epsilon_\star$ becomes $0$ when $\beta = \beta_\star$, namely the difference between the maximum energy level and the level associated with the state negativity is equal to the energy extracted from a single particle Szilard's engine,
 \begin{equation}
 	E_{\rm{max}} - E_0 = kT_{\star} \ln2.
 \end{equation}
+
+For $\beta > \beta_\star$, we have
+\begin{equation*}
+	\frac{3-\epsilon}{6-8\epsilon} e^{\beta (E_{\rm{max}} - E_0)} > \frac{3-\epsilon}{6-8\epsilon} 2 \geq \frac{1}{2}2 = 1,
+\end{equation*}
+so there is no transition and the threshold noise level remains $\epsilon_\star = 0$.
 
 The maximum value of the Gibbs-rescaled distribution finally is
 \begin{equation}
@@ -1092,8 +1108,8 @@ Assuming $E_{\rm{max}} > E_0$, we get the cases:
 \begin{itemize}
 	\item $\beta = 0$. Then, $\epsilon_{\star} = 3/7$ and $\rm{(C1)}$ holds for all noise levels $\epsilon$.
 	This is the unital fragment.
-	\item $0 < \beta < \beta_{\star}$. Then, $0 < \epsilon_{\star} < 3/7$ and $\rm{(C1)}$ holds for $\epsilon \leq \epsilon_{\star}$, while $\rm{(C2)}$ holds for $\epsilon \geq \epsilon_{\star}$.
-	\item $\beta \geq \beta_{\star}$. Then, $ \epsilon_{\star} \leq 0$ and $\rm{(C2)}$ holds for all $\epsilon$.
+	\item $0 < \beta \leq \beta_{\star}$. Then, $0 \leq \epsilon_{\star} < 3/7$ and $\rm{(C1)}$ holds for $\epsilon \leq \epsilon_{\star}$, while $\rm{(C2)}$ holds for $\epsilon \geq \epsilon_{\star}$.
+	\item $\beta > \beta_{\star}$. Then, $ \epsilon_{\star} = 0$ and $\rm{(C2)}$ holds for all $\epsilon$.
 \end{itemize}
 
 In $\rm{(C1)}$, the multiplicity is $m_{000} = 1$ and the corresponding Wigner components are $\bmw(\rho_{\rm{S}})_{000}, \bmw(\gamma)_{000}$.
@@ -1124,7 +1140,7 @@ Specifically, we can get three scenarios:
 	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_0$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
 	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_0$, $\beta \geq \beta_{\star}$.
 \end{enumerate}
-Note that $\rm{(C1)} \rightarrow \rm{(C2)}$ is impossible because it would imply $\epsilon \leq \epsilon_{\star} \leq \epsilon' < \epsilon$, a contradiction.
+Note that $\rm{(C1)} \rightarrow \rm{(C2)}$ is impossible because it would imply $\beta < \beta_{\star}$ and $\epsilon \leq \epsilon_{\star} \leq \epsilon' < \epsilon$, a contradiction.
 
 In all three scenarios, it is simple to check that the first elbow of the initial state is always located closer to $0$ compared to the first elbow of the target state, $x_0 \leq x_0'$:
 \begin{enumerate}
@@ -1161,6 +1177,7 @@ We need $L_0 \geq L_\star'$. Therefore, restricting to the first elbow, the nece
 Involving more elbows gives stricter, but more convoluted necessary distillation constraints.
 
 We now compute distillation bounds based on the first elbow constraint in the three possible scenarios. \ddd{[Does anything special happen if we have degeneracies in energy? ]}
+\nick{If we have degeneracies, basically the Gibbs-rescaled distribution in~\cref{eq:bmw_rescaled} has some equal components, so Lorenz curves have fewer elbows, but because the first elbow constraint boils down to a ratio comparison~\cref{eq:first_elb_bound} it doesn't change the analysis}
 We express them in terms of the free energy of thermal state $\gamma_\beta$ denoted by
 \begin{equation}
 	F_\beta \coloneqq \tr[\gamma_\beta H] + \beta^{-1} \tr[\gamma_\beta \ln{\gamma_\beta}] = -\beta^{-1} \ln{\Z_\beta}.
@@ -1175,7 +1192,7 @@ Substituting coordinates from~\cref{eq:first_elb_coords} appropriately in~\cref{
 \end{align}
 This leads to an upper bound for the distillation rate $R=n'/n$ of pure Strange states ($\epsilon' = 0$),
 \begin{equation}
-	R \leq R(\beta) \coloneqq 1 - \frac{\ln{\left( \frac{1}{1 - \frac{4}{3}\epsilon} \right)}}{\beta (E_0 - F_\beta)},
+	R \leq R(\epsilon, \beta) \coloneqq 1 - \frac{\ln{\left( \frac{1}{1 - \frac{4}{3}\epsilon} \right)}}{\beta (E_0 - F_\beta)},
 \end{equation}
 	
 	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_0$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
@@ -1201,6 +1218,24 @@ This leads to an upper bound for the distillation rate $R=n'/n$ of pure Strange 
 \end{equation}
 \end{enumerate}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/noise_threshold.pdf}
+    \caption{\textbf{Noise threshold $\epsilon_\star$ and rate $R(\beta, \epsilon_\star)$ versus $\beta$.}
+    At $\beta = 0$ and threshold noise level $\epsilon = \epsilon_\star = 3/7$, the rate is $R(0, \epsilon_\star) = \frac{\ln{(9/7)}}{\ln{3}} \approx 0.23$.
+    }
+    \label{fig:noise_threshold}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/rate_contour.png}
+    \caption{\textbf{Rate $R(\beta, \epsilon)$ versus $\beta$ and $\epsilon$.}
+    The vertical dashed line indicates the temperature threshold $\beta_\star$ and the diagonal dashed curve indicates the noise threshold $\epsilon_\star$ at every $\beta \leq \beta_\star$.
+    }
+    \label{fig:rate_contour}
+\end{figure}
+
 Consider pure Strange state distillation at high temperatures, $\beta \leq \beta_{\star}$.
 Depending on the noise level of the initial state, we have either a $\rm{(C1)} \rightarrow \rm{(C1)}$ or a $\rm{(C2)} \rightarrow \rm{(C1)}$ scenario.
 
@@ -1219,7 +1254,6 @@ At the high temperature limit, $\beta \rightarrow 0$, we get $\beta F_\beta \rig
     The mana distillation rate $R_{\rm{mana}}$ is given for comparison.
     The Hamiltonian spectrum is simple harmonic, $(E_0, E_1, E_2) = (0,1,2)$.
     As $\beta$ increases, the range of noise levels for which $R(\beta)$ is valid decreases and the distillation bound becomes stricter.
-\nick{it holds for $0 \leq \epsilon \leq \epsilon_*$, where $\epsilon_\star$ is the noise level ($ \leq \epsilon_{\star}$) at which the state conversion turns from $\rm{(C1)} \rightarrow \rm{(C1)}$ to $\rm{(C2)} \rightarrow \rm{(C1)}$. Need to adjust~\cref{fig:distill_bounds_temp} accordingly}
     }
     \label{fig:distill_bounds_temp}
 \end{figure}
