@@ -132,9 +132,9 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 
 \subsection{Stabilizer Theory}\label{sec:so}
 
-Let $\{\ket{k}\}_{k \in \zd}$ be the standard computational basis for an arbitrary fault-tolerant scheme, defined over the finite field $\zd = \{ 0, 1, \dots,d-1 \}$, with $d$ an odd prime. 
+Let $\{\ket{k}\}_{k \in \mathbb{Z}_d}$ be the standard computational basis for an arbitrary fault-tolerant scheme, defined over the finite field $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$, with $d$ an odd prime. 
 Since the field has character $d$, addition and multiplication on the field are always considered modulo $d$.
-The Hilbert space of any system associated with this scheme is $\hd \coloneqq \spanv{\ket{k}: k \in \zd}$.
+The Hilbert space of any system associated with this scheme is $\hd \coloneqq \spanv{\ket{k}: k \in \mathbb{Z}_d}$.
 
 The generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators,
 \begin{align}
@@ -143,62 +143,74 @@ The generalised Pauli matrices $X, Z$ can be defined by their respective roles a
 \end{align}
 where $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity. 
 
-The Hilbert space $\hd$ is associated with a phase space $\pd \coloneqq \zd \times \zd$, where every point $\bmx \coloneqq (x_0, x_1)$ corresponds to a displacement operator, defined as
+The Hilbert space $\hd$ is associated with a phase space $\cal{P}_d \coloneqq \mathbb{Z}_d \times \mathbb{Z}_d$, where every point $\bmx \coloneqq (x, p)$ corresponds to a displacement operator, defined as
 \begin{equation}\label{eq:ddef}
-    D_{\bmx} \coloneqq \tau^{x_0 x_1} X^{x_0} Z^{x_1},\ \bmx  \in \pd.
+    D_{\bmx} \coloneqq \tau^{x p} X^{x} Z^{p},\ (x, p) \in \cal{P}_d.
 \end{equation}
 The phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity.
-For a system with composite Hilbert space, $\hd = \hd[d_A] \otimes \hd[d_B]$, the displacement operators are defined as
+For a composite system with Hilbert space, $\hd = \hd[d_1] \otimes \dots \otimes \hd[d_n]$, the displacement operators are defined as
 \begin{equation}\label{eq:composited}
-    D_{\bmx_A \oplus \bmx_B} \coloneqq D_{\bmx_A} \otimes D_{\bmx_B},
+    D_{\bmx} \coloneqq D_{(x_1, p_1)} \otimes \dots \otimes D_{(x_n, p_n)},
 \end{equation}
-where $\bmx_A \oplus \bmx_B \coloneqq (x_{A0}, x_{B0}, x_{A1}, x_{B1}) \in \pd[d_A] \times \pd[d_B]$.
+where 
+\begin{align}
+	\bmx \coloneqq (x_1, x_2, \dots, x_n, p_1, \dots, p_n) \in \cal{P}_{d_1} \times \dots \times \cal{P}_{d_n}.
+\end{align}
 
-The displacement operators, form a group under matrix multiplication modulo phases,
+The displacement operators form the Heisenberg-Weyl group \nick{CITE} under matrix multiplication modulo phases,
 \begin{equation}\label{eq:gp}
-    \gp \coloneqq \{ \tau^k D_{\bmz}: k \in \zd, \bmz \in \pd\}.
+    {\rm{GP}}_d^n \coloneqq \{ \tau^k D_{\bmx}: k \in \mathbb{Z}_d, \bmx \in \cal{P}_d^n\}.
 \end{equation}
-The Clifford unitaries $\cd$ can then be defined as the normaliser of this group, \nick{Reformulate for copies of qudits: $\gp,\ \cd \rightarrow \gp^n,\ \cd^n$. $C-SUM$s live in $\cd^2$}
+The Clifford operations can be defined as the set of unitaries that normalise the Heisenberg-Weyl group,
 \begin{equation}
-    \cd \coloneqq \{ U \in {\rm{SU}}(d): U\gp U^\dagger = \gp \}.
+    \cal{C}_d^n \coloneqq \{ U: U {\rm{GP}}_d^n U^\dagger = {\rm{GP}}_d^n \}.
 \end{equation}
-The pure stabilizer states are then the orbit of the Clifford unitaries over a computational basis state,
+The pure stabilizer states can then defined as the orbit of the Clifford operations over a computational basis state,
 \begin{equation}\label{eq:stab}
-    \stab_{{\rm{pure}}} \coloneqq \{ U\ketbra{0}{0}U^\dagger: U \in \cd \}.
+    \stab_{{\rm{pure}}} \coloneqq \{ U\ketbra{0}{0}U^\dagger: U \in \cal{C}_d^n\}.
 \end{equation}
 
-The free states of the stabilizer theory are mixtures of pure stabilizers, 
+The stabilizer theory forms a magic resource theory $\R = (\stab, \so)$, where the free states are mixtures of pure stabilizers,
 \begin{equation}
     \stab = \conv\ \stab_{{\rm{pure}}}.
 \end{equation}
-The free operations of the stabilizer theory is the set of stabilizer operations $\so$ defined as any composition of:
+and the free operations ($\so$) are defined as compositions of:
 \begin{enumerate}
     \item Preparation in computational basis;
-    \item Random Clifford unitaries $\rcu$, i.e. operations $\E$ such that 
+    \item Random Clifford unitaries ($\rcu$), i.e. operations $\E$ such that 
     \begin{equation}
-        \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cd;
+        \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cal{C}_d^n;
 \end{equation}
     \item Measurement in computational basis.
 \end{enumerate}
 
 \subsection{Wigner Distribution}\label{sec:wigner}
 
-We can define the phase-point operators,
+We define the phase-point operators at every phase space point $\bmx \in \cal{P}_d$,
 \begin{align}
-	A_{\bmx} \coloneqq \frac{1}{d} \sum_{\bmz \in \pd} \omega^{\bmx \wedge \bmz} D_{\bmz},\ \bmx \in \pd. \label{eq:ax}
+	A_{\bmx} \coloneqq \frac{1}{d} \sum_{\bmz \in \cal{P}_d} \omega^{\eta(\bmx, \bmz)} D_{\bmz}, \label{eq:ax}
 \end{align}
-\nick{$\wedge$ has not be defined} They form an orthogonal Hermitian operator basis.
-Therefore, any quantum state $\rho \in \cal{B}(\hd)$ can be expressed as a linear combination of the phase-point operators,
+where $\eta(\bmx, \bmz)$ is the standard symplectic form,
 \begin{equation}
-    \rho = \sum_{\bmz \in \pd} \W[\bmz]{\rho} A_{\bmz},
+	\eta(\bmx, \bmz) \coloneqq \bmz^T \begin{pmatrix}
+		0  & 1 \\ %\mathbbm{O}_n  & \id_n \\
+		-1 & 0 \\ %-\id_n & \mathbbm{O}_n \\
+	\end{pmatrix} \bmx.
+\end{equation}
+
+The phase-point operators form an orthogonal Hermitian operator basis as shown in~\cref{app:wigner}.
+Therefore, any quantum state $\rho \in \cal{B}(\hd)$ can be expressed as a linear combination of them,
+\begin{equation}
+    \rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz},
 \end{equation}
 where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rho$,
 \begin{equation}\label{eq:wstate}
     \W[\bmx]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmx} \rho].
 \end{equation}
-It is in fact a real, bounded, $d^2$-dimensional quasi-probability distribution over $\pd$ as shown in~\cref{app:wigner}. 
 
-The Wigner distributions of different types of qutrit states are illustrated in~\cref{fig:wstate_examples}.
+The state Wigner distribution is in fact a real, bounded, $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$ as shown in~\cref{app:wigner}. 
+
+In~\cref{fig:wstate_examples}, we visualise the Wigner distributions of different types of qutrit states.
 \begin{figure}%
     \centering
     \subfigure[][]{%
@@ -223,7 +235,6 @@ The Wigner distributions of different types of qutrit states are illustrated in~
     }
     \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
     \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabilizer Wigner-positive state; \subref{fig:strange} Magic strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$ \nick{CITE}.
-    \nick{Explain what a magic state is in intro}
     }%
     \label{fig:wstate_examples}
 \end{figure}
@@ -238,12 +249,12 @@ to extend the definition of the Wigner distribution to quantum $\cptp$ operation
     &\coloneqq d_A^2 \W[\bm{\bar x} \oplus \bmy]{\frac{1}{d_A}\J(\E)} \\
     &= \frac{1}{d_B} \tr_B[A_{\bmy} \E(A_{\bmx})],
 \end{align}
-where $\bm{\bar x} \coloneqq (x_0, -x_1)$.
+where $\bm{\bar x} \coloneqq (x, -p)$.
 
 The specific form of~\cref{eq:woperation} is chosen so that Wigner distributions of operations act as transition matrices for Wigner distributions of states, $\W{\E(\rho)} = \W{\E}\W{\rho}$.
 In particular, $\cptp$ operations that map between density operators of equal dimensions and have non-negative Wigner distributions correspond to stochastic matrices, as shown in~\cref{app:wigner}
 
-The single-qudit Hadamard gate $H$ and phase gate $S$ generate the $d$-dimensional Clifford group $\cd$. \nick{CITE}
+The single-qudit Hadamard gate $H$ and phase gate $S$ generate the $d$-dimensional Clifford group $\cal{C}_d$. \nick{CITE}
 Their Wigner distributions are given by permutation matrices,
 \begin{align}
     H &\coloneqq \frac{1}{\sqrt{d}}\sum_{j,k} \omega^{jk} \ketbra{j}{k}, \W[\bmy|\bmx]{H} = \delta_{y_0, -x_1}\delta_{y_1, x_0};\label{eq:H}\\
@@ -260,13 +271,13 @@ Their Wigner distributions are given by permutation matrices,
 Equipped with the definitions of the Wigner distribution in odd prime dimensions, we can formally recast the maximal magic theory $\Rmax$ into a stochasticity setting.
 The free states correspond to proper probability distributions 
 \begin{equation}
-    \Fmax \coloneqq \{ \rho: \W[\bmz]{\rho} \geq 0 \text{ for all } \bmz \in \pd\}
+    \Fmax \coloneqq \{ \rho: \W[\bmz]{\rho} \geq 0 \text{ for all } \bmz \in \cal{P}_d\}
 \end{equation}
 
 The free operations should send the set of free states $\Fmax$ into itself and completely preserve the non-negativity of the states, in the sense that $\E \in \Omax$ iff $(\id_d \otimes \E ) \sigma \in \stab$ for all odd prime dimensions $d$ whenever $\sigma \in \Fmax$.
 It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with the set of operations $\E$ that correspond to stochastic Wigner distributions, 
 \begin{equation}
-    \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \pd\}.
+    \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \cal{P}_d\}.
 \end{equation}
 
 Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. 
@@ -300,8 +311,8 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
     $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
     Therefore, $\cal{S}$ is convex and compact as a closed convex subset of the bounded compact probability simplex.
     
-    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \pd$ that is a fixed point of $\W{\E}$.
-    This corresponds to a free state $\sigma \coloneqq \sum_{\bmz \in \pd} d_{\bmz} A_{\bmz} \in \F$. 
+    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \cal{P}_d$ that is a fixed point of $\W{\E}$.
+    This corresponds to a free state $\sigma \coloneqq \sum_{\bmz \in \cal{P}_d} d_{\bmz} A_{\bmz} \in \F$. 
     Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. 
     
     The state interconversion result follows immediately.
@@ -335,8 +346,8 @@ To formally state majorization results, we first denote by $\stoch$ the set of $
 Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
 \iffalse
 \begin{enumerate}
-    \item $S_{ij} \geq 0$ for all $i, j \in \zd$;
-    \item $\sum\limits_{j=1}^n S_{ij} = 1$ for all $i \in \zd$;
+    \item $S_{ij} \geq 0$ for all $i, j \in \mathbb{Z}_d$;
+    \item $\sum\limits_{j=1}^n S_{ij} = 1$ for all $i \in \mathbb{Z}_d$;
     \item $S\bmd = \bmd$.
 \end{enumerate}
 \fi
@@ -382,7 +393,7 @@ Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its 
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
     Let $\bmz, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\tilde{\bmz} \coloneqq (z_1/d_1, \dots, z_d/d_d)^T$ the vector of ratios between the corresponding components of $\bmz$ and $\bmd$.
     
-    Finally, denote by $\pi: \zd \mapsto \zd$ the permutation that sorts $\tilde{\bmz}$, $(\tilde{\bmz}^\downarrow)_i = z_{\pi(i)}$ for all $i=1,\dots,d$.
+    Finally, denote by $\pi: \mathbb{Z}_d \mapsto \mathbb{Z}_d$ the permutation that sorts $\tilde{\bmz}$, $(\tilde{\bmz}^\downarrow)_i = z_{\pi(i)}$ for all $i=1,\dots,d$.
     
     Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$, where
     \begin{equation}\label{eq:lorenz}
@@ -449,7 +460,7 @@ The exact form of the monotone is given in~\cref{app:areamono}
 Any quantum circuit aiming at a given magic state conversion $\rho \longrightarrow \tau$ possesses certain symmetries according to~\cref{thm:frag} that allow us to study the conversion within only certain $\sigma$-fragments.
 As a simple example, the dephasing channel
 \begin{equation}\label{eq:dephase}
-	\Delta(\rho) = \sum_{k \in \zd} \ketbra{k}{k}\rho\ketbra{k}{k}
+	\Delta(\rho) = \sum_{k \in \mathbb{Z}_d} \ketbra{k}{k}\rho\ketbra{k}{k}
 \end{equation}
 removes coherent phases in the computational basis and therefore leaves exactly all mixtures of computational basis states invariant.
 A model circuit consisting only of such dephasing channels can be fully analysed in the $\sigma$--fragments for the pure computational basis states $\sigma$ \nick{as seen in a theorem in the appendix}.
@@ -638,7 +649,7 @@ The unital fragment encompasses the circuits which preserve the maximally mixed 
 MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)\nick{CITE}, depicted in~\cref{fig:zoo}.
 Operations in $\rcu$ can be expressed as
 \begin{equation}
-    \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cd.
+    \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cal{C}_d.
 \end{equation}
 Depending on the symmetries of such operations, a Clifford sequence may belong in other $\sigma$--fragments as well.
 In this case, the majorization condition~(\ref{eq:majbound}) needs to be checked in all the $\sigma$-fragments that reflect the symmetries of the operation sequence.
@@ -829,7 +840,7 @@ It can be written in density operator form as
 \begin{align}
 	\ketbra{\rm{S}} = -\frac{1}{3} A_{\bmo} + \sum_{\bmx \neq \bmo} \frac{1}{6} A_{\bmx},
 \end{align}
-where $\bmx$ ranges in the $3$-dimensional phase space $\pd[3]$.
+where $\bmx$ ranges in the $3$-dimensional phase space $\cal{P}_d[3]$.
 This is the pure Strange state visualised in~\cref{fig:strange}.
 We allow for isotropic (uniform) noise, so that the system state is a convex sum of the pure Strange state and the maximally mixed state,
 \begin{equation}
@@ -845,7 +856,7 @@ so we get positive components
 \begin{equation}
 	u(\epsilon) = \frac{1}{6} -\frac{1}{18}\epsilon
 \end{equation}
-at the 8 phase space points $\bmx \in \pd[3] \setminus \{\bmo\}$ and a negative component
+at the 8 phase space points $\bmx \in \cal{P}_d[3] \setminus \{\bmo\}$ and a negative component
 \begin{equation}
 	- v(\epsilon) = - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
 \end{equation}
@@ -880,7 +891,7 @@ The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble aver
 	\W[\bmx]{\gamma_\beta} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}\W[\bmx]{\ketbra{k}} \\
 	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{3\Z_\beta},
 \end{align}
-for all $\bmx \in \pd[3]$. 
+for all $\bmx \in \cal{P}_d[3]$. 
 All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
 
 \subsubsection{Component-multiplicity pairs}
@@ -900,7 +911,7 @@ Consider two states $\rho_A, \rho_B$ with Wigner distributions $\W{\rho_A}, \W{\
 \begin{equation}
 	\{(w_i, m_i)\}_{i=1,\dots,D_A} \text{ and } \{(w_j', m_j')\}_{j=0,\dots,D_B}.
 \end{equation}
-The multiplicative property of the Wigner distribution over a composite phase space $\pd[d_A] \times \pd[d_B]$,
+The multiplicative property of the Wigner distribution over a composite phase space $\cal{P}_d[d_A] \times \cal{P}_d[d_B]$,
 \begin{equation}
 	\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B},
 \end{equation}

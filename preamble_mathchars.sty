@@ -4,11 +4,11 @@
 \newcommand{\id}{\mathbbm{1}}
 \newcommand{\idc}{1_{\rm{C}}}
 \newcommand{\supf}{\mathfrak{c}}
-\renewcommand{\tr}{{\rm{tr}}}
-\renewcommand{\det}{{\rm{det}}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ent}[2]{S\left( #1 \middle\vert\middle\vert #2 \right)}
 \newcommand{\ents}{{\ent{\frac{m}{n}}{p}}}
+\renewcommand{\tr}{{\rm{tr}}}
+\renewcommand{\det}{{\rm{det}}}
 
 
 \newcommand{\spanv}[1]{
@@ -41,38 +41,17 @@
 \newcommand{\bmm}{\bm{m}}
 \newcommand{\bmk}{\bm{k}}
 \newcommand{\bmq}{\bm{q}}
-\newcommand{\bmxi}{\bm{\xi}}
 \newcommand{\bmg}{\bm{g}}
 
-\newcommand{\zd}[1][]{
-    \ifthenelse{\isempty{#1}}{
-    {\mathbb{Z}_d} }{
-    {\mathbb{Z}_{#1}}}
-}
 \newcommand{\hd}[1][]{
     \ifthenelse{\isempty{#1}}{
     {\cal{H}_d} }{
     {\cal{H}_{#1}}}
 }
-\newcommand{\pd}[1][]{
-    \ifthenelse{\isempty{#1}}{
-    {\cal{P}_d} }{
-    {\cal{P}_{#1}}}
-}
-\newcommand{\cd}[1][]{
-    \ifthenelse{\isempty{#1}}{
-    {\cal{C}_d} }{
-    {\cal{C}_{#1}}}
-}
 \newcommand{\spd}[1][]{
     \ifthenelse{\isempty{#1}}{
     {{\rm{Sp}}(2, \zd)} }{
     {{\rm{Sp}}(2, \zd[#1])}}
-}
-\newcommand{\gp}[1][]{
-    \ifthenelse{\isempty{#1}}{
-    {\rm{GP}_d} }{
-    {\rm{GP}_{#1}}}
 }
 \newcommand{\stoch}[1][]{
     \ifthenelse{\isempty{#1}}{
