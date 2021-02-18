@@ -132,6 +132,8 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 
 \subsection{Stabilizer Theory}\label{sec:so}
 
+\nick{Should I define things in (a) 1-copy case only (b) $n$-copy case only (c) 1-copy case, then $n$-copy case ?}
+
 Let $\{\ket{k}\}_{k \in \mathbb{Z}_d}$ be the standard computational basis for an arbitrary fault-tolerant scheme, defined over the finite field $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$, with $d$ an odd prime. 
 Since the field has character $d$, addition and multiplication on the field are always considered modulo $d$.
 The Hilbert space of any system associated with this scheme is $\hd \coloneqq \spanv{\ket{k}: k \in \mathbb{Z}_d}$.
@@ -275,24 +277,25 @@ The free states correspond to proper probability distributions
 \end{equation}
 
 The free operations should send the set of free states $\Fmax$ into itself and completely preserve the non-negativity of the states, in the sense that $\E \in \Omax$ iff $(\id_d \otimes \E ) \sigma \in \stab$ for all odd prime dimensions $d$ whenever $\sigma \in \Fmax$.
-It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with the set of operations $\E$ that correspond to stochastic Wigner distributions, 
+It is shown by Wang \textit{et al.}~\cite{cit:wang} that $\Omax$ coincides with the set of operations $\E$ with stochastic Wigner distributions, 
 \begin{equation}
     \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \cal{P}_d\}.
 \end{equation}
 
-Any magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ as explained in~\cref{sec:intro}, and as such it falls under this new stochasticity setting. 
+Any magic theory $\R = (\F, \O)$ that has been proposed is a subtheory of $\Rmax$ in the sense that $\F \subseteq \Fmax$ and $\O \subseteq \Omax$, and as such it falls under this new stochasticity setting. 
 For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\rm{ max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr[ L\rho] \geq 0$ with operators $L \in \cal{B}(\cal{H})$ ensuring that the state is positive and Wigner-positive.
 
 
 Given this context we now define the following key notion, that is central to our analysis.
 \begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
-   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the resource theory $\R_\sigma = (\F, \O_\sigma)$, where the free operations are restricted to the ones that leave $\sigma$ invariant, namely
+   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the resource theory $\R_\sigma = (\F_\sigma, \O_\sigma)$, where $\F_\sigma = \{\sigma\}$ and the free operations are restricted to the ones that leave $\sigma$ invariant,
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
     \end{equation}
 \end{definition}
 
-With this basic notion defined, we now show that any resource theory of magic can be faithfully subdivided into $\sigma$--fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
+Note that $\F = \bigcup_{\sigma \in \F} \F_\sigma$ trivially.
+With this basic notion defined, we now show that this union holds for free operations as well and therefore that any resource theory of magic can be faithfully subdivided into $\sigma$--fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
 
 \begin{theorem}
     Let $\R = (\F, \O)$ be a theory of magic.
@@ -317,11 +320,6 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
     
     The state interconversion result follows immediately.
 \end{proof}
-
-The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
-Completely positive-Wigner-preserving operations~\cite{cit:wang} form the operation class $\Omax$.
-Therefore, $\sigma$--fragments cover this theory of magic exactly and any magic subtheory is contained within this cover.
-In particular, the stabilizer operations $\so$ are contained within $\Omax$.
 \begin{figure}[t]
     \centering
         \includegraphics[scale=0.47
@@ -335,14 +333,19 @@ In particular, the stabilizer operations $\so$ are contained within $\Omax$.
     \label{fig:zoo}
 \end{figure}
 
+The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
+Completely positive-Wigner-preserving operations~\cite{cit:wang} form the maximal operation class $\Omax$.
+This theory of magic is thus covered by $\sigma$--fragments exactly and every other magic theory is contained within this cover.
+In particular, the stabilizer operations $\so$ are contained within $\Omax$.
+
 The subdivision of magic theories into $\sigma$--fragments is powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in~\cref{sec:major}.
 
 \subsection{Majorization of quasi-probabilities in $\sigma$--fragments}\label{sec:major}
 
 Majorization is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
-It can describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
+It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
 
-To formally state majorization results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$. \nick{Should we introduce notation directly in the magic setting?}
+To formally state majorization results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
 Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
 \iffalse
 \begin{enumerate}
@@ -353,21 +356,26 @@ Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all 
 \fi
 The set $\stoch$ forms a group under matrix multiplication for all $\bmd$ with positive components.
 
-Majorization finds an important application on quantum thermodynamics in the absence of coherence.
-The use of majorization in this setting provides useful intuition for our purposes.
+Majorization exactly describes quantum thermodynamics in the absence of coherence.
+The use of majorization in this setting provides vital intuition for our purposes.
 At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
 Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
-Roughly, the statement is that there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
+Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
 
-Drawing intuition from this setting, we can define majorization as follows.
+Based on this setting, we define majorization as follows.
 \begin{definition}[\textbf{$\boldsymbol\bmd$-majorization}]\label{def:dmajor}
     Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$-majorize $\bmx$, iff there exists a matrix $S \in \stoch$ such that $\bmx = S\bmy$.
 \end{definition}
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization in entanglement theory. \nick{CITE}
+If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization from entanglement theory. \nick{CITE}
 
-The pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+In any magic theory, we can pick a certain free state, for example a stabilizer and view it as the analog of some thermal state $\gamma_\beta$.
+Without loss of generality we can always write $\sigma = \frac{1}{\Z} e^{-\beta H}$ for some $\beta \ge 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
+It then defines a set of free operations $\O_\sigma$ analogous to the thermal operations that preserve $\gamma_\beta$ the pre-order $\prec_{\R_\sigma}$ between these operations follows the rules of $\bmd$-majorization.
+
+
+In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
 For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
 
 
@@ -381,14 +389,16 @@ Therefore, the Wigner distribution of this free operation satisfies $\W{\E} \in 
 Since $\sigma$ is \nick{full-rank} and free, its Wigner distribution is strictly positive in all components, so it directly follows from~\cref{def:dmajor} that $\W{\tau} \prec_{\sigma} \W{\rho}$.
 \end{proof}
 This result can be understood as an extension of the idea of a magic monotone, where we replace $\M(\tau) \leq \M(\rho)$ with $\W{\tau} \prec_\sigma \W{\rho}$. 
-However the majorization constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- this enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
+The physical difference between the two expressions is that the majorization ordering occurs in a specific $\sigma$-fragment.
+Therefore, majorization constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- specifically, it enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
 
 This approach can also provide \emph{lower bounds} on distillation, however now more structure about the specific free operations must be included. 
-\nick{This is more involved and we discuss this later in the paper.
-Also mention relative majorization somewhere}
+\nick{This is more involved and we discuss this later in the paper.}
+
+\nick{Also mention relative majorization somewhere}
 
 \subsection{Majorization computations in $\sigma$--fragments}
-A numerically efficient reformulation of $\bmd$-majorization is provided by Lorenz curves.
+The pre-order imposed by $\bmd$-majorization admits a numerically efficient reformulation in terms of Lorenz curves.
 Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
     Let $\bmz, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\tilde{\bmz} \coloneqq (z_1/d_1, \dots, z_d/d_d)^T$ the vector of ratios between the corresponding components of $\bmz$ and $\bmd$.
@@ -397,16 +407,16 @@ Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its 
     
     Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$, where
     \begin{equation}\label{eq:lorenz}
-        (x_k, \lc{\bmz}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k z_{\pi(i)} \right) \in \mathbb{R}^2.
+        (x_k, \lc{\bmz}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k z_{\pi(i)} \right).
     \end{equation}
     We define the set of points on this curve, $\lc{\bmz}{\bmd}(x),\ x \in [0,1]$, as the \emph{Lorenz curve} of vector $\bmz$ with respect to $\bmd$.
 \end{definition}
 Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
 In fact, the Lorenz curves $\lc{\bmz}{\bmd}$ and $\lc{\bmz \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
 Furthermore, a Lorenz curve $\lc{\bmz}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\tilde{\bmz}^\downarrow)_i$ for $i=1,\dots,d$ which is non-increasing by definition.
-Finally, points on the interior of the Lorenz curve connecting line segments of different slopes are called \emph{elbows}.
+Finally, the points on the interior of the Lorenz curve connecting line segments of different slopes are called \emph{elbows}.
 
-A vector $\bmy$ \emph{$\bmd$--majorizes} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorization into a finite set of inequalities.
+A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorization into a finite set of inequalities.
 \begin{theorem}\label{thm:dmajor}
     Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $\lc{\bmx}{\bmd}(x) \leq \lc{\bmy}{\bmd}(x)$ for all $x \in [0,1]$ with strict equality at $x=1$.
@@ -804,7 +814,8 @@ For example, for $\epsilon = 0.4$ we obtain $R\le 0.31 $ while the mana bound gi
 
 We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabilizer fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \rm{STAB}$. In other words we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
-These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. Without loss of generality we can always write $\sigma = \frac{1}{\Z} e^{-\beta H}$ for some $\beta \ge 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
+These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
+Without loss of generality we can always write $\sigma = \frac{1}{\Z} e^{-\beta H}$ for some $\beta \ge 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
 
 Given this context, we can now state the following result, which is dependent on the free energy $F_\beta$ of a Gibbs state $\sigma$ where $ \beta F_\beta =  \beta\tr[H \sigma] - S(\sigma)$. We also fix the noisy Strange state to be of the form 
 \begin{equation}
