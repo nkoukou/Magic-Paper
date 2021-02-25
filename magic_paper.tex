@@ -412,8 +412,8 @@ This is justified as majorization is continuous between fragments, in the sense 
 Therefore, majorization analysis is robust under imperfections in the experimental implementation of quantum operations.
 
 In particular, any $\sigma$--fragment, with $\sigma$ not full-rank, can be approximated by the $\sigma'$--fragment defined as a mixture of $\sigma$ with uniform noise, $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
-There exist many $\sigma$--fragments with $\sigma$ not full-rank, such as when $\sigma$ is a pure stabilizer, e.g. the zero state as depicted in~\cref{fig:zero}. 
-Operations in such fragments include important stabilizer operations like the replacement channel defined as $\E(\rho) = \sigma$ for all states $\rho$.
+Important examples include pure stabilzer states which are rank-$1$ states e.g. the zero state depicted in~\cref{fig:zero}. 
+Operations in such fragments include important stabilizer operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
 
 \begin{theorem}\label{thm:sigmamajor}
     Let $\R = (\F, \O)$ be a theory of magic. If $\rho \longrightarrow \tau$  in $\R$ then  $\W{\tau} \prec_\sigma \W{\rho}$ within at least one $\sigma$--fragment.
@@ -479,12 +479,14 @@ However, in principle any one inequality defined at some location $x$ provides a
 
 The area $\A_\sigma(\rho)$ between the curve $L_{\rho|\sigma}$ and the line $y=1$ is a resource monotone in the $\sigma$--fragment. 
 This is clear because for any state conversion like~\cref{eq:sigma_conv}, the Lorenz curve $L_{\tau|\sigma}$ is lower than $L_{\rho|\sigma}$, hence $\A_\sigma(\E(\rho)) \leq \A_\sigma(\rho)$.
-The exact form of the monotone is given in~\cref{app:areamono}
+The exact form of the monotone is given in~\cref{app:areamono}.
 \nick{should we include the area? Have a look at~\cref{app:areamono}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Mana as a feature of majorization}
+
+\nick{Should this be a section on its own or a subsection of the previous section?}
 
 We now show that the magic monotone of mana, and equivalently the sum-negativity of a quantum state, can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
 In fact, our current setting makes it apparent that mana provides a weaker condition than majorization for all magic state interconversions.
@@ -541,13 +543,13 @@ This implies the following result.
 
 In the sections~\cref{sec:unital,sec:stab}, we study majorization constraints on magic distillation arising in different fragments. 
 For this reason, we define the $n$-copy, $\epsilon$-noisy Strange state,
-\begin{equation}
+\begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
 \end{equation}
 in $\O_\sigma$, where $\ket{\rm{S}}$ is defined in~\cref{fig:strange} and the induced noise is uniform. 
 For $\epsilon=0$, this state is a qutrit of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as the ideal distiallation target, analogous to a Bell state in bipartite entangelement theory.
 
-In~\cref{fig:lcs}, we illustrate the Lorenz curves of pure and noisy $n$-copy Strange states for $n$ up to $4$ in different $\sigma$--fragments.
+In~\cref{fig:lcs}, we illustrate the Lorenz curves $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{We drop parameters $\epsilon$ and $n$ for clarity} of pure and noisy $n$-copy Strange states for $n$ up to $4$ in different $\sigma$--fragments.
 As shown in~\cref{lem:lcmax}, the curve peaks equal $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$ independently of the $\sigma$--fragment.
 \begin{figure}%
     \centering
@@ -598,30 +600,31 @@ In such a case, the majorization condition~(\ref{eq:majbound}) needs to be check
 In general, noisy circuits are well-described by the unital fragment.
 To see this, consider incorporating noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} defined in different bases.
 This process destroys the circuit symmetries, except for the invariance of the maximally mixed state.
-Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{expand}
+Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{Expand on significance of unital fragment}
 
 \subsection{Distillation rate bounds in the unital fragment}\label{sec:lcsu}
 
-We consider the problem of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' \leq \epsilon$ and $n' \leq n$,
+We consider the problem of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$,
 \begin{equation}\label{eq:sudist}
-	\rho_{\rm{S}}^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation}
 where all copies $n, n', n - n'$ are even.
-Since the state $\frac{1}{3} \id$ is free, tensoring in copies of it does not affect the distillation process.
+Since the state $\id / 3$ is free, tensoring in copies of it does not affect the distillation process.
 
-Since the initial state can be written in the form $\rho_{\rm{S}}(n, \epsilon, 0)$, it suffices to construct the Lorenz curve $\lc{\rho_{\rm{S}}}{\id/3}(x)$ for the generic noisy strange state $\rho_{\rm{S}}(n, \epsilon ,n')$.
-This curve is defined at $9^n$ points between $0$ and $1$.
-The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater than or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even/odd and the location relative to the curve peak is on the left hand side (LHS -- including the maximum) / right hand side (RHS).
-The full details are provided in~\cref{app:lcsu_technical}.
+The Lorenz curve $\lc{\rho_{\rm{S}}}{\id/3}$, for some general noise parameter $\epsilon$ and number of copies $n$, is defined at $9^n$ points between $0$ and $1$.
+The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even or odd and the location relative to the curve peak is on the left hand side (LHS -- including the curve peak) or right hand side (RHS) of the curve peak.
+The full details for the Lorenz curve construction are provided in~\cref{app:lcsu_technical}.
 
-Here we focus on the case of Lorenz curves of even copies $n, n'$ and low noise levels ($\epsilon \leq 3/7$).
+\nick{In the following, should we talk about the coordinates of all elbows and then say that we are gonna use only the first elbow, or should we leave full-elbow analysis for the appendix and only talk about first elbow here?}
+
+Here we focus on the case of Lorenz curves with even copies $n, n'$ and low noise levels ($\epsilon' < \epsilon \leq 3/7$).
 The part of the curve on the LHS of its peak is constructed by the positive components of the state Wigner distribution that take values $w_i$, with associated multiplicities $m_i$,
 \begin{align}
 	w_i &= \left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}, \\
 	m_i &= 8^{2i}\binom{n}{2i},
 \end{align}
 where $i=0,\dots,\frac{n}{2}$.
-From this, it is readily seen that $\lc{\rho}{\id/3}(x)$ has elbows on the LHS of its peak located at points $x=x_i$, where
+It is readily seen that $\lc{\rho_{\rm{S}}}{\id/3}(x)$ has elbows on the LHS of its peak located at points $x=x_i$, where
 \begin{equation}
 	x_i = \Phi_+ \left( 2i; n , \frac{8}{9} \right),
 \end{equation}
@@ -715,17 +718,31 @@ For example, for $\epsilon = 0.4$ we obtain $R\le 0.31 $ while the mana bound gi
 \section{Magic bounds in arbitrary stabilizer fragments}
 \label{sec:stab}
 
-We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabilizer fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \rm{STAB}$. In other words we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
+We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabilizer fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \stab$. 
+In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
 These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
-Without loss of generality we can always write $\sigma = \frac{1}{\Z} e^{-\beta H}$ for some $\beta \ge 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
+Without loss of generality, we can always write a stabiler state $\sigma$ as a Gibbs state $\sigma = \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
 
-Given this context, we can now state the following result, which is dependent on the free energy $F_\beta$ of a Gibbs state $\sigma$ where $ \beta F_\beta =  \beta\tr[H \sigma] - S(\sigma)$. We also fix the noisy Strange state to be of the form 
-\begin{equation}
-	\rho_{\rm{S}}(\epsilon) \coloneqq (1-\epsilon)\ketbra{\rm{S}} + \epsilon \frac{1}{3}\id,
+We focus on the distillation process
+\begin{equation}\label{eq:sudist}
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
 \end{equation}
-but more general states can be handled in exactly the same manner. In the following result we consider the bounds on distilling out pure states $|S\>\<S|$, with $\epsilon'=0$, but these bounds are easily generalised to purification bounds with $\epsilon' \ne 0$. Finally, we assume that $\epsilon \le 3/7$, so that the noisy magic state has \nick{a dominant negative component}.
-\begin{theorem}Let $\sigma$ be a qutrit stabilizer state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. 
+where the noisy Strange state is given in~\cref{eq:noisysn}, but more general states can be handled in exactly the same manner.
+Notice that tensoring in copies of $\gamma_\beta$ does not affect the process, since the state is free.
+In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and $\epsilon'=0$, but the bounds are easily generalised to odd numbers of copies and $\epsilon'$ such that $0 < \epsilon' < \epsilon$. 
+Finally, we assume a \nick{generous} range of initial noise levels, $\epsilon \leq 3/7$, so that the largest Wigner component of the 1-copy noisy magic state is negative.
+
+\nick{Specify: How general can the states get? What about not full-rank states? Should we include the case of odd $n$ or non-zero $\epsilon'$ in the appendix? What about $\epsilon>0$?}
+
+Given this context, we now provide the following result, which depends on the free energy $F_\beta$ of state $\sigma$,
+\begin{equation}
+	F_\beta \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta},
+\end{equation}
+where the von Neumann entropy is $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$.
+
+\begin{theorem}\label{thm:stab_bounds}
+	Let $\sigma$ be a qutrit stabilizer state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. 
 We define
 \begin{equation}
 	\beta_\star \coloneqq \frac{1}{E_2 - E_0} \ln{2}
@@ -749,8 +766,13 @@ Otherwise if $\beta > \beta_{\star}$,
 	R(\epsilon, \beta) \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F_\beta)}.
 \end{equation}
 \end{theorem}
-A few comments can be given on this result. Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. Secondly, these bounds can almost certainly be improved through a finer analysis of the Lorenz curve. The existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure.  Finally, it is striking that we obtain a Landauer-like condition with a characteristic temperature $kT_\star \ln 2 = E_2 - E_0$, where $kT_\star = \beta_\star^{-1}$. It is unclear whether this points to a generic feature that can be directly related to fundamental thermodynamic relations, such as the erasure cost of a single bit being $kT \ln 2$. Given that we work with qutrits this seems surprising, but does deserve further study.
-
+A few comments can be given on this result. 
+Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
+Secondly, these bounds can almost certainly be improved through a finer analysis of the Lorenz curve. 
+The existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
+Finally, it is striking that we obtain a Landauer-like condition with a characteristic temperature $kT_\star \ln 2 = E_2 - E_0$, where $kT_\star = \beta_\star^{-1}$. 
+It is unclear whether this points to a generic feature that can be directly related to fundamental thermodynamic relations, such as the erasure cost of a single bit being $kT \ln 2$. 
+Given that we work with qutrits this seems surprising, but does deserve further study.
 
 \begin{figure}[t!]
     \centering
@@ -760,6 +782,11 @@ A few comments can be given on this result. Firstly, the specific numerical fact
     }
     \label{fig:rate_contour}
 \end{figure}
+
+\begin{proof}
+	Here we provide a sketch of the proof with all the details included in \nick{the appendix}.
+	
+\nick{Rest of section needs tidying}
 
 Consider a qutrit system with maximally Wigner-negative magic state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$.
 It can be written in density operator form as
@@ -819,9 +846,6 @@ The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble aver
 \end{align}
 for all $\bmx \in \cal{P}_d[3]$. 
 All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
-
-
-\subsubsection{Distillation bounds}
 
 Let $\sigma = \frac{1}{\Z} e^{-\beta H}$ be a stabilizer state, which is given in its eigen-decomposition as 
 \begin{equation}
@@ -1086,6 +1110,8 @@ Independently of the noise level of the initial state, we have a $\rm{(C2)} \rig
 As $\beta$ increases, the rate becomes looser.
 At the zero temperature limit, $F_\beta$ tends to zero, so $R(\epsilon, \beta) \xrightarrow{\beta \rightarrow \infty} 1$.
 
+\end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1119,12 +1145,7 @@ Adding more copies results in a lower optimal temperature $\beta^{-1}$.
     \label{fig:thermal_distill}
 \end{figure}
 
-There exist $d(d+1)$ pure stabilizer states for a $d$-dimensional system, all of which correspond to a uniform distribution over an affine line in the phase space \nick{CITE}.
-As an example, the distribution of the qutrit zero state $\ketbra{0}$ is illustrated in~\cref{fig:zero}.
-Any pure stabilizer state $\sigma$ is a rank--$1$ state and contains $d^2 - d$ zeros in its Wigner distribution, so we approximate it by the full--rank state $\sigma' = (1-\epsilon)\sigma + \epsilon \frac{1}{d}\id$ for some $\epsilon > 0$.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\null\newpage
 \section{Lower bounds in $\sigma$--fragments}
 \ddd{[Am throwing down some rough material, to be polished later.]}
 
