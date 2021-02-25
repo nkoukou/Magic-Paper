@@ -123,19 +123,19 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 
 Let $\{\ket{k}\}_{k \in \mathbb{Z}_d}$ be the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$, with $d$ an odd prime. 
 Since the field has character $d$, addition and multiplication on the field are always considered modulo $d$.
-The Hilbert space of any system associated with this scheme is $\hd \coloneqq \spanv{\ket{k}: k \in \mathbb{Z}_d}$.
+The Hilbert space of any system associated with this scheme is $\cal{H}_d \coloneqq \spanv{\ket{k}: k \in \mathbb{Z}_d}$.
 
 The generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators,
 \begin{align}
     X \ket{k} &= \ket{k + 1} \label{eq:xpauli}\\
 	Z \ket{k} &= \omega^k \ket{k}, \label{eq:zpauli}
 \end{align}
-where $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is modulo $d$. The Hilbert space $\hd$ is associated with a phase space $\cal{P}_d = \mathbb{Z}_d \times \mathbb{Z}_d$, where every point $\bmx \coloneqq (x, p)$ corresponds to a displacement operator, defined as
+where $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is modulo $d$. The Hilbert space $\cal{H}_d$ is associated with a phase space $\cal{P}_d = \mathbb{Z}_d \times \mathbb{Z}_d$, where every point $\bmx \coloneqq (x, p)$ corresponds to a displacement operator, defined as
 \begin{equation}\label{eq:ddef}
     D_{\bmx} \coloneqq \tau^{x p} X^{x} Z^{p},\ (x, p) \in \cal{P}_d.
 \end{equation}
 The phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity.
-For a composite system with product dimension $d = d_1 \dots d_n$ and Hilbert space, $\hd = \hd[d_1] \otimes \dots \otimes \hd[d_n]$, the displacement operators are defined as
+For a composite system with product dimension $d = d_1 \dots d_n$ and Hilbert space, $\cal{H}_d = \cal{H}_{d_1}] \otimes \dots \otimes \cal{H}_{d_n}]$, the displacement operators are defined as
 \begin{equation}\label{eq:composited}
     D_{\bmx} \coloneqq D_{(x_1, p_1)} \otimes \dots \otimes D_{(x_n, p_n)},
 \end{equation}
@@ -167,7 +167,7 @@ where $\eta(\bmx, \bmz)$ is the standard symplectic form, given explicitly by
 \end{equation}
 
 The phase-point operators form an orthogonal Hermitian operator basis as shown in~\cref{app:wigner}.
-Therefore, any quantum state $\rho \in \cal{B}(\hd)$ can be expressed as a linear combination of them,
+Therefore, any quantum state $\rho \in \cal{B}(\cal{H}_d)$ can be expressed as a linear combination of them,
 \begin{equation}
     \rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz},
 \end{equation}
@@ -251,21 +251,15 @@ It describes the \nick{disorder / non-uniformity} of distributions that undergo 
 
 To formally state majorization results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
 Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
-\iffalse
-\begin{enumerate}
-    \item $S_{ij} \geq 0$ for all $i, j \in \mathbb{Z}_d$;
-    \item $\sum\limits_{j=1}^n S_{ij} = 1$ for all $i \in \mathbb{Z}_d$;
-    \item $S\bmd = \bmd$.
-\end{enumerate}
-\fi
 The set $\stoch$ forms a group under matrix multiplication for all $\bmd$ with positive components.
 
-Majorization exactly describes quantum thermodynamics in the absence of coherence.
+Majorization describes quantum thermodynamics exactly in the absence of quantum coherence.
 The use of majorization in this setting provides vital intuition for our purposes.
 At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
 Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
 Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
+Formal statements of the above can be found \nick{in the appendix}.
 
 Based on this setting, we define majorization as follows.
 \begin{definition}[\textbf{$\boldsymbol\bmd$-majorization}]\label{def:dmajor}
@@ -281,7 +275,7 @@ Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its 
     
     Finally, denote by $\pi: \mathbb{Z}_d \mapsto \mathbb{Z}_d$ the permutation that sorts $\widetilde{\bmw}$, $(\widetilde{\bmw}^\downarrow)_i = w_{\pi(i)}$ for all $i=1,\dots,d$.
     
-    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmz}{\bmd}(k)) \}_{k=1,\dots,d}$, where
+    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmw}{\bmd}(k)) \}_{k=1,\dots,d}$, where
     \begin{equation}\label{eq:lorenz}
         (x_k, \lc{\bmw}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right).
     \end{equation}
@@ -725,7 +719,7 @@ These bounds can be interpreted in two different ways: on one hand they can be v
 Without loss of generality, we can always write a stabiler state $\sigma$ as a Gibbs state $\sigma = \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
 
 We focus on the distillation process
-\begin{equation}\label{eq:sudist}
+\begin{equation}\label{eq:stdist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
 \end{equation}
 where the noisy Strange state is given in~\cref{eq:noisysn}, but more general states can be handled in exactly the same manner.

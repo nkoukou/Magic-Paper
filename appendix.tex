@@ -1,73 +1,105 @@
-\section{Properties of the Wigner distribution}
+\section{Properties of Wigner distributions}
 \label{app:wigner}
 
 Here we present important properties of the Wigner distribution that are used throughout the paper.
 
 \begin{proposition}\label{thm:wstate}
-    The Wigner distribution of a state $\rho$ is
-    \begin{enumerate}
-        \item\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
-        \item\label{en:w2} Normalised: $\sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho}=1$;
-        \item\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
-        \item\label{en:w4} Additive under mixing:
-        
-        $\W[\bmx]{\sum_i p_i \rho_i} = \sum\limits_i p_i \W[\bmx]{\rho_i}$;
-        \item\label{en:w5} Multiplicative under tensor products: 
-        
-        $\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}$.
+  The Wigner distribution of a state $\rho \in \cal{B}(\cal{H}_d)$ is
+  \begin{enumerate}
+    \item[(i)]\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
+    \item[(ii)]\label{en:w2} Normalised: $\sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho}=1$;
+    \item[(iii)]\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
+    \item[(iv)]\label{en:w4} Additive under mixing: \vspace{2pt}\\
+    $\W[\bmx]{\sum_i p_i \rho_i} = \sum\limits_i p_i \W[\bmx]{\rho_i}$;
+    \item[(v)]\label{en:w5} Multiplicative under tensor products: \vspace{2pt}\\
+    $\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}$.
 	\end{enumerate}
 \end{proposition}
-A distribution satisfying the first three properties does not necessarily correspond to a positive semi-definite state.
+Not all distributions satisfying these properties correspond to positive semi-definite states.
+\begin{proof}
+	\nick{Proof?}
+\end{proof}
 
 \begin{proposition}
     \label{thm:wchannel}
-    The Wigner distribution of a $\cptp$ operation $\E: \cal{B}(\hd[d_A]) \mapsto \cal{B}(\hd[d_B])$ is:
+    The Wigner distribution of a $\cptp$ operation $\E: \cal{B}(\cal{H}_{d_A}) \mapsto \cal{B}(\cal{H}_{d_B})$ is
     \begin{enumerate}
-        \item\label{en:wo1} Real-valued: $\W[\bmy|\bmx]{\E} \in \mathbb{R}$;
-        \item\label{en:wo2} Normalised: $\sum_{\bmz \in \cal{P}_{d_B}} \W[\bmz|\bmx]{\E} = 1$ for any $\bmx \in \cal{P}_{d_A}$;
+        \item\label{en:wo1} Real-valued: $\W{\E} \in \mathbb{R}^{d^2} \times \mathbb{R}^{d^2}$;
+        \item\label{en:wo2} Normalised: $\sum_{\bmz \in \cal{P}_{d_B}} \W[\bmz|\bmx]{\E} = 1$ \\ 
+        for any $\bmx \in \cal{P}_{d_A}$;
         \item\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmx]{\E}} \leq \frac{d_A}{d_B}$;
-	    \item\label{en:wo4} \nick{Transitive}: $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \cal{P}_{d_A}]} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \cal{P}_{d_B}$.
+	    \item\label{en:wo4} Transitive: $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \cal{P}_{d_A}} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \cal{P}_{d_B}$.
     \end{enumerate}
 \end{proposition}
 If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto itself, then the stochasticity condition $\abs{\W[\bmy|\bmx]{\E}} \leq 1$ is satisfied.
+\begin{proof}
+	\nick{Proof?}
+\end{proof}
+A $(d \times d)$ matrix $S$ is in $\stoch$, if
+\begin{enumerate}
+    \item $S_{ij} \geq 0$ for all $i, j \in \mathbb{Z}_d$;
+    \item $\sum\limits_{j=1}^n S_{ij} = 1$ for all $i \in \mathbb{Z}_d$;
+    \item $S\bmd = \bmd$.
+\end{enumerate}
 
 %%%
 
 \section{Properties of majorization}
 \label{app:major}
 
-\subsection{Equivalent conditions for majorization}
+\subsection{Simple--majorization equivalence conditions}
 
-Any $\bmd$-majorization problem can be rephrased as a majorization problem in a higher dimensional space due to the embedding map.
-\begin{definition}
-    The embedding map $\Gamma_{\bmd}:\mathbb{R}^n \mapsto \mathbb{R}^D, D = \sum\limits_{i=1}^n d_i$ is the function
-    \begin{equation}
-        \Gamma_{\bmd}(\bmz) = \bigoplus_{i=1}^n z_i\  \frac{1}{d_i}\bm{1},
-    \end{equation}
-    where $\bm{1}/d_i$ is the $d_i$-dimensional uniform distribution.
-    The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^D \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\bmd}(\bmz)$, so that
-    \begin{equation}
-        \Gamma_{\bmd}^{-1}(\oplus_{i=1}^n z_i \bm{1}/d_i) = \bmz.
-    \end{equation}
-    This is not a right inverse, because $\Gamma_{\bmd}$ is not surjective.
-\end{definition}
-The direct sum simply amounts to listing the uniform distributions one after the other.
-The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\bmd}(\bmd) = \bm{1}/D$.
-Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ mapping $(z_i/d_i) \mapsto (z_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
-Intuitively, $\beta$-ordering tends to simply non-increasing ordering as $\beta$ tends to 0.
-This ordering naturally leads to a generalised notion of the Lorenz curve. 
-
-\begin{theorem}
-Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
- \begin{enumerate}%[\rm{(TM1)}]
-	\item $\bmx \prec_{\bmd} \bmy$;
-	\item $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
-	\item\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
-	\item $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-	\item $\forall k, L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ and $L_{\bmx|\bmd}(k=n) = L_{\bmy|\bmd}(k=n)$.
+In the unital fragment, namely the limit of infinite temperature, $\beta = 0$, the free state is the maximally mixed state $\frac{1}{d}\id$ with uniform Wigner distribution $\frac{1}{d}\bm{1}  = (\frac{1}{d},\dots,\frac{1}{d})$.
+This fragment is governed by simple majorization and we first prove strong equivalences for this type of majorization.
+\begin{theorem}\label{thm:major}
+Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
+ \begin{enumerate}
+	\item\label{en:m1} $\bmx \prec \bmy$;
+	\item\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
+	\item\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
+	\item\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
+	\item\label{en:m5} $L_{\bmx}(k) \leq L_{\bmy}(k)$ for $k=1,\dots,n-1$	and $L_{\bmx}(n) = L_{\bmy}(n)$.
  \end{enumerate}
 \end{theorem}
 \begin{proof}
+	\nick{Proof?}
+\end{proof}
+
+\subsection{Embedding map}
+
+Any $\bmd$-majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
+\begin{definition}
+  The embedding map $\Gamma_{\bmd}:\mathbb{R}^n \mapsto \mathbb{R}^D, D = \sum\limits_{i=1}^n d_i$ is the function
+  \begin{equation}
+    \Gamma_{\bmd}(\bmw) = \bigoplus_{i=1}^n w_i\  \frac{1}{d_i}\bm{1},
+  \end{equation}
+where $\bm{1}/d_i$ is the $d_i$-dimensional uniform distribution.
+The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^D \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\bmd}(\bmw)$, so that
+  \begin{equation}
+     \Gamma_{\bmd}^{-1}(\oplus_{i=1}^n w_i \bm{1}/d_i) = \bmw.
+  \end{equation}
+  This is not a right inverse, because $\Gamma_{\bmd}$ is not surjective.
+\end{definition}
+The direct sum simply amounts to listing the uniform distributions one after the other.
+The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\bmd}(\bmd) = \bm{1}/D$.
+Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{def:lc}, mapping $(w_i/d_i) \mapsto (w_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
+
+\subsection{\textit{d}-majorization equivalence conditions}
+
+\begin{theorem}
+Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
+  \begin{enumerate}
+    \item $\bmx \prec_{\bmd} \bmy$;
+    \item $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
+    \item\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
+    \item $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+    \item $L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ for $k=1,\dots,n-1$	and $L_{\bmx|\bmd}(n) = L_{\bmy|\bmd}(n)$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \nick{Proof?}
+\end{proof}
+\iffalse
     \begin{enumerate}
         \item[1$\leftrightarrow2$]
         Suppose now there exists a stochastic $S$ such that $\bmx = S\bmy$ with $\bmd = S\bmd$ and let $B = \Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}$.
@@ -84,44 +116,32 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
         \end{align} 
         and similarly for the right hand side.
     \end{enumerate}
-\end{proof}
-
-The Lorenz curve can be explicitly expressed as
-    \begin{equation}
-		\lc{\rho}{\sigma}(x) = (\bmu^\downarrow)_i x + \lc{\rho}{\sigma}(i) - (\bmu^\downarrow)_i x_i,\ x \in (x_{i-1}, x_i],
-	\end{equation}
-	for all $i=1,\dots,d$ with $x_0 \coloneqq 0$.
-	
-	
-\begin{proposition}\label{thm:lccont}
-	The Lorenz curve $\lc{\rho}{\sigma}(x)$ of a state $\rho$ with respect to state $\sigma$ is uniformly continuous in $\sigma$.
-\end{proposition}
-\begin{proof}
-	If $\sigma$ and $\sigma'$ are $\delta$-close with respect to a state norm, then the curves $\lc{\rho}{\sigma}(x)$ and $\lc{\rho}{\sigma'}(x)$ are $\epsilon$-close at all $x \in [0,1]$.
-\end{proof}
+\fi
 
 %%%
 
-\section{Properties of $\sigma$-fragments}
+\section{Properties of $\sigma$--fragments}
 \label{app:frag}
 
+\nick{this section hasn't been refereced in various parts of the main text}
+
 \begin{theorem}\label{thm:frag_app}
-    Let $\R = (\O, \F)$ be a magic theory. 
+    Let $\R_\sigma = (\O_\sigma, \F_\sigma)$ be a $\sigma$--fragment of magic theory $\R = (\O, \F)$. 
     The following statements hold:
     \begin{enumerate}
-        \item No $\sigma$-fragment is empty.
+        \item No $\sigma$--fragment is empty.
         \item If a free operation leaves two states invariant, then it also leaves their mixtures invariant, 
-        \begin{equation}
+        \begin{equation*}
             \O_{\sigma} \cap \O_{\sigma'} \subseteq \O_{p\sigma + (1-p)\sigma'}\ \text{for all}\ p \in [0,1].
-        \end{equation}
+        \end{equation*}
         \item Let $\E$ be a $\cptp$ operation with Wigner distribution $\W{\E}$.
-        For $\R = \Rmax$ $\E \in \O_\sigma$ iff $\W{\E} \in \stochw$.
+        For $\R = \Rmax$, $\E \in \O_\sigma$ iff $\W{\E} \in \stochw$. \nick{I don't like this one}
     \end{enumerate}
 \end{theorem}
 \begin{proof}$ $\\
 
     \begin{enumerate}
-    \item The identity channel $1_{\rm{C}}: \D \mapsto \D$ belongs to every $\sigma$-fragment, as $1_{\rm{C}} \in \O$ and $1_{\rm{C}}\sigma = \sigma$ for all $\sigma \in \F$.
+    \item The identity channel $1_{\rm{C}}: \D \mapsto \D$ belongs to every $\sigma$--fragment, as $1_{\rm{C}} \in \O$ and $1_{\rm{C}}\sigma = \sigma$ for all $\sigma \in \F$.
     
     \item Let $\E \in \O_{\sigma} \cap \O_{\sigma'}$.
     Then $\E \in \cptp$ and corresponds to stochastic Wigner distribution $\W{\E}$ such that $\W{\E} \W{\sigma} = \W{\sigma}$ and $\W{\E} \W{\sigma'} = \W{\sigma'}$.
@@ -138,14 +158,13 @@ The Lorenz curve can be explicitly expressed as
     \end{enumerate}
 \end{proof}
 
-Any free state $\sigma \in \cal{B}(\hd)$ corresponds to a $d^2$-dimensional probability distribution $\W{\sigma}$ and any free operation $\E: \cal{B}(\hd) \mapsto \cal{B}(\hd)$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
+Any free state $\sigma \in \F$ corresponds to a $d^2$-dimensional probability distribution $\W{\sigma}$ and any free operation $\E \in \O$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
 Note that these mappings are one-to-one due to the orthogonality of the phase-point operators as an operator basis.
 
-\emph{Remark 1.} Note that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
-As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition~\ref{en:w3} in~\cref{thm:wstate}.
+Note further that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
+As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition in~\cref{thm:wstate}.
 
-\emph{Remark 2.} Similarly, not all stochastic matrices correspond to completely positive operations.
-
+Similarly, not all stochastic matrices correspond to completely positive operations.
 As an example, consider the permutation matrix
 \begin{equation}
     \Pi_X = \begin{psmallmatrix}
@@ -162,21 +181,36 @@ As an example, consider the permutation matrix
         0 & 1 & 0 & 0 & 0    
     \end{psmallmatrix} \in \stochw,\ d=5.
 \end{equation}
-It preserves the uniform distribution $\W{\frac{1}{5}\id}{}$, but it does not correspond to any $\cpos$ operation, hence any $\E \in \O$ due to~\cref{thm:frag}.
+It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not correspond to any positive operation.
 
-\section{Lorenz curve properties}
+\section{Properties of Lorenz curves}
 \label{app:lc_properties}
 
-Single-copy Lorenz curves are simply additive in noise, 
+\nick{Prove statements underneath~\cref{def:lc}?}
+
+\subsection{Basic properties}
+
+Furthermore, single-copy Lorenz curves are simply additive in noise, 
 \begin{equation}
-\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
+	\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
 \end{equation}
 for any $\sigma, \rho$.
 This is not true for higher number of copies.
 
+\subsection{$\sigma$--fragment continuity}
+
+\begin{proposition}\label{thm:lccont}
+	The Lorenz curve $\lc{\rho}{\sigma}(x)$ of a state $\rho$ with respect to state $\sigma$ is uniformly continuous in $\sigma$.
+\end{proposition}
+\begin{proof}
+	\nick{Idea:} If $\sigma$ and $\sigma'$ are $\delta$-close with respect to a state norm, then the curves $\lc{\rho}{\sigma}(x)$ and $\lc{\rho}{\sigma'}(x)$ are $\epsilon$-close at all $x \in [0,1]$.
+\end{proof}
+
 \subsection{Area monotone}\label{app:areamono}
 
-\begin{figure}[t]%
+\nick{I don't believe in the area monotone - should we keep?}
+
+\begin{figure}[h]%
     \centering
     \subfigure[][]{%
     \label{fig:test1}%
