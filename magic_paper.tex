@@ -436,7 +436,7 @@ We discuss distillation lower bounds in~\nick{REF}
 It is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment.
 As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.
 We write $\lc{\rho}{\sigma}(x)$ for the Lorenz curve of $\W{\rho}$ with respect to $\W{\sigma}$.
-The vector of ratios $\widetilde{\bmw}(\rho|\sigma)$ used to construct the curve and defined as
+The vector of ratios $\widetilde{\bmw}(\rho|\sigma)$ used to construct the curve is defined as
 \begin{equation}
 	\widetilde{w}(\rho|\sigma)_i \coloneqq \frac{w(\rho)_i}{w(\sigma)_i},
 \end{equation}
@@ -541,7 +541,9 @@ For this reason, we define the $n$-copy, $\epsilon$-noisy Strange state,
     \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
 \end{equation}
 in $\O_\sigma$, where $\ket{\rm{S}}$ is defined in~\cref{fig:strange} and the induced noise is uniform. 
+
 For $\epsilon=0$, this state is a qutrit of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as the ideal distiallation target, analogous to a Bell state in bipartite entangelement theory.
+The Strange state is exceptionally symmetric under Clifford transformations and as a result there exists a \emph{twirling} protocol, discussed in detail in~\cite{cit:prakash,cit:prakash2}, allowing for the conversion of any noisy magic state to the form of~\cref{eq:noisysn} via Cliffords.
 
 In~\cref{fig:lcs}, we illustrate the Lorenz curves $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{We drop parameters $\epsilon$ and $n$ for clarity} of pure and noisy $n$-copy Strange states for $n$ up to $4$ in different $\sigma$--fragments.
 As shown in~\cref{lem:lcmax}, the curve peaks equal $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$ independently of the $\sigma$--fragment.
@@ -716,18 +718,19 @@ We now generalise the approach taken in the previous section and consider bounds
 In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
 These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
-Without loss of generality, we can always write a stabiler state $\sigma$ as a Gibbs state $\sigma = \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
+Without loss of generality, we can always write a stabiler state $\sigma$ as a Gibbs state $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
 
 We focus on the distillation process
 \begin{equation}\label{eq:stdist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
 \end{equation}
 where the noisy Strange state is given in~\cref{eq:noisysn}, but more general states can be handled in exactly the same manner.
+We also highlight that any magic state can be written in terms of a noisy Strange state.
 Notice that tensoring in copies of $\gamma_\beta$ does not affect the process, since the state is free.
 In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and $\epsilon'=0$, but the bounds are easily generalised to odd numbers of copies and $\epsilon'$ such that $0 < \epsilon' < \epsilon$. 
 Finally, we assume a \nick{generous} range of initial noise levels, $\epsilon \leq 3/7$, so that the largest Wigner component of the 1-copy noisy magic state is negative.
 
-\nick{Specify: How general can the states get? What about not full-rank states? Should we include the case of odd $n$ or non-zero $\epsilon'$ in the appendix? What about $\epsilon>0$?}
+\nick{Specify: How general can the states get? What about not full-rank states? Should we include the case of odd $n$ or non-zero $\epsilon'$ in the appendix? What about $\epsilon>3/7$?}
 
 Given this context, we now provide the following result, which depends on the free energy $F_\beta$ of state $\sigma$,
 \begin{equation}
@@ -1106,7 +1109,44 @@ At the zero temperature limit, $F_\beta$ tends to zero, so $R(\epsilon, \beta) \
 
 \end{proof}
 
+\section{Comparison with existing distillation rates}
+\label{sec:comparison}
 
+We have derived a \emph{distillation bound} $R(\epsilon, \epsilon', \beta)$ for the process
+\begin{equation}\label{eq:stdist}
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
+\end{equation}
+with even $n, n'$ and $0 \leq \epsilon' < \epsilon \leq 3/7$, where the $n$-copy, $\epsilon$-noisy Strange state is
+\begin{equation}\label{eq:test}
+    \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n}.
+\end{equation}
+
+The bound informs us that any distillation protocol in the $\gamma_\beta$-fragment with an $\epsilon$-noisy input and $\epsilon'$-noisy output has a \emph{distillation rate} 
+\begin{equation}
+	\frac{n'}{n} \leq R(\epsilon, \epsilon', \beta).
+\end{equation}
+
+We can rephrase this result, saying that any distillation protocol in the $\gamma_\beta$-fragment with an $n$-copy input and $n'$-copy, $\epsilon'$-noisy desired output, must have input noise level 
+\begin{equation}
+	\epsilon \leq  E\left(\frac{n'}{n}, \epsilon', \beta \right)
+\end{equation}
+for some error bound $E$ related to $R$.
+
+An $n$-copy state $\rho^n$ has \emph{error rate} $\epsilon$ iff $\rho$ has an overlap of at least $1-\epsilon$ with magic state $\ket{\rm{S}}$,
+\begin{equation}
+	\bra{\rm{S}}\rho\ket{\rm{S}} \geq 1-\epsilon.
+\end{equation}
+The $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ has error rate $\frac{2}{3}\epsilon$.
+A general state of $n$ qutrits with error rate $\epsilon$ can be converted to the form $\rho_{\rm{S}}(\epsilon_0)^{\otimes n}$ for some noise level $\epsilon_0$ not necessarily equal to $\epsilon$.
+
+Given an $[[n,n',d]]$ error correcting code, a distillation protocol that achieves the process in~\cref{eq:test} requires
+\begin{align}
+	\epsilon' &\sim O((n\epsilon)^d) \\
+	\frac{n}{n'} &\sim O(\log^\gamma{1/\epsilon'}),\ \gamma = \log_d{\left(\frac{n}{n'}\right)}
+\end{align}
+
+In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{1/\epsilon'})$ is called the \emph{distillation cost}.
+\nick{These inequalities seem to be the other way around.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \null\newpage
