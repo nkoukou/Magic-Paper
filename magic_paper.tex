@@ -1141,12 +1141,33 @@ A general state of $n$ qutrits with error rate $\epsilon$ can be converted to th
 
 Given an $[[n,n',d]]$ error correcting code, a distillation protocol that achieves the process in~\cref{eq:test} requires
 \begin{align}
-	\epsilon' &\sim O((n\epsilon)^d) \\
-	\frac{n}{n'} &\sim O(\log^\gamma{1/\epsilon'}),\ \gamma = \log_d{\left(\frac{n}{n'}\right)}
+	\epsilon' &\sim O\left((n\epsilon)^d\right) \\
+	\frac{n}{n'} &\sim O(\log^\gamma{(1/\epsilon')}),\ \gamma = \log_d{\left(\frac{n}{n'}\right)}
 \end{align}
 
-In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{1/\epsilon'})$ is called the \emph{distillation cost}.
-\nick{These inequalities seem to be the other way around.}
+In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{(1/\epsilon')})$ is called the \emph{distillation cost}.
+
+There are many distillation protocols in the literature, e.g.~\cite{Bravyi2012,Hastings2018}, that involve a specific value of $\gamma$.
+They should all satisfy
+\begin{equation}\label{eq:rate_cost}
+	\frac{1}{R(\epsilon, \epsilon', \beta)} \leq \frac{n}{n'} \sim O(\log^\gamma{(1/\epsilon')}).
+\end{equation}
+Therefore, given process parameters $n, n', \epsilon, \epsilon'$, we can scan through the stabilizer states to find a range of $\beta$ for which inequality~\cref{eq:rate_cost} is valid.
+In principle, the higher the value of parameter $\gamma$, the lower the output error rate $\epsilon'$ can be while~\cref{eq:rate_cost} is still true.
+In~\cite{Hastings2018} \nick{CITE MORE}, they report a value of $\gamma = 0.6779\dots$, while in~\cite{Krishna2019}, they report a scaling $\gamma = O(1/\log{d})$ with respect to the system's odd prime dimension $d$.
+The latter tends to 0 asymptotically.
+
+Furthermore, in~\cite{cit:bravyi,cit:prakash}, two different distillation protocols are proposed with output error rate scalings of the form 
+\begin{equation}
+	\epsilon' \propto (\alpha \epsilon)^{n^\xi},
+\end{equation}
+where $\alpha$ is some constant, $\xi = 1/\log_3{15} \approx 0.4$ in~\cite{cit:bravyi} for qubit codes and $\xi = 1/\log_3{19008} \approx 0.1$ for qutrit codes.
+They also report a certain input threshold error rate $\epsilon_\star$ above which distillation is not possible.
+A first requirement is that $\epsilon_\star \leq E(n'/n, \epsilon', \beta)$, but we can also again find a range of $\beta$ for which the inequality
+\begin{equation}
+	\epsilon \leq E\left(\frac{n'}{n}, \epsilon'(\epsilon), \beta \right)
+\end{equation}
+holds, given some distillation rate $n'/n$ and input error rate $\epsilon$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \null\newpage
