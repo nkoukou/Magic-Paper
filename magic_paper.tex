@@ -405,7 +405,7 @@ Furthermore, we restrict our analysis to $\sigma$--fragments, where $\sigma$ is 
 This is justified as majorization is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$-close. \nick{CHECK}
 Therefore, majorization analysis is robust under imperfections in the experimental implementation of quantum operations.
 
-In particular, any $\sigma$--fragment, with $\sigma$ not full-rank, can be approximated by the $\sigma'$--fragment defined as a mixture of $\sigma$ with uniform noise, $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
+In particular, any $\sigma$--fragment, with $\sigma$ not full-rank, can be approximated by the $\sigma'$--fragment defined as a mixture of $\sigma$ with depolarising noise, $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
 Important examples include pure stabilzer states which are rank-$1$ states e.g. the zero state depicted in~\cref{fig:zero}. 
 Operations in such fragments include important stabilizer operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
 
@@ -540,7 +540,7 @@ For this reason, we define the $n$-copy, $\epsilon$-noisy Strange state,
 \begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
 \end{equation}
-in $\O_\sigma$, where $\ket{\rm{S}}$ is defined in~\cref{fig:strange} and the induced noise is uniform. 
+in $\O_\sigma$, where $\ket{\rm{S}}$ is coined in~\cref{fig:strange} and we induce uniform depolarising noise.
 
 For $\epsilon=0$, this state is a qutrit of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as the ideal distiallation target, analogous to a Bell state in bipartite entangelement theory.
 The Strange state is exceptionally symmetric under Clifford transformations and as a result there exists a \emph{twirling} protocol, discussed in detail in~\cite{cit:prakash,cit:prakash2}, allowing for the conversion of any noisy magic state to the form of~\cref{eq:noisysn} via Cliffords.
@@ -728,7 +728,7 @@ where the noisy Strange state is given in~\cref{eq:noisysn}, but more general st
 We also highlight that any magic state can be written in terms of a noisy Strange state.
 Notice that tensoring in copies of $\gamma_\beta$ does not affect the process, since the state is free.
 In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and $\epsilon'=0$, but the bounds are easily generalised to odd numbers of copies and $\epsilon'$ such that $0 < \epsilon' < \epsilon$. 
-Finally, we assume a \nick{generous} range of initial noise levels, $\epsilon \leq 3/7$, so that the largest Wigner component of the 1-copy noisy magic state is negative.
+Finally, we assume a range of initial noise levels, $\epsilon \leq 3/7$  \nick{higher than all threshold values CITE}, so that the largest Wigner component of the 1-copy noisy magic state is negative.
 
 \nick{Specify: How general can the states get? What about not full-rank states? Should we include the case of odd $n$ or non-zero $\epsilon'$ in the appendix? What about $\epsilon>3/7$?}
 
@@ -792,7 +792,7 @@ It can be written in density operator form as
 \end{align}
 where $\bmx$ ranges in the $3$-dimensional phase space $\cal{P}_d$.
 This is the pure Strange state visualised in~\cref{fig:strange}.
-We allow for isotropic (uniform) noise, so that the system state is a convex sum of the pure Strange state and the maximally mixed state,
+We allow for depolarising noise, so that the system state is a convex sum of the pure Strange state and the maximally mixed state,
 \begin{equation}
 	\rho_{\rm{S}}(\epsilon) \coloneqq (1-\epsilon)\ketbra{\rm{S}} + \epsilon \frac{1}{3}\id,
 \end{equation}
@@ -1030,7 +1030,7 @@ In all three scenarios, it is simple to check that the first elbow of the initia
 		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \dfrac{e^{-\beta(n E_{\rm{max}} - n' E_0)}}{\Z_\beta^{n-n'}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
 		&< \dfrac{e^{-\beta(n E_{\rm{max}} - n' E_0)}}{e^{-\beta (n-n') E_{\rm{max}}}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
 		&= e^{-\beta n' (E_{\rm{max}} - E_0)} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
-		&< \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'.
+		&\leq \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'.
 	\end{align*}
 	\item $\rm{(C2)} \rightarrow \rm{(C2)}$.
 	It is always true that $e^{-\beta E_{\rm{max}}} / \Z_\beta \leq 1$, so
@@ -1126,36 +1126,78 @@ The bound informs us that any distillation protocol in the $\gamma_\beta$-fragme
 	\frac{n'}{n} \leq R(\epsilon, \epsilon', \beta).
 \end{equation}
 
-We can rephrase this result, saying that any distillation protocol in the $\gamma_\beta$-fragment with an $n$-copy input and $n'$-copy, $\epsilon'$-noisy desired output, must have input noise level 
+We apply our results on the ternary Golay code distillation protocol suggested in~\cite{cit:prakash}.
+In this protocol, a single Strange state is distilled with noise level
 \begin{equation}
-	\epsilon \leq  E\left(\frac{n'}{n}, \epsilon', \beta \right)
+	\epsilon'(n, \epsilon) \approx \frac{1}{\alpha}(\alpha\epsilon)^{n^\xi},
 \end{equation}
-for some error bound $E$ related to $R$.
-
-An $n$-copy state $\rho^n$ has \emph{error rate} $\epsilon$ iff $\rho$ has an overlap of at least $1-\epsilon$ with magic state $\ket{\rm{S}}$,
+where $\alpha \approx 1.75$ and $\xi \approx 0.112$ are constants specific to the protocol.
+This can be rewritten in terms of the protocol distillation rate,
 \begin{equation}
-	\bra{\rm{S}}\rho\ket{\rm{S}} \geq 1-\epsilon.
+	R_{\rm{Golay}}(\epsilon, \epsilon') = \frac{1}{n} \approx \left( \frac{\log{(\alpha \epsilon)}}{\log{(\alpha \epsilon')}} \right)^{\frac{1}{\xi}}
 \end{equation}
-The $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ has error rate $\frac{2}{3}\epsilon$.
-A general state of $n$ qutrits with error rate $\epsilon$ can be converted to the form $\rho_{\rm{S}}(\epsilon_0)^{\otimes n}$ for some noise level $\epsilon_0$ not necessarily equal to $\epsilon$.
 
-Given an $[[n,n',d]]$ error correcting code, a distillation protocol that achieves the process in~\cref{eq:test} requires
+We compare the distillation rate of the protocol with our distillation bound, 
+\begin{equation}
+	R_{\rm{Golay}}(\epsilon, \epsilon') \leq R(\epsilon, \epsilon', \beta)
+\end{equation} 
+in figure~\cref{fig:prakash_compare}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/prakash_compare.png}
+    \caption{\textbf{Comparison with ternary Golay distillation rate.}
+    Our bound is not violated but gets close to saturated for some noise levels.
+    The thick diagonal line indicates where $\epsilon' = \epsilon$.
+    }
+    \label{fig:prakash_compare}
+\end{figure}
+
+We can also rewrite the expression as 
+\begin{equation}
+	\epsilon_{\rm{Golay}}(\epsilon', n) \approx \frac{1}{\alpha}(\alpha\epsilon')^{n^{-\xi}},
+\end{equation}
+and compare with the numerically optimal error bounds provided by majorization as shown in~\cref{fig:prakash_compare_errors}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/prakash_compare_errors.png}
+    \caption{\textbf{Comparison with ternary Golay output error rate.}
+    Our bound is not violated but achieves a maximum saturation of $\epsilon_\star - \epsilon_{\rm{Golay}} = 0.147$.
+    }
+    \label{fig:prakash_compare_errors}
+\end{figure}
+
+
+
+\iffalse
+An $n$-copy state $\rho^n$ has \emph{error rate} $\delta$ iff $\rho$ has an overlap of at least $1-\delta$ with magic state $\ket{\rm{S}}$,
+\begin{equation}
+	\bra{\rm{S}}\rho\ket{\rm{S}} \geq 1-\delta.
+\end{equation}
+The $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ has error rate $\delta = \frac{2}{3}\epsilon$.
+A general state of $n$ qutrits with error rate $\delta$ can be converted to the form $\rho_{\rm{S}}(\epsilon_0)^{\otimes n}$ for some noise level $\epsilon$ not necessarily equal to $\delta$.
+
+Given an $[[m,k,d]]$ error correcting code, a distillation protocol that achieves the process in~\cref{eq:test} requires that the following bound holds,
 \begin{align}
-	\epsilon' &\sim O\left((n\epsilon)^d\right) \\
-	\frac{n}{n'} &\sim O(\log^\gamma{(1/\epsilon')}),\ \gamma = \log_d{\left(\frac{n}{n'}\right)}
+	\frac{n}{n'} = O(\log^\gamma{(1/\epsilon')}),\ \gamma = \log_d{\left(\frac{m}{k}\right)}
 \end{align}
 
-In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{(1/\epsilon')})$ is called the \emph{distillation cost}.
+In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{(1/\epsilon')})$ is called the \emph{distillation cost}, and in~\cite{cit:bravyi,Krishna2019} the parameter $\gamma$ is called the \emph{overhead}.
 
-There are many distillation protocols in the literature, e.g.~\cite{Bravyi2012,Hastings2018}, that involve a specific value of $\gamma$.
+There are many distillation protocols in the literature, e.g.~\cite{Bravyi2012,Hastings2018}, that involve a specific value of $\gamma$ and convert a specific number of copies $n$ of input states to $n'=1$ output state \nick{what about $\epsilon$?}.
 They should all satisfy
 \begin{equation}\label{eq:rate_cost}
-	\frac{1}{R(\epsilon, \epsilon', \beta)} \leq \frac{n}{n'} \sim O(\log^\gamma{(1/\epsilon')}).
+	\frac{1}{R(\epsilon, \epsilon', \beta)} \leq \frac{n}{n'} = O(\log^\gamma{(1/\epsilon')}).
 \end{equation}
 Therefore, given process parameters $n, n', \epsilon, \epsilon'$, we can scan through the stabilizer states to find a range of $\beta$ for which inequality~\cref{eq:rate_cost} is valid.
 In principle, the higher the value of parameter $\gamma$, the lower the output error rate $\epsilon'$ can be while~\cref{eq:rate_cost} is still true.
 In~\cite{Hastings2018} \nick{CITE MORE}, they report a value of $\gamma = 0.6779\dots$, while in~\cite{Krishna2019}, they report a scaling $\gamma = O(1/\log{d})$ with respect to the system's odd prime dimension $d$.
 The latter tends to 0 asymptotically.
+
+We can rephrase this result, saying that any distillation protocol in the $\gamma_\beta$-fragment with an $n$-copy input and $n'$-copy, $\epsilon'$-noisy desired output, must have input noise level 
+\begin{equation}
+	\epsilon \leq  E\left(\frac{n'}{n}, \epsilon', \beta \right)
+\end{equation}
+for some error bound $E$ related to $R$.
 
 Furthermore, in~\cite{cit:bravyi,cit:prakash}, two different distillation protocols are proposed with output error rate scalings of the form 
 \begin{equation}
@@ -1164,10 +1206,13 @@ Furthermore, in~\cite{cit:bravyi,cit:prakash}, two different distillation protoc
 where $\alpha$ is some constant, $\xi = 1/\log_3{15} \approx 0.4$ in~\cite{cit:bravyi} for qubit codes and $\xi = 1/\log_3{19008} \approx 0.1$ for qutrit codes.
 They also report a certain input threshold error rate $\epsilon_\star$ above which distillation is not possible.
 A first requirement is that $\epsilon_\star \leq E(n'/n, \epsilon', \beta)$, but we can also again find a range of $\beta$ for which the inequality
-\begin{equation}
-	\epsilon \leq E\left(\frac{n'}{n}, \epsilon'(\epsilon), \beta \right)
-\end{equation}
+\begin{align}
+	\epsilon &\leq E\left(\frac{n'}{n}, \epsilon'(\epsilon), \beta \right) \\
+	\epsilon' &\sim O\left((n\epsilon)^d\right)
+\end{align}
 holds, given some distillation rate $n'/n$ and input error rate $\epsilon$.
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \null\newpage
