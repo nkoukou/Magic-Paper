@@ -1166,7 +1166,37 @@ and compare with the numerically optimal error bounds provided by majorization a
     \label{fig:prakash_compare_errors}
 \end{figure}
 
+A recent distillation bound was introduced in~\cite{Seddon2020}, where they show that for the deterministic conversion of $n$ copies of a qubit state $\rho$ to a target pure magic state $\ket{\psi}$, the following bound on the distillation rate holds,
+\begin{equation}\label{eq:seddon}
+	\frac{n'}{n} \leq \frac{\log{\Lambda^+(\rho)}}{\log{F(\psi)^{-1}}},
+\end{equation}
+where $\Lambda^+(\rho)$ is the generalised robustness of state $\rho$, calculable via a costly SDP and $F(\psi)$ denotes the stabilizer fidelity of state $\ket{\psi}$.
+They demonstrate the performance of their bound by considering the purification process of the qubit magic state $\ket{H}$, with their figure replicated in~\cref{fig:seddon}. 
+For high initial noise level ($\epsilon = 0.25$), their bound dictates that $R = 1/150$, which is pretty good.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{figs/seddon.png}
+    \caption{\textbf{Comparison of Seddon \textit{et al.}'s bound~\cite{Seddon2020} in~\cref{eq:seddon} with a generic resource bound in~\cite{Fang2020}.}
+    The process they consider is purifying $n$ copies of $(1-\epsilon)\ketbra{H} + \epsilon/3 \id$ to $n'$ copies of $(1-\epsilon')\ketbra{H} + \epsilon'/3 \id$.
+    Their bound (red and blue) is pretty good compared with the generic (violet) bound.
+    Not sure why it looks like their bound gives $n\rightarrow 25$ as $1-\epsilon \rightarrow 1$.
+    }
+    \label{fig:seddon}
+\end{figure}
 
+Similar concrete rates have been studied for qudits in two occasions:
+First, the mana bound, which we have demonstrated in~\cref{fig:distill_bounds}.
+Secondly, Wang \textit{et al.}'s max-thauma bound~\cite{Wang2020}, which as far as I can tell, is less tight than mana (?).
+It is defined via an SDP, but we can use its properties (super-additivity and zero at free states) to readily get a bound on noisy Strange states,
+\begin{equation}
+	\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon)) \geq (1-\epsilon) \ketbra{\rm{S}} + \epsilon \frac{1}{3}\id = (1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)).
+\end{equation}
+Their bound simply states that any deterministic single-copy distillation process $\rho^{\otimes n} \longrightarrow \tau$ requires an initial number of copies $n \geq \theta_{\rm{max}}(\rho) / \theta_{\rm{max}}(\tau)$.
+Therefore, the rate of our pure Strange state distillation process~\cref{eq:sudist} can only get as tight as
+\begin{equation}
+	R = 1/n = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon,
+\end{equation}
+which is less tight than mana as could be readily observed if plotted in~\cref{fig:distill_bounds}.
 
 \iffalse
 An $n$-copy state $\rho^n$ has \emph{error rate} $\delta$ iff $\rho$ has an overlap of at least $1-\delta$ with magic state $\ket{\rm{S}}$,
