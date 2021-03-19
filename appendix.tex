@@ -120,7 +120,7 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
 
 %%%
 
-\section{Properties of $\sigma$--fragments}
+\section{Technical properties of $\sigma$--fragments}
 \label{app:frag}
 
 \nick{this section hasn't been refereced in various parts of the main text}
@@ -248,7 +248,47 @@ Then,
 	\A_\sigma(\rho) = \frac{1}{2} \sum\limits_{i=0}^n (x_{i+1} y_i - x_i y_{i+1}).
 \end{equation}
 
-\section{Technical derivations for standard Lorenz curves}
+\subsection{Lorenz curve independent constraints}\label{app:lc_constraints}
+
+\begin{theorem}\label{thm:elbows}
+	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$--fragment.
+	
+	Let $t$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ at locations $x_1, \dots, x_t$.
+	
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i =1,\dots,t$.
+\end{theorem}
+\begin{proof}	
+	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,n'$.
+	
+	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,r$.
+	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\tau}{\sigma}(x_{n'+1}) = 1$.
+	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
+	
+	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_{i}, \lc{\tau}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
+	This is illustrated in~\cref{fig:elbows_proof}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{figs/elbows_proof.pdf}
+    \caption{\textbf{Illustration of~\cref{thm:elbows}}.
+    }
+    \label{fig:elbows_proof}
+\end{figure}
+
+	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
+	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
+\end{proof}
+This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization.
+
+In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
+\begin{align}
+L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right) &\geq L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right), \nonumber\\
+L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right), \nonumber\\
+&\vdotswithin{=} \nonumber\\
+L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
+\end{align}
+where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+
+\section{Technical derivation for Lorenz curves in unital fragment}
 \label{app:lcsu_technical}
 
 \subsection{Binomial distributions and error bounds}\label{app:phi}
@@ -634,125 +674,3 @@ which is the dimension of $W^{\otimes (n+1)}$.
 
 Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
 \end{proof}
-
-\subsection{Lorenz curve independent constraints}\label{app:lc_constraints}
-
-\begin{theorem}\label{thm:elbows}
-	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$--fragment.
-	
-	Let $t$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ at locations $x_1, \dots, x_t$.
-	
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i =1,\dots,t$.
-\end{theorem}
-\begin{proof}	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,n'$.
-	
-	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,r$.
-	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\tau}{\sigma}(x_{n'+1}) = 1$.
-	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
-	
-	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_{i}, \lc{\tau}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
-	This is illustrated in~\cref{fig:elbows_proof}.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.6]{figs/elbows_proof.pdf}
-    \caption{\textbf{Illustration of~\cref{thm:elbows}}.
-    }
-    \label{fig:elbows_proof}
-\end{figure}
-
-	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
-	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
-\end{proof}
-This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization.
-
-In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
-\begin{align}
-L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right) &\geq L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right), \nonumber\\
-L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right), \nonumber\\
-&\vdotswithin{=} \nonumber\\
-L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
-\end{align}
-where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
-
-\section{Theory on bounding the core functions}
-The core functions are $\Phi_{\pm}$ which is an even power cumulative function. 
-We can rewrite it as
-\begin{equation}
-\Phi_{\pm}(m; n, a) = \frac{1}{2}( \Phi(m; n, a) \pm (1+a)^{-n} S(m; n, a) ),
-\end{equation}
-where we have substituted $a = p/(1-p)$. 
-$\Phi$ is the standard cumulative function 
-\begin{equation}
-	\Phi(m; n, a) = (1+a)^{-n} \sum_{k=0}^m \binom{n}{k} a^k,
-\end{equation}
-and the remainder term is
-\begin{equation}
-S(m; n, a) \coloneqq \sum_{k=0}^m \binom{n}{k} (-a)^k.
-\end{equation}
-We have good asymptotic bounds on the behaviour of $\Phi$~\cite{cit:ash},
-\begin{lemma}\label{lem:phil_bounds}
-	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
-	\begin{align*}
-		\begin{split}
-		&\text{1. } \Phi(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
-		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
-		&\hspace{14pt} m\in [0,n-2]
-		\end{split}
-		\\
-		&\text{4. } \Phi(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
-	\end{align*}
-\end{lemma}
-
-We would like some theory that estimates the value of $S(m; n, a)$ for different parameter regimes. 
-We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$.
-
-The truncated Maclaurin series of a general function $f(x)$ is
-\begin{equation}
-	f(x) = f(0) + x f'(0) + \dots \frac{x^m}{m!}f^{(m)}(0) + R_m(x)
-\end{equation}
-with a remainder term
-\begin{align}
-	R_m (x)&= \int_{0}^x dt f^{(m+1)}(t) \frac{(x-t)^r}{r!} \\
-	&= \frac{x^{m+1}}{(m+1)!} f^{(m+1)}(x_*),
-\end{align}
-where in the second expression, $x_*$ is an implicit point that lies between $0$ and $x$ that comes from the Mean Value Theorem.
-
-Applying this to the function $f(x) = (1+x)^n$ gives
-\begin{equation}
-	(1+x)^n = \sum_{k=0}^m \binom{n}{k} x^k + R_m.
-\end{equation}
-Evaluating at $x=-a$ gives
-\begin{equation}
-	S(m; n, a) = (1-a)^n - R_m(-a),
-\end{equation}
-where the key remainder term is given by
-\begin{align}
-	R_m(-a) &= \int_0^{-a} dt f^{(m+1)}(t) \frac{(-a-t)^m}{m!} \\
-&= \frac{(-a)^{m+1}}{(m+1)!} f^{(m+1)}(x_*).
-\end{align}
-We can also compute the derivative $f^{(m+1)}(x)$ explicitly,
-\begin{equation}
-	f^{(m+1)}(x) = (m+1)!\binom{n}{m+1}(1+x)^{n-m-1}.
-\end{equation}
-Therefore, we have that
-\begin{align}
-	R_m(-a) &= (-1)^{m+1}(m+1)\binom{n}{m+1}\int_{-a}^0 dt (1+t)^{n-m-1}(a+t)^m \\
-&= \binom{n}{m+1}(-a)^{m+1}(1+x_*)^{n-m-1},
-\end{align}
-where in the latter expression $x_* \in [-a,0]$. 
-Note that the first integral expression can be estimated via the Cauchy-Schwarz or the Hoelder inequality. 
-Therefore, we can either work with an explicit form with an unknown (but bounded) parameter $x_*$, or we can use the integral form and provide concrete estimates on it value.
-
-A very simple estimate, based on $x_*$ lying in the interval $[-a,0]$ gives
-\begin{equation}
-\binom{n}{m+1}(-a)^{m+1}(1-a)^{n-m-1} \leq R_m(-a) \le  \binom{n}{m+1}(-a)^{m+1}.
-\end{equation}
-
-This in turn leads to the following bounds on $\Phi_+(a,r,n)$:
-\begin{align}
-\hspace{-2cm}2\Phi_+(a,r,n) &\le \Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} (1-a)^{n-r-1} \nonumber \\
-2\Phi_+(a,r,n) & \ge\Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} .
-\end{align}
-Details need checking to see if I dropped any constants/signs. Are these bounds good in practice? Asymptotically?

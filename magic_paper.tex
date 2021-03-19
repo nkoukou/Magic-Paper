@@ -13,7 +13,7 @@ reprint
 
 \begin{abstract}
 \ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
-Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here we introduce the concept of `fragments', which generalise the concept of magic monotones and has a natural thermodynamic structure based on majorization. From this perspective magic can be viewed as a form of free energy within each fragment and is constrained by relative majorization relations but now on quasi-probability distributions. Notably this approach allows us to incorporate actual physical constraints, for example noise models with particular bias or temperature-dependent features, and study how these constrain general magic distillation protocols. In this context we present general temperature-dependent bounds on distillation rates that any theory of magic must respect. Significantly, this analysis also presents a thermodynamic context which cannot be analysed via traditional methods based on thermodynamic entropies, due to the presence of negativity, and raises novel questions in the context of statistical mechanics.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here we introduce the concept of `fragments', which generalise the concept of magic monotones and has a natural thermodynamic structure based on majorisation. From this perspective magic can be viewed as a form of free energy within each fragment and is constrained by relative majorisation relations but now on quasi-probability distributions. Notably this approach allows us to incorporate actual physical constraints, for example noise models with particular bias or temperature-dependent features, and study how these constrain general magic distillation protocols. In this context we present general temperature-dependent bounds on distillation rates that any theory of magic must respect. Significantly, this analysis also presents a thermodynamic context which cannot be analysed via traditional methods based on thermodynamic entropies, due to the presence of negativity, and raises novel questions in the context of statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
@@ -38,7 +38,7 @@ Theories of magic states attempt to quantify this computational element via mono
 \begin{enumerate}
     \item Fault-tolerance~\cite{cit:raussendorf, cit:gross2, cit:markov, cit:gross, cit:nest, cit:nest2, cit:vidal, cit:fujii, cit:gottesman}
     \item Magic~\cite{cit:veitch, cit:veitch2, cit:wang, cit:wang2, cit:howard, cit:campbell, cit:gross3, cit:gross4}
-    \item Bringing in majorization~\cite{cit:cwiklinski, cit:lostaglio2, cit:lostaglio, cit:gour, cit:janzing, cit:brandao2, cit:gour2, cit:marshall, cit:nielsen}
+    \item Bringing in majorisation~\cite{cit:cwiklinski, cit:lostaglio2, cit:lostaglio, cit:gour, cit:janzing, cit:brandao2, cit:gour2, cit:marshall, cit:nielsen}
 \end{enumerate}
 
 \subsection{Introduction}
@@ -82,30 +82,30 @@ We show that a magic theory can be subdivided into \emph{fragments} \nick{expand
 
 \ddd{[Section needs a lot of fixing]}
 
-The stabilizer theory of magic comprises of the so-called ``stabilizer'' states ($\stab$) and operations ($\so$), while non-stabilizer (resource) states are called magic.
-The stabilizer operations can be expressed in terms of a Stinespring dilation as 
+The stabiliser theory of magic comprises of the so-called ``stabiliser'' states ($\stab$) and operations ($\so$), while non-stabiliser (resource) states are called magic.
+The stabiliser operations can be expressed in terms of a Stinespring dilation as 
 \begin{equation}
     \E(\rho) = \tr_E [U(\rho \otimes \sigma_E)U^\dagger],
 \end{equation} 
-for an ancilla stabilizer state $\sigma_E$. 
-The motivation of the theory stems from the fact that stabilizer operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabilizer states due to their construction \nick{CITE}.
-The Gottesman-Knill theorem however indicates that stabilizer operations need to be supplemented with magic states in order to achieve universality, justifying the term ``magic''.
+for an ancilla stabiliser state $\sigma_E$. 
+The motivation of the theory stems from the fact that stabiliser operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabiliser states due to their construction \nick{CITE}.
+The Gottesman-Knill theorem however indicates that stabiliser operations need to be supplemented with magic states in order to achieve universality, justifying the term ``magic''.
 
-Generalisations of the stabilizer theory appear in the literature intending to include broader classes of operations \nick{CITE}.
-The class of stabilizer preserving operations ($\spo$) is defined as the set of $\cptp$ maps that send stabilizer states into stabilizer states~\cite{cit:ahmadi}.
-An important subclass of $\spo$ is the set of completely stabilizer preserving operations ($\cspo$), which intuitively cannot induce ``non-stabilizerness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
+Generalisations of the stabiliser theory appear in the literature intending to include broader classes of operations \nick{CITE}.
+The class of stabiliser preserving operations ($\spo$) is defined as the set of $\cptp$ maps that send stabiliser states into stabiliser states~\cite{cit:ahmadi}.
+An important subclass of $\spo$ is the set of completely stabiliser preserving operations ($\cspo$), which intuitively cannot induce ``non-stabiliserness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
 
-Even though non-stabilizerness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
+Even though non-stabiliserness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
 In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable in~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
 The Wigner distribution of a state in odd prime dimensions is discussed rigorously in~\cref{sec:wigner} and arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{cit:howard2, cit:veitch2}.
-In this framework, the stabilizer states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
-However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabilizer states~\cite{cit:gross}.
-Therefore, stabilizer-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{cit:wang}, formally defined in~\cref{sec:wigner} for odd prime dimensions.
+In this framework, the stabiliser states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
+However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabiliser states~\cite{cit:gross}.
+Therefore, stabiliser-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{cit:wang}, formally defined in~\cref{sec:wigner} for odd prime dimensions.
 Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax, \Omax)$, where free states have non-negative Wigner distributions and free operations completely preserve this property.\\ 
 
 \ddd{Things we MUST emphasize:
 \begin{enumerate}
-\item Perhaps a nice lead-in question: ``What happens if we view stabilizer states as thermodynamic equilibrium states and magic as a form of free energy?''
+\item Perhaps a nice lead-in question: ``What happens if we view stabiliser states as thermodynamic equilibrium states and magic as a form of free energy?''
 \item We have found a scenario in which it is impossible to describe a thermodynamic structure using any entropic approach!
 \item We can tackle more `physicsy' questions like: how much magic can be distilled via available operations with some given fixed-point structure? 
 \item This allows a diagnostic on the kind of operations needed to do good distillation. I.e. what fixed point structure should they have?
@@ -135,7 +135,7 @@ where $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition i
     D_{\bmx} \coloneqq \tau^{x p} X^{x} Z^{p},\ (x, p) \in \cal{P}_d.
 \end{equation}
 The phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity.
-For a composite system with product dimension $d = d_1 \dots d_n$ and Hilbert space, $\cal{H}_d = \cal{H}_{d_1}] \otimes \dots \otimes \cal{H}_{d_n}]$, the displacement operators are defined as
+For a composite system with product dimension $d = d_1 \dots d_n$ and Hilbert space, $\cal{H}_d = \cal{H}_{d_1} \otimes \dots \otimes \cal{H}_{d_n}$, the displacement operators are defined as
 \begin{equation}\label{eq:composited}
     D_{\bmx} \coloneqq D_{(x_1, p_1)} \otimes \dots \otimes D_{(x_n, p_n)},
 \end{equation}
@@ -149,8 +149,8 @@ The displacement operators form the Heisenberg-Weyl group \nick{CITE} under matr
 \begin{equation}\label{eq:gp}
     {\rm{HW}}_d^n \coloneqq \{ \tau^k D_{\bmx}: k \in \mathbb{Z}_d, \bmx \in \cal{P}_d^n\}.
 \end{equation}
-The Clifford operations $ \cal{C}_d^n $ are then defined as the set of unitaries that normalise the Heisenberg-Weyl group. We may define the pure stabilizer states as those states obtained by acting on $|0\>$ with Clifford unitaries. Finally, we define $\stab$ as the convex hull of all pure stabilizer states, namely all probabilistic mixtures of states of the form $U|0\>\<0|U^\dagger$ where $U$ is some Clifford unitary. The stabilizer theory forms a magic resource theory $\R = (\stab, \so)$
-and the free operations are stabilizer operations ($\so$), defined as compositions of preparation of computational basis states, Clifford unitaries, measurement in the computational basis, and the ability to discard subsystems.
+The Clifford operations $ \cal{C}_d^n $ are then defined as the set of unitaries that normalise the Heisenberg-Weyl group. We may define the pure stabiliser states as those states obtained by acting on $|0\>$ with Clifford unitaries. Finally, we define $\stab$ as the convex hull of all pure stabiliser states, namely all probabilistic mixtures of states of the form $U|0\>\<0|U^\dagger$ where $U$ is some Clifford unitary. The stabiliser theory forms a magic resource theory $\R = (\stab, \so)$
+and the free operations are stabiliser operations ($\so$), defined as compositions of preparation of computational basis states, Clifford unitaries, measurement in the computational basis, and the ability to discard subsystems.
 
 \subsection{Wigner representations for quantum states and quantum operations}\label{sec:wigner}
 
@@ -163,8 +163,9 @@ where $\eta(\bmx, \bmz)$ is the standard symplectic form, given explicitly by
 	\eta(\bmx, \bmz) \coloneqq \bmz^T \begin{pmatrix}
 		0  & \id \\ %\mathbbm{O}_n  & \id_n \\
 		-\id & 0 \\ %-\id_n & \mathbbm{O}_n \\
-	\end{pmatrix} \bmx.
+	\end{pmatrix} \bmx,
 \end{equation}
+where $0, \id$ denote the $n\times n$ zero and identity matrices.
 
 The phase-point operators form an orthogonal Hermitian operator basis as shown in~\cref{app:wigner}.
 Therefore, any quantum state $\rho \in \cal{B}(\cal{H}_d)$ can be expressed as a linear combination of them,
@@ -200,7 +201,7 @@ For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily 
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
     \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
-    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabilizer Wigner-positive state; \subref{fig:strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
+    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabiliser Wigner-positive state; \subref{fig:strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
     }%
     \label{fig:wstate_examples}
 \end{figure}
@@ -241,34 +242,34 @@ where the \emph{sum-negativity} ($\rm{sn}$)~\cite{cit:veitch2} is the sum of the
 \begin{equation}
     \sn{\rho} \coloneqq \sum\limits_{\bmx: \W[\bmx]{\rho} < 0} \abs{\W[\bmx]{\rho}}.
 \end{equation}
-Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical necessary condition for many-copy magic state interconvertibility.
+Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-\subsection{Majorization}
+\subsection{Majorisation}
 \label{sec:major}
 
-Majorization is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
+Majorisation is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
 It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
 
-To formally state majorization results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
+To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
 Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
 The set $\stoch$ forms a group under matrix multiplication for all $\bmd$ with positive components.
 
-Majorization describes quantum thermodynamics exactly in the absence of quantum coherence.
-The use of majorization in this setting provides vital intuition for our purposes.
+Majorisation describes quantum thermodynamics exactly in the absence of quantum coherence.
+The use of majorisation in this setting provides vital intuition for our purposes.
 At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
 Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
 Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
 Formal statements of the above can be found \nick{in the appendix}.
 
-Based on this setting, we define majorization as follows.
-\begin{definition}[\textbf{$\boldsymbol\bmd$-majorization}]\label{def:dmajor}
-    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$-majorize $\bmx$, iff there exists a matrix $S \in \stoch$ such that $\bmx = S\bmy$.
+Based on this setting, we define majorisation as follows.
+\begin{definition}[\textbf{$\boldsymbol\bmd$-majorisation}]\label{def:dmajor}
+    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$-majorise $\bmx$, iff there exists a matrix $S \in \stoch$ such that $\bmx = S\bmy$.
 \end{definition}
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorization from entanglement theory. \nick{CITE}
+If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory. \nick{CITE}
 
-The pre-order imposed by $\bmd$-majorization admits a numerically efficient reformulation in terms of Lorenz curves.
+The pre-order imposed by $\bmd$-majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
 Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
     Let $\bmw, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\widetilde{\bmw} \coloneqq (w_1/d_1, \dots, w_d/\nick{d_d})^T$ the vector of ratios between the corresponding components of $\bmw$ and $\bmd$.
@@ -286,7 +287,7 @@ In fact, the Lorenz curves $\lc{\bmw}{\bmd}$ and $\lc{\bmw \otimes \bmd}{\bmd \o
 Furthermore, a Lorenz curve $\lc{\bmw}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\widetilde{\bmw}^\downarrow)_i$ for $i=1,\dots,d$ which is non-increasing by definition.
 Finally, the points on the interior of the Lorenz curve connecting line segments of different slopes are called \emph{elbows}.
 
-A vector $\bmy$ is said to \emph{$\bmd$--majorize} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorization into a finite set of inequalities.
+A vector $\bmy$ is said to \emph{$\bmd$--majorise} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorisation into a finite set of inequalities.
 \begin{theorem}\label{thm:dmajor}
     Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
     Then, $\bmx \prec_{\bmd} \bmy$ if and only if $\lc{\bmx}{\bmd}(x) \leq \lc{\bmy}{\bmd}(x)$ for all $x \in [0,1]$ with strict equality at $x=1$.
@@ -359,7 +360,7 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
 	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations denoted by the two yellow regions, with every other established magic theory  between them.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
     Each $\O_\sigma$ is extensible to a set of stochastic maps outside the $\cptp$ operations.
-    Within each $\sigma$--fragment $\bmd$-majorization can be used allowing for an intricate, but tractable approach towards the study of magic state interconversion.
+    Within each $\sigma$--fragment $\bmd$-majorisation can be used allowing for an intricate, but tractable approach towards the study of magic state interconversion.
     }
     \label{fig:zoo}
 \end{figure}
@@ -367,7 +368,7 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
 The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
 Completely positive-Wigner-preserving operations~\cite{cit:wang} form the maximal operation class $\Omax$.
 This theory of magic is thus covered by $\sigma$--fragments exactly and every other magic theory is contained within this cover.
-In particular, the stabilizer operations $\so$ are contained within $\Omax$.
+In particular, the stabiliser operations $\so$ are contained within $\Omax$.
 
 Every  quantum circuit aiming at a given magic state conversion $\rho \longrightarrow \tau$ possesses certain symmetries according to~\cref{thm:frag} that allow us to study the conversion within only certain $\sigma$--fragments that reflect these symmetries.
 As a simple example, the dephasing channel
@@ -375,19 +376,19 @@ As a simple example, the dephasing channel
 	\Delta(\rho) = \sum_{k \in \mathbb{Z}_d} \ketbra{k}{k}\rho\ketbra{k}{k}
 \end{equation}
 removes coherent phases in the computational basis and therefore leaves exactly all mixtures of computational basis states invariant.
-A noise channel consisting only of such dephasing operations can be fully analysed in the $\sigma$--fragments for the pure computational basis states $\sigma$. \nick{Have proven in appendix that we need to consider \emph{only} the pure stabilizer fragments - not mixed ones}
+A noise channel consisting only of such dephasing operations can be fully analysed in the $\sigma$--fragments for the pure computational basis states $\sigma$. \nick{Have proven in appendix that we need to consider \emph{only} the pure stabiliser fragments - not mixed ones}
 
-The subdivision of magic theories into $\sigma$--fragments is also powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorization tools, as we establish in the rest of this section.
+The subdivision of magic theories into $\sigma$--fragments is also powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorisation tools, as we establish in the rest of this section.
 
-\subsection{Majorization of quasi-probabilities in $\sigma$--fragments}\label{sec:major_frag}
+\subsection{Majorisation of quasi-probabilities in $\sigma$--fragments}\label{sec:major_frag}
 
 We can approach any magic theory through a thermodynamic lens, and in doing so we are provided with valuable insights on the structure of the theory. 
-Firstly, any free state, for example a stabilizer state, can be viewed as a thermal state $\gamma_\beta$.
+Firstly, any free state, for example a stabiliser state, can be viewed as a thermal state $\gamma_\beta$.
 Without loss of generality we can always write a quantum state $\sigma$ as a thermal state, $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
 We can also view the set of free operations $\O_\sigma$ as a counterpart of thermal operations, in the sense that any operation $\E$ in $\O_\sigma$ preserves state $\sigma$. 
 
-It is then apparent that the pre-order $\prec_{\R_\sigma}$ between the operations in the $\sigma$--fragment follows the rules of $\bmd$-majorization as outlined in~\cref{sec:major}.
-In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorization pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+It is then apparent that the pre-order $\prec_{\R_\sigma}$ between the operations in the $\sigma$--fragment follows the rules of $\bmd$-majorisation as outlined in~\cref{sec:major}.
+In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorisation pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
 For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
 
 Note that the Wigner components of an $n$-copy state $\rho^{\otimes n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
@@ -402,12 +403,13 @@ We may use the vector notation $\bmw(\rho) = (w(\rho)_i)_{i=1,\dots,d^2}$ for th
 The correspondence between the phase space and pure vector representations of the Wigner distribuition is discussed more in~\cref{app:cmpairs}.
 
 Furthermore, we restrict our analysis to $\sigma$--fragments, where $\sigma$ is full-rank.
-This is justified as majorization is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$-close. \nick{CHECK}
-Therefore, majorization analysis is robust under imperfections in the experimental implementation of quantum operations.
+This is justified as majorisation is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$-close. \nick{CHECK}
+Therefore, majorisation analysis is robust under imperfections in the experimental implementation of quantum operations.
 
-In particular, any $\sigma$--fragment, with $\sigma$ not full-rank, can be approximated by the $\sigma'$--fragment defined as a mixture of $\sigma$ with depolarising noise, $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
-Important examples include pure stabilzer states which are rank-$1$ states e.g. the zero state depicted in~\cref{fig:zero}. 
-Operations in such fragments include important stabilizer operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
+In particular, we can always use common noise effects to approximate any $\sigma$--fragment where $\sigma$ is not full-rank by the $\sigma'$--fragment where $\sigma'$ is a noisy approximation of $\sigma$. 
+For example, inducing depolarising noise, we can write $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
+Important examples of such $\sigma$--fragments include pure stabiliser states which are rank-$1$, e.g. the zero state depicted in~\cref{fig:zero}. 
+Operations in such fragments include important stabiliser operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
 
 \begin{theorem}\label{thm:sigmamajor}
     Let $\R = (\F, \O)$ be a theory of magic. If $\rho \longrightarrow \tau$  in $\R$ then  $\W{\tau} \prec_\sigma \W{\rho}$ within at least one $\sigma$--fragment.
@@ -417,30 +419,28 @@ Suppose we can convert $\rho$ into $\tau$ in the magic theory.
 Thus there is some $\O_\sigma$ and some $\E \in \O_\sigma$ such that $\E(\rho) = \tau$, and $\E(\sigma)=\sigma$. 
 Therefore, the Wigner distribution of this free operation satisfies $\W{\E} \in \stochw$ and $\W{\E}\W{\rho} = \W{\tau}$. 
 Since $\sigma$ is full-rank and free, its Wigner distribution is strictly positive in all components, so it directly follows from~\cref{def:dmajor} that $\W{\tau} \prec_{\sigma} \W{\rho}$.
-
-\nick{The theorem statement and proof currently assume that $\sigma$ is full-rank}
 \end{proof}
 
 The result of~\cref{thm:sigmamajor} can be understood as an extension of the idea of a magic monotone, where we replace $\M(\tau) \leq \M(\rho)$ with $\W{\tau} \prec_\sigma \W{\rho}$. 
-The physical difference between the two expressions is that the majorization ordering occurs in a specific $\sigma$--fragment.
-Therefore, majorization constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- specifically, it enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
-We discuss distillation upper bounds in~\nick{REF}
+The physical difference between the two expressions is that the majorisation ordering occurs in a specific $\sigma$--fragment.
+Therefore, majorisation constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- specifically, it enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
+We discuss distillation upper bounds in detail in~\cref{sec:unital,sec:stab}
 
 This approach can also provide \emph{lower bounds} on distillation, however now more structure about the specific free operations must be included. 
-We discuss distillation lower bounds in~\nick{REF}
+We briefly discuss distillation lower bounds in~\nick{REF}.
 
-\nick{Mention relative majorization as a possibility}
+\nick{Mention relative majorisation as a possibility}
 
 \subsection{Lorenz curves of quasi-probabilities in $\sigma$--fragments}
 
 It is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment.
-As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorization on \emph{quasi}--distributions.
+As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $d$--majorisation on \emph{quasi}--distributions.
 We write $\lc{\rho}{\sigma}(x)$ for the Lorenz curve of $\W{\rho}$ with respect to $\W{\sigma}$.
-The vector of ratios $\widetilde{\bmw}(\rho|\sigma)$ used to construct the curve is defined as
+The vector of ratios $\widetilde{\bmw}(\rho|\sigma)$ used to construct the curve is
 \begin{equation}
 	\widetilde{w}(\rho|\sigma)_i \coloneqq \frac{w(\rho)_i}{w(\sigma)_i},
 \end{equation}
-is called the Gibbs-rescaled distribution of $\rho$ with respect to $\sigma$.
+and is called the \emph{Gibbs-rescaled} distribution of $\rho$ with respect to $\sigma$.
 
 An example of comparison between different Lorenz curves is provided in~\cref{fig:lctoy}.
 The curves in the figure are constructed in the \emph{unital fragment}, i.e. the $\sigma$--fragment defined by the maximally mixed state $\sigma = \frac{1}{d}\id$ whose Wigner distribution is the uniform probability distribution.
@@ -476,14 +476,8 @@ This is clear because for any state conversion like~\cref{eq:sigma_conv}, the Lo
 The exact form of the monotone is given in~\cref{app:areamono}.
 \nick{should we include the area? Have a look at~\cref{app:areamono}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Mana as a feature of majorization}
-
-\nick{Should this be a section on its own or a subsection of the previous section?}
-
-We now show that the magic monotone of mana, and equivalently the sum-negativity of a quantum state, can be viewed as majorization-based, and independent of the particular $\sigma$--fragment one works in.
-In fact, our current setting makes it apparent that mana provides a weaker condition than majorization for all magic state interconversions.
+We can now show that the magic monotone of mana, and equivalently the sum-negativity of a quantum state, can be viewed as a feature of majorisation, and independent of the particular $\sigma$--fragment one works in.
+In fact, our current setting makes it apparent that mana provides a weaker condition than majorisation for all magic state interconversions.
 
 We first show that the Lorenz curve maximum of state $\rho$ is independent of the $\sigma$--fragment and directly related to its sum-negativity.
 \begin{lemma}\label{lem:lcmax}
@@ -521,64 +515,41 @@ We can therefore view mana as just one feature of the Lorenz curve, namely its m
 Conversely, it is now clear that the maximum of the Lorenz curve acts as a valid magic monotone.
 This implies the following result.
 \begin{theorem}\label{thm:bounds}
-    Given a magic state conversion $\rho \longrightarrow \tau$, the majorization condition is stronger than the mana condition in every $\sigma$--fragment.
+    Given a magic state conversion $\rho \longrightarrow \tau$, the majorisation condition is stronger than the mana condition in every $\sigma$--fragment.
 \end{theorem}
 \begin{proof}
     The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed as an increasing function of mana,
     \begin{equation}
         \max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} = 1 + \sn{\rho} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
     \end{equation}
-    Therefore, the majorization bound
+    Therefore, the majorisation bound
     \begin{equation}
     	\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in[0,1]
     \end{equation}
-    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\tau}{\sigma}(x)}$, equivalent to the mana condition $\mana{\rho} \geq \mana{\tau}$.
+    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\tau}{\sigma}(x)}$, hence the mana condition $\mana{\rho} \geq \mana{\tau}$.
 \end{proof}
 
-In the sections~\cref{sec:unital,sec:stab}, we study majorization constraints on magic distillation arising in different fragments. 
+In sections~\cref{sec:unital,sec:stab}, we study majorisation constraints on magic distillation arising in different fragments. 
 For this reason, we define the $n$-copy, $\epsilon$-noisy Strange state,
 \begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
 \end{equation}
-in $\O_\sigma$, where $\ket{\rm{S}}$ is coined in~\cref{fig:strange} and we induce uniform depolarising noise.
+in $\O_\sigma$, where the pure magic state $\ket{\rm{S}}$ is induced with depolarising noise. 
+Its Wigner distribution is visualised in~\cref{fig:strange}.
 
-For $\epsilon=0$, this state is a qutrit of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as the ideal distiallation target, analogous to a Bell state in bipartite entangelement theory.
+At $\epsilon=0$, the Strange state is a qutrit magic state of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as an ideal distillation target, analogous to a Bell state in bipartite entanglement theory.
 The Strange state is exceptionally symmetric under Clifford transformations and as a result there exists a \emph{twirling} protocol, discussed in detail in~\cite{cit:prakash,cit:prakash2}, allowing for the conversion of any noisy magic state to the form of~\cref{eq:noisysn} via Cliffords.
 
-In~\cref{fig:lcs}, we illustrate the Lorenz curves $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{We drop parameters $\epsilon$ and $n$ for clarity} of pure and noisy $n$-copy Strange states for $n$ up to $4$ in different $\sigma$--fragments.
-As shown in~\cref{lem:lcmax}, the curve peaks equal $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$ independently of the $\sigma$--fragment.
-\begin{figure}%
+In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{Hereinafter, we may drop parameters $\epsilon$ and $n$ for clarity} of pure and noisy $n$-copy Strange states in some thermal $\sigma$--fragment.
+Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$.
+\begin{figure}
     \centering
-    \subfigure[][]{%
-    \label{fig:lcs_maxmix}%
-    \includegraphics[height=3cm]{figs/lcs_maxmix.pdf}
-    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
-    }\hspace{1pt}%
-    \subfigure[][]{%
-    \label{fig:lcs_thermal}%
-    \includegraphics[height=3cm]{figs/lcs_thermal.pdf}
-    %\caption{Zero state $\ketbra{0}{0}$}%
-    }\\
-    \subfigure[][]{%
-    \label{fig:lcs_zero}%
-    \includegraphics[height=3cm]{figs/lcs_zero.pdf}
-    %\caption{Bound state}%
-    }\hspace{1pt}%
-    \subfigure[][]{%
-    \label{fig:lcs_one}%
-    \includegraphics[height=3cm]{figs/lcs_one.pdf}
-    %\caption{Strange state $\ketbra{S}{S}$}%
-    }
-    \caption{\textbf{Lorenz curves of $n$-copy Strange states.} Lorenz curves of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$.
+    \includegraphics[height=5cm]{figs/lc_strange.pdf}
+    \caption{\textbf{Strange state Lorenz curves.} Lorenz curves of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ in the $\sigma$--fragment where $\sigma = e^{-\beta H}/\Z_{\beta}$, with Hamiltonian spectrum $(0,1,2)$ over the computational basis and $\beta = 0.5$.
     Solid lines represent pure Strange states ($\epsilon = 0$); dashed lines represent noisy Strange states ($\epsilon = 0.1$).
-    \subref{fig:lcs_maxmix} Unital fragment; \subref{fig:lcs_thermal} Thermal fragment with $H = (0,1,2)$ and $\beta = 0.5$; \subref{fig:lcs_zero} Fragment $\O_{\ketbra{0}{0}}$; \subref{fig:lcs_one} Fragment $\O_{\ketbra{1}{1}}$.    
-    \nick{change / move / remove ?}
-    }%
+    }
     \label{fig:lcs}
 \end{figure}
-
-\null\newpage
-\null\newpage
 
 \section{Magic in the unital fragment}
 \label{sec:unital}
@@ -591,16 +562,14 @@ Operations in $\rcu$ can be expressed as
     \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cal{C}_d.
 \end{equation}
 Depending on the symmetries of such operations, a Clifford sequence may belong in other $\sigma$--fragments as well.
-In such a case, the majorization condition~(\ref{eq:majbound}) needs to be checked in the $\sigma$--fragments that reflect all symmetries of the operation sequence.
+In such a case, the majorisation condition~(\ref{eq:majbound}) needs to be checked in the $\sigma$--fragments that reflect all symmetries of the operation sequence.
 
 In general, noisy circuits are well-described by the unital fragment.
 To see this, consider incorporating noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} defined in different bases.
 This process destroys the circuit symmetries, except for the invariance of the maximally mixed state.
 Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{Expand on significance of unital fragment}
 
-\subsection{Distillation rate bounds in the unital fragment}\label{sec:lcsu}
-
-We consider the problem of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$,
+We now consider the task of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$,
 \begin{equation}\label{eq:sudist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation}
@@ -608,8 +577,8 @@ where all copies $n, n', n - n'$ are even.
 Since the state $\id / 3$ is free, tensoring in copies of it does not affect the distillation process.
 
 The Lorenz curve $\lc{\rho_{\rm{S}}}{\id/3}$, for some general noise parameter $\epsilon$ and number of copies $n$, is defined at $9^n$ points between $0$ and $1$.
-The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even or odd and the location relative to the curve peak is on the left hand side (LHS -- including the curve peak) or right hand side (RHS) of the curve peak.
-The full details for the Lorenz curve construction are provided in~\cref{app:lcsu_technical}.
+The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level \nick{noise level / error rate} $\epsilon$ is greater or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even or odd and the location relative to the curve peak is on the left hand side (LHS -- including the curve peak) or right hand side (RHS) of the curve peak.
+The full details for the construction of all Lorenz curve forms are provided in~\cref{app:lcsu_technical}.
 
 \nick{In the following, should we talk about the coordinates of all elbows and then say that we are gonna use only the first elbow, or should we leave full-elbow analysis for the appendix and only talk about first elbow here?}
 
@@ -685,52 +654,41 @@ Numerical comparison of the curves with varying $\epsilon$ suggests that we requ
 
 Moreover, for the problem of distilling pure magic states where $\epsilon'=0$ we obtain an upper bound on the unital fragment distillation rate $R=n'/n$ given by
 \begin{equation}
-R \leq \frac{\ln (3-4 \epsilon)}{\ln 3},
+R \leq 1 + \frac{\ln (1 - \frac{4}{3} \epsilon)}{\ln 3},
 \end{equation}
 which holds for all finite $n$. 
 In comparison, the bound from mana gives 
 \begin{equation}
-	R_{\rm{mana}} \leq \frac{\ln \left(\frac{5}{3} - \frac{8}{9}\epsilon \right)}{\ln \frac{5}{3}},
+	R_{\rm{mana}} \leq 1 + \frac{\ln \left(1 - \frac{8}{15}\epsilon \right)}{\ln \frac{5}{3}},
 \end{equation}
-a threshold which is looser than the one provided by majorization for all $\epsilon > 0$ as illustrated in~\cref{fig:distill_bounds}.
+a threshold which is looser than the one provided by majorisation for all $\epsilon > 0$ as illustrated in~\cref{fig:distill_bounds}.
 For example, for $\epsilon = 0.4$ we obtain $R\le 0.31 $ while the mana bound gives $R_{\rm{mana}} \le 0.53$.
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[scale=0.5]{figs/distill_bounds.pdf}
-    \caption{\textbf{Distillation rate in unital fragment.} Distillation rates obtained by mana and majorization are plotted for $\epsilon' = 0$, up to noise levels $\epsilon_{\rm{max}} = \frac{3}{7}$.
-    Majorization consistently provides stricter rates as proven in~\cref{thm:bounds}.
+    \caption{\textbf{Distillation rate in unital fragment.} Distillation rates obtained by mana and majorisation are plotted for $\epsilon' = 0$, up to noise levels $\epsilon_{\rm{max}} = \frac{3}{7}$.
+    Majorisation consistently provides stricter rates as proven in~\cref{thm:bounds}. \nick{add thauma?}
     }
     \label{fig:distill_bounds}
 \end{figure}
 
-\ddd{[Going forward:
-\begin{enumerate}
-\item Does the ``last elbow'' give the same bound? Is it as simple?
-\item Numerically is this about as good as it gets from majorization?
-\item How does this rate compare with existing literature?
-\end{enumerate}}
-
-\newpage
-\section{Magic bounds in arbitrary stabilizer fragments}
+\section{Magic bounds in arbitrary stabiliser fragments}
 \label{sec:stab}
 
-We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabilizer fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \stab$. 
+We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabiliser fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \stab$. 
 In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
-These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabilizer state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
-Without loss of generality, we can always write a stabiler state $\sigma$ as a Gibbs state $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
+These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabiliser state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
+Without loss of generality, we can always write a stabiliser state $\sigma$ as a Gibbs state $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
 
 We focus on the distillation process
 \begin{equation}\label{eq:stdist}
-	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \sigma^{\otimes (n-n')},
 \end{equation}
-where the noisy Strange state is given in~\cref{eq:noisysn}, but more general states can be handled in exactly the same manner.
-We also highlight that any magic state can be written in terms of a noisy Strange state.
+where the noisy Strange state is given in~\cref{eq:noisysn} and we highlight again that any magic state can be transformed to this form via Clifford operations.
 Notice that tensoring in copies of $\gamma_\beta$ does not affect the process, since the state is free.
 In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and $\epsilon'=0$, but the bounds are easily generalised to odd numbers of copies and $\epsilon'$ such that $0 < \epsilon' < \epsilon$. 
-Finally, we assume a range of initial noise levels, $\epsilon \leq 3/7$  \nick{higher than all threshold values CITE}, so that the largest Wigner component of the 1-copy noisy magic state is negative.
-
-\nick{Specify: How general can the states get? What about not full-rank states? Should we include the case of odd $n$ or non-zero $\epsilon'$ in the appendix? What about $\epsilon>3/7$?}
+Finally, we assume a range of initial noise levels, $\epsilon \leq 3/7$  \nick{higher than all threshold values in literature CITE}, so that the largest Wigner component of the 1-copy noisy magic state is negative.
 
 Given this context, we now provide the following result, which depends on the free energy $F_\beta$ of state $\sigma$,
 \begin{equation}
@@ -739,24 +697,23 @@ Given this context, we now provide the following result, which depends on the fr
 where the von Neumann entropy is $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$.
 
 \begin{theorem}\label{thm:stab_bounds}
-	Let $\sigma$ be a qutrit stabilizer state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. 
+	Let $\sigma$ be a qutrit stabiliser state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. 
 We define
 \begin{equation}
 	\beta_\star \coloneqq \frac{1}{E_2 - E_0} \ln{2}
 \end{equation}
-and for $\beta \leq \beta_\star$ define
+and for $\beta \leq \beta_\star$, we define a threshold error rate
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_2 - E_0)\beta}}.
 \end{equation}
-a threshold error rate. Then any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:
-
+Then any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:\\
 If $\beta \leq \beta_{\star}$ and $\epsilon  \leq \epsilon_{\star}$,
 \begin{equation}
 	R(\epsilon,\beta) \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_0 - F_\beta)}.
 \end{equation}
 If $\beta \leq \beta_{\star}$ and $\epsilon_{\star} < \epsilon$, then
 \begin{equation}
-	R(\epsilon, \beta) \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)},
+	R(\epsilon, \beta) \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)}.
 \end{equation}
 Otherwise if $\beta > \beta_{\star}$,
 \begin{equation}
@@ -765,7 +722,8 @@ Otherwise if $\beta > \beta_{\star}$,
 \end{theorem}
 A few comments can be given on this result. 
 Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
-Secondly, these bounds can almost certainly be improved through a finer analysis of the Lorenz curve. 
+Secondly, these bounds are derived based on analysis of only a part of the Lorenz curves and can be improved via a finer analysis. 
+This is apparent by simple numerical calculations on the entirety of the curves.
 The existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
 Finally, it is striking that we obtain a Landauer-like condition with a characteristic temperature $kT_\star \ln 2 = E_2 - E_0$, where $kT_\star = \beta_\star^{-1}$. 
 It is unclear whether this points to a generic feature that can be directly related to fundamental thermodynamic relations, such as the erasure cost of a single bit being $kT \ln 2$. 
@@ -773,32 +731,17 @@ Given that we work with qutrits this seems surprising, but does deserve further 
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[scale=0.5]{figs/rate_contour.png}
-    \caption{\textbf{Bounds on magic distillation rates $R(\epsilon, \beta)$ within stabilizer fragments.}
+    \includegraphics[scale=0.55]{figs/rate_scatter.pdf}
+    \caption{\textbf{Bounds on magic distillation rates $R(\epsilon, \beta)$ within stabiliser fragments.}
     The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
     }
     \label{fig:rate_contour}
 \end{figure}
 
 \begin{proof}
-	Here we provide a sketch of the proof with all the details included in \nick{the appendix}.
-	
-\nick{Rest of section needs tidying}
+	We provide an outline of the proof here, with all technical details included in \nick{the appendix}.\\
 
-Consider a qutrit system with maximally Wigner-negative magic state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$.
-It can be written in density operator form as
-\begin{align}
-	\ketbra{\rm{S}} = -\frac{1}{3} A_{\bmo} + \sum_{\bmx \neq \bmo} \frac{1}{6} A_{\bmx},
-\end{align}
-where $\bmx$ ranges in the $3$-dimensional phase space $\cal{P}_d$.
-This is the pure Strange state visualised in~\cref{fig:strange}.
-We allow for depolarising noise, so that the system state is a convex sum of the pure Strange state and the maximally mixed state,
-\begin{equation}
-	\rho_{\rm{S}}(\epsilon) \coloneqq (1-\epsilon)\ketbra{\rm{S}} + \epsilon \frac{1}{3}\id,
-\end{equation}
-where we choose to restrict the noise level, $0 \leq \epsilon \leq \frac{3}{7}$, so that the Wigner distribution of the state always contains a negative component which is greater than the remaining 8 positive components.
-
-In particular, the Wigner distribution of the state can be written as 
+The Wigner distribution of $\epsilon$-noisy Strange state can be written as 
 \begin{equation}
 	\W[\bmx]{\rho_{\rm{S}}(\epsilon)} = (1-\epsilon)\W[\bmx]{\ketbra{\rm{S}}} + \epsilon\W[\bmx]{\frac{1}{3}\id},
 \end{equation}
@@ -844,11 +787,11 @@ The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble aver
 for all $\bmx \in \cal{P}_d[3]$. 
 All Wigner components are strictly positive, therefore the pre-order $\prec_{\gamma_\beta}$ is well defined.
 
-Let $\sigma = \frac{1}{\Z} e^{-\beta H}$ be a stabilizer state, which is given in its eigen-decomposition as 
+Let $\sigma = \frac{1}{\Z} e^{-\beta H}$ be a stabiliser state, which is given in its eigen-decomposition as 
 \begin{equation}
 \sigma = \frac{1}{\Z} ( e^{-\beta E_0} |\varphi_0\>\< \varphi_0| + e^{-\beta E_1} |\varphi_1\>\< \varphi_1| + e^{-\beta E_2} |\varphi_2\>\< \varphi_2| ),
 \end{equation}
-where $\{|\varphi_k\>\}$ are pure, orthonormal stabilizer states. Therefore the exist a Clifford operation that takes $|\varphi_k\> \rightarrow |k\>$, with the effect of permuting the negative component of $\rho_S(\epsilon)$ in the discrete phase space.
+where $\{|\varphi_k\>\}$ are pure, orthonormal stabiliser states. Therefore the exist a Clifford operation that takes $|\varphi_k\> \rightarrow |k\>$, with the effect of permuting the negative component of $\rho_S(\epsilon)$ in the discrete phase space.
 
 We are now in a position to consider the Strange state distillation process
 \begin{equation}\label{eq:msd_thermal}
@@ -1109,6 +1052,7 @@ At the zero temperature limit, $F_\beta$ tends to zero, so $R(\epsilon, \beta) \
 
 \end{proof}
 
+\null\newpage
 \section{Comparison with existing distillation rates}
 \label{sec:comparison}
 
@@ -1156,7 +1100,7 @@ We can also rewrite the expression as
 \begin{equation}
 	\epsilon_{\rm{Golay}}(\epsilon', n) \approx \frac{1}{\alpha}(\alpha\epsilon')^{n^{-\xi}},
 \end{equation}
-and compare with the numerically optimal error bounds provided by majorization as shown in~\cref{fig:prakash_compare_errors}
+and compare with the numerically optimal error bounds provided by majorisation as shown in~\cref{fig:prakash_compare_errors}
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{figs/prakash_compare_errors.png}
@@ -1170,7 +1114,7 @@ A recent distillation bound was introduced in~\cite{Seddon2020}, where they show
 \begin{equation}\label{eq:seddon}
 	\frac{n'}{n} \leq \frac{\log{\Lambda^+(\rho)}}{\log{F(\psi)^{-1}}},
 \end{equation}
-where $\Lambda^+(\rho)$ is the generalised robustness of state $\rho$, calculable via a costly SDP and $F(\psi)$ denotes the stabilizer fidelity of state $\ket{\psi}$.
+where $\Lambda^+(\rho)$ is the generalised robustness of state $\rho$, calculable via a costly SDP and $F(\psi)$ denotes the stabiliser fidelity of state $\ket{\psi}$.
 They demonstrate the performance of their bound by considering the purification process of the qubit magic state $\ket{H}$, with their figure replicated in~\cref{fig:seddon}. 
 For high initial noise level ($\epsilon = 0.25$), their bound dictates that $R = 1/150$, which is pretty good.
 \begin{figure}[h]
@@ -1191,449 +1135,19 @@ It is defined via an SDP, but we can use its properties (super-additivity and ze
 \begin{equation}
 	\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon)) \geq (1-\epsilon) \ketbra{\rm{S}} + \epsilon \frac{1}{3}\id = (1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)).
 \end{equation}
-Their bound simply states that any deterministic single-copy distillation process $\rho^{\otimes n} \longrightarrow \tau$ requires an initial number of copies $n \geq \theta_{\rm{max}}(\rho) / \theta_{\rm{max}}(\tau)$.
+Their bound simply states that any deterministic single-copy distillation process $\rho^{\otimes n} \longrightarrow \tau$ requires an initial number of copies $n \geq \theta_{\rm{max}}(\tau) / \theta_{\rm{max}}(\rho)$.
 Therefore, the rate of our pure Strange state distillation process~\cref{eq:sudist} can only get as tight as
 \begin{equation}
 	R = 1/n = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon,
 \end{equation}
 which is less tight than mana as could be readily observed if plotted in~\cref{fig:distill_bounds}.
 
-\iffalse
-An $n$-copy state $\rho^n$ has \emph{error rate} $\delta$ iff $\rho$ has an overlap of at least $1-\delta$ with magic state $\ket{\rm{S}}$,
-\begin{equation}
-	\bra{\rm{S}}\rho\ket{\rm{S}} \geq 1-\delta.
-\end{equation}
-The $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ has error rate $\delta = \frac{2}{3}\epsilon$.
-A general state of $n$ qutrits with error rate $\delta$ can be converted to the form $\rho_{\rm{S}}(\epsilon_0)^{\otimes n}$ for some noise level $\epsilon$ not necessarily equal to $\delta$.
-
-Given an $[[m,k,d]]$ error correcting code, a distillation protocol that achieves the process in~\cref{eq:test} requires that the following bound holds,
-\begin{align}
-	\frac{n}{n'} = O(\log^\gamma{(1/\epsilon')}),\ \gamma = \log_d{\left(\frac{m}{k}\right)}
-\end{align}
-
-In~\cite{Bravyi2012,Hastings2018}, the asymptotic rate $O(\log^\gamma{(1/\epsilon')})$ is called the \emph{distillation cost}, and in~\cite{cit:bravyi,Krishna2019} the parameter $\gamma$ is called the \emph{overhead}.
-
-There are many distillation protocols in the literature, e.g.~\cite{Bravyi2012,Hastings2018}, that involve a specific value of $\gamma$ and convert a specific number of copies $n$ of input states to $n'=1$ output state \nick{what about $\epsilon$?}.
-They should all satisfy
-\begin{equation}\label{eq:rate_cost}
-	\frac{1}{R(\epsilon, \epsilon', \beta)} \leq \frac{n}{n'} = O(\log^\gamma{(1/\epsilon')}).
-\end{equation}
-Therefore, given process parameters $n, n', \epsilon, \epsilon'$, we can scan through the stabilizer states to find a range of $\beta$ for which inequality~\cref{eq:rate_cost} is valid.
-In principle, the higher the value of parameter $\gamma$, the lower the output error rate $\epsilon'$ can be while~\cref{eq:rate_cost} is still true.
-In~\cite{Hastings2018} \nick{CITE MORE}, they report a value of $\gamma = 0.6779\dots$, while in~\cite{Krishna2019}, they report a scaling $\gamma = O(1/\log{d})$ with respect to the system's odd prime dimension $d$.
-The latter tends to 0 asymptotically.
-
-We can rephrase this result, saying that any distillation protocol in the $\gamma_\beta$-fragment with an $n$-copy input and $n'$-copy, $\epsilon'$-noisy desired output, must have input noise level 
-\begin{equation}
-	\epsilon \leq  E\left(\frac{n'}{n}, \epsilon', \beta \right)
-\end{equation}
-for some error bound $E$ related to $R$.
-
-Furthermore, in~\cite{cit:bravyi,cit:prakash}, two different distillation protocols are proposed with output error rate scalings of the form 
-\begin{equation}
-	\epsilon' \propto (\alpha \epsilon)^{n^\xi},
-\end{equation}
-where $\alpha$ is some constant, $\xi = 1/\log_3{15} \approx 0.4$ in~\cite{cit:bravyi} for qubit codes and $\xi = 1/\log_3{19008} \approx 0.1$ for qutrit codes.
-They also report a certain input threshold error rate $\epsilon_\star$ above which distillation is not possible.
-A first requirement is that $\epsilon_\star \leq E(n'/n, \epsilon', \beta)$, but we can also again find a range of $\beta$ for which the inequality
-\begin{align}
-	\epsilon &\leq E\left(\frac{n'}{n}, \epsilon'(\epsilon), \beta \right) \\
-	\epsilon' &\sim O\left((n\epsilon)^d\right)
-\end{align}
-holds, given some distillation rate $n'/n$ and input error rate $\epsilon$.
-\fi
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\null\newpage
-
-\section{Random info}
-
-\nick{Move stuff around or remove.}\vspace{-10pt}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.5]{figs/noise_threshold.pdf}
-    \caption{\textbf{Noise threshold $\epsilon_\star$ and rate $R(\beta, \epsilon_\star)$ versus $\beta$.}
-    At $\beta = 0$ and threshold noise level $\epsilon = \epsilon_\star = 3/7$, the rate is $R(0, \epsilon_\star) = \frac{\ln{(9/7)}}{\ln{3}} \approx 0.23$.
-    }
-    \label{fig:noise_threshold}
-\end{figure}
-
-We generalise the analysis of unital fragments into any circuit with thermalisation noise parametrised by the temperature $\beta^{-1}$.
-In~\cref{fig:thermal_distill}, we examine the majorization bound for the same purification process of~\cref{eq:sdist} with $\epsilon' = 0.05$.
-The curves plotted suggest that there exists a fragment $\O_{\gamma_{\beta_{\rm{max}}}}$ which allows for a highest noise threshold at any given number of copies of the initial state.
-Adding more copies results in a lower optimal temperature $\beta^{-1}$.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.5]{figs/thermal_distill.pdf}
-    \caption{\textbf{Threshold dependence on temperature in thermal fragments.} Lorenz curve ratios for the Strange state purifying process in~\cref{eq:sdist} with $\epsilon' = 0.05$.
-    The peaks of each curve indicate the optimal temperature $\beta_{\rm{max}}^{-1}$ that allows for the highest noise threshold at every given number of initial state copies $k$.
-    The line $\epsilon = \frac{3}{4}$ indicates the threshold noise beyond which the Strange state no longer contains negativities.
-    }
-    \label{fig:thermal_distill}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lower bounds in $\sigma$--fragments}
-\ddd{[Am throwing down some rough material, to be polished later.]}
-
-In order to obtain lower bounds one must now make precise what the free operations actually are in the  theory, beyond the condition of preserving Wigner-positivity.
-
-We first consider the unital fragment, and consider the transformations possible using Clifford unitaries, and convex mixtures of Clifford unitaries. We denote the Clifford group as $\C$, and given some quantum state $\rho$ the accessible states in the unital fragment are given by $\E(\rho) = \sum_{g \in \C} p(g) U(g) \rho U(g)^\dagger$.
-
-\subsection{Symplectic majorization of magic state Wigner distributions.}
-We now exploit the the group structure, which leads to a more general notation majorization that has been extensively studied in the classical context, but to our knowledge has not yet been used in quantum information theory.
-
-\begin{definition} Given a group $G$ that acts on a vector space $V$, we say that $\bmx$ \emph{$G$-majorises} $\bmy$ precisely when $\y \in H(\x)$, where $H(\x)$ is the convex hull of $\{g \x : g \in G\}$. We denote this as $\y \prec_G \x$.
-\end{definition}
-
-Now any quantum state $\rho$ has a Wigner distribution $W_\rho(\x)$. Given a Clifford unitary $\U \in \C$ we have that its representation in the Heisenberg-Weyl frame is given by
-\begin{equation}
-W_{\U(\rho)} (\x) = [\mbox{\ddd{fill in}}].
-\end{equation}
-
-This group action corresponds to the action of the affine symplectic group on the discrete phase space $\P_d$. To proceed we can study the discrete translational action, and the symplectic action separately.
-
-\subsection{Cyclic majorization conditions.}
-We can consider for $G$, the cyclic group of order $N$, which is described by $G= \< g | g^N = e\>$. in Terms of the Wigner distributions, this arises for the discrete lattice translations arising from displacement operators.
-
-A set of necessary and sufficient conditions for cyclic majorization has been obtained and is given as follows. Suppose $\x, \y$ are two real vectors in $\mathbb{R}^n$. Let $\Delta$ be the elementary shift operator, defined by
-\begin{equation}
-\Delta \x = \Delta (x_1, x_2, \dots, x_n) := (x_n, x_1, x_2, \dots, x_{n-1}),
-\end{equation}
-and from this it is clear that $\Delta$ generates a representation of the abelian group $(\mathbb{Z}_n,+)$.
-We now say that $\x$ \emph{cyclically majorizes} $\y$, written $\x \succ_C \y$, if and only if 
-\begin{equation}
-\y = \sum_{k=0}^{n-1} p_k \Delta^k \x,
-\end{equation}
-for some probability distribution $p=(p_k)$. This means that $\y$ lies in the convex hull of the orbit of $\x$ under cyclic shifts. Thus, we may write this condition as $\y = L(\p) \x$, where
-\begin{equation}
-L(\p) :=  \sum_{k=0}^{n-1} p_k \Delta^k,
-\end{equation}
-is a linear operator, as a function of an unknown distribution $\p$. We now have the following key identity for linear operators of this form:
-\begin{equation}
-L(\p)\x = QL(\x) \p,
-\end{equation}
-where $Q$ is a permutation matrix sending $e_0:=(1,0,0,\dots ,0)$ to itself, and otherwise sending $e_k$ to $e_{n-1-k}$, where $e_k=  (0,0,\dots, 0,1,0,\dots, 0)$ is the $k$'th basis vector. We thus have
-\begin{align}
-\x \succ_C \y &\Leftrightarrow \y = L(\p) \x \mbox{ for some dist. } \p. \nonumber \\
-&\Leftrightarrow \y = QL(\x) \p \mbox{ for some dist. } \p. \nonumber \\
-&\Leftrightarrow [QL(\x)]^{-1}\y = \p \mbox{ for some dist. } \p. \nonumber \\
-&\Leftrightarrow [QL(\x)]^{-1}\y = \p  \ge \mathbf{0} \mbox{ and normalized}.
-\end{align}
-This implies that to check whether $\x \succ_C \y$ it suffices to compute the components of the left-hand side and ensure non-negativity (I suspect it is normalised if $\x$ and $\y$ are normalised).
-
-Note though that by using Fourier analysis we can simplify this in terms of computational demands to checking if the vector
-\begin{equation}
-\p = C(\x') Q\y,
-\end{equation}
-has non-negative components, where
-\begin{equation}
-\x' := n\F_n [\F_n\x]^{-1},
-\end{equation}
-with $\F_n$ being the discrete Fourier transform, and the bracket term $[\F_n \x]^{-1}$ denotes the vector obtained by inverting the components of $\F \x$ individually. So the recipe for cyclic majorization is:
+\ddd{[Going forward:
 \begin{enumerate}
-\item Given inputs $\x$ and $\y$.
-\item Compute the vector $\x'$ via two Fourier transforms and $n$ inversions.
-\item Compute the circulant matrix $C(\x')$.
-\item Compute $\C(\x')Q \y$ and check if all components are non-negative.
-\end{enumerate}•
-
-
-\subsection{Symplectic majorization for qutrit magic}
-The qutrit system provides a good illustration of the techniques. In this case the symplectic group $SL(2,\mathbb{Z}_3)$ is isomorphic (up to $\pm \I$) the symmetry group of the tetrahedron, which in turn is isomorphic to $S_4$, the permutation group on 4 symbols. Therefore we expect in this case that symplectic majorization on $\P_3$ corresponds to a restricted form of majorization.
-
-
-\subsection{Fundamental Regions of a group $G$}
-\ddd{[This is theory for the appendices, and also to help flesh out the theory of $G$ majorization. It looks a bit technical, but the core idea is simple enough once you get it.]}
-Given a group $G$ that acts on a vector space $V$, we now have the following concept.
-\begin{definition} A \emph{fundamental region} $F$ of $G$ in $V$ is any open set $F$ such that $F \cap gF = \varnothing$ for $g \ne e$ and moreover 
-\begin{equation}
-V = \bigcup_{g} \overline{g F}.
-\end{equation}
-\end{definition}
-Here, the overline denotes the closure of a set. Loosely speaking, we can view $F$ as obtained by quotienting the vector space $V$ via the group action. We then have the following key theorem, which is proved in [CITE].
-\begin{theorem} If $G$ has a fundamental region $F$ that is unique, modulo actions of the group $F\rightarrow gF$, then $\bar{F}$ is a closed, convex cone and for any $\x, \y \in \bar{F}$ we have
-\begin{equation}
-\y \prec_G \x \Leftrightarrow \mathbf{a}\cdot \y \le \mathbf{a} \cdot \x, \mbox{ for all } \mathbf{a} \in \bar{F}.
-\end{equation}
-\end{theorem}
-If the cone $\bar{F}$ is finitely generated, namely 
-\begin{equation}
-\bar{F} = \mbox{cone}( \mathbf{c}_1, \dots, \mathbf{c}_N),
-\end{equation}
-for some finite set of vectors, then the majorization condition reduces to checking a \emph{finite} set of inequalities, namely checking $\mathbf{c}_k \cdot \y \le \mathbf{c}_k \cdot \x$ for $k=1, \dots , N$.
-
-Note now that any group action $G$ on a vector space $V$ always has a fundamental region. Consider any $\x \in V$ such that $g \x \ne \x$ unless $g =e$. For this we define
-\begin{equation}
-K = \{ \mathbf{a} \in V : \sup_g \left [ (g\mathbf{a})\cdot \x \right ] = \mathbf{a} \cdot \x \},
-\end{equation}
-then $F = K_{\mbox{\tiny int}}$ is a fundamental region of $G$ in $V$, where $ K_{\mbox{\tiny int}}$ is the interior of the set $K$. In simple terms, this fundamental region corresponds to the set of vectors that are `close' to $\x$, in the sense that any non-trivial group action $\mathbf{a} \rightarrow g \mathbf{a}$ on them moves them away from $\x$ with respect the inner product. See [CITE] for a proof of this statement.
-
-\subsection{Computing the fundamental region $F$ for the qutrit}
-Firstly, note that we actually have that $SL(2, \mathbb{Z}_3)$ is represented by $U(g)$ on $\P_3$, and so we should use that notation for precision.
-
-Since the symplectic group for $d=3$ is a reflection group, it turns out that this guarantees that an essentially unique fundamental region exists, and so we can reduce to a \emph{finite} set of majorization conditions (I think 5 in this case). Note that the $K$ defined above is always a closed, convex cone. This means it should be `easy' to determine the fundamental region. Reflection groups are Coexter groups, and I believe this set $K$ is essentially a Weyl chamber in that language. Anyhow, let's not get distracted by abstraction.
-
-
-The concrete recipe going forward:
-\begin{enumerate}
-\item Pick your favorite $\x \in P_3$ that is \emph{not} stabilized by $g\ne e$. I.e. a vector that moves under all non-trivial group actions.
-\item For each $g_k$ look for the extremal cases of $\y$ such that have constant inner product with $\x$. This corresponds to 
-\begin{equation}
-\left [ (U(g_k) -\I) \y \right ] \cdot \x = 0 \mbox{ for }k=1, \dots ,24.
-\end{equation}
-Or equivalently,
-\begin{equation}
-\y \cdot A^T\x = 0,
-\end{equation}
-where $A := U(g_k) -\I$.
-\item Write down the matrix equation for each $g_k$.
-\item Each of these conditions defines a hyperplane $H_k$ in $\P_3$ corresponding to the boundary of $K$.
-\item We possibly don't need to range over all 24 group elements....but am not sure on this.
-\item From this, we should be able to extract a generating set of vectors.
-\end{enumerate}
-
-\subsection{Toy example to see how the algorithm works}
-Okay, let's see how it works in a simple case. Let's consider the case of $V= \mathbb{R}^2$ and $G=S_2=\<g|g^2=e\>$ with the group action $g.(x,y) = (y,x)$ that swaps the components of the vector. We should get standard majorization out of this $G$--majorization.
-
-First we find an $\x$ that transforms non-trivially under non-trivial group actions. The vector $\x=(1,0)$ does this. To construct a fundamental region we now look at the equation 
-\begin{equation}
-[g.(x,y) - (x,y)] \cdot (1,0) = 0
-\end{equation}
-and solve for $x,y$. This becomes,
-\begin{equation}
-(y-x, x-y)\cdot(1,0)=0,
-\end{equation}
-which implies the hyperplane (line!) $y=x$ is the \emph{boundary} of the fundamental region. Since we decided to start with $(1,0)$ we can take the region to the right of this line, and so:
-\begin{equation}
-F = \{(x,y) : x>y \}
-\end{equation}
-where we note that we use the strict inequality to get the interior. The region $\bar{F}$ is a half-space, but this is actually a cone, and can be written as
-\begin{equation}
-F= \mbox{cone}( (1,1),(-1,-1), (5,0)).
-\end{equation}
-The first two vectors give the boundary, and we just need one other vector inside $F$ to generate it fully, chosen arbitrarily to be $(5,0)$. This last one is needed since $(1,1)$ and $(-1,-1)$ are linearly dependent! Therefore
-\begin{align}
-\mathbf{c}_1 &= (1,1) \nonumber \\
-\mathbf{c}_2 &= (-1,-1) \nonumber \\
-\mathbf{c}_3 &= (5,0).
-\end{align}
-The $S_2$--majorization ordering is then given by
-\begin{equation}
-\y \prec \x \Leftrightarrow \mathbf{c}_k \cdot \y \le  \mathbf{c}_k \cdot \x,
-\end{equation}
-for $k=1,2,3$ whenever $\x,\y \in F$. Note that is gives the ordering for all vectors in the space, since any general vector can be transformed into $F$ via a group action, since $F$ is a fundamental region. Indeed mapping an $\x$ into $F$ is simply $\x \rightarrow \x^\downarrow$, the sorting maneuver!
-The generating vectors $(1,1)$ and $(-1,-1)$ imply that both 
-\begin{equation}
-y_1 + y_2 \le x_1 +x_2,
-\end{equation}
-and
-\begin{equation}
-y_1 + y_2 \ge x_1 +x_2,
-\end{equation}
-which becomes the majorization condition
-\begin{equation}
-y_1+y_2 = x_1 + x_2.
-\end{equation}
-Easy! The final condition from $\mathbf{c}_3=(1,0)$ is then the condition that
-\begin{equation}
-5y_1 \le 5x_1 \Rightarrow y_1 \le x_1,
-\end{equation}
-which is the final majorization condition. Thus we have shown how the familiar majorization structure corresponds to the theory of $G$--majorization, and the cone ordering structure that comes from fundamental regions.
-
-\subsection{Another toy example -- non-standard majorization this time}
-Okay, let's look at another option for $V=\mathbb{R}^2$. Now consider the group $G=\mathbb{Z}_2 \times \mathbb{Z}_2$ that can be represented as $G=\<g_1,g_2 | g^1=e, g_2 = e, g_1g_2 = g_2g_1\>$, and acts on vectors as $g_1.(x,y) = (-x,y), g_2.(x,y)=(x,-y)$. In other words the group just flips vectors about X/Y axes.
-
-A vector that moves under the non-trivial group actions is $(1,1)$, so we use this one and solve for $[g.(x,y) - (x,y)] \cdot (1,1) = 0$. We have for $g = g_1$ the equation
-\begin{equation}
-[(-x,y) - (x,y)]\cdot (1,1) = 0,
-\end{equation}
-which implies the line $x=0$.
-
-For $g=g_2$ we have
-\begin{equation}
-[(x,-y) - (x,y)]\cdot (1,1) = 0,
-\end{equation}
-which implies the line $y=0$.
-
-For $g=g_1g_2$ we have
-\begin{equation}
-[(-x,-y) - (x,y)]\cdot (1,1) = 0,
-\end{equation}
-which implies the line $x+y=0$. The open region bounded by these three conditions is the set
-\begin{equation}
-F := \{ (x,y) : x>0, y>0\}.
-\end{equation}
-So the positive quadrant of $\mathbb{R}^2$ is a fundamental region for $G$, which makes sense since via sign flips we can map this onto the whole plane, once we close the set. This is again a convex cone and $\bar{F} = \mbox{cone}((1,0), (0,1))$. Thus given any two vectors $\x,\y$ we first act with $G$ to flip their signs so that their components are all positive, $\x \rightarrow \x^\star\ge \mathbf{0}$, then $\y \prec_G \x$ if and only if $y_1 \le x_1$ and $y_2 \le x_2$. This implies that 
-\begin{equation}
-\y \prec_G \x \Leftrightarrow \y^\star \le \x^\star. 
-\end{equation}
-So the $G=\mathbb{Z}_2 \times \mathbb{Z}_2$ majorization gives the component-wise ordering on vectors once you sort them. It is clear that this extends to any $G=\mathbb{Z}_2^{\times n}$.
-\subsection{A more complex example $S_3$ on $\mathbb{R}^3$.}
-So the symmetric group $S_n$ always gives majorization. But the symmetric group has $|S_n| = n!$ elements to it, which is super-exponentially big in $n$. We clearly don't have to check $n!$ equations, since the majorization conditions involve just $n+1$ inequalities, and so it must be that the basic generating conditions of the group suffice to determine the fundamental region of $G$.
-
-Let's look at $V = \mathbb{R}^3$ and $G=S_3$ acting on $\x = (x_i)$ as $g.\x = (x_{g^{-1}}(i))$. A vector that transforms non-trivially under all non-trivial actions is $(2,1,0)$. Let's look at the transpositions, and the boundary planes they give first.
-
-For $g= (1\,\,2)$ we have the equation
-\begin{equation}
-[(y,x,z) - (x,y,z)] \cdot (2,1,0) = 0,
-\end{equation}
-which implies the plane $2(y-x)+ x-y = 0$, namely,
-\begin{equation}
-H_1 = \{(x,y,z) : y=x\}.
-\end{equation}
-The other choices of transpositions work the same and give the planes
-\begin{align}
-H_2 &= \{(x,y,z) : y=z\} \\
-H_3 &= \{(x,y,z) : x=z\}.
-\end{align}
-Note that their intersection gives the line $\{(x,y,z) : x=y=z\}$, which is the line of uniform vectors at the bottom of the majorization pre-order.
-
-What information do the $3$-cycles give? Okay, let's now look at $g=( 1 \,\, 2 \,\, 3)$. The core equation for this becomes
-\begin{equation}
-[(z,x,y) - (x,y,z)] \cdot (2,1,0) = 0,
-\end{equation}
-and so gives
-\begin{align}
-2(z-x) + (x-y) &= 0 \nonumber \\
-\Rightarrow x+y &=2z. 
-\end{align}
-Namely the plane
-\begin{equation}
-H_4 = \{(x,y,z) :  x+y =2z\}.
-\end{equation}The remaining $3$--cycle $(3\,\,2\,\,1)$ gives
-\begin{align}
-H_5 &= \{(x,y,z) : y+z = 2x\}.
-\end{align}
-Note that $|S_3| = 6$, but the identity element $g=e$ gives no constraint, and so there are exactly $5$ bounding planes. Note also that the line $\{ (t,t,t)\} $ is again the intersection of all the planes.
-
-These 5 planes bound a cone containing $(2,1,0)$, namely the fundamental region $F$. What's a good algorithm to obtain a generating set of vectors for this cone?
-
-Firstly, since the line $\{(t,t,t)\}$ being the intersection of all the planes, is definitely on the boundary of $F$, this means we must have $\mathbf{c}_1 = (1,1,1)$ and $\mathbf{c}_2 = (-1,-1,-1)$ in our generating set. Perhaps a good algorithm is to compute intersections, obtain generating vectors for these intersections of the hyperplanes, $H_{ij}$ and then let $K_i$ and $K_j$ be the half-spaces in which $(2,1,0)$ resides. Now the intersection of two cones, is itself a cone so we can just keep intersecting the half-space/cones. Thus, we compute
-\begin{align}
-H_{12} &:= H_1 \cap H_2 \\
-&=\{ (t,t,t) : t\in \mathbb{R}\}=:L.
-\end{align}
-Similarly, $H_{13} = H_{23}= L$. What about the other intersections? Well $H_{14} = H_{15}=L$. In fact all intersections are the same! 
-\begin{equation}
-H_{ij} = H_i \cap H_j = L \mbox{ for all } i,j.
-\end{equation}
-The fundamental region is given by the intersection of $K_1$ and $K_2$, or any other two half-spaces. This is generated by $\mathbf{c}_1$ and $\mathbf{c}_2$ above, and any two independent vectors in the intersection of these half-spaces. We can choose 
-\begin{align}
-\mathbf{c}_3 &= (1,1,0) \\
-\mathbf{c}_4 &= (1,0,0),
-\end{align}
-note that $\mathbf{c}_3 \in H_1$ and $\mathbf{c}_4 \in H_2$, while $\mathbf{c}_3 \in K_2$ and $\mathbf{c}_4 \in K_1$ and so this works correctly. We thus have
-\begin{equation}
-\bar{F} = \mbox{cone}(\mathbf{c}_1 ,\mathbf{c}_2 ,\mathbf{c}_3 ,\mathbf{c}_4 ).
-\end{equation}
-The first two inequalities give the condition that
-\begin{equation}
-x_1+x_2+x_3 = y_1+y_2+y_3,
-\end{equation}
-while the remaining two conditions give the inequalities
-\begin{align}
-y_1 &\le x_1 \\
-y_1+y_2 &\le x_1 +x_2.
-\end{align}
-This is the standard majorization relation. Geometrically, the cone $\bar{F}$ is actually a funny one to visualise: it consists of a half-line radiating out from $(0,0,0)$ to $(-1, -1, -1)$, together with the triangular ``infinite pyramid'' generated by positive combinations of $(1,1,1), (1,1,0), (1,0,0)$. But we can also take positive linear combinations of $(-1,-1,-1)$ and e.g. $(1,1,0)$ and so it is still a bit tricky to visualise.
-\subsection{Symplectic majorization for $d =5$ and beyond.}
-For the case $d=5$ we also have a particularly simple group structure, where now the symplectic group $SL(2, \mathbb{Z}_5)$ is isomorphic to the symmetry group of the icosahedron. This is another reflection group and therefore we can again obtain the finite set of majorization conditions to describe it. Here the order of the group is $60$ and so we probably shouldn't make Nick compute this by hand.
-\newpage
-\section{Extension to general quantum resource theories}
-\label{sec:frag}
-
-So far we have introduced the notion of $\sigma$--fragments for any resource theory of magic. 
-In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. 
-The busy reader more focussed on magic may skip this section.
-
-State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
-In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering \nick{CITE}.
-The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the originaltheory than a measure can.
-
-Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
-Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-We now generalise this idea of a theory projection that preserves comparability between states. 
-\begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
-Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ to free operations in $\R'$. 
-Moreover, these obey
-	\begin{enumerate}
-        \item $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_\R \rho_2$;
-        \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
-    \end{enumerate}
-We call $\R'$ a \emph{covariant fragment} of $\R$.
-\end{definition}
-
-Resource monotones can now be clearly seen as a special case of covariant resource projections.
-\begin{proposition}[\textbf{Totally ordered covariant theories}]\label{thm:monoproj}
-	Any resource monotone $\M$ of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order. 
-	Conversely, any such covariant projection corresponds to a resource monotone $\M$. 
-\end{proposition}
-\begin{proof}
-	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	State order is covariantly preserved due to the defining property of a monotone, stated in~\cref{def:mono}, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
-	
-	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
-	The definition of a resource monotone then automatically implies covariance.
-	
-	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
-	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the definition of a monotone.
-	
-\end{proof}
-
-We can also view $\sigma$--fragments as an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
-However, states which are incomparable in $\R$ remain incomparable and conversions between states which are comparable in $\R$ may no longer be possible.
-\begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
-	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
-Moreover, these obey
-	\begin{enumerate}
-        \item $\rho_1 \prec_\R \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$;
-        \item $\E = \E_1 \circ \E_2$ whenever $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$.
-    \end{enumerate}
-We call $\R'$ a \emph{contravariant fragment} of $\R$.
-\end{definition}
-The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
-Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
-
-\nick{Perhaps scrap definition of contravariant projection and define contravariant fragment as a subtheory $\R'$ where there exists a (injective) covariant projection from $\R'$ to parent theory $\R$. That would make every subtheory $\R' = (\F', \O')$ a contravariant fragment if $\O'$ is closed under composition, this includes $\sigma$--fragments.}
-
-\begin{proposition}\label{thm:subproj}
-    Let $\R = (\F, \O)$ be a resource theory, and let $\O' \subseteq \O$ be a non-empty subset of the free operations that is closed under composition, and moreover $\O'$ is the largest such subset, in the sense that for any $\E_1 \not \in \O'$ and any $\E_2 \in \O'$ we have that both $\E_1 \circ \E_2$ and $\E_2 \circ \E_1$ are not in $\O'$. Then $\R' = (\F, \O')$ of $\R$ defines a contravariant fragment of $\R$.    
-\end{proposition}
-\begin{proof}
-    We first define $\Pis (\rho) = \rho$ for all $\rho$. It is clear that since $\O'$ is a subset of $\O$ any operation in $\O'$ will map the set of free states into itself. Moreover the identity channel $id$ is necessarily in $\O'$, due to the maximality assumption. For $\Pio$ we let $\Pis(\E) = \E$ if $\E \in \O'$ and otherwise $\Pis(\E) =id$. Now consider $\Pio (\E_1 \circ \E_2)$. Either the triple $\{\E_1, \E_2, \E_1\circ \E_2\}$ are all in $\O'$ or they are all outside of $\O'$. For the former case $\Pio(\E_1 \circ \E_2) = \E_1 \circ \E_2 = \Pio(\E_1) \circ \Pio(\E_2)$, while for the latter $\Pio(\E_1 \circ \E_2) = id = \Pio(\E_1) \circ \Pio(\E_2)$, which proves that compositions are respected under the map. Finally, $\rho \prec_{R'} \sigma$ implies there exists $\E \in \O' \subseteq \O$ such that $ \E(\rho) = \sigma$, and since $\E \in \O$ this implies $\rho \prec _{\R} \sigma$, as required, which completes the proof.
-    
-\end{proof}
-\nick{Suppose $\E_2$ is the replacement channel $\E_2(\rho) = \sigma$. This is a stabilizer operation. Then $\E_2 \circ \E_1 \in \O_\sigma$ even if $\E_1 \notin \O_\sigma$. Now suppose $\E$ is a Hadamard unitary, then $id = \E \circ \E_{reverse}$ but $id \in \O_{\ketbra{0}}$ while $\E, \E_{reverse} \notin \O_{\ketbra{0}}$.} \ddd{[Ah ok, agreed. This is fine for now. Let's not spend ages trying to generalise this so as to include the majorization fragments. It's just good to explore the possibilities a bit, to illustrate the non-trivial aspects.]}
-As an immediate corollary of~\cref{thm:subproj}, a $\sigma$--fragment of any magic theory $\R$ is a contravariant fragment of $\R$.
-
-
-\begin{proposition}
-	Let $\R = (\F,\O)$ be a resource theory, and let $\D \in \O$ be a free operation, which is reversible by $\D_{\rm{rev}} \in \O$, so that $\D_{\rm{rev}} \circ \D = \idc$.
-	
-	Then, we can define a contravariant projection of $\R$, by acting on all quantum states with $\D$.
-\end{proposition}
-\begin{proof}
-	We show that the theory $\R' = (\F', \O)$, with $\F' = \{\D(\rho):\rho \in \F \}$, is a contravariant fragment of $\R$.
-	
-	Let $\Pis$ map every state $\rho$ to $\D(\rho)$ and suppose $\D(\rho_1) \prec \D(\rho_2)$. 
-	Then, there exists $\E \in \O$ such that $\rho_1 = (\D_{\rm{rev}} \circ \E \circ \D) (\rho_2)$, so $\rho_1 \prec \rho_2$.
-	
-	Finally, let $\Pio$ map every free operation to itself, so that composition of operations is trivially preserved.
-	
-\nick{If $\D$ is a recovery map, so that $\D \circ \D_{\rm{rev}} = \idc$, then this is a covariant projection instead.
-
-If $\D$ is not reversible, this mapping is in general NOT contravariant (consider the replacement map $\D(\rho) = \frac{1}{d}\id$ for a strange state and stabilizer state - surely there is such a counterexample in thermodynamics theory if we consider a highly coherent state and one with the same energy population but no coherences.} \ddd{[Ok. Again, let's not spend time worrying about this now. It's clear there is various fine-print to these cases...but they're not essential to our work so let's put this on hold.]}
-\end{proof}
-
-Important examples of resource fragments appear in several established resource theories. \nick{Need to check if the thermodynamics example works, include magic theories as fragments of $\Rmax$, include Nielsen's bipartite entanglement.} \ddd{[Don't worry about these things now -- let's get the computations section improved]}
-
-\newpage
+\item Does the ``last elbow'' give the same bound? Is it as simple?
+\item Numerically is this about as good as it gets from majorisation?
+\item How does this rate compare with existing literature?
+\end{enumerate}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
