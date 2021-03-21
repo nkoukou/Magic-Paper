@@ -1,5 +1,4 @@
 magic_paperNotes.bib
-magic_paper.pdf
 
 *.aux 
 *.bit 
@@ -23,3 +22,27 @@ magic_paper.pdf
 *.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
+
+notes/notesNotes.bib
+notes/*.aux 
+notes/*.bit 
+notes/*.blg 
+notes/*.bbl 
+notes/*.lof 
+notes/*.log 
+notes/*.lot 
+notes/*.glo 
+notes/*.glx 
+notes/*.gxg 
+notes/*.gxs 
+notes/*.idx 
+notes/*.ilg 
+notes/*.ind 
+notes/*.out 
+notes/*.url 
+notes/*.svn 
+notes/*.toc
+notes/*.synctex
+notes/*.synctex(busy)
+notes/*.synctex.gz
+notes/*.synctex.gz(busy)

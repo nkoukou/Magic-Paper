@@ -42,7 +42,7 @@ A $(d \times d)$ matrix $S$ is in $\stoch$, if
     \item $S\bmd = \bmd$.
 \end{enumerate}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Properties of majorization}
 \label{app:major}
@@ -118,7 +118,7 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
     \end{enumerate}
 \fi
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Technical properties of $\sigma$--fragments}
 \label{app:frag}
@@ -179,9 +179,11 @@ As an example, consider the permutation matrix
         0 & 0 & 0 & 1 & 0 \\
         1 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0    
-    \end{psmallmatrix} \in \stochw,\ d=5.
+    \end{psmallmatrix} \in {\rm{S}}_5({\W{\frac{1}{5}\id}}).
 \end{equation}
-It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not correspond to any positive operation.
+It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not correspond to any positive (hence quantum) operation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Properties of Lorenz curves}
 \label{app:lc_properties}
@@ -279,7 +281,7 @@ Then,
 \end{proof}
 This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization.
 
-In particular, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
+\nick{In particular}, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
 \begin{align}
 L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right) &\geq L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right), \nonumber\\
 L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right), \nonumber\\
@@ -287,6 +289,8 @@ L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'}
 L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
 \end{align}
 where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Technical derivation for Lorenz curves in unital fragment}
 \label{app:lcsu_technical}
@@ -586,6 +590,10 @@ Now we can use~\cref{eq:lcsu_lcoord} to directly calculate
 \end{align*}
 and then compare them.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Technical details of bound derivation in stabiliser fragments}
+\label{app:lcst_technical}
 
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
@@ -674,3 +682,31 @@ which is the dimension of $W^{\otimes (n+1)}$.
 
 Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
