@@ -611,7 +611,7 @@ Consider two states $\rho_A, \rho_B$ with Wigner distributions $\W{\rho_A}, \W{\
 \begin{equation}
 	\{(w_i, m_i)\}_{i=1,\dots,D_A} \text{ and } \{(w_j', m_j')\}_{j=0,\dots,D_B}.
 \end{equation}
-The multiplicative property of the Wigner distribution over a composite phase space $\cal{P}_d[d_A] \times \cal{P}_d[d_B]$,
+The multiplicative property of the Wigner distribution over a composite phase space $\cal{P}_{d_A} \times \cal{P}_{d_B}$ shown in~\cref{thm:wstate},
 \begin{equation}
 	\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B},
 \end{equation}
@@ -621,6 +621,13 @@ This is true because all components are of the form $w_i w_j'$ and
 \begin{equation*}
 	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2.
 \end{equation*}
+
+Note that the rescaled distribution is also multiplicative,
+\begin{align}
+	&\widetilde{\rm{W}}_{\rho_A \otimes \rho_B | \gamma_A \otimes \gamma_B}(\bmx_A \oplus \bmx_B) = \frac{\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B}}{\W[\bmx_A \oplus \bmx_B]{\gamma_A \otimes \gamma_B}} = \nonumber \\
+	&\frac{\W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B}}{\W[\bmx_A]{\gamma_A}\W[\bmx_B]{\gamma_B}} = \widetilde{\rm{W}}_{\rho_A | \gamma_A}(\bmx_A)\widetilde{\rm{W}}_{\rho_B  | \gamma_B}(\bmx_B),
+\end{align}
+so result holds for this too \nick{FIX SECTION}.
 
 Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$-copy distribution $\W{\rho}^{\otimes n}$.
 \begin{lemma}\label{lem:ncopycomponents}
@@ -683,6 +690,33 @@ which is the dimension of $W^{\otimes (n+1)}$.
 Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
 \end{proof}
 
+\subsection{First elbow location}
+\label{app:first_elb_loc}
+
+Here, we show that the horizontal location of the first elbow is lower for an initial state compared to the target state for a valid distillation process ($n > n'$).
+\begin{enumerate}
+	\item $\rm{(C1)} \rightarrow \rm{(C1)}$. 
+	It is always true that $e^{-\beta E_0} / \Z_\beta \leq 1$, so
+	\begin{align*}
+		x_0 &= \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-n'} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
+		&< \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'		
+	\end{align*}
+	\item $\rm{(C2)} \rightarrow \rm{(C1)}$.
+	It is always true that
+	\begin{align*}
+		&\Z_\beta^{n-n'} > (e^{-\beta E_{\rm{max}}})^{n-n'} = e^{-\beta (n-n') E_{\rm{max}}}, \text{ so} \\
+		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \dfrac{e^{-\beta(n E_{\rm{max}} - n' E_0)}}{\Z_\beta^{n-n'}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
+		&< \dfrac{e^{-\beta(n E_{\rm{max}} - n' E_0)}}{e^{-\beta (n-n') E_{\rm{max}}}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
+		&= e^{-\beta n' (E_{\rm{max}} - E_0)} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
+		&\leq \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'.
+	\end{align*}
+	\item $\rm{(C2)} \rightarrow \rm{(C2)}$.
+	It is always true that $e^{-\beta E_{\rm{max}}} / \Z_\beta \leq 1$, so
+	\begin{align*}
+		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n-n'} \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n'} \\
+		&\leq \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n'} = x_0'	
+	\end{align*}
+\end{enumerate}
 
 
 
