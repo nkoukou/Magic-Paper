@@ -281,6 +281,7 @@ This is the standard majorisation relation. Geometrically, the cone $\bar{F}$ is
 \subsection{Symplectic majorisation for $d =5$ and beyond.}
 For the case $d=5$ we also have a particularly simple group structure, where now the symplectic group $SL(2, \mathbb{Z}_5)$ is isomorphic to the symmetry group of the icosahedron. This is another reflection group and therefore we can again obtain the finite set of majorisation conditions to describe it. Here the order of the group is $60$ and so we probably shouldn't make Nick compute this by hand.
 
+\null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Extension to general quantum resource theories}
@@ -375,7 +376,103 @@ Important examples of resource fragments appear in several established resource 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Bound comparison}
+\null\newpage
+\section{Comparison with existing distillation rates}
+\label{sec:comparison}
+
+We have derived a \emph{distillation bound} $R(\epsilon, \epsilon', \beta)$ for the process
+\begin{equation}\label{eq:stdist}
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \gamma_\beta^{\otimes (n-n')},
+\end{equation}
+with even $n, n'$ and $0 \leq \epsilon' < \epsilon \leq 3/7$, where the $n$-copy, $\epsilon$-noisy Strange state is
+\begin{equation}\label{eq:test}
+    \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n}.
+\end{equation}
+
+The bound informs us that any distillation protocol in the $\gamma_\beta$-fragment with an $\epsilon$-noisy input and $\epsilon'$-noisy output has a \emph{distillation rate} 
+\begin{equation}
+	\frac{n'}{n} \leq R(\epsilon, \epsilon', \beta).
+\end{equation}
+
+We apply our results on the ternary Golay code distillation protocol suggested in~\cite{cit:prakash}.
+In this protocol, a single Strange state is distilled with noise level
+\begin{equation}
+	\epsilon'(n, \epsilon) \approx \frac{1}{\alpha}(\alpha\epsilon)^{n^\xi},
+\end{equation}
+where $\alpha \approx 1.75$ and $\xi \approx 0.112$ are constants specific to the protocol.
+This can be rewritten in terms of the protocol distillation rate,
+\begin{equation}
+	R_{\rm{Golay}}(\epsilon, \epsilon') = \frac{1}{n} \approx \left( \frac{\log{(\alpha \epsilon)}}{\log{(\alpha \epsilon')}} \right)^{\frac{1}{\xi}}
+\end{equation}
+
+We compare the distillation rate of the protocol with our distillation bound, 
+\begin{equation}
+	R_{\rm{Golay}}(\epsilon, \epsilon') \leq R(\epsilon, \epsilon', \beta)
+\end{equation} 
+in figure~\cref{fig:prakash_compare}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/prakash_compare.png}
+    \caption{\textbf{Comparison with ternary Golay distillation rate.}
+    Our bound is not violated but gets close to saturated for some noise levels.
+    The thick diagonal line indicates where $\epsilon' = \epsilon$.
+    }
+    \label{fig:prakash_compare}
+\end{figure}
+
+We can also rewrite the expression as 
+\begin{equation}
+	\epsilon_{\rm{Golay}}(\epsilon', n) \approx \frac{1}{\alpha}(\alpha\epsilon')^{n^{-\xi}},
+\end{equation}
+and compare with the numerically optimal error bounds provided by majorisation as shown in~\cref{fig:prakash_compare_errors}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/prakash_compare_errors.png}
+    \caption{\textbf{Comparison with ternary Golay output error rate.}
+    Our bound is not violated but achieves a maximum saturation of $\epsilon_\star - \epsilon_{\rm{Golay}} = 0.147$.
+    }
+    \label{fig:prakash_compare_errors}
+\end{figure}
+
+A recent distillation bound was introduced in~\cite{Seddon2020}, where they show that for the deterministic conversion of $n$ copies of a qubit state $\rho$ to a target pure magic state $\ket{\psi}$, the following bound on the distillation rate holds,
+\begin{equation}\label{eq:seddon}
+	\frac{n'}{n} \leq \frac{\log{\Lambda^+(\rho)}}{\log{F(\psi)^{-1}}},
+\end{equation}
+where $\Lambda^+(\rho)$ is the generalised robustness of state $\rho$, calculable via a costly SDP and $F(\psi)$ denotes the stabiliser fidelity of state $\ket{\psi}$.
+They demonstrate the performance of their bound by considering the purification process of the qubit magic state $\ket{H}$, with their figure replicated in~\cref{fig:seddon}. 
+For high initial noise level ($\epsilon = 0.25$), their bound dictates that $R = 1/150$, which is pretty good.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{figs/seddon.png}
+    \caption{\textbf{Comparison of Seddon \textit{et al.}'s bound~\cite{Seddon2020} in~\cref{eq:seddon} with a generic resource bound in~\cite{Fang2020}.}
+    The process they consider is purifying $n$ copies of $(1-\epsilon)\ketbra{H} + \epsilon/3 \id$ to $n'$ copies of $(1-\epsilon')\ketbra{H} + \epsilon'/3 \id$.
+    Their bound (red and blue) is pretty good compared with the generic (violet) bound.
+    Not sure why it looks like their bound gives $n\rightarrow 25$ as $1-\epsilon \rightarrow 1$.
+    }
+    \label{fig:seddon}
+\end{figure}
+
+Similar concrete rates have been studied for qudits in two occasions:
+First, the mana bound, which we have demonstrated in~\cref{fig:distill_bounds}.
+Secondly, Wang \textit{et al.}'s max-thauma bound~\cite{Wang2020}, which as far as I can tell, is less tight than mana (?).
+It is defined via an SDP, but we can use its properties (super-additivity and zero at free states) to readily get a bound on noisy Strange states,
+\begin{equation}
+	\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon)) \geq (1-\epsilon) \ketbra{\rm{S}} + \epsilon \frac{1}{3}\id = (1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)).
+\end{equation}
+Their bound simply states that any deterministic single-copy distillation process $\rho^{\otimes n} \longrightarrow \tau$ requires an initial number of copies $n \geq \theta_{\rm{max}}(\tau) / \theta_{\rm{max}}(\rho)$.
+Therefore, the rate of our pure Strange state distillation process~\cref{eq:sudist} can only get as tight as
+\begin{equation}
+	R = 1/n = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon,
+\end{equation}
+which is less tight than mana as could be readily observed if plotted in~\cref{fig:distill_bounds}.
+
+\ddd{[Going forward:
+\begin{enumerate}
+\item Does the ``last elbow'' give the same bound? Is it as simple?
+\item Numerically is this about as good as it gets from majorisation?
+\item How does this rate compare with existing literature?
+\end{enumerate}}
+
 An $n$-copy state $\rho^n$ has \emph{error rate} $\delta$ iff $\rho$ has an overlap of at least $1-\delta$ with magic state $\ket{\rm{S}}$,
 \begin{equation}
 	\bra{\rm{S}}\rho\ket{\rm{S}} \geq 1-\delta.
@@ -419,7 +516,7 @@ A first requirement is that $\epsilon_\star \leq E(n'/n, \epsilon', \beta)$, but
 \end{align}
 holds, given some distillation rate $n'/n$ and input error rate $\epsilon$.
 
-
+\null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Random info}
@@ -454,6 +551,22 @@ Whether we are dealing with $\rm{(C1)}$ or $\rm{(C2)}$ depends on the physical p
 	\item $0 < \beta \leq \beta_{\star}$. Then, $0 \leq \epsilon_{\star} < 3/7$ and $\rm{(C1)}$ holds for $\epsilon \leq \epsilon_{\star}$, while $\rm{(C2)}$ holds for $\epsilon \geq \epsilon_{\star}$.
 	\item $\beta > \beta_{\star}$. Then, $ \epsilon_{\star} = 0$ and $\rm{(C2)}$ holds for all $\epsilon$.
 \end{itemize}
+
+Consider pure Strange state distillation at high temperatures, $\beta \leq \beta_{\star}$.
+Depending on the noise level of the initial state, we have either a $\rm{(C1)} \rightarrow \rm{(C1)}$ or a $\rm{(C2)} \rightarrow \rm{(C1)}$ scenario.
+
+At every $\beta > 0$, the rates indicate a transition at $\epsilon_{\star}$.
+As $\beta$ increases, the rate becomes stricter.
+At the high temperature limit, $\beta \rightarrow 0$, we get $\beta F_\beta \rightarrow -\ln{3}$, and we retrieve the unital fragment bound,
+\begin{equation}
+	R(\beta) \xrightarrow{\beta \rightarrow 0} \frac{\ln{(3-4\epsilon)}}{\ln{3}}.
+\end{equation}
+
+Consider pure Strange state distillation at low temperatures, $\beta \rightarrow \infty$.
+Independently of the noise level of the initial state, we have a $\rm{(C2)} \rightarrow \rm{(C2)}$ scenario.
+
+As $\beta$ increases, the rate becomes looser.
+At the zero temperature limit, $F_\beta$ tends to zero, so $R(\epsilon, \beta) \xrightarrow{\beta \rightarrow \infty} 1$.
 
 
 
