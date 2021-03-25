@@ -139,11 +139,8 @@ where now we have
 \end{align*}
 to denote the phase space point for the composite system. For simplicity going forward we assume $n$ copies of a $d$--dimensional system $d_1=d_2 = \cdots = d$, and therefore, we have that $\x \in \mathbb{Z}_d^{2n}$.
 
-<<<<<<< HEAD
-These displacement operators form the Heisenberg-Weyl group \nick{CITE} under matrix multiplication modulo phases,
-=======
+
 The displacement operators form the Heisenberg-Weyl group~\cite{Folland_1989, Bengtsson_2006} under matrix multiplication modulo phases,
->>>>>>> 1c874c99da81627f7ff6065685f2c94ab7310f6c
 \begin{equation}\label{eq:gp}
     {\rm{HW}}_d^n \coloneqq \{ \tau^k D_{\bmx}: k \in \mathbb{Z}_d, \bmx \in \cal{P}_d^n\}.
 \end{equation}
@@ -174,11 +171,9 @@ where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rh
     \W[\bmx]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmx} \rho].
 \end{equation}
 
-<<<<<<< HEAD
+
 For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$ (see~\cref{app:wigner} for details). More precisely, $W_\rho(\x)$ is a real-valued function on $\P_d$ with the property that $\sum_{\x} W_\rho(x) = 1$.  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
-=======
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$--dimensional quasi-probability distribution over $\cal{P}_d$ (see~\cref{app:wigner} for details).  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
->>>>>>> 1c874c99da81627f7ff6065685f2c94ab7310f6c
+
 \begin{figure}%
     \centering
     \subfigure[][]{%
@@ -225,56 +220,11 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 \begin{equation}
     \sn{\rho} \coloneqq \sum\limits_{\bmx: \W[\bmx]{\rho} < 0} \abs{\W[\bmx]{\rho}}.
 \end{equation}
-<<<<<<< HEAD
-Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility. 
 
-A range of other monotones have been developed in the literature\ddd{[CITE]}, and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
-=======
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
-The magic monotone of \emph{max--thauma}~\cite{Wang_2018} has also been introduced more recently for qudits of odd prime dimension.
 
-\subsection{Majorisation}
-\label{sec:major}
+A range of other monotones have been developed in the literature\cite{Wang_2018} \ddd{[CITE MORE]}, and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
 
-Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
-It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
-
-To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
-Specifically, for any \emph{$\bmd$--stochastic matrix} $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
-The set $\stoch$ forms a group under matrix multiplication for any $\bmd$ with positive components.
-
-Majorisation describes quantum thermodynamics exactly in the absence of quantum coherence.
-The use of majorisation in this setting provides vital intuition for our purposes.
-At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
-Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
-Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states~\cite{cit:lostaglio}.
-Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
-
-Based on this setting, we define $\bmd$--majorisation as follows.
-\begin{definition}[\textbf{$\boldsymbol\bmd$--majorisation}]\label{def:dmajor}
-    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$--majorise $\bmx$, iff there exists a $\bmd$--stochastic matrix $S$ such that $\bmx = S\bmy$.
-\end{definition}
-We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$--dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory~\cite{Nielsen_1999}.
-
-The pre-order imposed by $\bmd$--majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
-Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
-\begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
-    Let $\bmw, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\widetilde{\bmw} \coloneqq (w_1/d_1, \dots, w_d/\nick{d_d})^T$ the rescaled vector $\bmw$ by $\bmd$.
-    
-    Finally, denote by $\pi: \mathbb{Z}_d \mapsto \mathbb{Z}_d$ the permutation that sorts $\widetilde{\bmw}$, $(\widetilde{\bmw}^\downarrow)_i = w_{\pi(i)}$ for all $i=1,\dots,d$.
-    
-    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmw}{\bmd}(k)) \}_{k=1,\dots,d}$, where
-    \begin{equation}\label{eq:lorenz}
-        (x_k, \lc{\bmw}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right).
-    \end{equation}
-    We define the set of points on this curve, $\lc{\bmw}{\bmd}(x),\ x \in [0,1]$, as the \emph{Lorenz curve} of vector $\bmw$ with respect to $\bmd$.
-\end{definition}
-Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
-In fact, the Lorenz curves $\lc{\bmw}{\bmd}$ and $\lc{\bmw \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, coincide.
-Furthermore, a Lorenz curve $\lc{\bmw}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\widetilde{\bmw}^\downarrow)_i$ for $i=1,\dots,d$ which by definition is a non-increasing sequence.
-Finally, the points on the interior of the Lorenz curve that connect line segments of different slopes are in general non-differentiable and we call them\emph{elbows}.
->>>>>>> 1c874c99da81627f7ff6065685f2c94ab7310f6c
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -382,32 +332,31 @@ The subdivision of magic theories into $\sigma$--fragments is also powerful beca
 \subsection{Majorisation}
 \label{sec:major}
 
-Majorisation is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
+Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
 It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
 
 To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
-Specifically, for any $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
-The set $\stoch$ forms a group under matrix multiplication for all $\bmd$ with positive components.
+Specifically, for any \emph{$\bmd$--stochastic matrix} $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
+The set $\stoch$ forms a group under matrix multiplication for any $\bmd$ with positive components.
 
 Majorisation describes quantum thermodynamics exactly in the absence of quantum coherence.
 The use of majorisation in this setting provides vital intuition for our purposes.
 At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
-Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
+Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states~\cite{cit:lostaglio}.
 Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
-Formal statements of the above can be found \nick{in the appendix}.
 
-Based on this setting, we define majorisation as follows.
-\begin{definition}[\textbf{$\boldsymbol\bmd$-majorisation}]\label{def:dmajor}
-    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$-majorise $\bmx$, iff there exists a matrix $S \in \stoch$ such that $\bmx = S\bmy$.
+Based on this setting, we define $\bmd$--majorisation as follows.
+\begin{definition}[\textbf{$\boldsymbol\bmd$--majorisation}]\label{def:dmajor}
+    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$--majorise $\bmx$, iff there exists a $\bmd$--stochastic matrix $S$ such that $\bmx = S\bmy$.
 \end{definition}
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory. \nick{CITE}
+If $\bmd = \frac{1}{d}\bm{1}$, the $d$--dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory~\cite{Nielsen_1999}.
 
-The pre-order imposed by $\bmd$-majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
+The pre-order imposed by $\bmd$--majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
 Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
-    Let $\bmw, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\widetilde{\bmw} \coloneqq (w_1/d_1, \dots, w_d/\nick{d_d})^T$ the vector of ratios between the corresponding components of $\bmw$ and $\bmd$.
+    Let $\bmw, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\widetilde{\bmw} \coloneqq (w_1/d_1, \dots, w_d/\nick{d_d})^T$ the rescaled vector $\bmw$ by $\bmd$.
     
     Finally, denote by $\pi: \mathbb{Z}_d \mapsto \mathbb{Z}_d$ the permutation that sorts $\widetilde{\bmw}$, $(\widetilde{\bmw}^\downarrow)_i = w_{\pi(i)}$ for all $i=1,\dots,d$.
     
@@ -418,9 +367,9 @@ Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its 
     We define the set of points on this curve, $\lc{\bmw}{\bmd}(x),\ x \in [0,1]$, as the \emph{Lorenz curve} of vector $\bmw$ with respect to $\bmd$.
 \end{definition}
 Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
-In fact, the Lorenz curves $\lc{\bmw}{\bmd}$ and $\lc{\bmw \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, are identical.
-Furthermore, a Lorenz curve $\lc{\bmw}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\widetilde{\bmw}^\downarrow)_i$ for $i=1,\dots,d$ which is non-increasing by definition.
-Finally, the points on the interior of the Lorenz curve connecting line segments of different slopes are called \emph{elbows}.
+In fact, the Lorenz curves $\lc{\bmw}{\bmd}$ and $\lc{\bmw \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, coincide.
+Furthermore, a Lorenz curve $\lc{\bmw}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\widetilde{\bmw}^\downarrow)_i$ for $i=1,\dots,d$ which by definition is a non-increasing sequence.
+Finally, the points on the interior of the Lorenz curve that connect line segments of different slopes are in general non-differentiable and we call them\emph{elbows}.
 
 A vector $\bmy$ is said to \emph{$\bmd$--majorise} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorisation into a finite set of inequalities.
 \begin{theorem}\label{thm:dmajor}
