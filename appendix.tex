@@ -75,7 +75,7 @@ Any $\bmd$--majorization problem can be rephrased as a simple majorization probl
   \begin{equation}
     \Gamma_{\bmd}(\bmw) = \bigoplus_{i=1}^n w_i\  \frac{1}{d_i}\bm{1},
   \end{equation}
-where $\bm{1}/d_i$ is the $d_i$-dimensional uniform distribution.
+where $\bm{1}/d_i$ is the $d_i$--dimensional uniform distribution.
 The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^N \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\bmd}(\bmw)$, so that
   \begin{equation}
      \Gamma_{\bmd}^{-1}(\oplus_{i=1}^n w_i \bm{1}/d_i) = \bmw.
@@ -104,7 +104,7 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
 \begin{enumerate}
 	\item[1$\leftrightarrow2$]
 	Suppose there exists a $\bmd$--stochastic $S$ such that $\bmx = S\bmy$ and let $B = \Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}$.
-$B$ is a $N$-dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}) (\frac{1}{N}\bm{1}) = (\Gamma_{\bmd} \circ S) (\bm{d}) = \Gamma_{\bmd}(\bm{d}) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\bmd}({\bmy})$ to $\Gamma_{\bmd}({\bmx})$.
+$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}) (\frac{1}{N}\bm{1}) = (\Gamma_{\bmd} \circ S) (\bm{d}) = \Gamma_{\bmd}(\bm{d}) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\bmd}({\bmy})$ to $\Gamma_{\bmd}({\bmx})$.
 	Conversely, given $B$, let $S = \Gamma_{\bmd}^{-1} \circ B \circ \Gamma_{\bmd}$.
 	Similarly, $S$ is a $\bmd$--stochastic matrix that maps $\bmy$ to $\bmx$.
 	\item[$2\leftrightarrow3$]\hspace{-5pt}, $2\leftrightarrow4$, $2\leftrightarrow5$ These three statements are equivalent to statements (iii), (iv), (v) in~\cref{prop:major} respectively, for the embedded vectors $\Gamma_{\bmd}({\bmx}), \Gamma_{\bmd}({\bmy})$, which becomes apparent by rewriting
@@ -149,11 +149,11 @@ In this section, we provide some useful technical properties of general $\sigma$
 \vspace{-20pt}
 \end{proof}
 
-Any free state $\sigma \in \F$ corresponds to a $d^2$-dimensional probability distribution $\W{\sigma}$ and any free operation $\E \in \O$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
+Any free state $\sigma \in \F$ corresponds to a $d^2$--dimensional probability distribution $\W{\sigma}$ and any free operation $\E \in \O$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
 Note that these mappings are one-to-one due to the orthogonality of the phase-point operators as an operator basis.
 
 Note further that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
-As a counterexample, the sharp $d^2$-dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition in~\cref{thm:wstate}.
+As a counterexample, the sharp $d^2$--dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition in~\cref{thm:wstate}.
 
 Similarly, not all stochastic matrices correspond to completely positive operations.
 As an example, consider the permutation matrix
@@ -210,7 +210,7 @@ This theorem is of practical importance in calculating the necessary distillatio
 \label{app:lcsu_technical}
 
 \subsection{Binomial distributions and error bounds}\label{app:phi}
-Consider an experiment consisting of $n$ trials of throwing a $p$-coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
+Consider an experiment consisting of $n$ trials of throwing a $p$--coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
 We express the sum over an even number of successful trials $\Phi_+$ and the sum over an odd number of successful trials $\Phi_-$,
 \begin{align}	
 	\Phi_+(a; n, p) &\coloneqq \sum\limits_{\ell=0}^{a/2} \binom{n}{2\ell} p^{2\ell} (1-p)^{n-2\ell}, \nonumber\\ 
@@ -221,7 +221,7 @@ We express the sum over an even number of successful trials $\Phi_+$ and the sum
 Note that index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
 In~\cref{app:lcsu_coord_elb}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves in the unital fragment.
 
-We also define the classical entropy of a $p$-coin as well as the classical relative entropy between a $p$-coin and a $q$-coin,
+We also define the classical entropy of a $p$--coin as well as the classical relative entropy between a $p$--coin and a $q$--coin,
 \begin{align}
 	S(p) &\coloneqq -p\log{p} -(1-p)\log{(1-p)}, \label{eq:ent}\\
 	\ent{p}{q} &\coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}. \label{eq:ent_rel}
@@ -268,7 +268,7 @@ The experiment is described by binomial statistics and we define the left tail o
 \end{equation}
 where $m\in [0,n]$. 
 
-The symmetry between the left tail of a $p$-coin distribution and the right tail of a $(1-p)$-coin distribution dictates that
+The symmetry between the left tail of a $p$--coin distribution and the right tail of a $(1-p)$--coin distribution dictates that
 \begin{align}\label{eq:phi_reverse}
 	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1],
 \end{align}
@@ -310,7 +310,7 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
     \centering
     \includegraphics[scale=0.4]{figs/lc_bounds.pdf}
     \caption{\textbf{Lorenz curves and bounding curves.} 
-    The figure explores the distillation process of a 10-copy $0.25$-noisy Strange state to a 4-copy $0.05$-noisy Strange state in the unital fragment.
+    The figure explores the distillation process of a 10-copy $0.25$--noisy Strange state to a 4-copy $0.05$--noisy Strange state in the unital fragment.
     Clearly, by looking at the Lorenz curves, the distillation process is possible.
     However the bounding curves, derived in~\cref{lem:bounds_strict}, intersect at the end, suggesting that the process is not necessarily possible.
     }
@@ -319,11 +319,11 @@ We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the stan
 \fi % LOOSE BOUNDS & PLOT - END
 
 \subsection{Strange state Lorenz curve elbow coordinates in the unital fragment}\label{app:lcsu_coord_elb}
-The Wigner distribution of the $n$-copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform distribution 
+The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform distribution 
 \begin{equation}\label{eq:wu}
 	\W{\left(\id/3\right)^{\otimes n}} = \Bigg( \overbrace{\frac{1}{9^n}, \dots, \frac{1}{9^n}}^{9^n} \Bigg).
 \end{equation}
-The Wigner distribution of the 1-copy $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 
+The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 
 \begin{equation}\label{eq:wsu}
 	\W{\rho_{\rm{S}}(\epsilon)} = \Bigg( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \Bigg)
 \end{equation}
@@ -341,7 +341,7 @@ It is clear that in the unital fragment the Strange state contains Wigner negati
     \label{fig:noisys}
 \end{figure}
 
-The Wigner distribution of the $n$-copy $\epsilon$-noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by the convolution $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = \rm{W}_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by the convolution $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = \rm{W}_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
 In general, $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ contains $n + 1$ distinct components, labelled $0,\dots, n$.
 We present the distinct Wigner components of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicites in~\cref{tab:lcsu}.
 Note that LHS (RHS) refers to elbow coordinates $i$ on the left of and including (right of) the maximum, precisely
@@ -510,7 +510,7 @@ and then compare them.
 
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
-In general, a $1$-copy $d$--dimensional state $\rho$ is defined exactly by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
+In general, a $1$--copy $d$--dimensional state $\rho$ is defined exactly by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
 The distribution $\W{\rho}$ is usually defined on the phase space, but it can be convenient to define it using pure vector notation. 
 In particular, we introduce a component vector $\bmw(\rho) = (w_i)_{i=1,\dots,D}$ and a multiplicity vector $\bmm(\rho) = (m_i)_{i=1,\dots,D}$, where $D \leq d^2$ which together form a set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$.
 \begin{definition}
@@ -528,7 +528,7 @@ The multiplicative property of the Wigner distribution over a composite phase sp
 \begin{equation}
 	\W[\bmx_A \oplus \bmx_B]{\rho_A \otimes \rho_B} = \W[\bmx_A]{\rho_A}\W[\bmx_B]{\rho_B},
 \end{equation}
-implies that the distribution $\W{\rho_A \otimes \rho_B}$ is $d_A^2 d_B^2$-dimensional and contains components of the form $w_i w_j'$. 
+implies that the distribution $\W{\rho_A \otimes \rho_B}$ is $d_A^2 d_B^2$--dimensional and contains components of the form $w_i w_j'$. 
 Therefore, the set $\{(w_i w_j', m_i m_j')\}$ with $i=1,\dots,D_A$ and $j=1,\dots,D_B$ is a complete set of component-multiplicity pairs for the distribution of the composite system $\W{\rho_A \otimes \rho_B}$.
 This is true because all components are of the form $w_i w_j'$ and 
 \begin{equation*}
@@ -542,7 +542,7 @@ Note that the rescaled distribution is also multiplicative,
 \end{align}
 so a complete set of component-multiplicity pairs can be obtained for this distribution in the same fashion as for usual Wigner distributions.
 
-Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$-copy distribution $\W{\rho}^{\otimes n}$.
+Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$--copy distribution $\W{\rho}^{\otimes n}$.
 \begin{lemma}\label{lem:ncopycomponents}
 	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by taking the Kronecker product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
 	
@@ -572,7 +572,7 @@ Given a state $\rho$ and a complete set of component-multiplicity pairs describi
 \end{equation*}
 Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
 
-	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$-copy distribution $W^{\otimes n}$.
+	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
 	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
 \begin{equation}
 	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
@@ -603,7 +603,7 @@ which is the dimension of $W^{\otimes (n+1)}$.
 Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
 \end{proof}
 
-Index vector $\bmk$ has $D-1$ independent components and in the proof of our main theorem in~\cref{sec:stab} we have $D=4$, so we simplify the notation by writing the component and multiplicity vectors of the $n$-copy state distributions as $m_{ijk}, w(\rho_{\rm{S}})_{ijk}, w(\gamma)_{ijk}$ and $w(\rho_{\rm{S}}|\gamma)_{ijk}$, where $i,j,k$ are the 3 independent index components.
+Index vector $\bmk$ has $D-1$ independent components and in the proof of our main theorem in~\cref{sec:stab} we have $D=4$, so we simplify the notation by writing the component and multiplicity vectors of the $n$--copy state distributions as $m_{ijk}, w(\rho_{\rm{S}})_{ijk}, w(\gamma)_{ijk}$ and $w(\rho_{\rm{S}}|\gamma)_{ijk}$, where $i,j,k$ are the 3 independent index components.
 
 \subsection{First elbow location}
 \label{app:first_elb_loc}

@@ -10,11 +10,15 @@ reprint
 \input{preamble}
 
 \begin{document}
-% - vs -- (n-copy, sigma-fragment etc.)
-% Plot consistency (esp Figs. 3, 4, 5, 6)
-%
-%
-%
+% - vs -- (n-copy, sigma--fragment etc.)
+% Distillation rate vs bound
+% Sec: Appendix D
+% Sec: Intro
+% Sec: General resources
+% Sec: Lower bounds
+% Sec: Abstract
+% Plot consistency (esp. figs 3,4,5,6)
+% Spacing
 
 \begin{abstract}
 \ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
@@ -40,17 +44,11 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction and background}
 \label{sec:intro_prev}
 
-\begin{enumerate}
-    \item Fault-tolerance~\cite{cit:raussendorf, cit:gross2, cit:markov, cit:gross, cit:nest, cit:nest2, cit:vidal, cit:fujii, cit:gottesman}
-    \item Magic~\cite{cit:veitch, cit:veitch2, Wang_2019, Wang_2018, cit:howard, cit:campbell, cit:gross3, cit:gross4}
-    \item Bringing in majorisation~\cite{cit:cwiklinski, cit:lostaglio2, cit:lostaglio, cit:gour, cit:janzing, cit:brandao2, cit:gour2, cit:marshall, cit:nielsen}
-\end{enumerate}
-
 \subsection{Introduction}
 \label{sec:intro}
 
-Magic states are necessary for achieving universal quantum computation within fault-tolerant schemes.
-Identifying magic as a resource for quantum universality has led to several theories which try to provide a framework for its quantification and manipulation \nick{CITE}.
+Magic states are necessary for achieving universal quantum computation within fault-tolerant schemes~\cite{cit:veitch, cit:mari, cit:gottesman, cit:bravyi, cit:knill, Campbell_2011}.
+Identifying magic as a resource for quantum universality has led to several theories which try to provide a framework for its quantification and manipulation \cite{cit:veitch2, cit:howard, Wang_2019, Seddon_2021}.
 The main question that such a theory attempts to answer is:
 \begin{center}
     \emph{Given two magic states $\rho$ and $\rho'$ is there a free operation that can convert $\rho$ to $\rho'$?}
@@ -58,7 +56,7 @@ The main question that such a theory attempts to answer is:
 
 We are interested in all resource theories of magic $\R = (\F, \O)$ in which free operations cannot generate any amount of resource. 
 Further denote by $\D$ the set of states considered under the theory, that is the union of free and resource states.
-The structure of such theory is described by a partial order \nick{CITE}, hereinafter called a \emph{pre-order}, $\prec_{\R}$ between states.
+The structure of such theory is described by a partial order, hereinafter called a \emph{pre-order}, $\prec_{\R}$ between states.
 We write $\rho' \prec_{\R} \rho$ iff there exists $\E \in \O$ such that $\E(\rho) = \rho'$.
 Naturally, states may be incomparable under the given theory, meaning that there exists no free operation that converts one to the other.
 We further call $\R' = (\F', \O')$ a \emph{subtheory} of $\R$ iff $\F' \subseteq \F$ and $\O' \subseteq \O$. 
@@ -67,25 +65,21 @@ The above notation will be used for general resource theories as well.
 Formally, the no resource generation condition on the theories translates into two assumptions:
 \begin{enumerate}[I]
     \item Free operations send free states into free states, $\E: \F \mapsto \F$, for all $\E \in \O$;
-    \item Resource theory $\R$ is a completely free state preserving theory, in the sense that for any $d$-dimensional ancilla system and all free operations $\E$, $(\id_d \otimes \E ) \sigma \in \F$ whenever $\sigma \in \F$.
+    \item Resource theory $\R$ is a completely free state preserving theory, in the sense that for any $d$--dimensional ancilla system and all free operations $\E$, $(\id_d \otimes \E ) \sigma \in \F$ whenever $\sigma \in \F$.
 \end{enumerate}
 The first assumption simply states that resources cannot be generated for free and is a minimal requirement for a resource theory. 
 An immediate consequence is that if statistical mixing is included in $\O$, then the resource theory is convex.
-Convex resource theories have attracted a lot of attention recently \nick{CITE} and include the magic theories discussed in~\cref{sec:prev}.
-The second assumption implies that resources cannot be generated even when ancillas are allowed \nick{example of T state generation on Bell state by Campbell}.
 
-Monotones are often used \nick{CITE} to address the question of state convertibility, although such approaches are usually generic.
+Monotones are often used to address the question of state convertibility, although such approaches are usually generic.
 
 The monotonicity condition reflects the no resource generating property of free operations, so that monotones respect the pre-order $\prec_\R$ of the theory.
 A monotone of any general resource theory is a projection of the theory onto the non-negative real numbers, collapsing the pre-order of the theory to the total order defined on the real line.
 Our contribution is the introduction of a generalised notion of \emph{resource projection} which maps a general resource theory onto a subtheory which in principle still retains a partial structure (as opposed to the real line).
 Applying this notion on existing magic theories highlights the hidden stochasticity that governs magic state conversions.
-We show that a magic theory can be subdivided into \emph{fragments} \nick{expand}
+We show that a magic theory can be subdivided into \emph{fragments} \nick{FIX AND EXPAND}
 
 \subsection{Previous work}
 \label{sec:prev}
-
-\ddd{[Section needs a lot of fixing]}
 
 The stabiliser theory of magic comprises of the so-called ``stabiliser'' states ($\stab$) and operations ($\so$), while non-stabiliser (resource) states are called magic.
 The stabiliser operations can be expressed in terms of a Stinespring dilation as 
@@ -93,19 +87,19 @@ The stabiliser operations can be expressed in terms of a Stinespring dilation as
     \E(\rho) = \tr_E [U(\rho \otimes \sigma_E)U^\dagger],
 \end{equation} 
 for an ancilla stabiliser state $\sigma_E$. 
-The motivation of the theory stems from the fact that stabiliser operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabiliser states due to their construction \nick{CITE}.
+The motivation of the theory stems from the fact that stabiliser operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabiliser states due to their construction \cite{cit:gottesman, cit:gottesman2, cit:gottesman1998}.
 The Gottesman-Knill theorem however indicates that stabiliser operations need to be supplemented with magic states in order to achieve universality, justifying the term ``magic''.
 
-Generalisations of the stabiliser theory appear in the literature intending to include broader classes of operations \nick{CITE}.
+Generalisations of the stabiliser theory appear in the literature intending to include broader classes of operations.
 The class of stabiliser preserving operations ($\spo$) is defined as the set of $\cptp$ maps that send stabiliser states into stabiliser states~\cite{cit:ahmadi}.
-An important subclass of $\spo$ is the set of completely stabiliser preserving operations ($\cspo$), which intuitively cannot induce ``non-stabiliserness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
+An important subclass of $\spo$ is the set of completely stabiliser preserving operations ($\cspo$)~\cite{cit:seddon}, which intuitively cannot induce ``non-stabiliserness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
 
 Even though non-stabiliserness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
 In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable in~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
-The Wigner distribution of a state in odd prime dimensions is discussed rigorously in~\cref{sec:wigner} and arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{cit:howard2, cit:veitch2}.
+The Wigner distribution of a state in odd prime dimensions, formally defined in~\cref{sec:wigner}, arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{Delfosse_2017, cit:howard2, cit:veitch2}.
 In this framework, the stabiliser states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
 However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabiliser states~\cite{cit:gross}.
-Therefore, stabiliser-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{Wang_2019}, formally defined in~\cref{sec:wigner} for odd prime dimensions.
+Therefore, stabiliser-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{Wang_2019}.
 Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax, \Omax)$, where free states have non-negative Wigner distributions and free operations completely preserve this property.\\ 
 
 \ddd{Things we MUST emphasize:
@@ -150,7 +144,7 @@ where
 \end{align*}
 denotes the phase space point for an $n$--copy system.
 
-The displacement operators form the Heisenberg-Weyl group \nick{CITE} under matrix multiplication modulo phases,
+The displacement operators form the Heisenberg-Weyl group~\cite{Folland_1989, Bengtsson_2006} under matrix multiplication modulo phases,
 \begin{equation}\label{eq:gp}
     {\rm{HW}}_d^n \coloneqq \{ \tau^k D_{\bmx}: k \in \mathbb{Z}_d, \bmx \in \cal{P}_d^n\}.
 \end{equation}
@@ -182,7 +176,7 @@ where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rh
     \W[\bmx]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmx} \rho].
 \end{equation}
 
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$ (see~\cref{app:wigner} for details).  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$--dimensional quasi-probability distribution over $\cal{P}_d$ (see~\cref{app:wigner} for details).  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
 \begin{figure}%
     \centering
     \subfigure[][]{%
@@ -247,12 +241,12 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
     \sn{\rho} \coloneqq \sum\limits_{\bmx: \W[\bmx]{\rho} < 0} \abs{\W[\bmx]{\rho}}.
 \end{equation}
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
-The magic monotone of \emph{max--thauma}~\cref{Wang_2018} has also been introduced more recently for qudits of odd prime dimension.
+The magic monotone of \emph{max--thauma}~\cite{Wang_2018} has also been introduced more recently for qudits of odd prime dimension.
 
 \subsection{Majorisation}
 \label{sec:major}
 
-Majorisation is a collection of powerful tools that has recently found many applications in quantum information theory \nick{CITE}.
+Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
 It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
 
 To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
@@ -263,7 +257,7 @@ Majorisation describes quantum thermodynamics exactly in the absence of quantum 
 The use of majorisation in this setting provides vital intuition for our purposes.
 At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
 Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
-Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states \nick{CITE}.
+Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states~\cite{cit:lostaglio}.
 Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
 
 Based on this setting, we define $\bmd$--majorisation as follows.
@@ -271,7 +265,7 @@ Based on this setting, we define $\bmd$--majorisation as follows.
     Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$--majorise $\bmx$, iff there exists a $\bmd$--stochastic matrix $S$ such that $\bmx = S\bmy$.
 \end{definition}
 We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$-dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory. \nick{CITE}
+If $\bmd = \frac{1}{d}\bm{1}$, the $d$--dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory~\cite{Nielsen_1999}.
 
 The pre-order imposed by $\bmd$--majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
 Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
@@ -323,7 +317,7 @@ For technical simplicity in what follows we assume that $\F$ is a closed set, an
 
 
 Given this context we now define the following key notion, that is central to our analysis.
-\begin{definition}[\textbf{$\boldsymbol\sigma$-fragment}]\label{def:sigmafrag}
+\begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
    Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the resource theory $\R_\sigma = (\F_\sigma, \O_\sigma)$, where $\F_\sigma = \{\sigma\}$ and the free operations are restricted to the ones that leave $\sigma$ invariant,
     \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
@@ -346,11 +340,11 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
     Then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. 
     
     Conversely, suppose $\E$ is in $\O$. 
-    The free states are a closed set that is mapped one-to-one to a closed subset $\cal{S}$ of the $(d^2 - 1)$-dimensional probability simplex.
+    The free states are a closed set that is mapped one-to-one to a closed subset $\cal{S}$ of the $(d^2 - 1)$--dimensional probability simplex.
     $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
     Therefore, $\cal{S}$ is convex and compact as a closed convex subset of the bounded compact probability simplex.
     
-    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem \nick{CITE} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \cal{P}_d$ that is a fixed point of $\W{\E}$.
+    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem~\cite{cit:brouwer} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \cal{P}_d$ that is a fixed point of $\W{\E}$.
     This corresponds to a free state $\sigma \coloneqq \sum_{\bmz \in \cal{P}_d} d_{\bmz} A_{\bmz} \in \F$. 
     Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. 
     
@@ -361,7 +355,7 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
         \includegraphics[scale=0.3
         ]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ intro $\sigma$--fragments.} 
-	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations denoted by the two yellow regions, with every other established magic theory  between them.
+	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) involve operations denoted by the two yellow regions, with other established magic theories  between them.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
     Each $\O_\sigma$ is extensible to a set of stochastic maps outside the $\cptp$ operations.
     Within each $\sigma$--fragment $\bmd$--majorisation can be used allowing for tractable approach towards the study of magic state interconversion.
@@ -394,10 +388,10 @@ Without loss of generality we can always write a quantum state $\sigma$ as a the
 We can also view the set of free operations $\O_\sigma$ as a counterpart of thermal operations, in the sense that any operation $\E$ in $\O_\sigma$ preserves state $\sigma$. 
 
 It is then apparent that the pre-order $\prec_{\R_\sigma}$ between the operations in the $\sigma$--fragment follows the rules of $\bmd$--majorisation as outlined in~\cref{sec:major}.
-In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$-dimensional states corresponds to the majorisation pre-order $\prec_{\W{\sigma}}$ between their $d^2$-dimensional Wigner distributions.
+In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$--dimensional states corresponds to the majorisation pre-order $\prec_{\W{\sigma}}$ between their $d^2$--dimensional Wigner distributions.
 For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
 
-Note that the Wigner components of an $n$-copy state $\rho^{\otimes n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
+Note that the Wigner components of an $n$--copy state $\rho^{\otimes n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
 \begin{equation}
 	\W{\rho^{\otimes n}} = \W{\rho}^{\otimes n},
 \end{equation}
@@ -406,11 +400,11 @@ We may use the vector notation $\bmw(\rho) = (w(\rho)_i)_{i=1,\dots,d^2}$ for th
 \begin{equation}
 	\W{\rho} \otimes \W{\rho} = (w(\rho)_i w(\rho)_j)_{i,j=1,\dots,d^2}.
 \end{equation}
-The correspondence between the phase space and pure vector representations of the Wigner distribuition is discussed more in~\cref{app:cmpairs}.
-\nick{In the rest of the paper we will be using the two notations interchangeably.}
+The correspondence between the phase space and pure vector representations of the Wigner distribution is discussed more in~\cref{app:cmpairs}.
+The vector notation will be useful in the proof of our main result,~\cref{thm:stab_bounds}
 
 Furthermore, we restrict our analysis to $\sigma$--fragments, where $\sigma$ is full-rank.
-This is justified as majorisation is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$-close. \nick{CHECK}
+This is justified as majorisation is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$--close. \nick{CHECK}
 Therefore, majorisation analysis is robust under imperfections in the experimental implementation of quantum operations.
 
 In particular, we can always use common noise effects to approximate any $\sigma$--fragment where $\sigma$ is not full-rank by the $\sigma'$--fragment where $\sigma'$ is a noisy approximation of $\sigma$. 
@@ -435,7 +429,7 @@ Therefore, majorisation constraints can be used to place upper bounds on magic s
 We discuss distillation upper bounds in detail in~\cref{sec:unital,sec:stab}
 
 This approach can also provide \emph{lower bounds} on distillation, however now more structure about the specific free operations must be included. 
-We briefly discuss distillation lower bounds in~\nick{REF}.
+We briefly discuss distillation lower bounds in~\cref{sec:lower_bounds}.
 
 \nick{Mention relative majorisation as a possibility}
 
@@ -556,7 +550,7 @@ This is clear because for any state conversion like~\cref{eq:sigma_conv}, the Lo
 It cannot be directly expressed in terms of mana, as it depends on positive Wigner components as well.
 
 In~\cref{sec:unital,sec:stab}, we study majorisation constraints on magic distillation arising in different fragments. 
-For this reason, we define the $n$-copy, $\epsilon$-noisy Strange state,
+For this reason, we define the $n$--copy, $\epsilon$--noisy Strange state,
 \begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
 \end{equation}
@@ -569,7 +563,7 @@ In our case the error rate of the state in~\cref{eq:noisysn} would be $\delta = 
 At $\epsilon=0$, the Strange state is a qutrit magic state of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as an ideal distillation target, analogous to a Bell state in bipartite entanglement theory.
 The Strange state is exceptionally symmetric under Clifford transformations and as a result there exists a \emph{twirling} protocol, discussed in detail in~\cite{cit:prakash,cit:prakash2}, allowing for the conversion of any noisy magic state to the form of~\cref{eq:noisysn} via Cliffords.
 
-In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{Hereinafter, we may drop parameters $\epsilon$ and $n$ for clarity} of pure and noisy $n$-copy Strange states in some thermal $\sigma$--fragment.
+In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{Hereinafter, we may omit obvious variable dependencies like $\epsilon$ and $n$ for clarity} of pure and noisy $n$--copy Strange states in some thermal $\sigma$--fragment.
 Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$.
 \begin{figure}
     \centering
@@ -585,7 +579,7 @@ Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{
 
 The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
 
-MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)\nick{CITE}, depicted in~\cref{fig:zoo}.
+MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)~\cite{cit:bravyi}, depicted in~\cref{fig:zoo}.
 Operations in $\rcu$ can be expressed as
 \begin{equation}
     \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cal{C}_d.
@@ -613,7 +607,7 @@ The full details for the construction of all Lorenz curve forms are provided in~
 
 Here we focus on the comparison of the first elbow (which lies in the LHS part) of Lorenz curves with even copies $n, n'$ and low noise levels ($\epsilon' < \epsilon \leq 3/7$).
 
-The Wigner distribution of the 1-copy, $\epsilon$-noisy Strange state can be written as 
+The Wigner distribution of the 1-copy, $\epsilon$--noisy Strange state can be written as 
 \begin{equation}
 	\W[\bmx]{\rho_{\rm{S}}(\epsilon)} = (1-\epsilon)\W[\bmx]{\ketbra{\rm{S}}} + \epsilon\W[\bmx]{\frac{1}{3}\id},
 \end{equation}
@@ -627,15 +621,13 @@ at the 8 phase space points $\bmx \in \cal{P}_3 \setminus \{\bmo\}$ and a negati
 \end{equation}
 at the origin $\bmx = \bmo$.
 
-For the sake of clarity, we may omit obvious variable dependencies in the following analysis.
-
 The rescaled distribution in the unital fragment simply is 
 \begin{equation}
 	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\frac{1}{3}\id}(\bmx) = \frac{\W[\bmx]{\rho_{\rm{S}}}}{\W[\bmx]{\frac{1}{3}\id}} = d\W[\bmx]{\rho_{\rm{S}}},
 \end{equation}
 so ordering the rescaled distribution is equivalent to ordering $\W{\rho_{\rm{S}}}$.
 
-The component values and multiplicities ($m_i$) in the $n$-copy case are 
+The component values and multiplicities ($m_i$) in the $n$--copy case are 
 \begin{align}
 	m_i &= 8^{2i}\binom{n}{2i}, \\
 	w(\rho_{\rm{S}})_i &= u^{2i}(-v)^{n-2i}, \\
@@ -811,9 +803,9 @@ The component values and multiplicities of the relevant distributions in the fou
 	\bmw(\rho_{\rm{S}} | \gamma) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
 \end{align}
 
-Using this notation, the component values and multiplicities of the $n$-copy distributions can be readily provided by~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}.
+Using this notation, the component values and multiplicities of the $n$--copy distributions can be readily provided by~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}.
 They are parametrised by three independent components $i,j,k$, with sum $\alpha \coloneqq i+j+k \leq n$.
-The $n$-copy multiplicity is given by
+The $n$--copy multiplicity is given by
 \begin{equation}
 	m_{ijk} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k,
 \end{equation}
@@ -824,7 +816,7 @@ while the distribution values that correspond to the same index triplet $(i,j,k)
 	w(\rho_{\rm{S}} | \gamma)_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )}.
 \end{align}
 
-In order to construct the $n$-copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\gamma}$ we need to sort the components of the $n$-copy rescaled distribution, $w(\rho_{\rm{S}} | \gamma)_{ijk}$ in decreasing order.
+In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\gamma}$ we need to sort the components of the $n$--copy rescaled distribution, $w(\rho_{\rm{S}} | \gamma)_{ijk}$ in decreasing order.
 In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the maximum rescaled component,
 \begin{align}
 	&\bmw(\rho_{\rm{S}} | \gamma)_{\rm{max}} \coloneqq \label{eq:max_slope}\\
@@ -950,7 +942,7 @@ In this section we briefly generalise this concept to arbitrary resource theorie
 The busy reader more focussed on magic may skip this section.
 
 State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
-In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering \nick{CITE}.
+In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering.
 The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the originaltheory than a measure can.
 
 Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
