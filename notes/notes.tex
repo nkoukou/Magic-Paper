@@ -544,6 +544,70 @@ Adding more copies results in a lower optimal temperature $\beta^{-1}$.
     \label{fig:thermal_distill}
 \end{figure}
 
+\null\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Phi bounds}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.4]{figs/lc_bounds.pdf}
+    \caption{\textbf{Lorenz curves and bounding curves.} 
+    The figure explores the distillation process of a 10-copy $0.25$--noisy Strange state to a 4-copy $0.05$--noisy Strange state in the unital fragment.
+    Clearly, by looking at the Lorenz curves, the distillation process is possible.
+    However the bounding curves, derived in~\cref{lem:bounds_strict}, intersect at the end, suggesting that the process is not necessarily possible.
+    }
+    \label{fig:lc_bounds}
+\end{figure}
+
+The experiment is described by binomial statistics and we define the left tail of the cumulative binomial distribution,
+\begin{equation}\label{eq:phil}
+	\Phi_\ell(m; n, p) \coloneqq \sum\limits_{j=0}^m \binom{n}{j} p^j (1-p)^{n-j},
+\end{equation}
+where $m\in [0,n]$. 
+
+The symmetry between the left tail of a $p$--coin distribution and the right tail of a $(1-p)$--coin distribution dictates that
+\begin{align}\label{eq:phi_reverse}
+	\Phi_\ell(m; n, p) + \Phi_\ell(n-m-1; n, 1-p) &= 1,\ m\in [0,n-1],
+\end{align}
+Entropic bounds on $\Phi_\ell$~\cite{cit:ash}.
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi_\ell(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\nick{cite proof}
+\end{proof}
+Loose bounds follow
+\begin{lemma}\label{lem:bounds_loose}
+	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_{\pm}(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_{\pm}(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{3. } \Phi_{\pm}(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\nick{paste proof}
+\end{proof}
+
+We can therefore use~\cref{lem:bounds_loose,lem:bounds_strict} to bound the standard Lorenz curves.
+
+\null\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Area monotone}\label{app:areamono}
 
 \nick{I don't believe in the area monotone - should we keep?}
@@ -601,6 +665,9 @@ L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'}
 L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
 \end{align}
 where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+
+\null\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Stabilizer proof details}
 
