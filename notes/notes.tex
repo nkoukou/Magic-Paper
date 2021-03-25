@@ -288,7 +288,7 @@ For the case $d=5$ we also have a particularly simple group structure, where now
 \label{sec:frag}
 
 So far we have introduced the notion of $\sigma$--fragments for any resource theory of magic. 
-In this section we pause to generalise this concept to an arbitrary resource theory and explain precisely how it connects with resource monotones. 
+In this section we briefly generalise this concept to arbitrary resource theories and explain precisely how it connects with resource monotones. 
 The busy reader more focussed on magic may skip this section.
 
 State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
@@ -543,6 +543,66 @@ Adding more copies results in a lower optimal temperature $\beta^{-1}$.
     }
     \label{fig:thermal_distill}
 \end{figure}
+
+\section{Area monotone}\label{app:areamono}
+
+\nick{I don't believe in the area monotone - should we keep?}
+
+\begin{figure}[h]%
+    \centering
+    \subfigure[][]{%
+    \label{fig:test1}%
+    \includegraphics[height=3cm]{figs/negmasking_rho_strange_lc.pdf}
+    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
+    }\hspace{8pt}%
+    \subfigure[][]{%
+    \label{fig:test2}%
+    \includegraphics[height=3cm]{figs/negmasking_rho_strange_meas.pdf}
+    %\caption{Zero state $\ketbra{0}{0}$}%
+    }
+    \caption{\subref{fig:test1} Lorenz curve of $p\ketbra{\rm{S}} + (1-p) \frac{1}{d}\id$ for $p$ given in the legend.\subref{fig:test2} Different measures for the states on the left. \\
+    \nick{can replace~\cref{fig:lctoy} with a more informative version of this figure}
+    }%
+    \label{fig:test}
+\end{figure}
+
+Let $L_{>1}$ be the set of points on the Lorenz curve $\lc{\rho}{\sigma}(k)$ that lie above $1$ of state $\rho$ in the $\sigma$--fragment. 
+If $\rho$ is a free state, $L_{>1}$ is empty and $\A_\sigma(\rho) = 0$. 
+Otherwise, $\A_\sigma(\rho) > 0$ and it can be calculated exactly using the trapezium rule or the shoelace formula. 
+Let $k$ be the index of the first point $\left(x_k, \lc{\rho}{\sigma}(k)\right)$ lying above $1$. 
+Then $L_\rho(k)$ crosses $1$ at
+\begin{equation}
+	x_{\rm{int}} = x_k - \frac{x_k - x_{k-1}}{\lc{\rho}{\sigma}(k) - \lc{\rho}{\sigma}(k-1)}\lc{\rho}{\sigma}(k),\vspace{10pt}
+\end{equation}
+as well as at $\left(x_d, \lc{\rho}{\sigma}(d)\right) = (1,1)$
+
+Now we can define
+\begin{equation}
+L_{>1}^+ = \{ (x_i, y_i) \}_{0 \leq i \leq n}
+\end{equation}
+such that it contains the initial point of intersection $(x_0, y_0) \equiv (x_{n+1}, y_{n+1}) \coloneqq (x_{\rm{int}}, 1)$, all points $(x_i, y_i)$, labelled by $i=1,\dots,n-1$ that lie above $y=1$ contained in $L_{>1}$ and finally the second point of intersection $(x_n, y_n) = (1,1)$.
+Then, 
+\begin{equation}
+	\A_\sigma(\rho) = \frac{1}{2} \sum\limits_{i=0}^n (x_{i+1} y_i - x_i y_{i+1}).
+\end{equation}
+
+We note that single-copy Lorenz curves are additive in noise, 
+\begin{equation}
+	\lc{(1-\epsilon)\rho + \epsilon\sigma}{\sigma} = (1-\epsilon)\lc{\rho}{\sigma} + \epsilon\lc{\sigma}{\sigma},
+\end{equation}
+for any $\sigma, \rho$.
+This is not true for higher number of copies.
+
+\nick{In particular}, it can be used in the discussion of standard Lorenz curves to set the necessary constraints,
+\begin{align}
+L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right) &\geq L\left(x_{I'(0, m'_{0}, 9^{n-n'})}\right), \nonumber\\
+L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right) &\geq L\left(x_{I'(1, m'_{1}, 9^{n-n'})}\right), \nonumber\\
+&\vdotswithin{=} \nonumber\\
+L\left(x_{I'(n', m'_{r}, 9^{n-n'})}\right) &\geq L\left(x_{I'(n', m'_{n'}, 9^{n-n'})}\right), \nonumber
+\end{align}
+where $x_{I'(0, m'_{0}, 9^{n - n'})}, x_{I'(1, m'_{1}, 9^{n - n'})}, \dots, x_{I'(n', m'_{n'}, 9^{n - n'})} \in T$ are the locations of the elbows of $\lc{\rho_{\rm{S}}(\epsilon')^{\otimes n'}}{\frac{1}{d}\id}$ (excluding $0$ and $1$).
+
+\section{Stabilizer proof details}
 
 Whether we are dealing with $\rm{(C1)}$ or $\rm{(C2)}$ depends on the physical parameters $\beta$ and $\epsilon$ as follows:
 \begin{itemize}
