@@ -1,47 +1,37 @@
 \renewcommand{\cal}[1]{\mathcal{#1}}
 
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\id}{\mathbbm{1}}
-\newcommand{\idc}{1_{\rm{C}}}
-\newcommand{\supf}{\mathfrak{c}}
-\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
-\newcommand{\ent}[2]{S\left( #1 \middle\vert\middle\vert #2 \right)}
-\newcommand{\ents}{{\ent{\frac{m}{n}}{p}}}
-\renewcommand{\tr}{{\rm{tr}}}
-\renewcommand{\det}{{\rm{det}}}
-
-
+\newcommand{\floor}[1]{
+	\left\lfloor #1 \right\rfloor
+}
+\newcommand{\ent}[2]{
+	S\left( #1 \middle\vert\middle\vert #2 \right)
+}
 \newcommand{\spanv}[1]{
-    {{\rm{span}}\left\{#1\right\}}
+	{{\rm{span}}\{#1\}}
 }
 \newcommand{\conv}[1]{
-    {{\rm{conv}}#1}
+	{{\rm{conv}}#1}
 }
 \newcommand{\orb}[1]{
-    {{\rm{orb}}(#1)}
+	{{\rm{orb}}(#1)}
 }
 \newcommand{\sn}[1]{
-    {{\rm{sn}}\left(#1\right)}
+	{{\rm{sn}}(#1)}
 }
 \newcommand{\mana}[1]{
-    {{\rm{mana}}\left(#1\right)}
+	{{\rm{mana}}(#1)}
 }
 \newcommand{\lc}[2]{
-	{{\rm{L}}_{#1|#2}}
+	{L_{#1|#2}}
 }
 
-\newcommand{\bmx}{\bm{x}}
-\newcommand{\bmy}{\bm{y}}
-\newcommand{\bmz}{\bm{z}}
-\newcommand{\bmu}{\bm{u}}
-\newcommand{\bmo}{\bm{0}}
-\newcommand{\bmd}{\bm{d}}
-\newcommand{\bma}{\bm{a}}
-\newcommand{\bmw}{\bm{w}}
-\newcommand{\bmm}{\bm{m}}
-\newcommand{\bmk}{\bm{k}}
-\newcommand{\bmq}{\bm{q}}
-\newcommand{\bmg}{\bm{g}}
+\makeatletter
+\def\W{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{ 
+    {W_{#2}(#1)} }
+\def\@without#1{ 
+    {W_{#1}} }
+\makeatother
 
 \newcommand{\spd}[1][]{
     \ifthenelse{\isempty{#1}}{
@@ -58,13 +48,31 @@
     {{\rm{S}}_{d^2}(\W{\sigma})} }{
     {{\rm{S}}_{d^2}(#1)}}
 }
-\makeatletter
-\def\W{\@ifnextchar[{\@with}{\@without}}
-\def\@with[#1]#2{ 
-    {{\rm{W}}_{#2}\left(#1\right)} }
-\def\@without#1{ 
-    {{\rm{W}}_{#1}} }
-\makeatother
+
+\newcommand{\Fmax}{\F_{\rm{max}}}
+\newcommand{\Omax}{\O_{\rm{max}}}
+\newcommand{\Rmax}{\R_{\rm{max}}}
+\newcommand{\Pis}{\Pi_{\rm{s}}}
+\newcommand{\Pio}{\Pi_{\rm{o}}}
+
+\renewcommand{\tr}{{\rm{tr}}}
+\renewcommand{\det}{{\rm{det}}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\id}{\mathbbm{1}}
+\newcommand{\idc}{1_{\rm{C}}}
+
+\newcommand{\bmx}{\bm{x}}
+\newcommand{\bmy}{\bm{y}}
+\newcommand{\bmz}{\bm{z}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmo}{\bm{0}}
+\newcommand{\bmd}{\bm{d}}
+\newcommand{\bma}{\bm{a}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmm}{\bm{m}}
+\newcommand{\bmk}{\bm{k}}
+\newcommand{\bmq}{\bm{q}}
+\newcommand{\bmg}{\bm{g}}
 
 \newcommand{\T}{\cal{T}}
 \newcommand{\Z}{\cal{Z}}
@@ -77,19 +85,13 @@
 \newcommand{\F}{\cal{F}}
 \renewcommand{\O}{\cal{O}}
 
-\newcommand{\Fmax}{\F_{\rm{max}}}
-\newcommand{\Omax}{\O_{\rm{max}}}
-\newcommand{\Rmax}{\R_{\rm{max}}}
-\newcommand{\Pis}{\Pi_{\rm{s}}}
-\newcommand{\Pio}{\Pi_{\rm{o}}}
-
-\newcommand{\cptp}{{\rm{CPTP}}}
 \newcommand{\cpos}{{\rm{CP}}}
+\newcommand{\cptp}{{\rm{CPTP}}}
+\newcommand{\tho}{{\rm{TO}}}
 \newcommand{\so}{{\rm{SO}}}
 \newcommand{\stab}{{\rm{STAB}}}
 \newcommand{\spo}{{\rm{SPO}}}
 \newcommand{\cspo}{{\rm{CSPO}}}
-\newcommand{\rcu}{{\rm{RCU}}}
-\newcommand{\tho}{{\rm{TO}}}
 \newcommand{\cpwp}{{\rm{CPWPO}}}
+\newcommand{\rcu}{{\rm{RCU}}}
 \newcommand{\ru}{{\rm{RU}}}

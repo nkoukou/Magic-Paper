@@ -1,7 +1,21 @@
 \section{Properties of Wigner distributions}
 \label{app:wigner}
 
-Here we present important properties of the Wigner distribution that are used throughout the paper.
+Here we present important properties of the phase-point operators and the Wigner distribution that are used throughout the paper.
+
+\begin{proposition}\label{thm:aproperties}
+    For any dimension $d$, the phase-point operators satisfy:
+    \begin{enumerate}
+        \item[(i)]\label{en:a1} Hermiticity and unitarity: $A_{\bmx}^\dagger = A_{\bmx} = A_{\bmx}^{-1}$;
+	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(x, p)}^T = A_{(x, p)}$;
+	    \item[(iii)]\label{en:a3} Unit trace for odd $d$: $\tr[A_{\bmx}] = 1$;
+	    \item[(iv)]\label{en:a4} Completeness relation: $\sum_{\bmz \in \cal{P}_d} A_{\bmz} = d\id$;
+	    \item[(i)]\label{en:a5} Orthogonality: $\tr[A_{\bmx}^\dagger A_{\bm{x'}}] = d \delta_{\bmx,\bm{x'}}$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	All properties follow from the definition in~\cref{eq:ax} along with properties of the displacement operator $D_{\bmx}$ and can be found in the literature, e.g.~\cite{cit:veitch,Vourdas_2004,cit:gross3}
+\end{proof}
 
 \begin{proposition}\label{thm:wstate}
   The Wigner distribution of a state $\rho \in \cal{B}(\cal{H}_d)$ is
@@ -18,13 +32,13 @@ Here we present important properties of the Wigner distribution that are used th
 \begin{proof}
 	Proof of all properties can be found in the literature~\cite{cit:veitch,Vourdas_2004,cit:gross3,Wang_2019} except for property (iii) which we prove here.
 	
-	Let $\{\lambda_i\}_{i \in \mathbb{Z}_d}$ be the (non-negative) eigenvalues of $\rho$, summing to 1.
-        Let $\{\alpha_{\bmx,i}\}_{i \in \mathbb{Z}_d}$ be the eigenvalues of $A_{\bmx}$. For any $\bmx, \alpha_{\bmx,i} \in \{-1, 1\}$, due to the hermiticity and unitarity of the phase-point operators. 
-        Then,
-        \begin{equation}
-        \abs{\W{\rho}{\bmx}} = \frac{1}{d}\abs{\tr[A_{\bmx} \rho]} \leq \frac{1}{d} \abs{\sum_i \alpha_{\bmx,i} \lambda_i} \leq \frac{1}{d}\sum_i \lambda_i = \frac{1}{d}.
-        \end{equation}
-        The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for complex matrices, while the second is the triangle inequality.
+Let $\{\lambda_i\}_{i \in \mathbb{Z}_d}$ be the (non-negative) eigenvalues of $\rho$, summing to 1.
+Let $\{\alpha_{\bmx,i}\}_{i \in \mathbb{Z}_d}$ be the eigenvalues of $A_{\bmx}$. For any $\bmx, \alpha_{\bmx,i} \in \{-1, 1\}$, due to the hermiticity and unitarity of the phase-point operators. 
+Then,
+\begin{align}
+	\abs{\W{\rho}{\bmx}} &= \frac{1}{d}\abs{\tr[A_{\bmx} \rho]} \leq \frac{1}{d} \abs{\sum_i \alpha_{\bmx,i} \lambda_i} \nonumber\\ &\leq \frac{1}{d}\sum_i \lambda_i = \frac{1}{d}.
+\end{align}
+The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace of complex matrices, while the second is the triangle inequality.
 \end{proof}
 
 \begin{proposition}
