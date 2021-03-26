@@ -19,7 +19,7 @@ reprint
 % Sec: Intro
 % Sec: Abstract
 % Figs consistency (esp. figs 3,4,5,6 and 1,7) + Figure 0 ?
-% Spacing (fig positioning, sections, paragraphs)
+% Spacing (fig positioning, sections, paragraphs, QED symbols)
 
 \begin{abstract}
 \ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
@@ -573,7 +573,7 @@ Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{
 \begin{figure}
     \centering
     \includegraphics[height=5cm]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distribution. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
     }
     \label{fig:lcs}
 \end{figure}
@@ -706,7 +706,7 @@ In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and 
 Finally, we assume a range of initial noise levels, $\epsilon \leq 3/7$, so that the largest Wigner component of the 1-copy noisy magic state is negative.
 The numerical value of $3/7$ is higher than corresponding values of relevant existing distillation protocol error thresholds~\cite{cit:bravyi,cit:prakash}.
 
-Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in~\cref{eq:stdist}.
+Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in~\cref{eq:stdist}. \nick{I think we should denote distillation rates by $R$ and our distillation bound by $R(\epsilon, \epsilon', \beta)$, since the bound is what really depends on $\epsilon, \epsilon', \beta$.}
 We also write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$.
 The bounds depend on the free energy $F_\beta$ of state $\sigma$,
 \begin{equation}
@@ -776,7 +776,7 @@ For this reason, we impose no order between the eigenvalues, but simply choose $
 
 The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble average of the distributions of the computational basis states,
 \begin{align}
-	\W[\bmx]{\gamma_\beta} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}\W[\bmx]{\ketbra{k}} \\
+	\W[\bmx]{\gamma_\beta} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}\W[\bmx]{\ketbra{k}} \nonumber\\
 	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{3\Z_\beta},
 \end{align}
 for all $\bmx \in \cal{P}_3$. 
@@ -823,8 +823,8 @@ while the distribution values that correspond to the same index triplet $(i,j,k)
 In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\gamma}$ we need to sort the components of the $n$--copy rescaled distribution, $w(\rho_{\rm{S}} | \gamma)_{ijk}$ in decreasing order.
 In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the maximum rescaled component,
 \begin{align}
-	&\bmw(\rho_{\rm{S}} | \gamma)_{\rm{max}} \coloneqq \label{eq:max_slope}\\
-	&(3\Z)^{n} \max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \nonumber
+	&\bmw(\rho_{\rm{S}} | \gamma)_{\rm{max}} \coloneqq (3\Z)^{n}\times \nonumber\\
+	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
 \end{align}
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
 Notice that for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. 
@@ -859,13 +859,13 @@ For $\beta > \beta_\star$, we have
 so there is no transition and we set $\epsilon_\star = 0$.
 
 The maximum rescaled component can then be expressed as
-\begin{equation*}
+\begin{equation}
 \bmw(\rho_{\rm{S}} | \gamma)_{\rm{max}} =
 	\begin{cases}
-		(3\Z)^{n} v^n e^{n\beta E_0}, &\epsilon \leq \epsilon_{\star},\ \hspace{30pt}\rm{(C1)}	\\
-		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\star}.\ \hspace{32pt}\rm{(C2)} 
+		(3\Z)^{n} v^n e^{n\beta E_0}, &\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}	\\
+		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
 	\end{cases}
-\end{equation*}
+\end{equation}
 Case $\rm{(C1)}$ corresponds to $(i,j,k) = (0,0,0)$, so the multiplicity is $m_{000} = 1$ and the corresponding Wigner components are $\bmw(\rho_{\rm{S}})_{000}, \bmw(\gamma)_{000}$. 
 Case $\rm{(C2)}$ corresponds to
 \begin{equation}
@@ -945,9 +945,9 @@ So far we have introduced the notion of $\sigma$--fragments for any resource the
 In this section we briefly generalise this concept to arbitrary resource theories and explain precisely how it connects with resource monotones. 
 The busy reader more focussed on magic may skip this section.
 
-State convertibility within a given resource theory is often a hard question to address due to the intricate structure of the theory.
+State convertibility within a given resource theory is often a hard question to address due to intricacies of the theory structure.
 In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering.
-The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the originaltheory than a measure can.
+The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the original theory than a measure can.
 
 Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
 Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
@@ -970,7 +970,7 @@ Resource monotones can now be clearly seen as a special case of covariant resour
 \end{proposition}
 \begin{proof}
 	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	State order is covariantly preserved due to the defining property of a monotone, stated in~\cref{def:mono}, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
+	State order is covariantly preserved due to the defining property of a monotone, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
 	
 	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
 	The definition of a resource monotone then automatically implies covariance.
