@@ -119,7 +119,7 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 \section{Phase space representations of quantum states}
 \label{sec:ps}
 
-Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space \ddd{[CITE the review on quasi-reps]}\nick{which one?}. This construction is a discrete version of Wigner representations in quantum optics.
+Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space \ddd{[CITE the review on quasi-reps-- I think Chris Ferrie has one that is good.]}\nick{which one?}. This construction is a discrete version of Wigner representations in quantum optics.
 
 Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\{ |0\>, |1\>, \dots , |d-1\>\}$ denote the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$. On this space, generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators, acting on the basis states as follows,
 \begin{align}
@@ -176,20 +176,6 @@ where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rh
 
 For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$ (see~\cref{app:wigner} for details). More precisely, $W_\rho(\x)$ is a real-valued function on $\P_d$ with the property that $\sum_{\x} W_\rho(\bmx) = 1$.  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
 
-We may also exploit the channel-state duality and use the normalised Choi-Jamio\l{}kowski state 
-\begin{equation}\label{eq:cj}
-  \J(\E) \coloneqq \frac{1}{d_A}(\id \otimes \E) \sum_{i,j} \ket{ii}\bra{jj}
-\end{equation}
-to extend the definition of the Wigner distribution to a quantum channel $\E: \B(\H_A) \rightarrow \B(\H_B)$, via the expression
-\begin{align}\label{eq:woperation}
-    \W[\bmy|\bmx]{\E} 
-    &\coloneqq d_A^2 \W[\bm{\bar x} \oplus \bmy]{\J(\E)} \nonumber\\
-    &= \frac{1}{d_B} \tr_B[A_{\bmy} \E(A_{\bmx})],
-\end{align}
-where $\bm{\bar x} = (x_1, -p_1, \dots, x_n, -p_n)$ is $\bmx$ with momentum coordinates negated.
-
-The specific form of~\cref{eq:woperation} is chosen so that Wigner distributions of channels act as transition matrices for Wigner distributions of states, $\W{\E(\rho)} = \W{\E}\W{\rho}$.
-In particular, $\cptp$ channels that map between density operators of equal dimensions and have non-negative Wigner distributions correspond to stochastic matrices, as shown in~\cref{app:wigner}
 
 \begin{figure}%
     \centering
@@ -223,7 +209,7 @@ In particular, $\cptp$ channels that map between density operators of equal dime
 \subsection{Magic theories for quantum computation}
 \label{sec:mono}
 
-\nick{There are repetitions with text in introduction, this sections looks more introduction-like I think ?}
+\nick{There are repetitions with text in introduction, this sections looks more introduction-like I think ?}\ddd{We'll organise things later - better to get key chunks down first.}
 
 The state-injection model for quantum computation~\cite{cit:bravyi} is a key avenue to realising a full-scale, fault-tolerant quantum computer. Within this approach, Clifford unitaries can be done in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, it is impossible to have a universal set of transversal gates and so while Clifford unitaries can be realised transversally one must find ways around the Eastin-Knill restriction. The state-injection approach supplements the Clifford gates with noisy quantum states, called `magic states', that are outside the set of stabliser states and, when incorporated into Clifford circuits, provide universality. The obstacle to this is that the states are invariably noisy and so protocols must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question is then: given a number $n$ of noisy magic states how many purified magic states can we obtain within the fault-tolerant set of quantum operations?
 
@@ -242,67 +228,60 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-A range of other monotones have been developed in the literature\cite{cit:howard, Wang_2020, Seddon_2021} \nick{actually there aren't that many} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
+A range of monotones have been developed in the literature\cite{cit:howard, Wang_2020, Seddon_2021} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Stochastic structure of magic theories}
+\subsection{Stochastic structure of magic theories}
 \label{sec:struc}
 
-\subsection{Magic fragments}\label{sec:magfrag}
-
-Equipped with the definitions of the Wigner distribution in odd prime dimensions, we can formally recast the maximal magic theory $\Rmax$ into a stochasticity setting.
-The free states correspond to proper probability distributions 
+Within the Wigner representation all negatively represented states are magic states, although in general the converse is not true. However, it is known that all positively represented states used in Clifford circuits admit an efficient classical description, and therefore it is natural to consider focus on describing those negatively represented magic states. The free states in any magic theory therefore lie in the set
 \begin{equation}
-    \Fmax \coloneqq \{ \rho: \W[\bmx]{\rho} \geq 0 \text{ for all } \bmx \in \cal{P}_d\}
+    \Fmax \coloneqq \{ \rho: \W[\bmx]{\rho} \geq 0 \text{ for all } \bmx \in \cal{P}_d\}.
 \end{equation}
+Our focus is on states with negativity, and so the particular choice of free states is not so important for our analysis. The remaining component that needs addressing is the set of quantum operations that is considered free, or easy. Stabilizer operations are the most natural set of operations as they admit a classically efficient description for uniform quantum circuits. However, other choices of operations have been considered in the literature \ddd{[CITE]}. Common to these theories is that free $\E$  is such that $id \otimes \E (\rho)$ has a positive Wigner distribution whenever $ \rho$ has a positive Wigner distribution. Therefore the condition that $\E$ does not generate Wigner negativity is an essential requirement of any magic theory.
 
-The free operations should send the set of free states $\Fmax$ into itself and completely preserve the non-negativity of the states, in the sense that $\E \in \Omax$ iff $(\id_d \otimes \E ) \sigma \in \stab$ for all odd prime dimensions $d$ whenever $\sigma \in \Fmax$.
-It is shown by Wang \textit{et al.}~\cite{Wang_2019} that $\Omax$ coincides with the set of operations $\E$ with stochastic Wigner distributions, 
+
+Any quantum channel admits a Wigner representation, in terms of the phase space operators defined earlier. If $\E$ is some quantum channel from a quantum system $A$ to a quantum system $B$, and $\J(\E)$ is its associated Choi state then we can define
 \begin{equation}
-    \Omax = \{ \E: \W[\bmy|\bmx]{\E} \geq 0 \text{ for all } \bmx, \bmy \in \cal{P}_d\}.
+W_{\E}(\y |\x) := d_A^2 W_{\J(\E)}(\bar{\x} \oplus \y),
 \end{equation}
+where $\bar{x} =(x_1, -p_1, \dots , x_n, -p_n)$ can be viewed as the time-reversed version of $\x$ in the discrete phase space, where momenta are reflected while coordinates remain unchanged.
 
-Every established magic theory $\R = (\F, \O)$ is a subtheory of $\Rmax$ in the sense that $\F \subseteq \Fmax$ and $\O \subseteq \Omax$, and as such it falls under this new stochasticity setting. 
-For technical simplicity in what follows we assume that $\F$ is a closed set, and note that $\F_{\rm{ max}}$ is itself a closed set, since it is specified by a finite set of linear constraints of the form $\tr[ L\rho] \geq 0$ with operators $L \in \cal{B}(\cal{H})$ ensuring that the state is positive and Wigner-positive.
+With this representation of a quantum channel, we can view $W_{\E}( \y | \x)$ as a transition matrix sending $\x \rightarrow \y$, which is consistent with the representation of quantum states, as
+\begin{equation}
+W_{\E(\rho)} (\y) = \sum_{\x \in \P_d} W_{\E}( \y | \x) W_\rho(\x),
+\end{equation}
+for any $\E$ and $\rho$. Now if $\E$ sends any positively represented quantum state to another positively represented quantum state then it can be shown~\cite{Wang_2019} that $W_{\E}(\y |\x)$ must form a stochastic matrix. In particular, all Clifford operations correspond to stochastic matrices in this Wigner representation. However, it is important to note that not all stochastic maps on the phase space correspond to valid quantum operations. In particular, the stochastic maps must respect the symplectic structure of the phase space and so this provides an additional non-trivial constraint.
+
+In what follows we shall therefore assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ form a closed, convex set with each state represented by a positive Wigner function, while the free operations $\O$ are represented by stochastic maps acting on the discrete phase space.
 
 
-Given this context we now define the following key notion, that is central to our analysis.
+\section{Breaking a magic theory into fragments}
+We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised. \ddd{[find roughly related cites for these?]}
+
+While we will not consider very model-specific limitations, we still want to inject in some physical constraints. We proceed by considering imposing equilibrium, or fixed-point, restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, it could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
 \begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
-   Given a resource theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the resource theory $\R_\sigma = (\F_\sigma, \O_\sigma)$, where $\F_\sigma = \{\sigma\}$ and the free operations are restricted to the ones that leave $\sigma$ invariant,
-    \begin{equation}
-        \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \}.
+   Given a theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
+   \begin{equation}
+        \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \},
     \end{equation}
+namely those operations that leave the state $\sigma \in \F$ invariant.
 \end{definition}
-
-Note that $\F = \bigcup_{\sigma \in \F} \F_\sigma$ trivially.
-With this basic notion defined, we now show that this union holds for free operations as well and therefore that any resource theory of magic can be faithfully subdivided into $\sigma$--fragments, in such a way that any problem of interconversion in the parent magic theory $\R$ can be analysed across the different fragments.
-
+This notion provides a simple way to break up any theory into smaller, more manageable parts that are destinguished by additional physical constraints. Moreover, the union over all fragments returns the parent theory, and so we are not discarding any information about the theory by breaking it up in this way. This can be made precise as follows.
 \begin{theorem}\label{thm:frag}
     Let $\R = (\F, \O)$ be a theory of magic.
-    Every operation in $\O$ leaves at least one free state invariant,
-  \begin{equation}
-\O = \bigcup\limits_{\sigma \in \F} \O_\sigma.
-\end{equation}
-Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightarrow \tau$ in a $\sigma$--fragment of $\R$.
+Then a transformation $\rho \longrightarrow \tau$ is possible in $\R$ if and only if the transformation $\rho \longrightarrow \tau$ is possible in at least one $\sigma$--fragment of $\R$.
 \end{theorem}
+The proof of this is very straightforward.
 \begin{proof}
-    Suppose $\E$ is in a $\sigma$--fragment $\O_\sigma$.
-    Then it is also in $\O$, hence $\bigcup\limits_{\sigma \in \F} \O_\sigma \subseteq \O$. 
-    
-    Conversely, suppose $\E$ is in $\O$. 
-    The free states are a closed set that is mapped one-to-one to a closed subset $\cal{S}$ of the $(d^2 - 1)$--dimensional probability simplex.
-    $\cal{S}$ is convex, since any combination of free states is also free and the Wigner distribution is linear.
-    Therefore, $\cal{S}$ is convex and compact as a closed convex subset of the bounded compact probability simplex.
-    
-    We can now view $\W{\E}$ as a stochastic, continuous mapping from $\cal{S}$ to itself, thus Brouwer's fixed point theorem~\cite{cit:brouwer} implies that there exists a probability distribution $d_{\bmz}$ for some $ \bmz \in \cal{P}_d$ that is a fixed point of $\W{\E}$.
-    This corresponds to a free state $\sigma \coloneqq \sum_{\bmz \in \cal{P}_d} d_{\bmz} A_{\bmz} \in \F$. 
-    Therefore $\E \in \O_\sigma$, and so $\O = \bigcup\limits_{\sigma \in \F} \O_\sigma$. 
-    
-    The state interconversion result follows immediately.
+    Suppose the interconversion is possible in a $\sigma$--fragment via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, convex set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore $\E \in \O_\sigma$ and so the interconversion is possible in this fragment.
 \end{proof}
+
+This implies that we can now consider magic distillation rates within a particular $\sigma$--fragment and then see how the bounds on the distillation rates depend on the particular fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards a pure stabilizer state fixed point provide more freedom?
+
 \begin{figure}[t]
     \centering
         \includegraphics[scale=0.3
@@ -316,29 +295,13 @@ Therefore, $\rho \longrightarrow \tau$ in $\R$ if and only if $\rho \longrightar
     \label{fig:zoo}
 \end{figure}
 
-The zoo of all magic operation classes is summarised in ~\cref{fig:zoo}.
-It is clear from the diagram that free operations are in general mapped onto strict subsets of stochastic maps.
-This statement, along with more technical properties of the $\sigma$--fragment are discussed in~\cref{app:frag}.
-Completely positive-Wigner-preserving operations~\cite{Wang_2019} form the maximal operation class $\Omax$.
-This theory of magic is thus covered by $\sigma$--fragments exactly and every other magic theory is contained within this cover.
-In particular, the stabiliser operations $\so$ are contained within $\Omax$.
+More importantly, by adding in this additional structure to the magic theory, it actually allows us to say more than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
 
-Every  quantum circuit aiming at a given magic state conversion $\rho \longrightarrow \tau$ possesses certain symmetries according to~\cref{thm:frag} that allow us to study the conversion within only certain $\sigma$--fragments that reflect these symmetries.
-As a simple example, the dephasing channel
-\begin{equation}\label{eq:dephase}
-	\Delta(\rho) = \sum_{k \in \mathbb{Z}_d} \ketbra{k}{k}\rho\ketbra{k}{k}
-\end{equation}
-removes coherent phases in the computational basis and therefore leaves exactly all mixtures of computational basis states invariant.
-A noise channel consisting only of such dephasing operations can be fully analysed in the $\sigma$--fragments for the pure computational basis states $\sigma$ as proven in~\cref{app:frag}.
-
-The subdivision of magic theories into $\sigma$--fragments is also powerful because the pre-order $\prec_{\R_\sigma}$ of every $\sigma$--fragment is described by well-behaved majorisation tools, as we establish in the rest of this section.
-
-
-\subsection{Majorisation}
+\subsection{Quantifying disorder without entropies}
 \label{sec:major}
 
 Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
-It describes the \nick{disorder / non-uniformity} of distributions that undergo stochastic transformations.
+It describes the disorder of distributions that undergo stochastic transformations.
 
 To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
 Specifically, for any \emph{$\bmd$--stochastic matrix} $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
@@ -436,8 +399,6 @@ We discuss distillation upper bounds in detail in~\cref{sec:unital,sec:stab}
 This approach can also provide \emph{lower bounds} on distillation, however now more structure about the specific free operations must be included. 
 We briefly discuss distillation lower bounds in~\cref{sec:lower_bounds}.
 
-\nick{Mention relative majorisation as a possibility}
-
 \subsection{Lorenz curves of quasi-probabilities in $\sigma$--fragments}
 \label{sec:lc}
 
@@ -452,16 +413,26 @@ and is called the \emph{rescaled} distribution of $\rho$ with respect to $\sigma
 
 An example of comparison between different Lorenz curves is provided in~\cref{fig:lctoy}.
 The curves in the figure are constructed in the \emph{unital fragment}, i.e. the $\sigma$--fragment defined by the maximally mixed state $\sigma = \frac{1}{d}\id$ whose Wigner distribution is the uniform probability distribution.
+
 \begin{figure}
     \centering
-    \includegraphics[height=5cm]{figs/lctoy.pdf}
+    \includegraphics[height=4.5cm]{figs/lc_strange.pdf}
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
+    }
+    \label{fig:lcs}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[height=4.5cm]{figs/lctoy.pdf}
     \caption{\textbf{Quasi-probability Lorenz curve comparison}.
     The Lorenz curves are constructed by the Wigner distributions illustrated in~\cref{fig:wstate_examples} in the unital fragment $\O_{\id/d}$ for $d=3$.
     The maximally mixed state curve is simply the line connecting $(0,0)$ and $(1,1)$.
-    There is no operation in $\O_{\id/d}$ that can convert $\ket{\rm{S}}$ to $\ket{0}$, as their Lorenz curves intersect.
+    There is no operation in $\O_{\id/d}$ that can convert $\ket{\rm{S}}$ to $\ket{0}$, as their Lorenz curves intersect.\ddd{[Is debatable if this figure gives much...is a bit boring.]}
     }
     \label{fig:lctoy}
 \end{figure}
+
 
 Normalisation of the Wigner distribution ensures that for all quantum states $\rho$, $\lc{\rho}{\sigma}(x) \geq 0$ and $\lc{\rho}{\sigma}(1) = 1$.
 We stress that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
@@ -570,18 +541,11 @@ The Strange state is exceptionally symmetric under Clifford transformations and 
 
 In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{Hereinafter, we may omit obvious variable dependencies like $\epsilon$ and $n$ for clarity} of pure and noisy $n$--copy Strange states in some thermal $\sigma$--fragment.
 Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$.
-\begin{figure}
-    \centering
-    \includegraphics[height=5cm]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
-    }
-    \label{fig:lcs}
-\end{figure}
+
 
 \section{Magic in the unital fragment}
 \label{sec:unital}
-
-The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
+We shall provide a general analysis across multiple fragments, but before we do that it is useful to illustrate the techniques in the simplest fragment first. The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
 
 MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)~\cite{cit:bravyi}, depicted in~\cref{fig:zoo}.
 Operations in $\rcu$ can be expressed as
@@ -680,7 +644,7 @@ Therefore, the max--thauma bound for the pure Strange state distillation process
 Both the mana and the max--thauma bounds are looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}.
 \begin{figure}[t]
     \centering
-    \includegraphics[scale=0.5]{figs/distill_bounds.pdf}
+    \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
     \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by majorisation, mana and the line $1-\epsilon$ (tightest bound of max--thauma) are plotted for $\epsilon' = 0$, up to noise level $\epsilon = 3/7$.
     Majorisation consistently provides stricter rates than mana and max--thauma.
     }
@@ -717,19 +681,19 @@ where the von Neumann entropy is $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$.
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.55]{figs/rate_scatter.pdf}
-    \caption{\textbf{Bounds on magic distillation rates $R(\epsilon, \beta)$ within stabiliser fragments.}
+    \caption{\textbf{Bounds on magic distillation rates $R(\epsilon, \beta)$ within arbitrary stabiliser fragments.}
     The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
     }
     \label{fig:rate_contour}
 \end{figure}
 
 \begin{theorem}\label{thm:stab_bounds}
-	Let $\sigma$ be a qutrit stabiliser state, given by $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an (effective) inverse temperature for the state. 
-We define
+	Let $\sigma$ be any qutrit stabiliser state, and write the state as $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0 \le E_1 \le E_2$, and where $\beta$ is an effective inverse temperature for the state. 
+We define $\beta_\star = (1/kT_\star)$ through the relation
 \begin{equation}
-	\beta_\star \coloneqq \frac{1}{E_2 - E_0} \ln{2}
+	E_2 - E_0 =: kT_\star \ln{2}
 \end{equation}
-and for $\beta \leq \beta_\star$, we define a threshold noise level
+and for $\beta \leq \beta_\star$, and define a threshold noise level
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_2 - E_0)\beta}}.
 \end{equation}
@@ -746,6 +710,7 @@ Otherwise if $\beta > \beta_{\star}$,
 \begin{equation}
 	R(\epsilon, \beta) \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F_\beta)}.
 \end{equation}
+In the above expressions $F_\beta$ is the effective free energy of the stabilizer state.
 \end{theorem}
 A few comments can be given on this result. 
 Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
@@ -764,14 +729,11 @@ Its eigen-decomposition can be written as
 \begin{equation}
 	\sigma = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{\varphi_2},
 \end{equation}
-where $\{\ket{\varphi_k}\}$ are pure, orthonormal stabiliser states. 
-Therefore, there exists a Clifford operation that maps $\sigma$ to $\gamma_\beta$, where 
+where $\{\ket{\varphi_k}\}$ are pure, orthonormal stabiliser states. These pure states can be represented in terms of Generalized Paulis. Let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group this implies that $C$ must be a Clifford unitary. Therefore, $C$ maps $\sigma$ to $\gamma_\beta$, where 
 \begin{equation}
-\gamma_\beta = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{2}.
+\gamma_\beta = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{2},
 \end{equation}
-\nick{Prove this carefully}
-
-This Clifford operation permutes the Hamiltonian eigenvalues on the phase space, so that the negative component $-v$ of $\rho_S(\epsilon)$ can lie on the same point on the phase space as any of the eigenvalues.
+is a stabilizer state, diagonal in the computational basis. The Clifford operation permutes the Hamiltonian eigenvalues on the phase space, so that the negative component $-v$ of $\rho_S(\epsilon)$ can lie on the same point on the phase space as any of the eigenvalues.
 For this reason, we impose no order between the eigenvalues, but simply choose $E_0$ as the eigenvalue that is associated with the state negativity and denote the highest energy by $E_{\rm{max}} \coloneqq \max{\{E_0, E_1, E_2\}}$.
 
 The Wigner distribution of state $\gamma_\beta$ can be seen as the ensemble average of the distributions of the computational basis states,
@@ -792,7 +754,7 @@ We construct the Strange state rescaled distribution
 which attains four distinct values on the phase space, naturally splitting it into four regions as illustrated in the~\cref{fig:pd_split_thermal}.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{figs/pd_split_thermal.pdf}
+    \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
     \caption{\textbf{Qutrit phase space regions with different rescaled values.}
     The rescaled distribution attains a unique value in each of the four regions, given by $3\Z \times$ the value depicted in the region, according to~\cref{eq:bmw_rescaled}.
     }
