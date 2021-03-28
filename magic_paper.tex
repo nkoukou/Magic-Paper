@@ -235,7 +235,7 @@ A range of monotones have been developed in the literature~\cite{cit:howard, Wan
 \subsection{Stochastic structure of magic theories}
 \label{sec:struc}
 
-Within the Wigner representation all negatively represented states are magic states, although in general the converse is not true. However, it is known that all positively represented states used in Clifford circuits admit an efficient classical description, and therefore it is natural to consider focus on describing those negatively represented magic states. The free states in any magic theory therefore lie in the set
+Within the Wigner representation all negatively represented states are magic states, although in general the converse is not true. However, it is known that all positively represented states used in Clifford circuits admit an efficient classical description, and therefore it is natural to consider focus on describing those negatively represented magic states. The free states in any magic theory must therefore lie in the set
 \begin{equation}
     \Fmax \coloneqq \{ \rho: \W[\bmx]{\rho} \geq 0 \text{ for all } \bmx \in \cal{P}_d\}.
 \end{equation}
@@ -298,27 +298,32 @@ More importantly, by introducing this additional structure to a magic theory, it
 \subsection{Quantifying disorder without entropies}
 \label{sec:major}
 
+We can now show that each magic fragment admits constraints that do not take the form of state monotones. The development of any monotone $\M(\rho)$ for a magic theory $\R$ can be viewed abstractly as
+\begin{equation}
+\M : \mbox{(pre-order of states)} \longrightarrow \mbox{(total order of numerical values).} \nonumber
+\end{equation}
+More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. However, in general many states will not be interconvertible in either direction, and so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the number line, and so through this lens any two states are directly comparable in terms of the values of $\M(\rho_1)$ and $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
+
+The restriction of a magic theory $\R$ to some fragment $\R_\sigma$ can now be interpreted as a generalisation of the magic monotone construction: instead of mapping the pre-order of states in $\R$ onto the number line, we instead map this pre-order onto \emph{a simpler pre-order of states.} Therefore, we are retaining more of the original parent theory, while working in a scenario that admits greater structure and simplicity. We can view this as a mapping $\P_\sigma: \R \rightarrow \R_\sigma$ that restricts to a sub-theory (a $\sigma$--fragment) of the parent theory $\R$. Thus,
+\begin{equation}
+\P_\sigma: \mbox{(pre-order)} \longrightarrow \mbox{(simpler pre-order).}
+\end{equation}
+By framing the projection onto a fragment in this light, we can view Theorem \ref{thm:frag} as a statement that the collection $\{\P_\sigma\}$ provides a complete set of generalized monotones for the theory.
+
+The question is now whether the sub-theories can be analysed to provide additional insights into magic distillation protocols. We shall do this by working in the Wigner representation of a given $\sigma$--fragment. The problem of magic state distillation then becomes that of processing negativity under stochastic maps $W_{\E}( \y |\x)$ that leave a particular quasi-distribution $W_\sigma(\x)$ invariant. However $\sigma \in \F$ is is positively represented and so the sub-theory has an invariant classical probability distribution as a fixed point. This structure allows us to make use of a range of classical tools, and in particular majorization theory.
+
 Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
-It describes the disorder of distributions that undergo stochastic transformations.
+It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there is a bistochastic map $A=(A_{ij})$ such that $A\p = \q$. Here, bistochastic means that $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well known result tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, and these conditions are easily checked.
 
-To formally state majorisation results, we first denote by $\stoch$ the set of $(d \times d)$ stochastic matrices that preserve the probability vector $\bmd$.
-Specifically, for any \emph{$\bmd$--stochastic matrix} $S \in \stoch$, all matrix elements are non-negative, all rows sum to $1$ and $S\bmd = \bmd$.
-The set $\stoch$ forms a group under matrix multiplication for any $\bmd$ with positive components.
+However, there is a natural generalisation of this, called \emph{relative majorization} (also known as $d$--majorization, or in the context of thermodynamics, thermo-majorization) that dates back to the 1950s. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ we define majorization relative to $\r$ as follows:
+\begin{equation}
+\p \succ_{\r} \q,
+\end{equation}
+if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. In order words, the relative majorization pre-order coincides with the image of $\p$ under stochastic maps that have $\r$ as a fixed point. It is readily checked that the original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. The pre-order that results from relative majorization is also easily checked and again corresponds to checking a small number of inequalities.
 
-Majorisation describes quantum thermodynamics exactly in the absence of quantum coherence.
-The use of majorisation in this setting provides vital intuition for our purposes.
-At any given temperature $\beta^{-1}$, the thermal state $\gamma_\beta$ is thermodynamically the most disordered state. 
-Thermal operations are defined as operations that cannot extract energy from the Gibbs state, $\E(\gamma_\beta) = \gamma_\beta$.
-Convertibility between states via thermal operations is equivalent to a stochasticity condition on the energy level populations of the states~\cite{cit:lostaglio}.
-Informally, there exists a thermal operation $\E$ such that $\tau = \E(\rho)$ if and only if there exists a matrix $S \in \stoch$ such that $\bm{q} = S\bm{p}$, where $\bm{q}, \bm{p}$ and $\bmd$ and the energy level population vectors of $\tau, \rho, \gamma_\beta$ respectively.
+However, it turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of a given fragment. To our knowledge, this application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over all stochastic maps with a given fixed point, while in the case of the Wigner representation there is an additional restriction that the symplectic structure is respected. This implies that any relative majorization conditions provide necessary, but not sufficient, conditions on magic state interconversions in the fragment. However, this observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall return to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates.
 
-Based on this setting, we define $\bmd$--majorisation as follows.
-\begin{definition}[\textbf{$\boldsymbol\bmd$--majorisation}]\label{def:dmajor}
-    Given $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive, $\bmy$ is said to $\bmd$--majorise $\bmx$, iff there exists a $\bmd$--stochastic matrix $S$ such that $\bmx = S\bmy$.
-\end{definition}
-We denote this pre-order by $\bmx \prec_{\bmd} \bmy$.
-If $\bmd = \frac{1}{d}\bm{1}$, the $d$--dimensional uniform distribution, then $\stoch$ is the set of doubly stochastic matrices and we retrieve the familiar notion of majorisation from entanglement theory~\cite{Nielsen_1999}.
-
+\subsection{The relative majorization conditions on magic interconversion within a fragment}
 The pre-order imposed by $\bmd$--majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
 Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
 \begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
