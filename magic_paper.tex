@@ -119,7 +119,7 @@ Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax,
 \section{Phase space representations of quantum states}
 \label{sec:ps}
 
-Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space \ddd{[CITE the review on quasi-reps-- I think Chris Ferrie has one that is good.]}\nick{which one?}. This construction is a discrete version of Wigner representations in quantum optics.
+Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space~\cite{Ferrie_2008}. This construction is a discrete version of Wigner representations in quantum optics.
 
 Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\{ |0\>, |1\>, \dots , |d-1\>\}$ denote the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$. On this space, generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators, acting on the basis states as follows,
 \begin{align}
@@ -209,8 +209,6 @@ For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily 
 \subsection{Magic theories for quantum computation}
 \label{sec:mono}
 
-\nick{There are repetitions with text in introduction, this sections looks more introduction-like I think ?}\ddd{We'll organise things later - better to get key chunks down first.}
-
 The state-injection model for quantum computation~\cite{cit:bravyi} is a key avenue to realising a full-scale, fault-tolerant quantum computer. Within this approach, Clifford unitaries can be done in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, it is impossible to have a universal set of transversal gates and so while Clifford unitaries can be realised transversally one must find ways around the Eastin-Knill restriction. The state-injection approach supplements the Clifford gates with noisy quantum states, called `magic states', that are outside the set of stabliser states and, when incorporated into Clifford circuits, provide universality. The obstacle to this is that the states are invariably noisy and so protocols must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question is then: given a number $n$ of noisy magic states how many purified magic states can we obtain within the fault-tolerant set of quantum operations?
 
 To address such questions both concrete distillation protocols have been developed, and there has been analysis of bounds of distillation rates within natural theoretical frameworks. These frameworks provide theories of magic in which one views magic states as ``resource'' states with respect to a natural class of quantum operations that are consider cheap, or ``free''~\cite{Gour_2019}. One very natural class of free operations considered are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However there are several other candidate frameworks. 
@@ -228,7 +226,7 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-A range of monotones have been developed in the literature\cite{cit:howard, Wang_2020, Seddon_2021} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
+A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} \nick{Actually I think they are not that many for qudits: Mana, Robustness, Wang's entropic measures} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
 
 
 
@@ -241,8 +239,7 @@ Within the Wigner representation all negatively represented states are magic sta
 \begin{equation}
     \Fmax \coloneqq \{ \rho: \W[\bmx]{\rho} \geq 0 \text{ for all } \bmx \in \cal{P}_d\}.
 \end{equation}
-Our focus is on states with negativity, and so the particular choice of free states is not so important for our analysis. The remaining component that needs addressing is the set of quantum operations that is considered free, or easy. Stabilizer operations are the most natural set of operations as they admit a classically efficient description for uniform quantum circuits. However, other choices of operations have been considered in the literature \ddd{[CITE]}. Common to these theories is that free $\E$  is such that $id \otimes \E (\rho)$ has a positive Wigner distribution whenever $ \rho$ has a positive Wigner distribution. Therefore the condition that $\E$ does not generate Wigner negativity is an essential requirement of any magic theory.
-
+Our focus is on states with negativity, and so the particular choice of free states is not so important for our analysis. The remaining component that needs addressing is the set of quantum operations that is considered free, or easy. Stabilizer operations are the most natural set of operations as they admit a classically efficient description for uniform quantum circuits. However, other choices of operations have been considered in the literature~\cite{cit:ahmadi, cit:seddon, Wang_2019}. Common to these theories is that free $\E$  is such that $(\id \otimes \E) (\rho)$ has a positive Wigner distribution whenever $ \rho$ has a positive Wigner distribution. \nick{This is not true for stabilizer-preserving operations~\cite{cit:ahmadi}, since ``completely'' stabilizer-preserving operations~\cite{cit:seddon} is a strict subset} Therefore, the condition that $\E$ does not generate Wigner negativity is an essential requirement of any magic theory.
 
 Any quantum channel admits a Wigner representation, in terms of the phase space operators defined earlier. If $\E$ is some quantum channel from a quantum system $A$ to a quantum system $B$, and $\J(\E)$ is its associated Choi state then we can define
 \begin{equation}
@@ -256,13 +253,13 @@ W_{\E(\rho)} (\y) = \sum_{\x \in \P_d} W_{\E}( \y | \x) W_\rho(\x),
 \end{equation}
 for any $\E$ and $\rho$. Now if $\E$ sends any positively represented quantum state to another positively represented quantum state then it can be shown~\cite{Wang_2019} that $W_{\E}(\y |\x)$ must form a stochastic matrix. In particular, all Clifford operations correspond to stochastic matrices in this Wigner representation. However, it is important to note that not all stochastic maps on the phase space correspond to valid quantum operations. In particular, the stochastic maps must respect the symplectic structure of the phase space and so this provides an additional non-trivial constraint.
 
-In what follows we shall therefore assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ form a closed, convex set with each state represented by a positive Wigner function, while the free operations $\O$ are represented by stochastic maps acting on the discrete phase space.
+In what follows we shall therefore assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ form a closed, convex set with each state represented by a positive Wigner function, while the free operations $\O$ are represented by stochastic maps acting on the discrete phase space. \nick{Should we justify closedness, i.e. we require state positivity and Wigner-positivity both of which are closed linear constraints. I think we don't require convexity, we just need boundedness which trivially holds for quantum states}
 
 
 \section{Breaking a magic theory into fragments}
-We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised. \ddd{[find roughly related cites for these?]}
+We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Litinski_2019, Babbush_2018, Fowler_2019, Li_2015}. \nick{good enough? - struggled to find better refs}
 
-While we will not consider very model-specific limitations, we still want to inject in some physical constraints. We proceed by considering imposing equilibrium, or fixed-point, restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, it could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
+Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering imposing equilibrium, or fixed-point, restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
 \begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
    Given a theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
    \begin{equation}
@@ -270,17 +267,18 @@ While we will not consider very model-specific limitations, we still want to inj
     \end{equation}
 namely those operations that leave the state $\sigma \in \F$ invariant.
 \end{definition}
-This notion provides a simple way to break up any theory into smaller, more manageable parts that are destinguished by additional physical constraints. Moreover, the union over all fragments returns the parent theory, and so we are not discarding any information about the theory by breaking it up in this way. This can be made precise as follows.
+This notion provides a simple way to break up any theory into smaller, more manageable parts that are destinguished by additional physical constraints. Moreover, the union over all fragments returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this statement precise as follows.
 \begin{theorem}\label{thm:frag}
     Let $\R = (\F, \O)$ be a theory of magic.
 Then a transformation $\rho \longrightarrow \tau$ is possible in $\R$ if and only if the transformation $\rho \longrightarrow \tau$ is possible in at least one $\sigma$--fragment of $\R$.
 \end{theorem}
-The proof of this is very straightforward.
+The proof of this is straightforward.
 \begin{proof}
     Suppose the interconversion is possible in a $\sigma$--fragment via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, convex set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore $\E \in \O_\sigma$ and so the interconversion is possible in this fragment.
 \end{proof}
 
-This implies that we can now consider magic distillation rates within a particular $\sigma$--fragment and then see how the bounds on the distillation rates depend on the particular fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards a pure stabilizer state fixed point provide more freedom?
+We can now consider magic distillation rates within a particular $\sigma$--fragment and then see how the bounds on the distillation rates depend on the particular fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards a pure stabilizer state fixed point provide more freedom?
+\nick{We probably want to provide clear answers to these later on}
 
 \begin{figure}[t]
     \centering
@@ -295,7 +293,7 @@ This implies that we can now consider magic distillation rates within a particul
     \label{fig:zoo}
 \end{figure}
 
-More importantly, by adding in this additional structure to the magic theory, it actually allows us to say more than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
+More importantly, by introducing this additional structure to a magic theory, it actually allows for deeper analysis than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
 
 \subsection{Quantifying disorder without entropies}
 \label{sec:major}
@@ -558,7 +556,7 @@ In such a case, the majorisation condition~(\ref{eq:majbound}) needs to be check
 In general, noisy circuits are well-described by the unital fragment.
 To see this, consider incorporating noisy channels in the circuit, for example dephasing channels as in~\cref{eq:dephase} defined in different bases.
 This process destroys the circuit symmetries, except for the invariance of the maximally mixed state.
-Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{Expand on significance of unital fragment}
+Dephasing and bit-flip error channels are examples of the many error-inducing channels that respect the unital symmetry. \nick{Expand on significance of unital fragment / Include example of depolarising channel earlier as demonstration of our ``pinpointing harware limitations''-approach}
 \null\\
 
 We consider the task of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$,
