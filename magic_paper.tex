@@ -226,7 +226,7 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} \nick{Actually I think they are not that many for qudits: Mana, Robustness, Wang's entropic measures} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
+A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} \nick{Actually I think they are not that many for qudits: Mana, Robustness, Wang's entropic measures}\ddd{[Then we kick ass, and give exponentially many new ones.]} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
 
 
 
@@ -253,11 +253,11 @@ W_{\E(\rho)} (\y) = \sum_{\x \in \P_d} W_{\E}( \y | \x) W_\rho(\x),
 \end{equation}
 for any $\E$ and $\rho$. Now if $\E$ sends any positively represented quantum state to another positively represented quantum state then it can be shown~\cite{Wang_2019} that $W_{\E}(\y |\x)$ must form a stochastic matrix. In particular, all Clifford operations correspond to stochastic matrices in this Wigner representation. However, it is important to note that not all stochastic maps on the phase space correspond to valid quantum operations. In particular, the stochastic maps must respect the symplectic structure of the phase space and so this provides an additional non-trivial constraint.
 
-In what follows we shall therefore assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ form a closed, convex set with each state represented by a positive Wigner function, while the free operations $\O$ are represented by stochastic maps acting on the discrete phase space. \nick{Should we justify closedness, i.e. we require state positivity and Wigner-positivity both of which are closed linear constraints. I think we don't require convexity, we just need boundedness which trivially holds for quantum states}
+In what follows we shall therefore assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ form a closed, convex set with each state represented by a positive Wigner function, while the free operations $\O$ are represented by stochastic maps acting on the discrete phase space. \nick{Should we justify closedness, i.e. we require state positivity and Wigner-positivity both of which are closed linear constraints. I think we don't require convexity, we just need boundedness which trivially holds for quantum states}\ddd{[Fine print. No issue.]}
 
 
 \section{Breaking a magic theory into fragments}
-We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Litinski_2019, Babbush_2018, Fowler_2019, Li_2015}. \nick{good enough? - struggled to find better refs}
+We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Litinski_2019, Babbush_2018, Fowler_2019, Li_2015}.
 
 Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering imposing equilibrium, or fixed-point, restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
 \begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
@@ -300,7 +300,7 @@ More importantly, by introducing this additional structure to a magic theory, it
 
 We can now show that each magic fragment admits constraints that do not take the form of state monotones. The development of any monotone $\M(\rho)$ for a magic theory $\R$ can be viewed abstractly as
 \begin{equation}
-\M : \mbox{(pre-order of states)} \longrightarrow \mbox{(total order of numerical values).} \nonumber
+\M : \mbox{(pre-order of states)} \mapsto \mbox{(total order of numerical values).} \nonumber
 \end{equation}
 More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. However, in general many states will not be interconvertible in either direction, and so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the number line, and so through this lens any two states are directly comparable in terms of the values of $\M(\rho_1)$ and $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
 
@@ -323,35 +323,29 @@ if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p 
 
 However, it turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of a given fragment. To our knowledge, this application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over all stochastic maps with a given fixed point, while in the case of the Wigner representation there is an additional restriction that the symplectic structure is respected. This implies that any relative majorization conditions provide necessary, but not sufficient, conditions on magic state interconversions in the fragment. However, this observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall return to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates.
 
-\subsection{The relative majorization conditions on magic interconversion within a fragment}
-The pre-order imposed by $\bmd$--majorisation admits a numerically efficient reformulation in terms of Lorenz curves.
-Let the vector $\bmu^\downarrow$ denote the vector $\bmu \in \reals^d$ with its components arranged in non-increasing order.
-\begin{definition}[\textbf{Lorenz curve}]\label{def:lc}
-    Let $\bmw, \bmd \in \reals^d$, where the components of $\bmd$ are positive with $D = \sum_{i=1}^d d_i$ and denote by $\widetilde{\bmw} \coloneqq (w_1/d_1, \dots, w_d/\nick{d_d})^T$ the rescaled vector $\bmw$ by $\bmd$.
-    
-    Finally, denote by $\pi: \mathbb{Z}_d \mapsto \mathbb{Z}_d$ the permutation that sorts $\widetilde{\bmw}$, $(\widetilde{\bmw}^\downarrow)_i = w_{\pi(i)}$ for all $i=1,\dots,d$.
-    
-    Consider the piecewise linear curve obtained by joining the points $\{(0,0)\} \cup \{ (x_k, \lc{\bmw}{\bmd}(k)) \}_{k=1,\dots,d}$, where
-    \begin{equation}\label{eq:lorenz}
-        (x_k, \lc{\bmw}{\bmd}(k)) \coloneqq \left( \frac{1}{D}\sum_{i=1}^k d_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right).
-    \end{equation}
-    We define the set of points on this curve, $\lc{\bmw}{\bmd}(x),\ x \in [0,1]$, as the \emph{Lorenz curve} of vector $\bmw$ with respect to $\bmd$.
-\end{definition}
-Components $x_k$ are rescaled by $D$ so that comparison of curves with unequal dimensions is possible.
-In fact, the Lorenz curves $\lc{\bmw}{\bmd}$ and $\lc{\bmw \otimes \bmd}{\bmd \otimes \bmd}$, where $\otimes$ denotes the Kronecker product, coincide.
-Furthermore, a Lorenz curve $\lc{\bmw}{\bmd}(x)$ is always concave in $x$, since it consists of $d$ line segments each with slope $(\widetilde{\bmw}^\downarrow)_i$ for $i=1,\dots,d$ which by definition is a non-increasing sequence.
-Finally, the points on the interior of the Lorenz curve that connect line segments of different slopes are in general non-differentiable and we call them\emph{elbows}.
+\subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
 
-A vector $\bmy$ is said to \emph{$\bmd$--majorise} another vector $\bmx$ if and only if the Lorenz curve $\lc{\bmy}{\bmd}$ lies above Lorenz curve $\lc{\bmx}{\bmd}$, thus reducing $\bmd$--majorisation into a finite set of inequalities.
-\begin{theorem}\label{thm:dmajor}
-    Let $\bmx, \bmy, \bmd \in \reals^d$, such that the components of $\bmd$ are positive. 
-    Then, $\bmx \prec_{\bmd} \bmy$ if and only if $\lc{\bmx}{\bmd}(x) \leq \lc{\bmy}{\bmd}(x)$ for all $x \in [0,1]$ with strict equality at $x=1$.
-\end{theorem}
-A restatement of the theorem including more equivalent conditions and a proof are provided in~\cref{app:major}.
-	
+We now turn to the application of majorization to describing magic in different fragments. The simplest way to express the conditions for interconversion is through Lorenz curves, which we now describe.
 
+Given a vector $\x$ we define $\x^\downarrow$ to be the re-arrangement of the components of $\x$ into decreasing order. Now, given two $n$--component vectors $\w$ and $\r$ we define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
+\begin{equation}\label{eq:lorenz}
+        (x_k,L_{\w|\r}(x_k)) =\left( \frac{1}{R}\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
+\end{equation}
+where $R:= \sum_{i=1}^n r_i$, and $\pi$ is the permutation on $n$ objects that sends $\tilde{\w}$ to $\tilde{\w}^{\downarrow}$, where $\tilde{w}_i := w_i/r_i$ is the vector of component-wise ratios of $\w$ and $\r$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as in any physical situation the rank of a quantum state is not an operationally meaningful quantity.
 
-\subsection{Majorisation of quasi-probabilities in $\sigma$--fragments}\label{sec:major_frag}
+If $\w$ and $\r$ are both probability distributions then the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global upper bound to the function, only attained at the end-point $x=1$. However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotone increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Figure \ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. For quasi-distributions within quantum theory, the breaking of this barrier is associated with the degree of non-classicality. Since majorization provides a measure of order/disorder this is consistent with the intuition that negativity, for example within the context of entanglement theory or quantum computing, can provide a greater form of order than is possible within classical theory.
+
+\begin{figure}
+    \centering
+    \includegraphics[height=4.5cm]{figs/lc_strange.pdf}
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
+    }
+    \label{fig:lcs}
+\end{figure}
+
+Given the definition of Lorenz curves, the condition for relative majorization can now be compactly phrased. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. Another neat geometric formulation of relative majorization exists that simply states that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see \ddd{[CITE]} for details).
+
+\subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}\label{sec:major_frag}
 
 We can approach any magic theory through a thermodynamic lens, and in doing so we are provided with valuable insights on the structure of the theory. 
 Firstly, any free state, for example a stabiliser state, can be viewed as a thermal state $\gamma_\beta$.
@@ -417,13 +411,6 @@ and is called the \emph{rescaled} distribution of $\rho$ with respect to $\sigma
 An example of comparison between different Lorenz curves is provided in~\cref{fig:lctoy}.
 The curves in the figure are constructed in the \emph{unital fragment}, i.e. the $\sigma$--fragment defined by the maximally mixed state $\sigma = \frac{1}{d}\id$ whose Wigner distribution is the uniform probability distribution.
 
-\begin{figure}
-    \centering
-    \includegraphics[height=4.5cm]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise $\epsilon = 0.1$.
-    }
-    \label{fig:lcs}
-\end{figure}
 
 \begin{figure}
     \centering
