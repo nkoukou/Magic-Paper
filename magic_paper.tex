@@ -347,70 +347,70 @@ Given the definition of Lorenz curves, the condition for relative majorization c
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}\label{sec:major_frag}
 
-We can approach any magic theory through a thermodynamic lens, and in doing so we are provided with valuable insights on the structure of the theory. 
-Firstly, any free state, for example a stabiliser state, can be viewed as a thermal state $\gamma_\beta$.
-Without loss of generality we can always write a quantum state $\sigma$ as a thermal state, $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
-We can also view the set of free operations $\O_\sigma$ as a counterpart of thermal operations, in the sense that any operation $\E$ in $\O_\sigma$ preserves state $\sigma$. 
+Having described how majorization relative to a fiducial distribution can be computed, we now turn to its application within a particular fragment of a magic theory $\R= (\F, \O)$.
 
-It is then apparent that the pre-order $\prec_{\R_\sigma}$ between the operations in the $\sigma$--fragment follows the rules of $\bmd$--majorisation as outlined in~\cref{sec:major}.
-In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$--dimensional states corresponds to the majorisation pre-order $\prec_{\W{\sigma}}$ between their $d^2$--dimensional Wigner distributions.
-For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
+If we consider some $\sigma \in \F$, and its corresponding fragment $\R_\sigma$, then we are typically interested in the ability to transform many copies of some magic state $\rho$ into more pure forms of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, and so $W_\rho(\x) < 0$ for some regions of $\x \in \P_d$. We again note that we restrict to odd-dimensional quantum systems, for simplicity. In contrast the state $\sigma$ will have a Wigner distribution $W_\sigma(\x)$ that forms a genuine probability distribution. On the technical assumption that $\sigma$ is full rank, then we also have that $W_\sigma(\x)$ is non-negative on the discrete phase space $\P_d$. Any non-full rank states can be handled as a limiting case in which we mix in a small fraction $\epsilon (\I/d)$ to the quantum state $\sigma$, and later take $\epsilon$ tending to zero.
 
-Note that the Wigner components of an $n$--copy state $\rho^{\otimes n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
+As discussed already, the free operations within the magic theory $\R$ are represented by stochastic maps, and within $\R_\sigma$ by stochastic maps that leave $W_\sigma(\x)$ invariant. Therefore a necessary condition for magic state transformations $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$ will be that 
 \begin{equation}
-	\W{\rho^{\otimes n}} = \W{\rho}^{\otimes n},
+W_{\rho_1} \succ_{W_{\sigma}} W_{\rho_2},
 \end{equation}
-where $\otimes$ can be interpreted as the usual Kronecker product in the last expression.
-We may use the vector notation $\bmw(\rho) = (w(\rho)_i)_{i=1,\dots,d^2}$ for the Wigner distribution, in which case we can express the Kronecker product as
+or put another way, relative to $W_\sigma$ the quasi-distribution $W_{\rho_1}$ is more ordered than the quasi-distribution $W_{\rho_2}$. 
+
+This in turn can be expressed in terms of Lorenz curves. To simplify notation we denote by $L_{\rho | \sigma}(x)$ the Lorenz curve $L_{W_{\rho} | W_{\sigma}} (x)$. We therefore have that
 \begin{equation}
-	\W{\rho} \otimes \W{\rho} = (w(\rho)_i w(\rho)_j)_{i,j=1,\dots,d^2}.
+\rho_1 \rightarrow \rho_2 \mbox{ within }\R_\sigma \mbox{ implies that } L_{\rho_1 |\sigma} (x) \ge L_{\rho_2 |\sigma} (x),
 \end{equation}
-The correspondence between the phase space and pure vector representations of the Wigner distribution is discussed more in~\cref{app:cmpairs}.
-The vector notation will be useful in the proof of our main result,~\cref{thm:stab_bounds}
+for all $x \in [0,1]$. Therefore, the constraint in terms of the Lorenz curves for the magic states can be used to impose upper bounds on magic distillation rates. Note however, that this is not a single numerical constraint, but is a \emph{family} of constraints. Indeed for $n$ copies of a $d$ dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$ and so the Lorenz curve condition corresponds to \emph{exponentially} many constraints.
 
-Furthermore, we restrict our analysis to $\sigma$--fragments, where $\sigma$ is full-rank.
-This is justified as majorisation is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$--close. \nick{CHECK}
-Therefore, majorisation analysis is robust under imperfections in the experimental implementation of quantum operations.
+%We can approach any magic theory through a thermodynamic lens, and in doing so we are provided with valuable insights on the structure of the theory. 
+%Firstly, any free state, for example a stabiliser state, can be viewed as a thermal state $\gamma_\beta$.
+%Without loss of generality we can always write a quantum state $\sigma$ as a thermal state, $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ (either effective or actual)\footnote{Technicalities arise for the case where $\sigma$ is not full rank, but this can be still described via $ \beta \rightarrow 0$ limiting process.}.
+%We can also view the set of free operations $\O_\sigma$ as a counterpart of thermal operations, in the sense that any operation $\E$ in $\O_\sigma$ preserves state $\sigma$. 
+%
+%It is then apparent that the pre-order $\prec_{\R_\sigma}$ between the operations in the $\sigma$--fragment follows the rules of $\bmd$--majorisation as outlined in~\cref{sec:major}.
+%In particular, the pre-order $\prec_{\R_\sigma}$ of the $\sigma$--fragment $\R_\sigma = (\F, \O_\sigma)$ between $d$--dimensional states corresponds to the majorisation pre-order $\prec_{\W{\sigma}}$ between their $d^2$--dimensional Wigner distributions.
+%For simplicity we shall merge the notation into $\prec_\sigma$, as there is little risk of confusion.
+%
+%Note that the Wigner components of an $n$--copy state $\rho^{\otimes n}$ can be calculated directly from $\W{\rho}$ by convolution of the distribution with itself,
+%\begin{equation}
+%	\W{\rho^{\otimes n}} = \W{\rho}^{\otimes n},
+%\end{equation}
+%where $\otimes$ can be interpreted as the usual Kronecker product in the last expression.
+%We may use the vector notation $\bmw(\rho) = (w(\rho)_i)_{i=1,\dots,d^2}$ for the Wigner distribution, in which case we can express the Kronecker product as
+%\begin{equation}
+%	\W{\rho} \otimes \W{\rho} = (w(\rho)_i w(\rho)_j)_{i,j=1,\dots,d^2}.
+%\end{equation}
+%The correspondence between the phase space and pure vector representations of the Wigner distribution is discussed more in~\cref{app:cmpairs}.
+%The vector notation will be useful in the proof of our main result,~\cref{thm:stab_bounds}
+%
+%Furthermore, we restrict our analysis to $\sigma$--fragments, where $\sigma$ is full-rank.
+%This is justified as majorisation is continuous between fragments, in the sense that the pre-orders $\prec_\sigma$ and $\prec_{\sigma'}$ are equivalent for states $\sigma$ and $\sigma'$ which are $\epsilon$--close. \nick{CHECK}
+%Therefore, majorisation analysis is robust under imperfections in the experimental implementation of quantum operations.
+%
+%In particular, we can always use common noise effects to approximate any $\sigma$--fragment where $\sigma$ is not full-rank by the $\sigma'$--fragment where $\sigma'$ is a noisy approximation of $\sigma$. 
+%For example, inducing depolarising noise, we can write $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
+%Important examples of such $\sigma$--fragments include pure stabiliser states which are rank-$1$, e.g. the zero state depicted in~\cref{fig:zero}. 
+%Operations in such fragments include important stabiliser operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
+%
+%\begin{theorem}\label{thm:sigmamajor}
+%    Let $\R = (\F, \O)$ be a theory of magic. If $\rho \longrightarrow \tau$  in $\R$ then  $\W{\tau} \prec_\sigma \W{\rho}$ within at least one $\sigma$--fragment.
+%\end{theorem}
+%\begin{proof}
+%Suppose we can convert $\rho$ into $\tau$ in the magic theory. 
+%Thus there is some $\O_\sigma$ and some $\E \in \O_\sigma$ such that $\E(\rho) = \tau$, and $\E(\sigma)=\sigma$. 
+%Therefore, the Wigner distribution of this free operation satisfies $\W{\E} \in \stochw$ and $\W{\E}\W{\rho} = \W{\tau}$. 
+%Since $\sigma$ is full-rank and free, its Wigner distribution is strictly positive in all components, so it directly follows from~\cref{def:dmajor} that $\W{\tau} \prec_{\sigma} \W{\rho}$.
+%\end{proof}
+%The converse is in general not true, since stochastic matrices do not necessarily correspond to valid quantum operations.
+%
+%The result of~\cref{thm:sigmamajor} can be understood as an extension of the idea of a magic monotone, where we replace $\M(\tau) \leq \M(\rho)$ with $\W{\tau} \prec_\sigma \W{\rho}$. 
+%The physical difference between the two expressions is that the majorisation ordering occurs in a specific $\sigma$--fragment.
+%Therefore, majorisation constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- specifically, it enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
+%We discuss distillation upper bounds in detail in~\cref{sec:unital,sec:stab}
 
-In particular, we can always use common noise effects to approximate any $\sigma$--fragment where $\sigma$ is not full-rank by the $\sigma'$--fragment where $\sigma'$ is a noisy approximation of $\sigma$. 
-For example, inducing depolarising noise, we can write $\sigma' = (1-\epsilon)\sigma + \epsilon\frac{1}{d}\id$, for some infinitesimal $\epsilon > 0$, so that $\sigma'$ is full-rank and arbitrarily close to $\sigma$.
-Important examples of such $\sigma$--fragments include pure stabiliser states which are rank-$1$, e.g. the zero state depicted in~\cref{fig:zero}. 
-Operations in such fragments include important stabiliser operations like the replacement channel, $\E(\rho) = \sigma$ for all states $\rho$.
-
-\begin{theorem}\label{thm:sigmamajor}
-    Let $\R = (\F, \O)$ be a theory of magic. If $\rho \longrightarrow \tau$  in $\R$ then  $\W{\tau} \prec_\sigma \W{\rho}$ within at least one $\sigma$--fragment.
-\end{theorem}
-\begin{proof}
-Suppose we can convert $\rho$ into $\tau$ in the magic theory. 
-Thus there is some $\O_\sigma$ and some $\E \in \O_\sigma$ such that $\E(\rho) = \tau$, and $\E(\sigma)=\sigma$. 
-Therefore, the Wigner distribution of this free operation satisfies $\W{\E} \in \stochw$ and $\W{\E}\W{\rho} = \W{\tau}$. 
-Since $\sigma$ is full-rank and free, its Wigner distribution is strictly positive in all components, so it directly follows from~\cref{def:dmajor} that $\W{\tau} \prec_{\sigma} \W{\rho}$.
-\end{proof}
-The converse is in general not true, since stochastic matrices do not necessarily correspond to valid quantum operations.
-
-The result of~\cref{thm:sigmamajor} can be understood as an extension of the idea of a magic monotone, where we replace $\M(\tau) \leq \M(\rho)$ with $\W{\tau} \prec_\sigma \W{\rho}$. 
-The physical difference between the two expressions is that the majorisation ordering occurs in a specific $\sigma$--fragment.
-Therefore, majorisation constraints can be used to place upper bounds on magic state distillation in a way that allows one to incorporate the physics of the allowed operations -- specifically, it enables us to bound how much magic can be distilled via quantum operations that, for example, preserve the equilibrium state of the system, or via operations that are symmetric about the $Z$-axis of the Bloch sphere.
-We discuss distillation upper bounds in detail in~\cref{sec:unital,sec:stab}
-
-This approach can also provide \emph{lower bounds} on distillation, however now more structure about the specific free operations must be included. 
-We briefly discuss distillation lower bounds in~\cref{sec:lower_bounds}.
-
-\subsection{Lorenz curves of quasi-probabilities in $\sigma$--fragments}
+\subsection{Basic monotones for magic states in a particular fragment}
 \label{sec:lc}
-
-It is straightforward to construct Lorenz curves for Wigner distributions in any $\sigma$--fragment.
-As we have seen in~\cref{thm:sigmamajor}, for any full-rank free state $\sigma$ we have that $\W{\sigma}$ is a strictly positive full-rank probability distribution, and so one can define a corresponding notion of $\bmd$--majorisation on \emph{quasi}--distributions.
-We write $\lc{\rho}{\sigma}(x)$ for the Lorenz curve of $\W{\rho}$ with respect to $\W{\sigma}$.
-The vector of ratios $\widetilde{\bmw}(\rho|\sigma)$ used to construct the curve is
-\begin{equation}
-	\widetilde{w}(\rho|\sigma)_i \coloneqq \frac{w(\rho)_i}{w(\sigma)_i},
-\end{equation}
-and is called the \emph{rescaled} distribution of $\rho$ with respect to $\sigma$.
-
-An example of comparison between different Lorenz curves is provided in~\cref{fig:lctoy}.
-The curves in the figure are constructed in the \emph{unital fragment}, i.e. the $\sigma$--fragment defined by the maximally mixed state $\sigma = \frac{1}{d}\id$ whose Wigner distribution is the uniform probability distribution.
-
 
 \begin{figure}
     \centering
@@ -423,51 +423,14 @@ The curves in the figure are constructed in the \emph{unital fragment}, i.e. the
     \label{fig:lctoy}
 \end{figure}
 
+In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light.
 
-Normalisation of the Wigner distribution ensures that for all quantum states $\rho$, $\lc{\rho}{\sigma}(x) \geq 0$ and $\lc{\rho}{\sigma}(1) = 1$.
-We stress that $0 \leq \lc{\rho}{\sigma}(x) \leq 1$ for all $x \in [0,1]$ if and only if $\rho$ is a positive Wigner state.
-As a consequence, checking whether a magic state conversion of the form
-\begin{equation}\label{eq:sigma_conv}
-	\rho \xrightarrow{\E \in \O_\sigma} \tau
-\end{equation} 
-is not possible, reduces to the set of constraints
-\begin{equation}\label{eq:majbound}
-    \lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in [0,1],
-\end{equation}
-due to~\cref{thm:sigmamajor,thm:dmajor}.
-
-We can refine the number of independent constraints stemming from this inequality. 
-In fact, there are only as many independent constraints as there are elbows in the Lorenz curve of the target state as shown in~\cref{thm:elbows} in~\cref{app:frag}.
-However, in principle any one location $x$ provides a valid constraint leading to some upper distillation bound, while optimising over the location would provide the strictest bound.
-In particular, we establish the \emph{first elbow constraint} which we use in~\cref{sec:unital,sec:stab} explicitly.
-\begin{lemma}
-	Consider a magic state interconversion as in~\cref{eq:sigma_conv}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively.
-	If $x_0 < x'_0$, then it holds that
-\begin{equation}\label{eq:first_elb_bound1}
-	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
-\end{equation}
-\end{lemma}
-\begin{proof}
-	Consider the Lorenz curve constraint at $x = x_0$,
-\begin{equation}
-	\lc{\rho}{\sigma}(x_0) \geq \lc{\tau}{\sigma}(x_0).
-\end{equation}
-Since $x_0 < x'_0$, we can find the target state Lorenz curve coordinate $L'_\star$ at location $x = x_0$ by interpolating between the origin and the target state's first elbow, 
-\begin{equation}
-	L'_\star = \frac{x_0}{x'_0}L'_0.
-\end{equation}
-We need $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
-\end{proof}
-
-We can now turn the attention from the first elbow to the peak of the Lorenz curve to associate it directly with the magic monotone of mana, and equivalently the sum-negativity of a quantum state. 
-This holds independently of the particular $\sigma$--fragment one works in and as a result it becomes apparent that mana provides a weaker condition than majorisation for all magic state interconversions.
-
-We first show that the Lorenz curve maximum of state $\rho$ is independent of the $\sigma$--fragment and directly related to its sum-negativity.
+If we have a magic state $\rho$ that has negativity in its Wigner representation, then as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. It is easy to establish the following result.
 \begin{lemma}\label{lem:lcmax}
-	Given a quantum state $\rho$, the maximum of its Lorenz curve $\lc{\rho}{\sigma}$ is independent of the $\sigma$--fragment and is equal to $1+\sn{\rho}$.
+	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and is equal to $1+\sn{\rho}$, where $\rm{sn}(\rho)$ is the sum negativity of $\rho$. Thus, the majorization constraint is stronger than mana in any fragment.
 \end{lemma}
 \begin{proof}
-	We may use the vector notation of the Wigner distributions $\bmw(\rho)$ and $\bmw(\sigma)$.
+	We denote the Wigner distributions of the states compactly as vectors $\bmw(\rho) \equiv W_\rho(x)$ and $\bmw(\sigma) \equiv W_\sigma(x)$.
 	We choose the component indexing so that the rescaled distribution 
 	\begin{equation}
 		\widetilde{\bm{w}}(\rho|\sigma) \coloneqq \left(\frac{w(\rho)_1}{w(\sigma)_1}, \dots, \frac{w(\rho)_{d^2}}{w(\sigma)_{d^2}} \right)^T,
@@ -486,34 +449,47 @@ We first show that the Lorenz curve maximum of state $\rho$ is independent of th
 	\end{equation}
 
 	The location of the maximum ($x=x_{i_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
-	\begin{equation}
-		\lc{\rho}{\sigma}(x_{i_\star})
-		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho}
-		= 1 + \sn{\rho}.
-	\end{equation}
+	\begin{align}
+	L_\star &:=	\lc{\rho}{\sigma}(x_{i_\star}) 
+		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho} \nonumber \\
+		&= 1 + \sn{\rho}.
+	\end{align}
 	
+Since the magic monotone mana is given by $\rm{mana}(\rho) := \log \rm{sn}(\rho)$ we see that mana corresponds precisely to peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore mana as one condition from $d^n$ constraints, and so majorization is strictly stronger a constraint in any fragment.
 \end{proof}
-
-We can therefore view mana as just one feature of the Lorenz curve, namely its maximum value. 
-Conversely, it is now clear that the maximum of the Lorenz curve acts as a valid magic monotone.
-\begin{theorem}\label{thm:bounds}
-    Given a magic state conversion $\rho \longrightarrow \tau$, the majorisation condition is stronger than the mana condition in every $\sigma$--fragment.
-\end{theorem}
+From this Lorenz curve perspective it is easy to construct other monotones. For example, within a given fragment the area above $L=1$ is another magic monotone, as we now show.
+\begin{lemma} Let $\A_\sigma(\rho)$ be the area of the region $\{(x,y) : (x, L_{\rho | \sigma}(x)) \ge 1\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
+\end{lemma}
 \begin{proof}
-    The maximum of the Lorenz curve of a state $\rho$ is independent of the $\sigma$--fragment due to~\cref{lem:lcmax}, and can be expressed as an increasing function of mana,
-    \begin{equation}
-        \max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} = 1 + \sn{\rho} = \frac{1}{2} \left( 1 + e^\mana{\rho} \right).
-    \end{equation}
-    Therefore, the majorisation bound
-    \begin{equation}
-    	\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x),\ x\in[0,1]
-    \end{equation}
-    implies the order $\max_{x\in[0,1]}{\lc{\rho}{\sigma}(x)} \geq \max_{x\in[0,1]}{\lc{\tau}{\sigma}(x)}$, hence the mana condition $\mana{\rho} \geq \mana{\tau}$.
+Consider the transformation $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$. We have that $L_{\rho_1|\sigma}(x)$ is never below the curve $L_{\rho_2|\sigma}(x)$, and therefore the region above $L=1$ for $\rho_2$ is a subset the corresponding region for $\rho_1$. Thus, $\A_\sigma(\rho_1) \geq \A_\sigma(\rho_2)$, and so is a magic monotone.
 \end{proof}
+In contrast, however, this monotone is \emph{specific to the fragment}, and its value will vary as we change $\sigma$. Therefore its monotonicity is also including the physics of the fragment. I.e. it provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant.
 
-The area $\A_\sigma(\rho)$ between the curve $L_{\rho|\sigma}$ and the line $y=1$ is also a resource monotone in the $\sigma$--fragment. 
-This is clear because for any state conversion like~\cref{eq:sigma_conv}, the Lorenz curve $L_{\tau|\sigma}$ is lower than $L_{\rho|\sigma}$, hence $\A_\sigma(\E(\rho)) \leq \A_\sigma(\rho)$.
-It cannot be directly expressed in terms of mana, as it depends on positive Wigner components as well.
+There are as many independent constraints as there are elbows in the Lorenz curve of the target state as shown in~\cref{thm:elbows} in~\cref{app:frag}. However, in principle any one location $x$ provides a valid constraint leading to some upper distillation bound, while optimising over the location would provide the strictest bound.
+%
+%For example, the first elbow of the Lorenz curve yields the following condition.
+%\begin{lemma}
+%	Consider a magic state interconversion as in~\cref{eq:sigma_conv}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively.
+%	If $x_0 < x'_0$, then it holds that
+%\begin{equation}\label{eq:first_elb_bound1}
+%	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
+%\end{equation}
+%\end{lemma}
+%\begin{proof}
+%	Consider the Lorenz curve constraint at $x = x_0$,
+%\begin{equation}
+%	\lc{\rho}{\sigma}(x_0) \geq \lc{\tau}{\sigma}(x_0).
+%\end{equation}
+%Since $x_0 < x'_0$, we can find the target state Lorenz curve coordinate $L'_\star$ at location $x = x_0$ by interpolating between the origin and the target state's first elbow, 
+%\begin{equation}
+%	L'_\star = \frac{x_0}{x'_0}L'_0.
+%\end{equation}
+%We need $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
+%\end{proof}
+
+
+\section{Magic in the unital fragment}
+
 
 In~\cref{sec:unital,sec:stab}, we study majorisation constraints on magic distillation arising in different fragments. 
 For this reason, we define the $n$--copy, $\epsilon$--noisy Strange state,
@@ -533,7 +509,6 @@ In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\f
 Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$.
 
 
-\section{Magic in the unital fragment}
 \label{sec:unital}
 We shall provide a general analysis across multiple fragments, but before we do that it is useful to illustrate the techniques in the simplest fragment first. The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
 
