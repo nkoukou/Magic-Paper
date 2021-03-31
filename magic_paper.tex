@@ -226,7 +226,7 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} \nick{Actually I think they are not that many for qudits: Mana, Robustness, Wang's entropic measures}\ddd{[Then we kick ass, and give exponentially many new ones.]} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
+A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall consider a broad framework for magic, with conditions that any theory of magic should satisfy. However, in contrast to prior works we shall not construct magic monotones, but instead develop a generalisation to resource monotones. The approach we take will also allow us to address how distillation rates are constrained by physical properties -- such as a system having biased-noise, some equilibrium structure or operations that manifest invariances, such as axial symmetry around the qubit $Z$-axis.
 
 
 
@@ -463,40 +463,30 @@ From this Lorenz curve perspective it is easy to construct other monotones. For 
 \begin{proof}
 Consider the transformation $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$. We have that $L_{\rho_1|\sigma}(x)$ is never below the curve $L_{\rho_2|\sigma}(x)$, and therefore the region above $L=1$ for $\rho_2$ is a subset the corresponding region for $\rho_1$. Thus, $\A_\sigma(\rho_1) \geq \A_\sigma(\rho_2)$, and so is a magic monotone.
 \end{proof}
-In contrast, however, this monotone is \emph{specific to the fragment}, and its value will vary as we change $\sigma$. Therefore its monotonicity is also including the physics of the fragment. I.e. it provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant.
+In contrast to mana, however, this area monotone is \emph{specific to the fragment}, and its value will vary as we change $\sigma$. Therefore its monotonicity is also including the physics of the fragment. I.e. it provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant.
 
-There are as many independent constraints as there are elbows in the Lorenz curve of the target state as shown in~\cref{thm:elbows} in~\cref{app:frag}. However, in principle any one location $x$ provides a valid constraint leading to some upper distillation bound, while optimising over the location would provide the strictest bound.
-%
-%For example, the first elbow of the Lorenz curve yields the following condition.
-%\begin{lemma}
-%	Consider a magic state interconversion as in~\cref{eq:sigma_conv}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively.
-%	If $x_0 < x'_0$, then it holds that
-%\begin{equation}\label{eq:first_elb_bound1}
-%	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
-%\end{equation}
-%\end{lemma}
-%\begin{proof}
-%	Consider the Lorenz curve constraint at $x = x_0$,
-%\begin{equation}
-%	\lc{\rho}{\sigma}(x_0) \geq \lc{\tau}{\sigma}(x_0).
-%\end{equation}
-%Since $x_0 < x'_0$, we can find the target state Lorenz curve coordinate $L'_\star$ at location $x = x_0$ by interpolating between the origin and the target state's first elbow, 
-%\begin{equation}
-%	L'_\star = \frac{x_0}{x'_0}L'_0.
-%\end{equation}
-%We need $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
-%\end{proof}
+There are as many independent constraints as there are elbows in the Lorenz curve of the target state as shown in~\cref{thm:elbows} in~\cref{app:frag}. However, in principle any one location $x$ provides a valid constraint leading to some upper distillation bound, while optimising over the location would provide the strictest bound. However, we ultimately want to make statements about asymptotic distillation rates,
+\begin{equation}
+\rho_1^{\otimes N} \longrightarrow \rho_2^{\otimes R N}
+\end{equation}
+where $\rho_2$ is a more pure form of magic than $\rho_1$ and $R$ is made as large as possible as $N$ tends to infinity. We shall next turn to this analysis, and exploit basic features of a magic state in order to obtain non-trivial distillation bounds.
 
 
 \section{Magic in the unital fragment}
 
+In this section we apply majorization to magic state distillation within a simple fragment, namely the unital fragment. This corresponds to considering distillation protocols where one is restricted to free operations that are \emph{unital operations}, meaning that $\E(\I/d) = \I/d$. This is a particularly nice set of operations, which include for example all Weyl-covariant channels \ddd{[CITE]}. To make things concrete we shall consider qutrit magic states ($d=3$). This is convenient since this system doesn't have the subtleties of the qubit case, and admits non-trivial structure (e.g. Hamiltonians with two different energy gaps) while being sufficiently simple to analyse in detail.
 
-In~\cref{sec:unital,sec:stab}, we study majorisation constraints on magic distillation arising in different fragments. 
-For this reason, we define the $n$--copy, $\epsilon$--noisy Strange state,
-\begin{equation}\label{eq:noisysn}
-    \rho_{\rm{S}}(\epsilon)^{\otimes n} \coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right]^{\otimes n},
+For our distillation protocols we need to choose a canonical pure magic state as a target. For this we shall choose the Strange state $|S\>$ given as
+\begin{equation}
+|S\> := \frac{1}{\sqrt{2}} (|1\> + |2\>),
 \end{equation}
-in $\O_\sigma$, where the pure magic state $\ket{\rm{S}}$ is induced with depolarising noise. 
+in the computational basis. The reason for this particular choice is that the Wigner distribution is very simple. Specifically $W_S(\x)$ has a single negative value of $-1/3$ at $\x =(0,0)$ and the value $1/6$ at all other points. We also define the $\epsilon$--noisy Strange state as
+\begin{equation}\label{eq:noisysn}
+    \rho_{\rm{S}}(\epsilon)\coloneqq \left[ (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id \right],
+\end{equation}
+where $\epsilon$ is the depolarization noise parameter. in $\O_\sigma$, where the pure magic state $\ket{\rm{S}}$ is induced with depolarising noise. In fact, any magic state $\rho$ can be processed via Clifford operations and put into this canonical form for some $\epsilon \ge 0$.
+
+
 Its Wigner distribution is visualised in~\cref{fig:strange}.
 
 We refer to parameter $\epsilon$ as \emph{noise level} to avoid confusion with the error rate $\delta$, a term commonly used in the literature to denote that the distilled state has a marginal overlap of at least $1-\delta$ with the desired magic state.
