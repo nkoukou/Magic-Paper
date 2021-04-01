@@ -465,6 +465,47 @@ and then compare them.
 \section{Technical details of bound derivation in stabiliser fragments}
 \label{app:lcst_technical}
 
+\subsection{First and last elbow conditions}
+
+Here we prove the majorization constraints that arise by considering the first and last elbow of the initial stata only.
+\begin{proposition}\label{prop:first_elb}
+	Consider a magic state interconversion as in~\cref{eq:stdist}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively.
+	If $x_0 < x'_0$, then it holds that
+\begin{equation}\label{eq:first_elb_bound1}
+	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+	Consider the Lorenz curve constraint at $x = x_0$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x_0) \geq \lc{\tau}{\sigma}(x_0).
+\end{equation}
+Since $x_0 < x'_0$, we can find the target state Lorenz curve coordinate $L'_\star$ at location $x = x_0$ by interpolating between the origin and the target state's first elbow, 
+\begin{equation}
+	L'_\star = \frac{x_0}{x'_0}L'_0.
+\end{equation}
+We need $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
+\end{proof}
+
+\begin{proposition}\label{prop:last_elb}
+	Consider a magic state interconversion as in~\cref{eq:stdist}, where we denote by $(x_E, L_E)$ and $(x'_E, L'_E)$ the last elbow coordinates of the initial and target states respectively.
+	If $x_E > x'_E$, then it holds that
+\begin{equation}\label{eq:last_elb_bound1}
+	L_E \geq 1 + \frac{1-x_E}{1-x_E'} (L_E' - 1).
+\end{equation}
+\end{proposition}
+\begin{proof}
+	Consider the Lorenz curve constraint at $x = x_E$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x_E) \geq \lc{\tau}{\sigma}(x_E).
+\end{equation}
+Since $x_E > x'_E$, we can find the target state Lorenz curve coordinate $L'_\star$ at location $x = x_E$ by interpolating between the the end-point $(1,1)$ and the target state's last elbow, 
+\begin{equation}
+	L'_\star = -\frac{L_E' - 1}{1 - x_E'}x_E + \frac{L_E' - x_E'}{1 - x_E'}.
+\end{equation}
+We need $L_E \geq L_\star'$ and rearranging we get~\cref{eq:last_elb_bound1}.
+\end{proof}
+
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
 In general, a $1$--copy $d$--dimensional state $\rho$ is defined exactly by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
