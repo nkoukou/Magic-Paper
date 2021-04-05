@@ -315,7 +315,7 @@ The question is now whether the sub-theories can be analysed to provide addition
 Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
 It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be easily checked.
 
-There is a natural generalisation, which we call \emph{relative majorization} (also known as $d$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization)\footnote{The term ``relative majorization'' is often used~\cite{Ruch_1976} to describe a further generalisation of $\bmd$-majorization, but here we use it as equivalent.}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as follows:
+There is a natural generalisation, which we call \emph{relative majorization} (also known as $d$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization)\footnote{The general form of relative majorization is defined as $(\p,\r) \succ (\q, \r')$ iff there is a stochastic map $A$ such that $A\p = \q$ and $A\r = \r'$.}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as follows:
 \begin{equation}
 \p \succ_{\r} \q,
 \end{equation}
@@ -343,7 +343,7 @@ If $\w$ and $\r$ are both probability distributions then the Lorenz curve is def
     \label{fig:lcs}
 \end{figure}
 
-Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see \ddd{[CITE]}\nick{haven't seen this before} for details).
+Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see \ddd{[CITE]}\nick{haven't seen this before}\ddd{[`Orthogonality and Disjointness in Spaces of Measures'', by Paul Busch.]} for details).
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}\label{sec:major_frag}
 
@@ -428,101 +428,65 @@ in the computational basis. The reason for this particular choice is that the Wi
 \begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)\coloneqq (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id,
 \end{equation}
-where $\epsilon$ is the depolarization noise parameter. in $\O_\sigma$, where the pure magic state $\ket{\rm{S}}$ is induced with depolarising noise. In fact, any magic state $\rho$ can be processed via Clifford operations and put into this canonical form for some $\epsilon \ge 0$.
+where $\epsilon$ is the depolarization noise parameter. Moreover, any magic state $\rho$ can be processed via Clifford operations~\cite{cit:prakash,cit:prakash2} and put into this canonical form for some $\epsilon \ge 0$.
 
-
-Its Wigner distribution is visualised in~\cref{fig:strange}.
-
-We refer to parameter $\epsilon$ as \emph{noise level} to avoid confusion with the error rate $\delta$, a term commonly used in the literature to denote that the distilled state has a marginal overlap of at least $1-\delta$ with the desired magic state.
-In our case the error rate of the state in~\cref{eq:noisysn} would be $\delta = \frac{2}{3}\epsilon$.
-
-At $\epsilon=0$, the Strange state is a qutrit magic state of maximal sum-negativity / mana~\cite{cit:veitch2} and therefore acts as an ideal distillation target, analogous to a Bell state in bipartite entanglement theory.
-The Strange state is exceptionally symmetric under Clifford transformations and as a result there exists a \emph{twirling} protocol, discussed in detail in~\cite{cit:prakash,cit:prakash2}, allowing for the conversion of any noisy magic state to the form of~\cref{eq:noisysn} via Cliffords.
-
-In~\cref{fig:lcs}, we illustrate the Lorenz curve $\lc{\rho_{\rm{S}}}{\sigma}$\footnote{Hereinafter, we may omit obvious variable dependencies like $\epsilon$ and $n$ for clarity} of pure and noisy $n$--copy Strange states in some thermal $\sigma$--fragment.
-Due to~\cref{lem:lcmax}, it is clear that the curves peak at $1 + \sn{\rho_{\rm{S}}(\epsilon)^{\otimes n}}$.
-
-
-\label{sec:unital}
-We shall provide a general analysis across multiple fragments, but before we do that it is useful to illustrate the techniques in the simplest fragment first. The unital fragment encompasses the circuits which preserve the maximally mixed state ($\id/d$) and so it includes many important families of circuits.
-
-MSD circuits in principle consist of bulk sequences of random Clifford unitaries ($\rcu$)~\cite{cit:bravyi}, depicted in~\cref{fig:zoo}.
-Operations in $\rcu$ can be expressed as
+We now consider the task of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$. It turns out that our majorization relations are simplest to express when the number of systems remains constant. To do this is simply tensor in $n'-n$ auxiliary free states, which do not affect the distillation analysis. Since we work in the unital fragment it makes sense to choose these free states to be the maximally mixed state, since the Lorenz curves are unaffected.  More generally, it is easy to show that
 \begin{equation}
-    \E(\rho) = \sum_i p_i U_i \rho U_i^\dagger,\ U_i \in \cal{C}_d.
+L_{\rho |\sigma} (x) = L_{\rho\otimes \sigma |\sigma}(x),
 \end{equation}
-Depending on the symmetries of such operations, a Clifford sequence may belong in other $\sigma$--fragments as well.
-In such a case, the majorisation condition~(\ref{eq:majbound}) needs to be checked in the $\sigma$--fragments that reflect all symmetries of the operation sequence.
-
-In general, noisy circuits are well-described by the unital fragment.
-To see this, consider incorporating noisy channels in the circuit, for example dephasing channels like
-\begin{equation}\label{eq:dephase}
-	\Delta(\rho) = \sum_{k \in \mathbb{Z}_d} \ketbra{\phi_k}\rho\ketbra{\phi_k}
-\end{equation}
-in various bases $\ket{\phi_k}$.
-A circuit consisting of such dephasing channels can be fully analysed in the $\sigma$--fragments of the pure basis states $\sigma = \ketbra{\phi_k}$ (see proof in~\cref{app:frag}).
-Incorporating many such channels in different bases destroys the circuit symmetries, except for the invariance of the maximally mixed state.
-
-We consider the task of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ as given in~\cref{eq:noisysn} into a smaller number of copies $n'$ of a less noisy strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$,
+for any full-rank $\sigma \in \F$. Therefore, we can consider the transformation
 \begin{equation}\label{eq:sudist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation}
-where all copies $n, n', n - n'$ are even.
-Since the state $\id / 3$ is free, tensoring in copies of it does not affect the distillation process.
-The distillation rate $R \coloneqq n'/n$ for this process will in general depend on the noise levels, $R = R(\epsilon, \epsilon')$ and our task is to provide it with an upper bound.
+and compare the Lorenz curves for both the input and output states to bound $R(\epsilon, \epsilon') \coloneqq n'/n$, the rate of this interconversion within the fragment.
 
-The Lorenz curve $\lc{\rho_{\rm{S}}}{\id/3}$, for some general noise parameter $\epsilon$ and number of copies $n$, is defined at $9^n$ points between $0$ and $1$.
-The exact expressions for the coordinates of these points can take $8$ different forms, depending on whether the noise level $\epsilon$ is greater or less than $\frac{3}{7}$, the parity of the number of copies $n$ is even or odd and the location relative to the curve peak is on the left hand side (LHS -- including the curve peak) or right hand side (RHS) of the curve peak.
-The full details for the construction of all Lorenz curve forms are provided in~\cref{app:lcsu_technical}.
 
-Here we focus on the comparison of the first elbow (which lies in the LHS part) of Lorenz curves with even copies $n, n'$ and low noise levels ($\epsilon' < \epsilon \leq 3/7$).
 
-The Wigner distribution of the 1-copy, $\epsilon$--noisy Strange state can be written as 
+The Wigner distribution of the single-copy, $\epsilon$--noisy Strange state  is given by
 \begin{equation}
-	\W[\bmx]{\rho_{\rm{S}}(\epsilon)} = (1-\epsilon)\W[\bmx]{\ketbra{\rm{S}}} + \epsilon\W[\bmx]{\frac{1}{3}\id},
+	\W[\bmx]{\rho_{\rm{S}}(\epsilon)} = (1-\epsilon)\W[\bmx]{\ketbra{\rm{S}}} + \epsilon\W[\bmx]{\frac{1}{3}\id}.
 \end{equation}
-so we get positive components
+Since the Wigner distribution $W_{\I/3}(x)$ is the uniform probability distribution over the phase space, we get that $W_{\rho_S(\epsilon) } (\x)$ has positive components
 \begin{equation}
 	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon
 \end{equation}
-at the 8 phase space points $\bmx \in \cal{P}_3 \setminus \{\bmo\}$ and a negative component
+at the 8 phase space points $\x  \ne (0,0)$ and a single negative component
 \begin{equation}
 	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
 \end{equation}
-at the origin $\bmx = \bmo$.
+located at the origin $\bmx = \bmo$. We assume that $\epsilon < 3/4$ to ensure the presence of negativity in the Wigner distribution. 
 
-The rescaled distribution in the unital fragment simply is 
+To use relative majorization on such distributions we must rescale relative to the free state, however the rescaled distribution in the unital fragment is simply
 \begin{equation}
-	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\frac{1}{3}\id}(\bmx) = \frac{\W[\bmx]{\rho_{\rm{S}}}}{\W[\bmx]{\frac{1}{3}\id}} = d\W[\bmx]{\rho_{\rm{S}}},
+	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\frac{1}{3}\id}(\bmx) = \frac{\W[\bmx]{\rho_{\rm{S}}}}{\W[\bmx]{\frac{1}{3}\id}} = 9\W[\bmx]{\rho_{\rm{S}}},
 \end{equation}
-so ordering the rescaled distribution is equivalent to ordering $\W{\rho_{\rm{S}}}$.
+so the probleme of ordering the rescaled distribution is equivalent to ordering $\W{\rho_{\rm{S}}}$. The Wigner distribution of $n$ copies of the state is obtained by the $n$-fold product of the single copy distribution, and the Lorenz curve $L_{\rho|\sigma}(x)$ for $\rho = \rho_S(\epsilon)^{\otimes n}$ and $\sigma = (\I/3)^{\otimes n}$ is readily computed for any $n$ and $\epsilon$, and the full details are provided in~\cref{app:lcsu_technical}. The non-trivial element that arises for quasi-distributions is that the product of negative components generates a positive number, and therefore the ordering of the components of $W_{\rho |\sigma}(x)$ depends on whether $-v(\epsilon)$ appears to an even or odd power.
 
-The component values and multiplicities ($m_i$) in the $n$--copy case are 
+The component values $w_i$ and associated multiplicities ($m_i$) in the $n$--copy case are 
 \begin{align}
 	m_i &= 8^{2i}\binom{n}{2i}, \\
-	w(\rho_{\rm{S}})_i &= u^{2i}(-v)^{n-2i}, \\
-	w(\id/3)_i &=  \frac{1}{9^n},
+	w_i &= u^{2i}(-v)^{n-2i},
 \end{align}
-where index $i$ runs through $0,\dots,\frac{n}{2}$.
-This is derived in~\cref{app:lcsu_coord_elb}.
+where index $i$ runs through $0,\dots,\frac{n}{2}$, and we assume for simplicity that $n$ is even. The details are provided in~\cref{app:lcsu_coord_elb}. \ddd{[This looks like there's a typo. If $n$ is even then so too is $n-2i$ but then we don't get any negative values in $w_i$. Needs fixing.]}
 
-It is readily seen that the maximum Wigner component is achieved when $i=0$, so the corresponding multiplicity and Wigner component are $m_0 = 1$, $w(\rho_{\rm{S}})_0 = v^n$.
-The first elbow coordinates therefore can be expressed as
-\begin{equation}\label{eq:first_elb_coords}
-	(x_0, L_0) = (m_0\hspace{2pt} w(\id/3)_0,\ m_0\hspace{2pt} w(\rho_{\rm{S}})_0) = \left(\frac{1}{9^n}, v^n \right)
-\end{equation}
-
-The first elbow of the target state is located at $x'_0 = \frac{1}{9^{n'}} > x_0$, so we can use the first elbow condition,
-\begin{equation}\label{eq:first_elb_bound2}
-	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'},
-\end{equation}
-to compute analytical distillation bounds for distillation rate $R = R(\epsilon, \epsilon') \coloneqq n'/n$ in the unital fragment.
-We substitute coordinates from~\cref{eq:first_elb_coords} appropriately in~\cref{eq:first_elb_bound2} to get
+The largest Wigner component of $v^n$ occurs when $i=0$ and is unique. The Lorenz curve $L_{\rho|\sigma}(x)$ rises monotonically and reaches a maximum value
 \begin{equation}
-	R \leq \frac{\ln{(3-4\epsilon)}}{\ln{(3-4\epsilon')}}.
+ L_\star:=L_{\rho |\sigma} (x_\star) = \sum_{i = 0}^{n/2} m_{2i} w_{2i} > 1,
+\end{equation}
+which occurs at $x=x_\star$ given by
+\begin{equation}
+x_\star = \mbox{[Fill in tidily]}.
 \end{equation}
 
-Specifically for the problem of distilling pure magic states ($\epsilon'=0$), we obtain an upper bound in the unital fragment given by
+It is possible to derive bounds from the peak region of the Lorenz curves for $\rho_S(\epsilon)^{\otimes n}$ and $\rho_S(\epsilon')^{\otimes n'}$ and then impose the constraint that one never dips below the other, however it turns out that a simple constraint can be obtained by considering the first elbow of the Lorenz curves. This is particularly simple for $\epsilon' < \epsilon \leq 3/7$. \ddd{[Why??]}
+The first elbow coordinates for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ the first elbow occurs at $(1/9^{n'}, v(\epsilon')^{n'})$.
+
+Finally, by requiring that the output state Lorenz curve is never above the input state Lorenz curve for the first elbow, we get
+\begin{equation}
+	R(\epsilon, \epsilon') \leq \frac{\ln{(3-4\epsilon)}}{\ln{(3-4\epsilon')}}.
+\end{equation}
+
+Specifically for the limiting case of distilling pure magic states ($\epsilon'=0$), we obtain an upper bound in the unital fragment given by
 \begin{equation}
 	R \leq 1 + \frac{\ln (1 - \frac{4}{3} \epsilon)}{\ln 3}.
 \end{equation}
@@ -532,7 +496,7 @@ The mana bound can be directly calculated as
 \begin{equation}
 	R \leq \frac{\mana{\rho_{\rm{S}}(\epsilon)}}{\mana{\rho_{\rm{S}}(0)}} = 1 + \frac{\ln \left(1 - \frac{8}{15}\epsilon \right)}{\ln \frac{5}{3}}.
 \end{equation}
-Using the max--thaum properties of super-additivity and vanishing at free states, we obtain
+Using the max--thauma properties of super-additivity and vanishing at free states, we obtain
 \begin{align}
 	&\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon)) \geq (1-\epsilon) \theta_{\rm{max}}(\ketbra{\rm{S}}) + \epsilon \theta_{\rm{max}}\left(\frac{1}{3}\id \right) = \nonumber\\
 	&(1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)),
@@ -543,12 +507,14 @@ Therefore, the max--thauma bound for the pure Strange state distillation process
 	R = \frac{1}{n} = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon.
 \end{equation}
 
-Both the mana and the max--thauma bounds are looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}.
+Both the mana and the max--thauma bounds are looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. However, beyond this comparison with these global bounds it is important to emphasize that the above majorization bound gives constraints on any distillation protocol that is \emph{unital}, and therefore allows for a finer analysis of magic protocols than global bounds would allow.
+
+While unital channels are quite natural, we might wonder if we obtain radically different distillation bounds if we allow biases into our protocols, or use protocols that are invariant under some residual symmetry. In the next section we provide relative majorization bounds in arbitrary stabilizer fragments, and in particular we shall parameterize these bounds from a thermodynamic perspective. Specifically, we can interpret the stabilizer state $\sigma$, defining the fragment, as a thermodynamic equilibrium state at some effective temperature and with some effective Hamiltonian.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
     \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by majorisation, mana and the line $1-\epsilon$ (tightest bound of max--thauma) are plotted for $\epsilon' = 0$, up to noise level $\epsilon = 3/7$.
-    Majorisation consistently provides stricter rates than mana and max--thauma.
+    Majorisation provides stricter rates than the global mana and max--thauma bounds.
     }
     \label{fig:distill_bounds}
 \end{figure}
