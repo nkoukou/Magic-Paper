@@ -525,26 +525,26 @@ While unital channels are quite natural, we might wonder if we obtain radically 
 We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabiliser fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \stab$.
 In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
-These bounds can be interpreted in two different ways: on one hand they can be viewed as a family of upper bounds parameterized by a stabiliser state $\sigma$, on the other we can associate $\sigma$ to actual hardware limitations or to biased noise models in which it is an equilibrium state of some kind. 
-Without loss of generality, we can always write a stabiliser state $\sigma$ as a Gibbs state $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}.
+These bounds can be interpreted in two different ways: 
+\begin{enumerate}
+\item As family of upper bounds parameterized by an abstract stabiliser state $\sigma$.
+\item That the state $\sigma$ corresponds to actual hardware limitations or to biased noise model in which $\sigma$ is an equilibrium state of some kind. 
+\end{enumerate}
+Without loss of generality, we can always write a stabiliser state $\sigma$ as a Gibbs state $\sigma = \gamma_\beta \coloneqq \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and Hamiltonian $H$ as discussed in~\cref{sec:major_frag}. Our analysis depends on the free energy $F(\beta)$ of the state $\sigma$,
+\begin{equation}
+	F(\beta) \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta},
+\end{equation}
+where the von Neumann entropy is $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. Again, under interpretation (1) above this is simply an abstract entropic measure of the stabilizer state, while under interpretation (2) it corresponds to the thermodynamic free energy of the equilibrium state.
 
 We focus on the distillation process
 \begin{equation}\label{eq:stdist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \sigma^{\otimes (n-n')},
 \end{equation}
-where the noisy Strange state is given in~\cref{eq:noisysn} and we highlight again that any magic state can be transformed to this form via Clifford operations.
-Notice that tensoring in copies of $\gamma_\beta$ does not affect the process, since the state is free.
-In the following result, all copies $n, n', n - n'$ are even with $n > n'$, and $\epsilon'=0$, but the bounds are easily generalised to odd numbers of copies and $\epsilon'$ such that $0 < \epsilon' < \epsilon$. 
-Finally, we assume a range of initial noise levels, $\epsilon \leq 3/7$, so that the largest Wigner component of the 1-copy noisy magic state is negative.
-The numerical value of $3/7$ is higher than corresponding values of relevant existing distillation protocol error thresholds~\cite{cit:bravyi,cit:prakash}.
+and as before tensoring in copies of $\sigma$ does not affect the Lorenz curves of the magic states in the fragment.
 
 Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in~\cref{eq:stdist}. \nick{I think we should denote distillation rates by $R$ and our distillation bound by $R(\epsilon, \epsilon', \beta)$, since the bound is what really depends on $\epsilon, \epsilon', \beta$.}
 We also write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$.
-The bounds depend on the free energy $F_\beta$ of state $\sigma$,
-\begin{equation}
-	F_\beta \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta},
-\end{equation}
-where the von Neumann entropy is $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$.
+
 
 \begin{figure}[t!]
     \centering
@@ -568,17 +568,17 @@ and for $\beta \leq \beta_\star$, and define a threshold noise level
 Then any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:\\
 If $\beta \leq \beta_{\star}$ and $\epsilon  \leq \epsilon_{\star}$,
 \begin{equation}
-	R(\epsilon,\beta) \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_0 - F_\beta)}.
+	R(\epsilon,\beta) \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_0 - F(\beta))}.
 \end{equation}
 If $\beta \leq \beta_{\star}$ and $\epsilon_{\star} < \epsilon$, then
 \begin{equation}
-	R(\epsilon, \beta) \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F_\beta)}.
+	R(\epsilon, \beta) \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_2 - E_0)(\beta_{\star} - \beta)}{\beta (E_0 - F(\beta))}.
 \end{equation}
 Otherwise if $\beta > \beta_{\star}$,
 \begin{equation}
-	R(\epsilon, \beta) \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F_\beta)}.
+	R(\epsilon, \beta) \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_2 - F(\beta))}.
 \end{equation}
-In the above expressions $F_\beta$ is the effective free energy of the stabilizer state.
+In the above expressions $F(\beta)$ is the effective free energy of the stabilizer state.
 \end{theorem}
 A few comments can be given on this result. 
 Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
@@ -597,7 +597,7 @@ Its eigen-decomposition can be written as
 \begin{equation}
 	\sigma = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{\varphi_2},
 \end{equation}
-where $\{\ket{\varphi_k}\}$ are pure, orthonormal stabiliser states. These pure states can be represented in terms of Generalized Paulis. Let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group this implies that $C$ must be a Clifford unitary. Therefore, $C$ maps $\sigma$ to $\gamma_\beta$, where 
+where $\{\ket{\varphi_k}\}$ are pure, orthonormal stabiliser states. These pure states can be represented in terms of generalized Paulis. Let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group this implies that $C$ must be a Clifford unitary. Therefore, $C$ maps $\sigma$ to $\gamma_\beta$, where 
 \begin{equation}
 \gamma_\beta = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{2},
 \end{equation}
@@ -739,9 +739,9 @@ We substitute coordinates from~\cref{eq:first_elb_coords} appropriately in~\cref
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_0 - F_\beta)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F_\beta)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)},\ &\rm{(C2)} \rightarrow \rm{(C2)}.
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_0 - F(\beta))}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F(\beta))}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F(\beta))}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C2)}.
 	\end{cases}
 \end{equation}
 Equivalently, we require that
@@ -816,9 +816,9 @@ provided that the last elbow location is closer to 1 for the initial state than 
 The last elbow bound then can be rephrased in terms of the first elbow bound as $R_{\rm{last-elb}} - R_{\rm{first-elb}} = $
 \begin{equation}\label{eq:last_elb_coords}
 	\begin{cases}
-		\dfrac{1}{n} \dfrac{\log{\frac{u(\epsilon)v(\epsilon')}{u(\epsilon')v(\epsilon)}}}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon)v(\epsilon')}{u(\epsilon)u(\epsilon')}} - 2\beta(E_{\rm{max}} - E_0)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F_\beta)},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon')u(\epsilon')}{v(\epsilon')u(\epsilon)}}}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F_\beta)},\ &\rm{(C2)} \rightarrow \rm{(C2)}, 
+		\dfrac{1}{n} \dfrac{\log{\frac{u(\epsilon)v(\epsilon')}{u(\epsilon')v(\epsilon)}}}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon)v(\epsilon')}{u(\epsilon)u(\epsilon')}} - 2\beta(E_{\rm{max}} - E_0)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon')u(\epsilon')}{v(\epsilon')u(\epsilon)}}}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C2)}, 
 	\end{cases}
 \end{equation}
 
@@ -834,73 +834,78 @@ I am a bit stuck with this expression and I am not sure it's worth putting more 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Lower magic bounds via majorisation}
+\subsection{Lower magic bounds via majorisation}
 \label{sec:lower_bounds}
 
-\nick{Add from notes}
+\ddd{[Initial text. To be edited.]}
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Given this, one might wonder if this approach could also provide \emph{lower bounds} for distillation protocols. Now, in contrast to the upper bounds, it is necessary to include the symplectic constraints on the phase space into the majorization relations.
+
+  For example, the Clifford group action on a quantum system corresponds to the action of the affine symplectic group on the discrete phase space. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. From the Hardy-Littlewood theorem, we know that traditional majorization is obtained from convex mixtures of arbitrary permutations. However this has been generalised to convex mixtures of elements of a group $G$ that acts on vectors. This $G$--majorization has been studied in the classical literature and a range of results are known about it. For example, if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions, just as happens for the full majorization ordering. One route is therefore to consider reflection sub-groups of the affine symplectic group, for which the majorization relation reduces to a finite set of conditions. This would therefore provide concrete lower bounds on distillation rates.
+  
+  The topic of $G$--majorization has been extensively studied, but to our knowledge there hasn't been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem. While this seems like a painful thing to consider, there is motivation for this beyond the aim of constructing lower bounds for magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics and so automatically respect a symplectic form. Therefore the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic thermo-majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Fragments in general resource theories}
-\label{sec:general_resources}
-
-\nick{Add from notes}
-
-So far we have introduced the notion of $\sigma$--fragments for any resource theory of magic. 
-In this section we briefly generalise this concept to arbitrary resource theories and explain precisely how it connects with resource monotones. 
-The busy reader more focussed on magic may skip this section.
-
-State convertibility within a given resource theory is often a hard question to address due to intricacies of the theory structure.
-In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering.
-The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the original theory than a measure can.
-
-Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
-Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-We now generalise this idea of a theory projection that preserves comparability between states. 
-\begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
-Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ to free operations in $\R'$. 
-Moreover, these obey
-	\begin{enumerate}
-        \item $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_\R \rho_2$;
-        \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
-    \end{enumerate}
-We call $\R'$ a \emph{covariant fragment} of $\R$.
-\end{definition}
-
-Resource monotones can now be clearly seen as a special case of covariant resource projections.
-\begin{proposition}[\textbf{Totally ordered covariant theories}]\label{thm:monoproj}
-	Any resource monotone $\M$ of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order. 
-	Conversely, any such covariant projection corresponds to a resource monotone $\M$. 
-\end{proposition}
-\begin{proof}
-	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-	State order is covariantly preserved due to the defining property of a monotone, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
-	
-	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
-	The definition of a resource monotone then automatically implies covariance.
-	
-	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
-	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the definition of a monotone.
-	
-\end{proof}
-
-We can also view $\sigma$--fragments as an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
-However, states which are incomparable in $\R$ remain incomparable and conversions between states which are comparable in $\R$ may no longer be possible.
-\begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
-	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
-Moreover, these obey
-	\begin{enumerate}
-        \item $\rho_1 \prec_\R \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$;
-        \item $\E = \E_1 \circ \E_2$ whenever $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$.
-    \end{enumerate}
-We call $\R'$ a \emph{contravariant fragment} of $\R$.
-\end{definition}
-The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
-Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\section{Fragments in general resource theories}
+%\label{sec:general_resources}
+%
+%\nick{Add from notes}
+%
+%So far we have introduced the notion of $\sigma$--fragments for any resource theory of magic. 
+%In this section we briefly generalise this concept to arbitrary resource theories and explain precisely how it connects with resource monotones. 
+%The busy reader more focussed on magic may skip this section.
+%
+%State convertibility within a given resource theory is often a hard question to address due to intricacies of the theory structure.
+%In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering.
+%The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the original theory than a measure can.
+%
+%Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
+%Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
+%We now generalise this idea of a theory projection that preserves comparability between states. 
+%\begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
+%Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
+%Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ to free operations in $\R'$. 
+%Moreover, these obey
+%	\begin{enumerate}
+%        \item $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_\R \rho_2$;
+%        \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
+%    \end{enumerate}
+%We call $\R'$ a \emph{covariant fragment} of $\R$.
+%\end{definition}
+%
+%Resource monotones can now be clearly seen as a special case of covariant resource projections.
+%\begin{proposition}[\textbf{Totally ordered covariant theories}]\label{thm:monoproj}
+%	Any resource monotone $\M$ of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order. 
+%	Conversely, any such covariant projection corresponds to a resource monotone $\M$. 
+%\end{proposition}
+%\begin{proof}
+%	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
+%	State order is covariantly preserved due to the defining property of a monotone, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
+%	
+%	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
+%	The definition of a resource monotone then automatically implies covariance.
+%	
+%	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
+%	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the definition of a monotone.
+%	
+%\end{proof}
+%
+%We can also view $\sigma$--fragments as an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
+%However, states which are incomparable in $\R$ remain incomparable and conversions between states which are comparable in $\R$ may no longer be possible.
+%\begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
+%	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
+%Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
+%Moreover, these obey
+%	\begin{enumerate}
+%        \item $\rho_1 \prec_\R \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$;
+%        \item $\E = \E_1 \circ \E_2$ whenever $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$.
+%    \end{enumerate}
+%We call $\R'$ a \emph{contravariant fragment} of $\R$.
+%\end{definition}
+%The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
+%Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion}
 \label{sec:conc}
