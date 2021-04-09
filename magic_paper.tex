@@ -12,13 +12,14 @@ reprint
 \begin{document}
 % Distillation rate vs bound
 % Proofs in App. A
-% Eq. numbering in last line always
 % Sec: App. D
 % Sec: General resources
 % Sec: Lower bounds
 % Sec: Intro
 % Sec: Abstract
 % Figs consistency (esp. figs 3,4,5 and 1,6) + Figure 0 ?
+% Eq. numbering in last line always
+% British vs US english
 % Spacing (fig positioning, sections, paragraphs, QED symbols)
 
 \begin{abstract}
@@ -315,7 +316,7 @@ The question is now whether the sub-theories can be analysed to provide addition
 Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
 It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be easily checked.
 
-There is a natural generalisation, which we call \emph{relative majorization} (also known as $d$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization)\footnote{The general form of relative majorization is defined as $(\p,\r) \succ (\q, \r')$ iff there is a stochastic map $A$ such that $A\p = \q$ and $A\r = \r'$.}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as follows:
+There is a natural generalisation, which we call \emph{relative majorization} (also known as $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization)\footnote{The general form of relative majorization is defined as $(\p,\r) \succ (\q, \r')$ iff there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q$. We retrieve $\bmd$--majorization when $\r = \r'$.}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as follows:
 \begin{equation}
 \p \succ_{\r} \q,
 \end{equation}
@@ -343,7 +344,7 @@ If $\w$ and $\r$ are both probability distributions then the Lorenz curve is def
     \label{fig:lcs}
 \end{figure}
 
-Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see \ddd{[CITE]}\nick{haven't seen this before}\ddd{[`Orthogonality and Disjointness in Spaces of Measures'', by Paul Busch.]} for details).
+Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see~\cite{Busch_1998} for details).
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}\label{sec:major_frag}
 
@@ -418,7 +419,7 @@ where $\rho_2$ is a purer magic state than $\rho_1$ and $R$ is made as large as 
 
 \section{Magic in the unital fragment}
 
-In this section we apply majorization to magic state distillation within a simple fragment, namely the unital fragment. This corresponds to considering distillation protocols where one is restricted to free operations that are \emph{unital operations}, meaning that $\E(\I/d) = \I/d$. This is a particularly nice set of operations, which include for example all Weyl-covariant channels \ddd{[CITE]}. To make things concrete we shall consider qutrit magic states ($d=3$). This is convenient since this system doesn't have the subtleties of the qubit case, and admits non-trivial structure (e.g. Hamiltonians with two different energy gaps) while being sufficiently simple to analyse in detail.
+In this section, we apply majorization to magic state distillation within a simple fragment, namely the unital fragment. This encompasses distillation protocols where one is restricted to \emph{unital operations}, meaning that $\E(\I/d) = \I/d$ for all free $\E$. This is a particularly nice set of operations, which include for example all Weyl-covariant channels \ddd{[CITE]}. To make things concrete we shall consider qutrit magic states ($d=3$). This is convenient since qutrit systems don't have the subtleties of the qubit case, and admit non-trivial structure (e.g. Hamiltonians with two different energy gaps), while being sufficiently simple to analyse in detail.
 
 For our distillation protocols we need to choose a canonical pure magic state as a target. For this we shall choose the Strange state $|S\>$ given as
 \begin{equation}
