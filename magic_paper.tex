@@ -527,25 +527,25 @@ While unital channels are quite natural, we might wonder how different distillat
 \section{Magic bounds in arbitrary stabiliser fragments}
 \label{sec:stab}
 
-We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabiliser fragment, $\R_\sigma$ where $\sigma$ is any quantum state $\sigma \in \stab$.
+We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabiliser fragment $\R_\sigma$, where $\sigma$ is any quantum state $\sigma \in \stab$.
 In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
 
 These bounds can be interpreted in two different ways: 
 \begin{enumerate}
-\item As family of upper bounds parameterized by an abstract stabiliser state $\sigma$.
-\item The state $\sigma$ corresponds to actual hardware limitations or to biased noise model in which $\sigma$ is an equilibrium state of some kind. 
+\item As a family of upper bounds parameterised by an abstract stabiliser state $\sigma$.
+\item The state $\sigma$ can also reflect actual hardware limitations or some kind of biased noise model in which $\sigma$ is an equilibrium state.
 \end{enumerate}
-Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F(\beta)$ of the state $\sigma$, which is defined by
+Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F(\beta)$ of the state $\sigma$, expressed as
 \begin{equation}
 	F(\beta) \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta}.
 \end{equation}
-Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. Again, under interpretation (1) above this is an abstract entropic measure of the stabilizer state, while under interpretation (2) it corresponds to the thermodynamic free energy of the equilibrium state.
+Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. Again, under interpretation (1) above, this is an abstract entropic measure of the stabilizer state, while, under interpretation (2), it corresponds to the thermodynamic free energy of the equilibrium state.
 
 We focus on the distillation process
 \begin{equation}\label{eq:stdist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \sigma^{\otimes (n-n')},
 \end{equation}
-and as before tensoring in copies of $\sigma$ does not affect the Lorenz curves of the magic states in the fragment.
+where, as before, tensoring in copies of $\sigma$ does not affect the Lorenz curves of the magic states in the fragment.
 
 Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in~\cref{eq:stdist}. We shall write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$ for the limiting case of distilling a pure magic state.
 
@@ -560,16 +560,16 @@ Given this context, we now provide the following result on bounding the distilla
 \end{figure}
 
 \begin{theorem}\label{thm:stab_bounds}
-	Given any theory of magic $\R = (\F, \O)$. Let $\sigma$ be any qutrit stabiliser state, and write the state as $\sigma = \frac{1}{\Z} e^{-\beta H}$ with $H$ having eigenvalues $E_0, E_1, E_2$, and where $\beta$ is an effective inverse temperature for the state. 
-We define $\beta_\star = (1/kT_\star)$ through the relation
+	Given a theory of magic $\R = (\F, \O)$, let $\sigma$ be any qutrit stabiliser state, and write the state as $\sigma = \frac{1}{\Z} e^{-\beta H}$, where $H$ has eigenvalues $E_0, E_1, E_2$, and $\beta$ is an effective inverse temperature for the state. 
+We define $\beta_\star = 1/kT_\star$ through the relation
 \begin{equation}
-	E_{\rm max} - E_s =: kT_\star \ln 2,
+	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
 \end{equation}
-where $E_{\rm max} = \max\{E_k\}$ and $E_s$ is the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$.  For $\beta \leq \beta_\star$ define a threshold noise level
+where $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ is the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$. \nick{is the ``overlap'' statement precise enough?} For $\beta \leq \beta_\star$, we define a threshold noise level
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_{\rm max} - E_s)\beta}}.
 \end{equation}
-Then any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:\\
+Then, any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:\\
 If $\beta \leq \beta_{\star}$ and $\epsilon  \leq \epsilon_{\star}$,
 \begin{equation}
 	R(\epsilon,\beta) \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_s - F(\beta))}.
@@ -596,7 +596,7 @@ Given that we work with qutrits this seems surprising, but does deserve further 
 \begin{proof}
 	We provide the full proof here, with some technical details pushed to~\cref{app:lcst_technical}.\\
 
-Let $\displaystyle \sigma = e^{-\beta H} / \Z_\beta$ be a stabiliser state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$, where we have $E_0 \le E_1 \le E_2$.
+Let $\displaystyle \sigma = e^{-\beta H} / \Z_\beta$ be a stabiliser state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
 The stabilizer state $\sigma$ can now be written as 
 \begin{equation}
 	\sigma = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{\varphi_2},
@@ -605,10 +605,10 @@ where $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states,
 
 The Wigner distribution of state $\sigma$ is then given by
 \begin{align}
-	\W[\bmx]{\sigma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}W_{\ketbra{k}}(x_0,x_1) \nonumber\\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x_0, k} = \frac{e^{-\beta E_{x_0}}}{3\Z_\beta},
+	\W[\bmx]{\sigma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}W_{\ketbra{k}}(x, p) \nonumber\\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x, k} = \frac{e^{-\beta E_{x}}}{3\Z_\beta},
 \end{align}
-where $x_0$ is the first component of $\x$, labeling one of the three vertical lines in the phase space.
+where $x$ labels one of the three vertical lines in the phase space.
 Since we have restricted to full-rank states, all Wigner components are strictly positive, and so the pre-order $\prec_{\sigma}$ is well-defined. States that are not full-rank can be addressed as a limiting case of the above.
 
 The Strange state rescaled distribution for a magic state $\rho_S(\epsilon)$ is now given by 
@@ -633,20 +633,25 @@ The component values and multiplicities of the relevant distributions in the fou
 	\bmw(\rho_{\rm{S}} | \sigma) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
 \end{align}
 
-Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho^{\otimes n}_S |\sigma^{\otimes n})$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are denoted by $w_{ijk}$ and with associated multiplicity $m_{ijk}$. The indices $i,j,k$ obey the constraint $\alpha \coloneqq i+j+k \leq n$.
+Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho^{\otimes n}_S |\sigma^{\otimes n})$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are denoted by $w(\rho_{\rm{S}} | \sigma)_{ijk}$ with associated multiplicity $m_{ijk}$. The indices $i,j,k$ are non-negative integers and obey the constraint $\alpha \coloneqq i+j+k \leq n$.
 The $n$--copy multiplicity is given by
 \begin{equation}
 	m_{ijk} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k,
 \end{equation}
 while the distribution values are given by
+\begin{align}\label{eq:ncopy_w_rescaled}
+	w(\rho_{\rm{S}} | \sigma)_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
+\end{align}
+where we have also computed the unscaled components
 \begin{align}
-	w(\rho_{\rm{S}} | \sigma)_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )}.
+	w(\rho_{\rm{S}})_{ijk} &= (-v)^{n-\alpha} u^{\alpha}, \label{eq:ncopy_wrho}\\
+	w(\sigma)_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
 \end{align}
 
 In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\sigma}$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \sigma)_{ijk}$ in decreasing order.
 In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the maximum component,
 \begin{align}
-	&\bmw(\rho_{\rm{S}} | \sigma)_{\rm{max}} \coloneqq (3\Z)^{n}\times \nonumber\\
+	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} \coloneqq (3\Z)^{n}\times \nonumber\\
 	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
 \end{align}
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
@@ -656,7 +661,7 @@ We can also assume that $n$ is even, so that we need the sum $\alpha = i+j+k$ to
 Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
 Hence, we have
 \begin{align}
-	&\bmw(\rho_{\rm{S}} | \sigma)_{\rm{max}} = \nonumber\\
+	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} = \nonumber\\
 	&(3\Z)^{n} v^n e^{n\beta E_s}\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}.
 \end{align}
 If the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. 
@@ -683,7 +688,7 @@ so there is no transition and we set $\epsilon_\star = 0$.
 
 The maximum component can then be expressed as
 \begin{equation}
-\bmw(\rho_{\rm{S}} | \sigma)_{\rm{max}} =
+w(\rho_{\rm{S}} | \sigma)_{\rm{max}} =
 	\begin{cases}
 		(3\Z)^{n} v^n e^{n\beta E_s}, &\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}	\\
 		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
@@ -695,12 +700,12 @@ Case $\rm{(C2)}$ corresponds to
 	(i,j,k) = 
 	\begin{cases}
 	(0,n,0), &\text{if } E_{\rm{max}} = E_1, \\
-	(0,0,n), &\text{if } E_{\rm{max}} = E_2.
+	(0,0,n), &\text{if } E_{\rm{max}} = E_2,
 	\end{cases}
 \end{equation}
-and we have $E_{\rm{max}} \ne E_s$, so the multiplicity in each case is $3^n$.
+so the multiplicity in each case is $3^n$.
 
-The coordinates of the first elbow are now given by
+Using the appropriate indices in~\cref{eq:ncopy_wrho,eq:ncopy_wsigma}, the first elbow coordinates can now be expressed as
 \begin{equation}\label{eq:first_elb_coords}
 	(x_0, L_0) =
 	\begin{cases}
@@ -715,9 +720,9 @@ Specifically, we have three scenarios of relevance to magic distillation:
 	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
 	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon_{\star} \leq \epsilon' < \epsilon$ or $E_{\rm{max}} > E_s$, $\beta \geq \beta_{\star}$.
 \end{enumerate}
-The fourth case $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon' > \epsilon$ \ddd{[True?]}, which means that the output magic state is noisier than the input state.
+The fourth case $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon$, which would imply that the output magic state is noisier than the input state.
 
-In each of the three scenarios, it is simple to check that the initial state's first elbow has $x_0$ coordinate closer to $0$) than that of the output state: $x_0 \leq x_0'$, see~\cref{app:first_elb_loc} for details. Therefore we obtain distillation bounds directly by comparing $L_0$ and $L_0'$.  We we do so we obtain the following distillation bounds,
+In each of the three scenarios, it is simple to check that the initial state's first elbow has $x_0$ coordinate closer to $0$ compared to the output state, $x_0 \leq x_0'$ (see~\cref{app:first_elb_loc} for details). Therefore, we can use the first elbow constraint, as described in~\cref{app:elb_constraints}, leading to the following distillation bounds,
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
