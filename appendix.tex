@@ -38,7 +38,7 @@ Then,
 \begin{align}
 	\abs{\W{\rho}{\bmx}} &= \frac{1}{d}\abs{\tr[A_{\bmx} \rho]} \leq \frac{1}{d} \abs{\sum_i \alpha_{\bmx,i} \lambda_i} \nonumber\\ &\leq \frac{1}{d}\sum_i \lambda_i = \frac{1}{d}.
 \end{align}
-The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace of complex matrices, while the second is the triangle inequality.
+The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace of complex matrices, while the second is the Cauchy-Schwarz inequality.
 \end{proof}
 
 \begin{proposition}
@@ -54,7 +54,7 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
 \end{proposition}
 If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto itself, then the stochasticity condition $\abs{\W[\bmy|\bmx]{\E}} \leq 1$ is satisfied.
 \begin{proof}
-	Proof of all properties can be found in Wang \textit{et al.}~\cite{Wang_2019} except for property (iii) which is a direct consequence of the definition of $\W{\E}$ and the corresponding property (iii) in~\cref{thm:wstate}.
+	Proof of all properties are provided by Wang \textit{et al.}~\cite{Wang_2019} except for property (iii) which is a direct consequence of the definition of $\W{\E}$ and the corresponding property (iii) in~\cref{thm:wstate}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
