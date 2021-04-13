@@ -29,7 +29,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \preprint{APS/123-QED}
 
-\title{Thermodynamic fragments for magic states in quantum computation}
+\title{Thermodynamic structures for magic states in quantum computation}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -49,74 +49,37 @@ Theories of magic states attempt to quantify this computational element via mono
 \subsection{Introduction}
 \label{sec:intro}
 
+\ddd{[Still work in progress. Gotta fix narrative line first.]}
+
+The state-injection model for quantum computation~\cite{cit:bravyi} is a central approach to realising a full-scale, fault-tolerant quantum computer. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally, one needs to find ways around the Eastin-Knill restriction. The state-injection approach supplements the Clifford unitaries with noisy quantum states, called `magic states', that are outside the set of stabliser states and, when incorporated into Clifford circuits, provide universality. The obstacle to this is that the states are invariably noisy and so protocols must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question is then: given a number $n$ of noisy magic states how many purified magic states can we obtain within the fault-tolerant set of quantum operations?
+
+To address such questions, concrete distillation protocols have been developed, and there has also been analysis of bounds on distillation rates within natural theoretical frameworks. These frameworks provide theories of magic in which one views magic states as ``resource'' states with respect to a natural class of quantum operations that are consider cheap, or ``free''~\cite{Gour_2019}. One very natural class of free operations considered are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However, there are several other candidate frameworks~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
+
+
 Magic states are necessary for achieving universal quantum computation within fault-tolerant schemes~\cite{cit:veitch, cit:mari, cit:gottesman, cit:bravyi, cit:knill, Campbell_2011}.
 Identifying magic as a resource for quantum universality has led to several theories which try to provide a framework for its quantification and manipulation \cite{cit:veitch2, cit:howard, Wang_2019, Seddon_2021}.
 The main question that such a theory attempts to answer is:
 \begin{center}
-    \emph{Given two magic states $\rho$ and $\rho'$ is there a free operation that can convert $\rho$ to $\rho'$?}
+    \emph{How do physical constraints, such as hardware limitations, noise bias or thermodynamics, restrict magic distillation protocols?}
 \end{center}
 
-We are interested in all resource theories of magic $\R = (\F, \O)$ in which free operations cannot generate any amount of resource. 
-Further denote by $\D$ the set of states considered under the theory, that is the union of free and resource states.
-The structure of such theory is described by a partial order, hereinafter called a \emph{pre-order}, $\prec_{\R}$ between states.
-We write $\rho' \prec_{\R} \rho$ iff there exists $\E \in \O$ such that $\E(\rho) = \rho'$.
-Naturally, states may be incomparable under the given theory, meaning that there exists no free operation that converts one to the other.
-We further call $\R' = (\F', \O')$ a \emph{subtheory} of $\R$ iff $\F' \subseteq \F$ and $\O' \subseteq \O$. 
-The above notation will be used for general resource theories as well.
+Such constraints make stabilizer states inequivalent, and can give rise to stabilizer states that are invariant under the constraints. In this work we shall approach this question using tools from statistical mechanics and thermodynamics. In particular we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as a manifold of ``equilibrium'' states. However, while a free energy difference exists between two thermodynamic equilibrium states at temperatures $T_1$ and $T_2$, here we focus in on the degree to which the magic state lies off the set of stabilizer states, and therefore magic is more accurately viewed as a form of non-equilibrium free energy that is strictly non-classical.
 
-Formally, the no resource generation condition on the theories translates into two assumptions:
-\begin{enumerate}[I]
-    \item Free operations send free states into free states, $\E: \F \mapsto \F$, for all $\E \in \O$;
-    \item Resource theory $\R$ is a completely free state preserving theory, in the sense that for any $d$--dimensional ancilla system and all free operations $\E$, $(\id_d \otimes \E ) \sigma \in \F$ whenever $\sigma \in \F$.
-\end{enumerate}
-The first assumption simply states that resources cannot be generated for free and is a minimal requirement for a resource theory. 
-An immediate consequence is that if statistical mixing is included in $\O$, then the resource theory is convex.
+Our approach is through the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space. Crucially we focus on magic states with negativity in their Wigner function, which is known to be a necessary condition for universality in the state-injection model. However following a thermodynamic perspective in this context raises a novel problem, namely it is impossible to define entropies for quasi-distributions. To circumvent this obstacle we make use of a more fundamental tool in thermodynamics -- majorization theory.
 
-Monotones are often used to address the question of state convertibility, although such approaches are usually generic.
+This construction also provides distillation bounds without relying on magic monotones -- instead of projecting the pre-order of magic states onto the real line (which is a monotone) we instead cover the pre-order of states with a collection of simpler `fragments', which admit analysis through the lens of majorization. The choice of fragment breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints on the form of protocols accessible.
 
-The monotonicity condition reflects the no resource generating property of free operations, so that monotones respect the pre-order $\prec_\R$ of the theory.
-A monotone of any general resource theory is a projection of the theory onto the non-negative real numbers, collapsing the pre-order of the theory to the total order defined on the real line.
-Our contribution is the introduction of a generalised notion of \emph{resource projection} which maps a general resource theory onto a subtheory which in principle still retains a partial structure (as opposed to the real line).
-Applying this notion on existing magic theories highlights the hidden stochasticity that governs magic state conversions.
-We show that a magic theory can be subdivided into \emph{fragments} \nick{FIX AND EXPAND}
+We provide a range of upper bounds, which reveal that the thermodynamic structure in the presence of negativity is surprisingly non-trivial and displays a range of features that do not appear in classical statistical mechanics. We also discuss how this approach could be used to construct explicit lower bounds on distillation. This in turn raises non-trivial questions that are also of interest in statistical mechanics. More precisely: what are the conditions for majorization that respects the symplectic structure of phase space?
 
-\subsection{Previous work}
-\label{sec:prev}
-
-The stabiliser theory of magic comprises of the so-called ``stabiliser'' states ($\stab$) and operations ($\so$), while non-stabiliser (resource) states are called magic.
-The stabiliser operations can be expressed in terms of a Stinespring dilation as 
-\begin{equation}
-    \E(\rho) = \tr_E [U(\rho \otimes \sigma_E)U^\dagger],
-\end{equation} 
-for an ancilla stabiliser state $\sigma_E$. 
-The motivation of the theory stems from the fact that stabiliser operations are experimentally straightforward to implement and they can be used to detect and correct errors on the stabiliser states due to their construction \cite{cit:gottesman, cit:gottesman2, cit:gottesman1998}.
-The Gottesman-Knill theorem however indicates that stabiliser operations need to be supplemented with magic states in order to achieve universality, justifying the term ``magic''.
-
-Generalisations of the stabiliser theory appear in the literature intending to include broader classes of operations.
-The class of stabiliser preserving operations ($\spo$) is defined as the set of $\cptp$ maps that send stabiliser states into stabiliser states~\cite{cit:ahmadi}.
-An important subclass of $\spo$ is the set of completely stabiliser preserving operations ($\cspo$)~\cite{cit:seddon}, which intuitively cannot induce ``non-stabiliserness'' even when applied to only part of a quantum state, i.e. operations $\E$ such that $(\id_d \otimes \E ) \sigma \in \stab$ for all positive dimensions $d$ whenever $\sigma \in \stab$.
-
+\subsection{Prior text that might be useful}
 Even though non-stabiliserness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
 In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable in~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
 The Wigner distribution of a state in odd prime dimensions, formally defined in~\cref{sec:wigner}, arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{Delfosse_2017, cit:howard2, cit:veitch2}.
 In this framework, the stabiliser states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
 However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabiliser states~\cite{cit:gross}.
-Therefore, stabiliser-preserving theories have been extended to a theory that preserves state ``Wigner positivity''~\cite{Wang_2019}.
-Informally, it can be considered as the maximal theory of magic $\Rmax = (\Fmax, \Omax)$, where free states have non-negative Wigner distributions and free operations completely preserve this property.\\ 
 
-\ddd{Things we MUST emphasize:
-\begin{enumerate}
-\item Perhaps a nice lead-in question: ``What happens if we view stabiliser states as thermodynamic equilibrium states and magic as a form of free energy?''
-\item We have found a scenario in which it is impossible to describe a thermodynamic structure using any entropic approach!
-\item We can tackle more `physicsy' questions like: how much magic can be distilled via available operations with some given fixed-point structure? 
-\item This allows a diagnostic on the kind of operations needed to do good distillation. I.e. what fixed point structure should they have?
-\item We go beyond the concept of monotones and replace a monotone with a $\sigma$--fragment.
-\item We can get both upper and lower bounds on magic distillation.
-\end{enumerate}
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
 \section{Phase space representations of quantum states}
 \label{sec:ps}
 
@@ -797,10 +760,10 @@ We have described how relative majorization can be used to establish upper bound
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Conclusion}
-\label{sec:conc}
 
-\nick{Summary}
+\section{Outlook}
+
+In this work we have looked at magic through the lens of thermodynamics. Specifically, we find that it can be viewed as a strictly non-classical form of non-equilibrium free energy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
