@@ -63,20 +63,22 @@ The main question that such a theory attempts to answer is:
     \emph{How do physical constraints, such as hardware limitations, noise bias or thermodynamics, restrict magic distillation protocols?}
 \end{center}
 
-Such constraints make stabilizer states inequivalent, and can give rise to stabilizer states that are invariant under the constraints. In this work we shall approach this question using tools from statistical mechanics and thermodynamics. In particular we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as a manifold of ``equilibrium'' states. However, while a free energy difference exists between two thermodynamic equilibrium states at temperatures $T_1$ and $T_2$, here we focus in on the degree to which the magic state lies off the set of stabilizer states, and therefore magic is more accurately viewed as a form of non-equilibrium free energy that is strictly non-classical.
+Such constraints make stabilizer states inequivalent, and can give rise to stabilizer states that are invariant under the constraints. In this work we shall approach this question using tools from statistical mechanics and thermodynamics. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as a manifold of ``equilibrium'' states. However, while a free energy difference exists between two thermodynamic equilibrium states at temperatures $T_1$ and $T_2$, here we focus in on the degree to which the magic state lies off the set of stabilizer states, and therefore magic is more accurately viewed as a form of non-equilibrium free energy that is strictly non-classical.
 
-Our approach is through the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space. Crucially we focus on magic states with negativity in their Wigner function, which is known to be a necessary condition for universality in the state-injection model. However following a thermodynamic perspective in this context raises a novel problem, namely it is impossible to define entropies for quasi-distributions. To circumvent this obstacle we make use of a more fundamental tool in thermodynamics -- majorization theory.
+Our approach relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space. Crucially, we focus on magic states with negativity in their Wigner function, which is known to be a necessary condition for universality in the state-injection model. However, following a thermodynamic perspective in this context raises a novel problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory.
 
-This construction also provides distillation bounds without relying on magic monotones -- instead of projecting the pre-order of magic states onto the real line (which is a monotone) we instead cover the pre-order of states with a collection of simpler `fragments', which admit analysis through the lens of majorization. The choice of fragment breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints on the form of protocols accessible.
+Our construction also provides distillation bounds without relying on magic monotones -- instead of projecting the pre-order of magic states onto the real line (which is a monotone) we instead cover the pre-order of states with a collection of simpler `fragments', which admit analysis through the lens of majorization. The choice of fragment breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints in the form of accessible protocols. \nick{We need to give some concrete example here, we keep repeating this ``advantage'' abstractly}
 
 We provide a range of upper bounds, which reveal that the thermodynamic structure in the presence of negativity is surprisingly non-trivial and displays a range of features that do not appear in classical statistical mechanics. We also discuss how this approach could be used to construct explicit lower bounds on distillation. This in turn raises non-trivial questions that are also of interest in statistical mechanics. More precisely: what are the conditions for majorization that respects the symplectic structure of phase space?
 
 \subsection{Prior text that might be useful}
 Even though non-stabiliserness is a necessary resource for universality, it has been proven insufficient for magic state distillation~\cite{cit:bravyi, cit:campbell}.
-In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable in~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
-The Wigner distribution of a state in odd prime dimensions, formally defined in~\cref{sec:wigner}, arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{Delfosse_2017, cit:howard2, cit:veitch2}.
+In fact, all states with non-negative Wigner distributions have been proven to be efficiently classically simulable~\cite{cit:mari}, a result that serves as a generalization of the Gottesman-Knill theorem.
+The Wigner distribution of a state in odd prime dimensions arises as the unique quasi-probability representation of quantum theory that identifies non-contextuality exactly with the states that are efficiently classically simulable~\cite{Delfosse_2017, cit:howard2, cit:veitch2}.
 In this framework, the stabiliser states are the only pure states represented with non-negative distributions~\cite{cit:gross3}. 
 However, there exist mixed states with non-negative Wigner distributions that are not mixtures of stabiliser states~\cite{cit:gross}.
+
+The paper is structured as follows. In~\cref{sec:ps}, we formally define the Wigner representation of quantum states and outline its relevant properties. In~\cref{sec:frag}, we introduce majorisation and apply it on general magic theories. We go on to prove magic distillation bounds which account for abstract thermodynamic considerations in~\cref{sec:unital,sec:stab} and conclude in~\cref{sec:outlook}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -157,12 +159,12 @@ For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily 
     %\caption{Bound state}%
     }\hspace{8pt}%
     \subfigure[][]{%
-    \label{fig:strange}%
-    \includegraphics[height=2cm]{figs/strangestate.pdf}
+    \label{fig:Strange}%
+    \includegraphics[height=2cm]{figs/Strangestate.pdf}
     %\caption{Strange state $\ketbra{S}{S}$}%
     }
     \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
-    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabiliser Wigner-positive state; \subref{fig:strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
+    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $\ketbra{0}{0}$; \subref{fig:bound} A non-stabiliser Wigner-positive state; \subref{fig:Strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
     }%
     \label{fig:wstate_examples}
 \end{figure}
@@ -220,6 +222,8 @@ In what follows we shall therefore assume that we have a magic theory $\R = (\F,
 
 
 \section{Breaking a magic theory into fragments}
+\label{sec:frag}
+
 We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Litinski_2019, Babbush_2018, Fowler_2019, Li_2015}.
 
 Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering fixed-point, or ``equilibrium'', restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
@@ -289,6 +293,7 @@ if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p 
 It turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of a given fragment. To our knowledge, this application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over all stochastic maps with a given fixed point, while in the case of the Wigner representation there is an additional restriction that the phase space structure is respected. Therefore, any relative majorization constraint can provide necessary, but not sufficient conditions on magic state interconversions in the fragment. This observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall return to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates in~\cref{sec:lower_bounds}.
 
 \subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
+\label{sec:lc}
 
 We now turn to the application of majorization to describing magic in different fragments. The simplest way to express the conditions for interconversion is through Lorenz curves, which we now describe.
 
@@ -303,7 +308,7 @@ If $\w$ and $\r$ are both probability distributions then the Lorenz curve is def
 
 \begin{figure}
     \centering
-    \includegraphics[height=4.5cm]{figs/lc_strange.pdf}
+    \includegraphics[height=4.5cm]{figs/lc_Strange.pdf}
     \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise ($\epsilon = 0.1$).
     }
     \label{fig:lcs}
@@ -311,7 +316,8 @@ If $\w$ and $\r$ are both probability distributions then the Lorenz curve is def
 
 Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see~\cite{Busch_1998} for details).
 
-\subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}\label{sec:major_frag}
+\subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}
+\label{sec:major_frag}
 
 Having described how majorization relative to a fiducial distribution can be computed, we now turn to its application within a particular fragment of a magic theory $\R= (\F, \O)$.
 
@@ -331,7 +337,7 @@ for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be 
 In principle, any one location $x$ provides a valid constraint leading to some upper distillation bound and optimising over the location provides the strictest bound.
 
 \subsection{Basic monotones for magic states in a particular fragment}
-\label{sec:lc}
+\label{sec:monotones_frag}
 
 In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light.
 
@@ -383,8 +389,9 @@ where $\rho_2$ is a purer magic state than $\rho_1$ and $R$ is made as large as 
 
 
 \section{Magic in the unital fragment}
+\label{sec:unital}
 
-In this section, we apply majorization to magic state distillation within a simple fragment, namely the unital fragment. This encompasses distillation protocols where one is restricted to \emph{unital operations}, meaning that $\E(\I/d) = \I/d$ for all free $\E$. This is a particularly powerful set of operations, which for example include all Weyl-covariant channels~\cite{cit:gross3}. To make things concrete, we shall consider qutrit magic states ($d=3$) as the Wigner representation is simpler than $d=2$, while they admit non-trivial structure (e.g. Hamiltonians with two different energy gaps) and still are sufficiently simple to analyse in detail.
+In this section, we apply majorization to magic state distillation within a simple fragment, namely the unital fragment. This encompasses distillation protocols where one is restricted to \emph{unital operations}, meaning that $\E(\I/d) = \I/d$ for all free $\E$. This is a particularly powerful set of operations, which for example include all Weyl-covariant channels~\cite{cit:gross3}. To make things concrete, we shall consider qutrit magic states ($d=3$) as the Wigner representation is simpler compared to qubits ($d=2$), while they admit non-trivial structure (e.g. Hamiltonians with two different energy gaps) and still are sufficiently simple to analyse in detail.
 
 For our distillation protocols we need to choose a canonical pure magic state as a target. For this we shall choose the Strange state $|S\>$ given as
 \begin{equation}
@@ -496,9 +503,9 @@ In other words, we consider those bounds on distillation that apply when the fre
 These bounds can be interpreted in two different ways: 
 \begin{enumerate}
 \item As a family of upper bounds parameterised by an abstract stabiliser state $\sigma$.
-\item The invariant state $\sigma$ reflects actual hardware limitations, a biased noise model, or a statement of the ambient thermal environment for the system.
+\item As a consequence of the actual hardware limitations, noise bias or ambient thermal environment reflected by the invariant state $\sigma$ for the system.
 \end{enumerate}
-In what follows we shall be agnostic about which of the two apply. Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F(\beta)$ of the state $\sigma$, expressed as
+In what follows we shall be agnostic on the interpretation. Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F(\beta)$ of the state $\sigma$, expressed as
 \begin{equation}
 	F(\beta) \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta}.
 \end{equation}
@@ -517,7 +524,7 @@ Given this context, we now provide the following result on bounding the distilla
     \centering
     \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
     \caption{\textbf{Magic distillation bounds within arbitrary stabiliser fragments.}
-  Shown is a contour plot of  $R(\epsilon, \beta)$ where $\beta$ is an effective inverse temperature and $\epsilon$ is the depolarisation error for the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
+  Shown is a contour plot of  $R(\epsilon, \beta)$ where $\beta$ is an effective inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
     }
     \label{fig:rate_contour}
 \end{figure}
@@ -564,7 +571,7 @@ The stabilizer state $\sigma$ can now be written as
 \begin{equation}
 	\sigma = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{\varphi_2},
 \end{equation}
-where $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group this implies that $C$ is a Clifford unitary. Therefore, $C$ maps $\sigma$ to another stabilizer state that is diagonal in the computational basis, and we can therefore assume without loss of generality that $\sigma$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the strange state will be transformed on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+where $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\sigma$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\sigma$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
 
 The Wigner distribution of state $\sigma$ is then given by
 \begin{align}
@@ -576,14 +583,14 @@ Since we have restricted to full-rank states, all Wigner components are strictly
 
 The Strange state rescaled distribution for a magic state $\rho_S(\epsilon)$ is now given by 
 \begin{equation}
-	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\sigma}(\bmx) = \frac{\W[\bmx]{\rho_S}}{\W[\bmx]{\sigma}},
+	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\sigma}(\bmx) = \frac{\W[\bmx]{\rho_{\rm{S}}}}{\W[\bmx]{\sigma}},
 \end{equation}
 which attains four distinct values on the phase space, naturally splitting it into four regions as illustrated in the~\cref{fig:pd_split_thermal}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
-    \caption{\textbf{Qutrit phase space regions for $W_{\rho | \sigma}(\x)$.}
-    Here the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions that is proportional to the value depicted in the region, see~\cref{eq:bmw_rescaled}.
+    \caption{\textbf{Qutrit phase space regions for $W_{\rho_{\rm{S}} | \sigma}(\x)$.}
+    Here, the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions, proportional to the value depicted in the region, see~\cref{eq:bmw_rescaled}.
     }
     \label{fig:pd_split_thermal}
 \end{figure}
@@ -611,14 +618,14 @@ where we have also computed the unscaled components
 	w(\sigma)_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
 \end{align}
 
-In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\sigma^{\otimes n}}$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \sigma)_{ijk}$ in decreasing order.
+In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\sigma}$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \sigma)_{ijk}$ in decreasing order.
 In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the maximum component,
 \begin{align}
 	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} \coloneqq (3\Z)^{n}\times \nonumber\\
 	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
 \end{align}
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
-However, for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$, and so since we assume that $n$ is even we need that the sum $\alpha = i+j+k$ to be even for the expression to be positive. 
+For $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
 
 Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
 Hence, we have
@@ -626,7 +633,7 @@ Hence, we have
 	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} = \nonumber\\
 	&(3\Z)^{n} v^n e^{n\beta E_s}\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_s)} \right)^{\alpha} \Big\}}.
 \end{align}
-If the expression $\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. For a fixed stabilizer state $\sigma$ this transition is determined by the value of the depolarising noise parameter $\epsilon$ of the noisy magic state. This transition occurs at $\epsilon = \epsilon_\star$ where
+If the expression $\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. For a fixed stabilizer state $\sigma$, this transition is determined by the value of the depolarising noise parameter $\epsilon$ of the noisy magic state. The transition occurs at $\epsilon = \epsilon_\star$ where
 \begin{equation}\label{eq:noise_transition}
 	\frac{u(\epsilon_\star)}{v(\epsilon_\star)} e^{\beta (E_{\rm{max}} - E_s)} = \frac{3-\epsilon_\star}{6-8\epsilon_\star} e^{\beta (E_{\rm{max}} - E_s)} = 1.
 \end{equation}
@@ -655,7 +662,7 @@ Case $\rm{(C2)}$ corresponds to
 	(0,0,n), &\text{if } E_{\rm{max}} = E_2,
 	\end{cases}
 \end{equation}
-so the multiplicity in each case is $3^n$.
+so the multiplicity in both cases is $3^n$.
 
 Using that $F(\beta) = -\beta^{-1} \log \Z$, the first elbow coordinates in the two cases are now given by
 \begin{equation}\label{eq:first_elb_coords}
@@ -665,14 +672,14 @@ Using that $F(\beta) = -\beta^{-1} \log \Z$, the first elbow coordinates in the 
 		\left( e^{-n\beta (E_{\rm{max}}-F(\beta))}, (3u)^n \right). &\rm{(C2)} 
 	\end{cases}
 \end{equation}
-\ddd{[Are the factors of 3 correct in the previous equation?]} To obtain the distillation bounds from majorization we can now compute the above terms for both the input and output states. Depending on the noise parameters $\epsilon, \epsilon'$ for the initial and target states the Lorenz curve data may fall into either case $\rm{(C1)}$ or case $\rm{(C2)}$.
+To obtain the distillation bounds from majorization we can now compute the above terms for both the input and output states. Depending on the noise parameters $\epsilon, \epsilon'$ for the initial and target states the Lorenz curve data may fall into either case $\rm{(C1)}$ or case $\rm{(C2)}$.
 Specifically, we have three scenarios of relevance to magic distillation:
 \begin{enumerate}
 	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_s$ or $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$.
 	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
 	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon_{\star} \leq \epsilon' < \epsilon$ or $E_{\rm{max}} > E_s$, $\beta \geq \beta_{\star}$.
 \end{enumerate}
-The fourth case $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
+The scenario $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
 
 In each of the three scenarios, it is simple to check that the initial state's first elbow has $x_0$ coordinate closer to $0$ compared to the output state, $x_0 \leq x_0'$ (see~\cref{app:first_elb_loc} for details). Therefore, we can use the first elbow constraint, as described in~\cref{app:elb_constraints}, leading to the following distillation bounds,
 \begin{equation}\label{eq:rate_bounds_proof}
@@ -762,6 +769,7 @@ We have described how relative majorization can be used to establish upper bound
 
 
 \section{Outlook}
+\label{sec:outlook}
 
 In this work we have looked at magic through the lens of thermodynamics. Specifically, we find that it can be viewed as a strictly non-classical form of non-equilibrium free energy.
 
