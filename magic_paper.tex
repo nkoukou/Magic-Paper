@@ -321,11 +321,20 @@ In principle, any one location $x$ provides a valid constraint leading to some u
 \subsection{Basic monotones for magic states in a particular fragment}
 \label{sec:monotones_frag}
 
-In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light.
+In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light. The first result provides a extremely simple way to see that the sum-negativity of a magic state is a monotone.
 
-If we have a magic state $\rho$ that has negativity in its Wigner representation, then as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. In fact, we can establish the following general result.
+\begin{lemma} Relative majorization in any fragment implies the monotonicity of sum-negativity $sn(\rho) := \frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$ of a magic state $\rho$. 
+\end{lemma}
+\begin{proof}
+ We make use of a variant form of relative majorization \ddd{[cite]}, which says that $\p \succ_{\r} \q$ if and only if
+	\begin{equation}
+\sum_k | p_k - t r_k | \ge \sum_k |q_k - t r_k|,
+\end{equation}
+for all $t\in \mathbb{R}$. If we choose $t=0$ then we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distribution of a quantum state immediately gives the result.
+\end{proof}
+If we have a magic state $\rho$ that has negativity in its Wigner representation, then as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. The relation with sum-negativity and mana is provided by the following result.
 \begin{lemma}\label{lem:lcmax}
-	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$, where $\rm{sn}(\rho)$ is the sum negativity of $\rho$. Thus, the majorization constraint is stronger than mana in any fragment.
+	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
 \end{lemma}
 \begin{proof}
 	We denote the Wigner distributions of the states compactly as vectors $\bmw(\rho) \equiv W_\rho(x)$ and $\bmw(\sigma) \equiv W_\sigma(x)$.
