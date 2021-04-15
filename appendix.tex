@@ -73,13 +73,12 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 	\item[(ii)]\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
 	\item[(iii)]\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
 	\item[(iv)]\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
-	\item[(v)]\label{en:m5} $L_{\bmx}(k) \leq L_{\bmy}(k)$ for $k=1,\dots,n-1$	and \vspace{5pt}\\ $L_{\bmx}(n) = L_{\bmy}(n)$.
+	\item[(v)]\label{en:m5} $L_{\bmx}(t) \leq L_{\bmy}(t)$ for $t\in [0,1)$	and \vspace{5pt}\\ $L_{\bmx}(1) = L_{\bmy}(1)$, where $L_{\bmz}(t) = L_{\bmz|\frac{1}{d}\bm{1}}(t)$.
  \end{enumerate}
 \end{proposition}
-\begin{proof}
-	These simple majorisation properties are well-known and proofs can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio}.
-	The equivalence between (i) and (ii) is the statement of the Hardy, Littlewood and Polya theorem.
-\end{proof}
+	The equivalence between (i) and (ii) is the statement of the Hardy, Littlewood and Polya theorem and is taken as our definition of majorisation in the main text.
+	
+	The rest of the properties are well-known and proofs can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio}.
 
 \subsection{Embedding map}
 
@@ -98,7 +97,7 @@ The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^N \mapsto \mathbb{R}^n$ is defi
 \end{definition}
 The direct sum simply amounts to listing the uniform distributions one after the other.
 The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\bmd}(\bmd) = \bm{1}/N$.
-Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{def:lc}, mapping $(w_i/d_i) \mapsto (w_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
+Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{eq:lc}, mapping $(w_i/d_i) \mapsto (w_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
 
 \subsection{\textit{d}-majorization equivalence conditions}
 
@@ -111,22 +110,24 @@ Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ ar
     \item[(ii)] $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
     \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
     \item[(iv)] $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-    \item[(v)] $L_{\bmx|\bmd}(k) \leq L_{\bmy|\bmd}(k)$ for $k=1,\dots,n-1$	 and \vspace{5pt}\\ $L_{\bmx|\bmd}(n) = L_{\bmy|\bmd}(n)$.
+    \item[(v)] $L_{\bmx|\bmd}(t) \leq L_{\bmy|\bmd}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\bmd}(1) = L_{\bmy|\bmd}(1)$.
   \end{enumerate}
 \end{proposition}
 \begin{proof}$ $\vspace{-12pt}\\
 \begin{enumerate}
 	\item[1$\leftrightarrow2$]
-	Suppose there exists a $\bmd$--stochastic $S$ such that $\bmx = S\bmy$ and let $B = \Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}$.
-$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\bmd} \circ S \circ \Gamma_{\bmd}^{-1}) (\frac{1}{N}\bm{1}) = (\Gamma_{\bmd} \circ S) (\bm{d}) = \Gamma_{\bmd}(\bm{d}) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\bmd}({\bmy})$ to $\Gamma_{\bmd}({\bmx})$.
-	Conversely, given $B$, let $S = \Gamma_{\bmd}^{-1} \circ B \circ \Gamma_{\bmd}$.
-	Similarly, $S$ is a $\bmd$--stochastic matrix that maps $\bmy$ to $\bmx$.
-	\item[$2\leftrightarrow3$]\hspace{-5pt}, $2\leftrightarrow4$, $2\leftrightarrow5$ These three statements are equivalent to statements (iii), (iv), (v) in~\cref{prop:major} respectively, for the embedded vectors $\Gamma_{\bmd}({\bmx}), \Gamma_{\bmd}({\bmy})$, which becomes apparent by rewriting
+	Suppose there exists a $\bmd$--stochastic $A$ such that $\bmx = A\bmy$ and let $B = \Gamma_{\bmd} \circ A \circ \Gamma_{\bmd}^{-1}$.
+$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\bmd} \circ A \circ \Gamma_{\bmd}^{-1})\big(\frac{1}{N}\bm{1}\big) = (\Gamma_{\bmd} \circ A) (\bm{d}) = \Gamma_{\bmd}(\bm{d}) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\bmd}({\bmy})$ to $\Gamma_{\bmd}({\bmx})$.
+
+	Conversely, given $B$, let $A = \Gamma_{\bmd}^{-1} \circ B \circ \Gamma_{\bmd}$.
+	Similarly, $A$ is a $\bmd$--stochastic matrix that maps $\bmy$ to $\bmx$.
+	\item[$2\leftrightarrow3$] These \hspace{1pt} three \hspace{1pt} statements \hspace{1pt} are \hspace{1pt} equivalent \hspace{1pt} to \hspace{1pt} state-
+	\item[$2\leftrightarrow4$] \vspace{-7pt} ments (iii), (iv), (v) \hspace{1pt} in~\cref{prop:major} respectively, 
+	\item[$2\leftrightarrow5$] \vspace{-7pt} for the embedded vectors $\Gamma_{\bmd}({\bmx}), \Gamma_{\bmd}({\bmy})$, which becomes apparent by rewriting
 	\begin{align*}
-	&\sum\limits_{i=1}^n \abs{x_i - t d_i} = \sum\limits_{i=1}^n d_i \abs{\frac{x_i}{d_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\bmd}(\bmx)_i - t}, \\
-	&\sum\limits_{i=1}^n (x_i - t d_i)^+ = \sum\limits_{i=1}^N (\Gamma_{\bmd}(\bmx)_i - t)^+, \\
-	&L_{\bmx|\bmd}(k) = L_{\Gamma_{\bmd}(\bmx)}(k'), \text{with}\ k=1,\dots,n\ \\
-	&\text{and}\ k'=1,\dots,N, \nonumber
+	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - t d_i} = \sum\limits_{i=1}^n d_i \abs{\frac{x_i}{d_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\bmd}(\bmx)_i - t}, \\[3pt]
+	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - t d_i)^+ = \sum\limits_{i=1}^N (\Gamma_{\bmd}(\bmx)_i - t)^+ \text{ and} \\[6pt]
+	&\hspace{15pt} L_{\bmx|\bmd}(t) = L_{\Gamma_{\bmd}(\bmx)}(t),
 	\end{align*} 
 and similarly for the right hand sides of the inequalities.
 \end{enumerate}
@@ -154,7 +155,7 @@ In this section, we provide some useful technical properties of general $\sigma$
 \begin{proof}$ $\vspace{-12pt}\\
 
 \begin{enumerate}
-    \item The identity channel $1_{\rm{C}}: \D \mapsto \D$ belongs to every $\sigma$--fragment, as $1_{\rm{C}} \in \O$ and $1_{\rm{C}}\sigma = \sigma$ for all $\sigma \in \F$.
+    \item The identity channel $1_{\rm{C}}$ belongs to every $\sigma$--fragment, as $1_{\rm{C}} \in \O$ and $1_{\rm{C}}\sigma = \sigma$ for all $\sigma \in \F$.
     
     \item Let $\E \in \O_{\sigma} \cap \O_{\sigma'}$.
     Then $\E \in \cptp$ and corresponds to stochastic Wigner distribution $\W{\E}$ such that $\W{\E} \W{\sigma} = \W{\sigma}$ and $\W{\E} \W{\sigma'} = \W{\sigma'}$.
@@ -188,7 +189,7 @@ As an example, consider the permutation matrix
 \end{equation}
 It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not correspond to any positive (hence quantum) operation.
 
-We now prove a result referenced in~\cref{sec:lc}.
+We now prove a result on the independence of the Lorenz curve constraints.
 \begin{proposition}\label{thm:elbows}
 	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$--fragment.
 	
@@ -216,7 +217,7 @@ We now prove a result referenced in~\cref{sec:lc}.
 	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
 	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
 \end{proof}
-This theorem is of practical importance in calculating the necessary distillation constraints derived via majorization in $\sigma$--fragments.
+This theorem is of practical importance in reducing the necessary distillation constraints derived via majorization in $\sigma$--fragments.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -225,17 +226,17 @@ This theorem is of practical importance in calculating the necessary distillatio
 
 \subsection{Binomial distributions and error bounds}\label{app:phi}
 Consider an experiment consisting of $n$ trials of throwing a $p$--coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
-We express the sum over an even number of successful trials $\Phi_+$ and the sum over an odd number of successful trials $\Phi_-$,
+We express the sums over an even number $m$ of successful trials $\Phi_+$ and an odd number $m$ of successful trials $\Phi_-$,
 \begin{align}	
-	\Phi_+(a; n, p) &\coloneqq \sum\limits_{\ell=0}^{a/2} \binom{n}{2\ell} p^{2\ell} (1-p)^{n-2\ell}, \nonumber\\ 
+	\Phi_+(m; n, p) &\coloneqq \sum\limits_{\ell=0}^{m/2} \binom{n}{2\ell} p^{2\ell} (1-p)^{n-2\ell}, \nonumber\\ 
 	&\text{for even integers } m\in[0,n], \label{eq:fp_app} \\
-	\Phi_-(a; n, p) &\coloneqq \sum\limits_{\ell=1}^{(a-1)/2} \binom{n}{2\ell+1} p^{2\ell+1} (1-p)^{n-(2\ell+1)}, \nonumber\\ 
+	\Phi_-(m; n, p) &\coloneqq \sum\limits_{\ell=1}^{(m-1)/2} \binom{n}{2\ell+1} p^{2\ell+1} (1-p)^{n-(2\ell+1)}, \nonumber\\ 
 	&\text{for odd integers }m\in[0,n]. \label{eq:fn_app}
 \end{align}
 Note that index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
-In~\cref{app:lcsu_coord_elb}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves in the unital fragment.
+In~\cref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves in the unital fragment.
 
-We also define the classical entropy of a $p$--coin as well as the classical relative entropy between a $p$--coin and a $q$--coin,
+We also define the classical entropy of a $p$--coin and the classical relative entropy between a $p$--coin and a $q$--coin,
 \begin{align}
 	S(p) &\coloneqq -p\log{p} -(1-p)\log{(1-p)}, \label{eq:ent}\\
 	\ent{p}{q} &\coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}. \label{eq:ent_rel}
@@ -244,30 +245,27 @@ They are symmetric in the sense that $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}
 
 A useful result is the entropic bound on a combination~\cite{cit:ash}.
 \begin{lemma}\label{lem:comb_bounds}
-	For all $\ell\in [1,np-1]$,
+	For all $\ell\in [1,n-1]$,
 	\begin{align}
-		&\left[ 8\ell\left(1-\frac{\ell}{np}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{np}\right)} \leq \binom{np}{\ell} \leq \\
-		&\left[ 2\pi \ell\left(1-\frac{\ell}{np}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{np}\right)}.
+		&\left[ 8\ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)} \leq \binom{n}{\ell} \leq \\
+		&\left[ 2\pi \ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)}.
 	\end{align}
 \end{lemma}
-\begin{proof}
-	For $\ell = 1,2, np-1, np-2$ check by direct calculation.	
-	For all other cases, use Stirling's approximation. 
-	\nick{CITE}
-\end{proof}
+The proof provided in~\cite{cit:ash} proceedx with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use Stirling's approximation for the remaining cases.
+
 With the help of this lemma, we directly arrive at 
 \begin{theorem}\label{thm:bounds_strict}
-	Given fixed $n>0$ and $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
+	Given fixed positive integer $n$ and probability $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
 	\begin{align*}
 		\begin{split}
-		&\text{1. } \Phi_+(a; n, p) \geq \sum\limits_{\ell=0}^{np/2}\left[ 16\ell\left(1-\frac{2\ell}{np}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{nf}}{p}}, \\
-		&\hspace{14pt} \text{for all even } a\in [2,np] \\
-		&\text{2. } \Phi_+(a; n, p) \leq \sum\limits_{\ell=0}^{np/2}\left[ 4\pi\ell\left(1-\frac{2\ell}{nf}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{np}}{p}}, \\
-		&\hspace{14pt} \text{for all even } a\in [2,np] \\
-		&\text{3. } \Phi_-(a; n, p) \geq \sum\limits_{\ell=1}^{(np-1)/2}\left[ 16(\ell+1)\left(1-\frac{2\ell+1}{np}\right) \right]^{-\frac{1}{2}} \times \\
-		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{np}}{p}},\ \text{for all odd }a\in [1,np] \\
-		&\text{4. } \Phi_-(a; n, p) \leq \sum\limits_{\ell=1}^{(np-1)/2}\left[ 4\pi(\ell+1)\left(1-\frac{2\ell+1}{nf}\right) \right]^{-\frac{1}{2}} \times \\
-		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{np}}{p}},\ \text{for all odd } a\in [1,np]
+		&\text{1. } \Phi_+(m; n, p) \geq \sum\limits_{\ell=0}^{m/2}\left[ 16\ell\left(1-\frac{2\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{2. } \Phi_+(m; n, p) \leq \sum\limits_{\ell=0}^{m/2}\left[ 4\pi\ell\left(1-\frac{2\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } a\in [2,n] \\
+		&\text{3. } \Phi_-(m; n, p) \geq \sum\limits_{\ell=1}^{(m-1)/2}\left[ 16(\ell+1)\left(1-\frac{2\ell+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{n}}{p}},\ \text{for all odd }a\in [1,n] \\
+		&\text{4. } \Phi_-(m; n, p) \leq \sum\limits_{\ell=1}^{(m-1)/2}\left[ 4\pi(\ell+1)\left(1-\frac{2\ell+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{n}}{p}},\ \text{for all odd } a\in [1,n]
 		\end{split}
 	\end{align*}
 \end{theorem}
@@ -275,35 +273,25 @@ With the help of this lemma, we directly arrive at
 	All four statements follow from application of~\cref{lem:comb_bounds} on the combinatorial coefficient and the defintion of relative entropy given in~\cref{eq:ent_rel}
 \end{proof}
 
-\subsection{Strange state Lorenz curve elbow coordinates in the unital fragment}\label{app:lcsu_coord_elb}
-The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform distribution 
-\begin{equation}\label{eq:wu}
-	\W{\left(\id/3\right)^{\otimes n}} = \Bigg( \overbrace{\frac{1}{9^n}, \dots, \frac{1}{9^n}}^{9^n} \Bigg).
+\subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
+The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
+The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
+\begin{equation}
+	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right),
+\end{equation} 
+and $8$ positive components
+\begin{equation}
+	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon.
 \end{equation}
-The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment is a permutation of 
-\begin{equation}\label{eq:wsu}
-	\W{\rho_{\rm{S}}(\epsilon)} = \Bigg( \overbrace{\frac{1}{6} - \frac{1}{18}\epsilon, \dots, \frac{1}{6} - \frac{1}{18}\epsilon}^8, \overbrace{-\frac{1}{3} + \frac{4}{9}\epsilon}^1 \Bigg)
-\end{equation}
-The two distinct components are plotted~\cref{fig:noisys} as a function of noise. 
-It is clear that in the unital fragment the Strange state contains Wigner negativities in the regime $0 \leq \epsilon \leq \tfrac{3}{4}$.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.7]{figs/noisys.pdf}
-    \caption{\textbf{Wigner components of the noisy Strange state.} 
-    In the interval $0 \leq \epsilon < 3/7$, the negative component is larger than the positive components.
-    At $\epsilon = 3/7$ the Wigner distribution is $(-\frac{1}{7},\frac{1}{7},\dots,\frac{1}{7})$.
-    In the interval $3/7 < \epsilon < 3/4$, the positive components are larger than the negative component.
-    In the interval $3/4 \leq \epsilon \leq 1$, there is no negativity.
-    }
-    \label{fig:noisys}
-\end{figure}
+where in the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
+It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
 
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by the convolution $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = \rm{W}_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by the convolution $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
 In general, $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ contains $n + 1$ distinct components, labelled $0,\dots, n$.
 We present the distinct Wigner components of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicites in~\cref{tab:lcsu}.
-Note that LHS (RHS) refers to elbow coordinates $i$ on the left of and including (right of) the maximum, precisely
+Note that LHS (RHS) refers to elbow coordinates $i$ on the left of and including (right of) the Lorenz curve maximum, stated precisely as
 \begin{align}
-&\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor ; \\
+&\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
 &\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
 \end{align}
 \begin{table}[h]
@@ -320,79 +308,60 @@ Note that LHS (RHS) refers to elbow coordinates $i$ on the left of and including
     & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\
     & & RHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\ \hline
   \end{tabular}
-  \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$ in decreasing order in $i,\ 0 \leq i \leq n$.
-  The order changes depending on the noise level $\epsilon$, the parity of the number of copies $n$ and the parity of the components (LHS vs RHS).
+  \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
+  The expressions change depending on the noise level $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
   Multiplication $2i$ is considered modulo $(n+1)$.}
   \label{tab:lcsu}
 \end{table}
 
-For example, the distribution of state $\rho_{\rm{S}}(0)^{\otimes 2}$ is
+Every Lorenz curve in the unital fragment contains $n$ elbows, which, along with the boundary points $(x_{-1}, L_{-1}) = (0,0)$ and $(x_{n}, L_{n}) = (1,1)$, are labelled by 
 \begin{equation*}
-	\begin{split}
-	\rm{W}_{\rho_{\rm{S}}(0)^{\otimes 2}} = \Bigg( &\overbrace{\left( -\frac{1}{3} \right)^2}^1, \overbrace{\left( \frac{1}{6} \right)^2, \dots, \left( \frac{1}{6} \right)^2}^{64}, \\
-	&\overbrace{ -\frac{1}{3} \cdot \frac{1}{6}, \dots, -\frac{1}{3} \cdot \frac{1}{6}}^{16} \Bigg)
-	\end{split}
+\{(x_{i}, L_{i})\}_{i=-1,0,\dots,n}.
 \end{equation*}
-
-Every standard Lorenz curve contains $n$ elbows, labelled by 
-\begin{equation*}
-\{(x_{i}, L_{i})\}_{i=-1,0,\dots,n}\ ,
-\end{equation*}
-where the boundary points $(x_{-1}, L_{-1}) = (0,0)$ and $(x_{n}, L_{n}) = (1,1)$ are also included.
-The maximum is the $(\lfloor n/2 \rfloor)$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
+The maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
 \begin{align}
 	x_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^n\right), \\
 	L_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^n \right).
 \end{align}
 %\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
-Expressions for all the elbow coordinates follow from summing up the Wigner components in decreasing order and we present the elbow coordinates for standard Lorenz curves in~\cref{tab:lcsu_coord_elb_app}.
+Expressions for all the elbow coordinates follow from summing up the Wigner components in decreasing order.
+In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{i}$} & \multicolumn{1}{|c}{$L_{i}$} \\[0.5ex]\hline
+\multicolumn{3}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
+    \multicolumn{3}{c|}{} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]\hline 
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & & RHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
-  \caption{Standard Lorenz curves elbow coordinates.
-  The expresion depends on the noise level $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
+  \caption{Lorenz curve elbow coordinates in the unital fragment.
+  The coordinate expressions depend on the noise level $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
   Multiplication $2i$ is considered modulo $(n+1)$.
-  Note that the Lorenz curve boundary points are $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{n}, L_{n}) = (1,1)$.
+  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the coordinate expressions.
   }
   \label{tab:lcsu_coord_elb_app}
 \end{table}
 
-\subsection{Standard Lorenz curve coordinates}\label{app:lcsu_coord}
-We can get explicit expressions for all $9^{n}$ points of the standard Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{\id/3}$, in terms of the elbow coordinates:
+We can get explicit expressions for all $9^{n}$ points of the Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{(\id/3)^{\otimes n}}$, in terms of the elbow coordinates:
 \begin{align}
     x_{ij} &= \left( 1-\frac{j}{m_{i}} \right) x_{i-1} + \frac{j}{m_{i}} x_{i}, \label{eq:x}\\
     L_{ij} &= \left( 1-\frac{j}{m_{i}} \right) L_{i-1} + \frac{j}{m_{i}} L_{i} \label{eq:l}
 \end{align}
 for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i = m_i(n, \epsilon)$ are given in~\cref{tab:lcsu}.
 
-For visualisation purposes, we plot the Lorenz curve of state $\rho_{\rm{S}}(0)^{\otimes 2}$.
-\begin{figure}[t]
-    \centering
-    \includegraphics[scale=0.6]{figs/lcpoints.pdf}
-    \caption{\textbf{All points on the Lorenz curve are uniformly distributed.}
-    \cref{eq:x,eq:l}) capture the coordinates of all points up to the maximum.
-    }
-    \label{fig:lc}
-\end{figure}
-
 Consider the state 
 \begin{equation*}
-\rho_{\rm{S}}(n', \epsilon, n-n') \coloneqq \rho_{\rm{S}}(\epsilon)^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
+\rho_{\rm{S}}(\epsilon)^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation*}
-
-Tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
+where tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
 The new point coordinates are given by:
 \begin{align}
     &x_{ijk} = \left( 1-p_{ijk}\right) x_{i-1} + p_{ijk} x_{i} \label{eq:lcsu_xcoord}\\
@@ -416,6 +385,8 @@ The index function $I$ is bijective, i.e.
 \end{equation}
 
 \subsection{Strange state MSD in the unital fragment}\label{app:lc_compare}
+\nick{DELETE SECTION (?)}
+
 Consider the Strange state MSD process in the unital fragment,
 \begin{equation}\label{eq:su_conversion}
     \rho_{\rm{S}}(n', \epsilon, 0) \xrightarrow{\mathcal{O}_{\id/3}} \rho_{\rm{S}}(n', \epsilon', n-n').
@@ -462,15 +433,15 @@ and then compare them.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Technical details of bound derivation in stabiliser fragments}
+\section{Technical details of the derivation of distillation bounds}
 \label{app:lcst_technical}
 
 \subsection{First and last elbow conditions}
 \label{app:elb_constraints}
-Here we prove the majorization constraints that arise by considering the first and last elbow of the initial stata only.
+Here we prove the majorization constraints that arise by only considering the first or the last elbow of the initial state.
 \begin{proposition}\label{prop:first_elb}
-	Consider a magic state interconversion as in~\cref{eq:stdist}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively.
-	If $x_0 < x'_0$, then it holds that
+	Consider a magic state process as in~\cref{eq:stdist}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the initial and target states respectively, where $x_0 < x'_0$. 
+	The process is possible only if
 \begin{equation}\label{eq:first_elb_bound1}
 	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
 \end{equation}
@@ -484,12 +455,12 @@ Since $x_0 < x'_0$, we can find the target state Lorenz curve coordinate $L'_\st
 \begin{equation}
 	L'_\star = \frac{x_0}{x'_0}L'_0.
 \end{equation}
-We need $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
+The process is possible only if $L_0 \geq L_\star'$ and rearranging we get~\cref{eq:first_elb_bound1}.
 \end{proof}
 
 \begin{proposition}\label{prop:last_elb}
-	Consider a magic state interconversion as in~\cref{eq:stdist}, where we denote by $(x_E, L_E)$ and $(x'_E, L'_E)$ the last elbow coordinates of the initial and target states respectively.
-	If $x_E > x'_E$, then it holds that
+	Consider a magic state interconversion as in~\cref{eq:stdist}, where we denote by $(x_E, L_E)$ and $(x'_E, L'_E)$ the last elbow coordinates of the initial and target states respectively, where $x_E > x'_E$.
+	The process is possible only if
 \begin{equation}\label{eq:last_elb_bound1}
 	L_E \geq 1 + \frac{1-x_E}{1-x_E'} (L_E' - 1).
 \end{equation}
@@ -503,12 +474,12 @@ Since $x_E > x'_E$, we can find the target state Lorenz curve coordinate $L'_\st
 \begin{equation}
 	L'_\star = -\frac{L_E' - 1}{1 - x_E'}x_E + \frac{L_E' - x_E'}{1 - x_E'}.
 \end{equation}
-We need $L_E \geq L_\star'$ and rearranging we get~\cref{eq:last_elb_bound1}.
+The process is possible only if $L_E \geq L_\star'$ and rearranging we get~\cref{eq:last_elb_bound1}.
 \end{proof}
 
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
-In general, a $1$--copy $d$--dimensional state $\rho$ is defined exactly by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
+In general, a $1$--copy $d$--dimensional state $\rho$ is described exactly by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
 The distribution $\W{\rho}$ is usually defined on the phase space, but it can be convenient to define it using pure vector notation. 
 In particular, we introduce a component vector $\bmw(\rho) = (w_i)_{i=1,\dots,D}$ and a multiplicity vector $\bmm(\rho) = (m_i)_{i=1,\dots,D}$, where $D \leq d^2$ which together form a set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$.
 \begin{definition}
@@ -517,6 +488,7 @@ In particular, we introduce a component vector $\bmw(\rho) = (w_i)_{i=1,\dots,D}
 \end{definition}
 Therefore, such a set describes each component of $\W{\rho}$ exactly once.
 As an example, two complete sets of pairs for the Strange state are $\{( -1/3, 1), ( 1/6, 8)\}$ and $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$.
+The latter corresponds to the phase space split in~\cref{fig:pd_split}
 
 Consider two states $\rho_A, \rho_B$ with Wigner distributions $\W{\rho_A}, \W{\rho_B}$ described respectively by complete sets of component-multiplicity pairs 
 \begin{equation}
@@ -542,7 +514,7 @@ so a complete set of component-multiplicity pairs can be obtained for this distr
 
 Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$--copy distribution $\W{\rho}^{\otimes n}$.
 \begin{lemma}\label{lem:ncopycomponents}
-	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by taking the Kronecker product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
+	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by taking the $n$-fold (Kronecker) product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
 	
 	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
 	\begin{equation*}
@@ -601,7 +573,7 @@ which is the dimension of $W^{\otimes (n+1)}$.
 Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
 \end{proof}
 
-Index vector $\bmk$ has $D-1$ independent components and in the proof of our main theorem in~\cref{sec:stab} we have $D=4$, so we simplify the notation by writing the component and multiplicity vectors of the $n$--copy state distributions as $m_{ijk}, w(\rho_{\rm{S}})_{ijk}, w(\gamma)_{ijk}$ and $w(\rho_{\rm{S}}|\gamma)_{ijk}$, where $i,j,k$ are the 3 independent index components.
+Index vector $\bmk$ has $D-1$ independent components and in the proof of our main theorem in~\cref{sec:stab} we have $D=4$, so we simplify the notation by writing the component and multiplicity vectors of the $n$--copy state distributions as $m_{ijk}, w(\rho_{\rm{S}})_{ijk}, w(\sigma)_{ijk}$ and $w(\rho_{\rm{S}}|\sigma)_{ijk}$, where $i,j,k$ are the 3 independent index components.
 
 \subsection{First elbow location}
 \label{app:first_elb_loc}
@@ -609,14 +581,14 @@ Consider a magic state interconversion in a stabilizer $\sigma$--fragment, as in
 
 Here, we show that $x_0 \leq x'_0$ for any of the three scenarios outlined in the proof of our main theorem in~\cref{sec:stab}.\\
 
-1. $\rm{(C1)} \rightarrow \rm{(C1)}$.
+$\rm{(C1)} \rightarrow \rm{(C1)}$.
 We know from statistical physics that $e^{-\beta E_0} / \Z_\beta \leq 1$, so
 	\begin{align*}
 		x_0 &= \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n-n'} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
 		&< \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'		
 	\end{align*}
 
-2. $\rm{(C2)} \rightarrow \rm{(C1)}$.
+$\rm{(C2)} \rightarrow \rm{(C1)}$.
 We now use the slightly altered inequality $e^{-\beta E_{\rm{max}}} / \Z_\beta \leq 1$ to proceed,
 	\begin{align*}
 		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \dfrac{e^{-\beta(n E_{\rm{max}} - n' E_0)}}{\Z_\beta^{n-n'}} \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} \\
@@ -625,7 +597,7 @@ We now use the slightly altered inequality $e^{-\beta E_{\rm{max}}} / \Z_\beta \
 		&\leq \left(\dfrac{e^{-\beta E_0}}{3\Z_\beta}\right)^{n'} = x_0'.
 	\end{align*}
 
-3. $\rm{(C2)} \rightarrow \rm{(C2)}$.
+$\rm{(C2)} \rightarrow \rm{(C2)}$.
 Similarly in this scenario,
 	\begin{align*}
 		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n-n'} \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n'} \\
@@ -633,8 +605,10 @@ Similarly in this scenario,
 	\end{align*}
 	
 	
+\subsection{Deriving distillation bounds from the last elbow}
+\label{sec:last_elb}
 
-\nick{LAST ELBOW BOUND}
+\nick{RESTRUCTURE}
 
 To find the coordinates of the \textbf{last} elbow $(x_E, L_E)$, where $E$ is the number of elbows, we need to evaluate the minimum rescaled component,
 \begin{align}
