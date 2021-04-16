@@ -11,11 +11,10 @@ reprint
 
 \begin{document}
 % Write bounds as 1 + ln{}/{} or 1 - (-ln{})/{} ?
-% Sec: App. D
 % Sec: General resources
 % Sec: Lower bounds
+% App: D clean-up + d--> r ?
 
-% Find more (all) refs
 % Figs consistency (esp. figs 3,4,5 and 1,6) + Figure 0 ?
 
 % Eq. numbering in last line always
@@ -46,25 +45,23 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
-The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer\ddd{[CITE]}. However many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{cit:bravyi}\ddd{[CITE MORE]} is a leading framework for fault-tolerance with very high error thresholds. model for quantum computation is a central approach to realising a full-scale, fault-tolerant quantum computer. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally\ddd{[CSS code for this]}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing. However, the obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question is then the overhead on purifying many copies of a magic state into less noisy forms. 
+The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Fowler_2012, Herrera_2010, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-To address such questions, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle. Such distillation rates have been improved in more recent works \ddd{[CITE]}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis \ddd{[CITE Earl+Mark paper, plus other synthesis paper(s)]}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are consider cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
   
   
-Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation \ddd{[cite]}, and the incorporation of hardware physics into the theoretical modes. For example, the XZZX code\ddd{[cite]} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes. 
+Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
-In this work we develop a framework to analyse magic state distillation protocols where explicit physical constraints are manifest. These physical constraints are encoded in the allowed fixed-point structure of the protocol, for example a minimal temperature attainable in the device, noise-biases or fixed-point structure associated with restricted gate-sets. The approach we take is most closely aligned with resource theories of magic, however our approach differs in two ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are functions of the physical constraints and so not directly comparable to global magic monotones.
+In this work, we develop a framework to analyse magic state distillation protocols where explicit physical constraints are manifest. These physical constraints are encoded in the allowed fixed-point structure of the protocol, for example a minimal temperature attainable in the device, noise-biases or fixed-point structure associated with restricted gate-sets (see e.g.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}). The approach we take is most closely aligned with resource theories of magic, although it differs in two ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are functions of the physical constraints, thus not directly comparable to global magic monotones.
 
- 
-We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory\ddd{[cite]}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
+We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:gour, cit:gour2}\nick{You had a specific review in mind I think, which one?} . In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
 
-Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space \ddd{[cite]}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory \ddd{[cite]}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is of broader interest to the study of non-classicality in quantum systems.
+Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory \ddd{[cite]}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is of broader interest to the study of non-classicality in quantum systems.
 
-Our construction provides distillation bounds without relying on magic monotones. Instead of projecting the pre-order of magic states onto the real line (which is what a monotone involves) we instead cover the pre-order of states with a collection of simpler `fragment' pre-orders that admit analysis in terms of majorization. It is this choice of fragment that breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints in the form of accessible protocols. \nick{We need to give some concrete example here, we keep repeating this ``advantage'' abstractly}
+Our construction provides distillation bounds without relying on magic monotones. Instead of projecting the pre-order of magic states onto the real line (which is what a monotone involves) we instead cover the pre-order of states with a collection of simpler `fragment' pre-orders that admit analysis in terms of majorization. It is this choice of fragment that breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints in the form of accessible protocols.
 
 Through this approach we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamics in the presence of negativity is surprisingly non-trivial and displays a range of features that do not appear in classical statistical mechanics. 
-
-Finally, we discuss how our approach could be improved, and also used to construct explicit lower bounds on distillation that take into account physical structure. Our work also raises non-trivial questions that are also of interest in statistical mechanics. Specifically: what are the majorization conditions that respect the symplectic structure of phase space?
+Finally, we discuss how our approach could be improved and how it can be exploited to construct explicit lower bounds on distillation that take into account physical structure.
 
 \section{Phase space representations of quantum states}
 \label{sec:ps}
@@ -162,7 +159,7 @@ where $\bar{x} =(x_1, -p_1, \dots , x_n, -p_n)$ can be viewed as the time-revers
 \subsection{Magic theories for quantum computation}
 \label{sec:mono}
 
-A number of frameworks exist that provide theories of magic in which one views magic states as ``resource'' states with respect to a natural class of quantum operations that are consider cheap, or ``free''~\cite{Gour_2019}. One very natural class of free operations considered are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However, there are other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
+A number of magic theories exist, with the central approach of viewing magic states as ``resource'' states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However, there are also other noteworthy candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
 
 In any theory of magic, a natural route to bounding the distillation rates obtainable is through the concept of a \emph{magic monotone}. A magic monotone is a real-valued function of any quantum state $\M(\rho)$ that is monotonically non-increasing under the free operations of the magic theory. More precisely $\M(\sigma) \le \M(\rho)$ whenever it is possible to convert $\rho$ into $\sigma$ using free operations (e.g. Clifford operations).
 
@@ -177,7 +174,7 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 
 Mana is an additive\footnote{It satisfies the condition $\mana{\rho_1 \otimes \rho_2} = \mana{\rho_1} + \mana{\rho_2}$ which is practical in distillation settings.} magic monotone, so it provides an analytical, necessary condition for many-copy magic state interconvertibility.
 
-A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall develop bounds that apply to essentially any reasonable magic theory. The central idea is to apply majorization theory to the quasi-probability distributions of magic states. In the next section we explain how these majorization constraints relate to the free operations allowed in a theory of magic.
+A range of monotones have been developed in the literature~\cite{cit:howard, Wang_2020, Seddon_2021} and each provides a means to upper bound distillation rates within a particular theory of magic. In this work we shall develop bounds that apply to essentially any reasonable magic theory. The central idea is to apply majorization theory to the quasi-probability distributions of magic states. In the next section, we explain how these majorization constraints relate to the free operations allowed in a theory of magic.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +202,7 @@ In what follows we shall therefore assume that we have a magic theory $\R = (\F,
 \section{Breaking a magic theory into fragments}
 \label{sec:frag}
 
-We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Litinski_2019, Babbush_2018, Fowler_2019, Li_2015}.
+We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}. \nick{repeats intro}
 
 Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering fixed-point, or ``equilibrium'', restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
 \begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
@@ -237,7 +234,7 @@ We can now consider magic distillation rates within $\sigma$--fragments and then
 	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) are labelled, with other established magic theories also contained within the yellow regions.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
     Each $\O_\sigma$ is extensible to a set of stochastic maps outside the $\cptp$ operations.
-    Within each $\sigma$--fragment, $\bmd$--majorisation can be used allowing for a tractable approach towards the study of magic state interconversions.
+    Within each $\sigma$--fragment, relative majorisation can be used allowing for a tractable approach towards the study of magic state interconversions.
     }
     \label{fig:zoo}
 \end{figure}
@@ -315,24 +312,27 @@ This in turn can be expressed in terms of Lorenz curves. To simplify notation we
 \begin{equation}
 \rho_1 \rightarrow \rho_2 \mbox{ within }\R_\sigma \mbox{ implies } L_{\rho_1 |\sigma} (x) \ge L_{\rho_2 |\sigma} (x),
 \end{equation}
-for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to \emph{exponentially} many constraints, of which there are as many independent constraints as there are elbows in the Lorenz curve of the target state, which is proved in~\cref{thm:elbows} in~\cref{app:frag}.
+for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to \emph{exponentially} many constraints, of which there are as many independent constraints as there are elbows in the Lorenz curve of the output state, which is proved in~\cref{thm:elbows} in~\cref{app:frag}.
 In principle, any one location $x$ provides a valid constraint leading to some upper distillation bound and optimising over the location provides the strictest bound.
 
 \subsection{Basic monotones for magic states in a particular fragment}
 \label{sec:monotones_frag}
 
-In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light. The first result provides a extremely simple way to see that the sum-negativity of a magic state is a monotone.
+In this section we give some generic aspects of Lorenz curves for magic states. In particular these allow us to interpret previous magic monotones in a new light. The f,irst result provides an extremely simple way to see that the sum-negativity of a magic state is a monotone.
 
-\begin{lemma} Relative majorization in any fragment implies the monotonicity of sum-negativity $sn(\rho) := \frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$ of a magic state $\rho$. 
+\begin{lemma} Relative majorization in any fragment implies the monotonicity of sum-negativity. 
 \end{lemma}
 \begin{proof}
- We make use of a variant form of relative majorization \ddd{[cite]}, which says that $\p \succ_{\r} \q$ if and only if
+	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) := \frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$.
+We make use of a variant form of relative majorization, (see~\cref{prop:rmajor} in~\cref{app:major}), stating that $\p \succ_{\r} \q$ if and only if
 	\begin{equation}
 \sum_k | p_k - t r_k | \ge \sum_k |q_k - t r_k|,
 \end{equation}
-for all $t\in \mathbb{R}$. If we choose $t=0$ then we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distribution of a quantum state immediately gives the result.
+for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distributions of two quantum states immediately gives the result.
 \end{proof}
-If we have a magic state $\rho$ that has negativity in its Wigner representation, then as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. The relation with sum-negativity and mana is provided by the following result.
+As a corollary, this result applies to mana too, since mana is an increasing function of sum-negativity.
+
+If we have a magic state $\rho$ that has negativity in its Wigner representation, then as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an exact relation between the peak and sum-negativity or mana, which is provided by the following result.
 \begin{lemma}\label{lem:lcmax}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
 \end{lemma}
@@ -340,12 +340,12 @@ If we have a magic state $\rho$ that has negativity in its Wigner representation
 	We denote the Wigner distributions of the states compactly as vectors $\bmw(\rho) \equiv W_\rho(x)$ and $\bmw(\sigma) \equiv W_\sigma(x)$.
 	We choose the component indexing so that the rescaled distribution 
 	\begin{equation}
-		\widetilde{\bm{w}}(\rho|\sigma) \coloneqq \left(\frac{w(\rho)_1}{w(\sigma)_1}, \dots, \frac{w(\rho)_{d^2}}{w(\sigma)_{d^2}} \right)^T,
+		\widetilde{\bmw}(\rho|\sigma) \coloneqq \left(\frac{w(\rho)_1}{w(\sigma)_1}, \dots, \frac{w(\rho)_{d^2}}{w(\sigma)_{d^2}} \right)^T,
 	\end{equation}
-	is sorted, $\widetilde{\bm{w}} = \widetilde{\bm{w}}^\downarrow$.
+	is sorted, $\widetilde{\bmw} = \widetilde{\bmw}^\downarrow$.
 	Note that all components of $\bmw(\sigma)$ are positive, so $\widetilde{w}_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
 	
-	Let $i_\star$ be the index of the smallest non-negative component of $\widetilde{\bm{w}}^\downarrow$.
+	Let $i_\star$ be the index of the smallest non-negative component of $\widetilde{\bmw}^\downarrow$.
 	Then, $w(\rho)_i < 0$ if and only if $i > i_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
 	\begin{equation}
 		\lc{\rho}{\sigma}(x_{i_\star}) = \sum_{i=1}^{i_\star} w(\rho)_i,
@@ -494,7 +494,7 @@ In other words, we consider those bounds on distillation that apply when the fre
 These bounds can be interpreted in two different ways: 
 \begin{enumerate}
 \item As a family of upper bounds parameterised by an abstract stabiliser state $\sigma$.
-\item As a consequence of the actual hardware limitations, noise bias or ambient thermal environment reflected by the invariant state $\sigma$ for the system.
+\item As a constraint arising from the actual hardware limitations, noise bias or ambient thermal environment and reflected by the invariant state $\sigma$ for the system.
 \end{enumerate}
 In what follows we shall be agnostic on the interpretation. Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F(\beta)$ of the state $\sigma$, expressed as
 \begin{equation}
@@ -663,7 +663,7 @@ Using that $F(\beta) = -\beta^{-1} \log \Z$, the first elbow coordinates in the 
 		\left( e^{-n\beta (E_{\rm{max}}-F(\beta))}, (3u)^n \right). &\rm{(C2)} 
 	\end{cases}
 \end{equation}
-To obtain the distillation bounds from majorization we can now compute the above terms for both the input and output states. Depending on the noise parameters $\epsilon, \epsilon'$ for the initial and target states the Lorenz curve data may fall into either case $\rm{(C1)}$ or case $\rm{(C2)}$.
+To obtain the distillation bounds from majorization we can now compute the above terms for both the input and output states. Depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states the Lorenz curve data may fall into either case $\rm{(C1)}$ or case $\rm{(C2)}$.
 Specifically, we have three scenarios of relevance to magic distillation:
 \begin{enumerate}
 	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_s$ or $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$.
@@ -672,7 +672,7 @@ Specifically, we have three scenarios of relevance to magic distillation:
 \end{enumerate}
 The scenario $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
 
-In each of the three scenarios, it is simple to check that the initial state's first elbow has $x_0$ coordinate closer to $0$ compared to the output state, $x_0 \leq x_0'$ (see~\cref{app:first_elb_loc} for details). Therefore, we can use the first elbow constraint, as described in~\cref{app:elb_constraints}, leading to the following distillation bounds,
+In each of the three scenarios, it is simple to check that the input state's first elbow has $x_0$ coordinate closer to $0$ compared to the output state, $x_0 \leq x_0'$ (see~\cref{app:first_elb_loc} for details). Therefore, we can use the first elbow constraint, as described in~\cref{app:elb_constraints}, leading to the following distillation bounds,
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
@@ -762,7 +762,9 @@ We have described how relative majorization can be used to establish upper bound
 \section{Outlook}
 \label{sec:outlook}
 
-In this work we have looked at magic through the lens of thermodynamics. Specifically, we find that it can be viewed as a strictly non-classical form of non-equilibrium free energy.
+In this work we have looked at magic through the lens of thermodynamics. Specifically, we find that it can be viewed as a strictly non-classical form of non-equilibrium free energy. 
+
+Our work also raises a fundamental question that is also of interest in statistical mechanics. Specifically: what are the majorization conditions that respect the symplectic structure of phase space?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -62,9 +62,11 @@ If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto it
 \section{Properties of majorization}
 \label{app:major}
 
+% TO SWAP d --> r, REPLACE ALL \bmd, \bm{d}, d_i WITH \r
+
 \subsection{Simple--majorization equivalence conditions}
 
-In the unital fragment, namely the limit of infinite temperature, $\beta = 0$, the free state is the maximally mixed state $\frac{1}{d}\id$ with uniform Wigner distribution $\frac{1}{d}\bm{1}  = (\frac{1}{d},\dots,\frac{1}{d})$.
+In the unital fragment, namely the limit of infinite temperature, $\beta = 0$, the free state is the maximally mixed state $\frac{1}{n}\id$ with uniform Wigner distribution $\frac{1}{n}\bm{1}  = (\frac{1}{n},\dots,\frac{1}{n})$.
 This fragment is governed by simple majorization and we first prove strong equivalences for this type of majorization.
 \begin{proposition}\label{prop:major}
 Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
@@ -73,7 +75,7 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 	\item[(ii)]\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
 	\item[(iii)]\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
 	\item[(iv)]\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
-	\item[(v)]\label{en:m5} $L_{\bmx}(t) \leq L_{\bmy}(t)$ for $t\in [0,1)$	and \vspace{5pt}\\ $L_{\bmx}(1) = L_{\bmy}(1)$, where $L_{\bmz}(t) = L_{\bmz|\frac{1}{d}\bm{1}}(t)$.
+	\item[(v)]\label{en:m5} $L_{\bmx}(t) \leq L_{\bmy}(t)$ for $t\in [0,1)$	and \vspace{5pt}\\ $L_{\bmx}(1) = L_{\bmy}(1)$, where $L_{\bmz}(t) = L_{\bmz|\frac{1}{n}\bm{1}}(t)$.
  \end{enumerate}
 \end{proposition}
 	The equivalence between (i) and (ii) is the statement of the Hardy, Littlewood and Polya theorem and is taken as our definition of majorisation in the main text.
@@ -82,52 +84,52 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 
 \subsection{Embedding map}
 
-Any $\bmd$--majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
+Any $\r$--majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
 \begin{definition}
-  The embedding map $\Gamma_{\bmd}:\mathbb{R}^n \mapsto \mathbb{R}^N, N = \sum\limits_{i=1}^n d_i$ is the function
+  The embedding map $\Gamma_{\r}:\mathbb{R}^n \mapsto \mathbb{R}^N, N = \sum\limits_{i=1}^n r_i$ is the function
   \begin{equation}
-    \Gamma_{\bmd}(\bmw) = \bigoplus_{i=1}^n w_i\  \frac{1}{d_i}\bm{1},
+    \Gamma_{\r}(\bmw) = \bigoplus_{i=1}^n w_i\  \frac{1}{r_i}\bm{1},
   \end{equation}
-where $\bm{1}/d_i$ is the $d_i$--dimensional uniform distribution.
-The left inverse $\Gamma_{\bmd}^{-1}: \mathbb{R}^N \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\bmd}(\bmw)$, so that
+where $\bm{1}/r_i$ is the $r_i$--dimensional uniform distribution.
+The left inverse $\Gamma_{\r}^{-1}: \mathbb{R}^N \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\r}(\bmw)$, so that
   \begin{equation}
-     \Gamma_{\bmd}^{-1}(\oplus_{i=1}^n w_i \bm{1}/d_i) = \bmw.
+     \Gamma_{\r}^{-1}(\oplus_{i=1}^n w_i \bm{1}/r_i) = \bmw.
   \end{equation}
-  This is not a right inverse, because $\Gamma_{\bmd}$ is not surjective.
+  This is not a right inverse, because $\Gamma_{\r}$ is not surjective.
 \end{definition}
 The direct sum simply amounts to listing the uniform distributions one after the other.
-The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\bmd}(\bmd) = \bm{1}/N$.
-Then, a non-increasing ordering $\Gamma_{\bmd}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{eq:lc}, mapping $(w_i/d_i) \mapsto (w_i/d_i)^\downarrow$ for all $i=1,\dots,n$.
+The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\r}(\r) = \bm{1}/N$.
+Then, a non-increasing ordering $\Gamma_{\r}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{eq:lc}, mapping $(w_i/r_i) \mapsto (w_i/r_i)^\downarrow$ for all $i=1,\dots,n$.
 
-\subsection{\textit{d}-majorization equivalence conditions}
+\subsection{\textit{r}-majorization equivalence conditions}
 
-We take the opportunity here	 to simply list useful equivalent statements for $\bmd$--majorisation.
+We take the opportunity here	 to simply list useful equivalent statements for $\r$--majorisation.
 
-\begin{proposition}\label{prop:dmajor}
-Given $\bmx, \bmy, \bmd \in \mathbb{R}^n$, such that the components of $\bmd$ are positive, the following statements are equivalent:
+\begin{proposition}\label{prop:rmajor}
+Given $\bmx, \bmy, \r \in \mathbb{R}^n$, such that the components of $\r$ are positive, the following statements are equivalent:
   \begin{enumerate}
-    \item[(i)] $\bmx \prec_{\bmd} \bmy$;
-    \item[(ii)] $\Gamma_{\bmd}({\bmx}) \prec \Gamma_{\bmd}({\bmy})$;
-    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t d_i} \leq \sum\limits_{i=1}^n \abs{y_i - t d_i}$ for all $t \in \mathbb{R}$;
-    \item[(iv)] $\sum\limits_{i=1}^n (x_i - t d_i)^+ \leq \sum\limits_{i=1}^n (y_i - t d_i)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-    \item[(v)] $L_{\bmx|\bmd}(t) \leq L_{\bmy|\bmd}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\bmd}(1) = L_{\bmy|\bmd}(1)$.
+    \item[(i)] $\bmx \prec_{\r} \bmy$;
+    \item[(ii)] $\Gamma_{\r}({\bmx}) \prec \Gamma_{\r}({\bmy})$;
+    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t r_i} \leq \sum\limits_{i=1}^n \abs{y_i - t r_i}$ for all $t \in \mathbb{R}$;
+    \item[(iv)] $\sum\limits_{i=1}^n (x_i - t r_i)^+ \leq \sum\limits_{i=1}^n (y_i - t r_i)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+    \item[(v)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r}(1)$.
   \end{enumerate}
 \end{proposition}
 \begin{proof}$ $\vspace{-12pt}\\
 \begin{enumerate}
 	\item[1$\leftrightarrow2$]
-	Suppose there exists a $\bmd$--stochastic $A$ such that $\bmx = A\bmy$ and let $B = \Gamma_{\bmd} \circ A \circ \Gamma_{\bmd}^{-1}$.
-$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\bmd} \circ A \circ \Gamma_{\bmd}^{-1})\big(\frac{1}{N}\bm{1}\big) = (\Gamma_{\bmd} \circ A) (\bm{d}) = \Gamma_{\bmd}(\bm{d}) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\bmd}({\bmy})$ to $\Gamma_{\bmd}({\bmx})$.
+	Suppose there exists a $\r$--stochastic $A$ such that $\bmx = A\bmy$ and let $B = \Gamma_{\r} \circ A \circ \Gamma_{\r}^{-1}$.
+$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\r} \circ A \circ \Gamma_{\r}^{-1})\big(\frac{1}{N}\bm{1}\big) = (\Gamma_{\r} \circ A) (\r) = \Gamma_{\r}(\r) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\r}({\bmy})$ to $\Gamma_{\r}({\bmx})$.
 
-	Conversely, given $B$, let $A = \Gamma_{\bmd}^{-1} \circ B \circ \Gamma_{\bmd}$.
-	Similarly, $A$ is a $\bmd$--stochastic matrix that maps $\bmy$ to $\bmx$.
+	Conversely, given $B$, let $A = \Gamma_{\r}^{-1} \circ B \circ \Gamma_{\r}$.
+	Similarly, $A$ is a $\r$--stochastic matrix that maps $\bmy$ to $\bmx$.
 	\item[$2\leftrightarrow3$] These \hspace{1pt} three \hspace{1pt} statements \hspace{1pt} are \hspace{1pt} equivalent \hspace{1pt} to \hspace{1pt} state-
 	\item[$2\leftrightarrow4$] \vspace{-7pt} ments (iii), (iv), (v) \hspace{1pt} in~\cref{prop:major} respectively, 
-	\item[$2\leftrightarrow5$] \vspace{-7pt} for the embedded vectors $\Gamma_{\bmd}({\bmx}), \Gamma_{\bmd}({\bmy})$, which becomes apparent by rewriting
+	\item[$2\leftrightarrow5$] \vspace{-7pt} for the embedded vectors $\Gamma_{\r}({\bmx}), \Gamma_{\r}({\bmy})$, which becomes apparent by rewriting
 	\begin{align*}
-	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - t d_i} = \sum\limits_{i=1}^n d_i \abs{\frac{x_i}{d_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\bmd}(\bmx)_i - t}, \\[3pt]
-	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - t d_i)^+ = \sum\limits_{i=1}^N (\Gamma_{\bmd}(\bmx)_i - t)^+ \text{ and} \\[6pt]
-	&\hspace{15pt} L_{\bmx|\bmd}(t) = L_{\Gamma_{\bmd}(\bmx)}(t),
+	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - t r_i} = \sum\limits_{i=1}^n r_i \abs{\frac{x_i}{r_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\r}(\bmx)_i - t}, \\[3pt]
+	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - t r_i)^+ = \sum\limits_{i=1}^N (\Gamma_{\r}(\bmx)_i - t)^+ \text{ and} \\[6pt]
+	&\hspace{15pt} L_{\bmx|\r}(t) = L_{\Gamma_{\r}(\bmx)}(t),
 	\end{align*} 
 and similarly for the right hand sides of the inequalities.
 \end{enumerate}
@@ -345,7 +347,7 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
   \caption{Lorenz curve elbow coordinates in the unital fragment.
   The coordinate expressions depend on the noise level $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
   Multiplication $2i$ is considered modulo $(n+1)$.
-  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the coordinate expressions.
+  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
   }
   \label{tab:lcsu_coord_elb_app}
 \end{table}
