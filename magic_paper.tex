@@ -28,7 +28,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \preprint{APS/123-QED}
 
-\title{General thermodynamic constraints on magic states for quantum computation}
+\title{General thermodynamic constraints on magic state conversions for quantum computation}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -447,7 +447,7 @@ It is possible to derive distillation bounds from any location of the Lorenz cur
 However, it turns out that a simple and sufficiently non-trivial constraint can be obtained by considering the first elbow of the Lorenz curves. 
 The largest Wigner component occurs for $i=0$ and is unique, so the first elbow coordinates for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$.
 
-The first elbow constraint involves a simple interpolation, done in~\cref{app:elb_constraints}, in order to find the coordinates of the output Lorenz curve point which is vertically aligned with the first elbow of the input Lorenz curve. 
+The first elbow constraint involves a simple interpolation, done in~\cref{app:elb_constraints}, in order to find the coordinates of both Lorenz curve points at the location where the first elbow occurs. 
 Comparing these two points leads to the bound
 \begin{equation}
 	R(\epsilon, \epsilon') \leq \frac{\ln{(3-4\epsilon)}}{\ln{(3-4\epsilon')}}.
@@ -468,7 +468,7 @@ Using the max--thauma properties of super-additivity and vanishing at free state
 	&(1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)),
 \end{align}
 so that for a deterministic single-copy distillation process, an initial number of copies $n \geq \theta_{\rm{max}}(\tau) / \theta_{\rm{max}}(\rho) \geq 1-\epsilon$ is required.
-Therefore, the max--thauma bound for the pure Strange state distillation process can get as tight as
+Therefore, the max--thauma bound for the pure Strange state distillation process can get as tight as \nick{CALCULATING THAUMA EXACTLY AT THE MOMENT}
 \begin{equation}
 	R = \frac{1}{n} = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon.
 \end{equation}
@@ -634,7 +634,7 @@ If $E_{\rm{max}} = E_s$, namely if the state negativity lies in the same phase s
 \end{equation}
 such that for the regime $0 \leq \beta \leq \beta_\star$ a transition noise level $\epsilon_\star$ exists, and for $\beta > \beta_\star$ no such transition exists. The transition value for the noise is given by
 \begin{equation}
-	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-e^{(E_{\rm{max}} - E_s)\beta}}.
+	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-2^{\beta/\beta_\star}}.
 \end{equation}
 The quantity $w(\rho_{\rm{S}} | \sigma)_{\rm{max}}$ is now given by
 \begin{equation*}
@@ -672,7 +672,7 @@ Specifically, we have three scenarios of relevance to magic distillation:
 \end{enumerate}
 The scenario $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
 
-In each of the three scenarios, it is simple to check that the input state's first elbow has $x_0$ coordinate closer to $0$ compared to the output state, $x_0 \leq x_0'$ (see~\cref{app:first_elb_loc} for details). Therefore, we can use the first elbow constraint, as described in~\cref{app:elb_constraints}, leading to the following distillation bounds,
+In each of the three scenarios, we simply use the first elbow constraint, as described in~\cref{app:elb_constraints}, which leads to the following distillation bounds,
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
@@ -684,20 +684,46 @@ In each of the three scenarios, it is simple to check that the input state's fir
 Substituting $\epsilon' = 0$ into these expressions leads to the stated distillation bounds.
 
 \end{proof}
-We note that the above bounds are not optimal, and since we only use part of the Lorenz curve they can be improved upon. However, we find numerically that they do better than, for example, the constraint coming from the peak of the curve. Similar bounds can be obtained from the decreasing part of the Lorenz curve, but they do not shed any more light on distillation bounds.
+
+We find numerically that the bounds derived above from the ascending part of the curve generally perform better than when considering the region around the Lorenz curve peak.
+Similar bounds can be obtained from the decreasing part of the Lorenz curve, but they do not shed any more light on distillation.
+Numerically ranging through the entire curve will improve our bounds incrementally, to an extent that depends on the intricate Lorenz curve structure.
 
 \subsection{Distillation bounds and energy dependencies}
 The previous section was focussed on an individual fragment, and while this does shed light on how physical constraints may, or may not, constrain protocols it is a bit indirect. However it is possible to adapt these bounds and put them in a more natural light.
 
-For this we now drop the condition that $\sigma$ is left invariant under the distillation protocol, and assume it transforms to some $\sigma'$. This output state must be some other stabilizer state and so has a positive Wigner function also. The strategy is then to use how any protocol transforms $\sigma$ to act as a measure of physical features, such as energy, of the protocol. Therefore we are interested in the conditions under which $(\rho, \sigma) \rightarrow (\rho', \sigma')$. For this we can use the full definition of relative majorization on the associated Wigner functions, and obtain distillation bounds from
+For this, we now drop the condition that $\sigma$ is left invariant under the distillation protocol, and assume it transforms to some $\sigma'$. This output state must be some other stabilizer state and so has a positive Wigner function also. The strategy is then to use how any protocol transforms $\sigma$ to act as a measure of physical features, such as energy, of the protocol. Therefore, we are interested in the conditions under which $(\rho, \sigma) \rightarrow (\rho', \sigma')$. For this we can use the full definition of relative majorization on the associated Wigner functions, and obtain distillation bounds from
 \begin{equation}
 (W_\rho(\x), W_\sigma(\x) ) \succ (W_{\rho'}(\x), W_{\sigma'}(\x) ).
 \end{equation}
-The condition for this that $L_{\rho |\sigma } (x) \ge L_{\rho'|\sigma'} (x)$, and so exactly the same analysis applies as in the previous case, but now with the Gibbs-recaling parameters for the output state being different from the input state \ddd{[cite recent Renes paper]}.
+The condition for this is $L_{\rho |\sigma } (x) \ge L_{\rho'|\sigma'} (x)$, and so exactly the same analysis applies as in the previous case, but now with the Gibbs-recaling parameters for the output state being different from the ones for the input state~\cite{Renes_2016}.
 
-If the physical system has Hamiltonian $H$, and experimentally it can be cooled down to some reference temperature $T$ then we can consider the reference equilibrium state $\sigma = e^{-\beta H}/\Z$, and estimate the energetic and entropic of protocols in terms of how they transform $\sigma$ to some other $\sigma'$. For example, if $\sigma'$ is close to the ground state of the system then we know that a great deal of entropy is dumped by the process. This allows us to parameterise our distillation bounds in more convenient terms.
+If the physical system has Hamiltonian $H$, and can be experimentally cooled down to some reference temperature $T$ then we can consider the reference equilibrium state $\sigma = e^{-\beta H}/\Z$, and estimate the energetic and entropic costs of any distillation protocol in terms of how the protocol transforms $\sigma$ to some other equilibrium state $\sigma'$. For example, if $\sigma'$ is close to the ground state \nick{fun fact: ground states correspond to $\beta \rightarrow \infty$ which makes both Lorenz curves look very rectangular - should we include this as an insight?} of the system, we then know that a great deal of entropy is dumped by the process. This allows us to parameterise our distillation bounds in a more insightful way.
 
-The state $\sigma'$ will in general not be an equilibrium state, or have any temperature associated to it. However we can still associate thermodynamic variables to it as follows: we consider what changes in Hamiltonian are required in order for the output state $\sigma'$ to still be an equilibrium state at the reference temperature $T$. Therefore $H\rightarrow H'$ such that $\sigma' = e^{-\beta H'}/\Z'$ and so the Lorenz curve of the output state $\rho'$ relative to $\sigma'$ will be expressible in terms of the free energy $F'(\beta) = -\beta^{-1} \log \Z'$ and the spectrum of the Hamiltonian $H'$. We find that \ddd{[Details? Expect that we now get free energy differences $\Delta F := F' - F$ appearing.]}
+We consider an arbitrary change in the Hamiltonian driving the system, $H\rightarrow H'$ such that $\sigma' = e^{-\beta H'}/\Z'$, so the energetic parameters contributing to the Lorenz curve of the output state $\rho'$ relative to $\sigma'$ will change. 
+Specifically, the first elbow coordinates of the output Lorenz curve can now be expressed as
+\begin{equation}\label{eq:transformed_first_elb_coords}
+	(x'_0, L'_0) =
+	\begin{cases}
+		\left(\frac{1}{3^{n'}} e^{-n\beta (E'_s - F'(\beta))}, v(\epsilon')^{n'} \right), &\hspace{-7pt} \rm{(C1')}	\vspace{10pt}\\
+		\left( e^{-n'\beta (E'_{\rm{max}}\hspace{-2.5pt}-F'(\beta))}, (3u(\epsilon'))^{n'} \right), &\hspace{-7pt} \rm{(C2')}
+	\end{cases}
+\end{equation}
+where now Case $\rm{(C1')}$ applies when $\epsilon' \leq \epsilon'_\star(\beta'_\star)$ (which encompasses the case $E'_s = E'_{\rm{max}}$) and Case $\rm{(C2')}$ applies when $\epsilon' > \epsilon'_\star(\beta'_\star)$ (which encompasses the case $\beta \geq \beta'_\star$).
+It is therefore now possible to get the scenario $\rm{(C1)} \rightarrow \rm{(C2')}$ if the two Hamiltonians $H,H'$ are sufficiently different.
+
+Using the first elbow constraint again leads to the following distillation bounds,
+\begin{equation}\label{eq:rate_bounds_proof}
+	R \leq
+	\begin{cases}
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F(\beta))}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F'(\beta))},\ &\rm{(C1)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F(\beta))}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F'(\beta))},\ &\rm{(C1)} \rightarrow \rm{(C2')}, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F(\beta))}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F'(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F(\beta))}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F'(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C2')}.
+	\end{cases}
+\end{equation}
+
+
 \subsection{Lower magic bounds via majorisation}
 \label{sec:lower_bounds}
 
