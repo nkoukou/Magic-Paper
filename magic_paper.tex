@@ -28,7 +28,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \preprint{APS/123-QED}
 
-\title{General thermodynamic constraints on magic state conversions for quantum computation}
+\title{General constraints on magic distillation protocols from statistical mechanics}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -293,7 +293,29 @@ If $\w$ and $\r$ are both probability distributions then the Lorenz curve is def
     \label{fig:lcs}
 \end{figure}
 
-Given the definition of Lorenz curves, the condition for relative majorization can now be phrased compactly. We have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see~\cite{Busch_1998} for details).
+\ddd{[I'll tidy this up more tomorrow and extend notation to full relative majorization.]}
+However, the eagle-eyed reader will point out that relative majorization is usually considered for probability distributions, and so we verify
+ that the same conditions apply to quasi-probability distributions. This can be done from first principles, but a simple way is to reduce to the problem of genuine distributions by `masking' the negativity in $\w$ using the reference distribution $\r$. 
+ 
+More precisely, if the components of $\r$ are never zero, then there always exists an $\epsilon >0$ such that $\w_\epsilon := \epsilon \w + (1-\epsilon) \r$ is a genuine probability distribution. We can see that $(\w , \r) \succ (\w', \r')$ if and only if $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$, where we choose $\epsilon$ so that both $\w_\epsilon$ and $\w_\epsilon'$ are probability distributions. This equivalence holds because there exists a stochastic map $A$ such that $A \w = \w'$ and $A \r = \r'$ if and only if $A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'$ and $ A\r = \r'$. Now it is shown in \ddd{[cite ``The mixing distance'', E Ruch, R Schranner, TH Seligman]} relative majorization between pairs of distributions occurs if and only if the associated Lorenz curves never cross. Therefore we need only establish that this carries over to Lorenz curves for quasi-distributions.
+
+In the appendices we show that 
+\begin{equation}
+L_{a \w + b \r | \r} (x) = a L_{\w|\r} (x) + bL _{\r|\r}(x),
+\end{equation}
+for all $a >0$ and any $b \in \mathbb{R}$. We now have that
+\begin{equation}
+(\w, \r) \succ (\w', \r') \mbox{ if and only if } (\w_\epsilon , \r) \succ (\w_\epsilon', \r'),
+\end{equation}
+and also $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$ if and only if $L_{\w_\epsilon |\r} (x) \ge L_{\w'_\epsilon |\r'} (x)$ for all $x$. However, using the above linearity property of the Lorenz curves we have that
+\begin{align}
+L_{\w_\epsilon |\r} (x) &\ge L_{\w'_\epsilon |\r'} (x) \nonumber \\ 
+&\mbox{ if and only if }& \nonumber \\
+\epsilon L_{\w |\r} (x) + (1-\epsilon) L_{\r|\r}(x) &\ge \epsilon L_{\w' |\r'} (x) + (1-\epsilon) L_{\r'|\r'}(x).
+\end{align}
+However $L_{\r|\r}(x)$ is simply the function $f(x)=x$ for any $\r$ and so the $(1-\epsilon)$ terms cancel on both sides and we get the required relative majorization conditions for the quasi-distributions in terms of their Lorenz curves.
+
+We therefore have that $\w_1 \succ_{\r} \w_2$ if and only if $L_{\w_1 | \r} (x) \ge L_{\w_2 | \r}(x)$ for all $x \in [0,1]$ (technical discussion and proof can be found in~\cref{app:major}. In other words, the Lorenz curve of $\w_1$ relative to $\r$ is never below the Lorenz curve of $\w_2$ relative to $\r$. Phrased more abstractly, the relative majorization pre-order corresponds to the standard ordering of concave, piece-wise linear functions passing through $(0,0)$ and $(1,1)$. We note that another neat geometric formulation of relative majorization exists, stating that the $L_1$-norm angle between $\w_1$ and $\r$ is greater than or equal to the $L_1$-norm angle between $\w_2$ and $\r$ (see~\cite{Busch_1998} for details).
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}
 \label{sec:major_frag}
