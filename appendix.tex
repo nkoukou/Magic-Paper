@@ -72,6 +72,7 @@ This fragment is governed by simple majorization and we first prove strong equiv
 Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
  \begin{enumerate}
 	\item[(i)]\label{en:m1} $\bmx \prec \bmy$;
+\end{theorem}
 	\item[(ii)]\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
 	\item[(iii)]\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
 	\item[(iv)]\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
@@ -82,6 +83,18 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 	
 	The rest of the properties are well-known and proofs can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio}.
 
+\begin{lemma} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
+\end{lemma}\label{lemma:Lorenz_linearity}
+\begin{proof} The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. However since $a > 0$, this is the same permutation that puts  $(p_i/r_i)$ in non-increasing order. We thus have
+\begin{equation}
+(\sum_{i=1}^kr_{\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)}) = (\sum_{i=1}^k r_{\pi(i)},a \sum_{i=1}^k  p_{\pi(i)} + b\sum_{i=1}^k r_{\pi(i)}) \nonumber,
+\end{equation}
+therefore the value of the Lorenz function at each potential elbow point $x_k = \sum_{i=1} ^kr_{\pi(i)}$ is given by
+\begin{equation}
+L_{a \p +b \r|\r} (x_k) = a L_{\p|\r} (x_k) + b x_k,
+\end{equation}
+and so from linearity, we have in general $L_{a\p  + b\r|\r} (x) = a L_{\p |\r}(x) + b x$ for any intermediate $x$.
+\end{proof}
 \subsection{Embedding map}
 
 Any $\r$--majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
