@@ -72,7 +72,6 @@ This fragment is governed by simple majorization and we first prove strong equiv
 Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
  \begin{enumerate}
 	\item[(i)]\label{en:m1} $\bmx \prec \bmy$;
-\end{theorem}
 	\item[(ii)]\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
 	\item[(iii)]\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
 	\item[(iv)]\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
@@ -123,8 +122,8 @@ Given $\bmx, \bmy, \r \in \mathbb{R}^n$, such that the components of $\r$ are po
   \begin{enumerate}
     \item[(i)] $\bmx \prec_{\r} \bmy$;
     \item[(ii)] $\Gamma_{\r}({\bmx}) \prec \Gamma_{\r}({\bmy})$;
-    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - t r_i} \leq \sum\limits_{i=1}^n \abs{y_i - t r_i}$ for all $t \in \mathbb{R}$;
-    \item[(iv)] $\sum\limits_{i=1}^n (x_i - t r_i)^+ \leq \sum\limits_{i=1}^n (y_i - t r_i)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - r_i t} \leq \sum\limits_{i=1}^n \abs{y_i - r_i t}$ for all $t \in \mathbb{R}$;
+    \item[(iv)] $\sum\limits_{i=1}^n (x_i - r_i t)^+ \leq \sum\limits_{i=1}^n (y_i - r_i t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
     \item[(v)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r}(1)$.
   \end{enumerate}
 \end{proposition}
@@ -140,8 +139,8 @@ $B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic m
 	\item[$2\leftrightarrow4$] \vspace{-7pt} ments (iii), (iv), (v) \hspace{1pt} in~\cref{prop:major} respectively, 
 	\item[$2\leftrightarrow5$] \vspace{-7pt} for the embedded vectors $\Gamma_{\r}({\bmx}), \Gamma_{\r}({\bmy})$, which becomes apparent by rewriting
 	\begin{align*}
-	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - t r_i} = \sum\limits_{i=1}^n r_i \abs{\frac{x_i}{r_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\r}(\bmx)_i - t}, \\[3pt]
-	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - t r_i)^+ = \sum\limits_{i=1}^N (\Gamma_{\r}(\bmx)_i - t)^+ \text{ and} \\[6pt]
+	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - r_i t} = \sum\limits_{i=1}^n r_i \abs{\frac{x_i}{r_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\r}(\bmx)_i - t}, \\[3pt]
+	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - r_i t)^+ = \sum\limits_{i=1}^N (\Gamma_{\r}(\bmx)_i - t)^+ \text{ and} \\[6pt]
 	&\hspace{15pt} L_{\bmx|\r}(t) = L_{\Gamma_{\r}(\bmx)}(t),
 	\end{align*} 
 and similarly for the right hand sides of the inequalities.

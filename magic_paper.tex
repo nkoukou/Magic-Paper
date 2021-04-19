@@ -188,8 +188,6 @@ Within the Wigner representation, all negatively represented states are magic st
 \end{equation}
 Our focus is on states with negativity, so the particular choice of free states is not critical for our analysis. The remaining component that defines any magic theory is the set of allowed (free) quantum operations, i.e. the ones that are considered free. The assumption we require on free operations is simply that they send any free state to another free state, meaning that a resource state cannot be created freely, a common assumption among all magic theories.
 
-\nick{``the condition that $\id \otimes \E$ does not generate Wigner negativity is an essential requirement of any magic theory'': this is not true for stabilizer-preserving operations (SPOs)~\cite{cit:ahmadi}. Note that ``completely'' SPOs~\cite{cit:seddon} are a strict subset. However, SPOs are a subset of Wang's CPWP operations~\cite{Wang_2019} so our results hold for SPOs too.}
-
 We can view the Wigner representation $W_{\E}( \y | \x)$ of a quantum channel $\E$ as a transition matrix mapping points $\x \rightarrow \y$, which is consistent with the representation of quantum states, as
 \begin{equation}
 	W_{\E(\rho)} (\y) = \sum_{\x \in \P_d} W_{\E}( \y | \x) W_\rho(\x),
@@ -211,20 +209,16 @@ Our formulation will not consider model-specific limitations, but will still inj
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \},
     \end{equation}
 namely those operations that leave the state $\sigma \in \F$ invariant.
-\nick{We discussed that the only free state in $\R_\sigma$ is $\sigma$}
 \end{definition}
-This notion provides a simple way to break up any theory into smaller, more manageable parts that are destinguished by additional physical constraints. Moreover, the union over all fragments returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this statement precise as follows.
+This notion provides a simple way to break up any theory into smaller, more manageable parts that are destinguished by additional physical constraints, illustrated in~\cref{fig:zoo}. Moreover, the union over all fragments returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this statement precise as follows.
 \begin{theorem}\label{thm:frag}
     Let $\R = (\F, \O)$ be a theory of magic.
 Then a transformation $\rho \longrightarrow \tau$ is possible in $\R$ if and only if the transformation $\rho \longrightarrow \tau$ is possible in at least one $\sigma$--fragment of $\R$.
 \end{theorem}
-The proof of this is straightforward.
 \begin{proof}
-    Suppose the interconversion is possible in a $\sigma$--fragment via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore $\E \in \O_\sigma$ and so the interconversion is possible in this fragment.
+	The proof is straightforward.
+   Suppose the interconversion is possible in a $\sigma$--fragment via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore $\E \in \O_\sigma$ and so the interconversion is possible in this fragment.
 \end{proof}
-
-We can now consider magic distillation rates within $\sigma$--fragments and then see how the bounds on the distillation rates depend on the choice of the fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards some pure stabilizer state provide more freedom?
-\nick{remember to re-address these questions after deriving our bounds later on}
 
 \begin{figure}[t]
     \centering
@@ -239,7 +233,10 @@ We can now consider magic distillation rates within $\sigma$--fragments and then
     \label{fig:zoo}
 \end{figure}
 
-More importantly, by introducing this additional structure to a magic theory, it actually allows for deeper analysis than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
+It is now possible to consider magic distillation rates within $\sigma$--fragments and then see how the bounds on the distillation rates depend on the choice of the fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards some pure stabilizer state provide more freedom?
+\nick{re-write based on new relative majorisation approach}
+
+By introducing this additional structure to a magic theory, we allow for deeper analysis than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
 
 \subsection{Quantifying disorder without entropies}
 \label{sec:major}
@@ -249,7 +246,7 @@ The development of any monotone $\M(\rho)$ for a magic theory $\R$ can be viewed
 \begin{equation}
 \M : \mbox{(pre-order of states)} \mapsto \mbox{(total order of numbers).} \nonumber
 \end{equation}
-More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. However, in general many states will not be interconvertible in either direction, and so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the real number line, and, through this lens, any two states are directly comparable in terms of their mapped values $\M(\rho_1)$, $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
+More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. In general many states will not be interconvertible in both directions, so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the real number line, and, through this lens, any two states are directly comparable in terms of their mapped values $\M(\rho_1)$, $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
 
 The restriction of a magic theory $\R$ to some fragment $\R_\sigma$ can now be interpreted as a generalisation of the magic monotone construction: instead of mapping the pre-order of states in $\R$ onto the number line, we instead map this pre-order onto \emph{a simpler pre-order of states}. Therefore, we are retaining more of the original parent theory, while working in a scenario that admits greater structure and simplicity. We can view this as a mapping $\P_\sigma: \R \rightarrow \R_\sigma$ that restricts to a sub-theory (a $\sigma$--fragment) of the parent theory $\R$. Thus,
 \begin{equation}
@@ -257,18 +254,22 @@ The restriction of a magic theory $\R$ to some fragment $\R_\sigma$ can now be i
 \end{equation}
 By framing the projection onto a fragment in this light, we can view Theorem \ref{thm:frag} as a statement that the collection $\{\P_\sigma\}_{\sigma \in \F}$ provides a complete set of generalized monotones for the theory.
 
-The question is now whether the sub-theories can be analysed to provide additional insights into magic distillation protocols. We shall provide an answer by working in the Wigner representation of a given $\sigma$--fragment. The problem of magic state distillation then becomes that of processing negativity under stochastic maps $W_{\E}( \y |\x)$ that leave a particular quasi-distribution $W_\sigma(\x)$ invariant. However, $\sigma \in \F$ is positively represented, so the sub-theory has an invariant classical probability distribution as a fixed point. This structure allows us to make use of a range of classical tools, and in particular majorization theory.
+The question is now whether the sub-theories can be analysed to provide additional insights into magic distillation protocols. An answer can be provided by working in the Wigner representation of a given $\sigma$--fragment. The problem of magic state distillation then becomes that of processing negativity under stochastic maps $W_{\E}( \y |\x)$ that leave a particular quasi-distribution $W_\sigma(\x)$ invariant. However, $\sigma \in \F$ is positively represented, so the sub-theory has an invariant classical probability distribution as a fixed point. This structure allows us to make use of a range of classical tools, and in particular majorization theory.
 
 Majorisation~\cite{cit:marshall} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
-It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be easily checked.
+It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be checked efficiently.
 
-There is a natural generalisation, which we call \emph{relative majorization} (also known as $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization)\footnote{The general form of relative majorization is defined as $(\p,\r) \succ (\q, \r')$ iff there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q$. We retrieve $\bmd$--majorization when $\r = \r'$.}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as follows:
+There is a natural generalisation, which is called $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as $\p \succ_{\r} \q$, if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. In order words, the relative majorization pre-order coincides with the image of $\p$ under stochastic maps that have $\r$ as a fixed point. It is readily checked that the original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. The pre-order that results from relative majorization is also easily checked and again corresponds to checking a small number of inequalities.
+
+We can further loosen the condition that vector $\r$ is kept fixed to get \emph{relative majorization}, defined as an ordering between pairs of vectors so that 
 \begin{equation}
-\p \succ_{\r} \q,
+	(\p,\r) \succ (\q, \r')
 \end{equation}
-if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. In order words, the relative majorization pre-order coincides with the image of $\p$ under stochastic maps that have $\r$ as a fixed point. It is readily checked that the original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. The pre-order that results from relative majorization is also easily checked and again corresponds to checking a small number of inequalities.
+iff there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q$. We retrieve $\bmd$--majorization when $\r = \r'$.
 
-It turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of a given fragment. To our knowledge, this application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over all stochastic maps with a given fixed point, while in the case of the Wigner representation there is an additional restriction that the phase space structure is respected. Therefore, any relative majorization constraint can provide necessary, but not sufficient conditions on magic state interconversions in the fragment. This observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall return to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates in~\cref{sec:lower_bounds}.
+It turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of magic across fragments. We justify the applicability and power of relative majorization in the next section.
+
+At this point we note that, to our knowledge, this application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over stochastic maps that obey a fixed transformation ($A\r = \r'$), while in the case of the Wigner representation there is an additional restriction that the symplectic structure of the phase space is respected. Therefore, any majorization constraint can provide necessary, but not sufficient conditions on magic state interconversions in the fragment. This observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall \nick{return} to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates in~\cref{sec:lower_bounds}.
 
 \subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
 \label{sec:lc}
@@ -282,7 +283,7 @@ Given a vector $\x$ we define $\x^\downarrow$ to be the re-arrangement of the co
         (x_k,L_{\w|\r}(x_k)) =\left( \frac{1}{R}\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
 \end{equation}
 where $R:= \sum_{i=1}^n r_i$, and $\pi$ is the permutation on $n$ objects that sends $\widetilde{\w}$ to $\widetilde{\w}^{\downarrow}$, where $\widetilde{w}_i := w_i/r_i$ is the vector of component-wise ratios of $\w$ and $\r$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as in any physical situation the rank of a quantum state is not an operationally meaningful quantity.
-We also stress that the curve contains non-differentiable points at locations where $\widetilde{\bmw}$ changes value, which we call \emph{elbows}.
+We also observe that the curve contains non-differentiable points, called \emph{elbows} at locations where $\widetilde{\bmw}$ changes value.
 
 If $\w$ and $\r$ are both probability distributions then the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum, attained at the end-point $x=1$. However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotone increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Figure \ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality. Since majorization provides a measure of order/disorder this is consistent with the intuition that negativity, for example within the context of entanglement theory or quantum computing, can provide a greater form of order than is possible within classical theory.
 
@@ -300,7 +301,7 @@ More precisely, if the components of $\r$ are never zero, then there always exis
 \begin{equation}
 A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'\mbox{ and } A\r = \r'.
 \end{equation}
-Now it is shown in \ddd{[cite ``The mixing distance'', E Ruch, R Schranner, TH Seligman]} relative majorization between pairs of distributions occurs if and only if the associated Lorenz curves never cross. Therefore we can express this condition in terms of the Lorenz curves of the quasi-probability distributions $\w$ and $\w'$ relative to $\r$ and $\r'$ respectively.
+Now it is shown in~\cite{ruch_mixing_1978} relative majorization between pairs of distributions occurs if and only if the associated Lorenz curves never cross. Therefore we can express this condition in terms of the Lorenz curves of the quasi-probability distributions $\w$ and $\w'$ relative to $\r$ and $\r'$ respectively.
 
 As shown in Appendix \ref{lemma:Lorenz_linearity}, the Lorenz curve for any quasi-probability distribution obeys the following linearity condition
 \begin{equation}
@@ -351,7 +352,7 @@ In this section we give some generic aspects of Lorenz curves for magic states. 
 	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) := \frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$.
 We make use of a variant form of relative majorization, (see~\cref{prop:rmajor} in~\cref{app:major}), stating that $\p \succ_{\r} \q$ if and only if
 	\begin{equation}
-\sum_k | p_k - t r_k | \ge \sum_k |q_k - t r_k|,
+\sum_k | p_k - r_k t | \geq \sum_k | q_k - r_k t |,
 \end{equation}
 for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distributions of two quantum states immediately gives the result.
 \end{proof}
@@ -528,7 +529,7 @@ Without loss of generality, we can always write a full-rank stabiliser state $\s
 \begin{equation}
 	F \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta}.
 \end{equation}
-Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. Note that under interpretation (1) above, this is an abstract entropic measure of the stabilizer state, while, under interpretation (2), it corresponds to the actual thermodynamic free energy of the equilibrium state.
+Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. \nick{Note that under interpretation (1) above, this is an abstract entropic measure of the stabilizer state, while, under interpretation (2), it corresponds to the actual thermodynamic free energy of the equilibrium state.}
 %
 %We focus on the distillation process
 %\begin{equation}\label{eq:stdist}
@@ -536,7 +537,7 @@ Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log
 %\end{equation}
 %where, as before, tensoring in copies of $\sigma$ does not affect the Lorenz curves of the magic states in the fragment.
 
-Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in~\cref{eq:stdist}. We shall write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$ for the limiting case of distilling a pure magic state.
+Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in\nick{~\cref{eq:stdist}}. We shall write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$ for the limiting case of distilling a pure magic state.
 
 
 \begin{figure}[t!]
@@ -577,8 +578,20 @@ Given this context, we now provide the following result on bounding the distilla
 \ddd{[Put assumptions here. Needs more polish+checking.]} We now consider a magic distillation protocol on multiple identical qutrits sending 
 \begin{equation}
 \rho_S(\epsilon)^{\otimes n} \longrightarrow \rho_S(\epsilon')^{\otimes Rn}
-\end{equation}•
+\end{equation}
 with $n \rightarrow \infty$. Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system. 
+We define $\beta_\star = 1/kT_\star$ through the relation
+\begin{equation}
+	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
+\end{equation}
+where $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ is the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. We define a threshold noise level,
+\begin{equation}
+	\epsilon_{\star}(\beta) \coloneqq 
+	\begin{cases}
+		3 - \dfrac{18}{8-2^{\beta/\beta_\star}}, &\text{ for } \beta \leq \beta_\star \\
+		0, &\text{ for } \beta > \beta_\star.
+	\end{cases}
+\end{equation}
 
 We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. However, this is done relative to a reference temperature that can be chosen freely. The measures associated with this protocol are then determined by how it would disturb this reference equilibrium state $\sigma$ to some different state $\sigma'$. More precisely, the reference equilibrium state of the $n$ qutrits is given by
 \begin{equation}
@@ -586,28 +599,22 @@ We can now provide distillation bounds that depend on energetic and entropic asp
 \end{equation}
 Since we are concerned with magic distillation we may assume that the reference state $\sigma$ is not a magic state, and so has non-negative Wigner distribution. Instead we shall assume that it is a full-rank stabilizer state for the qutrit. A given magic protocol on the $n$ qutrits will correspond to a quantum channel $\E$ acting on $\rho_S(\epsilon)^{\otimes n}$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. For simplicity we assume that the action of $\E$ on $\sigma^{\otimes n}$ is also such that correlations can be neglected in the $n\rightarrow \infty$ limit, and so $\E(\sigma^{\otimes n}) = (\sigma')^{\otimes n}$ for some state $\sigma'$. This assumption simplifies the application of majorization, however we note that work has also been done on the case of where correlations build up and one only looks at the marginal state on an individual subsystem \ddd{[need to cite here]} and so a more detailed analysis can also be performed.
 
+Finally, we can paramterise the state $\sigma'$ by defining a fiducial Hamiltonian $H'$, so that $\sigma' = e^{-\beta H'} / \Z$, while we denote all quantities relevant to this output state $\sigma'$ by priming them, leading to $E'_{\rm{max}}, E'_s, \beta'_\star$ and $\epsilon'_\star$.
+
 \begin{theorem}\label{thm:free-energy}
-	Consider a magic distillation protocol on $n \gg 1$ identical qutrits under the assumptions just stated. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system. 
-	
-\noindent Define $\beta_\star = 1/kT_\star$ through the relation
-\begin{equation}
-	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
-\end{equation}
-where $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ is the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. For $\beta \leq \beta_\star$, we define a threshold noise level
-\begin{equation}
-	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_{\rm max} - E_s)\beta}}.
-\end{equation}
+	Consider a magic distillation protocol on $n \gg 1$ identical qutrits under the assumptions just stated.
+
 Then the distillation rate $R$ of the protocol is bounded as follows:
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\rm{(C1)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\rm{(C1)} \rightarrow \rm{(C2')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\rm{(C2)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\rm{(C2)} \rightarrow \rm{(C2')}.
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' > \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon > \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star.
 	\end{cases}
 \end{equation}
-In the above expressions $F$ is the free energy of the state $\sigma:=e^{-\beta H}/\Z$, $F'$ is the free energy of the single qutrit state $\sigma' =e^{-\beta H'}/\Z'$ defined via the action of the protocol on the reference equilibrium state. \ddd{[Need strategy to incorporate conditions in simple, clear way.]}
+In the above expressions $F$ is the free energy of the state $\sigma \coloneqq e^{-\beta H}/\Z$ and $F'$ is the free energy of the single qutrit state $\sigma' = e^{-\beta H'}/\Z'$ defined via the action of the protocol on the reference equilibrium state. \ddd{[Need strategy to incorporate conditions in simple, clear way.]}
 \end{theorem}
  The state $\sigma'$ is generally a non-equilibrium state for the system, however one can still associate a free energy value to the output by considering subsequently changing the Hamiltonian $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. For example, suppose that $H=H'$ then this implies the protocol would leave the equilibrium state unchanged and so corresponds to a Gibbs-preserving map \ddd{[cite Philippe]}. In the more general case $\Delta F := F' - F \ne 0$ and we have a free energy difference between the initial and final times, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
  
@@ -694,15 +701,20 @@ If $E_{\rm{max}} = E_s$, namely if the state negativity lies in the same phase s
 \begin{equation}
 	\beta_{\star} \coloneqq \frac{1}{E_{\rm{max}} - E_s} \ln2,
 \end{equation}
-such that for the regime $0 \leq \beta \leq \beta_\star$ a transition noise level $\epsilon_\star$ exists, and for $\beta > \beta_\star$ no such transition exists. The transition value for the noise is given by
+such that for the regime $0 \leq \beta \leq \beta_\star$ a transition noise level $\epsilon_\star$ exists, and for $\beta > \beta_\star$ no such transition exists, so we choose $\epsilon_\star = 0$. 
+Therefore, the transition value for the noise is given by
 \begin{equation}
-	\epsilon_{\star}(\beta) := 3 - \dfrac{18}{8-2^{\beta/\beta_\star}}.
+	\epsilon_{\star}(\beta) \coloneqq 
+	\begin{cases}
+		3 - \dfrac{18}{8-2^{\beta/\beta_\star}}, &\text{ for } \beta \leq \beta_\star \\
+		0, &\text{ for } \beta > \beta_\star.
+	\end{cases}
 \end{equation}
 The quantity $w(\rho_{\rm{S}} | \sigma)_{\rm{max}}$ is now given by
 \begin{equation*}
 w(\rho_{\rm{S}} | \sigma)_{\rm{max}} =
 	\begin{cases}
-		(3\Z)^{n} v^n e^{n\beta E_s}, &\mbox{if }\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}	\\
+		(3\Z)^{n} v^n e^{n\beta E_s}, &\mbox{if }\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}\\
 		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\mbox{if }\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
 	\end{cases}
 \end{equation*}
@@ -721,29 +733,27 @@ Using that $F = -\beta^{-1} \log \Z$, the first elbow coordinates in the two cas
 \begin{equation}\label{eq:first_elb_coords}
 	(x_0, L_0) =
 	\begin{cases}
-		\left(\frac{1}{3^n} e^{-n\beta (E_s - F)}, v^n \right), &\rm{(C1)}	\vspace{10pt}\\
-		\left( e^{-n\beta (E_{\rm{max}}-F)}, (3u)^n \right). &\rm{(C2)} 
+		\left(\frac{1}{3^n} e^{-n\beta (E_s - F)}, v^n \right), &\epsilon \leq \epsilon_\star \vspace{10pt}\\
+		\left( e^{-n\beta (E_{\rm{max}}-F)}, (3u)^n \right). &\epsilon > \epsilon_\star
 	\end{cases}
 \end{equation}
-To obtain the distillation bounds from majorization we can now compute the above terms for both the input and output states. Depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states the Lorenz curve data may fall into either case $\rm{(C1)}$ or case $\rm{(C2)}$.
-Specifically, we have three scenarios of relevance to magic distillation:
-\begin{enumerate}
-	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_s$ or $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$.
-	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
-	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon_{\star} \leq \epsilon' < \epsilon$ or $E_{\rm{max}} > E_s$, $\beta \geq \beta_{\star}$.
-\end{enumerate}
-The scenario $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
-
-In each of the three scenarios, we simply use the first elbow constraint, as described in~\cref{app:elb_constraints}, which leads to the following distillation bounds,
-\begin{equation}\label{eq:rate_bounds_proof}
-	R \leq
+Similarly, considering the output magic state with respect to state $\sigma'$, the image of equilibrium state $\sigma$ under the magic protocol, we get output Lorenz curve coordinates,
+\begin{equation}\label{eq:transformed_first_elb_coords}
+	(x'_0, L'_0) =
 	\begin{cases}
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_s - F)},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_s - F)},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F)},\ &\rm{(C2)} \rightarrow \rm{(C2)}.
+		\left(\frac{1}{3^{n'}} e^{-n\beta (E'_s - F')}, v(\epsilon')^{n'} \right), &\epsilon' \leq \epsilon'_\star \vspace{10pt}\\
+		\left( e^{-n'\beta (E'_{\rm{max}}\hspace{-2.5pt}-F')}, (3u(\epsilon'))^{n'} \right), &\epsilon' > \epsilon'_\star
 	\end{cases}
 \end{equation}
-Substituting $\epsilon' = 0$ into these expressions leads to the stated distillation bounds.
+There are four combinations of coordinates, depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states.
+In each of these combinations, we simply use the first elbow constraint, as described in~\cref{app:elb_constraints}, which leads to the bounds in the statement of the theorem.
+%\begin{enumerate}
+%	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} = E_s$ or $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$.
+%	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
+%	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $E_{\rm{max}} > E_s$, $\beta < \beta_{\star}$ and $\epsilon_{\star} \leq \epsilon' < \epsilon$ or $E_{\rm{max}} > E_s$, $\beta \geq \beta_{\star}$.
+%\end{enumerate}
+%The scenario $\rm{(C1)} \rightarrow \rm{(C2)}$ is not considered as it would correspond to $\epsilon \leq \epsilon_\star < \epsilon'$, which would imply that the output magic state is noisier than the input state.
+%Substituting $\epsilon' = 0$ into these expressions leads to the stated distillation bounds.
 
 \end{proof}
 
@@ -761,30 +771,6 @@ For this, we now drop the condition that $\sigma$ is left invariant under the di
 The condition for this is $L_{\rho |\sigma } (x) \ge L_{\rho'|\sigma'} (x)$, and so exactly the same analysis applies as in the previous case, but now with the Gibbs-recaling parameters for the output state being different from the ones for the input state~\cite{Renes_2016}.
 
 If the physical system has Hamiltonian $H$, and can be experimentally cooled down to some reference temperature $T$ then we can consider the reference equilibrium state $\sigma = e^{-\beta H}/\Z$, and estimate the energetic and entropic costs of any distillation protocol in terms of how the protocol transforms $\sigma$ to some other equilibrium state $\sigma'$. For example, if $\sigma'$ is close to the ground state \nick{fun fact: ground states correspond to $\beta \rightarrow \infty$ which makes both Lorenz curves look very rectangular - should we include this as an insight?} of the system, we then know that a great deal of entropy is dumped by the process. This allows us to parameterise our distillation bounds in a more insightful way.
-
-We consider an arbitrary change in the Hamiltonian driving the system, $H\rightarrow H'$ such that $\sigma' = e^{-\beta H'}/\Z'$, so the energetic parameters contributing to the Lorenz curve of the output state $\rho'$ relative to $\sigma'$ will change. 
-Specifically, the first elbow coordinates of the output Lorenz curve can now be expressed as
-\begin{equation}\label{eq:transformed_first_elb_coords}
-	(x'_0, L'_0) =
-	\begin{cases}
-		\left(\frac{1}{3^{n'}} e^{-n\beta (E'_s - F')}, v(\epsilon')^{n'} \right), &\hspace{-7pt} \rm{(C1')}	\vspace{10pt}\\
-		\left( e^{-n'\beta (E'_{\rm{max}}\hspace{-2.5pt}-F')}, (3u(\epsilon'))^{n'} \right), &\hspace{-7pt} \rm{(C2')}
-	\end{cases}
-\end{equation}
-where now Case $\rm{(C1')}$ applies when $\epsilon' \leq \epsilon'_\star(\beta'_\star)$ (which encompasses the case $E'_s = E'_{\rm{max}}$) and Case $\rm{(C2')}$ applies when $\epsilon' > \epsilon'_\star(\beta'_\star)$ (which encompasses the case $\beta \geq \beta'_\star$).
-It is therefore now possible to get the scenario $\rm{(C1)} \rightarrow \rm{(C2')}$ if the two Hamiltonians $H,H'$ are sufficiently different.
-
-Using the first elbow constraint again leads to the following distillation bounds,
-\begin{equation}\label{eq:rate_bounds_proof}
-	R \leq
-	\begin{cases}
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\rm{(C1)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\rm{(C1)} \rightarrow \rm{(C2')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\rm{(C2)} \rightarrow \rm{(C1')}, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\rm{(C2)} \rightarrow \rm{(C2')}.
-	\end{cases}
-\end{equation}
-
 
 \subsection{Lower magic bounds via majorisation}
 \label{sec:lower_bounds}
