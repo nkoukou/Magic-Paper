@@ -64,6 +64,18 @@ If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto it
 
 % TO SWAP d --> r, REPLACE ALL \bmd, \bm{d}, d_i WITH \r
 
+\subsection{Comments on monotones and fragements}
+The development of any monotone $\M(\rho)$ for a magic theory $\R$ can be viewed abstractly as
+\begin{equation}
+\M : \mbox{(pre-order of states)} \mapsto \mbox{(total order of numbers).} \nonumber
+\end{equation}
+More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. In general many states will not be interconvertible in both directions, so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the real number line, and, through this lens, any two states are directly comparable in terms of their mapped values $\M(\rho_1)$, $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
+
+The restriction of a magic theory $\R$ to some fragment $\R_\sigma$ can now be interpreted as a generalisation of the magic monotone construction: instead of mapping the pre-order of states in $\R$ onto the number line, we instead map this pre-order onto \emph{a simpler pre-order of states}. Therefore, we are retaining more of the original parent theory, while working in a scenario that admits greater structure and simplicity. We can view this as a mapping $\P_\sigma: \R \rightarrow \R_\sigma$ that restricts to a sub-theory (a $\sigma$--fragment) of the parent theory $\R$. Thus,
+\begin{equation}
+\P_\sigma: \mbox{(pre-order)} \longrightarrow \mbox{(simpler pre-order).}
+\end{equation}
+By framing the projection onto a fragment in this light, we can view Theorem \ref{thm:frag} as a statement that the collection $\{\P_\sigma\}_{\sigma \in \F}$ provides a complete set of generalized monotones for the theory.
 \subsection{Simple--majorization equivalence conditions}
 
 In the unital fragment, namely the limit of infinite temperature, $\beta = 0$, the free state is the maximally mixed state $\frac{1}{n}\id$ with uniform Wigner distribution $\frac{1}{n}\bm{1} = (\frac{1}{n},\dots,\frac{1}{n})$.
@@ -82,6 +94,8 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 	
 	The rest of the properties are well-known and proofs can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio}.
 
+
+
 \begin{lemma} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
 \end{lemma}\label{lemma:Lorenz_linearity}
 \begin{proof} The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. Since $a > 0$, the permutation $\pi$ puts  $(p_i/r_i)$ in non-increasing order too. We thus have
@@ -96,6 +110,40 @@ therefore the value of the Lorenz function at each potential elbow point $x_k = 
 \end{align}
 so we have $L_{a\p  + b\r|\r} (x) = a L_{\p |\r}(x) + b x$ for any $x \in [0,1]$ due to linearity.
 \end{proof}
+
+\begin{lemma}\label{lem:lcmax}
+	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
+\end{lemma}
+\begin{proof}
+	We denote the Wigner distributions of the states compactly as vectors $\bmw(\rho) \equiv W_\rho(x)$ and $\bmw(\sigma) \equiv W_\sigma(x)$.
+	We choose the component indexing so that the rescaled distribution 
+	\begin{equation}
+		\widetilde{\bmw}(\rho|\sigma) \coloneqq \left(\frac{w(\rho)_1}{w(\sigma)_1}, \dots, \frac{w(\rho)_{d^2}}{w(\sigma)_{d^2}} \right)^T,
+	\end{equation}
+	is sorted, $\widetilde{\bmw} = \widetilde{\bmw}^\downarrow$.
+	Note that all components of $\bmw(\sigma)$ are positive, so $\widetilde{w}_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
+	
+	Let $i_\star$ be the index of the smallest non-negative component of $\widetilde{\bmw}^\downarrow$.
+	Then, $w(\rho)_i < 0$ if and only if $i > i_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
+	\begin{equation}
+		\lc{\rho}{\sigma}(x_{i_\star}) = \sum_{i=1}^{i_\star} w(\rho)_i,
+	\end{equation}
+	and is achieved at
+	\begin{equation}\label{eq:maxloc}
+		x_{i_\star} \coloneqq \sum_{i=1}^{i_\star} w(\sigma)_i.
+	\end{equation}
+
+	The location of the maximum ($x=x_{i_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
+	\begin{align}
+	L_\star &:=	\lc{\rho}{\sigma}(x_{i_\star}) 
+		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho} \nonumber \\
+		&= 1 + \sn{\rho}.
+	\end{align}
+	
+Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{mana}(\rho) \coloneqq \ln{(2\hspace{1pt}\sn{\rho}+1)}$, we see that mana corresponds precisely to the peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore, mana is one of $d^{2n}$ constraints, so majorization is strictly a stronger constraint in any fragment.
+\end{proof}
+
+
 \subsection{Embedding map}
 
 Any $\r$--majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
