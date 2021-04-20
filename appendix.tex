@@ -84,15 +84,17 @@ Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
 
 \begin{lemma} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
 \end{lemma}\label{lemma:Lorenz_linearity}
-\begin{proof} The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. However since $a > 0$, this is the same permutation that puts  $(p_i/r_i)$ in non-increasing order. We thus have
-\begin{equation}
-(\sum_{i=1}^kr_{\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)}) = (\sum_{i=1}^k r_{\pi(i)},a \sum_{i=1}^k  p_{\pi(i)} + b\sum_{i=1}^k r_{\pi(i)}) \nonumber,
-\end{equation}
+\begin{proof} The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. Since $a > 0$, the permutation $\pi$ puts  $(p_i/r_i)$ in non-increasing order too. We thus have
+\begin{align*}
+&\left( \sum_{i=1}^kr_{\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)} \right) = \\ 
+&\left( \sum_{i=1}^k r_{\pi(i)},a \sum_{i=1}^k  p_{\pi(i)} + b\sum_{i=1}^k r_{\pi(i)} \right) \nonumber,
+\end{align*}
 therefore the value of the Lorenz function at each potential elbow point $x_k = \sum_{i=1} ^kr_{\pi(i)}$ is given by
-\begin{equation}
-L_{a \p +b \r|\r} (x_k) = a L_{\p|\r} (x_k) + b x_k,
-\end{equation}
-and so from linearity, we have in general $L_{a\p  + b\r|\r} (x) = a L_{\p |\r}(x) + b x$ for any intermediate $x$.
+\begin{align}
+&L_{a \p +b \r|\r} (x_k) = a L_{\p|\r} (x_k) + b L_{\r|\r}(x_k) = \nonumber\\
+&a L_{\p|\r} (x_k) + b x_k,
+\end{align}
+so we have $L_{a\p  + b\r|\r} (x) = a L_{\p |\r}(x) + b x$ for any $x \in [0,1]$ due to linearity.
 \end{proof}
 \subsection{Embedding map}
 
