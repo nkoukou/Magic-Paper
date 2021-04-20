@@ -513,73 +513,46 @@ While unital channels are quite natural, we might wonder how different distillat
 
 \section{Free energy dependent bounds for magic state distillation protocols}
 \label{sec:stab}
-\ddd{[Various smoothings needed to blend with new emphasis]}
-%
-%We now generalise the approach taken in the previous section and consider bounds on magic distillation for an arbitrary stabiliser fragment $\R_\sigma$, where $\sigma$ is any quantum state $\sigma \in \stab$.
-%In other words, we consider those bounds on distillation that apply when the free operations have $\sigma$ as a fixed point.
-%
-%These bounds can be interpreted in two different ways: 
-%\begin{enumerate}
-%\item As a family of upper bounds parameterised by an abstract stabiliser state $\sigma$.
-%\item As a constraint arising from the actual hardware limitations, noise bias or ambient thermal environment and reflected by the invariant state $\sigma$ for the system.
-%\end{enumerate}
-%In what follows we shall be agnostic on the interpretation. 
 
-Without loss of generality, we can always write a full-rank stabiliser state $\sigma$ in the form $\sigma =  \frac{1}{\Z_\beta} e^{-\beta H}$ for some $\beta \geq 0$ and effective Hamiltonian $H$. Our results will also depend on the free energy $F$ of the state $\sigma$, expressed as
+We now consider a magic distillation protocol on multiple identical qudits in a noisy magic state $\rho(\epsilon)$, with noise parameter $\epsilon$, sending 
 \begin{equation}
-	F \coloneqq \tr[H \sigma] - \beta^{-1}S(\sigma) = -\beta^{-1}\log{\Z_\beta}.
+\rho(\epsilon)^{\otimes n} \longrightarrow \E(\rho(\epsilon)^{\otimes n}) =\rho(\epsilon')^{\otimes m}
 \end{equation}
-Here $S(\sigma)$ is the von Neumann entropy $S(\sigma) \coloneqq -\tr[\sigma\log{\sigma}]$. \nick{Note that under interpretation (1) above, this is an abstract entropic measure of the stabilizer state, while, under interpretation (2), it corresponds to the actual thermodynamic free energy of the equilibrium state.}
-%
-%We focus on the distillation process
-%\begin{equation}\label{eq:stdist}
-%	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \sigma^{\otimes (n-n')},
-%\end{equation}
-%where, as before, tensoring in copies of $\sigma$ does not affect the Lorenz curves of the magic states in the fragment.
+with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key ideas is that the physical measures associated with this protocol are determined by how $\E$ would disturb this reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
 
-Given this context, we now provide the following result on bounding the distillation rate $R = R(\epsilon, \epsilon', \beta) \coloneqq \frac{n'}{n}$ of the process in\nick{~\cref{eq:stdist}}. We shall write $R(\epsilon, \beta) = R(\epsilon, \epsilon'=0, \beta)$ for the limiting case of distilling a pure magic state.
-
-
-\begin{figure}[t!]
-    \centering
-    \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
-    \caption{\textbf{Magic distillation bounds within arbitrary stabiliser fragments.}
-  Shown is a contour plot of  $R(\epsilon, \beta)$ where $\beta$ is an effective inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
-    }
-    \label{fig:rate_contour}
-\end{figure}
-%
-%\begin{theorem}\label{thm:stab_bounds}
-%	Given a theory of magic $\R = (\F, \O)$, let $\sigma$ be any qutrit stabiliser state, and write the state as $\sigma = \frac{1}{\Z} e^{-\beta H}$, where $H$ has eigenvalues $E_0, E_1, E_2$, and $\beta$ is an effective inverse temperature for the state. 
-%We define $\beta_\star = 1/kT_\star$ through the relation
-%\begin{equation}
-%	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
-%\end{equation}
-%where $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ is the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. For $\beta \leq \beta_\star$, we define a threshold noise level
-%\begin{equation}
-%	\epsilon_{\star}(\beta) \coloneqq 3 - \dfrac{18}{8-e^{(E_{\rm max} - E_s)\beta}}.
-%\end{equation}
-%Then, any distillation rate $R(\epsilon, \beta)$ in the $\sigma$--fragment of a magic theory is bounded as follows:\\
-%If $\beta \leq \beta_{\star}$ and $\epsilon  \leq \epsilon_{\star}$,
-%\begin{equation}
-%	R(\epsilon,\beta) \leq 1 + \frac{\ln{\left( 1 - \frac{4}{3}\epsilon \right)}}{\beta (E_s - F)}.
-%\end{equation}
-%If $\beta \leq \beta_{\star}$ and $\epsilon_{\star} < \epsilon$, then
-%\begin{equation}
-%	R(\epsilon, \beta) \le 1 + \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)} - (E_{\rm max} - E_s)(\beta_{\star} - \beta)}{\beta (E_s - F)}.
-%\end{equation}
-%Otherwise if $\beta > \beta_{\star}$,
-%\begin{equation}
-%	R(\epsilon, \beta) \leq  1+ \frac{\ln{\left(1-\frac{1}{3}\epsilon \right)}}{-\ln{2} + \beta (E_{\rm max} - F)}.
-%\end{equation}
-%In the above expressions $F$ is the effective free energy of the stabilizer state.
-%\end{theorem}
-
-\ddd{[Put assumptions here. Needs more polish+checking.]} We now consider a magic distillation protocol on multiple identical qutrits sending 
+More precisely, we assume each qudit has Hamiltonian $H$ and we choose some temperature $T = (k\beta)^{-1}$ where $k$ is Boltzmann's constant and $\beta$ the inverse temperature. The reference equilibrium state of the $n$ qudits is given by
 \begin{equation}
-\rho_S(\epsilon)^{\otimes n} \longrightarrow \rho_S(\epsilon')^{\otimes Rn}
+\tau^{\otimes n} = \left ( \frac{e^{-\beta H}}{\Z} \right )  ^{\otimes n}.
 \end{equation}
-with $n \rightarrow \infty$. Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system. 
+Since we are concerned with magic distillation we may assume that the reference state $\tau$ is not a magic state, and so has non-negative Wigner distribution, and we shall assume that it is a full-rank stabilizer state for the qudit. 
+
+A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for any permutation $U_\pi$ of the $m$ output subsystems. The reason for this is that the protocol on the noisy magic state outputs the state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations, and so we can therefore always symmetrise by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
+
+This means in particular that $\E(\tau^{\otimes n}) = \tau'$ is a symmetric state on $m$ subsystems, and so by the quantum de Finetti theorem \ddd{[cite]} we have that
+\begin{equation}
+\tau'  = \int d\mu(x) \sigma_x^{\otimes m},
+\end{equation}
+where $d\mu(x)$ is a probability measure over a set $\{\sigma_x\}$ of single qudit states.
+
+To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\sigma$, and so $\tau' = \sigma^{\otimes m}$. Physically, this is a natural scenario -- for example in traditional thermodynamics it states that the output system is well-described by intrinsic variables that are encoded in $\sigma$. Here this assumption allows us to associate a free energy per qudit for the output state, which would be more complex if correlations are present.
+
+The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization analysis of Wigner distributions. In this direction we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy.
+
+The action of the protocol on the reference states therefore transforms $\tau \rightarrow \sigma$. It turns out our distillation bounds depend on the free energy of the input and output states. For a state $\tau = e^{-\beta H}/\Z$ the associated free energy $F$ is given by
+\begin{equation}
+	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z}.
+\end{equation}
+The output state $\sigma$ is generally a non-equilibrium state for the system. However, the distillation bound takes a particularly simple form if we associate a similar free energy value to the output state. We do this by considering the change in Hamiltonian $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This implies that 
+\begin{equation}
+\sigma = \frac{e^{-\beta H'}}{\Z'},
+\end{equation}
+which has free energy $F' = -\beta^{-1} \log \Z'$. Therefore the action of $\E$ sending $\tau$ to $\sigma$ is viewed in terms of $\Delta H := H'-H$, which is the Hamiltonian change that would be needed to adiabatically restore equilibrium at temperature $T$. 
+
+ Given this account of the physical ingredients of a distillation protocol we now state the following result for the case of qutrits.
+\begin{theorem}\label{thm:free-energy}
+	Consider a magic distillation protocol on $n \gg 1$ qutrits transforming noisy Strange state $\rho_S(\epsilon)^{\otimes n} \rightarrow \rho_S(\epsilon')^{\otimes m}$, under the assumptions just stated.
+
+Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau$, with free energy $F$. 
 We define $\beta_\star = 1/kT_\star$ through the relation
 \begin{equation}
 	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
@@ -592,19 +565,7 @@ where $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ is the eigenvalue of the e
 		0, &\text{ for } \beta > \beta_\star.
 	\end{cases}
 \end{equation}
-
-We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. However, this is done relative to a reference temperature that can be chosen freely. The measures associated with this protocol are then determined by how it would disturb this reference equilibrium state $\sigma$ to some different state $\sigma'$. More precisely, the reference equilibrium state of the $n$ qutrits is given by
-\begin{equation}
-\sigma^{\otimes n} = \left ( \frac{e^{-\beta H}}{\Z} \right )  ^{\otimes n}.
-\end{equation}
-Since we are concerned with magic distillation we may assume that the reference state $\sigma$ is not a magic state, and so has non-negative Wigner distribution. Instead we shall assume that it is a full-rank stabilizer state for the qutrit. A given magic protocol on the $n$ qutrits will correspond to a quantum channel $\E$ acting on $\rho_S(\epsilon)^{\otimes n}$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. For simplicity we assume that the action of $\E$ on $\sigma^{\otimes n}$ is also such that correlations can be neglected in the $n\rightarrow \infty$ limit, and so $\E(\sigma^{\otimes n}) = (\sigma')^{\otimes n}$ for some state $\sigma'$. This assumption simplifies the application of majorization, however we note that work has also been done on the case of where correlations build up and one only looks at the marginal state on an individual subsystem \ddd{[need to cite here]} and so a more detailed analysis can also be performed.
-
-Finally, we can paramterise the state $\sigma'$ by defining a fiducial Hamiltonian $H'$, so that $\sigma' = e^{-\beta H'} / \Z$, while we denote all quantities relevant to this output state $\sigma'$ by priming them, leading to $E'_{\rm{max}}, E'_s, \beta'_\star$ and $\epsilon'_\star$.
-
-\begin{theorem}\label{thm:free-energy}
-	Consider a magic distillation protocol on $n \gg 1$ identical qutrits under the assumptions just stated.
-
-Then the distillation rate $R$ of the protocol is bounded as follows:
+Then the distillation rate $R = m/n$ of the magic protocol is bounded as follows:
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
@@ -614,10 +575,10 @@ Then the distillation rate $R$ of the protocol is bounded as follows:
 		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star.
 	\end{cases}
 \end{equation}
-In the above expressions $F$ is the free energy of the state $\sigma \coloneqq e^{-\beta H}/\Z$ and $F'$ is the free energy of the single qutrit state $\sigma' = e^{-\beta H'}/\Z'$ defined via the action of the protocol on the reference equilibrium state. \ddd{[Need strategy to incorporate conditions in simple, clear way.]}
+Where $F'$ is the free energy of the single qutrit output state $\sigma = e^{-\beta H'}/\Z'$ of the protocol applied to $\tau$. 
 \end{theorem}
- The state $\sigma'$ is generally a non-equilibrium state for the system, however one can still associate a free energy value to the output by considering subsequently changing the Hamiltonian $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. For example, suppose that $H=H'$ then this implies the protocol would leave the equilibrium state unchanged and so corresponds to a Gibbs-preserving map \ddd{[cite Philippe]}. In the more general case $\Delta F := F' - F \ne 0$ and we have a free energy difference between the initial and final times, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
- 
+
+  For example, suppose that $H=H'$ then this implies the protocol would leave the equilibrium state unchanged and so corresponds to a Gibbs-preserving map \ddd{[cite Philippe]}. In the more general case $\Delta F := F' - F \ne 0$ and we have a free energy difference between the initial and final times, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
 Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
 Secondly, these bounds are derived based on analysis of only a part of the Lorenz curves and can be improved via a finer analysis. 
 This is apparent by simple numerical calculations on the entirety of the curves.
@@ -771,6 +732,15 @@ For this, we now drop the condition that $\sigma$ is left invariant under the di
 The condition for this is $L_{\rho |\sigma } (x) \ge L_{\rho'|\sigma'} (x)$, and so exactly the same analysis applies as in the previous case, but now with the Gibbs-recaling parameters for the output state being different from the ones for the input state~\cite{Renes_2016}.
 
 If the physical system has Hamiltonian $H$, and can be experimentally cooled down to some reference temperature $T$ then we can consider the reference equilibrium state $\sigma = e^{-\beta H}/\Z$, and estimate the energetic and entropic costs of any distillation protocol in terms of how the protocol transforms $\sigma$ to some other equilibrium state $\sigma'$. For example, if $\sigma'$ is close to the ground state \nick{fun fact: ground states correspond to $\beta \rightarrow \infty$ which makes both Lorenz curves look very rectangular - should we include this as an insight?} of the system, we then know that a great deal of entropy is dumped by the process. This allows us to parameterise our distillation bounds in a more insightful way.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
+    \caption{\textbf{Magic distillation bounds within arbitrary stabiliser fragments.}
+  Shown is a contour plot of  $R(\epsilon, \beta)$ where $\beta$ is an effective inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ at every $\beta \leq \beta_\star$. The unital fragment corresponds to the $\beta =0 $ line.
+    }
+    \label{fig:rate_contour}
+\end{figure}
 
 \subsection{Lower magic bounds via majorisation}
 \label{sec:lower_bounds}
