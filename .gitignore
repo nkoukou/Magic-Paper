@@ -1,6 +1,7 @@
 magic_paperNotes.bib
 
 *.pdf
+!figs/*.pdf
 *.aux 
 *.bit 
 *.blg 

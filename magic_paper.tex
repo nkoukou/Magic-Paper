@@ -446,25 +446,17 @@ For the limiting case of distilling pure magic states ($\epsilon'=0$), we obtain
 	R \leq 1 + \frac{\ln (1 - \frac{4}{3} \epsilon)}{\ln 3}.
 \end{equation}
 
-Similar upper bounds on distillation rates for qudits of odd prime dimension include the mana bound~\cite{cit:veitch} and the max--thauma bound~\cite{Wang_2020} which is defined via a semi-definite program, but possesses properties that allow for an easy comparison with our bound.
+Similar upper bounds on distillation rates for qudits of odd prime dimension include the mana bound~\cite{cit:veitch} and the max--thauma bound~\cite{Wang_2020} which can be defined as
+\begin{equation}
+	\theta_{\rm{max}}(\rho) \coloneqq \log_2{\min{\{2\hspace{1pt}\sn{V}+1 : V \geq \rho\}}}
+\end{equation}
+and can be calculated numerically via a semi-definite program.
+
 The mana bound can be directly calculated as
 \begin{equation}
 	R \leq \frac{\mana{\rho_{\rm{S}}(\epsilon)}}{\mana{\rho_{\rm{S}}(0)}} = 1 + \frac{\ln \left(1 - \frac{8}{15}\epsilon \right)}{\ln \frac{5}{3}}.
 \end{equation}
-Using the max--thauma properties of super-additivity and vanishing at free states, we obtain
-\begin{align}
-	&\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon)) \geq (1-\epsilon) \theta_{\rm{max}}(\ketbra{\rm{S}}) + \epsilon \theta_{\rm{max}}\left(\frac{1}{3}\id \right) = \nonumber\\
-	&(1-\epsilon) \theta_{\rm{max}}(\rho_{\rm{S}}(0)),
-\end{align}
-so that for a deterministic single-copy distillation process, an initial number of copies $n \geq \theta_{\rm{max}}(\tau) / \theta_{\rm{max}}(\rho) \geq 1-\epsilon$ is required.
-Therefore, the max--thauma bound for the pure Strange state distillation process can get as tight as \nick{CALCULATING THAUMA EXACTLY AT THE MOMENT}
-\begin{equation}
-	R = \frac{1}{n} = \frac{\theta_{\rm{max}}(\rho_{\rm{S}}(\epsilon))}{\theta_{\rm{max}}(\rho_{\rm{S}}(0))} \leq 1-\epsilon.
-\end{equation}
-
-Both the mana and the max--thauma bounds are looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. 
-
-In the next section we provide relative majorization bounds in arbitrary stabilizer fragments, and in particular we shall parameterize these bounds from a thermodynamic perspective. Specifically, we can interpret the stabilizer state $\sigma$, which defines the fragment, as a thermodynamic equilibrium state at some effective temperature and with some effective Hamiltonian.
+For the noisy Strange state, the max-thauma bound coincides with the mana bound, and are both looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. 
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
@@ -473,6 +465,26 @@ In the next section we provide relative majorization bounds in arbitrary stabili
     }
     \label{fig:distill_bounds}
 \end{figure}
+
+I include in~\cref{fig:test} the purification of Norrell states and the purification of $T$ states.\nick{Need to include numerical majorization curves to compare, extend noise range.}
+
+\begin{figure}[h]
+    \centering
+    \subfigure[][]{%
+    \label{fig:norrell}%
+    \includegraphics[height=3cm]{figs/compare_norrell.pdf}
+    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
+    }\hspace{8pt}%
+    \subfigure[][]{%
+    \label{fig:tstate}%
+    \includegraphics[height=3cm]{figs/compare_tstate.pdf}}
+    \caption{\textbf{Bound comparison} 
+    \subref{fig:norrell} Norrell state purification; \subref{fig:tstate} $T$ state purification;
+    }%
+    \label{fig:test}
+\end{figure}
+
+In the next section we provide relative majorization bounds in arbitrary stabilizer fragments, and in particular we shall parameterize these bounds from a thermodynamic perspective. Specifically, we can interpret the stabilizer state $\sigma$, which defines the fragment, as a thermodynamic equilibrium state at some effective temperature and with some effective Hamiltonian.
 
 \section{Free energy dependent bounds for magic state distillation protocols}
 \label{sec:stab}
