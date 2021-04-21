@@ -314,7 +314,7 @@ The $(1-\epsilon)$ terms cancel on both sides and we get the required relative m
 
 We therefore have that $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w | \r} (x) \ge L_{\w' | \r'}(x)$ for all $x \in [0,1]$ equally applies for the case of $\w,\w'$ being quasi-distributions. 
 
-In the next section we discuss the application of majorization to Wigner representations of magic, where the quasi-distribution $W_\rho(x)$ of a magic state can be analysed relative to any Wigner positive free state $W_\sigma(x)$. To our knowledge, the application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over stochastic maps that obey a transformation ($A\r = \r'$), while in the case of the Wigner representation there is a stronger restriction that the symplectic structure of the phase space is respected. Therefore, any majorization constraint can provide necessary, but not sufficient conditions on magic state interconversions. This observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall \nick{return} to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates in~\cref{sec:lower_bounds}.
+In the next section we discuss the application of majorization to Wigner representations of magic, where the quasi-distribution $W_\rho(x)$ of a magic state can be analysed relative to any Wigner positive free state $W_\sigma(x)$. To our knowledge, the application of majorization to quasi-distributions in  physics has not been considered previously. The caveat here is that relative majorization ranges over stochastic maps that obey a transformation ($A\r = \r'$), while in the case of the Wigner representation there is a stronger restriction that the symplectic structure of the phase space is respected. Therefore, any majorization constraint can provide necessary, but not sufficient conditions on magic state interconversions. This observation raises a question that to our knowledge has not been previously considered in the classical statistical mechanics literature: what are the conditions for symplectic majorization of classical statistical mechanics? We shall return to this question later on when we discuss how our approach could be used to construct concrete lower-bounds on distillation rates in~\cref{sec:lower_bounds}.
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}
 \label{sec:major_frag}
@@ -501,7 +501,7 @@ More precisely, we assume each qudit has Hamiltonian $H$ and we choose some temp
 \end{equation}
 Since we are concerned with magic distillation we may assume that the reference state $\tau$ is not a magic state, and so has non-negative Wigner distribution, and we shall assume that it is a full-rank stabilizer state for the qudit. 
 
-A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for any permutation $U_\pi$ of the $m$ output subsystems. The reason for this is that the protocol on the noisy magic state outputs the state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations, and so we can therefore always symmetrise by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
+A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. The reason for this is that the protocol on the noisy magic state outputs the state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations, and so we can therefore always symmetrise by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
 
 This means in particular that $\E(\tau^{\otimes n}) = \tau'$ is a symmetric state on $m$ subsystems, and so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
 \begin{equation}
@@ -527,7 +527,7 @@ which has free energy $F' = -\beta^{-1} \log \Z'$. Therefore the action of $\E$ 
 \begin{theorem}\label{thm:free-energy}
 	Consider a magic distillation protocol transforming noisy Strange state $\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m}$ with $n, m \gg 1$.
 
-Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau^{\otimes n}= (e^{-\beta H}/\Z)^{\otimes n}$, with free energy $F$. Assume that for $n,m \gg 1$ the channel $\E$ generates negligible correlations on $\tau^{\otimes n}$, and so $\E(\tau^{\otimes n}) = \sigma^{\otimes m}$ for some state $\sigma$.
+Let each qutrit have a Hamiltonian $H$ with stabilizer eigenstates having energies $E_0, E_1, E_2$, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau^{\otimes n}= (e^{-\beta H}/\Z)^{\otimes n}$, with free energy $F$. Assume that for $n,m \gg 1$ the channel $\E$ generates negligible correlations on $\tau^{\otimes n}$, and so $\E(\tau^{\otimes n}) = \sigma^{\otimes m}$ for some state $\sigma$.
 
 Define $\beta_\star = 1/kT_\star$ through the relation
 \begin{equation}
@@ -571,76 +571,109 @@ The above bounds mainly demonstrate how one can use relative majorization of qua
     \label{fig:rate_contour}
 \end{figure}
 \begin{proof}
-	We provide the full proof here, with some technical details pushed to~\cref{app:lcst_technical}.\\
-
-Let $\displaystyle \sigma = e^{-\beta H} / \Z_\beta$ be a stabiliser state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
-The stabilizer state $\sigma$ can now be written as 
+To establish the distillation bounds we consider the distillation protocol that gives
 \begin{equation}
-	\sigma = \frac{e^{-\beta E_0}}{\Z_\beta} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z_\beta} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z_\beta} \ketbra{\varphi_2},
+\E( \rho_S(\epsilon)^{\otimes n}) = \rho_S(\epsilon')^{\otimes m},
 \end{equation}
-where $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\sigma$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\sigma$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+for the magic state. We also consider how the protocol transforms the reference equilibrium state as
+\begin{equation}
+\E( \tau^{\otimes n}) = \sigma^{\otimes m}.
+\end{equation}
+Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states they have a strictly positive Wigner distribution, while in contrast the input and output magic states will have quasi-probability distributions for their Wigner functions. For any such protocol we therefore have that
+\begin{equation}
+(W_{\rho_n} (x), W_{\tau_n}(x) ) \succ  (W_{\rho'_m} (x), W_{\sigma_m}(x) ),
+\end{equation}
+where for simplicity we write $\rho_n := \rho_S(\epsilon)^{\otimes n}$, $\rho'_m:= \rho_S(\epsilon')^{\otimes m}$ and similarly for $\tau_n$ and $\sigma_m$. This therefore implies that
+\begin{equation}
+L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
+\end{equation}
+We must therefore compute the Lorenz curve data for $\rho_n$ relative to $\tau_n$, and compare with the Lorenz curve of the output state $\rho_m'$ relative to $\sigma_m$.
 
-The Wigner distribution of state $\sigma$ is then given by
+We define $W_{\rho | \tau}(\x) := W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. Now we have that
+\begin{equation}
+W_{\rho_1\otimes \rho_2 | \tau_1 \otimes \tau_2} (\x_1 \oplus \x_2) = W_{\rho_1 | \tau_1}(\x_1)W_{\rho_2 | \tau_2}(\x_2),
+\end{equation}
+and also,
+\begin{equation}
+W_{\rho_1\otimes \rho_2} (\x_1 \oplus \x_2) = W_{\rho_1}(\x_1)W_{\rho_2}(\x_2),
+\end{equation}
+for any states $\rho_1, \rho_2$ and any full-rank stabilizer states $\tau_1, \tau_2$. \ddd{[Notation clashing here. Frame result outside as its own lemma -- we gotta check everything.]}
+Therefore we have that
 \begin{align}
-	\W[\bmx]{\sigma} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta}W_{\ketbra{k}}(x, p) \nonumber\\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z_\beta} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z_\beta},
+W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
+W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
+\end{align}
+where $\x = \oplus_{i=1}^n \x_i$ is the phase space point for the full system in terms of those of the individual subsystems.
+
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from first sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. Therefore we first look at the values of $W_{\rho|\tau}(\x_i)$ for the single-copy case.
+
+The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
+The state $\tau$ can now be written as 
+\begin{equation}
+	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
+\end{equation}
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+
+The Wigner distribution of state $\tau$ is then given by
+\begin{align}
+	\W[\bmx]{\tau} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}W_{\ketbra{k}}(x, p) \nonumber\\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
-Since we have restricted to full-rank states, all Wigner components are strictly positive, and so the pre-order $\prec_{\sigma}$ is well-defined. States that are not full-rank can be addressed as a limiting case of the above.
-
-The Strange state rescaled distribution for a magic state $\rho_S(\epsilon)$ is now given by 
-\begin{equation}
-	\widetilde{\rm{W}}_{\rho_{\rm{S}}|\sigma}(\bmx) = \frac{\W[\bmx]{\rho_{\rm{S}}}}{\W[\bmx]{\sigma}},
-\end{equation}
-which attains four distinct values on the phase space, naturally splitting it into four regions as illustrated in the~\cref{fig:pd_split}.
+The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It has $9$ components in two, however several of these come with multiplicities. In total there are four distinct values on the phase space, as illustrated in the~\cref{fig:pd_split}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
-    \caption{\textbf{Qutrit phase space regions for $W_{\rho_{\rm{S}} | \sigma}(\x)$.}
+    \caption{\textbf{Qutrit phase space regions for $W_{\rho | \tau}(\x)$.}
     Here, the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions, proportional to the value depicted in the region, see~\cref{eq:bmw_rescaled}.
     }
     \label{fig:pd_split}
 \end{figure}
 
-The component values and multiplicities of the relevant distributions in the four distinct regions are summarised by the following component and multiplicity vectors,
+We now denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\mathbf{m}$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
 \begin{align}
-	\bmw(\rho_{\rm{S}}) &\coloneqq (-v, u, u, u), \\
+	\w(\rho) &\coloneqq (-v, u, u, u), \\
 		\bmm &\coloneqq (1,2,3,3), \\
-	\bmw(\sigma) &\coloneqq \frac{1}{3\Z} \left( e^{-\beta E_0}, e^{-\beta E_0}, e^{-\beta E_1}, e^{-\beta E_2} \right), \\
-	\bmw(\rho_{\rm{S}} | \sigma) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
+	\bmw(\tau) &\coloneqq \frac{1}{3\Z} \left( e^{-\beta E_0}, e^{-\beta E_0}, e^{-\beta E_1}, e^{-\beta E_2} \right), \\
+	\bmw(\rho_{\rm{S}} | \tau) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
 \end{align}
 
-Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho^{\otimes n}_S |\sigma^{\otimes n})$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are denoted by $w(\rho_{\rm{S}} | \sigma)_{ijk}$ with associated multiplicity $m_{ijk}$. The indices $i,j,k$ are non-negative integers and obey the constraint $\alpha \coloneqq i+j+k \leq n$.
-The $n$--copy multiplicity is given by
-\begin{equation}
-	m_{ijk} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k,
-\end{equation}
-while the distribution values are given by
+Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are given by 
 \begin{align}\label{eq:ncopy_w_rescaled}
-	w(\rho_{\rm{S}} | \sigma)_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
+	[\w(\rho_n | \tau_n)]_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
 \end{align}
-where we have also computed the unscaled components
+where the indices $i,j,k$ are non-negative integers that obey the constraint $\alpha \coloneqq i+j+k \leq n$.
+The multiplicity of this above value is $m_{ijk}$ with
+\begin{equation}
+	m_{ijk} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k.
+\end{equation}
+The associated components of $\w(\rho_n)$ are given by
 \begin{align}
-	w(\rho_{\rm{S}})_{ijk} &= (-v)^{n-\alpha} u^{\alpha}, \label{eq:ncopy_wrho}\\
-	w(\sigma)_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
+	[\w(\rho_n)]_{ijk} &= (-v)^{n-\alpha} u^{\alpha}, \label{eq:ncopy_wrho}\\
+	[\w(\tau)]_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
 \end{align}
 
-In order to construct the $n$--copy Lorenz curve $\lc{\rho_{\rm{S}}^{\otimes n}}{\sigma^{\otimes n}}$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \sigma)_{ijk}$ in decreasing order.
-In particular, to find the coordinates of the first elbow $(x_0, L_0)$, we need to evaluate the maximum component,
+In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\x))$.
+
+Generally this is complex, but to obtain distillation bounds we may determin the location of the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. To do so we compute the largest component 
+\begin{equation}
+w_{\rm max} := \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
+\end{equation}
+and determine the indices at which this occurs.
+Putting in the values we obtain
 \begin{align}
-	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} \coloneqq (3\Z)^{n}\times \nonumber\\
-	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
+	\hspace{-1cm}(3\Z)^{-n}w_{\rm max}= \max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
 \end{align}
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
-For $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
+Now for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
 
 Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
 Hence, we have
 \begin{align}
-	&w(\rho_{\rm{S}} | \sigma)_{\rm{max}} = \nonumber\\
+	&w_{\rm max} = \nonumber\\
 	&(3\Z)^{n} v^n e^{n\beta E_s}\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_s)} \right)^{\alpha} \Big\}}.
 \end{align}
-If the expression $\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. For a fixed stabilizer state $\sigma$, this transition is determined by the value of the depolarising noise parameter $\epsilon$ of the noisy magic state. The transition occurs at $\epsilon = \epsilon_\star$ where
+If the expression $\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. For a fixed state $\tau$, this transition is determined by the value of the depolarising noise parameter $\epsilon$ of the noisy magic state. The transition occurs at $\epsilon = \epsilon_\star$ where
 \begin{equation}\label{eq:noise_transition}
 	\frac{u(\epsilon_\star)}{v(\epsilon_\star)} e^{\beta (E_{\rm{max}} - E_s)} = \frac{3-\epsilon_\star}{6-8\epsilon_\star} e^{\beta (E_{\rm{max}} - E_s)} = 1.
 \end{equation}
@@ -659,7 +692,7 @@ Therefore, the transition value for the noise is given by
 \end{equation}
 The quantity $w(\rho_{\rm{S}} | \sigma)_{\rm{max}}$ is now given by
 \begin{equation*}
-w(\rho_{\rm{S}} | \sigma)_{\rm{max}} =
+w_{\rm max} =
 	\begin{cases}
 		(3\Z)^{n} v^n e^{n\beta E_s}, &\mbox{if }\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}\\
 		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\mbox{if }\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
@@ -684,6 +717,8 @@ Using that $F = -\beta^{-1} \log \Z$, the first elbow coordinates in the two cas
 		\left( e^{-n\beta (E_{\rm{max}}-F)}, (3u)^n \right). &\epsilon > \epsilon_\star
 	\end{cases}
 \end{equation}
+
+\ddd{[Hmmm this needs an additional assumption on the output state to re-run the same analysis. Very annoying.]}
 Similarly, considering the output magic state with respect to state $\sigma'$, the image of equilibrium state $\sigma$ under the magic protocol, we get output Lorenz curve coordinates,
 \begin{equation}\label{eq:transformed_first_elb_coords}
 	(x'_0, L'_0) =
@@ -706,7 +741,7 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 
 
 
-\subsection{Lower magic bounds via majorisation}
+\section{Outlook and open questions}
 \label{sec:lower_bounds}
 
 \ddd{[Initial text. To be edited.]}
@@ -716,72 +751,6 @@ We have described how relative majorization can be used to establish upper bound
   
   The topic of $G$--majorization has been extensively studied, but to our knowledge there hasn't been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem. While this seems like a painful thing to consider, there is motivation for this beyond the aim of constructing lower bounds for magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics and so automatically respect a symplectic form. Therefore the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic thermo-majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%\section{Fragments in general resource theories}
-%\label{sec:general_resources}
-%
-%\nick{Add from notes}
-%
-%So far we have introduced the notion of $\sigma$--fragments for any resource theory of magic. 
-%In this section we briefly generalise this concept to arbitrary resource theories and explain precisely how it connects with resource monotones. 
-%The busy reader more focussed on magic may skip this section.
-%
-%State convertibility within a given resource theory is often a hard question to address due to intricacies of the theory structure.
-%In general, the structure of a theory $\R$ is described by a pre-order $\prec_\R$ and usually resource monotones are employed to reduce this structure into a simple real number ordering.
-%The subdivisions of magic theories into $\sigma$--fragments suggests a new approach towards investigating state convertibility which retains more structure of the original theory than a measure can.
-%
-%Monotones reduce the structure of the resource theory $\R$ to a \emph{total} order on the real numbers.
-%Therefore, two states, even if incomparable in $\R$, are always mapped onto ordered real numbers.
-%We now generalise this idea of a theory projection that preserves comparability between states. 
-%\begin{definition}[\textbf{Covariant projection}]\label{def:covproj}
-%Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-%Then a \emph{covariant resource projection} of $\R$ to a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ to quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ to free operations in $\R'$. 
-%Moreover, these obey
-%	\begin{enumerate}
-%        \item $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$ whenever $\rho_1 \prec_\R \rho_2$;
-%        \item $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$ whenever $\E = \E_1 \circ \E_2$.
-%    \end{enumerate}
-%We call $\R'$ a \emph{covariant fragment} of $\R$.
-%\end{definition}
-%
-%Resource monotones can now be clearly seen as a special case of covariant resource projections.
-%\begin{proposition}[\textbf{Totally ordered covariant theories}]\label{thm:monoproj}
-%	Any resource monotone $\M$ of a resource theory $\R$ is a covariant projection for which $\prec_{\R'}$ is a total order. 
-%	Conversely, any such covariant projection corresponds to a resource monotone $\M$. 
-%\end{proposition}
-%\begin{proof}
-%	Consider a monotone $\M$ in the context of a general resource theory $\R = (\F, \O)$.
-%	State order is covariantly preserved due to the defining property of a monotone, where the pre-order $\prec_{\R'}$ is simply the total order $\leq$ on $\mathbb{R}$. 
-%	
-%	Operational composition is covariantly preserved when we simply choose $\Pio(\E) = 1_\times$, namely the `multiplication by 1' operation on real numbers. 
-%	The definition of a resource monotone then automatically implies covariance.
-%	
-%	Conversely, given any covariant projection of $\R$ for which $\prec_{\R'}$ is a total order, we may map the totally ordered set of elements $\Pis(\rho)$ via an injective, non-decreasing function $f$ into $\mathbb{R}$. 
-%	Then, $\M(\rho):=f(\Pi_s(\rho))$ provides a numerical value for each $\rho$ that obeys the definition of a monotone.
-%	
-%\end{proof}
-%
-%We can also view $\sigma$--fragments as an example of reducing the structure of a magic theory $\R$ to a subtheory with a tractable pre-order.
-%However, states which are incomparable in $\R$ remain incomparable and conversions between states which are comparable in $\R$ may no longer be possible.
-%\begin{definition}[\textbf{Contravariant projection}]\label{def:contraproj}
-%	Let $\R = (\F, \O)$ be a resource theory with pre-order $\prec_\R$. 
-%Then a \emph{contravariant resource projection} of $\R$ onto a resource theory $\R'$ with pre-order $\prec_{\R'}$, is a pair of mappings $(\Pi_s, \Pi_o)$, where $\Pi_s$ maps quantum states in $\R$ onto quantum states in $\R'$, and $\Pi_o$ maps free operations in $\R$ onto free operations in $\R'$. 
-%Moreover, these obey
-%	\begin{enumerate}
-%        \item $\rho_1 \prec_\R \rho_2$ whenever $\Pis(\rho_1) \prec_{\R'} \Pis(\rho_2)$;
-%        \item $\E = \E_1 \circ \E_2$ whenever $\Pio(\E) = \Pio(\E_1) \circ \Pio(\E_2)$.
-%    \end{enumerate}
-%We call $\R'$ a \emph{contravariant fragment} of $\R$.
-%\end{definition}
-%The use of covariant and contravariant in~\cref{def:covproj,def:contraproj} refers to the direction of implication between the two pre-orders and operation compositions\footnote{Note that strictly these are not projections in the sense of $\Pi^2 = \Pi$, but are instead morphisms. 
-%Here our use of the term projection is motivated by the idea that one one generally loses information about $\R$ under the mapping.}.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\section{Outlook}
-\label{sec:outlook}
 
 In this work we have looked at magic through the lens of thermodynamics. Specifically, we find that it can be viewed as a strictly non-classical form of non-equilibrium free energy. 
 
