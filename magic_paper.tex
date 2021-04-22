@@ -63,6 +63,17 @@ Our construction provides distillation bounds without relying on magic monotones
 Through this approach we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamics in the presence of negativity is surprisingly non-trivial and displays a range of features that do not appear in classical statistical mechanics. 
 Finally, we discuss how our approach could be improved and how it can be exploited to construct explicit lower bounds on distillation that take into account physical structure.
 
+\begin{figure}[t]
+    \centering
+        \includegraphics[scale=0.4]{figs/protocol_diagram.pdf}
+    \caption{\textbf{Action of a magic protocol} 
+	A magic protocol aims to turn $n$ copies of some magic state $\rho_1$ to $m$ copies of some other state $\rho_2$.
+	Constraints on the efficiency of the protocol can be imposed by considering its action on an equilibrium state $\tau$.
+	\nick{How do we improve the illustration?}
+    }
+    \label{fig:zoo}
+\end{figure}
+
 \section{Phase space representations of quantum states}
 \label{sec:ps}
 
@@ -222,8 +233,7 @@ Then a transformation $\rho \longrightarrow \tau$ is possible in $\R$ if and onl
 
 \begin{figure}[t]
     \centering
-        \includegraphics[scale=0.3
-        ]{figs/operations.pdf}
+        \includegraphics[scale=0.3]{figs/operations.pdf}
     \caption{\textbf{Decomposition of a magic theory $\R$ into $\sigma$--fragments.} 
 	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) are labelled, with other established magic theories also contained within the yellow regions.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
