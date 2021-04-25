@@ -782,11 +782,11 @@ So given the ability to assume that the smallest entry of $\t$ is the $t_0$ comp
 \begin{equation}
 t_0 = \frac{1}{d\Z}\tr [ A_{0,0} e^{-\beta H}],
 \end{equation}
-where, of course, $d=3$. So in $t_0^n$ we immediately get a term $\Z^{-n} = e^{-nF}$, which is nice and general. Using the expansion of the thermal state into its energy eigenstates we obtain
+where, of course, $d=3$. So in $t_0^n$ we immediately get a term $\Z^{-n} = e^{-n\beta F}$, which is nice and general. Using the expansion of the thermal state into its energy eigenstates we obtain
 \begin{align}
 t_0^n &= \left ( \frac{1}{d\Z}\tr [ A_{0,0} e^{-\beta H}] \right )^n \nonumber \\
-&= \frac{e^{-nF}}{3^n} ( \tr [ A_{0,0} \sum_k e^{-\beta E_k} |\varphi_k\>\<\varphi_k|])^n\nonumber \\
-&= \frac{e^{-nF}}{3^n} ( \sum_k \alpha_k e^{-\beta E_k})^n,
+&= \frac{e^{-n\beta F}}{3^n} ( \tr [ A_{0,0} \sum_k e^{-\beta E_k} |\varphi_k\>\<\varphi_k|])^n\nonumber \\
+&= \frac{e^{-n \beta F}}{3^n} ( \sum_k \alpha_k e^{-\beta E_k})^n,
 \end{align}
 where we define
 \begin{equation}
@@ -802,11 +802,11 @@ This just encodes how the energy eigenbasis of the Hamiltonian $H$ relates to th
 \end{equation}
 so that
 \begin{equation}
-t_0^n = \frac{e^{-nF}}{3^n}\zeta^n,
+t_0^n = \frac{e^{-n\beta F}}{3^n}\zeta^n,
 \end{equation}
 which is tidy....and we could also then define $\phi$ as a kind of free energy term via $\zeta =: e^{-\beta \phi}$. This then simplifies things to
 \begin{equation}
-t_0^n =  \frac{e^{-n(F+\phi)}}{3^n},
+t_0^n =  \frac{e^{-n \beta (F+\phi)}}{3^n},
 \end{equation}
 where $F$ corresponds to the physical free energy of $\tau$ while $\phi$ is some weird term that captures the degree to which the energy basis differs from the stabilizer basis. \ddd{[Details need tidying/checking and we need the final bounds to be computed.]}
 
