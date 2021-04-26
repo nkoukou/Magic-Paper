@@ -292,8 +292,8 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
 
 \begin{figure}
     \centering
-    \includegraphics[height=4.5cm]{figs/lc_Strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=1,2,3,4$ within a particular stabilizer fragment. Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise ($\epsilon = 0.1$).
+    \includegraphics[scale=0.35]{figs/lc_strange.pdf}
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho:=\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within a particular stabilizer fragment ($\sigma = \id/3$). Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise ($\epsilon = 0.1$).
     }
     \label{fig:lcs}
 \end{figure}
@@ -468,13 +468,14 @@ The mana bound can be directly calculated as
 \end{equation}
 For the noisy Strange state, the max--thauma bound coincides with the mana bound, and are both looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. 
 Numerical, ``optimal'', bounds $R_{\rm{opt}}$ obtained by considering the entirety of the Lorenz curves have been included in the plot as well, highlighting that the first elbow constraint does not capture the full capabilities of majorization.
-Notably, and in contrast with the first elbow, mana and max--thauma bounds, $R_{\rm{opt}}$ depends on the copies $m,n$, in the sense that it doesn't bound their ratio $m/n$, but it is specific to the process.
+Notably, in contrast to the other bounds, $R_{\rm{opt}}$ depends explicitly on the copies $m,n$, rather than their ratio $m/n$, so it is specific to the process.
+An interesting question arises regarding the value of $R_{\rm{opt}}$ as $n,m \rightarrow \infty$, while $m/n$ remains constant.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
     \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint, mana and max--thauma are plotted for $\epsilon' = 0$, up to noise level $\epsilon = 3/7$.
     Majorisation provides stricter rates than the global mana and max--thauma bounds.
-    Numerical bounds $R_{\rm{opt}}$ obtained by full Lorenz curve comparison for some processes with even number of copies up to 30 are also plotted illustrating that the first elbow constraint can be improved.
+    Numerical bounds $R_{\rm{opt}}$ obtained by full Lorenz curve comparison for some Strange state purification processes with even number of copies $m,n \leq 30$ highlight that the first elbow constraint can be improved.
     }
     \label{fig:distill_bounds}
 \end{figure}
@@ -488,27 +489,27 @@ We now consider a magic distillation protocol on multiple identical qudits in a 
 \begin{equation}
 \rho(\epsilon)^{\otimes n} \longrightarrow \E(\rho(\epsilon)^{\otimes n}) =\rho(\epsilon')^{\otimes m}
 \end{equation}
-with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key ideas is that the physical measures associated with this protocol are determined by how $\E$ would disturb this reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
+with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key idea is that the physical measures associated with this protocol are determined by how $\E$ would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
 
 More precisely, we assume each qudit has Hamiltonian $H$ and we choose some temperature $T = (k\beta)^{-1}$ where $k$ is Boltzmann's constant and $\beta$ the inverse temperature. The reference equilibrium state of the $n$ qudits is given by
 \begin{equation}
 \tau^{\otimes n} = \left ( \frac{e^{-\beta H}}{\Z} \right )  ^{\otimes n}.
 \end{equation}
-Since we are concerned with magic distillation we may assume that the reference state $\tau$ is not a magic state, and so has non-negative Wigner distribution, and we shall assume that it is a full-rank stabilizer state for the qudit. 
+Since we are concerned with magic distillation we may assume that the reference state $\tau$ is not a magic state, so it has a non-negative Wigner distribution, and we shall further assume that it is a full-rank stabilizer state for the qudit. 
 
-A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. The reason for this is that the protocol on the noisy magic state outputs the state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations, and so we can therefore always symmetrise by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
+A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrise the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
 
-This means in particular that $\E(\tau^{\otimes n}) = \tau'$ is a symmetric state on $m$ subsystems, and so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
+This means in particular that $\E(\tau^{\otimes n}) = \tau'$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
 \begin{equation}
 \tau'  = \int d\mu(x) \sigma_x^{\otimes m},
 \end{equation}
 where $d\mu(x)$ is a probability measure over a set $\{\sigma_x\}$ of single qudit states.
 
-To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\sigma$, and so $\tau' = \sigma^{\otimes m}$. Physically, this is a natural scenario -- for example in traditional thermodynamics it states that the output system is well-described by intrinsic variables that are encoded in $\sigma$. Here this assumption allows us to associate a free energy per qudit for the output state, which would be more complex if correlations are present.
+To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\sigma$, and so $\tau' = \sigma^{\otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\sigma$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
 
-The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization analysis of Wigner distributions. In this direction we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy.
+The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy. \nick{CITE}
 
-The action of the protocol on the reference states therefore transforms $\tau \rightarrow \sigma$. It turns out our distillation bounds depend on the free energy of the input and output states. For a state $\tau = e^{-\beta H}/\Z$ the associated free energy $F$ is given by
+The action of the protocol on the reference states therefore transforms $\tau \rightarrow \sigma$. It turns out our distillation bounds depend on the free energy of the input and output states, so for a state $\tau = e^{-\beta H}/\Z$ we express the associated free energy $F$ by
 \begin{equation}
 	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z}.
 \end{equation}
@@ -520,11 +521,15 @@ which has free energy $F' = -\beta^{-1} \log \Z'$. Therefore the action of $\E$ 
 
  Given this account of the physical ingredients of a distillation protocol we now state the following result for the case of qutrits.
 \begin{theorem}\label{thm:free-energy}
-	Consider a magic distillation protocol transforming noisy Strange state $\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m}$ with $n, m \gg 1$.
+	Consider a magic distillation protocol transforming noisy Strange state
+	\begin{equation*}
+		\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m} 
+	\end{equation*}
+	with $n, m \gg 1$.
 
-Let each qutrit have a Hamiltonian $H$ with stabilizer eigenstates having energies $E_0, E_1, E_2$, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ the eigenvalue of the eigenstate that overlaps the negative component of $\rho_S(\epsilon)$ in the Wigner representation. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau^{\otimes n}= (e^{-\beta H}/\Z)^{\otimes n}$, with free energy $F$. Assume that for $n,m \gg 1$ the channel $\E$ generates negligible correlations on $\tau^{\otimes n}$, and so $\E(\tau^{\otimes n}) = \sigma^{\otimes m}$ for some state $\sigma$.
+Let each qutrit have a Hamiltonian $H$ with stabilizer eigenstates and energies $E_0, E_1, E_2$, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ the eigenvalue of the eigenstate that \nick{overlaps} the negative component of $\rho_S(\epsilon)$ in the Wigner representation. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau^{\otimes n}= (e^{-\beta H}/\Z)^{\otimes n}$, with free energy $F$. Assume that for $n,m \gg 1$ the channel $\E$ generates negligible correlations on $\tau^{\otimes n}$, and so $\E(\tau^{\otimes n}) = \sigma^{\otimes m}$ for some state $\sigma$.
 
-Define $\beta_\star = 1/kT_\star$ through the relation
+Define $\beta_\star = (k T_\star)^{-1}$ through the relation
 \begin{equation}
 	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
 \end{equation}
@@ -532,59 +537,59 @@ and define a threshold noise,
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 
 	\begin{cases}
-		3 - \dfrac{18}{8-2^{\beta/\beta_\star}}, &\text{ for } \beta \leq \beta_\star \\
+		3 - \dfrac{9}{4-2^{\beta/\beta_\star - 1}}, &\text{ for } \beta \leq \beta_\star \\
 		0, &\text{ for } \beta > \beta_\star.
 	\end{cases}
 \end{equation}
-Then the distillation rate $R = m/n$ of the magic protocol is bounded as:
+Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq
 	\begin{cases}
 		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
 		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' > \epsilon'_\star, \vspace{10pt}\\
 		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon > \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star.
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star,
 	\end{cases}
 \end{equation}
-Where $F'$ is the free energy of the state $\sigma = e^{-\beta H'}/\Z'$ and other primed quantities are defined in the same way as the corresponding unprimed quantities. 
+where $F'$ is the free energy of the state $\sigma = e^{-\beta H'}/\Z'$ and other primed quantities are defined in the same way as the corresponding unprimed quantities. 
 \end{theorem}
 
-  For example, suppose that $H=H'$ then this implies the protocol would leave the equilibrium state unchanged and so corresponds to a Gibbs-preserving map~\cite{faist_2015}. In the more general case $\Delta F := F' - F \ne 0$ and we have a free energy difference between the initial and final times, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
-Firstly, the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
+We note, firstly, that the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
 Secondly, these bounds are derived based on analysis of only a part of the Lorenz curves and can be improved via a finer analysis. 
-This is apparent by simple numerical calculations on the entirety of the curves.
+This is apparent by simple numerical calculations on the entirety of the curves as seen in~\cref{fig:distill_bounds} for unital operations.
 Specifically, the existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
 
+As a special case of the result, suppose that $H=H'$, implying that the protocol leaves the equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. In the more general case, $\Delta F := F' - F \ne 0$ and we have a free energy difference between the initial and final states, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
 
-The above bounds mainly demonstrate how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds. However to unpack the results more it is useful to consider the case in which $H=H'$, and look at $\epsilon' \rightarrow 0$. For this we obtain Figure \ref{contour-bounds} which gives a contour plot of $R$ as a function of inverse temperature $\beta$ and depolarising noise level $\epsilon$ for the initial noisy magic state.
-\begin{figure}[t!]\label{contour-bounds}
+The above bounds mainly demonstrate how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds. However to unpack the results more it is useful to consider the case in which $H=H'$, and look at $\epsilon' \rightarrow 0$. For this we obtain~\cref{fig:rate_contour} which gives a contour plot of $R$ as a function of inverse temperature $\beta$ and depolarising noise level $\epsilon$ for the initial noisy magic state.
+\begin{figure}[t!]
     \centering
-    \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
+    \includegraphics[scale=0.45]{figs/rate_scatter.pdf}
     \caption{\textbf{Temperature-dependent bounds for magic distillation.}
-  Shown is a contour plot of  $R(\epsilon, \beta)$ where $\beta$ is an inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ for $\beta \leq \beta_\star$. The $\beta =0 $ line corresponds to the regime in which the magic protocol gives a unital channel.
+  Shown is a contour plot of  $R(\epsilon, \beta)$ for $H=H'$, where $\beta$ is an inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ for $\beta \leq \beta_\star$. The $\beta =0 $ line corresponds to the regime in which the magic protocol gives a unital channel.
     }
     \label{fig:rate_contour}
 \end{figure}
 \begin{proof}
 To establish the distillation bounds we consider the distillation protocol that gives
 \begin{equation}
-\E( \rho_S(\epsilon)^{\otimes n}) = \rho_S(\epsilon')^{\otimes m},
+	\E( \rho_S(\epsilon)^{\otimes n}) = \rho_S(\epsilon')^{\otimes m},
 \end{equation}
-for the magic state. We also consider how the protocol transforms the reference equilibrium state as
+for the magic state. We then consider how the protocol transforms the reference equilibrium state as
 \begin{equation}
-\E( \tau^{\otimes n}) = \sigma^{\otimes m}.
+	\E( \tau^{\otimes n}) = \sigma^{\otimes m}.
 \end{equation}
-Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states they have a strictly positive Wigner distribution, while in contrast the input and output magic states will have quasi-probability distributions for their Wigner functions. For any such protocol we therefore have that
+Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states they have a strictly positive Wigner distribution, while, in contrast, the input and output magic states will generally have quasi-probability distributions for their Wigner functions. For any such protocol we therefore have that
 \begin{equation}
-(W_{\rho_n} (x), W_{\tau_n}(x) ) \succ  (W_{\rho'_m} (x), W_{\sigma_m}(x) ),
+	(W_{\rho_n} (x), W_{\tau_n}(x) ) \succ  (W_{\rho'_m} (x), W_{\sigma_m}(x) ),
 \end{equation}
-where for simplicity we write $\rho_n := \rho_S(\epsilon)^{\otimes n}$, $\rho'_m:= \rho_S(\epsilon')^{\otimes m}$ and similarly for $\tau_n$ and $\sigma_m$. This therefore implies that
+where for simplicity we write $\rho_n := \rho_S(\epsilon)^{\otimes n}$, $\rho'_m:= \rho_S(\epsilon')^{\otimes m}$ and $\tau_n:=\tau^{\otimes m}$ and $\sigma_m:=\sigma^{\otimes m}$. We then have that
 \begin{equation}
-L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
+	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
 \end{equation}
 We must therefore compute the Lorenz curve data for $\rho_n$ relative to $\tau_n$, and compare with the Lorenz curve of the output state $\rho_m'$ relative to $\sigma_m$.
 
-We define $W_{\rho | \tau}(\x) := W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. Now we have that
+We define $W_{\rho | \tau}(\x) := W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. Now we show in~\cref{app:wigner} that
 \begin{equation}
 W_{\rho_1\otimes \rho_2 | \tau_1 \otimes \tau_2} (\x_1 \oplus \x_2) = W_{\rho_1 | \tau_1}(\x_1)W_{\rho_2 | \tau_2}(\x_2),
 \end{equation}
@@ -592,7 +597,7 @@ and also,
 \begin{equation}
 W_{\rho_1\otimes \rho_2} (\x_1 \oplus \x_2) = W_{\rho_1}(\x_1)W_{\rho_2}(\x_2),
 \end{equation}
-for any states $\rho_1, \rho_2$ and any full-rank stabilizer states $\tau_1, \tau_2$. \ddd{[Notation clashing here. Frame result outside as its own lemma -- we gotta check everything.]}
+for any states $\rho_1, \rho_2$ and any full-rank stabilizer states $\tau_1, \tau_2$. \ddd{[Notation clashing here. Frame result outside as its own lemma -- we gotta check everything.]} \nick{Will frame in~\cref{app:wigner} and fix notation in the next commit}
 Therefore we have that
 \begin{align}
 W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
@@ -600,14 +605,14 @@ W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
 \end{align}
 where $\x = \oplus_{i=1}^n \x_i$ is the phase space point for the full system in terms of those of the individual subsystems.
 
-The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from first sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. Therefore we first look at the values of $W_{\rho|\tau}(\x_i)$ for the single-copy case.
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from first sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. Therefore, we first look at the values of $W_{\rho|\tau}(\x_i)$ for the single-copy case.
 
 The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
 The state $\tau$ can now be written as 
 \begin{equation}
 	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
 \end{equation}
-where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler, we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
@@ -615,7 +620,7 @@ The Wigner distribution of state $\tau$ is then given by
 	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
-The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It has $9$ components in two, however several of these come with multiplicities. In total there are four distinct values on the phase space, as illustrated in the~\cref{fig:pd_split}.
+The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It has $9$ components, but several of these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
@@ -625,7 +630,7 @@ The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It
     \label{fig:pd_split}
 \end{figure}
 
-We now denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\mathbf{m}$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
+We now denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\bmm$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
 \begin{align}
 	\w(\rho) &\coloneqq (-v, u, u, u), \\
 		\bmm &\coloneqq (1,2,3,3), \\
@@ -650,14 +655,15 @@ The associated components of $\w(\rho_n)$ are given by
 
 In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\x))$.
 
-Generally this is complex, but to obtain distillation bounds we may determin the location of the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. To do so we compute the largest component 
+Generally this is complex, but in order to obtain distillation bounds it is sufficient to determine the location of the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. To do so, we compute the largest component 
 \begin{equation}
-w_{\rm max} := \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
+	w_{\rm max} := \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
 \end{equation}
 and determine the indices at which this occurs.
 Putting in the values we obtain
 \begin{align}
-	\hspace{-1cm}(3\Z)^{-n}w_{\rm max}= \max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
+	&(3\Z)^{-n}w_{\rm max} = \nonumber\\
+	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
 \end{align}
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
 Now for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
@@ -681,7 +687,7 @@ Therefore, the transition value for the noise is given by
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 
 	\begin{cases}
-		3 - \dfrac{18}{8-2^{\beta/\beta_\star}}, &\text{ for } \beta \leq \beta_\star \\
+		3 - \dfrac{9}{4-2^{\beta/\beta_\star - 1}}, &\text{ for } \beta \leq \beta_\star \\
 		0, &\text{ for } \beta > \beta_\star.
 	\end{cases}
 \end{equation}
@@ -713,7 +719,7 @@ Using that $F = -\beta^{-1} \log \Z$, the first elbow coordinates in the two cas
 	\end{cases}
 \end{equation}
 
-\ddd{[Hmmm this needs an additional assumption on the output state to re-run the same analysis. Very annoying.]}
+\ddd{[Hmmm this needs an additional assumption on the output state to re-run the same analysis. Very annoying.]}\nick{What additional assumption beyond that the output state can be written as a Gibbs state for some $H'$?}
 Similarly, considering the output magic state with respect to state $\sigma'$, the image of equilibrium state $\sigma$ under the magic protocol, we get output Lorenz curve coordinates,
 \begin{equation}\label{eq:transformed_first_elb_coords}
 	(x'_0, L'_0) =
