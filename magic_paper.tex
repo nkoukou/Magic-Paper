@@ -467,32 +467,16 @@ The mana bound can be directly calculated as
 	R \leq \frac{\mana{\rho_{\rm{S}}(\epsilon)}}{\mana{\rho_{\rm{S}}(0)}} = 1 + \frac{\ln \left(1 - \frac{8}{15}\epsilon \right)}{\ln \frac{5}{3}}.
 \end{equation}
 For the noisy Strange state, the max--thauma bound coincides with the mana bound, and are both looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. 
+Numerical, ``optimal'', bounds $R_{\rm{opt}}$ obtained by considering the entirety of the Lorenz curves have been included in the plot as well, highlighting that the first elbow constraint does not capture the full capabilities of majorization.
+Notably, and in contrast with the first elbow, mana and max--thauma bounds, $R_{\rm{opt}}$ depends on the copies $m,n$, in the sense that it doesn't bound their ratio $m/n$, but it is specific to the process.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
     \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint, mana and max--thauma are plotted for $\epsilon' = 0$, up to noise level $\epsilon = 3/7$.
     Majorisation provides stricter rates than the global mana and max--thauma bounds.
+    Numerical bounds $R_{\rm{opt}}$ obtained by full Lorenz curve comparison for some processes with even number of copies up to 30 are also plotted illustrating that the first elbow constraint can be improved.
     }
     \label{fig:distill_bounds}
-\end{figure}
-
-I include in~\cref{fig:test} the mana and max--thauma bounds for the purification of (a) Norrell states and (b) $T$ states.
-\nick{Delete this probably?}
-
-\begin{figure}[h]
-    \centering
-    \subfigure[][]{%
-    \label{fig:norrell}%
-    \includegraphics[height=3cm]{figs/compare_norrell.pdf}
-    %\caption{Maximally mixed state $\frac{1}{3}\id$}%
-    }\hspace{8pt}%
-    \subfigure[][]{%
-    \label{fig:tstate}%
-    \includegraphics[height=3cm]{figs/compare_tstate.pdf}}
-    \caption{\textbf{Bound comparison} 
-    \subref{fig:norrell} Norrell state purification; \subref{fig:tstate} $T$ state purification; \nick{Delete this probably?}
-    }%
-    \label{fig:test}
 \end{figure}
 
 In the next section we provide relative majorization bounds in arbitrary stabilizer fragments, and in particular we shall parameterize these bounds from a thermodynamic perspective. Specifically, we can interpret the stabilizer state $\sigma$, which defines the fragment, as a thermodynamic equilibrium state at some effective temperature and with some effective Hamiltonian.
