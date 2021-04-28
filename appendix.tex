@@ -455,27 +455,33 @@ The index function $I$ is bijective, i.e.
 
 \subsection{First and last elbow constraints}
 \label{app:elb_constraints}
-Here we prove the majorization constraints that arise by only considering the first elbow (on the ascending part of the curves) or the last elbow (on the descending part of the curves) that occurs in any of the two curves.
+Here we prove two simple majorization constraints, one arising by considering only the ascending part of the Lorenz curves between the origin $(0,0)$ and the first elbow and the other by considering only the descending part of the curves between the last elbow and the endpoint $(1,1)$.
 \begin{proposition}\label{prop:first_elb}
-	Consider a magic state process as in~\cref{eq:stdist}, where we denote by $(x_0, L_0)$ and $(x'_0, L'_0)$ the first elbow coordinates of the input and output magic states respectively. 
-	The process is possible only if
+	Consider a magic state process $\rho \longrightarrow \tau$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in $\R_\sigma$ and denote by $X_0, X'_0$ the first elbow locations of the input and output curves respectively.
+	
+	Then, given any coordinates $(x_0, L_0)$ and $(x'_0, L'_0)$ on the input and output Lorenz curves, where $x_0 \leq X_0$ and $x'_0 \leq X'_0$, the process is possible in $\R_\sigma$ only if
 \begin{equation}\label{eq:first_elb_bound1}
 	\frac{L_0}{x_0} \geq \frac{L_0'}{x_0'}.
 \end{equation}
 \end{proposition}
 \begin{proof}
-	Consider the Lorenz curve constraint at $x = x_0$,
+Since both pairs of coordinates are located between $(0,0)$ and the first elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the origin and the appropriate first elbow.
+
+First assume that $x_0 < x'_0$ and consider the Lorenz curve constraint at $x = x_0$,
 \begin{equation}
 	\lc{\rho}{\sigma}(x_0) \geq \lc{\tau}{\sigma}(x_0).
 \end{equation}
-First assume that $x_0 < x'_0$. 
 We can find the output state Lorenz curve coordinate $L'_\star$ at location $x = x_0$ by interpolating between the origin and the output state's first elbow, 
 \begin{equation}
 	L'_\star = \frac{x_0}{x'_0}L'_0.
 \end{equation}
 The process is then possible only if $L_0 \geq L_\star'$ which is a rearrangement of~\cref{eq:first_elb_bound1}.
 
-If instead, $x_0 \geq x'_0$, we would need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_0$ by interpolating between the origin and the input state's first elbow, 
+If instead, $x_0 \geq x'_0$, consider the Lorenz curve constraint at $x = x'_0$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x'_0) \geq \lc{\tau}{\sigma}(x'_0).
+\end{equation}
+We now need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_0$ by interpolating between the origin and the input state's first elbow, 
 \begin{equation}
 	L_\star = \frac{x'_0}{x_0}L_0.
 \end{equation}
@@ -483,25 +489,31 @@ The process is then possible only if $L_\star \geq L'_0$ which is again a rearra
 \end{proof}
 
 \begin{proposition}\label{prop:last_elb}
-	Consider a magic state process as in~\cref{eq:stdist}, where we denote by $(x_E, L_E)$ and $(x'_E, L'_E)$ the last elbow coordinates of the input and output magic states respectively.
-	The process is possible only if
+	Consider a magic state process $\rho \longrightarrow \tau$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in $\R_\sigma$ and denote by $X_E, X'_E$ the last elbow locations of the input and output curves respectively.
+	
+	Then, given any coordinates $(x_E, L_E)$ and $(x'_E, L'_E)$ on the input and output Lorenz curves, where $x_E \geq X_E$ and $x'_E \geq X'_E$, the process is possible in $\R_\sigma$ only if
 \begin{equation}\label{eq:last_elb_bound1}
 	\frac{L_E - 1}{1-x_E} \geq \frac{L'_E - 1}{1-x_E'}.
 \end{equation}
 \end{proposition}
 \begin{proof}
-	Consider the Lorenz curve constraint at $x = x_E$,
+Since both pairs of coordinates are located between the last elbow of their respective curves and $(1,1)$, we can derive the bound via a simple interpolation on the line segment connecting the endpoint and the appropriate last elbow.
+
+First assume that $x_E > x'_E$ and consider the Lorenz curve constraint at $x = x_E$,
 \begin{equation}
 	\lc{\rho}{\sigma}(x_E) \geq \lc{\tau}{\sigma}(x_E).
-\end{equation}
-First assume that $x_E > x'_E$. 
-We can find the output state Lorenz curve coordinate $L'_\star$ at location $x = x_E$ by interpolating between the end-point $(1,1)$ and the output state's last elbow, 
+\end{equation} 
+We can find the output state Lorenz curve coordinate $L'_\star$ at location $x = x_E$ by interpolating between the endpoint $(1,1)$ and the output state's last elbow, 
 \begin{equation}
 	L'_\star = 1 + \frac{1-x_E}{1-x'_E} (L'_E - 1)
 \end{equation}
 The process is then possible only if $L_E \geq L_\star'$ which is a rearrangement of~\cref{eq:last_elb_bound1}.
 
-If instead, $x_E \leq x'_E$, we would need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_E$ by interpolating between the end-point $(1,1)$ and the input state's last elbow, 
+If instead, $x_E \leq x'_E$, consider the Lorenz curve constraint at $x = x'_E$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x'_E) \geq \lc{\tau}{\sigma}(x'_E).
+\end{equation} 
+We now need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_E$ by interpolating between the endpoint $(1,1)$ and the input state's last elbow, 
 \begin{equation}
 	L_\star = 1 + \frac{1-x'_E}{1-x_E} (L_E - 1).
 \end{equation}
