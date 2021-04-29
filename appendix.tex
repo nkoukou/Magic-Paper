@@ -690,6 +690,206 @@ The term $\log{\frac{u(\epsilon)v(\epsilon')}{u(\epsilon')v(\epsilon)}}$ is alwa
 In the second scenario ($\rm{(C2)} \rightarrow \rm{(C1)}$), the expression looks very weird to me, seems like the difference tends to $-\infty$ as $E_{\rm{max}} \rightarrow \infty$.
 I am a bit stuck with this expression and I am not sure it's worth putting more time in it.
 
+\subsection{OLD VERSION OF MAIN THEOREM}
+
+
+
+\begin{theorem}\label{thm:free-energy}
+	Consider a magic distillation protocol transforming noisy Strange state
+	\begin{equation*}
+		\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m} 
+	\end{equation*}
+	with $n, m \gg 1$.
+
+Let each qutrit have a Hamiltonian $H$ with stabilizer eigenstates and energies $E_0, E_1, E_2$, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ the eigenvalue of the eigenstate that \nick{overlaps} the negative component of $\rho_S(\epsilon)$ in the Wigner representation. Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system in the state $\tau^{\otimes n}= (e^{-\beta H}/\Z)^{\otimes n}$, with free energy $F$. Assume that for $n,m \gg 1$ the channel $\E$ generates negligible correlations on $\tau^{\otimes n}$, and so $\E(\tau^{\otimes n}) = \sigma^{\otimes m}$ for some state $\sigma$.
+
+Define $\beta_\star = (k T_\star)^{-1}$ through the relation
+\begin{equation}
+	E_{\rm max} - E_s \eqqcolon kT_\star \ln 2,
+\end{equation}
+and define a threshold noise,
+\begin{equation}
+	\epsilon_{\star}(\beta) \coloneqq 
+	\begin{cases}
+		3 - \dfrac{9}{4-2^{\beta/\beta_\star - 1}}, &\text{ for } \beta \leq \beta_\star \\
+		0, &\text{ for } \beta > \beta_\star.
+	\end{cases}
+\end{equation}
+Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
+\begin{equation}\label{eq:rate_bounds_proof}
+	R \leq
+	\begin{cases}
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' > \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon > \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star,
+	\end{cases}
+\end{equation}
+where $F'$ is the free energy of the state $\sigma = e^{-\beta H'}/\Z'$ and other primed quantities are defined in the same way as the corresponding unprimed quantities. 
+\end{theorem}
+We note, firstly, that the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
+\begin{proof}
+To establish the distillation bounds we consider the distillation protocol that gives
+\begin{equation}
+	\E( \rho_S(\epsilon)^{\otimes n}) = \rho_S(\epsilon')^{\otimes m},
+\end{equation}
+for the magic state. We then consider how the protocol transforms the reference equilibrium state as
+\begin{equation}
+	\E( \tau^{\otimes n}) = \sigma^{\otimes m}.
+\end{equation}
+Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states they have a strictly positive Wigner distribution, while, in contrast, the input and output magic states will generally have quasi-probability distributions for their Wigner functions. For any such protocol we therefore have that
+\begin{equation}
+	(W_{\rho_n} (x), W_{\tau_n}(x) ) \succ  (W_{\rho'_m} (x), W_{\sigma_m}(x) ),
+\end{equation}
+where, for the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$ and $\tau_n \coloneqq \tau^{\otimes m}$, $\sigma_m \coloneqq \sigma^{\otimes m}$. We then have that
+\begin{equation}
+	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
+\end{equation}
+We must therefore compute the Lorenz curve data for $\rho_n$ relative to $\tau_n$, and compare with the Lorenz curve of the output state $\rho_m'$ relative to $\sigma_m$.
+
+We define $W_{\rho | \tau}(\x) \coloneqq W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. Now we show in~\cref{app:wigner} that
+\begin{equation}
+W_{\rho_1\otimes \rho_2 | \tau_1 \otimes \tau_2} (\x_1 \oplus \x_2) = W_{\rho_1 | \tau_1}(\x_1)W_{\rho_2 | \tau_2}(\x_2),
+\end{equation}
+and also,
+\begin{equation}
+W_{\rho_1\otimes \rho_2} (\x_1 \oplus \x_2) = W_{\rho_1}(\x_1)W_{\rho_2}(\x_2),
+\end{equation}
+for any states $\rho_1, \rho_2$ and any full-rank stabilizer states $\tau_1, \tau_2$. \ddd{[Notation clashing here. Frame result outside as its own lemma -- we gotta check everything.]} \nick{Will frame in~\cref{app:wigner} and fix notation in the next commit}
+Therefore we have that
+\begin{align}
+W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
+W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
+\end{align}
+where $\x = \oplus_{i=1}^n \x_i$ is the phase space point for the full system in terms of those of the individual subsystems.
+
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from first sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. Therefore, we first look at the values of $W_{\rho|\tau}(\x_i)$ for the single-copy case.
+
+The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
+The state $\tau$ can now be written as 
+\begin{equation}
+	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
+\end{equation}
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler, we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+
+The Wigner distribution of state $\tau$ is then given by
+\begin{align}
+	\W[\bmx]{\tau} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}W_{\ketbra{k}}(x, p) \nonumber\\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z},
+\end{align}
+where $x$ labels one of the three vertical lines in the phase space.
+The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It has $9$ components, but several of these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
+    \caption{\textbf{Qutrit phase space regions for $W_{\rho | \tau}(\x)$.}
+    Here, the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions, proportional to the value depicted in the region, see~\cref{eq:bmw_rescaled}.
+    }
+    \label{fig:pd_split}
+\end{figure}
+
+We now denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\bmm$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
+\begin{align}
+	\w(\rho) &\coloneqq (-v, u, u, u), \\
+		\bmm &\coloneqq (1,2,3,3), \\
+	\bmw(\tau) &\coloneqq \frac{1}{3\Z} \left( e^{-\beta E_0}, e^{-\beta E_0}, e^{-\beta E_1}, e^{-\beta E_2} \right), \\
+	\bmw(\rho_{\rm{S}} | \tau) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
+\end{align}
+
+Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are given by 
+\begin{align}\label{eq:ncopy_w_rescaled}
+	[\w(\rho_n | \tau_n)]_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
+\end{align}
+where the indices $i,j,k$ are non-negative integers that obey the constraint $\alpha \coloneqq i+j+k \leq n$.
+The multiplicity of this above value is $m_{ijk}$ with
+\begin{equation}
+	m_{ijk} = \frac{n!}{i!j!k!(n-\alpha)!} 2^i 3^j 3^k.
+\end{equation}
+The associated components of $\w(\rho_n)$ are given by
+\begin{align}
+	[\w(\rho_n)]_{ijk} &= (-v)^{n-\alpha} u^{\alpha}, \label{eq:ncopy_wrho}\\
+	[\w(\tau)]_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
+\end{align}
+
+In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\x))$.
+
+Generally this is complex, but in order to obtain distillation bounds it is sufficient to determine the location of the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. To do so, we compute the largest component 
+\begin{equation}
+	w_{\rm max} \coloneqq \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
+\end{equation}
+and determine the indices at which this occurs.
+Putting in the values we obtain
+\begin{align}
+	&(3\Z)^{-n}w_{\rm max} = \nonumber\\
+	&\max\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:max_slope}
+\end{align}
+where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
+Now for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
+
+Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
+Hence, we have
+\begin{align}
+	&w_{\rm max} = \nonumber\\
+	&(3\Z)^{n} v^n e^{n\beta E_s}\max\limits_{\substack{\alpha = 0,2, \\ \dots,n-2,n}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_s)} \right)^{\alpha} \Big\}}.
+\end{align}
+If the expression $\frac{u(\epsilon)}{v(\epsilon)} e^{\beta (E_{\rm{max}} - E_s)}$ is less than $1$ then the maximum occurs at $\alpha=0$, otherwise it occurs at $\alpha = n$. For a fixed state $\tau$, this transition is determined by the value of the depolarising noise parameter $\epsilon$ of the noisy magic state. The transition occurs at $\epsilon = \epsilon_\star$ where
+\begin{equation}\label{eq:noise_transition}
+	\frac{u(\epsilon_\star)}{v(\epsilon_\star)} e^{\beta (E_{\rm{max}} - E_s)} = \frac{3-\epsilon_\star}{6-8\epsilon_\star} e^{\beta (E_{\rm{max}} - E_s)} = 1.
+\end{equation}
+If $E_{\rm{max}} = E_s$, namely if the state negativity lies in the same phase space region as the highest energy, this threshold is constant in temperature and given by $\epsilon_{\star} = 3/7$. However, the condition that $\epsilon_\star \ge 0$ also implies a constraint on the effective temperature of the stabilizer state. Specifically, there is a threshold temperature value $\beta_\star$ given by
+\begin{equation}
+	\beta_{\star} \coloneqq \frac{1}{E_{\rm{max}} - E_s} \ln2,
+\end{equation}
+such that for the regime $0 \leq \beta \leq \beta_\star$ a transition noise level $\epsilon_\star$ exists, and for $\beta > \beta_\star$ no such transition exists, so we choose $\epsilon_\star = 0$. 
+Therefore, the transition value for the noise is given by
+\begin{equation}
+	\epsilon_{\star}(\beta) \coloneqq 
+	\begin{cases}
+		3 - \dfrac{9}{4-2^{\beta/\beta_\star - 1}}, &\text{ for } \beta \leq \beta_\star \\
+		0, &\text{ for } \beta > \beta_\star.
+	\end{cases}
+\end{equation}
+The quantity $w(\rho_{\rm{S}} | \sigma)_{\rm{max}}$ is now given by
+\begin{equation*}
+w_{\rm max} =
+	\begin{cases}
+		(3\Z)^{n} v^n e^{n\beta E_s}, &\mbox{if }\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}\\
+		(3\Z)^{n} u^n e^{n\beta E_{\rm{max}}}, &\mbox{if }\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
+	\end{cases}
+\end{equation*}
+Case $\rm{(C1)}$ corresponds to $(i,j,k) = (0,0,0)$, so the multiplicity is $m_{000} = 1$, while
+Case $\rm{(C2)}$ corresponds to
+\begin{equation}
+	(i,j,k) = 
+	\begin{cases}
+	(0,n,0), &\text{if } E_{\rm{max}} = E_1, \\
+	(0,0,n), &\text{if } E_{\rm{max}} = E_2,
+	\end{cases}
+\end{equation}
+so the multiplicity in both cases is $3^n$.
+
+Using that $F = -\beta^{-1} \log \Z$, the first elbow coordinates in the two cases are now given by
+\begin{equation}\label{eq:first_elb_coords}
+	(x_0, L_0) =
+	\begin{cases}
+		\left(\frac{1}{3^n} e^{-n\beta (E_s - F)}, v^n \right), &\epsilon \leq \epsilon_\star \vspace{10pt}\\
+		\left( e^{-n\beta (E_{\rm{max}}-F)}, (3u)^n \right). &\epsilon > \epsilon_\star
+	\end{cases}
+\end{equation}
+
+\ddd{[Hmmm this needs an additional assumption on the output state to re-run the same analysis. Very annoying.]}\nick{What additional assumption beyond that the output state can be written as a Gibbs state for some $H'$?}
+Similarly, considering the output magic state with respect to state $\sigma'$, the image of equilibrium state $\sigma$ under the magic protocol, we get output Lorenz curve coordinates,
+\begin{equation}\label{eq:transformed_first_elb_coords}
+	(x'_0, L'_0) =
+	\begin{cases}
+		\left(\frac{1}{3^{n'}} e^{-n\beta (E'_s - F')}, v(\epsilon')^{n'} \right), &\epsilon' \leq \epsilon'_\star \vspace{10pt}\\
+		\left( e^{-n'\beta (E'_{\rm{max}}\hspace{-2.5pt}-F')}, (3u(\epsilon'))^{n'} \right), &\epsilon' > \epsilon'_\star
+	\end{cases}
+\end{equation}
+There are four combinations of coordinates, depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states.
+In each of these combinations, we simply use the first elbow constraint, as described in~\cref{app:elb_constraints}, which leads to the bounds in the statement of the theorem.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

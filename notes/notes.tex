@@ -14,6 +14,76 @@ reprint
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ddd{\subsection{Improving our abilities to include arbitrary output stabilizer states.}
+The existing analysis works fine when the state $\tau'$ has stabilizer eigendecomposition (i.e. it's orthonormal basis is along the stabilizer directions...e.g. along $|0\>\<0|, |1\>\<1|$ in the Bloch sphere for a qubit). However it can lie inside the stabilizer polytope but not have such an eigenbasis. Therefore we'd like to include this fully general possibility.}
+
+To do this we just need to analyse how the properties of the output state relate to the magnitudes of its Wigner components. Here let $\tau$ be a single full-rank stabilizer qutrit state -- we are really interested in the output state $\tau'$ but let's ignore primes for now....they just clutter expressions unnecessarily. For simplicity denote the Wigner components of the magic state as
+\begin{equation}
+	\w = (-v, u,u,u,u,u,u,u,u),
+\end{equation}
+and we index from $i=0$ to $i=7$, so that e.g. $w_0 = -v$ and $w_i = u$ for $i \ne 0$. Let $\t$ denote the Wigner distribution for $\tau$, so that
+\begin{equation}
+\t = (t_0, t_1,t_2, t_3, t_4,t_5,t_6,t_7),
+\end{equation}
+and we assume that $t_i >0$ for all $i$. We also note that using Clifford unitaries we can always choose to shift either the smallest entry of $\t$ or the largest entry of $\t$ to the $i=0$ slot. We might need to exploit this in a moment.
+
+The rescaled distribution is then $\tilde{\w}\coloneqq (w_i/t_i)$, and we define $v_0 \coloneqq v/t_0$ and $u_i \coloneqq u/t_i$ for $i\ne 0$. We now need to consider the $n$--copy version of this, denoted $\tilde{\w}^{\otimes n}$, and determine how the largest component arises. A general component of $\tilde{\w}^{\otimes n}$ is given by,
+\begin{equation}
+\tilde{w}_{n,\alpha, i_1, \dots, i_8} = (-v_0)^{i_0} u_1^{i_1} u_2^{i_2} \cdots u_8^{i_8},
+\end{equation}
+with the assumption that firstly $n$ is always even, and the indices obeying the following conditions:
+\begin{align}
+0 &\le i_j \le n \mbox{ for each }j=0,1,\dots ,8 \nonumber \\
+i_0+ i_1 &+ i_2 + \dots i_8 =n.
+\end{align}
+Now the largest entry must be positive, and so we require that $\alpha$ is an even number, and so we consider
+\begin{equation}
+\tilde{w}_{n,i_0, i_1, \dots, i_8} = v_0^{i_0} u_1^{i_1} u_2^{i_2} \cdots u_8^{i_8},
+\end{equation}
+over the above integers with $i_0 \in \{0,2,4, \dots, n\}$. Let $a = \max \{v_0, u_1, \dots ,u_8\}$, then clearly the maximum value attained ($\tilde{w}_{\rm max}\coloneqq \max_{i_0,i_1,\dots , i_8}(\tilde{w}_{n,i_0, i_1, \dots, i_8})$ ) is given by 
+\begin{equation}
+\tilde{w}_{\rm max} = a^n.
+\end{equation}
+If the numbers $\{v_0, u_1, u_2, \dots, u_8\}$ are distinct then this maximum value occurs at a unique $i_k=n$ for some $k \in \{0, 1, \dots, 8\}$. Let's consider this case first.
+
+\textbf{(No multiplicities)} We expect this is the generic case, but I think it always provides a sufficient condition even if multiplicities exist. We can assume that noise level is below $3/7$ and so we have that $v >u$, so the $0$ component in $\w$, and so also $\w^{\otimes n}$, is the largest. But this needs rescaling by $\t$. 
+
+We now make use of the freedom to do a Clifford unitary transformation that sends the smallest entry in $\t$ to the $0$ component. Note that in doing so we must also account for this Clifford unitary on the output magic state too! To get around this we can simply say that we consider $\rho_S(\epsilon )^{\otimes n} \rightarrow \rho_S(\epsilon')^{\otimes m}$ modulo local Clifford unitaries on the output system. This changes the rules of the game to suit our needs. Instead of distilling out the precise noisy Strange state, we allow the protocol to have arbitrary post-processing on the individual qutrits via reversible Cliffords. I.e.~the magic content is the same in each case, but when we consider the problem of how $\tau \rightarrow \tau'$ this can be used to our advantage to simplify our analysis. Need to reflect on this variant and how it affects the content of our result.
+
+So given the ability to assume that the smallest entry of $\t$ is the $t_0$ component this means that for noise levels below $3/7$ the largest component of $\tilde{w}_{n,i_0, i_1, \dots, i_8}$ occurs at $(i_0,i_1, \dots, i_8) = (n,0,0,\dots ,0)$. We therefore have, for the no-multiplicity case, that the first elbow occurs at the point $(t_0^n, v^n)$. This will lead to a bound expression in terms of $\epsilon$ for the output state, together with whatever value $t_0$ takes on. \ddd{[give expression]}. While this is fine, we need to link $t_0$ to the physics of the state $\tau = e^{-\beta H}/\Z$. Well, just from the definition we have that
+\begin{equation}
+t_0 = \frac{1}{d\Z}\tr [ A_{0,0} e^{-\beta H}],
+\end{equation}
+where, of course, $d=3$. So in $t_0^n$ we immediately get a term $\Z^{-n} = e^{-n\beta F}$, which is nice and general. Using the expansion of the thermal state into its energy eigenstates we obtain
+\begin{align}
+t_0^n &= \left ( \frac{1}{d\Z}\tr [ A_{0,0} e^{-\beta H}] \right )^n \nonumber \\
+&= \frac{e^{-n\beta F}}{3^n} ( \tr [ A_{0,0} \sum_k e^{-\beta E_k} |\varphi_k\>\<\varphi_k|])^n\nonumber \\
+&= \frac{e^{-n \beta F}}{3^n} ( \sum_k \alpha_k e^{-\beta E_k})^n,
+\end{align}
+where we define
+\begin{equation}
+\alpha_k \coloneqq \<\varphi_k |A_{0,0} |\varphi_k\>, \mbox{ for }k=0,1,2.
+\end{equation}
+However $A_{0,0} = \sum_{r\in \mathbb{Z}_3} | -r\>\<r|$ and so
+\begin{equation}
+\alpha_k \coloneqq \sum_{r \in \mathbb{Z}_3} \<\varphi_k |-r\> \<r |\varphi_k\>.
+\end{equation}
+This just encodes how the energy eigenbasis of the Hamiltonian $H$ relates to the \emph{stabilizer} basis. Anyhow, the nice thing is that we always get the Free energy term emerging in the $t_0^n$ and so we can include this into the distillation bound, with the $\alpha_k$ terms simply handling the messy issue of how the two important bases relate. We can package the messy details into some definition in some way. E.g. the form of the sum involving $\alpha_k$ looks a bit like a partition function, so we can define something like
+\begin{equation}
+\zeta \coloneqq  \sum_k \alpha_k e^{-\beta E_k},
+\end{equation}
+so that
+\begin{equation}
+t_0^n = \frac{e^{-n\beta F}}{3^n}\zeta^n,
+\end{equation}
+which is tidy....and we could also then define $\phi$ as a kind of free energy term via $\zeta \eqqcolon e^{-\beta \phi}$. This then simplifies things to
+\begin{equation}
+t_0^n =  \frac{e^{-n \beta (F+\phi)}}{3^n},
+\end{equation}
+where $F$ corresponds to the physical free energy of $\tau$ while $\phi$ is some weird term that captures the degree to which the energy basis differs from the stabilizer basis. \ddd{[Details need tidying/checking and we need the final bounds to be computed.]}
+
+\textbf{(Multiplicity case)} I don't think we really need to delve into this. Firstly no multiplicities will be generic. Secondly, if multiplicities appear this simply means the above Lorenz curve point is not an elbow but instead as point on the first line segment. Imposing the conditions for this point is \emph{also a necessary condition} and therefore suffices to get a bound.
+
 \section{Lower bounds in $\sigma$--fragments}
 \ddd{[Am throwing down some rough material, to be polished later.]}
 
@@ -573,8 +643,8 @@ Entropic bounds on $\Phi_\ell$~\cite{cit:ash}.
 	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
 	\begin{align*}
 		\begin{split}
-		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{1. } \Phi_\ell(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n \ent{p}{q}},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_\ell(m; n, p) \leq 2^{-n\ent{p}{q}},\ m\in [0,np] \\
 		&\text{3. } \Phi_\ell(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
 		&\hspace{14pt} m\in [0,n-2]
 		\end{split}
@@ -590,8 +660,8 @@ Loose bounds follow
 	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
 	\begin{align*}
 		\begin{split}
-		&\text{1. } \Phi_{\pm}(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ents},\ m\in [1,n-1] \\
-		&\text{2. } \Phi_{\pm}(m; n, p) \leq 2^{-n\ents},\ m\in [0,np] \\
+		&\text{1. } \Phi_{\pm}(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{p}{q}},\ m\in [1,n-1] \\
+		&\text{2. } \Phi_{\pm}(m; n, p) \leq 2^{-n\ent{p}{q}},\ m\in [0,np] \\
 		&\text{3. } \Phi_{\pm}(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
 		&\hspace{14pt} m\in [0,n-2]
 		\end{split}
