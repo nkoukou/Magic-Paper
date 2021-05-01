@@ -499,19 +499,19 @@ A given magic protocol on the $n$ qudits will correspond to a quantum channel $\
 
 As it is important for the statement of our result, we hasten to note that group averaging of the output system and, indeed, any permutation of the output subsystems can be performed via Clifford unitaries, for example $\rm{SWAP}$ gates, which do not affect the magic output of the protocol, so we consider distillation protocols \emph{modulo Clifford operations}.
 
-This means in particular that $\E(\tau^{\otimes n}) = \tau'$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
+This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
 \begin{equation}
-\tau'  = \int d\mu(x) \sigma_x^{\otimes m},
+\E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
 \end{equation}
-where $d\mu(x)$ is a probability measure over a set $\{\sigma_x\}$ of single qudit states.
+where $d\mu(x)$ is a probability measure over a set $\{\tau'_x\}$ of single qudit states.
 
-To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\sigma$, and so $\tau' = \sigma^{\otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\sigma$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
+To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and so $\E(\tau) = \tau^{\prime \otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\tau'$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
 
 The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy. \nick{cite David?}
 
-The action of the protocol on the reference state therefore transforms $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \sigma^{\otimes m}$. 
-The output state $\sigma$ is a stabilizer state, provided that $\tau$ is as well and that $\E$ is a free operation, but it is generally a non-equilibrium state for the system. However, the distillation bounds that we derive take a particularly simple form if we associate a fiducial Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. 
-This allows us to express the state as $\sigma = e^{-\beta H'}/\Z'$.
+The action of the protocol on the reference state therefore transforms $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$. 
+The output state $\tau'$ is a stabilizer state, provided that $\tau$ is as well and that $\E$ is a free operation, but it is generally a non-equilibrium state for the system. However, the distillation bounds that we derive take a particularly simple form if we associate a fiducial Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. 
+This allows us to express the state as $\tau' = e^{-\beta H'}/\Z'$.
 
 Our distillation bounds depend on two properties of the Hamiltonians $H, H'$.
 The first property is the free energy of the states at the reference temperature, so for a state $\tau = e^{-\beta H}/\Z$ we express the associated free energy $F$ as
@@ -521,16 +521,16 @@ The first property is the free energy of the states at the reference temperature
 The output state $\sigma$ then has free energy $F' = -\beta^{-1} \log \Z'$.
 
 The bounds also depend on the overlaps between the Hamiltonian eigenbases and the computational basis $\{\ket{k}\}$, where $k \in \mathbb{Z}_d$.
-For a reference state $\tau$ with associated Hamiltonian $H$, denote the energy eigenbasis by $\{\ket{\phi_k}\}$ and define the \emph{reference partition function $\zeta$} as
+For a reference state $\tau$ with associated Hamiltonian $H$ denote the energy eigenbasis by $\{|\varphi_k\>\}$ and define the \emph{reference partition function $\zeta$} as
 \begin{equation}
 	\zeta \coloneqq \sum_{k \in \mathbb{Z}_d} \alpha_k e^{-\beta E_k},
 \end{equation}
 where the overlap coefficients are
 \begin{equation}
-	\alpha_k \coloneqq \sum_{r \in \mathbb{Z}_d} \braket{\phi_k}{-r}\braket{r}{\phi_k}.
+	\alpha_k \coloneqq \sum_{r \in \mathbb{Z}_d} \braket{E_k}{-r}\braket{r}{E_k}.
 \end{equation}
 Coefficients $\alpha_k$ can be negative when the Hamiltonian $H$ does not admit a Wigner-positive decomposition. 
-However, it is simple to see that $\zeta$ is always positive. \nick{because it is proportional to $W_{\tau}(0,0) > 0$ for full-rank, stabilizer $\tau$}
+However, it is simple to see that $\zeta$ is always positive. \nick{because it is proportional to $W_{\tau}(0,0)$ and $W_{\tau}(0,0) > 0$ for full-rank, stabilizer $\tau$}
 We can then naturally associate to the reference state $\tau$ a new form of free energy which is specific to the protocol, which we call the \emph{reference free energy $\Phi$} and define via
 \begin{equation}
 	\Phi \coloneqq -\beta^{-1} \log \zeta.
@@ -540,24 +540,31 @@ For the output reference state $\sigma$ with associated Hamiltonian $H'$, we can
 Therefore, the action of $\E$ sending $\tau^{\otimes n}$ to $\sigma^{\otimes m}$ is viewed in terms of $\Delta H \coloneqq H'-H$, which is the Hamiltonian change that would be needed to adiabatically restore equilibrium at temperature $T$.
 Given this account of the physical ingredients of a distillation protocol, we now state the following result for the case of qutrits.
 \begin{theorem}\label{thm:free-energy}
-	Consider a magic distillation protocol that transforms the noisy Strange state
-	\begin{equation*}
-		\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m} 
-	\end{equation*}
-modulo Clifford operations, with even number of copies $n, m$ and noise levels satisfying $\epsilon' \leq \epsilon \leq 3/7$.
-
-Let $T =(k\beta)^{-1}$ be any characteristic temperature for the physical system and let $H$ be the Hamiltonian of each qutrit subsystem.
-Assume that $n,m \gg 1$, so that the channel $\E$ generates negligible correlations on some product equilibrium state 
+	Consider a magic distillation protocol that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. Let $T =(k\beta)^{-1}$ be any temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem.
+Assume for $n,m \rightarrow \infty$ that the protocol's channel $\E$ generates negligible correlations on the equilibrium state and so there is a state $\tau'$ such that
 \begin{equation}
-	\tau^{\otimes n} \longrightarrow \E(\tau^{\otimes n}) = \sigma^{\otimes m}
+	\tau^{\otimes n} \longrightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}
 \end{equation} 
-for some state $\sigma = e^{-\beta H'}/\Z'$.
+for $n,m \gg 1$. We write the output state as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
-Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
+Then there are local Clifford unitaries $C_1,C_2$, such that $\rho_1 := C_1 \rho_S(\epsilon) C_1^\dagger$ and $\rho_2 := C_2 \rho_S(\epsilon') C_2^\dagger$ for which the protocol gives
+\begin{equation}
+\rho_1^{\otimes n} \longrightarrow \rho_2^{ \otimes m}.
+\end{equation}
+Moreover, the distillation rate $R = m/n$ is bounded as
 \begin{equation}\label{eq:rate_bounds_proof}
 	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\Phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\Phi' - F')},
 \end{equation}
-where $F, \Phi$ are the free energy and reference free energy defined for state $\tau$, while $F', \Phi'$ are defined for state $\sigma$.
+where $F$ is the free energy of $\tau$,  and 
+\begin{equation}
+\Phi := -\beta^{-1} \log \zeta
+\end{equation}
+where $\zeta$ is given by
+\begin{align}
+\zeta &:= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
+\alpha_k &:= \sum_{r \in \mathbb{Z}_3} \< E_k |-r\>\<r| E_k\>.
+\end{align}
+The primed variables are defined similarly for the output system.
 \end{theorem}
 \begin{proof}	
 For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\sigma_m \coloneqq \sigma^{\otimes m}$. 
@@ -603,7 +610,7 @@ We then make use of the freedom to apply Clifford unitaries in order to perform 
 	\tau \longrightarrow X^{-i}Z^{-j}\ \tau\ Z^{j}X^{i},
 \end{equation}
 which permutes the smallest component to the origin of the phase space, $W_{\tau}(i,j) \longrightarrow W_{\tau}(0,0)$.
-This operation would inevitably affect the magic distillation protocol, but since we consider the state distillation modulo Clifford operations, we are allowed to perform the reverse Clifford operation keeping the magic distillation process as is. \nick{I don't understand this too well, how are we allowed to permute $W_\tau$ while keeping $W_\rho$ intact?}
+This operation would inevitably affect the magic distillation protocol, but since we consider the state distillation modulo Clifford operations, we are allowed to perform the reverse Clifford operation keeping the magic distillation process as is. \nick{statement here is inaccurate}
 
 The rescaled distribution components are in general given by
 \begin{equation}
@@ -646,7 +653,7 @@ In the same manner, we can derive the first point coordinates of the output Lore
 \end{equation}
 
 If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the bound derived remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, and it is given by $L_0 / x_0 \geq L'_0 / x'_0$, which can be directly rearranged into the stated bound of the theorem.
+In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, and it is given by $L_0 / x_0 \geq L'_0 / x'_0$, which can be directly rearranged into the stated bound of the theorem.
 
 
 
