@@ -541,11 +541,13 @@ Therefore, the action of $\E$ sending $\tau^{\otimes n}$ to $\sigma^{\otimes m}$
 Given this account of the physical ingredients of a distillation protocol, we now state the following result for the case of qutrits.
 \begin{theorem}\label{thm:free-energy}
 	Consider a magic distillation protocol that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. Let $T =(k\beta)^{-1}$ be any temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem.
-Assume for $n,m \rightarrow \infty$ that the protocol's channel $\E$ generates negligible correlations on the equilibrium state and so there is a state $\tau'$ such that
+
+Assume for $n,m \rightarrow \infty$ that the protocol's channel $\E$ generates negligible correlations on the equilibrium state, so there is a state $\tau'$ such that
 \begin{equation}
 	\tau^{\otimes n} \longrightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}
 \end{equation} 
-for $n,m \gg 1$. We write the output state as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+for $n,m \gg 1$. 
+We write the output state as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
 Then there are local Clifford unitaries $C_1,C_2$, such that $\rho_1 := C_1 \rho_S(\epsilon) C_1^\dagger$ and $\rho_2 := C_2 \rho_S(\epsilon') C_2^\dagger$ for which the protocol gives
 \begin{equation}
@@ -557,12 +559,12 @@ Moreover, the distillation rate $R = m/n$ is bounded as
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
 \begin{equation}
-\Phi := -\beta^{-1} \log \zeta
+	\Phi := -\beta^{-1} \log \zeta
 \end{equation}
 where $\zeta$ is given by
 \begin{align}
-\zeta &:= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
-\alpha_k &:= \sum_{r \in \mathbb{Z}_3} \< E_k |-r\>\<r| E_k\>.
+	\zeta &:= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
+	\alpha_k &:= \sum_{r \in \mathbb{Z}_3} \< E_k |-r\>\<r| E_k\>.
 \end{align}
 The primed variables are defined similarly for the output system.
 \end{theorem}
