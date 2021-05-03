@@ -66,7 +66,7 @@ Finally, we discuss how our approach could be improved and how it can be exploit
         \includegraphics[scale=0.4]{figs/protocol_diagram.pdf}
     \caption{\textbf{Action of a magic protocol} 
 	A magic protocol aims to turn $n$ copies of some magic state $\rho_1$ to $m$ copies of some other state $\rho_2$.
-	Constraints on the efficiency of the protocol can be imposed by considering its action on an equilibrium state $\tau$.
+	Constraints on the efficiency of the protocol can be imposed by considering its action on an separate probe state $\tau$.
 	\nick{How do we improve the illustration?}
     }
     \label{fig:zoo}
@@ -497,75 +497,69 @@ Since we are concerned with magic distillation we may assume that the reference 
 
 A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. Our analysis associates to this protocol energy/entropy measures by considering how $\E$ transforms this reference equilibrium state. We first note that we can assume without loss of generality that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrise the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
 
-As it is important for the statement of our result, we hasten to note that group averaging of the output system and, indeed, any permutation of the output subsystems can be performed via Clifford unitaries, for example $\rm{SWAP}$ gates, which do not affect the magic output of the protocol, so we consider distillation protocols \emph{modulo Clifford operations}.
-
 This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{christandl_2007} we have that
 \begin{equation}
 \E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
 \end{equation}
 where $d\mu(x)$ is a probability measure over a set $\{\tau'_x\}$ of single qudit states.
 
-To simplify our analysis we now make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and so $\E(\tau) = \tau^{\prime \otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\tau'$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
+To simplify our analysis we will make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and so $\E(\tau) = \tau^{\prime \otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\tau'$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
 
 The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy. \nick{cite David?}
 
-The action of the protocol on the reference state therefore transforms $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$. 
-The output state $\tau'$ is a stabilizer state, provided that $\tau$ is as well and that $\E$ is a free operation, but it is generally a non-equilibrium state for the system. However, the distillation bounds that we derive take a particularly simple form if we associate a fiducial Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. 
-This allows us to express the state as $\tau' = e^{-\beta H'}/\Z'$.
 
-Our distillation bounds depend on two properties of the Hamiltonians $H, H'$.
-The first property is the free energy of the states at the reference temperature, so for a state $\tau = e^{-\beta H}/\Z$ we express the associated free energy $F$ as
+Our analysis will depend on the energetic properties of the probe state $\tau$ and the output state $\tau'$.
+For the state $\tau = e^{-\beta H}/\Z$ we have the Helmholtz free energy $F$ given by
 \begin{equation}
-	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z}.
+	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z},
 \end{equation}
-The output state $\sigma$ then has free energy $F' = -\beta^{-1} \log \Z'$.
+which is obtained from the internal energy via a Legendre transform \ddd{[cite books for $F$ details]}.
 
-The bounds also depend on the overlaps between the Hamiltonian eigenbases and the computational basis $\{\ket{k}\}$, where $k \in \mathbb{Z}_d$.
-For a reference state $\tau$ with associated Hamiltonian $H$ denote the energy eigenbasis by $\{|\varphi_k\>\}$ and define the \emph{reference partition function $\zeta$} as
-\begin{equation}
-	\zeta \coloneqq \sum_{k \in \mathbb{Z}_d} \alpha_k e^{-\beta E_k},
-\end{equation}
-where the overlap coefficients are
-\begin{equation}
-	\alpha_k \coloneqq \sum_{r \in \mathbb{Z}_d} \braket{E_k}{-r}\braket{r}{E_k}.
-\end{equation}
-Coefficients $\alpha_k$ can be negative when the Hamiltonian $H$ does not admit a Wigner-positive decomposition. 
-However, it is simple to see that $\zeta$ is always positive. \nick{because it is proportional to $W_{\tau}(0,0)$ and $W_{\tau}(0,0) > 0$ for full-rank, stabilizer $\tau$}
-We can then naturally associate to the reference state $\tau$ a new form of free energy which is specific to the protocol, which we call the \emph{reference free energy $\Phi$} and define via
-\begin{equation}
-	\Phi \coloneqq -\beta^{-1} \log \zeta.
-\end{equation}
-For the output reference state $\sigma$ with associated Hamiltonian $H'$, we can denote the energy eigenbasis by $\{\ket{\phi'_k}\}$ and similarly define the reference partition function $\zeta'$ and reference free energy $\Phi'$.
 
-Therefore, the action of $\E$ sending $\tau^{\otimes n}$ to $\sigma^{\otimes m}$ is viewed in terms of $\Delta H \coloneqq H'-H$, which is the Hamiltonian change that would be needed to adiabatically restore equilibrium at temperature $T$.
-Given this account of the physical ingredients of a distillation protocol, we now state the following result for the case of qutrits.
+
+As mentioned, we can quantify the energetic aspects of a given protocol by considering how it transforms a physical system in state with a clear notion of energy, such as a thermodynamic equilibrium state. The protocol transforms this state as $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$.  Since the protocol does not, on its own, generate magic the output state $\tau'$ is also a stabilizer state, provided that $\tau$ is as well. This is generally a non-equilibrium state for the system. However, the distillation bounds that we derive take a particularly simple form if we associate a Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This Hamiltonian is defined by the expression $\tau' = e^{-\beta H'}/\Z'$, and has free energy $F' = -\beta^{-1} \log \Z'$.
+
+
+This provides a simple means to specify energetic details of a protocol through how much it would disturb some reference equilibrium state. The approach, when combined with relative majorization, also allows us to derive magic distillation bounds that combine both the computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian of the physical system. As discussed in section (blah), from the perspective of majorization the presence of magic can be viewed as a form of non-classical free energy and so it is also of interest to make an explicit link between the amount of magic in a non-equilibrium state $\rho_S(\epsilon)$ and the actual free energy of an equilibrium state $\tau(\beta)$. 
+
+Given this account we now state the following result for the case of $d=3$ qutrits, in which magic distillation protocols are viewed as non-equilibrium processes.
+
 \begin{theorem}\label{thm:free-energy}
-	Consider a magic distillation protocol that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. Let $T =(k\beta)^{-1}$ be any temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem.
-Assume for $n,m \rightarrow \infty$ that the protocol's channel $\E$ generates negligible correlations on the equilibrium state and so there is a state $\tau'$ such that
-\begin{equation}
-	\tau^{\otimes n} \longrightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}
-\end{equation} 
-for $n,m \gg 1$. We write the output state as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. 
+	
+	Let $T =(k\beta)^{-1}$ be any temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
+Assume that for $n,m \rightarrow \infty$ the protocol's channel generates negligible correlations on the equilibrium state $\tau$, and so $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$ for $n,m \gg 1$. We write the state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
-Then there are local Clifford unitaries $C_1,C_2$, such that $\rho_1 := C_1 \rho_S(\epsilon) C_1^\dagger$ and $\rho_2 := C_2 \rho_S(\epsilon') C_2^\dagger$ for which the protocol gives
+Given this, there are local Clifford changes of basis $C_1,C_2$, such that $\rho_1 := C_1 \rho_S(\epsilon) C_1^\dagger$ and $\rho_2 := C_2 \rho_S(\epsilon') C_2^\dagger$ for which the protocol gives
 \begin{equation}
 \rho_1^{\otimes n} \longrightarrow \rho_2^{ \otimes m}.
 \end{equation}
-Moreover, the distillation rate $R = m/n$ is bounded as
+Moreover, the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
 \begin{equation}\label{eq:rate_bounds_proof}
-	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\Phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\Phi' - F')},
+	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
 \begin{equation}
-\Phi := -\beta^{-1} \log \zeta
+\phi = -\beta^{-1} \log \zeta
 \end{equation}
-where $\zeta$ is given by
+with $\zeta$ given by the equations
 \begin{align}
-\zeta &:= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
-\alpha_k &:= \sum_{r \in \mathbb{Z}_3} \< E_k |-r\>\<r| E_k\>.
+\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
+\alpha_k &= \sum_{r \in \mathbb{Z}_3} \braket{E_k}{-r}\braket{r}{E_k}.
 \end{align}
 The primed variables are defined similarly for the output system.
 \end{theorem}
+The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `partition function' $\zeta$. While the coefficients $\alpha_k$ may be negative for some $k$, the quantity $\phi$ is always well-defined since the function $\zeta$ is proportional to the Wigner component $W_\tau(0,0)$, which is strictly positive.
+
+The sole purpose of the Clifford unitaries $C_1,C_2$ is to simplify the form of the $\alpha_k$ coefficients. For example, if $H=Z$ then the energy eigenbasis is equivalent to the computational basis up to a Fourier transform, and so $\phi$ would have a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$ once we account for the Clifford change in basis. 
+
+The above analysis makes simplifying assumptions that could easily be dropped, at the price of more complex expressions. For example, we can obtain general expressions without any assumptions on $\epsilon,\epsilon'$ or drop the Clifford change in basis. 
+We could also perform similar analysis for general qudits, and different choices of magic states. It might also be of interest consider other choices of reference states that may include more appropriate hardware physics, for example for photonic set-ups.
+
+The only non-trivial assumption is the assumption that we can ignore correlations in the thermodynamic limit. This is a common situation in thermodynamics, where correlations are often sub-linear in the particle number in the macroscopic limit. One could perturb about this scenario, and make use of variational tools such as the Bogoliubov inequality \ddd{[cite]} for approximating the free energy of a system, to obtain bounds in a similar form.
+
+
+\newpage
 \begin{proof}	
 For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\sigma_m \coloneqq \sigma^{\otimes m}$. 
 
@@ -632,24 +626,24 @@ Accordingly, the coordinates of the first Lorenz curve point after the origin ar
 
 Given a Hamiltonian decomposition,
 \begin{equation}
-	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{\phi_k}{\phi_k},
+	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{E_k}{E_k},
 \end{equation}
 we can re-express the coordinate location, by writing
 \begin{align}
 	W_{\tau}(0,0) &= \frac{1}{3\Z}\tr\left[ A_{0,0}e^{\beta H} \right] \nonumber\\
-	&= \frac{e^{\beta F}}{3} \tr\left[ \sum_{r \in \mathbb{Z}_3} \ketbra{-r}{r}\sum_{k \in \mathbb{Z}_3} e^{\beta E_k}\ketbra{\phi_k}{\phi_k} \right] \\
+	&= \frac{e^{\beta F}}{3} \tr\left[ \sum_{r \in \mathbb{Z}_3} \ketbra{-r}{r}\sum_{k \in \mathbb{Z}_3} e^{\beta E_k}\ketbra{E_k}{E_k} \right] \\
 	&= \frac{e^{\beta F}}{3} \sum_{r \in \mathbb{Z}_3} \alpha_k e^{\beta E_k}
 	= \frac{e^{\beta F}}{3} \zeta \\
-	&= \frac{e^{\beta (F - \Phi)}}{3},
+	&= \frac{e^{\beta (F - \phi)}}{3},
 \end{align}
-where $\alpha_k, \zeta$ and $\Phi$ are as defined prior to the statement of the theorem.
+where $\alpha_k, \zeta$ and $\phi$ are as defined prior to the statement of the theorem.
 Finally, the coordinates can be expressed as
 \begin{equation}
-	(x_0, L_0) = \left( \frac{e^{n\beta (F - \Phi)}}{3^n}, v(\epsilon)^n \right).
+	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
 \end{equation}
 In the same manner, we can derive the first point coordinates of the output Lorenz curve as
 \begin{equation}
-	(x'_0, L'_0) = \left( \frac{e^{n\beta (F' - \Phi')}}{3^n}, v(\epsilon')^n \right).
+	(x'_0, L'_0) = \left( \frac{e^{n\beta (F' - \phi')}}{3^n}, v(\epsilon')^n \right).
 \end{equation}
 
 If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
