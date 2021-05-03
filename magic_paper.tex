@@ -212,7 +212,7 @@ In what follows we shall therefore assume that we have a magic theory $\R = (\F,
 We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}. \nick{repeats intro}
 
 Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering fixed-point, or ``equilibrium'', restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
-\begin{definition}[\textbf{$\boldsymbol\sigma$--fragment}]\label{def:sigmafrag}
+\begin{definition}\label{def:sigmafrag}
    Given a theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
    \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \},
@@ -549,6 +549,8 @@ with $\zeta$ given by the equations
 \end{align}
 The primed variables are defined similarly for the output system.
 \end{theorem}
+The proof of this is provided in Appendix \ref{free-energy-bound-proof}, and is a generalization of the analysis for unital protocols.
+
 The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `partition function' $\zeta$. While the coefficients $\alpha_k$ may be negative for some $k$, the quantity $\phi$ is always well-defined since the function $\zeta$ is proportional to the Wigner component $W_\tau(0,0)$, which is strictly positive.
 
 The sole purpose of the Clifford unitaries $C_1,C_2$ is to simplify the form of the $\alpha_k$ coefficients. For example, if $H=Z$ then the energy eigenbasis is equivalent to the computational basis up to a Fourier transform, and so $\phi$ would have a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$ once we account for the Clifford change in basis. 
@@ -558,112 +560,35 @@ We could also perform similar analysis for general qudits, and different choices
 
 The only non-trivial assumption is the assumption that we can ignore correlations in the thermodynamic limit. This is a common situation in thermodynamics, where correlations are often sub-linear in the particle number in the macroscopic limit. One could perturb about this scenario, and make use of variational tools such as the Bogoliubov inequality \ddd{[cite]} for approximating the free energy of a system, to obtain bounds in a similar form.
 
-
-\newpage
-\begin{proof}	
-For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\sigma_m \coloneqq \sigma^{\otimes m}$. 
-
-To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho_m$ for the magic states. 
-We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \sigma_m$.
-Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states, they have a strictly positive Wigner distribution, while, in contrast, the input and output magic states generally have quasi-probability Wigner distributions. 
-For any such protocol we therefore have that
-\begin{equation}
-	( W_{\rho_n}(\bmx), W_{\tau_n}(\bmx) ) \succ ( W_{\rho'_m}(\bmx), W_{\sigma_m}(\bmx) ),
-\end{equation}
-or, equivalently, in terms of the relevant Lorenz curves,
-\begin{equation}
-	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
-\end{equation}
-
-We define the rescaled Wigner distribution $W_{\rho | \tau}(\x) \coloneqq W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. 
-Due to the multiplicative property of the Wigner distribution, the rescaled distribution is also multiplicative in the sense that
-\begin{equation}
-	W_{\rho \otimes \rho' | \tau \otimes \tau'} (\x_1 \oplus \x_2) = W_{\rho | \tau}(\x_1)W_{\rho' | \tau'}(\x_2),
-\end{equation}
-for any states $\rho, \rho'$ and any full-rank stabilizer states $\tau, \tau'$.
-Therefore we have that
-\begin{align}
-	W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
-	W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
-\end{align}
-where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^n$ is the phase space point for the full system in terms of those of the individual subsystems.
-
-The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
-However, similarly to the unital fragment analysis, we aim to use the constraint that is obtained by considering the line segment connecting the origin to the first elbow of both Lorenz curves.
-The proof of this constraint is provided in~\cref{app:elb_constraints}.
-Therefore, we focus on finding the coordinates of some point on this line segment of the Lorenz curves.
-
-We find the coordinates for the input Lorenz curve, but the exact same analysis can be applied on the output Lorenz curve.
-The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(0,0) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
-The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
-We keep the components completely general.
-
-Assume that the smallest component of the equilibrium state distribution is $W_{\tau}(i,j)$.
-We then make use of the freedom to apply Clifford unitaries in order to perform the  Clifford operation
-\begin{equation}
-	\tau \longrightarrow X^{-i}Z^{-j}\ \tau\ Z^{j}X^{i},
-\end{equation}
-which permutes the smallest component to the origin of the phase space, $W_{\tau}(i,j) \longrightarrow W_{\tau}(0,0)$.
-This operation would inevitably affect the magic distillation protocol, but since we consider the state distillation modulo Clifford operations, we are allowed to perform the reverse Clifford operation keeping the magic distillation process as is. \nick{statement here is inaccurate}
-
-The rescaled distribution components are in general given by
-\begin{equation}
-	W_{\rho_n|\tau_n} = \left(\frac{-v}{W_{\tau}(0,0)}\right)^{i_{\bmo}} \prod_{\bmx \neq \bmo} \left(\frac{u}{W_{\tau}(\bmx)}\right)^{i_{\bmx}},
-\end{equation}
-where the (integer) indices obey the following conditions:
-\begin{align}
-&0 \leq i_{\bmx} \leq n \mbox{ for all } \bmx \in \mathbb{Z}_3^2, \nonumber \\
-&\sum_{\bmx \in \mathbb{Z}_3^2} i_{\bmx} = n.
-\end{align}
-It is now easy to find the largest rescaled component.
-Firstly, note that $n$ is even, so we require that $i_{\bmo} \in \{0,2,\dots,n\}$ for the component to be positive.
-Then, we have that $v \geq u$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(0,0) \leq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
-Therefore, the largest rescaled component occurs when $i_{\bmo} = n$ and $i_{\bmx} = 0$ for $\bmx \neq \bmo$ and is equal to $(v/W_{\tau}(0,0))^n$.
-Accordingly, the coordinates of the first Lorenz curve point after the origin are given by
-\begin{equation}
-	(x_0, L_0) = ((W_{\tau}(0,0))^n, v^n)
-\end{equation}
-
-Given a Hamiltonian decomposition,
-\begin{equation}
-	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{E_k}{E_k},
-\end{equation}
-we can re-express the coordinate location, by writing
-\begin{align}
-	W_{\tau}(0,0) &= \frac{1}{3\Z}\tr\left[ A_{0,0}e^{\beta H} \right] \nonumber\\
-	&= \frac{e^{\beta F}}{3} \tr\left[ \sum_{r \in \mathbb{Z}_3} \ketbra{-r}{r}\sum_{k \in \mathbb{Z}_3} e^{\beta E_k}\ketbra{E_k}{E_k} \right] \\
-	&= \frac{e^{\beta F}}{3} \sum_{r \in \mathbb{Z}_3} \alpha_k e^{\beta E_k}
-	= \frac{e^{\beta F}}{3} \zeta \\
-	&= \frac{e^{\beta (F - \phi)}}{3},
-\end{align}
-where $\alpha_k, \zeta$ and $\phi$ are as defined prior to the statement of the theorem.
-Finally, the coordinates can be expressed as
-\begin{equation}
-	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
-\end{equation}
-In the same manner, we can derive the first point coordinates of the output Lorenz curve as
-\begin{equation}
-	(x'_0, L'_0) = \left( \frac{e^{n\beta (F' - \phi')}}{3^n}, v(\epsilon')^n \right).
-\end{equation}
-
-If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, and it is given by $L_0 / x_0 \geq L'_0 / x'_0$, which can be directly rearranged into the stated bound of the theorem.
-
-
-
-
-\end{proof}
-
+\subsection{Variation of bounds with physical parameters and constraints from complete positivity}
 The bounds derived are based on analysis of only part of the Lorenz curves and can be improved via a finer analysis.
 This is apparent by simple numerical calculations on the entirety of the curves as seen in~\cref{fig:distill_bounds} for the case of unital operations.
 Specifically, the existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
+
+\ddd{[To be tidied+blended]} We also note that one can obtain another set of general distillation bounds from the monotonicity of discrimination measures under quantum channels. For example, the $L_1$ norm is contractive under quantum channels so that 
+\begin{equation}
+|| \rho - \sigma||_1 \ge ||\E(\rho) - \E(\sigma)||_1,
+\end{equation}
+for any quantum channel $\E$. Therefore, beyond the constraint that the magic protocol corresponds to a stochastic map in the Wigner distribution, we also have constraints coming from complete-positivity and trace-preservation. For example, is $D(\rho,\sigma)$ is a contractive measure on pairs of quantum states that is also additive, in the sense that $D(\rho^{\otimes n}, \sigma^{\otimes n}) = n D(\rho, \sigma)$, then it is readily seen that within the context of the above theorem we also have,
+\begin{equation}
+R \le \frac{D(\rho_S(\epsilon),\tau)}{D(\rho_S(\epsilon'), \tau')},
+\end{equation}
+provided the denominator does not vanish. In particular we can choose the Renyi-divergences $D_\alpha(\rho ||\tau)$....or more concretely the von Neumann divergence $S(\rho ||\tau) = \tr[ \rho \log \rho - \rho \log \tau]$. However, if $\tau$ is taken to be a Gibbs state then $S(\rho ||\tau) = \beta (F[\rho] - F[\tau])$, namely the difference in free energies of the two states. Here we define
+\begin{equation}
+F[\rho] := \tr[H \rho] - \beta^{-1} S(\rho).
+\end{equation}
+  Therefore, simply from the fact that the protocol defines a channel, we obtain the bound
+\begin{equation}
+R \le \frac{F[\rho_S(\epsilon)] - F[\tau]}{F[\rho_S(\epsilon')] - F[\tau']},
+\end{equation}
+and so we can compare this with the above bounds \ddd{[Some numerics on this to compare?]}
 
 \nick{FIX} As a special case of the result, suppose that $H=H'$, implying that the protocol leaves the equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and we have a free energy difference between the initial and final states, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
 
 \nick{FIX} The above bounds mainly demonstrate how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds. However to unpack the results more it is useful to consider the case in which $H=H'$, and look at $\epsilon' \rightarrow 0$. For this we obtain~\cref{fig:rate_contour} which gives a contour plot of $R$ as a function of inverse temperature $\beta$ and depolarising noise level $\epsilon$ for the initial noisy magic state.
 \begin{figure}[t!]
     \centering
-    \includegraphics[scale=0.45]{figs/rate_scatter.pdf}
+    \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
     \caption{\textbf{Temperature-dependent bounds for magic distillation.}
   Shown is a contour plot of  $R(\epsilon, \beta)$ for $H=H'$, where $\beta$ is an inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ for $\beta \leq \beta_\star$. The $\beta =0 $ line corresponds to the regime in which the magic protocol gives a unital channel.
     }
