@@ -694,7 +694,7 @@ I am a bit stuck with this expression and I am not sure it's worth putting more 
 
 
 
-\begin{theorem}\label{thm:free-energy}
+\begin{theorem}
 	Consider a magic distillation protocol transforming noisy Strange state
 	\begin{equation*}
 		\rho_S(\epsilon)^{\otimes n} \longrightarrow \E(\rho_S(\epsilon)^{\otimes n})=\rho_S(\epsilon')^{\otimes m} 
@@ -891,6 +891,128 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
+Here we prove theorem \ref{thm:free-energy}, which bounds magic distillation rates in terms of free energies.
+
+
+\begin{theorem}
+	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. 
+	
+	Let $T =(k\beta)^{-1}$ be any temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
+Assume that for $n,m \rightarrow \infty$ the protocol's channel generates negligible correlations on the equilibrium state $\tau$, and so $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$ for $n,m \gg 1$. We write the state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+
+Given this, there are local Clifford changes of basis $C_1,C_2$, such that $\rho_1 := C_1 \rho_S(\epsilon) C_1^\dagger$ and $\rho_2 := C_2 \rho_S(\epsilon') C_2^\dagger$ for which the protocol gives
+\begin{equation}
+\rho_1^{\otimes n} \longrightarrow \rho_2^{ \otimes m}.
+\end{equation}
+Moreover, the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
+\begin{equation}\label{eq:rate_bounds_proof}
+	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+\end{equation}
+where $F$ is the free energy of $\tau$,  and 
+\begin{equation}
+\phi = -\beta^{-1} \log \zeta
+\end{equation}
+with $\zeta$ given by the equations
+\begin{align}
+\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
+\alpha_k &= \sum_{r \in \mathbb{Z}_3} \braket{E_k}{-r}\braket{r}{E_k}.
+\end{align}
+The primed variables are defined similarly for the output system.
+\end{theorem}
+
+
+\begin{proof}	
+For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\sigma_m \coloneqq \sigma^{\otimes m}$. 
+
+To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho_m$ for the magic states. 
+We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \sigma_m$.
+Since $\tau$ and $\sigma$ are assumed to be full rank stabilizer states, they have a strictly positive Wigner distribution, while, in contrast, the input and output magic states generally have quasi-probability Wigner distributions. 
+For any such protocol we therefore have that
+\begin{equation}
+	( W_{\rho_n}(\bmx), W_{\tau_n}(\bmx) ) \succ ( W_{\rho'_m}(\bmx), W_{\sigma_m}(\bmx) ),
+\end{equation}
+or, equivalently, in terms of the relevant Lorenz curves,
+\begin{equation}
+	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\sigma_m}(x) \mbox{ for all } x.
+\end{equation}
+
+We define the rescaled Wigner distribution $W_{\rho | \tau}(\x) \coloneqq W_\rho(\x)/W_\tau(\x)$, which is always well-defined since $\tau$ is full-rank. 
+Due to the multiplicative property of the Wigner distribution, the rescaled distribution is also multiplicative in the sense that
+\begin{equation}
+	W_{\rho \otimes \rho' | \tau \otimes \tau'} (\x_1 \oplus \x_2) = W_{\rho | \tau}(\x_1)W_{\rho' | \tau'}(\x_2),
+\end{equation}
+for any states $\rho, \rho'$ and any full-rank stabilizer states $\tau, \tau'$.
+Therefore we have that
+\begin{align}
+	W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
+	W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
+\end{align}
+where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^n$ is the phase space point for the full system in terms of those of the individual subsystems.
+
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
+However, similarly to the unital fragment analysis, we aim to use the constraint that is obtained by considering the line segment connecting the origin to the first elbow of both Lorenz curves.
+The proof of this constraint is provided in~\cref{app:elb_constraints}.
+Therefore, we focus on finding the coordinates of some point on this line segment of the Lorenz curves.
+
+We find the coordinates for the input Lorenz curve, but the exact same analysis can be applied on the output Lorenz curve.
+The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(0,0) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
+The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
+We keep the components completely general.
+
+Assume that the smallest component of the equilibrium state distribution is $W_{\tau}(i,j)$.
+We then make use of the freedom to apply Clifford unitaries in order to perform the  Clifford operation
+\begin{equation}
+	\tau \longrightarrow X^{-i}Z^{-j}\ \tau\ Z^{j}X^{i},
+\end{equation}
+which permutes the smallest component to the origin of the phase space, $W_{\tau}(i,j) \longrightarrow W_{\tau}(0,0)$.
+This operation would inevitably affect the magic distillation protocol, but since we consider the state distillation modulo Clifford operations, we are allowed to perform the reverse Clifford operation keeping the magic distillation process as is. \nick{statement here is inaccurate}
+
+The rescaled distribution components are in general given by
+\begin{equation}
+	W_{\rho_n|\tau_n} = \left(\frac{-v}{W_{\tau}(0,0)}\right)^{i_{\bmo}} \prod_{\bmx \neq \bmo} \left(\frac{u}{W_{\tau}(\bmx)}\right)^{i_{\bmx}},
+\end{equation}
+where the (integer) indices obey the following conditions:
+\begin{align}
+&0 \leq i_{\bmx} \leq n \mbox{ for all } \bmx \in \mathbb{Z}_3^2, \nonumber \\
+&\sum_{\bmx \in \mathbb{Z}_3^2} i_{\bmx} = n.
+\end{align}
+It is now easy to find the largest rescaled component.
+Firstly, note that $n$ is even, so we require that $i_{\bmo} \in \{0,2,\dots,n\}$ for the component to be positive.
+Then, we have that $v \geq u$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(0,0) \leq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
+Therefore, the largest rescaled component occurs when $i_{\bmo} = n$ and $i_{\bmx} = 0$ for $\bmx \neq \bmo$ and is equal to $(v/W_{\tau}(0,0))^n$.
+Accordingly, the coordinates of the first Lorenz curve point after the origin are given by
+\begin{equation}
+	(x_0, L_0) = ((W_{\tau}(0,0))^n, v^n)
+\end{equation}
+
+Given a Hamiltonian decomposition,
+\begin{equation}
+	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{E_k}{E_k},
+\end{equation}
+we can re-express the coordinate location, by writing
+\begin{align}
+	W_{\tau}(0,0) &= \frac{1}{3\Z}\tr\left[ A_{0,0}e^{\beta H} \right] \nonumber\\
+	&= \frac{e^{\beta F}}{3} \tr\left[ \sum_{r \in \mathbb{Z}_3} \ketbra{-r}{r}\sum_{k \in \mathbb{Z}_3} e^{\beta E_k}\ketbra{E_k}{E_k} \right] \\
+	&= \frac{e^{\beta F}}{3} \sum_{r \in \mathbb{Z}_3} \alpha_k e^{\beta E_k}
+	= \frac{e^{\beta F}}{3} \zeta \\
+	&= \frac{e^{\beta (F - \phi)}}{3},
+\end{align}
+where $\alpha_k, \zeta$ and $\phi$ are as defined prior to the statement of the theorem.
+Finally, the coordinates can be expressed as
+\begin{equation}
+	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
+\end{equation}
+In the same manner, we can derive the first point coordinates of the output Lorenz curve as
+\begin{equation}
+	(x'_0, L'_0) = \left( \frac{e^{n\beta (F' - \phi')}}{3^n}, v(\epsilon')^n \right).
+\end{equation}
+
+If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
+In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, and it is given by $L_0 / x_0 \geq L'_0 / x'_0$, which can be directly rearranged into the stated bound of the theorem.
+\end{proof}
 
 
 
