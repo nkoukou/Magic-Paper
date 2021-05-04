@@ -1,13 +1,14 @@
+\newpage
 \section{Properties of Wigner distributions}
 \label{app:wigner}
 
-Here we present important properties of the phase-point operators and the Wigner distribution that are used throughout the paper.
+Here we present basic properties of the phase-point operators and the Wigner distribution that are used throughout the paper.
 
 \begin{proposition}\label{thm:aproperties}
     For any dimension $d$, the phase-point operators satisfy:
     \begin{enumerate}
         \item[(i)]\label{en:a1} Hermiticity and unitarity: $A_{\bmx}^\dagger = A_{\bmx} = A_{\bmx}^{-1}$;
-	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(x, p)}^T = A_{(x, p)}$;
+	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(x, p)}^T = A_{(x, p)}$; \ddd{[FIX]}
 	    \item[(iii)]\label{en:a3} Unit trace for odd $d$: $\tr[A_{\bmx}] = 1$;
 	    \item[(iv)]\label{en:a4} Completeness relation: $\sum_{\bmz \in \cal{P}_d} A_{\bmz} = d\id$;
 	    \item[(i)]\label{en:a5} Orthogonality: $\tr[A_{\bmx}^\dagger A_{\bm{x'}}] = d \delta_{\bmx,\bm{x'}}$.
@@ -64,38 +65,22 @@ If $d_A = d_B$, and in particular if operation $\E$ maps a Hilbert space onto it
 
 % TO SWAP d --> r, REPLACE ALL \bmd, \bm{d}, d_i WITH \r
 
-\subsection{Comments on monotones and fragements}
-The development of any monotone $\M(\rho)$ for a magic theory $\R$ can be viewed abstractly as
-\begin{equation}
-\M : \mbox{(pre-order of states)} \mapsto \mbox{(total order of numbers).} \nonumber
-\end{equation}
-More precisely, within the theory we order magic states as $\rho_1 \succ \rho_2$ whenever there is an operation $\E \in \O$ such that $\E(\rho_1) = \rho_2$. In general many states will not be interconvertible in both directions, so this ordering is a pre-order in the sense that incomparable states exist. A magic monotone projects this pre-order of states onto the real number line, and, through this lens, any two states are directly comparable in terms of their mapped values $\M(\rho_1)$, $\M(\rho_2)$. Of course, the price is that the monotone provides only a necessary, but not sufficient, condition for the transformation $\rho_1 \rightarrow \rho_2$.
-
-The restriction of a magic theory $\R$ to some fragment $\R_\sigma$ can now be interpreted as a generalisation of the magic monotone construction: instead of mapping the pre-order of states in $\R$ onto the number line, we instead map this pre-order onto \emph{a simpler pre-order of states}. Therefore, we are retaining more of the original parent theory, while working in a scenario that admits greater structure and simplicity. We can view this as a mapping $\P_\sigma: \R \rightarrow \R_\sigma$ that restricts to a sub-theory (a $\sigma$--fragment) of the parent theory $\R$. Thus,
-\begin{equation}
-\P_\sigma: \mbox{(pre-order)} \longrightarrow \mbox{(simpler pre-order).}
-\end{equation}
-By framing the projection onto a fragment in this light, we can view Theorem \ref{thm:frag} as a statement that the collection $\{\P_\sigma\}_{\sigma \in \F}$ provides a complete set of generalized monotones for the theory.
-\subsection{Simple--majorization equivalence conditions}
-
-In the unital fragment, namely the limit of infinite temperature, $\beta = 0$, the free state is the maximally mixed state $\frac{1}{n}\id$ with uniform Wigner distribution $\frac{1}{n}\bm{1} = (\frac{1}{n},\dots,\frac{1}{n})$.
-This fragment is governed by simple majorization and we first prove strong equivalences for this type of majorization.
-\begin{proposition}\label{prop:major}
-Given $\bmx, \bmy \in \mathbb{R}^n$ the following statements are equivalent:
- \begin{enumerate}
-	\item[(i)]\label{en:m1} $\bmx \prec \bmy$;
-	\item[(ii)]\label{en:m2} $\bmx = B \bmy$ for bistochastic $B$;
-	\item[(iii)]\label{en:m3} $\sum\limits_{i=1}^n \abs{x_i - t} \leq \sum\limits_{i=1}^n \abs{y_i - t}$ for all $t \in \mathbb{R}$;
-	\item[(iv)]\label{en:m4} $\sum\limits_{i=1}^n (x_i - t)^+ \leq \sum\limits_{i=1}^n (y_i - t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$, where $(x)^+ = \max{\{x, 0\}}$;
-	\item[(v)]\label{en:m5} $L_{\bmx}(t) \leq L_{\bmy}(t)$ for $t\in [0,1)$	and \vspace{5pt}\\ $L_{\bmx}(1) = L_{\bmy}(1)$, where $L_{\bmz}(t) = L_{\bmz|\frac{1}{n}\bm{1}}(t)$.
- \end{enumerate}
-\end{proposition}
-	The equivalence between (i) and (ii) is the statement of the Hardy, Littlewood and Polya theorem and is taken as our definition of majorisation in the main text.
 	
-	The rest of the properties are well-known and proofs can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio}.
+We now give the following equivalent formulations of $d$--majorization.
 
+\begin{proposition}\label{prop:rmajor}
+Given $\bmx, \bmy, \r \in \mathbb{R}^n$, such that the components of $\r$ are positive, the following statements are equivalent:
+  \begin{enumerate}
+    \item[(i)] $\bmx \prec_{\r} \bmy$;
+    \item[(ii)] $\Gamma_{\r}({\bmx}) \prec \Gamma_{\r}({\bmy})$;
+    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - r_i t} \leq \sum\limits_{i=1}^n \abs{y_i - r_i t}$ for all $t \in \mathbb{R}$;
+    \item[(iv)] $\sum\limits_{i=1}^n (x_i - r_i t)^+ \leq \sum\limits_{i=1}^n (y_i - r_i t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
+    \item[(v)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r}(1)$.
+  \end{enumerate}
+\end{proposition}
+The proofs for these can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio} and references therein.
 
-
+The following lemma is used in the text to relate relative majorization of quasi-distributions to their Lorenz curves.
 \begin{lemma} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
 \end{lemma}\label{lemma:Lorenz_linearity}
 \begin{proof} The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. Since $a > 0$, the permutation $\pi$ puts  $(p_i/r_i)$ in non-increasing order too. We thus have
@@ -144,59 +129,6 @@ Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{ma
 \end{proof}
 
 
-\subsection{Embedding map}
-
-Any $\r$--majorization problem can be rephrased as a simple majorization problem in a higher dimensional space via the embedding map.
-\begin{definition}
-  The embedding map $\Gamma_{\r}:\mathbb{R}^n \mapsto \mathbb{R}^N, N = \sum\limits_{i=1}^n r_i$ is the function
-  \begin{equation}
-    \Gamma_{\r}(\bmw) = \bigoplus_{i=1}^n w_i\  \frac{1}{r_i}\bm{1},
-  \end{equation}
-where $\bm{1}/r_i$ is the $r_i$--dimensional uniform distribution.
-The left inverse $\Gamma_{\r}^{-1}: \mathbb{R}^N \mapsto \mathbb{R}^n$ is defined to sum up the elements in each block of $\Gamma_{\r}(\bmw)$, so that
-  \begin{equation}
-     \Gamma_{\r}^{-1}(\oplus_{i=1}^n w_i \bm{1}/r_i) = \bmw.
-  \end{equation}
-  This is not a right inverse, because $\Gamma_{\r}$ is not surjective.
-\end{definition}
-The direct sum simply amounts to listing the uniform distributions one after the other.
-The embedding map maps the Gibbs distribution to the uniform distribution, $\Gamma_{\r}(\r) = \bm{1}/N$.
-Then, a non-increasing ordering $\Gamma_{\r}(\bmz)^\downarrow$ in the new space, corresponds to the so-called ``$\beta$-ordering'' of the original vector denoted by the permutation $\pi$ in~\cref{eq:lc}, mapping $(w_i/r_i) \mapsto (w_i/r_i)^\downarrow$ for all $i=1,\dots,n$.
-
-\subsection{\textit{r}-majorization equivalence conditions}
-
-We take the opportunity here	 to simply list useful equivalent statements for $\r$--majorisation.
-
-\begin{proposition}\label{prop:rmajor}
-Given $\bmx, \bmy, \r \in \mathbb{R}^n$, such that the components of $\r$ are positive, the following statements are equivalent:
-  \begin{enumerate}
-    \item[(i)] $\bmx \prec_{\r} \bmy$;
-    \item[(ii)] $\Gamma_{\r}({\bmx}) \prec \Gamma_{\r}({\bmy})$;
-    \item[(iii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - r_i t} \leq \sum\limits_{i=1}^n \abs{y_i - r_i t}$ for all $t \in \mathbb{R}$;
-    \item[(iv)] $\sum\limits_{i=1}^n (x_i - r_i t)^+ \leq \sum\limits_{i=1}^n (y_i - r_i t)^+$ for all $t \in \mathbb{R}$ and \vspace{5pt}\\ $\sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n y_i$;
-    \item[(v)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r}(1)$.
-  \end{enumerate}
-\end{proposition}
-\begin{proof}$ $\vspace{-12pt}\\
-\begin{enumerate}
-	\item[1$\leftrightarrow2$]
-	Suppose there exists a $\r$--stochastic $A$ such that $\bmx = A\bmy$ and let $B = \Gamma_{\r} \circ A \circ \Gamma_{\r}^{-1}$.
-$B$ is a $N$--dimensional bistochastic matrix, since composition of stochastic matrices is stochastic and $(\Gamma_{\r} \circ A \circ \Gamma_{\r}^{-1})\big(\frac{1}{N}\bm{1}\big) = (\Gamma_{\r} \circ A) (\r) = \Gamma_{\r}(\r) = \frac{1}{N}\bm{1}$. Then, $B$ maps $\Gamma_{\r}({\bmy})$ to $\Gamma_{\r}({\bmx})$.
-
-	Conversely, given $B$, let $A = \Gamma_{\r}^{-1} \circ B \circ \Gamma_{\r}$.
-	Similarly, $A$ is a $\r$--stochastic matrix that maps $\bmy$ to $\bmx$.
-	\item[$2\leftrightarrow3$] These \hspace{1pt} three \hspace{1pt} statements \hspace{1pt} are \hspace{1pt} equivalent \hspace{1pt} to \hspace{1pt} state-
-	\item[$2\leftrightarrow4$] \vspace{-7pt} ments (iii), (iv), (v) \hspace{1pt} in~\cref{prop:major} respectively, 
-	\item[$2\leftrightarrow5$] \vspace{-7pt} for the embedded vectors $\Gamma_{\r}({\bmx}), \Gamma_{\r}({\bmy})$, which becomes apparent by rewriting
-	\begin{align*}
-	&\hspace{15pt} \sum\limits_{i=1}^n \abs{x_i - r_i t} = \sum\limits_{i=1}^n r_i \abs{\frac{x_i}{r_i} - t} = \sum\limits_{i=1}^N \abs{\Gamma_{\r}(\bmx)_i - t}, \\[3pt]
-	&\hspace{15pt} \sum\limits_{i=1}^n (x_i - r_i t)^+ = \sum\limits_{i=1}^N (\Gamma_{\r}(\bmx)_i - t)^+ \text{ and} \\[6pt]
-	&\hspace{15pt} L_{\bmx|\r}(t) = L_{\Gamma_{\r}(\bmx)}(t),
-	\end{align*} 
-and similarly for the right hand sides of the inequalities.
-\end{enumerate}
-\vspace{-19pt}
-\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -337,6 +269,7 @@ With the help of this lemma, we directly arrive at
 	All four statements follow from application of~\cref{lem:comb_bounds} on the combinatorial coefficient and the defintion of relative entropy given in~\cref{eq:ent_rel}
 \end{proof}
 
+\ddd{[Remainder bounds via integrals? This might be of use for others, if they wanted to build on this line.]}
 \subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
 The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
 The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
@@ -693,7 +626,7 @@ I am a bit stuck with this expression and I am not sure it's worth putting more 
 \subsection{OLD VERSION OF MAIN THEOREM}
 
 
-
+\ddd{[Do we need to keep any of the details in this section? If not then delete it entirely.]}
 \begin{theorem}
 	Consider a magic distillation protocol transforming noisy Strange state
 	\begin{equation*}
