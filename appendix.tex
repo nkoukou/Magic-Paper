@@ -8,7 +8,7 @@ Here we present basic properties of the phase-point operators and the Wigner dis
     For any dimension $d$, the phase-point operators satisfy:
     \begin{enumerate}
         \item[(i)]\label{en:a1} Hermiticity and unitarity: $A_{\bmx}^\dagger = A_{\bmx} = A_{\bmx}^{-1}$;
-	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(x, p)}^T = A_{(x, p)}$; \ddd{[FIX]}
+	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(x, p)}^T = A_{(x, -p)}$;
 	    \item[(iii)]\label{en:a3} Unit trace for odd $d$: $\tr[A_{\bmx}] = 1$;
 	    \item[(iv)]\label{en:a4} Completeness relation: $\sum_{\bmz \in \cal{P}_d} A_{\bmz} = d\id$;
 	    \item[(i)]\label{en:a5} Orthogonality: $\tr[A_{\bmx}^\dagger A_{\bm{x'}}] = d \delta_{\bmx,\bm{x'}}$.
@@ -265,11 +265,94 @@ With the help of this lemma, we directly arrive at
 		\end{split}
 	\end{align*}
 \end{theorem}
+\nick{Should we keep this theorem??}
 \begin{proof}
 	All four statements follow from application of~\cref{lem:comb_bounds} on the combinatorial coefficient and the defintion of relative entropy given in~\cref{eq:ent_rel}
 \end{proof}
 
-\ddd{[Remainder bounds via integrals? This might be of use for others, if they wanted to build on this line.]}
+\subsection{Theory on bounding the core functions}
+The core functions are $\Phi_{\pm}$ which is an even power cumulative function. 
+We can rewrite it as
+\begin{equation}
+\Phi_{\pm}(m; n, a) = \frac{1}{2}( \Phi(m; n, a) \pm (1+a)^{-n} S(m; n, a) ),
+\end{equation}
+where we have substituted $a = p/(1-p)$. 
+$\Phi$ is the standard cumulative function 
+\begin{equation}
+	\Phi(m; n, a) = (1+a)^{-n} \sum_{k=0}^m \binom{n}{k} a^k,
+\end{equation}
+and the remainder term is
+\begin{equation}
+S(m; n, a) \coloneqq \sum_{k=0}^m \binom{n}{k} (-a)^k.
+\end{equation}
+We have good asymptotic bounds on the behaviour of $\Phi$~\cite{cit:ash},
+\begin{lemma}\label{lem:phil_bounds}
+	Given fixed $n>0$ and $p$, $\Phi_\ell$ satisfies the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi(m; n, p) \geq \left[ 8m\left(1-\frac{m}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m}{n}}{p}},\ m\in [1,n-1] \\
+		&\text{2. } \Phi(m; n, p) \leq 2^{-n\ent{\frac{m}{n}}{p}},\ m\in [0,np] \\
+		&\text{3. } \Phi(m; n, p) \leq 1 - \left[ 8(m+1)\left(1-\frac{m+1}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{m+1}{n}}{p}}, \\
+		&\hspace{14pt} m\in [0,n-2]
+		\end{split}
+		\\
+		&\text{4. } \Phi(m; n, p) \geq 1 - 2^{-n\ent{\frac{m+1}{n}}{p}},\ m\in [np+1,n-2]
+	\end{align*}
+\end{lemma}
+\nick{Should we keep this theorem instead?? Bounds on Phi are numerically veeery loose in general, and this theorem provides even looser bounds than the previous one}
+
+We would like some theory that estimates the value of $S(m; n, a)$ for different parameter regimes. 
+We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$.
+
+The truncated Maclaurin series of a general function $f(x)$ is
+\begin{equation}
+	f(x) = f(0) + x f'(0) + \dots \frac{x^m}{m!}f^{(m)}(0) + R_m(x)
+\end{equation}
+with a remainder term
+\begin{align}
+	R_m (x)&= \int_{0}^x dt f^{(m+1)}(t) \frac{(x-t)^r}{r!} \\
+	&= \frac{x^{m+1}}{(m+1)!} f^{(m+1)}(x_*),
+\end{align}
+where in the second expression, $x_*$ is an implicit point that lies between $0$ and $x$ that comes from the Mean Value Theorem.
+
+Applying this to the function $f(x) = (1+x)^n$ gives
+\begin{equation}
+	(1+x)^n = \sum_{k=0}^m \binom{n}{k} x^k + R_m.
+\end{equation}
+Evaluating at $x=-a$ gives
+\begin{equation}
+	S(m; n, a) = (1-a)^n - R_m(-a),
+\end{equation}
+where the key remainder term is given by
+\begin{align}
+	R_m(-a) &= \int_0^{-a} dt f^{(m+1)}(t) \frac{(-a-t)^m}{m!} \\
+&= \frac{(-a)^{m+1}}{(m+1)!} f^{(m+1)}(x_*).
+\end{align}
+We can also compute the derivative $f^{(m+1)}(x)$ explicitly,
+\begin{equation}
+	f^{(m+1)}(x) = (m+1)!\binom{n}{m+1}(1+x)^{n-m-1}.
+\end{equation}
+Therefore, we have that
+\begin{align}
+	R_m(-a) &= (-1)^{m+1}(m+1)\binom{n}{m+1}\int_{-a}^0 dt (1+t)^{n-m-1}(a+t)^m \\
+&= \binom{n}{m+1}(-a)^{m+1}(1+x_*)^{n-m-1},
+\end{align}
+where in the latter expression $x_* \in [-a,0]$. 
+Note that the first integral expression can be estimated via the Cauchy-Schwarz or the Hoelder inequality. 
+Therefore, we can either work with an explicit form with an unknown (but bounded) parameter $x_*$, or we can use the integral form and provide concrete estimates on it value.
+
+A very simple estimate, based on $x_*$ lying in the interval $[-a,0]$ gives
+\begin{equation}
+\binom{n}{m+1}(-a)^{m+1}(1-a)^{n-m-1} \leq R_m(-a) \le  \binom{n}{m+1}(-a)^{m+1}.
+\end{equation}
+
+This in turn leads to the following bounds on $\Phi_+(a,r,n)$:
+\begin{align}
+\hspace{-2cm}2\Phi_+(a,r,n) &\le \Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} (1-a)^{n-r-1} \nonumber \\
+2\Phi_+(a,r,n) & \ge\Phi(a,r,n)+ (1-a)^n - \frac{(-a)^{r+1}}{r!} \binom{n}{r+1} .
+\end{align}
+\nick{Fix notation !}
+
 \subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
 The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
 The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
@@ -378,7 +461,7 @@ The elbow coordinates correspond to
 \end{equation}
 The index function $I$ is bijective, i.e.
 \begin{equation}
-	(i,j,k) = (i',j',k') \Leftrightarrow I(i,j,k) = I(i',j',k').
+	(i,j,k) = (i',j',k') \text{ iff } I(i,j,k) = I(i',j',k').
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
