@@ -13,12 +13,12 @@ reprint
 % Write bounds as 1 + ln{}/{} or 1 - (-ln{})/{} ?
 % Labels and Refs (theorems vs lemmas vs propositions)
 % R: rate vs bound ?
-% Appendices: clean-up (d --> r)
+% Appendices: clean-up
 % Figs check(fig.0, move to app, consistency)
 
-% Eq. numbering in last line always
+% Notation consistency
 % UK vs US english
-% Spacing (fig positioning, sections, paragraphs, QED symbols)
+% Spacing (fig positioning, sections, paragraphs, eq. numbering, QED symbols)
 
 \begin{abstract}
 \ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
@@ -44,6 +44,7 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
+\nick{re-write based on new relative majorisation approach}
 The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Fowler_2012, Herrera_2010, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
@@ -292,7 +293,7 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within a particular stabilizer fragment ($\sigma \coloneqq \id/3$). Solid lines represent pure Strange states, while dashed lines represent noisy Strange states with depolarising noise ($\epsilon = 0.1$).
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within a particular stabilizer fragment ($\sigma = \id/3$). Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising noise $\epsilon = 0.1$.
     }
     \label{fig:lcs}
 \end{figure}
@@ -342,7 +343,7 @@ This in turn can be expressed in terms of Lorenz curves. To simplify notation, w
 \begin{equation}
 \rho_1 \rightarrow \rho_2 \mbox{ within }\R_\sigma \mbox{ implies } L_{\rho_1 |\sigma} (x) \ge L_{\rho_2 |\sigma} (x),
 \end{equation}
-for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to exponentially many constraints, of which though there are at most as many independent constraints as there are elbows in the Lorenz curve of the output state, as proved in~\cref{thm:elbows} in~\cref{app:frag}.
+for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to exponentially many constraints, of which though there are at most as many independent constraints as there are elbows in the Lorenz curve of the output state, as proved in~\cref{thm:elbows} of~\cref{app:frag}.
 In principle, any one location $x$ provides some valid constraint leading to an upper distillation bound, while optimising over the location provides the strictest majorisation bound.
 
 \subsection{Basic monotones for magic states in a particular fragment}
@@ -354,7 +355,7 @@ In this section, we give some generic aspects of Lorenz curves for magic states.
 \end{lemma}
 \begin{proof}
 	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) \coloneqq \frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$.
-We make use of a variant form of relative majorization, (see~\cref{prop:rmajor} in~\cref{app:major}), stating that $\p \succ_{\r} \q$ if and only if
+We make use of a variant form of relative majorization, (see~\cref{app:major}), stating that $\p \succ_{\r} \q$ if and only if
 	\begin{equation}
 \sum_k | p_k - r_k t | \geq \sum_k | q_k - r_k t |,
 \end{equation}
@@ -363,10 +364,10 @@ for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum
 As a corollary, this result applies to mana too, since mana is an increasing function of sum-negativity.
 
 If we have a magic state $\rho$ that has negativity in its Wigner representation, then, as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an exact relation between $L_\star$ and sum-negativity or mana, which is provided by the following result. 
-\begin{lemma}\label{lem:lcmax}
+\begin{theorem}\label{lem:lcmax}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
-\end{lemma}
-The proof of this is given in Appendix \ref{lem:lcmax}. Using the Lorenz curve perspective, it is simple to construct other monotones. For example, within a given fragment, the area above $L=1$ is another magic monotone.
+\end{theorem}
+The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is simple to construct other monotones. For example, within a given fragment, the area above $L=1$ is another magic monotone.
 \begin{lemma}
 Given a magic state $\rho$ and a free state $\sigma$, let $\A_\sigma(\rho)$ be the area of the region $\{(x, y): 1 \leq y \leq L_{\rho | \sigma}(x)\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
 \end{lemma}
@@ -468,7 +469,7 @@ The mana bound can be directly calculated as
 For the noisy Strange state, the max--thauma bound coincides with the mana bound, and are both looser than the majorization bound we derived via the first elbow constraint as illustrated in~\cref{fig:distill_bounds}. 
 Numerical, ``optimal'', bounds $R_{\rm{opt}}$ obtained by considering the entirety of the Lorenz curves have been included in the plot as well, highlighting that the first elbow constraint does not capture the full capabilities of majorization.
 Notably, in contrast to the other bounds, $R_{\rm{opt}}$ depends explicitly on the copies $m,n$, rather than their ratio $m/n$, so it is specific to the process.
-An interesting question arises regarding the value of $R_{\rm{opt}}$ as $n,m \rightarrow \infty$, while $m/n$ remains constant.
+An interesting open question arises regarding the value of $R_{\rm{opt}}$ as $n,m \rightarrow \infty$, while $m/n$ remains constant.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.45]{figs/distill_bounds.pdf}
@@ -505,22 +506,18 @@ This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$
 \end{equation}
 where $d\mu(x)$ is a probability measure over a set $\{\tau'_x\}$ of single qudit states.
 
-To simplify our analysis we will make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated in $\sigma$ are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and so $\E(\tau) = \tau^{\prime \otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\tau'$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
+To simplify our analysis we will make the following assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ that correlations generated \nick{between states $\tau_x^\prime$} are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and so $\E(\tau) = \tau^{\prime \otimes m}$. Physically, this is a natural scenario -- for example, in the context of traditional thermodynamics, it states that the output system is well-described by intrinsic variables that are encoded in $\tau'$. Here, this assumption allows us to associate a free energy per qudit of the output state, which would be more complex if correlations are present.
 
-The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy. \ddd{[cite: look up papers by Marcus Mueller. He has about 3 or 4 on this. Also Mark Wilde has a paper on it]}
-
+The case of correlations between output subsystems can also be considered, but would lead to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular, it has been shown that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy~\cite{muller_2015, muller_2016, muller_2019}.
 
 Our analysis will depend on the energetic properties of the probe state $\tau$ and the output state $\tau'$.
-For the state $\tau = e^{-\beta H}/\Z$ we have the Helmholtz free energy $F$ given by
+For the state $\tau = e^{-\beta H}/\Z$, the Helmholtz free energy $F$ is given by
 \begin{equation}
 	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z},
 \end{equation}
-which is obtained from the internal energy via a Legendre transform \ddd{[cite books for $F$ details]}.
-
-
+which can be obtained from the internal energy via a Legendre transform~\cite{Pathria_1997}.
 
 As mentioned, we can quantify the energetic aspects of a given protocol by considering how it transforms a physical system in state with a clear notion of energy, such as a thermodynamic equilibrium state. The protocol transforms this state as $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$.  Since the protocol does not, on its own, generate magic the output state $\tau'$ is also a stabilizer state, provided that $\tau$ is as well. This is generally a non-equilibrium state for the system. However, the distillation bounds that we derive take a particularly simple form if we associate a Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This Hamiltonian is defined by the expression $\tau' = e^{-\beta H'}/\Z'$, and has free energy $F' = -\beta^{-1} \log \Z'$.
-
 
 This provides a simple means to specify energetic details of a protocol through how much it would disturb some reference equilibrium state. The approach, when combined with relative majorization, also allows us to derive magic distillation bounds that combine both the computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian of the physical system. As discussed in section~\nick{REF}, from the perspective of majorization the presence of magic can be viewed as a form of non-classical free energy and so it is also of interest to make an explicit link between the amount of magic in a non-equilibrium state $\rho_S(\epsilon)$ and the actual free energy of an equilibrium state $\tau(\beta)$. 
 
@@ -557,48 +554,48 @@ The primed variables are defined similarly for the output system.
 \end{theorem}
 The proof of this is provided in~\cref{free-energy-bound-proof}, and is a generalization of the analysis for unital protocols.
 
-The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `partition function' $\zeta$. While the coefficients $\alpha_k$ may be negative for some $k$, the quantity $\phi$ is always well-defined since the function $\zeta$ is proportional to the Wigner component $W_\tau(0,0)$, which is strictly positive.
+The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `magic partition function' $\zeta$. While the coefficients $\alpha_k$ may be negative for some $k$, the quantity $\phi$ is always well-defined, since the function $\zeta$ is a positive multiple of the stabilizer Wigner component $W_\tau(0,0)$.
 
 The sole purpose of the Clifford unitaries $C_1,C_2$ is to simplify the form of the $\alpha_k$ coefficients. For example, if $H=Z$ then the energy eigenbasis is equivalent to the computational basis up to a Fourier transform, and so $\phi$ would have a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$ once we account for the Clifford change in basis. 
 
-The above analysis makes simplifying assumptions that could easily be dropped, at the price of more complex expressions. For example, we can obtain general expressions without any assumptions on $\epsilon,\epsilon'$ or drop the Clifford change in basis. 
+The above bound demonstrates how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds.
+The analysis involved makes simplifying assumptions that could easily be dropped, at the price of more complex expressions. For example, we can obtain general expressions without any assumptions on $\epsilon, \epsilon'$ or without performing any Clifford change in basis.
 We could also perform similar analysis for general qudits, and different choices of magic states. It might also be of interest to consider other choices of reference states that may include more appropriate hardware physics, for example for photonic set-ups.
 
-The only non-trivial assumption is the assumption that we can ignore correlations in the thermodynamic limit. This is a common situation in thermodynamics, where correlations are often sub-linear in the particle number in the macroscopic limit. One could perturb about this scenario, and make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system, to obtain bounds in a similar form.
+The only assumption that cannot be trivially dropped is the assumption that we can ignore correlations in the thermodynamic limit. This is a common situation in thermodynamics, where correlations are often sub-linear in the particle number in the macroscopic limit. One could perturb about this scenario, and make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system, to obtain bounds in a similar form.
 
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
     \caption{\textbf{Temperature-dependent bounds for magic distillation.}
-  Shown is a contour plot of  $R(\epsilon, \beta)$ for $H=H'$, where $\beta$ is an inverse temperature and $\epsilon$ is the depolarising noise of the magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$.  The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star (\beta)$ for $\beta \leq \beta_\star$. The $\beta =0 $ line corresponds to the regime in which the magic protocol gives a unital channel.
+  Shown is a contour plot of  $R(\epsilon, \beta)$ for $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ the depolarising noise of the input magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$. The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star(\beta)$ for $\beta \leq \beta_\star$. \nick{Refer to definitions of starred quantities} The $\beta = 0$ line corresponds to the regime in which the magic protocol corresponds to a unital channel.
     }
     \label{fig:rate_contour}
 \end{figure}
-\subsection{Variation of bounds with physical parameters}
-The bounds derived are based on analysis of only part of the Lorenz curves and can be improved via a finer analysis.
-This is apparent by simple numerical calculations on the entirety of the curves as seen in~\cref{fig:distill_bounds} for the case of unital operations.
-Specifically, the existing bounds follow by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
 
-\nick{FIX} As a special case of the result, suppose that $H=H'$, implying that the protocol leaves the equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and we have a free energy difference between the initial and final states, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
+The bound derived is based on analysis of only part of the Lorenz curves and can be improved via a finer analysis.
+This is apparent by simple numerical calculations on the entirety of the curves as seen in~\cref{fig:distill_bounds} for the case of unital operations.
+Specifically, the existing bound follows by considering the dominant terms in the rescaled Wigner distribution and do not, for example, take into account the Lorenz curve's peak structure. 
+
+As a special case of the result, suppose that $H=H'$, implying that the protocol leaves the equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. We focus on the pure state distillation case, where $\epsilon' \rightarrow 0$, for which we obtain~\cref{fig:rate_contour}, a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and depolarising noise level $\epsilon$ for the initial noisy magic state.
+
+In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and we have a free energy difference between the initial and final states, with respect to the relevant Hamiltonians. This is similar to the free energy differences that occur in fluctuation relations, where the final state of the system can be arbitrarily far from equilibrium, yet a free energy term for the final system still arises.
 
 \ddd{[Need some numerics on varying the $F'$ case]}
-\nick{FIX} The above bounds mainly demonstrate how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds. However to unpack the results more it is useful to consider the case in which $H=H'$, and look at $\epsilon' \rightarrow 0$. For this we obtain~\cref{fig:rate_contour} which gives a contour plot of $R$ as a function of inverse temperature $\beta$ and depolarising noise level $\epsilon$ for the initial noisy magic state.
-
 
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
 \ddd{[Initial text. To be edited.]}
-We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds only exploited the very simplest aspects of the Lorenz curves of the quasi-distributions, and so it would be of interest to sharpen these bounds and exploit more of the structure in the asymptotic limit. This raises interesting questions that do no arise for probability distributions, because we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state the asymptotic behaviour is relatively simple and so one could study this and obtain a better handle on the $n\rightarrow \infty$ behaviour in a way. In appendix (\ddd{BLAH} we give some basic relations on this that could be explored further. \ddd{[where did the remainder term bounds go? People could potentially build on this]}
-
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds only exploited the very simplest aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and exploit more of the structure in the asymptotic limit. This raises interesting questions that do no arise for probability distributions, because we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state the asymptotic behaviour is relatively simple, so one could study this and obtain a better handle on the asymptotic behaviour ($n \rightarrow \infty$). An example of such a question was raised regarding the numerical bounds plotted in~\cref{fig:distill_bounds} for the unital fragment. In~\cref{app:lcsu_technical} we give some more extensive analysis in the unital fragment that could be explored further, while in~\cref{app:lcst_technical} we also provide some tools which are useful in all fragments.
 
 One might wonder if this approach could also provide \emph{lower bounds} for distillation protocols. Now, in contrast to the upper bounds, it is necessary to include the symplectic constraints on the phase space into the majorization relations.
 
-  For example, the Clifford group action on a quantum system corresponds to the action of the affine symplectic group \ddd{[cite Gross discrete Hudson paper, and some maths source on symplectic group]} on the discrete phase space. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. From the Hardy-Littlewood theorem \ddd{[cite]}, we know that traditional majorization is obtained from convex mixtures of arbitrary permutations. However this has been generalised to convex mixtures of elements of a group $G$ that acts on vectors. This $G$--majorization has been studied in the classical literature and a range of results are known about it \ddd{[cite papers]}. For example, if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions\ddd{[cite]}, just as happens for the full majorization ordering. One route is therefore to consider reflection sub-groups of the affine symplectic group, for which the majorization relation reduces to a finite set of conditions. This would therefore provide concrete lower bounds on distillation rates.
+For example, the Clifford group action on a quantum system corresponds to the action of the affine symplectic group~\cite{cit:gross3, cit:bengtsson} on the discrete phase space. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. From the Hardy-Littlewood theorem~\cite{hardy_1952}, we know that traditional majorization is obtained from convex mixtures of arbitrary permutations. However, this has been generalised to convex mixtures of elements of a group $G$ that acts on vectors. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of the affine symplectic, or just symplectic, group, for which the majorization relation reduces to a finite set of conditions.
   
-  The topic of $G$--majorization has been extensively studied, but to our knowledge there hasn't been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem \ddd{[cite stat-mech book, cite Matteo review]}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of constructing lower bounds for magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics and so automatically respect a symplectic form \ddd{[cite a stat-mech book]}. Therefore the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic thermo-majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect \ddd{[cite]} and so this is another regime in which these techniques might be of use.
+The topic of $G$--majorization has been extensively studied, but to our knowledge there hasn't been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{cit:lostaglio, Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of constructing lower bounds for magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics and so automatically respect a symplectic form~\cite{Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic thermo-majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is thus another regime where these techniques might be of use.
 
-Finally, it would be of interest to consider the possibility of applying these techniques to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations \ddd{[cite quantum optics reference, cite Ferrie review on quasi-reps]}
+Finally, it would be of interest to consider the possibility of applying these techniques to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

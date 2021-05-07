@@ -714,6 +714,26 @@ Now we can use~\cref{eq:lcsu_lcoord} to directly calculate
 \end{align*}
 and then compare them.
 
+With the help of this lemma, we directly arrive at 
+\begin{theorem}\label{thm:bounds_strict}
+	Given fixed positive integer $n$ and probability $p$, $\Phi_+, \Phi_-$ satisfy the following bounds:
+	\begin{align*}
+		\begin{split}
+		&\text{1. } \Phi_+(m; n, p) \geq \sum\limits_{\ell=0}^{m/2}\left[ 16\ell\left(1-\frac{2\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } m\in [2,n] \\
+		&\text{2. } \Phi_+(m; n, p) \leq \sum\limits_{\ell=0}^{m/2}\left[ 4\pi\ell\left(1-\frac{2\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{-n\ent{\frac{2\ell}{n}}{p}}, \\
+		&\hspace{14pt} \text{for all even } a\in [2,n] \\
+		&\text{3. } \Phi_-(m; n, p) \geq \sum\limits_{\ell=1}^{(m-1)/2}\left[ 16(\ell+1)\left(1-\frac{2\ell+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{n}}{p}},\ \text{for all odd }a\in [1,n] \\
+		&\text{4. } \Phi_-(m; n, p) \leq \sum\limits_{\ell=1}^{(m-1)/2}\left[ 4\pi(\ell+1)\left(1-\frac{2\ell+1}{n}\right) \right]^{-\frac{1}{2}} \times \\
+		&\hspace{14pt} \times 2^{-n\ent{\frac{2\ell+1}{n}}{p}},\ \text{for all odd } a\in [1,n]
+		\end{split}
+	\end{align*}
+\end{theorem}
+\begin{proof}
+	All four statements follow from application of~\cref{lem:comb_bounds} on the combinatorial coefficient and the defintion of relative entropy given in~\cref{eq:ent_rel}
+\end{proof}
+
 \null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -832,6 +852,78 @@ Similarly in this scenario,
 		x_0 &= \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^n = \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n-n'} \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n'} \\
 		&\leq \left(\dfrac{e^{-\beta E_{\rm{max}}}}{\Z_\beta}\right)^{n'} = x_0'	
 	\end{align*}
+	
+\subsection{Deriving distillation bounds from the last elbow}
+\label{sec:last_elb}
+
+\nick{RESTRUCTURE}
+
+To find the coordinates of the \textbf{last} elbow $(x_E, L_E)$, where $E$ is the number of elbows, we need to evaluate the minimum rescaled component,
+\begin{align}
+	&\bmw(\rho_{\rm{S}} | \sigma)_{\rm{min}} \coloneqq (3\Z)^{n}\times \nonumber\\
+	&\min\limits_{i,j,k}\Big\{ (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_0} e^{\beta ( i E_0 + j E_1 + k E_2 )} \Big\}, \label{eq:min_slope}
+\end{align}
+where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
+Notice that for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. 
+We need the sum $\alpha = i+j+k$ to be odd for the expression to be negative.
+
+Given an odd value for the sum $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_0}$ is fixed (and negative), so the expression is minimised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
+Hence, we have
+\begin{align}
+	&\bmw(\rho_{\rm{S}} | \sigma)_{\rm{min}} = \nonumber\\
+	&-(3\Z)^{n} v^n e^{n\beta E_0}\max\limits_{\substack{\alpha = 1,3, \\ \dots,n-1}}{\Big\{ \left( \frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)} \right)^{\alpha} \Big\}}.
+\end{align}
+If the expression $\frac{u}{v} e^{\beta (E_{\rm{max}} - E_0)}$ is less than $1$ then the minimum occurs at $\alpha=1$, otherwise it occurs at $\alpha = n-1$.
+
+The minimum rescaled component can then be expressed as
+\begin{equation}
+\bmw(\rho_{\rm{S}} | \sigma)_{\rm{min}} =
+	\begin{cases}
+		-(3\Z)^{n} v^{n-1} u e^{\beta [(n-1)E_0 + E_{\rm{max}}]}, &\epsilon \leq \epsilon_{\star},\ \hspace{3pt}\rm{(C1)}	\\
+		-(3\Z)^{n} v u^{n-1} e^{\beta [E_0 + (n-1)E_{\rm{max}}]}, &\epsilon > \epsilon_{\star}.\ \hspace{5pt}\rm{(C2)} 
+	\end{cases}
+\end{equation}
+Case $\rm{(C1)}$ can correspond to $(i,j,k) = (1,0,0)$ if $E_{\rm{max}} = E_0$, when the multiplicity is $m_{100} = 2n$ and the corresponding Wigner components are $\bmw(\rho_{\rm{S}})_{100}, \bmw(\sigma)_{100}$ or it can correspond to $(i,j,k) = (0,1,0)$ ($(i,j,k) = (0,0,1)$), if $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$), when the multiplicity is $m_{010} = 3n$ ($m_{001} = 3n$) and the corresponding Wigner components are $\bmw(\rho_{\rm{S}})_{010}, \bmw(\sigma)_{010}$ ($\bmw(\rho_{\rm{S}})_{001}, \bmw(\sigma)_{001}$).
+Case $\rm{(C2)}$ corresponds to $(i,j,k) = (0,n-1,0)$ ($(i,j,k) = (0,0,n-1)$)
+if we have $E_{\rm{max}} = E_1$ ($E_{\rm{max}} = E_2$), when the multiplicity is $m_{0,n-1,0} = 3^{n-1}n$ ($m_{0,0,n-1} = 3^{n-1}n$) and the corresponding Wigner components are $\bmw(\rho_{\rm{S}})_{0,n-1,0}, \bmw(\sigma)_{0,n-1,0}$ ($\bmw(\rho_{\rm{S}})_{0,0,n-1}, \bmw(\sigma)_{0,0,n-1}$).
+
+The last elbow coordinates can finally be derived by sutracting the appropriate rescaled component from 1, $(x_E, L_E) =$
+\begin{equation}\label{eq:last_elb_coords}
+	\begin{cases}
+		&\left( 1-\dfrac{2n}{(3\Z_\beta)^n}e^{-\beta [(n-1)E_0 + E_{\rm{max}}]},\ 1 + 2n v^{n-1} u \right), \vspace{5pt}\\
+		&\hspace{5pt} \text{if } E_{\rm{max}} = E_0, \hspace{51pt}\rm{(C1a)} \vspace{10pt}\\
+		&\left( 1-\dfrac{3n}{(3\Z_\beta)^n}e^{-\beta [(n-1)E_0 + E_{\rm{max}}]},\ 1 + 3n v^{n-1} u \right), \vspace{5pt}\\
+		&\hspace{5pt} \text{if } E_{\rm{max}} > E_0, \epsilon \leq \epsilon_{\star}, \hspace{20pt}\rm{(C1b)} \vspace{10pt}\\
+		&\left( 1-\dfrac{n}{3\Z_\beta^n}e^{-\beta [E_0 + (n-1)E_{\rm{max}}]},\ 1 + 3^{n-1}n v u^{n-1} \right), \vspace{5pt}\\
+		&\hspace{5pt} \text{if } E_{\rm{max}} > E_0, \epsilon \geq \epsilon_{\star}. \hspace{22pt}\rm{(C2)}
+	\end{cases}
+\end{equation}
+
+Assuming that $E_{\rm{max}} > E_0$ for clarity, we have the same three scenarios as in the case of the first elbow bound:
+\begin{enumerate}
+	\item $\rm{(C1)} \rightarrow \rm{(C1)}$ if $\beta < \beta_{\star}$ and $\epsilon' < \epsilon  \leq \epsilon_{\star}$.
+	\item $\rm{(C2)} \rightarrow \rm{(C1)}$ if $\beta < \beta_{\star}$ and $\epsilon' \leq \epsilon_{\star} < \epsilon$.
+	\item $\rm{(C2)} \rightarrow \rm{(C2)}$ if $\beta < \beta_{\star}$ and $\epsilon_{\star} \leq \epsilon' < \epsilon$ or $\beta \geq \beta_{\star}$.
+\end{enumerate}
+Now using last elbow constraint, derived in~\cref{app:elb_constraints}, we can calculate new distillation bounds.
+The last elbow bounds can be rephrased in terms of the first elbow bound, leading to $R_{\rm{last-elb}} - R_{\rm{first-elb}} = $
+\begin{equation}\label{eq:last_elb_coords}
+	\begin{cases}
+		\dfrac{1}{n} \dfrac{\log{\frac{u(\epsilon)v(\epsilon')}{u(\epsilon')v(\epsilon)}}}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C1)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon)v(\epsilon')}{u(\epsilon)u(\epsilon')}} - 2\beta(E_{\rm{max}} - E_0)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E_0 - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C1)}, \vspace{10pt}\\
+		\dfrac{1}{n} \dfrac{\log{\frac{v(\epsilon')u(\epsilon')}{v(\epsilon')u(\epsilon)}}}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E_{\rm{max}} - F(\beta))},\ &\rm{(C2)} \rightarrow \rm{(C2)}, 
+	\end{cases}
+\end{equation}
+
+Note that the last elbow bounds have a dependence on $n$, which interestingly is due to $n$ being even.
+Had we considered \textbf{odd} number of copies $n$, then the first elbow bound would depend on $n$ and the last elbow bound would not.
+This, along with the unital fragment analysis, makes me think that calculating the bounds again for odd $n$ or $\epsilon > 3/7$ would reveal nice symmetries of the analysis, but it's probably not worth the time, so including last elbow analysis properly feels incomplete.
+
+Determining the sign of the difference between the last and first elbow bounds tells us which bound is better.
+The term $\log{\frac{u(\epsilon)v(\epsilon')}{u(\epsilon')v(\epsilon)}}$ is always positive for $\epsilon > \epsilon'$, therefore the last elbow bound, compared to the first elbow bound, is always \textbf{worse} in the first scenario and always \textbf{better} in the third scenario (remember, this is the yellow-ish right part of~\cref{fig:rate_contour}).
+
+In the second scenario ($\rm{(C2)} \rightarrow \rm{(C1)}$), the expression looks very weird to me, seems like the difference tends to $-\infty$ as $E_{\rm{max}} \rightarrow \infty$.
+I am a bit stuck with this expression and I am not sure it's worth putting more time in it.
 
 
 
