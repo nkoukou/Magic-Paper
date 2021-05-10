@@ -18,7 +18,7 @@ reprint
 
 % Notation consistency
 % UK vs US english
-% Spacing (fig positioning, sections, paragraphs, eq. numbering, QED symbols)
+% Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
 \begin{abstract}
 \ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
@@ -490,7 +490,7 @@ We now consider a magic distillation protocol on multiple identical qudits in a 
 \begin{equation}
 \rho(\epsilon)^{\otimes n} \longrightarrow \E(\rho(\epsilon)^{\otimes n}) =\rho(\epsilon')^{\otimes m}
 \end{equation}
-with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key idea is that the physical measures associated with this protocol are determined by how $\E$ would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
+with $n \gg 1$ \nick{Should we replace $m$ with $R n$ throughout?}, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key idea is that the physical measures associated with this protocol are determined by how $\E$ would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
 
 More precisely, we assume each qudit has Hamiltonian $H$ and we choose some temperature $T = (k\beta)^{-1}$ where $k$ is Boltzmann's constant and $\beta$ the inverse temperature. The reference equilibrium state of the $n$ qudits is given by
 \begin{equation}
@@ -529,7 +529,7 @@ Given this account we now state the following result for the case of $d=3$ qutri
 	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
 	
 	Let $T =(k\beta)^{-1}$ be any finite temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
-Assume that in the thermodynamic limit the protocol applied to $\tau^{\otimes n}$, gives $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$ for $n,m \gg 1$, and write the state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
 Then the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
 \begin{equation}\label{eq:rate_bounds_proof}
@@ -542,15 +542,15 @@ where $F$ is the free energy of $\tau$,  and
 with $\zeta$ given by the expressions
 \begin{align}
 	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
-	\alpha_k &= \sum_{r \in \mathbb{Z}_3} \<E_k| A_{\x_\star} |E_k\>,
+	\alpha_k &= \<E_k| A_{\x_\star} |E_k\>,
 \end{align}
-with $\x_\star = \mbox{argmin}[W_\tau( \x )]$. The primed variables are defined similarly for the output system.
+and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similarly for the output system.
 \end{theorem}
-The proof of this is provided in~\cref{free-energy-bound-proof}, and is a generalization of the analysis for unital protocols.
+\noindent The proof of this is provided in~\cref{free-energy-bound-proof}, and is a generalization of the analysis for unital protocols.
 
 The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `magic partition function' $\zeta$. The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian eigen-decomposes into non-stabilizer states, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is a positive multiple of the stabilizer Wigner component $W_\tau(0,0)$, as seen in the proof of the theorem.
 
-The sole purpose of the Clifford unitaries $C_1,C_2$ is to simplify the form of the $\alpha_k$ coefficients. For example, if $H=Z$ then the energy eigenbasis is equivalent to the computational basis up to a Fourier transform, and so $\phi$ would have a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$ once we account for the Clifford change in basis. 
+The sole purpose of the Clifford unitaries $C_1,C_2$ is to simplify the form of the $\alpha_k$ coefficients. \nick{That's not right, without Clifford processing we would get bounds that depend on $u$ whenever $\x_\star$ corresponds to $u$, as well as $v$ whenever $\x_\star$ corresponds to $v$ as seen in the contour plot - these are different values} For example, if $H=Z$ then the energy eigenbasis is equivalent to the computational basis up to a Fourier transform, and so $\phi$ would have a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$ once we account for the Clifford change in basis. 
 
 The above bound demonstrates how one can use relative majorization of quasi-distributions to incorporate additional information into distillation bounds.
 The analysis involved makes simplifying assumptions that could easily be dropped, at the price of more complex expressions. For example, we can obtain general expressions without any assumptions on $\epsilon, \epsilon'$ or without performing any Clifford change in basis.
@@ -562,7 +562,7 @@ The only assumption that cannot be trivially dropped is the assumption that we c
     \centering
     \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
     \caption{\textbf{Temperature-dependent bounds for magic distillation.}
-  Shown is a contour plot of  $R(\epsilon, \beta)$ for $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ the depolarising noise of the input magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$. The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star(\beta)$ for $\beta \leq \beta_\star$. \nick{Refer to definitions of starred quantities} The $\beta = 0$ line corresponds to the regime in which the magic protocol corresponds to a unital channel.
+  Shown is a contour plot of the bound on $R(\epsilon, \beta)$ for $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ the depolarising noise of the input magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$. The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star(\beta)$ for $\beta \leq \beta_\star$. \nick{Refer to definitions of starred quantities} The $\beta = 0$ line corresponds to the regime in which the magic protocol corresponds to a unital channel.
     }
     \label{fig:rate_contour}
 \end{figure}
@@ -684,7 +684,7 @@ The following result is used in the text to relate relative majorization of quas
 &\left( \sum_{i=1}^kr_{\pi(i)}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)} \right) = \\ 
 &\left( \sum_{i=1}^k r_{\pi(i)},a \sum_{i=1}^k  p_{\pi(i)} + b\sum_{i=1}^k r_{\pi(i)} \right) \nonumber,
 \end{align*}
-therefore the value of the Lorenz function at each potential elbow point $x_k = \sum_{i=1} ^kr_{\pi(i)}$ is given by
+so the value of the Lorenz curve at each potential elbow point $x_k = \sum_{i=1} ^kr_{\pi(i)}$ is given by
 \begin{align}
 &L_{a \p +b \r|\r} (x_k) = a L_{\p|\r} (x_k) + b L_{\r|\r}(x_k) = \nonumber\\
 &a L_{\p|\r} (x_k) + b x_k,
@@ -1113,12 +1113,14 @@ The process is then possible only if $L_\star \geq L'_E$ which is again a rearra
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
 
-\begin{lemma}Let $\tau_A, \tau_B$ be full rank stabilizer states on systems $A$ and $B$, and let $\rho_A, \rho_B$ be arbitrary states on $A,B$. Then the rescaled quasi-distribution obeys
+\nick{FIX}
+The above analysis also holds for rescaled distributions, as they are also multiplicative.
+\begin{proposition}Let $\tau_A, \tau_B$ be full rank stabilizer states on systems $A$ and $B$, and let $\rho_A, \rho_B$ be arbitrary states on $A,B$. Then the rescaled quasi-distribution obeys
 \begin{equation}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) =W_{\rho_A | \tau_A}(\x_A) W_{\rho_B | \tau_B}(\x_B)
 \end{equation}
-\end{lemma}
-\begin{proof} This follows from the definitions. 
+\end{proposition}
+\begin{proof} This follows from the multiplicative property of the Wigner distribution. 
 \begin{align}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) &= \frac{W_{\rho_A \otimes \rho_B} (\x_A \oplus \x_B)}{W_{\tau_A \otimes \tau_B} (\x_A \oplus \x_B)}\nonumber \\
  &= \frac{W_{\rho_A } (\x_A )W_{\rho_B } (\x_B )}{W_{\tau_A } (\x_A )W_{\tau_B } (\x_B )}\nonumber \\
@@ -1157,7 +1159,7 @@ Note that the rescaled distribution is also multiplicative, so a complete set of
 
 Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$--copy distribution $\W{\rho}^{\otimes n}$.
 \begin{lemma}\label{lem:ncopycomponents}
-	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by taking the $n$-fold (Kronecker) product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
+	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by the $n$-fold (Kronecker) product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
 	
 	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
 	\begin{equation*}
@@ -1240,9 +1242,9 @@ where $F$ is the free energy of $\tau$,  and
 with $\zeta$ given by the expressions
 \begin{align}
 	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
-	\alpha_k &= \sum_{r \in \mathbb{Z}_3} \<E_k| A_{\x_\star} |E_k\>,
+	\alpha_k &= \<E_k| A_{\x_\star} |E_k\>,
 \end{align}
-with $\x_\star = \mbox{argmin}[W_\tau( \x )]$. The primed variables are defined similarly for the output system.
+with $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similarly for the output system.
 \end{theorem}
 
 
@@ -1282,7 +1284,7 @@ The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is
 
 Assume that the smallest component of the distribution $W_\tau(\x)$ is at $\x=\x_\star$. Since the magic content of the state is unchanged under a Clifford unitary $C$, we can instead consider the state
 \begin{equation}
-\rho_S(\epsilon) \rightarrow C \rho_S(\epsilon) C^\dagger = D_{x_\star} \rho_S(\epsilon) D_{x_\star}^\dagger,
+\rho_S(\epsilon) \rightarrow C \rho_S(\epsilon) C^\dagger = D_{\x_\star} \rho_S(\epsilon) D_{\x_\star}^\dagger,
 \end{equation}
 which has its single negative Wigner component $-v(\epsilon)$ at the point $\x_\star$.
 
@@ -1320,7 +1322,7 @@ we can re-express the coordinate location, by writing
 where we define
 \begin{align}
 \alpha_k := \<E_k |A_{\x_\star} |E_k\> \\
-\zeta :=  \sum_{r \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
+\zeta :=  \sum_{k \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
 \end{align}
 and the `magic free energy' term $\phi := -\beta^{-1} \log \zeta$.
 Therefore, the coordinates can be expressed as
