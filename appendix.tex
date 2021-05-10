@@ -607,6 +607,7 @@ Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set o
 
 %Index vector $\bmk$ has $D-1$ independent components and in the proof of our main theorem in~\cref{sec:stab} we have $D=4$, so we simplify the notation by writing the component and multiplicity vectors of the $n$--copy state distributions as $m_{ijk}, w(\rho_{\rm{S}})_{ijk}, w(\sigma)_{ijk}$ and $w(\rho_{\rm{S}}|\sigma)_{ijk}$, where $i,j,k$ are the 3 independent index components.
 
+\newpage
 \subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
 \label{app:main_proof}
 Here we prove~\cref{thm:free-energy}, which bounds magic distillation rates in terms of free energies.
@@ -641,7 +642,7 @@ The primed variables are defined similarly for the output system.
 \begin{proof}	
 For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$. 
 
-To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho_m$ for the magic states. 
+To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho'_m$ for the magic states. 
 We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \tau'_m$.
 Since $\tau$ and $\tau'$ are assumed to be full rank stabilizer states, they have a strictly positive Wigner distribution, while, in contrast, the input and output magic states generally have quasi-probability Wigner distributions. 
 For any such protocol we therefore have that
@@ -668,15 +669,11 @@ where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^n$ is the phase space point for
 
 The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
 However, similarly to the unital fragment analysis, we aim to use the constraint that is obtained by considering the line segment connecting the origin to the first elbow of both Lorenz curves.
-The proof of this constraint is provided in~\cref{app:elb_constraints}.
-Therefore, we focus on finding the coordinates of some point on this line segment of the Lorenz curves.
 
-We find the coordinates for the input Lorenz curve, but the exact same analysis can be applied on the output Lorenz curve.
 The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(0,0) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
 The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
-We keep the components completely general.
 
-Assume that the smallest component of the equilibrium state distribution is $W_{\tau}(i,j)$.
+Assume that the smallest component of the distribution $W_\tau(\x)$ is at $x=\x_\star$.
 We then make use of the freedom to apply Clifford unitaries in order to perform the  Clifford operation
 \begin{equation}
 	\tau \longrightarrow X^{-i}Z^{-j}\ \tau\ Z^{j}X^{i},
