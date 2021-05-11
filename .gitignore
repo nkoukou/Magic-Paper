@@ -2,6 +2,7 @@ magic_paperNotes.bib
 
 *.pdf
 !figs/*.pdf
+!figs/test/*.pdf
 *.aux 
 *.bit 
 *.blg 
