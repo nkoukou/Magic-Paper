@@ -10,13 +10,10 @@ reprint
 \input{preamble}
 
 \begin{document}
-% Write bounds as 1 + ln{}/{} or 1 - (-ln{})/{} ?
-% Labels and Refs (theorems vs lemmas vs propositions)
-% R: rate vs bound ?
-% Appendices: clean-up
+% Labels and Refs (consistency, thm vs lem vs prop)
 % Figs check(fig.0, move to app, consistency)
 
-% Notation consistency
+% Notation consistency (R is rate not bound, ket vs |> etc, \ln{} -> \ln ,)
 % UK vs US english
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
@@ -71,7 +68,7 @@ Finally, we discuss how our approach could be improved and how it can be exploit
 	Constraints on the efficiency of the protocol can be imposed by considering its action on an separate probe state $\tau$.
 	\nick{How do we improve the illustration?}
     }
-    \label{fig:zoo}
+    \label{fig:sketch}
 \end{figure}
 
 \section{Phase space representations of quantum states}
@@ -683,9 +680,9 @@ Here, we present basic properties of the phase-point operators and the Wigner di
 All properties follow from the definition in~\cref{eq:ax} along with properties of the displacement operator $D_{\bmx}$ and can be found in the literature, e.g.~\cite{cit:veitch,Vourdas_2004,cit:gross3}
 
 \begin{proposition}\label{thm:wstate}
-  The Wigner distribution of a state $\rho \in \cal{B}(\cal{H}_d)$ is
+  The state Wigner distribution is
   \begin{enumerate}
-    \item[(i)]\label{en:w1} Real valued: $\W{\rho} \in \mathbb{R}^{d^2}$;
+    \item[(i)]\label{en:w1} Real valued: $\W{\rho}(\bmx) \in \mathbb{R}^{d^2}$;
     \item[(ii)]\label{en:w2} Normalised: $\sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho}=1$;
     \item[(iii)]\label{en:w3} Bounded: $\abs{\W[\bmx]{\rho}} \leq \frac{1}{d}$.
     \item[(iv)]\label{en:w4} Additive under mixing: \vspace{2pt}\\
@@ -714,7 +711,7 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
         \item[(ii)]\label{en:wo2} Normalised: $\sum_{\bmz \in \cal{P}_{d_B}} \W[\bmz|\bmx]{\E} = 1$ \\ 
         for any $\bmx \in \cal{P}_{d_A}$;
         \item[(iii)]\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmx]{\E}} \leq \frac{d_A}{d_B}$;
-	    \item[(iv)]\label{en:wo4} $\W[\bmy]{\E(\rho)} = \sum_{\bmz \in \cal{P}_{d_A}} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \cal{P}_{d_B}$.
+	    \item[(iv)]\label{en:wo4} $\W[\bmy]{\E(\rho)} = \sum\limits_{\bmz \in \cal{P}_{d_{A}}} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \cal{P}_{d_B}$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -726,7 +723,7 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
 \section{Properties of majorization}
 \label{app:major}
 	
-We now give the following equivalent formulations of $d$--majorization. 
+We now give the following equivalent formulations of relative majorization. 
 
 \begin{proposition}\label{prop:rmajor}
 Given probability distributions $\bmx, \bmy$, $\r , \r'$, such that the components of $\r$ and $\r'$ are positive, the following statements are equivalent:
@@ -736,7 +733,7 @@ Given probability distributions $\bmx, \bmy$, $\r , \r'$, such that the componen
     \item[(iii)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r'}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r'}(1)$.
   \end{enumerate}
 \end{proposition}
-The proofs for these can be found in~\cite{cit:marshall,cit:bhatia,cit:nielsen,cit:lostaglio} and references therein.
+The proofs for these can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2016,Buscemi_2017} and references therein.
 
 The following result is used in the text to relate relative majorization of quasi-distributions to their Lorenz curves.
 \begin{proposition}\label{lemma:Lorenz_linearity}
@@ -758,7 +755,7 @@ so we have $L_{a\p  + b\r|\r} (x) = a L_{\p |\r}(x) + b x$ for any $x \in [0,1]$
 
 Within the context of the Wigner representation, we define the re-scaled quasi-distribution
 \begin{equation}
-	W_{\rho| \tau} (\x) := \frac{W_\rho (\x) }{ W_\tau(\x)},
+	W_{\rho|\tau}(\x) := \frac{W_\rho (\x) }{ W_\tau(\x)},
 \end{equation}
 which is well-defined if $\tau$ is a full-rank stabilizer state.
 
@@ -769,7 +766,7 @@ The following lemma shows that the re-scaled Lorenz curves behave in a natural w
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) =W_{\rho_A | \tau_A}(\x_A) W_{\rho_B | \tau_B}(\x_B)
 \end{equation}
 \end{proposition}
-\begin{proof} This follows from the definitions. 
+\begin{proof} This follows from the multiplicativity of the Wigner distribution. 
 \begin{align}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) &= \frac{W_{\rho_A \otimes \rho_B} (\x_A \oplus \x_B)}{W_{\tau_A \otimes \tau_B} (\x_A \oplus \x_B)}\nonumber \\
  &= \frac{W_{\rho_A } (\x_A )W_{\rho_B } (\x_B )}{W_{\tau_A } (\x_A )W_{\tau_B } (\x_B )}\nonumber \\
@@ -778,17 +775,20 @@ W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) &= \frac
 as claimed.
 \end{proof}
 
-\begin{theorem*}
+We now prove the following result, which was stated in~\cref{sec:monotones_frag}.
+
+\begingroup
+\def\thetheorem{\ref{lem:lcmax}}
+\begin{theorem}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
-\end{theorem*}
+\end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 \begin{proof}
-	We denote the Wigner distributions of the states single-component vectors $\w(\rho)=W_\rho(x)$ and $ \w(\sigma)=W_\sigma(x)$. Likewise, we define
-	\begin{equation}
-\w(\rho|\sigma) = \frac{W_\rho (\x)}{W_{\sigma}(\x)}.
-\end{equation}
+	We denote the Wigner distributions of the states single-component vectors $\w(\rho)=W_\rho(x)$ and $ \w(\sigma)=W_\sigma(x)$. Likewise, we write $\w(\rho|\sigma) = W_{\rho|\tau}(\x)$.
 	We choose the component indexing so that $\w(\rho|\sigma)^\downarrow = \w(\rho|\sigma)=:\tilde{\w}$ and so the components are sorted in non-increasing order.
 
-Note that all components of $\bmw(\sigma)$ are positive, so $\widetilde{w}_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
+Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
 	
 	Let $i_\star$ be the index of the smallest non-negative component of $\widetilde{\bmw}^\downarrow$.
 	Then, $w(\rho)_i < 0$ if and only if $i > i_\star$, so the maximum of Lorenz curve $\lc{\rho}{\sigma}(x)$ takes the value 
@@ -803,7 +803,7 @@ Note that all components of $\bmw(\sigma)$ are positive, so $\widetilde{w}_i \ge
 	The location of the maximum ($x=x_{i_\star}$) varies from fragment to fragment, but its value is independent of $\sigma$,
 	\begin{align}
 	L_\star &:=	\lc{\rho}{\sigma}(x_{i_\star}) 
-		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0} \W[\bmx]{\rho} \nonumber \\
+		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0}\hspace{-5pt} \W[\bmx]{\rho} \nonumber \\
 		&= 1 + \sn{\rho}.
 	\end{align}
 	
@@ -812,27 +812,155 @@ Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{ma
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Technical properties of $\sigma$--fragments}
+\section{Technical properties of Lorenz curves and $\sigma$--fragments}
 \label{app:frag}
 
-In this section, we discuss some technical aspects of general $\sigma$--fragments.
 
-We first prove a result on the independence of the Lorenz curve constraints, stated in~\cref{sec:major_frag}.
+
+\subsection{First elbow constraints}
+\label{app:elb_constraints}
+Here we prove a simple majorization constraint, arising by considering only the ascending part of the Lorenz curves between the origin $(0,0)$ and the first elbow.
+\begin{proposition}\label{prop:first_elb}
+	Consider a magic state process $\rho \longrightarrow \rho'$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ and denote the coordinates of the first elbow of $L_{\rho|\sigma}(x)$ by $(X_0, L_0)$ and the coordinates of the first elbow of $L_{\rho' |\sigma'}(x)$ by $(X'_0, L'_0)$.
+	
+Then, given any coordinates $(x, L)$ and $(x', L')$ of the input and output Lorenz curves respectively, where $0 < x \leq X_0$ and $0 < x' \leq X'_0$, the process is possible only if
+\begin{equation}\label{eq:first_elb_bound1}
+	\frac{L}{x} \geq \frac{L'}{x'}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Since both pairs of coordinates are located between $(0,0)$ and the first elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the origin and the appropriate pair of coordinates.
+
+First assume that $x < x'$.
+Then, point $(x, L_{\rho'|\sigma'}(x))$ lies on the lines segment connecting $(0,0)$ and $(x', L')$, so by interpolating between points $(0,0)$ and $(x', L')$, we find that
+\begin{equation}
+	L_{\rho'|\sigma'}(x) = \frac{x}{x'}L'.
+\end{equation}
+Considering the Lorenz curve constraint at $x$, the process is possible only if 
+\begin{equation}
+	L = \lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x) = \frac{x}{x'}L',
+\end{equation}
+which is a rearrangement of~\cref{eq:first_elb_bound1}.
+
+If instead, $x \geq x'$, the point $(x', L_{\rho|\sigma}(x'))$ lies on the lines segment connecting $(0,0)$ and $(x, L)$, so by interpolating between points $(0,0)$ and $(x, L)$, we find that
+\begin{equation}
+	L_{\rho|\sigma}(x') = \frac{x'}{x}L.
+\end{equation}
+Considering the Lorenz curve constraint at $x'$, the process is possible only if 
+\begin{equation}
+	\frac{x'}{x}L = \lc{\rho}{\sigma}(x') \geq \lc{\rho'}{\sigma'}(x) = L',
+\end{equation}
+which is again a rearrangement of~\cref{eq:first_elb_bound1}.
+\end{proof}
+
+\subsection{Component-multiplicity pairs}
+\label{app:cmpairs}
+
+In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}(\bmx)$. 
+The distribution $\W{\rho}(\bmx)$ is defined on the phase space, but it can be convenient to re-express this using vector notation. 
+
+To each Wigner distribution $W_\rho(\x)$ we can associate \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\x)$ with multiplicity $m_i$.
+
+As an example, for the Strange state with
+\begin{equation}
+W_{\rho_S}(\x) = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
+\end{equation}
+we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example, the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}(\x)$.
+
+This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
+\begin{lemma}
+Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multiplicity pairs 
+\begin{equation}
+	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
+\end{equation}
+respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
+\end{lemma}
+
+This is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
+\begin{equation*}
+	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2,
+\end{equation*}
+so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$ and no more.
+
+In the case of distillation protocols, we are interested in $n$--copies of a single Wigner distribution. For this, we have the following result, which follows from combinatorics.
+
+\begin{lemma}\label{ncopy_components}
+	Suppose $W_\rho(\x)$ has $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, where $\q$ runs through all $K$-component vectors with non-negative integer components that sum to $n$, and
+\begin{align}
+W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
+M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}, \label{eq:M}
+\end{align}
+where the term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient.
+\end{lemma}
+\begin{proof}
+	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
+	\begin{equation*}
+	0 \leq k_1, \dots, k_D \leq n \text{ and } k_1 + \dots + k_D = n.
+	\end{equation*}
+	
+	We proceed by induction.	
+	Assume $n = 1$ and let $\bmk_i$ be the vector with its $i$-th component equal to 1 and 0's elsewhere.
+	The set $C_D^1$ consists of all vectors of this form, i.e. 
+\begin{equation*}
+	C_D^1 = \{ \bmk_i \}_{i=1,\dots,D}
+\end{equation*}
+	It is also true by direct calculation that
+\begin{equation*}
+	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
+\end{equation*}
+Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
+
+	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
+	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
+\begin{equation}
+	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
+\end{equation}
+	
+	Consider the component sum of the distribution $W^{\otimes (n+1)}$,
+\begin{align*}
+	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
+	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
+	&\left( \sum_{i=1}^D m_i w_i \right)^n \left( \sum_{i=1}^D m_i w_i \right) = \left( \sum_{i=1}^D m_i w_i \right)^{n+1} =\\
+	&\sum_{\bmq \in C_D^{n+1}} M_{\bmq}W_{\bmq},
+\end{align*}
+where in the last expression, vectors $\bmq = (q_1, \dots, q_D)$ have non-negative integer components that sum to $(n+1)$ and 
+\begin{align*}
+	M_{\bmq} &= \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i},\\
+	W_{\bmq} &= \prod\limits_{i=1}^D {w_i}^{q_i}.
+\end{align*}
+We have used the multinomial theorem to proceed between lines 2-3 and lines 3-4 of the derivation.
+
+We have achieved a regrouping of the distribution components.
+Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
+\begin{align*}
+	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
+	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{n+1},
+\end{align*}
+which is the dimension of $W^{\otimes (n+1)}$.
+
+Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$ and no more, completing the proof.
+\end{proof}
+
+The rescaled distribution is also multiplicative, so a set of component-multiplicity pairs can be obtained for the $n$-copy rescaled distribution in the same fashion as for usual Wigner distributions.
+
+\subsection{Lorenz curve constraint independence}
+
+We now prove a result on the independence of the Lorenz curve constraints, stated in~\cref{sec:major_frag}.
 \begin{proposition}\label{thm:elbows}
-	Let $\rho, \tau$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in the $\sigma$--fragment.
+	Let $\rho, \rho'$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ in the $\sigma$--fragment.
 	
-	Let $t$ be the number of elbows of $\lc{\tau}{\sigma}(x)$ at locations $x_1, \dots, x_t$.
+	Let $t$ be the number of elbows of $\lc{\rho'}{\sigma'}(x)$ at locations $x_1, \dots, x_t$.
 	
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i =1,\dots,t$.
+	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i =1,\dots,t$.
 \end{proposition}
 \begin{proof}	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\tau}{\sigma}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,n'$.
+	$\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i = 1,\dots,n'$.
 	
-	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\tau}{\sigma}(x_{i})$ for all $i = 1,\dots,r$.
-	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\tau}{\sigma}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\tau}{\sigma}(x_{n'+1}) = 1$.
+	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i = 1,\dots,r$.
+	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\rho'}{\sigma'}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\rho'}{\sigma'}(x_{n'+1}) = 1$.
 	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
 	
-	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\tau(x)$ connecting points $(x_{i}, \lc{\tau}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\tau}{\sigma}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
+	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\rho'(x)$ connecting points $(x_{i}, \lc{\rho'}{\sigma'}(x_{i}))$ and $(x_{i+1}, \lc{\rho'}{\sigma'}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
 	This is illustrated in~\cref{fig:elbows_proof}.
 \begin{figure}[h]
     \centering
@@ -842,10 +970,12 @@ We first prove a result on the independence of the Lorenz curve constraints, sta
     \label{fig:elbows_proof}
 \end{figure}
 
-	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\tau(x) = \lc{\tau}{\sigma}(x)$.
+	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\rho'(x) = \lc{\rho'}{\sigma}(x)$.
 	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
 \end{proof}
 The above theorem can be used in reducing the necessary distillation constraints derived via majorization in $\sigma$--fragments.
+
+\subsection{Technical properties of $\sigma$--fragments}
 
 \begin{proposition}\label{thm:frag_app}
     Let $\R = (\F, \O)$ be a magic theory and $\sigma, \sigma' \in \F$. The following statements hold:
@@ -899,7 +1029,7 @@ It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not corr
 
 \subsection{Binomial distributions and error bounds}\label{app:phi}
 Consider an experiment consisting of $n$ trials of throwing a $p$--coin, that is a coin with probability $p$ of landing on one side and $1-p$ of landing on the other.
-We express the sums over an even number $m$ of successful trials $\Phi_+$ and an odd number $m$ of successful trials $\Phi_-$, and so these are given by
+We denote the sums over an even number $m$ of successful trials by $\Phi_+(m; n, p)$ and an odd number $m$ of successful trials by $\Phi_-(m; n, p)$, and they are given by
 \begin{align}	
 	\Phi_+(m; n, p) &\coloneqq \sum\limits_{\ell=0}^{m/2} \binom{n}{2\ell} p^{2\ell} (1-p)^{n-2\ell}, \nonumber\\ 
 	&\text{for even integers } m\in[0,n], \label{eq:fp_app} \\
@@ -925,10 +1055,10 @@ A useful result is the entropic bound on a combination~\cite{cit:ash}.
 	\end{align}
 \end{lemma}
 The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use Stirling's approximation for the remaining cases.
+
 We can use~\cref{lem:comb_bounds} to provide strict upper and lower bounds on the functions $\Phi_+, \Phi_-$.
 
 \subsection{Theory on bounding the core functions}
-\nick{Should we really keep this section? It is standard calculus and the bounds are really loose.} \ddd{[Depends on what you want to do with them - we want people to build on our work, and so providing them some starter-tools is potentially valuable hints. Closed, weak bounds can be very useful.]}
 Here we present a more manageable method of bounding the core functions $\Phi_{\pm}$, which however results in looser bounds. 
 We can rewrite the functions as
 \begin{equation}
@@ -1008,7 +1138,8 @@ which in turn leads to the following bounds on $\Phi_+(m; n, a)$:
 \begin{align}
 	\hspace{-2cm}2\Phi_+(m; n, a) \leq\ &\Phi(m; n, a) + (1-a)^n - \frac{(-a)^{m+1}}{m!} \times \nonumber\\
 	 &\binom{n}{m+1} (1-a)^{n-m-1} \text{ and} \\
-	2\Phi_+(m; n, a) \geq\ &\Phi(m; n, a) + (1-a)^n - \frac{(-a)^{m+1}}{m!} \binom{n}{m+1} .
+	2\Phi_+(m; n, a) \geq\ &\Phi(m; n, a) + (1-a)^n - \frac{(-a)^{m+1}}{m!}  \times \nonumber\\
+	 &\binom{n}{m+1} .
 \end{align}
 
 \subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
@@ -1025,8 +1156,7 @@ and $8$ positive components each with value
 In the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
 It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
 
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ in the unital fragment is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$.
-In general, $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ contains $n + 1$ distinct components, labelled $0,\dots, n$ \ddd{[What does this mean??]}.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, in the unital fragment, it corresponds to the set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs.
 
 We present the distinct Wigner components of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicites in~\cref{tab:lcsu}.
 Note that LHS (RHS) refers to elbow coordinates $i$ on the left (right of) the Lorenz curve maximum, stated precisely as
@@ -1038,10 +1168,10 @@ Note that LHS (RHS) refers to elbow coordinates $i$ on the left (right of) the L
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$m_{i}(n, \epsilon)$} & \multicolumn{1}{|c}{$w_{i}(n, \epsilon)$} \\[0.5ex]\hline
-    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\
-    & & RHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{2i+1}\binom{n}{2i+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i+1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i-1}$ \\
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$m_{i}$} & \multicolumn{1}{|c}{$w_{i}$} \\[0.5ex]\hline
+    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $8^{2i}\binom{n}{2i}$ & $u(\epsilon)^{2i}v(\epsilon)^{n-2i}$ \\
+    & & RHS & $8^{n-2i}\binom{n}{2i}$ & $-u(\epsilon)^{n-2i}v(\epsilon)^{2i}$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{2i+1}\binom{n}{2i+1}$ & $u(\epsilon)^{2i+1}\left( -v(\epsilon) \right)^{n-2i-1}$ \\
     & & RHS & $8^{n-2i-1}\binom{n}{2i+1}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i-1}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i+1}$ \\ \hline
     \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{n-2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{2i}$ \\
     & & RHS & $8^{2i}\binom{n}{2i}$ & $\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^{2i}\left( -\frac{1}{3} + \frac{4}{9}\epsilon \right)^{n-2i}$ \\ \cline{2-5}
@@ -1051,8 +1181,10 @@ Note that LHS (RHS) refers to elbow coordinates $i$ on the left (right of) the L
   \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
   The expressions change depending on the noise level $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
   Multiplication $2i$ is considered modulo $(n+1)$.} \ddd{[This whole section is hard to decypher. Are these $w_i$ Wigner components? Unique Wigner components? Elbow values?? I can't spend ages decyphering this. Can you give clear definitions in the text?]} 
+\nick{Working on it. I agree that in this section, notation is tough. $w_i$ are the Wigner components of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ that come out of~\cref{ncopy_components}. They may not be distinct in some rare cases, i.e. when $\epsilon=3/7$ or accidentally.}
   
   \ddd{[Also what does ``Multiplication $2i$ is considered modulo $(n+1)$'' mean???]}
+  \nick{It means $2i \pmod{n+1}$, so that e.g. $2n\pmod{n+1}=2n - (n+1) = n-1$}
   \label{tab:lcsu}
 \end{table}
 
@@ -1128,178 +1260,9 @@ The index function $I$ is bijective, i.e.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Technical details for the derivation of distillation bounds from Lorenz curves}
+\section{Details for the derivation of distillation bounds from Lorenz curves}
 \label{app:lcst_technical}
 
-\subsection{First and last elbow constraints}
-\label{app:elb_constraints}
-Here we prove two simple majorization constraints, one arising by considering only the ascending part of the Lorenz curves between the origin $(0,0)$ and the first elbow and the other by considering only the descending part of the curves between the last elbow and the endpoint $(1,1)$.
-\begin{proposition}\label{prop:first_elb}
-	Consider a magic state process $\rho \longrightarrow \rho'$ with input and output Lorenz curves $\lc{\rho}{\tau}(x), \lc{\rho'}{\tau}(x)$ in $\R_\tau$ and denote the coordinates of the first elbow of $L_{\rho|\tau}(x)$ by $(X_0, L_0)$ and the coordinates of the first elbow of $L_{\rho' |\tau}(x)$ by $(X'_0, L'_0)$.
-	Then the process is possible in $\R_\tau$ only if
-\begin{equation}\label{eq:first_elb_bound1}
-	\frac{L_0}{x} \geq \frac{L_0'}{x'}.
-\end{equation}
-for all $x \leq X_0$ and $x' \leq X'_0$.
-\end{proposition}
-\begin{proof}
-Since both pairs of coordinates are located between $(0,0)$ and the first elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the origin and the appropriate first elbow.
-
-First assume that $x < x'$ and consider the Lorenz curve constraint,
-\begin{equation}
-	\lc{\rho}{\tau}(x) \geq \lc{\rho'}{\tau}(x).
-\end{equation}
-We can find the output state Lorenz curve coordinate $L_{\rho'|\tau}(x)$ by interpolating between the origin and the output state's first elbow, 
-\begin{equation}
-	L_{\rho'|\tau}(x) = \frac{x}{x'}L_0.
-\end{equation}
-\ddd{[Is this correct?? I'm trying to simplify your notation and proof, but the above doesn't seem obvious. Needs fixing -- I've set up simple notation so we should only use this instead of defining all different variables that confuse things.]}The process is then possible only if $L_0 \geq L_\star'$ which is a rearrangement of~\cref{eq:first_elb_bound1}. \ddd{[This is not clear/obvious -- can you step through the steps explicitly.]}
-
-If instead, $x \geq x'$, consider the Lorenz curve constraint at $x = x'$,
-\begin{equation}
-	\lc{\rho}{\tau}(x') \geq \lc{\rho'}{\tau}(x').
-\end{equation}
-We now need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_0$ by interpolating between the origin and the input state's first elbow, 
-\begin{equation}
-	L_\star = \frac{x'_0}{x_0}L_0.
-\end{equation}
-The process is then possible only if $L_\star \geq L'_0$ which is again a rearrangement of~\cref{eq:first_elb_bound1}.
-\end{proof}
-
-\begin{proposition}\label{prop:last_elb}
-	Consider a magic state process $\rho \longrightarrow \tau$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in $\R_\sigma$ and denote by $X_E, X'_E$ the last elbow locations of the input and output curves respectively.
-	
-	Then, given any coordinates $(x_E, L_E)$ and $(x'_E, L'_E)$ on the input and output Lorenz curves, where $x_E \geq X_E$ and $x'_E \geq X'_E$, the process is possible in $\R_\sigma$ only if
-\begin{equation}\label{eq:last_elb_bound1}
-	\frac{L_E - 1}{1-x_E} \geq \frac{L'_E - 1}{1-x_E'}.
-\end{equation}
-\end{proposition}
-\begin{proof}
-Since both pairs of coordinates are located between the last elbow of their respective curves and $(1,1)$, we can derive the bound via a simple interpolation on the line segment connecting the endpoint and the appropriate last elbow.
-
-First assume that $x_E > x'_E$ and consider the Lorenz curve constraint at $x = x_E$,
-\begin{equation}
-	\lc{\rho}{\sigma}(x_E) \geq \lc{\tau}{\sigma}(x_E).
-\end{equation} 
-We can find the output state Lorenz curve coordinate $L'_\star$ at location $x = x_E$ by interpolating between the endpoint $(1,1)$ and the output state's last elbow, 
-\begin{equation}
-	L'_\star = 1 + \frac{1-x_E}{1-x'_E} (L'_E - 1)
-\end{equation}
-The process is then possible only if $L_E \geq L_\star'$ which is a rearrangement of~\cref{eq:last_elb_bound1}.
-
-If instead, $x_E \leq x'_E$, consider the Lorenz curve constraint at $x = x'_E$,
-\begin{equation}
-	\lc{\rho}{\sigma}(x'_E) \geq \lc{\tau}{\sigma}(x'_E).
-\end{equation} 
-We now need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_E$ by interpolating between the endpoint $(1,1)$ and the input state's last elbow, 
-\begin{equation}
-	L_\star = 1 + \frac{1-x'_E}{1-x_E} (L_E - 1).
-\end{equation}
-The process is then possible only if $L_\star \geq L'_E$ which is again a rearrangement of~\cref{eq:last_elb_bound1}.
-\end{proof}
-
-\subsection{Component-multiplicity pairs}
-\label{app:cmpairs}
-
-In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
-The distribution $\W{\rho}$ is defined on the phase space, but it can be convenient to re-express this using vector notation. 
-
-To each Wigner distribution $W_\rho(\x)$ we can define \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\x)$ with multiplicity $m_i$.
-
-As an example, for the Strange state with
-\begin{equation}
-W_{\rho_S}(\x) = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
-\end{equation}
-we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}(\x)$.
-
-This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
-\begin{lemma}
-Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multiplicity pairs 
-\begin{equation}
-	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
-\end{equation}
-respectively. Then $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
-\end{lemma}
-
-This is true because all components are of the form $w_i w_j'$ and 
-\begin{equation*}
-	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2.
-\end{equation*}
-
-For distillation protocols we are interested in $n$--copies of a single Wigner distribution. For this we have the following, which follows from combinatorics.
-
-\begin{lemma} Suppose $W_\rho(\x)$ has $K$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(w_{\q}, m_{\q})\}$, where $\q$ is a $K$ component vector of non-negative integers that sum to $n$, and
-\begin{align}
-w_{\q} &= \prod_{i=1}^K w_i^{q_i} \\
-m_{\q} &= \binom{n}{q_1,q_2, \dots, q_K} \prod_{i=1}^K m_i^{q_i},
-\end{align}
-where the first term in the expression for $m_{\q}$ is the generalized binomial coefficient.
-\end{lemma}
-
-Note that the rescaled distribution is also multiplicative, so a complete set of component-multiplicity pairs can be obtained for this distribution in the same fashion as for usual Wigner distributions.
-
-Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$--copy distribution $\W{\rho}^{\otimes n}$.
-\begin{lemma}\label{lem:ncopycomponents}
-	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by the $n$-fold (Kronecker) product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
-	
-	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
-	\begin{equation*}
-	0 \leq k_1, \dots, k_D \leq n \text{ and } k_1 + \dots + k_D = n.
-	\end{equation*}
-	
-	Then, $W^{\otimes n}$ admits a complete set of component-multiplicity pairs $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$, where
-\begin{align}
-	M_{\bmk} &= \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}, \label{eq:M}\\
-	W_{\bmk} &= \prod\limits_{i=1}^D {w_i}^{k_i}. \label{eq:W}
-\end{align}
-\end{lemma}
-\begin{proof}
-	We proceed by induction.
-	
-	Assume $n = 1$.
-	Let $\bmk_i$ be the vector with its $i$-th component equal to 1 and 0's elsewhere.
-	The set $C_D^1$ consists of all vectors of this form, i.e. 
-\begin{equation*}
-	C_D^1 = \{ \bmk_i \}_{i=1,\dots,D}
-\end{equation*}
-	It is also true by direct calculation that
-\begin{equation*}
-	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
-\end{equation*}
-Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
-
-	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
-	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
-\begin{equation}
-	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
-\end{equation}
-	
-	Consider the component sum of the distribution $W^{\otimes (n+1)}$,
-\begin{align*}
-	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
-	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
-	&\left( \sum_{i=1}^D m_i w_i \right)^n \left( \sum_{i=1}^D m_i w_i \right) = \left( \sum_{i=1}^D m_i w_i \right)^{n+1} =\\
-	&\sum_{\bmq \in C_D^{n+1}} M_{\bmq}W_{\bmq},
-\end{align*}
-where in the last expression, vectors $\bmq = (q_1, \dots, q_D)$ have non-negative integer components that sum to $(n+1)$ and 
-\begin{align*}
-	M_{\bmq} &= \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i},\\
-	W_{\bmq} &= \prod\limits_{i=1}^D {w_i}^{q_i}.
-\end{align*}
-We have used the multinomial theorem to proceed between lines 2-3 and lines 3-4 of the derivation.
-
-We have achieved a regrouping of the distribution components.
-Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
-\begin{align*}
-	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
-	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{n+1},
-\end{align*}
-which is the dimension of $W^{\otimes (n+1)}$.
-
-Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ is a complete set of component-multiplicity pairs for $W^{\otimes n}$, completing the proof.
-\end{proof}
-
-\newpage
 \subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
 \label{app:main_proof}
 Here we prove~\cref{thm:free-energy}, which bounds magic distillation rates in terms of free energies.
@@ -1414,54 +1377,37 @@ The output states obey the same conditions and so we can derive the first point 
 \end{equation}
 
 If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, and it is given by $L_0 / x_0 \geq L'_0 / x'_0$, which can be directly rearranged into the stated bound of the theorem \ddd{[Expand this last bit and show it explicitly -- don't skip lines in a proof, even if they seem obvious.]}.
+In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraints}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
+\begin{equation}
+	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
+	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
+\end{equation}
+Taking the natural logarithm on both sides and rearranging gives the bound
+\begin{equation}
+	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+\end{equation}
+concluding the proof.
 \end{proof}
 
-The following lemma shows that if the energy eigenbasis is a stabilizer basis then things simplify more. \ddd{[To be checked]}
-\begin{lemma} If the Hamiltonian $H$ in the previous theorem has a stabilizer eigenbasis, then $\phi = E_{k_s} +kT\log 3$ for some $k_s \in \mathbb{Z}_3$.
-\end{lemma}
-\begin{proof}We first expand $\alpha_k$ as
+The following result shows that if the energy eigenbasis is a stabilizer basis then things simplify more.
+\begin{proposition} 
+	Let $H$ be a Hamiltonian $H$ with spectrum $\{E_k\}_{k \in \mathbb{Z}_d}$.
+	If $H$ has a stabilizer eigenbasis, then $\phi = E_{k_{\star}}$ for some $k_{\star} \in \mathbb{Z}_d$.
+\end{proposition}
+\begin{proof}
+	We first write $\alpha_k$ as
 \begin{equation}
-\alpha_k = \<E_k | D_{\x_\star} A_{\mathbf{0}} D_{\x_\star}^\dagger |E_k\>.
+	\alpha_k = \<E_k | A_{\bmx_{\star}} |E_k\> = d W_{\ketbra{E_k}}(\bmx_{\star})
 \end{equation}
-Since $\{|E_k\>\}$ forms an orthonormal basis, then so too does $\{|\psi_k\>:=D_{\x_\star}^\dagger|E_k\>\}$. This implies that in the Wigner representation the distributions $\{W_{\psi_k}(\x)\}$ have orthogonal supports and only one of them, $k=k_s$ say, has $\x=\mathbf{0}$ in its support. Therefore only the coefficient $\alpha_{k_s}$ is non-zero and so
+Since each $\ketbra{E_k}$ is a stabilizer state, their Wigner distributions have orthogonal supports in the phase space, so only one of them, say $k = k_{\star}$ contains point $\bmx_{\star}$ in its support. 
+Additionally, its distribution is uniform on its support, so $W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star}) = 1/d$.
+
+Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
 \begin{align}
-\phi &= -\beta^{-1}\log (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
-&=E_{k_s} -kT \log W_{\psi_{k_s}}(\mathbf{0}) \nonumber \\
-&=E_{k_s} +kT \log 3,
+\phi &= -\beta^{-1}\ln (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
+&=E_{k_{\star}} -kT \ln (d W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star})) =E_{k_{\star}}.
 \end{align}
-where we use that $\psi_{k}$ are pure stabilizer states and so their non-zero Wigner components are $1/3$.
 \end{proof}
-	
-\subsection{Deriving distillation bounds from the last elbow}
-\label{sec:last_elb}
-
-Using a similar analysis, we can also derive upper bounds from comparison of the last point coordinates of the Lorenz curve, which now corresponds to the smallest rescaled component.
-
-To this end, assume that the largest component of the equilibrium state distribution is $W_{\tau}(i,j)$.
-We now perform the Clifford operation
-\begin{equation}
-	\tau \longrightarrow X^{1-i}Z^{-j}\ \tau\ Z^{j}X^{i-1},
-\end{equation}
-which permutes the largest component such that $W_{\tau}(i,j) \longrightarrow W_{\tau}(1,0)$.
-Since we have that $u \leq v$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(1,0) \geq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
-Therefore, the largest rescaled component occurs when $i_{(1,0)} = n$ and $i_{\bmx} = 0$ for $\bmx \neq \bmo$ and is equal to $(v/W_{\tau}(1,0))^n$.
-Accordingly, the coordinates of the first Lorenz curve point after the origin are given by $(x_E, L_E) = ((W_{\tau}(1,0))^n, u(\epsilon)^n)$ for the input state and $(x'_E, L'_E) = ((W_{\tau'}(1,0))^m, u(\epsilon')^m)$ for the output state.
-
-We now redefine the quantities $\alpha_k$, so that again $\phi = -\beta^{-1} \log \zeta$, where $\zeta= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}$ and $\alpha_k$ now given by
-\begin{align}
-	\alpha_k = \sum_{r \in \mathbb{Z}_3} \braket{E_k}{1-r}\braket{1+r}{E_k}.
-\end{align}
-This allows us to rewrite $W_{\tau}(1,0) = {e^{\beta (F - \phi)}}/{3}$ and by using the last elbow constraint 
-\begin{equation*}
-	\frac{L_E - 1}{1-x_E} \geq \frac{L'_E - 1}{1-x_E'},
-\end{equation*}
-derived in~\cref{app:elb_constraints}, we can get a new bound expression.
-
-We note that it is also possible to perform a different Clifford transformation and get a different location $(W_{\tau}(\bmx))^n$, with $\bmx \neq \bmo$, since components $(W_{\rho}(\bmx))^n = u$ are all the same as long as $\bmx \neq \bmo$.
-The effect of this is to alter the expressions for the quantities $\alpha_k$, but not the resulting bound expression.
-
-\nick{This section on the last elbow bound is a little weak?}
 
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
@@ -1664,6 +1610,68 @@ Similarly, considering the output magic state with respect to state $\sigma'$, t
 There are four combinations of coordinates, depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states.
 In each of these combinations, we simply use the first elbow constraint, as described in~\cref{app:elb_constraints}, which leads to the bounds in the statement of the theorem.
 \end{proof}
+	
+\subsection{Deriving distillation bounds from the last elbow}
+\label{sec:last_elb}
+
+\begin{proposition}\label{prop:last_elb}
+	Consider a magic state process $\rho \longrightarrow \tau$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\tau}{\sigma}(x)$ in $\R_\sigma$ and denote by $X_E, X'_E$ the last elbow locations of the input and output curves respectively.
+	
+	Then, given any coordinates $(x_E, L_E)$ and $(x'_E, L'_E)$ on the input and output Lorenz curves, where $x_E \geq X_E$ and $x'_E \geq X'_E$, the process is possible in $\R_\sigma$ only if
+\begin{equation}\label{eq:last_elb_bound1}
+	\frac{L_E - 1}{1-x_E} \geq \frac{L'_E - 1}{1-x_E'}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Since both pairs of coordinates are located between the last elbow of their respective curves and $(1,1)$, we can derive the bound via a simple interpolation on the line segment connecting the endpoint and the appropriate last elbow.
+
+First assume that $x_E > x'_E$ and consider the Lorenz curve constraint at $x = x_E$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x_E) \geq \lc{\tau}{\sigma}(x_E).
+\end{equation} 
+We can find the output state Lorenz curve coordinate $L'_\star$ at location $x = x_E$ by interpolating between the endpoint $(1,1)$ and the output state's last elbow, 
+\begin{equation}
+	L'_\star = 1 + \frac{1-x_E}{1-x'_E} (L'_E - 1)
+\end{equation}
+The process is then possible only if $L_E \geq L_\star'$ which is a rearrangement of~\cref{eq:last_elb_bound1}.
+
+If instead, $x_E \leq x'_E$, consider the Lorenz curve constraint at $x = x'_E$,
+\begin{equation}
+	\lc{\rho}{\sigma}(x'_E) \geq \lc{\tau}{\sigma}(x'_E).
+\end{equation} 
+We now need to find the input state Lorenz curve coordinate $L_\star$ at location $x = x'_E$ by interpolating between the endpoint $(1,1)$ and the input state's last elbow, 
+\begin{equation}
+	L_\star = 1 + \frac{1-x'_E}{1-x_E} (L_E - 1).
+\end{equation}
+The process is then possible only if $L_\star \geq L'_E$ which is again a rearrangement of~\cref{eq:last_elb_bound1}.
+\end{proof}
+
+Using a similar analysis, we can also derive upper bounds from comparison of the last point coordinates of the Lorenz curve, which now corresponds to the smallest rescaled component.
+
+To this end, assume that the largest component of the equilibrium state distribution is $W_{\tau}(i,j)$.
+We now perform the Clifford operation
+\begin{equation}
+	\tau \longrightarrow X^{1-i}Z^{-j}\ \tau\ Z^{j}X^{i-1},
+\end{equation}
+which permutes the largest component such that $W_{\tau}(i,j) \longrightarrow W_{\tau}(1,0)$.
+Since we have that $u \leq v$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(1,0) \geq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
+Therefore, the largest rescaled component occurs when $i_{(1,0)} = n$ and $i_{\bmx} = 0$ for $\bmx \neq \bmo$ and is equal to $(v/W_{\tau}(1,0))^n$.
+Accordingly, the coordinates of the first Lorenz curve point after the origin are given by $(x_E, L_E) = ((W_{\tau}(1,0))^n, u(\epsilon)^n)$ for the input state and $(x'_E, L'_E) = ((W_{\tau'}(1,0))^m, u(\epsilon')^m)$ for the output state.
+
+We now redefine the quantities $\alpha_k$, so that again $\phi = -\beta^{-1} \log \zeta$, where $\zeta= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}$ and $\alpha_k$ now given by
+\begin{align}
+	\alpha_k = \sum_{r \in \mathbb{Z}_3} \braket{E_k}{1-r}\braket{1+r}{E_k}.
+\end{align}
+This allows us to rewrite $W_{\tau}(1,0) = {e^{\beta (F - \phi)}}/{3}$ and by using the last elbow constraint 
+\begin{equation*}
+	\frac{L_E - 1}{1-x_E} \geq \frac{L'_E - 1}{1-x_E'},
+\end{equation*}
+derived in~\cref{app:elb_constraints}, we can get a new bound expression.
+
+We note that it is also possible to perform a different Clifford transformation and get a different location $(W_{\tau}(\bmx))^n$, with $\bmx \neq \bmo$, since components $(W_{\rho}(\bmx))^n = u$ are all the same as long as $\bmx \neq \bmo$.
+The effect of this is to alter the expressions for the quantities $\alpha_k$, but not the resulting bound expression.
+
+\nick{This section on the last elbow bound is a little weak?}
 
 
 

@@ -926,7 +926,24 @@ In the second scenario ($\rm{(C2)} \rightarrow \rm{(C1)}$), the expression looks
 I am a bit stuck with this expression and I am not sure it's worth putting more time in it.
 
 
+Given a state $\rho$ and a complete set of component-multiplicity pairs describing its Wigner distribution $\W{\rho}$, we now provide a method of computing the components (and multiplicities) of the $n$--copy distribution $\W{\rho}^{\otimes n}$.
+\begin{lemma}\label{lem:ncopycomponents}
+	Let $W$ be a distribution defined by a complete set of component-multiplicity pairs $\{(w_i, m_i)\}_{i=1,\dots,D}$ with $D \leq {\rm{dim}}\hspace{1pt}W$ and consider the distribution $W^{\otimes n}$ obtained by the $n$-fold (Kronecker) product $W \otimes \dots \otimes W$ between $n$ copies of $W$.
+	
+	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
+	\begin{equation*}
+	0 \leq k_1, \dots, k_D \leq n \text{ and } k_1 + \dots + k_D = n.
+	\end{equation*}
+	
+	Then, $W^{\otimes n}$ admits a complete set of component-multiplicity pairs $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$, where
+\begin{align}
+	M_{\bmk} &= \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}, \label{eq:M}\\
+	W_{\bmk} &= \prod\limits_{i=1}^D {w_i}^{k_i}. \label{eq:W}
+\end{align}
+\end{lemma}
 
+
+Here we prove two simple majorization constraints, one arising by considering only the ascending part of the Lorenz curves between the origin $(0,0)$ and the first elbow and the other by considering only the descending part of the curves between the last elbow and the endpoint $(1,1)$.
 
 
 
