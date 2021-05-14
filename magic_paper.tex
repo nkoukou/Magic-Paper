@@ -613,18 +613,20 @@ In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and we have a free e
     \label{fig:rvse2}
 \end{figure}
 
-\begin{figure}[t!]
+\begin{figure}
     \centering
-    \subfigure[][]{%
-    \label{fig:phip}%
-    \includegraphics[scale=0.4]{figs/test/phi_p.pdf}}\\
-    \subfigure[][]{%
-    \label{fig:Rp}%
-    \includegraphics[scale=0.4]{figs/test/rate_p.pdf}}
-    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = p\ {\rm{diag}}(0,1,2) + (1-p)\ {\rm{Hadamard}}$.
-\subref{fig:noCliff} Plot of $\phi$ vs $p$
- \subref{fig:Cliff} Plot of $R$ vs $p$}
-    \label{fig:vsp}
+    \includegraphics[scale=0.4]{figs/test/R_vs_H.pdf}
+    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = {\rm{diag}}(0,1,2)$ and $H' = (1-p-q){\rm{diag}}(0,1,2)+p{\rm{diag}}(1,2,0)+q{\rm{diag}}(2,0,1)$.
+    }
+    \label{fig:rvsh}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figs/test/R_vs_A.pdf}
+    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$.
+    }
+    \label{fig:rvsa}
 \end{figure}
 
 Performing the standard 3D-rotation matrix 
@@ -636,6 +638,8 @@ Performing the standard 3D-rotation matrix
 \end{pmatrix}
 \end{equation}
 on $H$ to get $H'$ leaves $\phi$ unaffected.
+I didn't find any interesting case where $\phi \rightarrow \infty$, except of course when there is some $E_k \rightarrow \infty$. 
+I looked through Hamiltonians which are convex combinations of phase-point operators and SHO (diagonal) Hamiltonians.
 
 \null\newpage
 \null\newpage
