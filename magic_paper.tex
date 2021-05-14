@@ -1230,7 +1230,7 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
   \end{tabular}
   \caption{Lorenz curve elbow coordinates in the unital fragment.
   The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered modulo $(n+1)$.
+  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
   For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
   }
   \label{tab:lcsu_coord_elb_app}
@@ -1260,7 +1260,7 @@ To compactify notation, we define in terms of $n, \epsilon$ an amplitude $A$ and
   \end{tabular}
   \caption{Lorenz curve elbow coordinates in the unital fragment.
   The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered modulo $(n+1)$.
+  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
   For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
   }
   \label{tab:lcsu_coord_elb_app_alt}
@@ -1308,8 +1308,10 @@ The index function $I$ is bijective, i.e.
 
 \subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
 \label{app:main_proof}
-Here we prove~\cref{thm:free-energy}, which bounds magic distillation rates in terms of free energies.
+Here we prove our main theorem, which bounds magic distillation rates in terms of free energies.
 
+\begingroup
+\def\thetheorem{\ref{thm:free-energy}}
 \begin{theorem}
 	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
 	
@@ -1331,6 +1333,8 @@ with $\zeta$ given by the expressions
 \end{align}
 and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similarly for the output system.
 \end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 
 
 \begin{proof}	\label{thm:free-energy-bound-proof}
