@@ -42,7 +42,7 @@ Theories of magic states attempt to quantify this computational element via mono
 \label{sec:intro}
 
 \nick{re-write based on new relative majorisation approach}
-The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Fowler_2012, Herrera_2010, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021} \ddd{[delete the first two from the bibliography - they are ancient and the second is mine, so it looks like bad self-citing]}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
+The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
   
@@ -51,7 +51,7 @@ Recent work towards fault-tolerance has begun to bridge the gap between abstract
 
 In this work, we develop a framework to analyse magic state distillation protocols where explicit physical constraints are manifest. These physical constraints are encoded in the allowed fixed-point structure of the protocol, for example a minimal temperature attainable in the device, noise-biases or fixed-point structure associated with restricted gate-sets (see e.g.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}). The approach we take is most closely aligned with resource theories of magic, although it differs in two ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are functions of the physical constraints, thus not directly comparable to global magic monotones.
 
-We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:gour, cit:gour2}\nick{You had a specific review in mind I think, which one?} \ddd{[cite the Danzig paper from the early 2000s cite thermo-majorization Horodecki Oppenheim, cite the ``second laws'' paper by Brandao et al, cite Matteo's review, cite review articles by Goold et al, and Janet Anders]}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
+We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}\nick{Can't find Danzig's paper anywhere}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
 
 Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is of broader interest to the study of non-classicality in quantum systems.
 
@@ -64,9 +64,8 @@ Finally, we discuss how our approach could be improved and how it can be exploit
     \centering
         \includegraphics[scale=0.4]{figs/protocol_diagram.pdf}
     \caption{\textbf{Analysing magic protocols relative to a stabilizer reference state.} 
-	A magic protocol aims to turn $n$ copies of some magic state $\rho_1$ to $m$ copies of some other state $\rho_2$.
-	Constraints on the efficiency of the protocol can be imposed by considering its action on an separate probe state $\tau$.
-	\nick{How do we improve the illustration?}\ddd{[I would have two separate box transformations, the top one has $\rho$ fed into $\E$, the bottom one has $\tau$ fed into it. Then put the relevant property (e.g. $\epsilon$ for $\rho$, and $F$ for $\tau$ next to the states. If viable then have $\phi$ somehow linking the top and bottom -- conveying it is a hybrid quantity in some sense.]}
+	A magic protocol aims to turn $n$ copies of some magic state $\rho$ to $m$ copies of some other state $\rho'$.
+	Constraints on the efficiency of the protocol can be imposed by considering its action on a separate probe state $\tau$.
     }
     \label{fig:sketch}
 \end{figure}
@@ -443,7 +442,7 @@ It is possible to derive distillation bounds from any location of the Lorenz cur
 However, it turns out that a simple and sufficiently non-trivial constraint can be obtained by considering the first elbow of the Lorenz curves. 
 The largest Wigner component occurs for $i=0$ and is unique, so the first elbow coordinates for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$.
 
-The first elbow constraint involves a simple interpolation, done in~\cref{app:elb_constraint}, in order to find the coordinates of both Lorenz curve points at the location where the first elbow occurs. 
+The first elbow constraint involves a simple interpolation, done in~\cref{prop:first_elb}, in order to find the coordinates of both Lorenz curve points at the location where the first elbow occurs. 
 Comparing these two points leads to the bound
 \begin{equation}
 	R(\epsilon, \epsilon') \leq \frac{\ln{(3-4\epsilon)}}{\ln{(3-4\epsilon')}}.
@@ -487,7 +486,7 @@ We now consider a magic distillation protocol on multiple identical qudits in a 
 \begin{equation}
 \rho(\epsilon)^{\otimes n} \longrightarrow \E(\rho(\epsilon)^{\otimes n}) =\rho(\epsilon')^{\otimes m}
 \end{equation}
-with $n \gg 1$ \nick{Should we replace $m$ with $R n$ or $n'$ throughout?}\ddd{[Nah, $m$ is simpler than $Rn$ -- you gotta resist the urge to complicate expressions, unless it's needed. *Bad* habit.]}, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key idea is that the physical measures associated with this protocol are determined by how $\E$ would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
+with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We can now provide distillation bounds that depend on energetic and entropic aspects of the protocol. We do this relative to a reference temperature that can be chosen freely. The key idea is that the physical measures associated with this protocol are determined by how $\E$ would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the $n$-copy magic state. 
 
 More precisely, we assume each qudit has Hamiltonian $H$ and we choose some temperature $T = (k\beta)^{-1}$ where $k$ is Boltzmann's constant and $\beta$ the inverse temperature. The reference equilibrium state of the $n$ qudits is given by
 \begin{equation}
@@ -1307,7 +1306,7 @@ The output states obey the same conditions and so we can derive the first point 
 \end{equation}
 
 If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{app:elb_constraint}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
+In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{prop:first_elb}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
 \begin{equation}
 	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
 	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
@@ -1338,6 +1337,96 @@ Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
 &=E_{k_{\star}} -kT \ln (d W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star})) =E_{k_{\star}}.
 \end{align}
 \end{proof}
+
+\subsection{Component-multiplicity pairs}
+\label{app:cmpairs}
+
+In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}(\bmx)$. 
+The distribution $\W{\rho}(\bmx)$ is defined on the phase space, but it can be convenient to re-express this using vector notation. 
+
+To each Wigner distribution $W_\rho(\x)$ we can associate \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\x)$ with multiplicity $m_i$.
+
+As an example, for the Strange state $\rho_S := \rho_S(\epsilon=0)$ with
+\begin{equation}
+W_{\rho_S}(\x) = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
+\end{equation}
+we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example, the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}(\x)$.
+
+This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
+\begin{lemma}
+Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multiplicity pairs 
+\begin{equation}
+	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
+\end{equation}
+respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
+\end{lemma}
+
+This is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
+\begin{equation*}
+	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2,
+\end{equation*}
+so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$ and no more.
+
+In the case of distillation protocols, we are interested in $n$--copies of a single Wigner distribution. For this, we have the following result, which follows from combinatorics.
+
+\begin{lemma}\label{lem:ncopycomponents}
+	Suppose $W_\rho(\x)$ has $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, where $\q$ runs through all $K$-component vectors with non-negative integer components that sum to $n$, and
+\begin{align}
+W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
+M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}, \label{eq:M}
+\end{align}
+where the term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient.
+\end{lemma}
+\begin{proof}
+	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
+	\begin{equation*}
+	0 \leq k_1, \dots, k_D \leq n \text{ and } k_1 + \dots + k_D = n.
+	\end{equation*}
+	
+	We proceed by induction.	
+	Assume $n = 1$ and let $\bmk_i$ be the vector with its $i$-th component equal to 1 and 0's elsewhere.
+	The set $C_D^1$ consists of all vectors of this form, i.e. 
+\begin{equation*}
+	C_D^1 = \{ \bmk_i \}_{i=1,\dots,D}
+\end{equation*}
+	It is also true by direct calculation that
+\begin{equation*}
+	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
+\end{equation*}
+Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
+
+	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
+	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
+\begin{equation}
+	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
+\end{equation}
+	
+	Consider the component sum of the distribution $W^{\otimes (n+1)}$,
+\begin{align*}
+	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
+	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
+	&\left( \sum_{i=1}^D m_i w_i \right)^n \left( \sum_{i=1}^D m_i w_i \right) = \left( \sum_{i=1}^D m_i w_i \right)^{n+1} =\\
+	&\sum_{\bmq \in C_D^{n+1}} M_{\bmq}W_{\bmq},
+\end{align*}
+where in the last expression, vectors $\bmq = (q_1, \dots, q_D)$ have non-negative integer components that sum to $(n+1)$ and 
+\begin{align*}
+	M_{\bmq} &= \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i},\\
+	W_{\bmq} &= \prod\limits_{i=1}^D {w_i}^{q_i}.
+\end{align*}
+We have used the multinomial theorem to proceed between lines 2-3 and lines 3-4 of the derivation.
+
+We have achieved a regrouping of the distribution components.
+Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
+\begin{align*}
+	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
+	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{n+1},
+\end{align*}
+which is the dimension of $W^{\otimes (n+1)}$.
+
+Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$ and no more, completing the proof.
+\end{proof}
+
+The rescaled distribution is also multiplicative, so a set of component-multiplicity pairs can be obtained for the $n$-copy rescaled distribution in the same fashion as for usual Wigner distributions.
 
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
@@ -1504,7 +1593,7 @@ Similarly, considering the output magic state with respect to state $\sigma'$, t
 	\end{cases}
 \end{equation}
 There are four combinations of coordinates, depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states.
-In each of these combinations, we simply use the first elbow constraint, as described in~\cref{app:elb_constraint}, and manipulate the coordinates as in the proof of~\cref{thm:free-energy}, leading to the bounds in the statement of the theorem.
+In each of these combinations, we simply use the first elbow constraint, as described in~\cref{prop:first_elb}, and manipulate the coordinates as in the proof of~\cref{thm:free-energy}, leading to the bounds in the statement of the theorem.
 \end{proof}
 	
 \subsection{Deriving distillation bounds from the last elbow}
@@ -1577,95 +1666,6 @@ The effect of this is to alter the expressions for the quantities $\alpha_k$, bu
 
 
 
-\subsection{Component-multiplicity pairs}
-\label{app:cmpairs}
-
-In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}(\bmx)$. 
-The distribution $\W{\rho}(\bmx)$ is defined on the phase space, but it can be convenient to re-express this using vector notation. 
-
-To each Wigner distribution $W_\rho(\x)$ we can associate \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\x)$ with multiplicity $m_i$.
-
-As an example, for the Strange state $\rho_S := \rho_S(\epsilon=0)$ with
-\begin{equation}
-W_{\rho_S}(\x) = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
-\end{equation}
-we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example, the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}(\x)$.
-
-This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
-\begin{lemma}
-Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multiplicity pairs 
-\begin{equation}
-	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
-\end{equation}
-respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
-\end{lemma}
-
-This is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
-\begin{equation*}
-	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2,
-\end{equation*}
-so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$ and no more.
-
-In the case of distillation protocols, we are interested in $n$--copies of a single Wigner distribution. For this, we have the following result, which follows from combinatorics.
-
-\begin{lemma}\label{lem:ncopycomponents}
-	Suppose $W_\rho(\x)$ has $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, where $\q$ runs through all $K$-component vectors with non-negative integer components that sum to $n$, and
-\begin{align}
-W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
-M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}, \label{eq:M}
-\end{align}
-where the term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient.
-\end{lemma}
-\begin{proof}
-	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
-	\begin{equation*}
-	0 \leq k_1, \dots, k_D \leq n \text{ and } k_1 + \dots + k_D = n.
-	\end{equation*}
-	
-	We proceed by induction.	
-	Assume $n = 1$ and let $\bmk_i$ be the vector with its $i$-th component equal to 1 and 0's elsewhere.
-	The set $C_D^1$ consists of all vectors of this form, i.e. 
-\begin{equation*}
-	C_D^1 = \{ \bmk_i \}_{i=1,\dots,D}
-\end{equation*}
-	It is also true by direct calculation that
-\begin{equation*}
-	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
-\end{equation*}
-Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
-
-	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
-	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
-\begin{equation}
-	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
-\end{equation}
-	
-	Consider the component sum of the distribution $W^{\otimes (n+1)}$,
-\begin{align*}
-	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
-	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
-	&\left( \sum_{i=1}^D m_i w_i \right)^n \left( \sum_{i=1}^D m_i w_i \right) = \left( \sum_{i=1}^D m_i w_i \right)^{n+1} =\\
-	&\sum_{\bmq \in C_D^{n+1}} M_{\bmq}W_{\bmq},
-\end{align*}
-where in the last expression, vectors $\bmq = (q_1, \dots, q_D)$ have non-negative integer components that sum to $(n+1)$ and 
-\begin{align*}
-	M_{\bmq} &= \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i},\\
-	W_{\bmq} &= \prod\limits_{i=1}^D {w_i}^{q_i}.
-\end{align*}
-We have used the multinomial theorem to proceed between lines 2-3 and lines 3-4 of the derivation.
-
-We have achieved a regrouping of the distribution components.
-Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
-\begin{align*}
-	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
-	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{n+1},
-\end{align*}
-which is the dimension of $W^{\otimes (n+1)}$.
-
-Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$ and no more, completing the proof.
-\end{proof}
-
-The rescaled distribution is also multiplicative, so a set of component-multiplicity pairs can be obtained for the $n$-copy rescaled distribution in the same fashion as for usual Wigner distributions.
 
 
 
