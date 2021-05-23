@@ -51,7 +51,7 @@ Recent work towards fault-tolerance has begun to bridge the gap between abstract
 
 In this work, we develop a framework to analyse magic state distillation protocols where explicit physical constraints are manifest. These physical constraints are encoded in the allowed fixed-point structure of the protocol, for example a minimal temperature attainable in the device, noise-biases or fixed-point structure associated with restricted gate-sets (see e.g.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}). The approach we take is most closely aligned with resource theories of magic, although it differs in two ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are functions of the physical constraints, thus not directly comparable to global magic monotones.
 
-We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}\nick{Can't find Danzig's paper anywhere}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
+We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}\nick{Can't find Danzig's paper anywhere}\ddd{[Remembered name incorrectly, is this one: Janzing, Dominik, et al. "Thermodynamic cost of reliability and low temperatures: tightening Landauer's principle and the second law." Put this one first in list -- people always miss it, but it is the first.] }. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
 
 Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is of broader interest to the study of non-classicality in quantum systems.
 
@@ -66,7 +66,7 @@ Finally, we discuss how our approach could be improved and how it can be exploit
     \caption{\textbf{Analysing magic protocols relative to a stabilizer reference state.} 
 	A magic protocol aims to turn $n$ copies of some magic state $\rho$ to $m$ copies of some other state $\rho'$.
 	Constraints on the efficiency of the protocol can be imposed by considering its action on a separate probe state $\tau$.
-    }
+    } \ddd{[Not the clearest - we can zoom-chat on this.]}
     \label{fig:sketch}
 \end{figure}
 
@@ -544,7 +544,7 @@ and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similar
 \end{theorem}
 \noindent The proof of this is provided in~\cref{thm:free-energy-bound-proof}, and is a generalization of the analysis for unital protocols.
 
-The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to a `magic partition function' $\zeta$. The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian eigen-decomposes into non-stabilizer states, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is a positive multiple of the stabilizer Wigner component $W_\tau(0,0)$, as seen in the proof of the theorem. In the case that the system's Hamiltonian $H$ has an eigenbasis consisting of stabilizer states then we show in Appendix \ref{sharp-phi} that $\phi$ takes on a sharp, temperature-independent value $\phi \in \{E_0,E_1,E_2\}$. 
+The above bound depends on: (a) quantum computational measures $\epsilon, \epsilon'$, (b) thermodynamic quantities $F, F',$  and (c) intermediate terms $\phi, \phi'$. The intermediate terms depend on how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the energetic term $\phi$ quantifies the degree to which the negativity in the Wigner representation can be ascribed a sharp energetic value for the given Hamiltonian of the system. Its form is similar to $F$, and so can informally be viewed as a `magic free energy' term, associated to what can informally be viewed as a `partition function' $\zeta$. The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian eigen-decomposes into non-stabilizer states, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is a positive multiple of the stabilizer Wigner component $W_\tau(0,0)$, as seen in the proof of the theorem. In the case that the system's Hamiltonian $H$ has an eigenbasis consisting of stabilizer states then we show in Appendix \ref{sharp-phi} that $\phi$ takes on a sharp, temperature-independent energy value $\phi \in \{E_0,E_1,E_2\}$. 
 
 The primary role of the pre/post-processing by Clifford unitaries is to simplify the form of the bound, and allow it to be expressed in terms of free energy quantities that do not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form.
 
@@ -735,6 +735,21 @@ Given probability distributions $\bmx, \bmy$, $\r , \r'$, such that the componen
 \end{proposition}
 The proofs for these can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2016,Buscemi_2017} and references therein.
 
+\begin{lemma}\label{L-concave} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\p|\r}(x)$ is a concave function on $[0,1]$.
+\begin{proof}Let $L_{\p|\r}(x)$ attain its maximum at $x=x_\star$. Then from the definition, the function is continuous, monotone increasing on $[0,x_\star]$, and monotone decreasing on $[x_\star, 1]$. Consider $a,b \in [0,1]$ with $a <b$ and some probability $q \in [0,1]$. If $a$ and $b$ both lie in either the interval $[0,x_\star]$ or $[x_\star, 1]$ then concavity follows immediately. Otherwise $a$ is in the first interval and $b$ in the second interval. If $w=qa + (1-q)b$ lies in the first interval then
+\begin{align}
+qL_{\p|\r}(a) + (1-q)L_{\p|\r}(b) &\le qL_{\p|\r}(a) + (1-q)L_{\p|\r}(x_\star)\nonumber\\
+& \le L_{\p|\r}(w)
+\end{align}
+from monotonicity on the first interval. Otherwise $w$ lies in the second interval and
+\begin{align}
+qL_{\p|\r}(a) + (1-q)L_{\p|\r}(b) &\le qL_{\p|\r}(x_\star) + (1-q)L_{\p|\r}(b)\nonumber\\
+& \le L_{\p|\r}(w)
+\end{align}
+which follows from monotonicity on the second interval. Therefore the Lorenz curve is concave on $[0,1]$.
+\end{proof}
+\end{lemma}
+
 The following result is used in the text to relate relative majorization of quasi-distributions to their Lorenz curves.
 \begin{proposition}\label{lemma:Lorenz_linearity}
 	Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
@@ -784,7 +799,7 @@ We now prove the following result on the relation between majorization in a part
 \begingroup
 \def\thetheorem{\ref{lem:lcmax}}
 \begin{theorem}
-	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
+	Given a magic state $\rho$, the maximum value $L_\star$ attained by the Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the relative majorization constraint is stronger than mana in every fragment.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
@@ -819,11 +834,13 @@ We now prove a simple majorization constraint, arising by considering only the p
 \begin{proposition}\label{prop:first_elb}
 	Consider a magic state process $\rho \longrightarrow \rho'$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ and denote the coordinates of the first elbow of $L_{\rho|\sigma}(x)$ by $(X_0, L_0)$ and the coordinates of the first elbow of $L_{\rho' |\sigma'}(x)$ by $(X'_0, L'_0)$.
 	
-Then, given any coordinates $(x, L)$ and $(x', L')$ of the input and output Lorenz curves respectively, where $0 < x \leq X_0$ and $0 < x' \leq X'_0$, the process is possible only if
+Then, given any coordinates $(x, L)$ and $(x', L')$ on the input and output Lorenz curves respectively, where $0 < x \leq X_0$ and $0 < x' \leq X'_0$, the process is possible only if
 \begin{equation}\label{eq:first_elb_bound1}
 	\frac{L}{x} \geq \frac{L'}{x'}.
 \end{equation}
 \end{proposition}
+\ddd{[I think the following is a more direct/informative proof]}
+\ddd{\begin{proof} If the transformation is possible then $L_{\rho|\sigma}(x) \ge L_{\rho'|\sigma'} (x)$ for all $x$ in $[0,1]$. If we restrict to the initial linear region segment of $L_{\rho|\sigma}(x)$ joining $(0,0)$ to $(X_0,L_0)$ then we require this to be above the initial linear segment of $L_{\rho'|\sigma'}(x)$ joining $(0,0)$ to $(X_0', L_0')$. Since both these linear segments go through the origin this condition implies that the slope of the initial segment of the input Lorenz curve must be greater than or equal to the slope of the initial segment of the output Lorenz curve. This slope constraint is then equivalent to Equation \ref{eq:first_elb_bound1}. \end{proof}}
 \begin{proof}
 Since both pairs of coordinates are located between $(0,0)$ and the first elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the origin and the appropriate pair of coordinates.
 
@@ -850,17 +867,22 @@ which is again a rearrangement of~\cref{eq:first_elb_bound1}.
 \end{proof}
 
 
-We now show that the relative majorization condition can be reduced to considering the elbows of the Lorenz curves.
+We now show that the relative majorization condition can be reduced to considering the elbows of the output Lorenz curve.
 \begin{proposition}\label{thm:elbows}
-	Let $\rho, \rho'$ be two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ in the $\sigma$--fragment.
-	
-	Let $t$ be the number of elbows of $\lc{\rho'}{\sigma'}(x)$ at locations $x_1, \dots, x_t$.
-	
-	Then, $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i =1,\dots,t$.
+	Let $\rho, \rho'$ be any two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$, where $\sigma, \sigma'$ are states with positive Wigner distributions. Assume that $\lc{\rho'}{\sigma'}(x)$ has $t$ elbows at locations $x_1, \dots, x_t$. Then, $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i =1,\dots,t$.
 \end{proposition}
 \begin{proof}	
-	$\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ trivially implies $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i = 1,\dots,n'$.
-	
+If $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ then the condition on the elbows trivially follows.
+
+\ddd{Conversely, assume $L_{\rho|\sigma}(x_i) \ge L_{\rho'|\sigma'}(x_i)$ for all $i=1,\dots t$. Suppose on the contrary that $L_{\rho|\sigma}(x)$ dips below $L_{\rho'|\sigma'}(x)$ at some point $y$ where $x_i < y < x_{i+1}$ for some $i$. Then this implies
+\begin{align}
+L_{\rho|\sigma}(x_i) &\ge L_{\rho'|\sigma'}(x_i) \nonumber \\
+L_{\rho|\sigma}(y) & <L_{\rho'|\sigma'}(y) \nonumber \\
+L_{\rho|\sigma}(x_{i+1}) &\ge L_{\rho'|\sigma'}(x_{i+1}).
+\end{align}
+However since $L_{\rho'|\sigma'}(x)$ is linear between $x_i$ and $x_{i+1}$, the above conditions imply that $L_{\rho|\sigma}(x)$ is not a concave function, which contradicts Lemma \ref{L-concave}. Therefore $L_{\rho|\sigma}(x) \ge L_{\rho'|\sigma'}(x)$ for all $x$ in $[0,1]$.
+}
+
 	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i = 1,\dots,r$.
 	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\rho'}{\sigma'}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\rho'}{\sigma'}(x_{n'+1}) = 1$.
 	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
@@ -878,32 +900,10 @@ We now show that the relative majorization condition can be reduced to consideri
 	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\rho'(x) = \lc{\rho'}{\sigma}(x)$.
 	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
 \end{proof}
-The above theorem can be used in reducing the necessary distillation constraints derived via majorization in $\sigma$--fragments.
+The above result simplifies the computation of relative majorization constraints to looking at the elbows of the output Lorenz curve.
 
 
 
-Any free state $\sigma \in \F$ corresponds to a $d^2$--dimensional probability distribution $\W{\sigma}$ and any free operation $\E \in \O$ corresponds to a $d^2 \times d^2$ stochastic matrix (or conditional probability distribution) $\W{\E}$.
-Note that these mappings are one-to-one due to the orthogonality of the phase-point operators as an operator basis.
-Note further that free states $\F$ are mapped onto a \emph{strict subset} of the set of probability distributions.
-As a counterexample, the sharp $d^2$--dimensional probability distribution $(1, 0, \dots, 0)$ does not correspond to any qudit Wigner distribution because of the boundedness condition in~\cref{thm:wstate}.
-Similarly, not all stochastic matrices correspond to completely positive operations.
-As an example, consider the permutation matrix
-\begin{equation}
-    \Pi_X = \begin{psmallmatrix}
-        0 & 1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 1 \\
-        0 & 0 & 0 & 1 & 0 \\
-        1 & 0 & 0 & 0 & 0 \\
-        0 & 0 & 1 & 0 & 0
-    \end{psmallmatrix} \otimes \begin{psmallmatrix}
-        0 & 0 & 1 & 0 & 0 \\
-        0 & 0 & 0 & 0 & 1 \\
-        0 & 0 & 0 & 1 & 0 \\
-        1 & 0 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0 & 0    
-    \end{psmallmatrix} \in {\rm{S}}_5({\W{\frac{1}{5}\id}}).
-\end{equation}
-It preserves the uniform distribution $\W{\frac{1}{5}\id}$, but it does not correspond to any positive (hence quantum) operation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -919,17 +919,14 @@ We denote the sums over an even number $m$ of successful trials by $\Phi_+(m; n,
 	\Phi_-(m; n, p) &\coloneqq \sum\limits_{\ell=1}^{(m-1)/2} \binom{n}{2\ell+1} p^{2\ell+1} (1-p)^{n-(2\ell+1)}, \nonumber\\ 
 	&\text{for odd integers }m\in[0,n]. \label{eq:fn_app}
 \end{align}
-Note that index $m$ only takes even (odd) values when labelling $\Phi_+$ ($\Phi_-$).
 In~\cref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves in the unital fragment.
 
-We also define the classical entropy of a $p$--coin and the classical relative entropy between a $p$--coin and a $q$--coin,
+We have the Shannon entropy of a $p$--coin and the Shannon relative entropy for a $p$--coin and a $q$--coin given by the expressions
 \begin{align}
 	S(p) &\coloneqq -p\log{p} -(1-p)\log{(1-p)}, \label{eq:ent}\\
 	\ent{p}{q} &\coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}. \label{eq:ent_rel}
 \end{align}
-They are symmetric about $p=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}{1-q}$.
-
-A useful result is the entropic bound on a combination~\cite{cit:ash}.
+They are symmetric about $p=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}{1-q}$. We also have the entropic bounds
 \begin{lemma}\label{lem:comb_bounds}
 	For all $\ell\in [1,n-1]$,
 	\begin{align}
@@ -937,26 +934,21 @@ A useful result is the entropic bound on a combination~\cite{cit:ash}.
 		&\left[ 2\pi \ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)}.
 	\end{align}
 \end{lemma}
-The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use Stirling's approximation for the remaining cases.
+The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use Stirling's approximation for the remaining cases. The bounds~\cref{lem:comb_bounds} can be used to derive the following upper and lower bounds on the functions $\Phi_+, \Phi_-$.
 
-We can use~\cref{lem:comb_bounds} to provide strict upper and lower bounds on the functions $\Phi_+, \Phi_-$.
-
-\subsection{Theory on bounding the core functions}
-Here we present a more manageable method of bounding the core functions $\Phi_{\pm}$, which however results in looser bounds. 
-We can rewrite the functions as
+We rewrite the functions as
 \begin{equation}
 	\Phi_{\pm}(m; n, a) = \frac{1}{2}(\Phi(m; n, a) \pm (1+a)^{-n} S(m; n, a)),
 \end{equation}
-where we have substituted $a = p/(1-p)$. 
-$\Phi$ is the standard cumulative function
+where $a = p/(1-p)$, and $\Phi$ is the standard cumulative function for the binomial distribution
 \begin{equation}
 	\Phi(m; n, a) = (1+a)^{-n} \sum_{k=0}^m \binom{n}{k} a^k,
 \end{equation}
-and the remainder term is
+and we define the remainder term
 \begin{equation}
 	S(m; n, a) \coloneqq \sum_{k=0}^m \binom{n}{k} (-a)^k.
 \end{equation}
-We have the following asymptotic bounds on the behaviour of $\Phi$~\cite{cit:ash},
+The cumulative function $\Phi$ obeys the following bounds, which are proven in~\cite{cit:ash}.
 \begin{lemma}\label{lem:phi_bounds}
 	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
 	\begin{align*}
@@ -972,10 +964,8 @@ We have the following asymptotic bounds on the behaviour of $\Phi$~\cite{cit:ash
 	\end{align*}
 \end{lemma}
 
-We would like some theory that estimates the value of $S(m; n, a)$ for different parameter regimes. 
-We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$.
-
-The truncated Maclaurin series of a general function $f(x)$ is
+We can now put estimates on $S(m; n, a)$, and hence the functions $\Phi_{\pm}$, for different parameter regimes. 
+We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$. The truncated Maclaurin series is given by
 \begin{equation}
 	f(x) = f(0) + x f'(0) + \dots \frac{x^m}{m!}f^{(m)}(0) + R_m(x)
 \end{equation}
@@ -984,22 +974,22 @@ with a remainder term
 	R_m (x)&= \int_{0}^x dt f^{(m+1)}(t) \frac{(x-t)^m}{m!} \\
 	&= \frac{x^{m+1}}{(m+1)!} f^{(m+1)}(x_*),
 \end{align}
-where in the second expression, $x_*$ is an implicit point that lies between $0$ and $x$ that comes from the Mean Value Theorem.
+where in the second expression, $x_*$ is a point that lies between $0$ and $x$ that comes from the Mean Value Theorem.
 
 Applying this to the function $f(x) = (1+x)^n$ gives
 \begin{equation}
 	(1+x)^n = \sum_{k=0}^m \binom{n}{k} x^k + R_m.
 \end{equation}
-Evaluating at $x=-a$ gives
+Therefore if we evaluate at $x=-a$ we obtain
 \begin{equation}
 	S(m; n, a) = (1-a)^n - R_m(-a),
 \end{equation}
-where the key remainder term is given by
+where the remainder term is given by
 \begin{align}
 	R_m(-a) &= \int_0^{-a} dt f^{(m+1)}(t) \frac{(-a-t)^m}{m!} \\
 &= \frac{(-a)^{m+1}}{(m+1)!} f^{(m+1)}(x_*).
 \end{align}
-We can also compute the derivative $f^{(m+1)}(x)$ explicitly,
+We can compute the derivative $f^{(m+1)}(x)$ explicitly,
 \begin{equation}
 	f^{(m+1)}(x) = (m+1)!\binom{n}{m+1}(1+x)^{n-m-1}.
 \end{equation}
@@ -1010,8 +1000,8 @@ Therefore, we have that
 &= \binom{n}{m+1}(-a)^{m+1}(1+x_*)^{n-m-1},
 \end{align}
 where in the latter expression $x_* \in [-a,0]$. 
-Note that the first integral expression can be estimated via the Cauchy-Schwarz or the H{\"o}lder inequality. 
-Therefore, we can either work with an explicit form with an unknown (but bounded) parameter $x_*$, or we can use the integral form and provide concrete estimates on it value.
+The first integral expression can be estimated via the Cauchy-Schwarz or the H{\"o}lder inequality. 
+Therefore, one has an explicit form with an unknown (but bounded) parameter $x_*$, or the integral form.
 
 A very simple estimate, based on $x_*$ lying in the interval $[-a,0]$ gives
 \begin{equation}
@@ -1024,319 +1014,8 @@ which in turn leads to the following bounds on $\Phi_+(m; n, a)$:
 	2\Phi_+(m; n, a) \geq\ &\Phi(m; n, a) + (1-a)^n - \frac{(-a)^{m+1}}{m!}  \times \nonumber\\
 	 &\binom{n}{m+1} .
 \end{align}
+Better bounds can be obtained with a finer analysis, and it would be of interest to obtain tighter asymptotic behaviour on $\Phi_{\pm}$ that could in turn be used to improve magic distillation bounds.
 
-\subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
-
-The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
-The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
-\begin{equation}
-	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right),
-\end{equation} 
-and $8$ positive components each with value
-\begin{equation}
-	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon.
-\end{equation}
-
-In the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
-It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
-
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} in the unital fragment, we can associate it with the set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, as presented in~\cref{tab:lcsu} for all different combinations of parameters $n,\epsilon$.
-We split the values of index $i$ into two intervals, defined precisely as
-\begin{align}
-&\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
-&\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
-\end{align}
-The labels $\text{LHS}, \text{RHS}$ imply that the components contribute to the left hand side or the right hand side of the maximum (including the maximum) of the Lorenz curve.
-To compactify notation, we also use multiplication modulo $(n+1)$, specifically, for any positive integer $m \leq 2n$:
-\begin{equation}
-	m \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 
-	\begin{cases}
-		m,\ &\text{if } 0 \leq m \leq n, \\
-		m - n - 1,\ &\text{if } n < m \leq 2n.
-	\end{cases}
-\end{equation}
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$m_{i}$} & \multicolumn{1}{|c}{$w_{i}$} \\[0.5ex]\hline
-    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $8^{2i}\binom{n}{2i}$ & $u^{2i}v^{n-2i}$ \\
-    & & RHS & $8^{n-2i}\binom{n}{2i}$ & $-u^{n-2i}v^{2i}$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{2i+1}\binom{n}{2i+1}$ & $u^{2i+1}v^{n-2i-1}$ \\
-    & & RHS & $8^{n-2i-1}\binom{n}{2i+1}$ & $-u^{n-2i-1}v^{2i+1}$ \\ \hline
-    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $u^{n-2i}v^{2i}$ \\
-    & & RHS & $8^{2i}\binom{n}{2i}$ & $-u^{2i}v^{n-2i}$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $u^{n-2i}v^{2i}$ \\
-    & & RHS & $8^{2i}\binom{n}{2i}$ & $-u^{2i}v^{n-2i}$ \\ \hline
-  \end{tabular}
-  \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
-  The expressions change depending on the error $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.}
-  \label{tab:lcsu}
-\end{table}
-
-In the unital fragment, the rescaled distribution is simply proportional to the Strange state distribution,
-\begin{equation}
-	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
-\end{equation}
-therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
-As a result, every Lorenz curve in the unital fragment contains at most $n$ elbows, which, along with the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, are labelled by 
-\begin{equation*}
-\{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
-\end{equation*}
-where the coordinates are
-\begin{equation}
-	(x_{i}, L_{i}) = \left( \frac{1}{9^n}\sum_{\ell=0}^i m_{\ell}, \sum_{\ell=0}^i m_{\ell} w_{\ell} \right).
-\end{equation}
-The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
-\begin{align}
-	x_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^n\right), \\
-	L_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^n \right).
-\end{align}
-%\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
-
-In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|r|r}
-\multicolumn{3}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
-    \multicolumn{3}{c|}{} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]\hline 
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
-    & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
-  \end{tabular}
-  \caption{Lorenz curve elbow coordinates in the unital fragment.
-  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
-  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
-  }
-  \label{tab:lcsu_coord_elb_app}
-\end{table}
-
-\nick{ALTERNATIVE TABLE PRESENTATION:}
-In~\cref{tab:lcsu_coord_elb_app_alt}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
-To compactify notation, we define in terms of $n, \epsilon$ an amplitude $A$ and a probability $p$, as follows:
-\begin{align}
-	A &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n, \\
-	p &= \frac{12-4\epsilon}{15-8\epsilon}.
-\end{align}
-
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{i}$} & \multicolumn{1}{|c}{$L_{i}$} \\[0.5ex]\hline
-   \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_-\left(2i;n,p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,p\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_+\left(2i;n,p\right)$ \\ \hline
-  \end{tabular}
-  \caption{Lorenz curve elbow coordinates in the unital fragment.
-  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
-  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
-  }
-  \label{tab:lcsu_coord_elb_app_alt}
-\end{table}
-
-We can get explicit expressions for all $9^{n}$ points of the Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{(\id/3)^{\otimes n}}$, in terms of the elbow coordinates:
-\begin{align}
-    x_{ij} &= \left( 1-\frac{j}{m_{i}} \right) x_{i-1} + \frac{j}{m_{i}} x_{i}, \label{eq:x}\\
-    L_{ij} &= \left( 1-\frac{j}{m_{i}} \right) L_{i-1} + \frac{j}{m_{i}} L_{i} \label{eq:l}
-\end{align}
-for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i$ are given in~\cref{tab:lcsu}.
-
-One can consider the state 
-\begin{equation*}
-\rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
-\end{equation*}
-where tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
-The new point coordinates are given by:
-\begin{align}
-    &x_{ijk} = \left( 1-p_{ijk}\right) x_{i-1} + p_{ijk} x_{i} \label{eq:lcsu_xcoord}\\
-    &L_{ijk} = \left( 1-p_{ijk} \right) L_{i-1} + p_{ijk} L_{i}, \label{eq:lcsu_lcoord}\\
-    &\text{where } p_{ijk} = \frac{k + (j-1)9^{n-n'}}{9^{n-n'} m_{i}} \nonumber\\
-    &\text{for } i=0,\dots,n',\ j = 1,\dots,m_{i}(n', \epsilon') \text{ and } k = 1,\dots,9^{n-n'}. \nonumber
-\end{align}
-
-We can unify the indices, by introducing a single index
-\begin{equation}
-    I(i,j,k) \coloneqq k + \left[ (j-1) + \sum_{\ell=0}^{i-1} m_{\ell}(n', \epsilon') \right]9^{n-n'},
-\end{equation}
-so that $I=1,2,\dots, 9^{n}$.
-The elbow coordinates correspond to 
-\begin{equation}
-	I(i, m_{i}(n', \epsilon'), 9^{n-n'}) = \sum_{\ell=0}^{i} m_{\ell}(n', \epsilon'),\ i= 0,\dots,n'.
-\end{equation}
-The index function $I$ is bijective, i.e.
-\begin{equation}
-	(i,j,k) = (i',j',k') \text{ iff } I(i,j,k) = I(i',j',k').
-\end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Details for the derivation of distillation bounds from Lorenz curves}
-\label{app:lcst_technical}
-
-\subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
-\label{app:main_proof}
-Here we prove our main theorem, which bounds magic distillation rates in terms of free energies.
-
-\begingroup
-\def\thetheorem{\ref{thm:free-energy}}
-\begin{theorem}
-	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
-	
-	Let $T =(k\beta)^{-1}$ be any finite temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
-Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
-
-Then the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
-\begin{equation}\label{eq:rate_bounds_proof}
-	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
-\end{equation}
-where $F$ is the free energy of $\tau$,  and 
-\begin{equation}
-	\phi = -\beta^{-1} \log \zeta
-\end{equation}
-with $\zeta$ given by the expressions
-\begin{align}
-	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
-	\alpha_k &= \<E_k| A_{\x_\star} |E_k\>,
-\end{align}
-and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similarly for the output system.
-\end{theorem}
-\addtocounter{theorem}{-1}
-\endgroup
-
-
-\begin{proof}	\label{thm:free-energy-bound-proof}
-For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.  We also assume, without loss of generality on the asymptotic distillation rate, that $n$ and $m$ are both even.
-
-To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho'_m$ for the magic states. 
-We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \tau'_m$.
-Since we have a finite temperature we have that $\tau$ and $\tau'$ are full rank stabilizer states and have a strictly positive Wigner distribution. The input and output magic states generally have quasi-probability Wigner distributions. 
-For any such protocol we therefore have that
-\begin{equation}
-	( W_{\rho_n}(\bmx), W_{\tau_n}(\bmx) ) \succ ( W_{\rho'_m}(\bmx), W_{\tau'_m}(\bmx) ),
-\end{equation}
-or, equivalently, in terms of the relevant Lorenz curves,
-\begin{equation}
-	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\tau'_m}(x) \mbox{ for all } x \in [0,1].
-\end{equation}
-
-We now consider the rescaled Wigner distribution $W_{\rho | \tau}(\x) \coloneqq W_\rho(\x)/W_\tau(\x)$, which is well-defined since $\tau$ is full-rank. 
-Due to the multiplicative property of the Wigner distribution, the rescaled distribution is also multiplicative in the sense that
-\begin{equation}
-	W_{\rho \otimes \rho' | \tau \otimes \tau'} (\x_1 \oplus \x_2) = W_{\rho | \tau}(\x_1)W_{\rho' | \tau'}(\x_2),
-\end{equation}
-for any states $\rho, \rho'$ and any full-rank stabilizer states $\tau, \tau'$.
-Therefore we have that
-\begin{align}
-	W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
-	W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
-\end{align}
-where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^n$ is the phase space point for the full system in terms of those of the individual subsystems.
-
-The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
-However, similarly to the unital fragment analysis, we use the necessary constraint obtained by considering the line segment connecting the origin to the first elbow of both Lorenz curves.
-
-The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(\mathbf{0}) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
-The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
-
-Assume that the smallest component of the distribution $W_\tau(\x)$ is at $\x=\x_\star$. Since the magic content of the state is unchanged under a Clifford unitary $C$, we can instead consider the state
-\begin{equation}
-\rho_S(\epsilon) \rightarrow C \rho_S(\epsilon) C^\dagger = D_{\x_\star} \rho_S(\epsilon) D_{\x_\star}^\dagger,
-\end{equation}
-which has its single negative Wigner component $-v(\epsilon)$ at the point $\x_\star$.
-
-
-The rescaled distribution components for this transformed state are given by
-\begin{equation}
-	W_{\rho_n|\tau_n} = \left(\frac{-v}{W_{\tau}(\x_\star)}\right)^{i_{\x_\star}} \prod_{\bmx \neq \x_\star} \left(\frac{u}{W_{\tau}(\bmx)}\right)^{i_{\bmx}},
-\end{equation}
-where the integer indices obey the following conditions:
-\begin{align}
-&0 \leq i_{\bmx} \leq n \mbox{ for all } \bmx \in \mathbb{Z}_3^2, \nonumber \\
-&\sum_{\bmx \in \mathbb{Z}_3^2} i_{\bmx} = n.
-\end{align}
-We now compute the largest rescaled component.
-Firstly, note that $n$ is even, so we require that $i_{\x_\star} \in \{0,2,\dots,n\}$ for the component to be positive.
-Then, we have that $v \geq u$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(\x_\star) \leq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
-Therefore, the largest rescaled component occurs when $i_{\x_{\star}} = n$ and $i_{\x} = 0$ for $\x \neq \x_\star$ and is equal to $(v/W_{\tau}(\x_\star))^n$.
-Accordingly, the coordinates of the first Lorenz curve point after the origin are given by
-\begin{equation}
-	(x_0, L_0) = ((W_{\tau}(\x_\star))^n, v^n)
-\end{equation}
-
-Given a Hamiltonian decomposition,
-\begin{equation}
-	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{E_k}{E_k},
-\end{equation}
-we can re-express the coordinate location, by writing
-\begin{align}
-	W_{\tau}(\x_\star) &= \frac{1}{3\Z}\tr\left[ A_{\x_\star}e^{-\beta H} \right] \nonumber\\
-	&= \frac{e^{\beta F}}{3} \tr\left[ A_{\x_\star}\sum_{k \in \mathbb{Z}_3} e^{-\beta E_k}\ketbra{E_k}{E_k} \right] \\
-	&= \frac{e^{\beta F}}{3} \sum_{r \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}
-	= \frac{e^{\beta F}}{3} \zeta \\
-	&= \frac{e^{\beta (F - \phi)}}{3},
-\end{align}
-where we define
-\begin{align}
-\alpha_k := \<E_k |A_{\x_\star} |E_k\> \\
-\zeta :=  \sum_{k \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
-\end{align}
-and the `magic free energy' term $\phi := -\beta^{-1} \log \zeta$.
-Therefore, the coordinates can be expressed as
-\begin{equation}
-	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
-\end{equation}
-The output states obey the same conditions and so we can derive the first point coordinates of the output Lorenz curve as
-\begin{equation}
-	(x'_0, L'_0) = \left( \frac{e^{m\beta (F' - \phi')}}{3^m}, v(\epsilon')^m \right).
-\end{equation}
-
-If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{prop:first_elb}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
-\begin{equation}
-	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
-	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
-\end{equation}
-Taking the natural logarithm on both sides and rearranging gives the bound
-\begin{equation}
-	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
-\end{equation}
-concluding the proof.
-\end{proof}
-
-The following result shows that if the energy eigenbasis is a stabilizer basis then things simplify more.
-\begin{proposition} \label{sharp-phi}
-	Let $H$ be a Hamiltonian $H$ with spectrum $\{E_k\}_{k \in \mathbb{Z}_d}$.
-	If $H$ has a stabilizer eigenbasis, then $\phi = E_{k_{\star}}$ for some $k_{\star} \in \mathbb{Z}_d$.
-\end{proposition}
-\begin{proof}
-	We first write $\alpha_k$ as
-\begin{equation}
-	\alpha_k = \<E_k | A_{\bmx_{\star}} |E_k\> = d W_{\ketbra{E_k}}(\bmx_{\star})
-\end{equation}
-Since each $\ketbra{E_k}$ is a stabilizer state, their Wigner distributions have orthogonal supports in the phase space, so only one of them, say $k = k_{\star}$ contains point $\bmx_{\star}$ in its support. 
-Additionally, its distribution is uniform on its support, so $W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star}) = 1/d$.
-
-Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
-\begin{align}
-\phi &= -\beta^{-1}\ln (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
-&=E_{k_{\star}} -kT \ln (d W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star})) =E_{k_{\star}}.
-\end{align}
-\end{proof}
 
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
@@ -1423,10 +1102,322 @@ Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ an
 \end{align*}
 which is the dimension of $W^{\otimes (n+1)}$.
 
-Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$ and no more, completing the proof.
+Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$, completing the proof.
 \end{proof}
 
 The rescaled distribution is also multiplicative, so a set of component-multiplicity pairs can be obtained for the $n$-copy rescaled distribution in the same fashion as for usual Wigner distributions.
+
+\subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
+
+The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
+The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
+\begin{equation}
+	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right),
+\end{equation} 
+and $8$ positive components each with value
+\begin{equation}
+	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon.
+\end{equation}
+
+In the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
+It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
+
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} in the unital fragment, we can associate it with the set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, as presented in~\cref{tab:lcsu} for all different combinations of parameters $n,\epsilon$.
+We split the values of index $i$ into two intervals, defined precisely as
+\begin{align}
+&\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
+&\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
+\end{align}
+The labels $\text{LHS}, \text{RHS}$ denote that the components contribute to the left hand side or the right hand side of the maximum (including the maximum) of the Lorenz curve.
+To simplify notation, we also use multiplication modulo $(n+1)$, specifically, for any positive integer $m \leq 2n$:
+\begin{equation}
+	m \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 
+	\begin{cases}
+		m,\ &\text{if } 0 \leq m \leq n, \\
+		m - n - 1,\ &\text{if } n < m \leq 2n.
+	\end{cases}
+\end{equation}
+\ddd{Where do we use this modulo $(n+1)$? I don't understand where it's appearing.}
+\begin{table}[h]
+  \def\arraystretch{1.5}
+  \centering
+  \begin{tabular}{c|c|c|r|r}
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$m_{i}$} & \multicolumn{1}{|c}{$w_{i}$} \\[0.5ex]\hline
+    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $8^{2i}\binom{n}{2i}$ & $u^{2i}v^{n-2i}$ \\
+    & & RHS & $8^{n-2i}\binom{n}{2i}$ & $-u^{n-2i}v^{2i}$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{2i+1}\binom{n}{2i+1}$ & $u^{2i+1}v^{n-2i-1}$ \\
+    & & RHS & $8^{n-2i-1}\binom{n}{2i+1}$ & $-u^{n-2i-1}v^{2i+1}$ \\ \hline
+    \multirow{4}{*}{\raisebox{-4ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-1ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $u^{n-2i}v^{2i}$ \\
+    & & RHS & $8^{2i}\binom{n}{2i}$ & $-u^{2i}v^{n-2i}$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-2ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $8^{n-2i}\binom{n}{2i}$ & $u^{n-2i}v^{2i}$ \\
+    & & RHS & $8^{2i}\binom{n}{2i}$ & $-u^{2i}v^{n-2i}$ \\ \hline
+  \end{tabular}
+  \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
+  The expressions change depending on the error $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
+  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.}
+  \label{tab:lcsu}
+\end{table}
+
+In the unital fragment, the rescaled distribution is simply proportional to the Strange state distribution,
+\begin{equation}
+	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
+\end{equation}
+therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
+As a result, every Lorenz curve in the unital fragment contains at most $n$ elbows, which, along with the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, are labelled by 
+\begin{equation*}
+\{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
+\end{equation*}
+where the coordinates are
+\begin{equation}
+	(x_{i}, L_{i}) = \left( \frac{1}{9^n}\sum_{\ell=0}^i m_{\ell}, \sum_{\ell=0}^i m_{\ell} w_{\ell} \right).
+\end{equation}
+The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
+\begin{align}
+	x_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^n\right), \\
+	L_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^n \right).
+\end{align}
+%\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
+
+In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
+\begin{table}[h]
+  \def\arraystretch{1.5}
+  \centering
+  \begin{tabular}{c|c|c|r|r}
+\multicolumn{3}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
+    \multicolumn{3}{c|}{} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]\hline 
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
+    & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
+  \end{tabular}
+  \caption{Lorenz curve elbow coordinates in the unital fragment.
+  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
+  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
+ The point $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
+  }
+  \label{tab:lcsu_coord_elb_app}
+\end{table}
+In~\cref{tab:lcsu_coord_elb_app_alt}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
+To simplify notation, we define in terms of $n, \epsilon$ an exponentially growing term $A$ and a probability $p$, as follows:
+\begin{align}
+	A &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n, \\
+	p &= \frac{12-4\epsilon}{15-8\epsilon}.
+\end{align}
+
+\begin{table}[h]
+  \def\arraystretch{1.5}
+  \centering
+  \begin{tabular}{c|c|c|r|r}
+    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{i}$} & \multicolumn{1}{|c}{$L_{i}$} \\[0.5ex]\hline
+   \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,p\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_-\left(2i;n,p\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \hline
+    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,p\right)$ \\ \cline{2-5}
+    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
+    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_+\left(2i;n,p\right)$ \\ \hline
+  \end{tabular}
+  \caption{Lorenz curve elbow coordinates in the unital fragment.
+  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
+  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
+  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
+  }
+  \label{tab:lcsu_coord_elb_app_alt}
+\end{table}
+
+We can get explicit expressions for all $9^{n}$ points of the Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{(\id/3)^{\otimes n}}$, in terms of the elbow coordinates:
+\begin{align}
+    x_{ij} &= \left( 1-\frac{j}{m_{i}} \right) x_{i-1} + \frac{j}{m_{i}} x_{i}, \label{eq:x}\\
+    L_{ij} &= \left( 1-\frac{j}{m_{i}} \right) L_{i-1} + \frac{j}{m_{i}} L_{i} \label{eq:l}
+\end{align}
+for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i$ are given in~\cref{tab:lcsu}.
+
+One can consider the state 
+\begin{equation*}
+\rho_{\rm{S}}(\epsilon')^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
+\end{equation*}
+where tensoring with the maximally mixed state keeps the Lorenz curve unchanged, but increases the resolution of (the uniformly distributed) points.
+The new point coordinates are given by:
+\begin{align}
+    &x_{ijk} = \left( 1-p_{ijk}\right) x_{i-1} + p_{ijk} x_{i} \label{eq:lcsu_xcoord}\\
+    &L_{ijk} = \left( 1-p_{ijk} \right) L_{i-1} + p_{ijk} L_{i}, \label{eq:lcsu_lcoord}\\
+    &\text{where } p_{ijk} = \frac{k + (j-1)9^{n-n'}}{9^{n-n'} m_{i}} \nonumber\\
+    &\text{for } i=0,\dots,n',\ j = 1,\dots,m_{i}(n', \epsilon') \text{ and } k = 1,\dots,9^{n-n'}. \nonumber
+\end{align}
+We can also combine the indices, by introducing a single index
+\begin{equation}
+    I(i,j,k) \coloneqq k + \left[ (j-1) + \sum_{\ell=0}^{i-1} m_{\ell}(n', \epsilon') \right]9^{n-n'},
+\end{equation}
+so that $I=1,2,\dots, 9^{n}$.
+The elbow coordinates correspond to 
+\begin{equation}
+	I(i, m_{i}(n', \epsilon'), 9^{n-n'}) = \sum_{\ell=0}^{i} m_{\ell}(n', \epsilon'),\ i= 0,\dots,n'.
+\end{equation}
+The indexing $I$ is bijective, i.e.
+\begin{equation}
+	(i,j,k) = (i',j',k') \text{ iff } I(i,j,k) = I(i',j',k').
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Details for the derivation of distillation bounds from Lorenz curves}
+\label{app:lcst_technical}
+
+\subsection{Free energy dependent magic distillation bounds}\label{free-energy-bound-proof}
+\label{app:main_proof}
+Here we prove our main theorem, which bounds magic distillation rates in terms of free energies.
+
+\begingroup
+\def\thetheorem{\ref{thm:free-energy}}
+\begin{theorem}
+	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
+	
+	Let $T =(k\beta)^{-1}$ be any finite temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
+Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+
+Then the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
+\begin{equation}\label{eq:rate_bounds_proof}
+	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+\end{equation}
+where $F$ is the free energy of $\tau$,  and 
+\begin{equation}
+	\phi = -\beta^{-1} \log \zeta
+\end{equation}
+with $\zeta$ given by the expressions
+\begin{align}
+	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \nonumber\\
+	\alpha_k &= \<E_k| A_{\x_\star} |E_k\>,
+\end{align}
+and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similarly for the output system.
+\end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
+
+
+\begin{proof}	\label{thm:free-energy-bound-proof}
+For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.  We also assume, without loss of generality on the asymptotic distillation rate, that $n$ and $m$ are both even.
+
+To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho'_m$ for the magic states. 
+We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \tau'_m$.
+Since we have a finite temperature we have that $\tau$ and $\tau'$ are full rank stabilizer states and have a strictly positive Wigner distribution. The input and output magic states generally have quasi-probability Wigner distributions. 
+For any such protocol we therefore have that
+\begin{equation}
+	( W_{\rho_n}(\bmx), W_{\tau_n}(\bmx) ) \succ ( W_{\rho'_m}(\bmx), W_{\tau'_m}(\bmx) ),
+\end{equation}
+or, equivalently, in terms of the relevant Lorenz curves,
+\begin{equation}
+	L_{\rho_n |\tau_n}(x) \ge L_{\rho'_m |\tau'_m}(x) \mbox{ for all } x \in [0,1].
+\end{equation}
+
+We now consider the rescaled Wigner distribution $W_{\rho | \tau}(\x) \coloneqq W_\rho(\x)/W_\tau(\x)$, which is well-defined since $\tau$ is full-rank. 
+Due to the multiplicative property of the Wigner distribution, the rescaled distribution is also multiplicative in the sense that
+\begin{equation}
+	W_{\rho \otimes \rho' | \tau \otimes \tau'} (\x_1 \oplus \x_2) = W_{\rho | \tau}(\x_1)W_{\rho' | \tau'}(\x_2),
+\end{equation}
+for any states $\rho, \rho'$ and any full-rank stabilizer states $\tau, \tau'$.
+Therefore we have that
+\begin{align}
+	W_{\rho_n |\tau_n} (\x) &= \prod_{i=1}^n W_{\rho|\tau}(\x_i)\\
+	W_{\rho_n } (\x) &= \prod_{i=1}^n W_\rho(\x_i)
+\end{align}
+where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^{2n}$ is the phase space point for the full system in terms of those of the individual subsystems.
+
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
+However, similar to the unital fragment analysis, we use the slope constraint (Proposition \ref{prop:first_elb}) obtained by considering the line segments connecting the origin to the first elbow of both Lorenz curves.
+
+The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(\mathbf{0}) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
+The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
+
+Assume that the smallest component of the distribution $W_\tau(\x)$ is at $\x=\x_\star$. Since the magic content of the state is unchanged under a Clifford unitary $C$, we can instead consider the state
+\begin{equation}
+\rho_S(\epsilon) \rightarrow C \rho_S(\epsilon) C^\dagger = D_{\x_\star} \rho_S(\epsilon) D_{\x_\star}^\dagger,
+\end{equation}
+which has its single negative Wigner component $-v(\epsilon)$ at the point $\x_\star$.
+
+
+The rescaled distribution components for this transformed state are given by
+\begin{equation}
+	W_{\rho_n|\tau_n} = \left(\frac{-v}{W_{\tau}(\x_\star)}\right)^{i_{\x_\star}} \prod_{\bmx \neq \x_\star} \left(\frac{u}{W_{\tau}(\bmx)}\right)^{i_{\bmx}},
+\end{equation}
+where the integer indices obey the following conditions:
+\begin{align}
+&0 \leq i_{\bmx} \leq n \mbox{ for all } \bmx \in \mathbb{Z}_3^2, \nonumber \\
+&\sum_{\bmx \in \mathbb{Z}_3^2} i_{\bmx} = n.
+\end{align}
+We now compute the largest rescaled component.
+Firstly, note that $n$ is even, so we require that $i_{\x_\star} \in \{0,2,\dots,n\}$ for the component to be positive.
+Then, we have that $v \geq u$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(\x_\star) \leq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$.
+Therefore, the largest rescaled component occurs when $i_{\x_{\star}} = n$ and $i_{\x} = 0$ for $\x \neq \x_\star$ and is equal to $(v/W_{\tau}(\x_\star))^n$.
+Accordingly, the coordinates of the first Lorenz curve point after the origin are given by
+\begin{equation}
+	(x_0, L_0) = ((W_{\tau}(\x_\star))^n, v^n)
+\end{equation}
+
+Given a Hamiltonian decomposition,
+\begin{equation}
+	H = \sum_{k \in \mathbb{Z}_3} E_k\ketbra{E_k}{E_k},
+\end{equation}
+we now express the coordinates of the first point in terms of free energy quantities. We expand as follows
+\begin{align}
+	W_{\tau}(\x_\star) &= \frac{1}{3\Z}\tr\left[ A_{\x_\star}e^{-\beta H} \right] \nonumber\\
+	&= \frac{e^{\beta F}}{3} \tr\left[ A_{\x_\star}\sum_{k \in \mathbb{Z}_3} e^{-\beta E_k}\ketbra{E_k}{E_k} \right] \\
+	&= \frac{e^{\beta F}}{3} \sum_{r \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}
+	= \frac{e^{\beta F}}{3} \zeta \\
+	&= \frac{e^{\beta (F - \phi)}}{3},
+\end{align}
+where we define
+\begin{align}
+\alpha_k := \<E_k |A_{\x_\star} |E_k\> \\
+\zeta :=  \sum_{k \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
+\end{align}
+and a `magic free energy' term $\phi := -\beta^{-1} \log \zeta$.
+Therefore, the coordinates can be expressed as
+\begin{equation}
+	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
+\end{equation}
+The output states obey the same conditions and so we also have the first point coordinates of the output Lorenz curve given by
+\begin{equation}
+	(x'_0, L'_0) = \left( \frac{e^{m\beta (F' - \phi')}}{3^m}, v(\epsilon')^m \right).
+\end{equation}
+
+If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
+In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{prop:first_elb}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
+\begin{equation}
+	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
+	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
+\end{equation}
+Taking the natural logarithm on both sides and rearranging gives the bound
+\begin{equation}
+	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+\end{equation}
+which completes the proof.
+\end{proof}
+
+The following result shows that if the energy eigenbasis is a stabilizer basis then the above bounds simplify further.
+\begin{proposition} \label{sharp-phi}
+	Let $H$ be a Hamiltonian $H$ with spectrum $\{E_k\}_{k \in \mathbb{Z}_d}$.
+	If $H$ has a stabilizer eigenbasis, then $\phi = E_{k_{\star}}$ for some $k_{\star} \in \mathbb{Z}_d$.
+\end{proposition}
+\begin{proof}
+	We first write $\alpha_k$ as
+\begin{equation}
+	\alpha_k = \<E_k | A_{\bmx_{\star}} |E_k\> = d W_{\ketbra{E_k}}(\bmx_{\star})
+\end{equation}
+Since each $\ketbra{E_k}$ is a stabilizer state, their Wigner distributions have orthogonal supports in the phase space, so only one of them, say $k = k_{\star}$ contains point $\bmx_{\star}$ in its support. 
+Additionally, its distribution is uniform on its support, so $W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star}) = 1/d$.
+
+Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
+\begin{align}
+\phi &= -\beta^{-1}\ln (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
+&=E_{k_{\star}} -kT \ln (d W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star})) =E_{k_{\star}}.
+\end{align}
+\end{proof}
+
 
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
@@ -1440,7 +1431,7 @@ If we drop the freedom to transform the magic states via Clifford unitaries, the
 \end{equation*}
 with $n, m \gg 1$.
 
-Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$ and stabilizer eigenstates, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ as the eigenvalue of the Hamiltonian eigenstate the Wigner representation of which overlaps the negative component of $\rho_S(\epsilon)$ in the phase space. 
+Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$ and stabilizer eigenstates, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ as the eigenvalue of the Hamiltonian eigenstate whose Wigner distribution overlaps the negative component of $\rho_S(\epsilon)$ in the phase space. 
 Let $T =(k\beta)^{-1}$ be any finite temperature and assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
 Define $\beta_\star = (k T_\star)^{-1}$ through the relation
@@ -1467,17 +1458,15 @@ Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
 \end{equation}
 where $F$ is the free energy of state $\tau$ and all primed quantities are similarly defined for the ouptut system.
 \end{theorem}
-We note, firstly, that the specific numerical factors in $\epsilon_\star$ are a result of our choice of magic state. 
 \begin{proof}
-The proof proceeds in the same manner as in~\cref{thm:free-energy-bound-proof} up to the point where we need to evaluate $W_{\rho_n |\tau_n} (\x)$ and $W_{\rho_n}(\x)$ explicitly.
-Now we do not have the freedom of additional Clifford processing, so we need to exploit the full structure of the equilibrium state.
+The proof proceeds in the same manner as in~\cref{thm:free-energy-bound-proof} up to the point where we need to evaluate $W_{\rho_n |\tau_n} (\x)$ and $W_{\rho_n}(\x)$ explicitly, beyond which we do not have the freedom of additional Clifford processing.
 
 The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
 The state $\tau$ can now be written as 
 \begin{equation}
 	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
 \end{equation}
-where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. To make our analysis simpler, we perform a change of basis that does not affect the Wigner negativity of the problem. We let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this choice means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
@@ -1485,7 +1474,7 @@ The Wigner distribution of state $\tau$ is then given by
 	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
-The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It has $9$ components, but several of these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
+The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ can now be computed. It has $9$ components, but these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.45]{figs/pd_split_thermal.pdf}
@@ -1495,7 +1484,7 @@ The rescaled Wigner distribution $W_{\rho|\tau}(\x)$ is then easily computed. It
     \label{fig:pd_split}
 \end{figure}
 
-We now denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\bmm$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
+We denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x), W_{\rho|\tau}(\x)$ respectively and $\bmm$ the vector of associated multiplicities of each value in $W_\rho(\x)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
 \begin{align}
 	\w(\rho) &\coloneqq (-v, u, u, u), \\
 		\bmm &\coloneqq (1,2,3,3), \\
@@ -1520,7 +1509,7 @@ The associated components of $\w(\rho_n)$ are given by
 
 In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\x))$.
 
-Generally this is complex, but in order to obtain distillation bounds it is sufficient to determine the location of the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. To do so, we compute the largest component 
+However, it again suffices to use only the constraint from the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\x)$. We therefore compute the largest component 
 \begin{equation}
 	w_{\rm max} \coloneqq \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
 \end{equation}
@@ -1598,6 +1587,8 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 	
 \subsection{Deriving distillation bounds from the last elbow}
 \label{sec:last_elb}
+
+\ddd{[I would prefer to remove this last elbow constraint analysis, and just mention it in the main text. If we include it then I need to go through the details to ensure they're correct -- which is very time-consuming at this stage. We *can't* put glaringly sloppy/incorrect things into a paper that will be public to the world. Happy to remove and just mention in passing?]}
 
 We can run a similar analysis, in order to utilise the descending part of the Lorenz curves to extract bounds.
 These bounds do not offer any additional physical insight and are expressed by , but can be tighter in some scenarios.
