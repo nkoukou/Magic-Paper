@@ -947,10 +947,117 @@ Here we prove two simple majorization constraints, one arising by considering on
 
 
 
+	
+\subsection{Deriving distillation bounds from the last elbow}
+\label{sec:last_elb}
+
+\ddd{[I would prefer to remove this last elbow constraint analysis, and just mention it in the main text. If we include it then I need to go through the details to ensure they're correct -- which is very time-consuming at this stage. We *can't* put glaringly sloppy/incorrect things into a paper that will be public to the world. Happy to remove and just mention in passing?]}
+
+We can run a similar analysis, in order to utilise the descending part of the Lorenz curves to extract bounds.
+These bounds do not offer any additional physical insight and are expressed by , but can be tighter in some scenarios.
+Here we derive an equivalent bound to our main theorem using the last elbow constraint, which we prove first.
+
+\begin{proposition}\label{prop:last_elb}
+	Consider a magic state process $\rho \longrightarrow \rho'$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ and denote the coordinates of the last elbow of $L_{\rho|\sigma}(x)$ by $(X_E, L_E)$ and the coordinates of the first elbow of $L_{\rho' |\sigma'}(x)$ by $(X'_E, L'_E)$.
+	
+Then, given any coordinates $(x, L)$ and $(x', L')$ of the input and output Lorenz curves respectively, where $1 > x \geq X_E$ and $1 > x' \geq X'_E$, the process is possible only if
+\begin{equation}\label{eq:last_elb_bound1}
+	\frac{L - 1}{1-x} \geq \frac{L' - 1}{1-x'}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Since both pairs of coordinates are located between the endpoint $(1,1)$ and the last elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the endpoint and the appropriate pair of coordinates.
+
+First assume that $x > x'$.
+Then, point $(x, L_{\rho'|\sigma'}(x))$ lies on the lines segment connecting $(1,1)$ and $(x', L')$, so by interpolating between points $(1,1)$ and $(x', L')$, we find that
+\begin{equation}
+	L_{\rho'|\sigma'}(x) = 1 + \frac{1-x}{1-x'} (L' - 1).
+\end{equation}
+Considering the Lorenz curve constraint at $x$, the process is possible only if 
+\begin{equation}
+	L = \lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x) = 1 + \frac{1-x}{1-x'} (L' - 1),
+\end{equation}
+which is a rearrangement of~\cref{eq:last_elb_bound1}.
+
+If instead, $x \leq x'$, the point $(x', L_{\rho|\sigma}(x'))$ lies on the lines segment connecting $(1,1)$ and $(x, L)$, so by interpolating between points $(1,1)$ and $(x, L)$, we find that
+\begin{equation}
+	L_{\rho|\sigma}(x') = 1 + \frac{1-x'}{1-x} (L - 1).
+\end{equation}
+Considering the Lorenz curve constraint at $x'$, the process is possible only if 
+\begin{equation}
+	1 + \frac{1-x'}{1-x} (L - 1) = \lc{\rho}{\sigma}(x') \geq \lc{\rho'}{\sigma'}(x) = L',
+\end{equation}
+which is again a rearrangement of~\cref{eq:last_elb_bound1}.
+\end{proof}
+
+In order to derive a bound based on the last elbow constraint, we assume that the smallest component of the equilibrium state distribution is $W_{\tau}(\bmx_\star)$ and the second smallest is $W_{\tau}(\bmy_\star)$.
+We now perform a Clifford operation on $\rho_{\rm{S}}$ so that its Wigner component is $-v(\epsilon)$ at $\bmx_\star$ and $u(\epsilon)$ at $\bmy_\star$. \nick{Is this always possible? I think not}
+Since we have that $u \leq v$ because $\epsilon \leq 3/7$, and $W_{\tau}(\bmx_\star) \geq W_{\tau}(\bmy_\star) \geq W_{\tau}(\bmx)$ for all $\bmx \in \mathbb{Z}_3^2$, the largest rescaled component occurs when $i_{\bmx_\star} = n-1$, $i_{\bmy_\star} = 1$ and $i_{\bmx} = 0$ for $\bmx \notin \{\bmx_\star, \bmy_\star\}$ and it is equal to $(-v^{n-1}u/(W_{\tau}(\bmx_\star)^{n-1}W_{\tau}(\bmy_\star))$.
+Accordingly, the coordinates of the last Lorenz curve point before $(1,1)$ are given by
+\begin{equation}
+	(x_E, L_E) = \left( 1-W_{\tau}(\bmx_\star)^{n-1}W_{\tau}(\bmy_\star), 1 + v(\epsilon)^{n-1}u(\epsilon) \right)
+\end{equation}
+for the input state and we express the same coordinates with primed quantities for the output state.
+
+We now define the quantities $\phi_\alpha$ defined in terms of $\alpha_k = \sum_{r \in \mathbb{Z}_3} \<E_k |A_{\bmx_\star} |E_k\>$. and $\phi_\lambda$ defined in terms of $\lambda_k = \sum_{r \in \mathbb{Z}_3} \<E_k |A_{\bmy_\star} |E_k\>$.
+This allows us to rewrite $W_{\tau}(\bmx_\star) = {e^{\beta (F - \phi_\alpha)}}/{3}$ and $W_{\tau}(\bmy_\star) = {e^{\beta (F - \phi_\lambda)}}/{3}$.
+
+Using the last elbow constraint derived in~\cref{prop:last_elb}, we can get the new bound expression,
+\begin{equation}
+	\begin{split}
+	R \leq &\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi_\alpha - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi'_\alpha - F')} + \\
+	&\frac{1}{n}\frac{\ln{\frac{u(\epsilon')v(\epsilon)}{u(\epsilon)v(\epsilon')}}+\beta(\phi_\alpha - \phi'_\alpha + \phi'_\lambda - \phi_\lambda)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi'_\alpha - F')}
+	\end{split}
+\end{equation}
+
+We note that it is possible to perform various Clifford transformations and get a different location $(W_{\tau}(\bmx))^n$, with $\bmx \neq \bmo$, since components $W_{\rho}(\bmx) = u(\epsilon)$ are all the same as long as $\bmx \neq \bmo$.
+The effect of this is to alter the expressions for the quantities $\alpha_k$, but not the resulting bound expression.
 
 
 
 
+\begin{proof}
+Since both pairs of coordinates are located between $(0,0)$ and the first elbow of their respective curves, we can derive the bound via a simple interpolation on the line segment connecting the origin and the appropriate pair of coordinates.
+
+First assume that $x < x'$.
+Then, point $(x, L_{\rho'|\sigma'}(x))$ lies on the lines segment connecting $(0,0)$ and $(x', L')$, so by interpolating between points $(0,0)$ and $(x', L')$ at location $x$, we find that
+\begin{equation}
+	L_{\rho'|\sigma'}(x) = \frac{x}{x'}L'.
+\end{equation}
+Considering the Lorenz curve constraint at $x$, the process is possible only if 
+\begin{equation}
+	L = \lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x) = \frac{x}{x'}L',
+\end{equation}
+which is a rearrangement of~\cref{eq:first_elb_bound1}.
+
+If instead, $x \geq x'$, the point $(x', L_{\rho|\sigma}(x'))$ lies on the lines segment connecting $(0,0)$ and $(x, L)$, so by interpolating between points $(0,0)$ and $(x, L)$ at location $x'$, we find that
+\begin{equation}
+	L_{\rho|\sigma}(x') = \frac{x'}{x}L.
+\end{equation}
+Considering the Lorenz curve constraint at $x'$, the process is possible only if 
+\begin{equation}
+	\frac{x'}{x}L = \lc{\rho}{\sigma}(x') \geq \lc{\rho'}{\sigma'}(x) = L',
+\end{equation}
+which is again a rearrangement of~\cref{eq:first_elb_bound1}.
+\end{proof}
+
+
+	Conversely, assume that $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i = 1,\dots,r$.
+	First, let $x_0 = 0$ and $x_{n'+1} = 1$, so that $\lc{\rho}{\sigma}(x_0) = \lc{\rho'}{\sigma'}(x_0) = 0$ and $\lc{\rho}{\sigma}(x_{n'+1}) = \lc{\rho'}{\sigma'}(x_{n'+1}) = 1$.
+	Hence, we can extend the set of elbows $E$ to $E' = E \cup \{x_0, x_{n'+1}\}$.
+	
+	Pick two consecutive locations $x_{i}, x_{i+1}$ in $E'$ and consider the line segment $\ell_\rho'(x)$ connecting points $(x_{i}, \lc{\rho'}{\sigma'}(x_{i}))$ and $(x_{i+1}, \lc{\rho'}{\sigma'}(x_{i+1}))$ as well as the line segment $\ell_\rho(x)$ connecting points $(x_{i}, \lc{\rho}{\sigma}(x_{i}))$ and $(x_{i+1}, \lc{\rho}{\sigma}(x_{i+1}))$.
+	This is illustrated in~\cref{fig:elbows_proof}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{figs/elbows_proof.pdf}
+    \caption{\textbf{Illustration of~\cref{thm:elbows}}.
+    }
+    \label{fig:elbows_proof}
+\end{figure}
+
+	Due to concavity of $\lc{\rho}{\sigma}$, it is clear that for all $x \in [x_{i}, x_{i+1}]$, we have $\lc{\rho}{\sigma}(x) \geq \ell_\rho(x) \geq \ell_\rho'(x) = \lc{\rho'}{\sigma}(x)$.
+	This argument can be made in all intervals $[x_{i}, x_{i+1}]$ with $i=0,\dots,n'$, so the proof is complete.
 
 
 
