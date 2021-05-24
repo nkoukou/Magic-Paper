@@ -640,6 +640,23 @@ on $H$ to get $H'$ leaves $\phi$ unaffected.
 I didn't find any interesting case where $\phi \rightarrow \infty$, except of course when there is some $E_k \rightarrow \infty$. 
 I looked through Hamiltonians which are convex combinations of phase-point operators and SHO (diagonal) Hamiltonians.
 
+\nick{What happens when the bound $=0$ or $1$?}
+Note that it is always true that $L_0/x_0 > 1$ for any Lorenz curve of a state which is not free (this is because the free state Lorenz curve is a straight line connecting $(0,0$ and $(1,1)$ while all other Lorenz curves lie above it.)
+Therefore, in the bound expression
+\begin{equation}\label{eq:rate_bounds_proof}
+	R = \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+\end{equation}
+where the denominator is always positive (and we've set equality to saturate the bound), we can rewrite it as
+\begin{equation}
+	\frac{m}{n}\frac{\ln{(L_0/x_0)}}{\ln{(L'_0/x'_0)}} = R.
+\end{equation}
+If $R=0$ it means that $m=0$ (zero output states) or the slope $L_0/x_0$ equals 1 (input state is free).
+If $R=1$, we get a trade-off between copy number and Lorenz curve slopes,
+\begin{equation}
+	\left(\frac{L_0}{x_0}\right)^m = \left(\frac{L'_0}{x'_0}\right)^n.
+\end{equation}
+
+
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
@@ -814,12 +831,14 @@ Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multip
 \end{equation}
 respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
 \end{lemma}
-
-This is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
+\begin{proof}
+	This result is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
 \begin{equation*}
-	\sum_{i=1}^{D_A}\sum_{j=1}^{D_B} m_i m_j' = \sum_{i=1}^{D_A} m_i \sum_{j=1}^{D_B} m_j' = d_A^2 d_B^2,
+	\sum_{i}\sum_{j} m_i m_j' = \sum_{i} m_i \sum_{j} m_j' = d_A^2 d_B^2,
 \end{equation*}
-so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$ and no more.
+where $d_A, d_B$ are the dimensions of $\rho_A, \rho_B$ respectively, and
+so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$.
+\end{proof}
 
 In the case of distillation protocols, we are interested in $n$--copies of a single Wigner distribution. For this, we have the following result, which follows from combinatorics.
 
@@ -1087,16 +1106,8 @@ We split the values of index $i$ into two intervals, defined precisely as
 &\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
 &\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
 \end{align}
-The labels $\text{LHS}, \text{RHS}$ denote that the components contribute to the left hand side or the right hand side of the maximum (including the maximum) of the Lorenz curve.
-To simplify notation, we also use multiplication modulo $(n+1)$, specifically, for any positive integer $m \leq 2n$:
-\begin{equation}
-	m \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 
-	\begin{cases}
-		m,\ &\text{if } 0 \leq m \leq n, \\
-		m - n - 1,\ &\text{if } n < m \leq 2n.
-	\end{cases}
-\end{equation}
-\ddd{Where do we use this modulo $(n+1)$? I don't understand where it's appearing.}\nick{In both tables, wherever you see $2i$.}
+The labels $\text{LHS}, \text{RHS}$ denote that the components contribute to the left hand side or the right hand side of the maximum of the Lorenz curve.
+The maximum is included in the $\text{LHS}$.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
@@ -1113,7 +1124,7 @@ To simplify notation, we also use multiplication modulo $(n+1)$, specifically, f
   \end{tabular}
   \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
   The expressions change depending on the error $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.}
+  The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.}
   \label{tab:lcsu}
 \end{table}
 
@@ -1142,8 +1153,9 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-\multicolumn{3}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
-    \multicolumn{3}{c|}{} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]\hline 
+%\multicolumn{2}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{LHS} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
+%    \multicolumn{2}{c|}{} & \multicolumn{1}{c|}{RHS} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]
+\hline 
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
     & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_-\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_-\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
@@ -1153,42 +1165,13 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
     & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
-  \caption{Lorenz curve elbow coordinates in the unital fragment.
+  \caption{Lorenz curve elbow coordinates in the unital fragment. 
+  \nick{For lines labelled as LHS, the expressions correspond to $x_i$ and $L_i$ respectively, while for lines labelled as RHS, the expressions correspond to $x_i - x_{\lfloor n/2 \rfloor}$ and $L_i - L_{\lfloor n/2 \rfloor}$ respectively}.
   The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
- The point $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
+  The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.
+  The point $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
   }
   \label{tab:lcsu_coord_elb_app}
-\end{table}
-
-\nick{The following is an alternative presentation to Table II, we get to choose one of them to keep}
-In~\cref{tab:lcsu_coord_elb_app_alt}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
-To simplify notation, we define in terms of $n, \epsilon$ an exponentially growing term $A$ and a probability $p$, as follows:
-\begin{align}
-	A &= \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n, \\
-	p &= \frac{12-4\epsilon}{15-8\epsilon}.
-\end{align}
-
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|r|r}
-    \multicolumn{3}{c|}{Case} & \multicolumn{1}{c}{$x_{i}$} & \multicolumn{1}{|c}{$L_{i}$} \\[0.5ex]\hline
-   \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_-\left(2i;n,p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,1-p\right)$ \\ \hline
-    \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$\frac{3}{7}\leq \epsilon < \frac{3}{4}$}}} & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_-\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_-\left(2i;n,p\right)$ \\ \cline{2-5}
-    & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{1}{9}\right)$ & $L_{\lfloor n/2 \rfloor} + A \Phi_+\left(2i;n,1-p\right)$ \\
-    & & RHS & $x_{\lfloor n/2 \rfloor} + \Phi_+\left(2i;n,\frac{8}{9}\right)$ & $L_{\lfloor n/2 \rfloor} - A \Phi_+\left(2i;n,p\right)$ \\ \hline
-  \end{tabular}
-  \caption{Lorenz curve elbow coordinates in the unital fragment.
-  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
-  Multiplication $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$.
-  For completeness, note that $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
-  }
-  \label{tab:lcsu_coord_elb_app_alt}
 \end{table}
 
 We can get explicit expressions for all $9^{n}$ points of the Lorenz curve $\lc{\rho_{\rm{S}}(\epsilon)^{\otimes n}}{(\id/3)^{\otimes n}}$, in terms of the elbow coordinates:
@@ -1258,7 +1241,6 @@ and $\x_\star = \arg\!\min W_\tau(\x)$. The primed variables are defined similar
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
-
 
 \begin{proof}	\label{thm:free-energy-bound-proof}
 For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.  We also assume, without loss of generality on the asymptotic distillation rate, that $n$ and $m$ are both even.
@@ -1352,6 +1334,7 @@ In both cases, the distillation bound remains the same, as is clear by its deriv
 	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
 	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
 \end{equation}
+\nick{Note that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ because $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of the its Lorenz curve exceeds $1$.}
 Taking the natural logarithm on both sides and rearranging gives the bound
 \begin{equation}
 	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
