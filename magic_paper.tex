@@ -65,8 +65,9 @@ Finally, we discuss how our approach could be improved and how it can be exploit
         \includegraphics[scale=0.4]{figs/protocol_diagram.pdf}
     \caption{\textbf{Analysing magic protocols relative to a stabilizer reference state.} 
 	A magic protocol aims to turn $n$ copies of some magic state $\rho$ to $m$ copies of some other state $\rho'$.
-	Constraints on the efficiency of the protocol can be imposed by considering its action on a separate probe state $\tau$.
-    } \ddd{[Not the clearest - we can zoom-chat on this.]}
+	Constraints on the efficiency of the protocol can be imposed by considering its action on a separate probe state $\tau$ which tranforms to $\tau'$ with free energy $F \rightarrow F'$.
+	A ``magic free energy'' $\phi \rightarrow \phi'$ connects the two state conversions under the protocol. \nick{FIX}
+    }
     \label{fig:sketch}
 \end{figure}
 
@@ -207,7 +208,8 @@ In what follows we shall therefore assume that we have a magic theory $\R = (\F,
 \section{Magic distillation bounds from majorization theory}
 \label{sec:frag}
 
-We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}. \nick{repeats intro}
+\nick{repeats intro}
+We wish to consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}.
 
 Our formulation will not consider model-specific limitations, but will still inject broad physical constraints. We proceed by considering fixed-point, or ``equilibrium'', restrictions on the actual operations that are accessible to us. While such restrictions could be viewed as the existence of some non-trivial thermodynamic constraint, they could equally be viewed as encoding a high noise-bias or difficulty in realising a particular quantum gate. We can therefore define the following sub-theory of any magic theory $\R$.
 \begin{definition}\label{def:sigmafrag}
@@ -239,8 +241,8 @@ Then a transformation $\rho \longrightarrow \tau$ is possible in $\R$ if and onl
     \label{fig:zoo}
 \end{figure}
 
-It is now possible to consider magic distillation rates within $\sigma$--fragments and then see how the bounds on the distillation rates depend on the choice of the fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards some pure stabilizer state provide more freedom?
 \nick{re-write based on new relative majorisation approach}
+It is now possible to consider magic distillation rates within $\sigma$--fragments and then see how the bounds on the distillation rates depend on the choice of the fragment we work within. Therefore, this route can potentially shed light on how the physics of a protocol constrain distillation rates above and beyond global constraints from the parent resource theory. For example, how does temperature affect distillation bounds? Do isotropic maps have better bounds, or does bias towards some pure stabilizer state provide more freedom?
 
 By introducing this additional structure to a magic theory, we allow for deeper analysis than would be possible at the level of the full parent theory. In particular, the interconversion structure in each fragment can be analysed using tools from single-shot thermodynamics and majorization theory as we discuss in the next section.
 
@@ -294,7 +296,7 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
     \label{fig:lcs}
 \end{figure}
 
-However, relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-probability distributions before proceeding with our analysis. This can be done from first principles, but a simpler way is see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-probability distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization. 
+However, relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-probability distributions before proceeding with our analysis. This can be done from first principles, but a simpler way is see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-probability distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization.
  
 More precisely, since the components of $\r$ are strictly positive, there always exists an $\epsilon >0$ such that $\w_\epsilon \coloneqq \epsilon \w + (1-\epsilon) \r$ is a genuine probability distribution. We can see that $(\w , \r) \succ (\w', \r')$ if and only if $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$, where we choose $\epsilon$ so that both $\w_\epsilon$ and $\w_\epsilon'$ are probability distributions. This equivalence holds because there exists a stochastic map $A$ such that $A \w = \w'$ and $A \r = \r'$ if and only if 
 \begin{equation}
@@ -302,11 +304,11 @@ A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'\mbox{ and } A
 \end{equation}
 As mentioned, relative majorization between pairs of distributions occurs if and only if the associated Lorenz curves never cross. Therefore, we can express this condition in terms of the Lorenz curves of the quasi-probability distributions $\w$ and $\w'$ relative to $\r$ and $\r'$ respectively.
 
-As shown in Appendix \ref{lemma:Lorenz_linearity}, the Lorenz curve for any quasi-probability distribution obeys the following linearity condition
+As shown in~\cref{lemma:Lorenz_linearity}, the Lorenz curve for any quasi-probability distribution obeys the following linearity condition
 \begin{equation}
 L_{a \w + b \r | \r} (x) = a L_{\w|\r} (x) + bx,
 \end{equation}
-for all $a >0$ and any $b \in \mathbb{R}$. We now have that
+for any $a >0$ and $b \in \mathbb{R}$. We now have that
 \begin{equation}
 (\w, \r) \succ (\w', \r') \mbox{ if and only if } (\w_\epsilon , \r) \succ (\w_\epsilon', \r'),
 \end{equation}
@@ -339,7 +341,7 @@ This in turn can be expressed in terms of Lorenz curves. To simplify notation, w
 \begin{equation}
 \rho_1 \rightarrow \rho_2 \mbox{ within }\R_\sigma \mbox{ implies } L_{\rho_1 |\sigma} (x) \ge L_{\rho_2 |\sigma} (x),
 \end{equation}
-for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to exponentially many constraints, of which though there are at most as many independent constraints as there are elbows in the Lorenz curve of the output state, as proved in~\cref{thm:elbows} of~\cref{app:frag}.
+for all $x \in [0,1]$. Therefore, the magic state Lorenz curve condition can be used to impose upper bounds on magic distillation rates. Note, however, that unlike any monotone, this is not a single numerical constraint, but a \emph{family} of constraints. Indeed, for $n$ copies of a $d$--dimensional system the number of terms in $W_{\rho}$ is $d^{2n}$, so the Lorenz curve condition corresponds to exponentially many constraints, of which though there are at most as many independent constraints as there are elbows in the Lorenz curve of the output state, as proved in~\cref{thm:elbows}.
 In principle, any one location $x$ provides some valid constraint leading to an upper distillation bound, while optimising over the location provides the strictest majorisation bound.
 
 \subsection{Basic monotones for magic states in a particular fragment}
@@ -743,16 +745,27 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
 The following provides equivalent formulations of relative majorization. 
 
 \begin{proposition}\label{prop:rmajor}
-Given probability distributions $\bmx, \bmy$, $\r , \r'$, such that the components of $\r$ and $\r'$ are positive, the following statements are equivalent:
+Given probability distributions $\p, \q$, $\r , \r'$, such that the components of $\r$ and $\r'$ are positive, the following statements are equivalent:
   \begin{enumerate}
-    \item[(i)] $\bmy = A\bmx$ and $\r' = A\r$ for a stochastic map $A$;
-    \item[(ii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{x_i - r_i t} \leq \sum\limits_{i=1}^n \abs{y_i - r'_i t}$ for all $t \in \mathbb{R}$;
-    \item[(iii)] $L_{\bmx|\r}(t) \leq L_{\bmy|\r'}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\bmx|\r}(1) = L_{\bmy|\r'}(1)$.
+    \item[(i)] $\q = A\p$ and $\r' = A\r$ for a stochastic map $A$;
+    \item[(ii)]\label{en:tm3} $\sum\limits_{i=1}^n \abs{p_i - r_i t} \leq \sum\limits_{i=1}^n \abs{q_i - r'_i t}$ for all $t \in \mathbb{R}$;
+    \item[(iii)] $L_{\p|\r}(t) \leq L_{\q|\r'}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\p|\r}(1) = L_{\q|\r'}(1)$.
   \end{enumerate}
 \end{proposition}
 The proofs for these can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2016,Buscemi_2017} and references therein.
 
+\subsection{Relative majorization for quasi-distributions}
+\label{app:rel_quasi}
+
+We now show that the Lorenz curve is concave in the context of quasi-distributions.
 \begin{lemma}\label{L-concave} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\p|\r}(x)$ is a concave function on $[0,1]$.
+\nick{
+\begin{proof}
+	The Lorenz curve of $\p$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k p_{\pi(i)})$ where $\pi$ is the permutation that puts $p_i/r_i$ in non-increasing order.
+	By construction, the slope of the curve attains the values $p_{\pi(i)}/r_{\pi(i)}$ throughout the interval $[0,1]$, which is a non-increasing sequence due to the definition of $\pi$.
+	Therefore, the Lorenz curve is concave.
+\end{proof}
+}
 \begin{proof}Let $L_{\p|\r}(x)$ attain its maximum at $x=x_\star$. Then from the definition, the function is continuous, monotone increasing on $[0,x_\star]$, and monotone decreasing on $[x_\star, 1]$. Consider $a,b \in [0,1]$ with $a <b$ and some probability $q \in [0,1]$. If $a$ and $b$ both lie in either the interval $[0,x_\star]$ or $[x_\star, 1]$ then concavity follows immediately. Otherwise, $a$ is in the first interval and $b$ in the second interval. If $w=qa + (1-q)b$ lies in the first interval then
 \begin{align}
 qL_{\p|\r}(a) + (1-q)L_{\p|\r}(b) &\le qL_{\p|\r}(a) + (1-q)L_{\p|\r}(x_\star)\nonumber\\
@@ -769,9 +782,10 @@ which follows from monotonicity on the second interval. Therefore the Lorenz cur
 \end{proof}
 \end{lemma}
 
-The following result is used in the text to relate relative majorization of quasi-distributions to their Lorenz curves.
+The following result is used in~\cref{sec:lc} to prove that the Lorenz curve condition due to relative majorization is true for quasi-distributions.
 \begin{proposition}\label{lemma:Lorenz_linearity}
-	Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Let $a > 0$ and $b \in \mathbb{R}$ then $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$.
+	Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. 
+	Then, $L_{a\p + b \r | \r} (x) = a L_{\p |\r}(x) + b x$ for any constants $a > 0$ and $b \in \mathbb{R}$.
 \end{proposition}
 \begin{proof} 
 	The Lorenz curve of $a\p + b \r$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k(a \p + b \r)_{\pi(i)})$ where $\pi$ is the permutation that puts $(a p_i/r_i + b)$ in non-increasing order. Since $a > 0$, the permutation $\pi$ puts  $(p_i/r_i)$ in non-increasing order too. We thus have
@@ -794,26 +808,26 @@ Within the context of the Wigner representation, we define the re-scaled quasi-d
 which is well-defined if $\tau$ is a full-rank stabilizer state.
 
 The following lemma shows that the re-scaled Lorenz curves behave in a natural way under tensor products. 
-\begin{proposition}
+\begin{proposition}\label{prop:rescaled_multi}
 	Let $\tau_A, \tau_B$ be full rank stabilizer states on systems $A$ and $B$, and let $\rho_A, \rho_B$ be arbitrary states on $A,B$. Then the rescaled quasi-distribution obeys
 \begin{equation}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) =W_{\rho_A | \tau_A}(\x_A) W_{\rho_B | \tau_B}(\x_B)
 \end{equation}
 \end{proposition}
-\begin{proof} This follows from the multiplicativity of the Wigner distribution. 
+\begin{proof} This follows from the multiplicativity of the Wigner distribution,
 \begin{align}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmx_A \oplus \bmx_B) &= \frac{W_{\rho_A \otimes \rho_B} (\x_A \oplus \x_B)}{W_{\tau_A \otimes \tau_B} (\x_A \oplus \x_B)}\nonumber \\
  &= \frac{W_{\rho_A } (\x_A )W_{\rho_B } (\x_B )}{W_{\tau_A } (\x_A )W_{\tau_B } (\x_B )}\nonumber \\
-  &= W_{\rho_A | \tau_A}(\x_A) W_{\rho_B | \tau_B}(\x_B)\nonumber,
+  &= W_{\rho_A | \tau_A}(\x_A) W_{\rho_B | \tau_B}(\x_B). \nonumber
 \end{align}
-as claimed.
 \end{proof}
 
-%\subsection{Component-multiplicity pairs}
-%\label{app:cmpairs}
+\subsection{Component-multiplicity pairs}
+\label{app:cmpairs}
 
 In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}(\bmx)$. 
-The distribution $\W{\rho}(\bmx)$ is defined on the phase space, but it can be convenient to re-express this using vector notation. 
+The distribution $\W{\rho}(\bmx)$ is defined on the phase space, but it can be convenient to re-express this using vector notation.
+We discuss this in terms of Wigner distributions, but there is nothing to prevent the discussion from applying to rescaled Wigner distributions as well.
 
 To each Wigner distribution $W_\rho(\x)$ we can associate \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\x)$ with multiplicity $m_i$.
 
@@ -825,30 +839,34 @@ we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, 
 
 This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
 \begin{lemma}
-Consider two Wigner distributions $\W{\rho_A}, \W{\rho_B}$ with component-multiplicity pairs 
+Consider two Wigner distributions $\W{\rho_A}(\x_A), \W{\rho_B}(\x_B)$ with component-multiplicity pairs 
 \begin{equation}
 	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
 \end{equation}
-respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}$.
+respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}(\x_A \oplus \x_B)$.
 \end{lemma}
 \begin{proof}
-	This result is true because all components of $\W{\rho_A \otimes \rho_B}$ are of the form $w_i w_j'$ and 
+	This result is true because all components of $\W{\rho_A \otimes \rho_B}(\x_A \oplus \x_B)$ are of the form $w_i w_j'$ and 
 \begin{equation*}
 	\sum_{i}\sum_{j} m_i m_j' = \sum_{i} m_i \sum_{j} m_j' = d_A^2 d_B^2,
 \end{equation*}
 where $d_A, d_B$ are the dimensions of $\rho_A, \rho_B$ respectively, and
-so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}$.
+so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}(\x_A \oplus \x_B)$.
 \end{proof}
+The above result also applies when we consider re-scaled Wigner distributions, crucially due to the multiplicativity result shown in~\cref{prop:rescaled_multi}.
 
-In the case of distillation protocols, we are interested in $n$--copies of a single Wigner distribution. For this, we have the following result, which follows from combinatorics.
-
+In the case of distillation protocols, we are interested in copies of distributions. 
+For this, we have the following result, which follows from combinatorics.
 \begin{lemma}\label{lem:ncopycomponents}
-	Suppose $W_\rho(\x)$ has $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, where $\q$ runs through all $K$-component vectors with non-negative integer components that sum to $n$, and
+	Suppose $W_\rho(\x)$ has a set of $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\x)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, with index $\q$ running through all vectors $(q_1, \dots, q_D)$, where $q_1, \dots, q_D$ are non-negative integers that sum to $n$, and
 \begin{align}
-W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
-M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}, \label{eq:M}
+	W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
+	M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}. \label{eq:M}
 \end{align}
-where the term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient.
+The term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient,
+\begin{equation}
+	\binom{n}{q_1,q_2, \dots, q_d} := \frac{n!}{q_1!\dots q_D!}.
+\end{equation}
 \end{lemma}
 \begin{proof}
 	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
@@ -866,15 +884,15 @@ where the term outside the product in the expression for $M_{\q}$ is the general
 \begin{equation*}
 	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
 \end{equation*}
-Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W$.
+Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W_\rho(\x)$.
 
-	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W^{\otimes n}$.
-	By construction, the distribution $W^{\otimes (n+1)} = W^{\otimes n} \otimes W$ is multiplicative, so it admits the complete set of component multiplicity pairs
+	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W_{\rho^{\otimes n}}(\bmx) = W_{\rho}(\bmx)^{\otimes n}$.
+	By construction, the distribution $W_{\rho}(\bmx)^{\otimes (n+1)} = W_{\rho}(\bmx)^{\otimes n} \otimes W_{\rho}(\bmx)$, so it admits the complete set of component multiplicity pairs
 \begin{equation}
 	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
 \end{equation}
 	
-	Consider the component sum of the distribution $W^{\otimes (n+1)}$,
+	Consider the component sum of the distribution $W_{\rho}(\bmx)^{\otimes (n+1)}$,
 \begin{align*}
 	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
 	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
@@ -892,17 +910,18 @@ We have achieved a regrouping of the distribution components.
 Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
 \begin{align*}
 	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
-	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{n+1},
+	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{2(n+1)},
 \end{align*}
-which is the dimension of $W^{\otimes (n+1)}$.
+which is the dimension of $W_{\rho}(\bmx)^{\otimes (n+1)}$.
 
-Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W^{\otimes n}$, completing the proof.
+Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W_{\rho}(\bmx)^{\otimes n}$, completing the proof.
 \end{proof}
+Once again, the above result applies on re-scaled Wigner distributions as well.
 
-The rescaled distribution is also multiplicative, so a set of component-multiplicity pairs can be obtained for the $n$-copy rescaled distribution in the same fashion as for usual Wigner distributions.
+\subsection{Results on Lorenz curve constraints}
+\label{app:lc_constraints}
 
-We now prove the following result on the relation between majorization in a particular fragment and mana, which was stated in~\cref{sec:monotones_frag}.
-
+We first prove the following result on the relation between majorization in a particular fragment and mana, which was stated in~\cref{sec:monotones_frag}.
 \begingroup
 \def\thetheorem{\ref{lem:lcmax}}
 \begin{theorem}
@@ -952,7 +971,7 @@ Then, given any coordinates $(x, L)$ and $(x', L')$ on the input and output Lore
 	Since both these linear segments start at the origin, this condition is equivalent to the slope of the initial segment of the input Lorenz curve being greater than or equal to the slope of the initial segment of the output Lorenz curve. 
 	This slope constraint is then equivalent to~\cref{eq:first_elb_bound1}. \end{proof}
 
-We now show that the relative majorization condition can be reduced to considering the elbows of the output Lorenz curve.
+The following result, referenced in~\cref{sec:major_frag}, reduces the Lorenz curve condition on the interval $[0,1]$ to a finite set of independent inequalities and can therefore simplify the computation of relative majorization constraints in practical scenarios.
 \begin{proposition}\label{thm:elbows}
 	Let $\rho, \rho'$ be any two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$, where $\sigma, \sigma'$ are states with positive Wigner distributions. Assume that $\lc{\rho'}{\sigma'}(x)$ has $t$ elbows at locations $x_1, \dots, x_t$. Then, $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i =1,\dots,t$.
 \end{proposition}
@@ -969,12 +988,6 @@ L_{\rho|\sigma}(x_{i+1}) &\ge L_{\rho'|\sigma'}(x_{i+1}).
 However, since $L_{\rho'|\sigma'}(x)$ is linear between $x_i$ and $x_{i+1}$, the above conditions imply that $L_{\rho|\sigma}(x)$ is not concave, which contradicts~\cref{L-concave}. 
 Therefore, $L_{\rho|\sigma}(x) \geq L_{\rho'|\sigma'}(x)$ for all $x$ in $[0,1]$.
 \end{proof}
-The above result simplifies the computation of relative majorization constraints to looking at the elbows of the output Lorenz curve.
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Lorenz curves for unital processes}
 \label{app:lcsu_technical}
@@ -995,7 +1008,7 @@ We have the Shannon entropy of a $p$--coin and the Shannon relative entropy for 
 	S(p) &\coloneqq -p\log{p} -(1-p)\log{(1-p)}, \label{eq:ent}\\
 	\ent{p}{q} &\coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}. \label{eq:ent_rel}
 \end{align}
-They are symmetric about $p=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}{1-q}$. We also have the entropic bounds
+They are symmetric about $p=1/2$ and $q=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}{1-q}$. We also have the entropic bounds
 \begin{lemma}\label{lem:comb_bounds}
 	For all $\ell\in [1,n-1]$,
 	\begin{align}
@@ -1003,9 +1016,10 @@ They are symmetric about $p=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{
 		&\left[ 2\pi \ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)}.
 	\end{align}
 \end{lemma}
-The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use Stirling's approximation for the remaining cases. The bounds~\cref{lem:comb_bounds} can be used to derive the following upper and lower bounds on the functions $\Phi_+, \Phi_-$.
+The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use of Stirling's approximation for the remaining cases. The bounds in~\cref{lem:comb_bounds} can be directly inserted into the expressions of functions $\Phi_+$ and $\Phi_-$ to derive strict upper and lower bounds.
 
-We rewrite the functions as
+It is also possible to derive more manageable bounds on $\Phi_+, \Phi_-$.
+To this end, we rewrite the functions as
 \begin{equation}
 	\Phi_{\pm}(m; n, a) = \frac{1}{2}(\Phi(m; n, a) \pm (1+a)^{-n} S(m; n, a)),
 \end{equation}
@@ -1100,14 +1114,14 @@ and $8$ positive components each with value
 In the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
 It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
 
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} in the unital fragment, we can associate it with the set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, as presented in~\cref{tab:lcsu} for all different combinations of parameters $n,\epsilon$.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} in the unital fragment, we can associate it with a set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, the elements of which are presented in~\cref{tab:lcsu} for all different combinations of physical parameters $n, \epsilon$.
 We split the values of index $i$ into two intervals, defined precisely as
 \begin{align}
 &\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
 &\text{RHS: } \left\lfloor \frac{n}{2} \right\rfloor +1 \leq i \leq n.
 \end{align}
-The labels $\text{LHS}, \text{RHS}$ denote that the components contribute to the left hand side or the right hand side of the maximum of the Lorenz curve.
-The maximum is included in the $\text{LHS}$.
+The labels $\text{LHS}, \text{RHS}$ denote that the components contribute to the left hand side or the right hand side of the Lorenz curve maximum.
+The maximum is included in the $\text{LHS}$ interval.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
@@ -1123,7 +1137,7 @@ The maximum is included in the $\text{LHS}$.
     & & RHS & $8^{2i}\binom{n}{2i}$ & $-u^{2i}v^{n-2i}$ \\ \hline
   \end{tabular}
   \caption{Wigner components $w_{i}(n, \epsilon)$ of $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ along with their multiplicities $m_{i}(n, \epsilon)$, with $0 \leq i \leq n$.
-  The expressions change depending on the error $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS vs RHS).
+  The expressions change depending on the error $\epsilon$, the parity of the number of copies $n$ and whether the index $i$ is lower or higher than the index of the Lorenz curve maximum (LHS or RHS).
   The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.}
   \label{tab:lcsu}
 \end{table}
@@ -1133,11 +1147,12 @@ In the unital fragment, the rescaled distribution is simply proportional to the 
 	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
 \end{equation}
 therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
-As a result, every Lorenz curve in the unital fragment contains at most $n$ elbows, which, along with the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, are labelled by 
+\nick{As a result, every Strange state Lorenz curve in the unital fragment generally contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some elbows my be straightened out.}
+Including the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, we label these elbows as 
 \begin{equation*}
 \{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
 \end{equation*}
-where the coordinates are
+where the coordinates are given by
 \begin{equation}
 	(x_{i}, L_{i}) = \left( \frac{1}{9^n}\sum_{\ell=0}^i m_{\ell}, \sum_{\ell=0}^i m_{\ell} w_{\ell} \right).
 \end{equation}
@@ -1148,7 +1163,7 @@ The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinat
 \end{align}
 %\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
-In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of parameters $n, \epsilon$.
+In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of physical parameters $n, \epsilon$.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
@@ -1165,9 +1180,9 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
     & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
-  \caption{Lorenz curve elbow coordinates in the unital fragment. 
-  \nick{For lines labelled as LHS, the expressions correspond to $x_i$ and $L_i$ respectively, while for lines labelled as RHS, the expressions correspond to $x_i - x_{\lfloor n/2 \rfloor}$ and $L_i - L_{\lfloor n/2 \rfloor}$ respectively}.
-  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS vs RHS).
+  \caption{Strange state Lorenz curve elbow coordinates in the unital fragment, with $0 \leq i \leq n$. 
+  \nick{Rows labelled as LHS express the coordinates $x_i$ and then $L_i$, while rows labelled as RHS, express the differences $x_i - x_{\lfloor n/2 \rfloor}$ and then $L_i - L_{\lfloor n/2 \rfloor}$}.
+  The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS or RHS).
   The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.
   The point $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
   }
@@ -1191,7 +1206,7 @@ The new point coordinates are given by:
     &x_{ijk} = \left( 1-p_{ijk}\right) x_{i-1} + p_{ijk} x_{i} \label{eq:lcsu_xcoord}\\
     &L_{ijk} = \left( 1-p_{ijk} \right) L_{i-1} + p_{ijk} L_{i}, \label{eq:lcsu_lcoord}\\
     &\text{where } p_{ijk} = \frac{k + (j-1)9^{n-n'}}{9^{n-n'} m_{i}} \nonumber\\
-    &\text{for } i=0,\dots,n',\ j = 1,\dots,m_{i}(n', \epsilon') \text{ and } k = 1,\dots,9^{n-n'}. \nonumber
+    &\text{for } i=0,\dots,n',\ j = 1,\dots,m_{i}(n', \epsilon'),\ k = 1,\dots,9^{n-n'}. \nonumber
 \end{align}
 We can also combine the indices, by introducing a single index
 \begin{equation}
@@ -1334,7 +1349,7 @@ In both cases, the distillation bound remains the same, as is clear by its deriv
 	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
 	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
 \end{equation}
-\nick{Note that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ because $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of the its Lorenz curve exceeds $1$.}
+\nick{We stress that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ always, because $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of its Lorenz curve exceeds $1$.}
 Taking the natural logarithm on both sides and rearranging gives the bound
 \begin{equation}
 	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
@@ -1410,7 +1425,7 @@ The state $\tau$ can now be written as
 \begin{equation}
 	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
 \end{equation}
-where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis. \nick{Clifford processing?}
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
@@ -1436,7 +1451,7 @@ We denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\x
 	\w(\rho_{\rm{S}} | \tau) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
 \end{align}
 
-Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in~\cref{lem:ncopycomponents} in~\cref{app:cmpairs}. The values are given by 
+Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in~\cref{lem:ncopycomponents}. The values are given by 
 \begin{align}\label{eq:ncopy_w_rescaled}
 	[\w(\rho_n | \tau_n)]_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
 \end{align}
