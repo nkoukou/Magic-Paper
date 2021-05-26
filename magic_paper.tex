@@ -365,7 +365,7 @@ If we have a magic state $\rho$ that has negativity in its Wigner representation
 \begin{theorem}\label{lem:lcmax}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
 \end{theorem}
-The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is simple to construct other monotones. For example, within a given fragment, the area above $L=1$ is another magic monotone.
+The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is simple to construct other monotones. For example, within a given fragment, the area above the horizontal line $y = 1$ is another magic monotone.
 \begin{lemma}
 Given a magic state $\rho$ and a free state $\sigma$, let $\A_\sigma(\rho)$ be the area of the region $\{(x, y): 1 \leq y \leq L_{\rho | \sigma}(x)\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
 \end{lemma}
@@ -761,8 +761,12 @@ We now show that the Lorenz curve is concave in the context of quasi-distributio
 \begin{lemma}\label{L-concave} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\p|\r}(x)$ is a concave function on $[0,1]$.
 \nick{
 \begin{proof}
-	The Lorenz curve of $\p$ relative to $\r$ passes through $(0,0)$ and the points $(\sum_{i=1}^k{r_{\pi(i)}}, \sum_{i=1}^k p_{\pi(i)})$ where $\pi$ is the permutation that puts $p_i/r_i$ in non-increasing order.
-	By construction, the slope of the curve attains the values $p_{\pi(i)}/r_{\pi(i)}$ throughout the interval $[0,1]$, which is a non-increasing sequence due to the definition of $\pi$.
+	The Lorenz curve of $\p$ relative to $\r$ passes through the origin $(r_{\pi(0)}, p_{\pi(0)}) := (0,0)$ and the points $(\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k p_{\pi(i)})$ where $\pi$ is the permutation that puts $p_i/r_i$ in non-increasing order.
+	By construction, the slope of the curve attains the values 
+\begin{equation}
+	\frac{\sum_{i=0}^k p_{\pi(i)} - \sum_{i=0}^{k-1} p_{\pi(i)}}{\sum_{i=0}^k r_{\pi(i)} - \sum_{i=0}^{k-1} r_{\pi(i)}} = \frac{p_{\pi(k)}}{r_{\pi(k)}},\ \text{with } k \geq 1,
+\end{equation}
+throughout the interval $[0,1]$, which is a non-increasing sequence due to the definition of $\pi$.
 	Therefore, the Lorenz curve is concave.
 \end{proof}
 }
@@ -1147,7 +1151,7 @@ In the unital fragment, the rescaled distribution is simply proportional to the 
 	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
 \end{equation}
 therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
-\nick{As a result, every Strange state Lorenz curve in the unital fragment generally contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some elbows my be straightened out.}
+\nick{As a result, every Strange state Lorenz curve in the unital fragment contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.}
 Including the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, we label these elbows as 
 \begin{equation*}
 \{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
@@ -1390,7 +1394,7 @@ If we drop the freedom to transform the magic states via Clifford unitaries, the
 \end{equation*}
 with $n, m \gg 1$.
 
-Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$ and stabilizer eigenstates, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and $E_s$ as the eigenvalue of the Hamiltonian eigenstate whose Wigner distribution overlaps the negative component of $\rho_S(\epsilon)$ in the phase space. 
+Let each qutrit have a Hamiltonian $H$ with energies $E_0, E_1, E_2$ and stabilizer eigenstates, and define $E_{\rm max} = \max\{E_0, E_1, E_2\}$ and \nick{$E_s$ as the eigenvalue of the Hamiltonian eigenstate whose Wigner distribution overlaps the negative component of $\rho_S(\epsilon)$ in the phase space.}
 Let $T =(k\beta)^{-1}$ be any finite temperature and assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
 Define $\beta_\star = (k T_\star)^{-1}$ through the relation
@@ -1420,12 +1424,13 @@ where $F$ is the free energy of state $\tau$ and all primed quantities are simil
 \begin{proof}
 The proof proceeds in the same manner as in~\cref{thm:free-energy-bound-proof} up to the point where we need to evaluate $W_{\rho_n |\tau_n} (\x)$ and $W_{\rho_n}(\x)$ explicitly, beyond which we do not have the freedom of additional Clifford processing.
 
+\nick{Explain why this is not Clifford processing, ensure overlap with negativity is the one suggested}
 The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 \ketbra{\varphi_0} + E_1 \ketbra{\varphi_1} + E_2 \ketbra{\varphi_2}$ is an eigendecomposition of $H$.
 The state $\tau$ can now be written as 
 \begin{equation}
 	\tau = \frac{e^{-\beta E_0}}{\Z} \ketbra{\varphi_0} + \frac{e^{-\beta E_1}}{\Z} \ketbra{\varphi_1} + \frac{e^{-\beta E_2}}{\Z} \ketbra{\varphi_2},
 \end{equation}
-where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis. \nick{Clifford processing?}
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the location of the negative Wigner component $-v(\epsilon)$ of the Strange state will be permuted on the discrete phase space. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the magic state $C\rho_S(\epsilon)C^\dagger$.  This is unique, since the eigenstates form an orthonormal basis.
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
