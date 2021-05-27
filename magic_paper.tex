@@ -40,8 +40,6 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \section{Introduction}
 \label{sec:intro}
-
-\nick{re-write based on new relative majorisation approach}
 The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
@@ -49,25 +47,20 @@ To address this, concrete distillation protocols have been developed, such as th
   
 Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
-In this work, we develop a framework to analyse magic state distillation protocols where explicit physical constraints are manifest. These physical constraints are encoded in the allowed fixed-point structure of the protocol, for example a minimal temperature attainable in the device, noise-biases or fixed-point structure associated with restricted gate-sets (see e.g.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}). The approach we take is most closely aligned with resource theories of magic, although it differs in two ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are functions of the physical constraints, thus not directly comparable to global magic monotones.
+In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated.  These distillation bounds are obtained by considering how a given magic state protocol would behave if it were instead applied to a \emph{stabilizer} state that is distinguished by the physics of the system -- for example an equilibrium state at a characteristic temperature, or the maximally mixed state. The magic distillation bounds can then be expressed in terms of this distinguished degrees of freedom (e.g. free energy changes in the case of temperature, or non-unitality in the case of the maximally mixed state). Such bounds are therefore of interest in assessing how physical features such as temperature, noise-biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols, and so of relevance to existing work towards fault-tolerant quantum computing~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}. 
 
-We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:janzing, cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. This perspective takes the convex set of stabilizer states as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
+The approach we take is most closely aligned with resource theories of magic, however it differs in a few ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are hardware dependent. We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:janzing, cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. From this perspective the convex set of stabilizer states behaves as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
 
-Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is of broader interest to the study of non-classicality in quantum systems.
-
-Our construction provides distillation bounds without relying on magic monotones. Instead of projecting the pre-order of magic states onto the real line (which is what a monotone involves) we instead cover the pre-order of states with a collection of simpler `fragment' pre-orders that admit analysis in terms of majorization. It is this choice of fragment that breaks the equivalence of all stabilizer states in the theory and can be used to consider adding physical constraints in the form of accessible protocols.
+Our analysis relies on the discrete Wigner representation of quantum states, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a thermodynamic perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is also of interest to the study of non-classicality in quantum systems.
 
 Through this approach we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamics in the presence of negativity is surprisingly non-trivial and displays a range of features that do not appear in classical statistical mechanics. 
 Finally, we discuss how our approach could be improved and how it can be exploited to construct explicit lower bounds on distillation that take into account physical structure.
 
 \begin{figure}[t]
     \centering
-        \includegraphics[scale=0.4]{figs/protocol_diagram.pdf}
-    \caption{\textbf{Analysing magic protocols relative to a stabilizer reference state.} 
-	A magic protocol aims to turn $n$ copies of some magic state $\rho$ to $m$ copies of some other state $\rho'$.
-	Constraints on the efficiency of the protocol can be imposed by considering its action on a separate probe state $\tau$ which tranforms to $\tau'$ with free energy $F \rightarrow F'$.
-	A ``magic free energy'' $\phi \rightarrow \phi'$ connects the two state conversions under the protocol. \nick{FIX}
-    }
+        \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
+    \caption{\textbf{Magic distillation protocols \& stabilizer reference states.} 
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and the free energy the protocol channel $\E$ injects in. In addition a quantity $\phi$ links the computational and physical aspects, and corresponds to the degree to which Wigner negativity in $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
 
@@ -759,32 +752,20 @@ The proofs for these can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2
 
 We now show that the Lorenz curve is concave in the context of quasi-distributions.
 \begin{lemma}\label{L-concave} Let $\p$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\p|\r}(x)$ is a concave function on $[0,1]$.
-\nick{
+\end{lemma}
+
 \begin{proof}
 	The Lorenz curve of $\p$ relative to $\r$ passes through the origin $(r_{\pi(0)}, p_{\pi(0)}) := (0,0)$ and the points $(\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k p_{\pi(i)})$ where $\pi$ is the permutation that puts $p_i/r_i$ in non-increasing order.
-	By construction, the slope of the curve attains the values 
+	The function is continuous, and the slope of the curve away from the elbows is well-defined and takes the value 
 \begin{equation}
-	\frac{\sum_{i=0}^k p_{\pi(i)} - \sum_{i=0}^{k-1} p_{\pi(i)}}{\sum_{i=0}^k r_{\pi(i)} - \sum_{i=0}^{k-1} r_{\pi(i)}} = \frac{p_{\pi(k)}}{r_{\pi(k)}},\ \text{with } k \geq 1,
+	\frac{\sum_{i=0}^k p_{\pi(i)} - \sum_{i=0}^{k-1} p_{\pi(i)}}{\sum_{i=0}^k r_{\pi(i)} - \sum_{i=0}^{k-1} r_{\pi(i)}} = \frac{p_{\pi(k)}}{r_{\pi(k)}},
 \end{equation}
-throughout the interval $[0,1]$, which is a non-increasing sequence due to the definition of $\pi$.
-	Therefore, the Lorenz curve is concave.
+with $k=0,1,2, \dots$ labeling the line-segments of the Lorenz curve in increasing order.
+From the definition of the Lorenz curve, this implies the slope is piecewise constant, non-increasing on $[0,1]$ minus the elbow locations. Therefore, the Lorenz curve is a concave function on $[0,1]$. \ddd{[Not fully rigorous due to elbows... Here is an alternative proof:]}
 \end{proof}
-}
-\begin{proof}Let $L_{\p|\r}(x)$ attain its maximum at $x=x_\star$. Then from the definition, the function is continuous, monotone increasing on $[0,x_\star]$, and monotone decreasing on $[x_\star, 1]$. Consider $a,b \in [0,1]$ with $a <b$ and some probability $q \in [0,1]$. If $a$ and $b$ both lie in either the interval $[0,x_\star]$ or $[x_\star, 1]$ then concavity follows immediately. Otherwise, $a$ is in the first interval and $b$ in the second interval. If $w=qa + (1-q)b$ lies in the first interval then
-\begin{align}
-qL_{\p|\r}(a) + (1-q)L_{\p|\r}(b) &\le qL_{\p|\r}(a) + (1-q)L_{\p|\r}(x_\star)\nonumber\\
-& \le L_{\p|\r}(w)
-\end{align}
-\nick{second inequality isn't clear to me}
-from monotonicity on the first interval. Otherwise, $w$ lies in the second interval and
-\begin{align}
-qL_{\p|\r}(a) + (1-q)L_{\p|\r}(b) &\le qL_{\p|\r}(x_\star) + (1-q)L_{\p|\r}(b)\nonumber\\
-& \le L_{\p|\r}(w)
-\end{align}
-\nick{again second inequality isn't clear to me}
-which follows from monotonicity on the second interval. Therefore the Lorenz curve is concave on $[0,1]$.
+\begin{proof} Let $f_1(x)$ be equal to $L_{\p|\r}(x)$ on $[0, x_\star]$ and and $0$ otherwise. Also let $f_2(x)$ be equal to $L_{\p|\r}(x)$ on $[x_\star,1]$ and and $0$ otherwise. By inspection both $f_1$ and $f_2$ are concave functions, and $f_1(x) + f_2 (x) = L_{\p|\r}(x)$ for all $x\in [0,1]$. However the sum of two concave functions is also concave and so the result follows.
 \end{proof}
-\end{lemma}
+
 
 The following result is used in~\cref{sec:lc} to prove that the Lorenz curve condition due to relative majorization is true for quasi-distributions.
 \begin{proposition}\label{lemma:Lorenz_linearity}
@@ -1151,7 +1132,7 @@ In the unital fragment, the rescaled distribution is simply proportional to the 
 	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
 \end{equation}
 therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
-\nick{As a result, every Strange state Lorenz curve in the unital fragment contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.}
+As a result, every Strange state Lorenz curve in the unital fragment contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.
 Including the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, we label these elbows as 
 \begin{equation*}
 \{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
@@ -1185,7 +1166,7 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
     & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
   \caption{Strange state Lorenz curve elbow coordinates in the unital fragment, with $0 \leq i \leq n$. 
-  \nick{Rows labelled as LHS express the coordinates $x_i$ and then $L_i$, while rows labelled as RHS, express the differences $x_i - x_{\lfloor n/2 \rfloor}$ and then $L_i - L_{\lfloor n/2 \rfloor}$}.
+  For the LHS cases, the $i$ in the first column labels the elbow coordinate $x_i$ and the second column gives $L_i=L(x_i)$. For RHS cases, the $i$ in the first column labels $x_i - x_{\lfloor n/2 \rfloor}$ and the second column gives $L_i - L_{\lfloor n/2 \rfloor}$.
   The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS or RHS).
   The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.
   The point $(x_{-1}, L_{-1}) \coloneqq (0,0)$ is not included in the table.
@@ -1353,7 +1334,7 @@ In both cases, the distillation bound remains the same, as is clear by its deriv
 	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
 	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
 \end{equation}
-\nick{We stress that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ always, because $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of its Lorenz curve exceeds $1$.}
+We note that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ always, as $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of its Lorenz curve exceeds $1$.
 Taking the natural logarithm on both sides and rearranging gives the bound
 \begin{equation}
 	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
