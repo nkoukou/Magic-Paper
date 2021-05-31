@@ -524,17 +524,8 @@ The intermediate terms specify how the energy eigenbasis of the system $\{|E_k\>
 
 The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Appendix \ref{app:lcst_technical}.
 
-<<<<<<< HEAD
 \subsection{Technical aspects of the bound}
-Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. 
-
-=======
-\subsection{Core aspects of the bound}
-Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves, so it can certainly be tightened with further analysis. However, we note that the analysis makes use of a single-shot entropy $D_\infty (\p ||\r)$ that remains well-defined even for quasi-distributions (see Appendix~\ref{app:lcst_technical}). Specifically, the above bounds follow by considering $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$. It is therefore of interest to further explore this perspective and determine what components of single-shot information theory could be extended to quasi-distributions.
-%>>>>>>> 1b7a66527324b68f2de70862988bb3d8bc759e82
->>>>>>> 2aa48c0ae9feb99c7595c8d9bcd5feb806a34ad8
-
-The primary role of the pre/post-processing by Clifford unitaries in~\cref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix \ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem \ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
+Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in~\cref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix \ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem \ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
 
 
 \iffalse
@@ -1338,11 +1329,10 @@ Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
 
 We note that we may relate our analysis to the classical single-shot entropy $D_\infty (\p ||\r)$ that remains well-defined even in the case of quasi-distributions. We define 
 \begin{equation}
-D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x)) =\log  \max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}
+\hspace{-1cm}D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x)) =\log  \max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}\nonumber
 \end{equation}
 which is well-defined since both the nominator and denominator in the above expression are strictly positive when $\tau$ is in the interior of $\F$.
 
-<<<<<<< HEAD
 \begin{theorem} Let $\tau$ be in the interior of $\F$, and define $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
@@ -1375,7 +1365,7 @@ If $\w \in \mathbb{R}^N$ with $w_k \ge 0$ for all $k$ then
 \end{equation}
 and therefore for arbitrary $\w \in \mathbb{R}^N$ and $n$, we have
 \begin{align}
-\hspace{-1.8cm}\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}] &\le \max_{k_1, k_2, \dots, k_{2n}}[|w_{k_1}w_{k_2}|\cdots |w_{k_{2n-1}} w_{k_{2n}}|] \nonumber \\
+\hspace{-1cm}\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}] &\le \max_{k_1, k_2, \dots, k_{2n}}[|w_{k_1}w_{k_2}|\cdots |w_{k_{2n-1}} w_{k_{2n}}|] \nonumber \\
 &=(\max_{k_1 ,k_2} |w_{k_1} w_{k_2}| )^n \nonumber \\
 &\le\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}]  .
 \end{align}
@@ -1404,9 +1394,8 @@ We now can consider the set of all quasi-distributions, which form a hyper-plane
 \D = \{ \w \in \mathbb{R}^N: \sum_i w_i = 1\}.
 \end{equation}
 For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any permutation $\Pi$ of the components, it suffices to restrict to the following region,
-=======
-In general, we have $D_\infty(\rho, \tau) \ge 0$ for all $\tau$ in the interior of $\F$, and moreover $D_\infty(\rho , \tau) > 0$ for any $\rho \not \in \F$. We also have that $D_\infty(\tau , \tau) = 0$ and $D_\infty(\rho^{\otimes n}, \tau^{\otimes n}) = n D_\infty(\rho ,\tau)$. Finally, we have monotonicity of the function, 
->>>>>>> 2aa48c0ae9feb99c7595c8d9bcd5feb806a34ad8
+
+
 \begin{equation}
 \D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
