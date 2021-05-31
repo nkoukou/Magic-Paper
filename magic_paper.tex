@@ -527,9 +527,9 @@ The intermediate terms specify how the energy eigenbasis of the system $\{|E_k\>
 
 The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Appendix \ref{app:lcst_technical}.
 
+\subsection{Technical aspects of the bound}
+Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. 
 
-\subsection{Core aspects of the bound}
-Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. However we note that the analysis makes use of a single-shot entropy $D_\infty (\p ||\r)$ that remains well-defined even for quasi-distributions (see Appendix~\ref{app:lcst_technical}). Specifically, the above bounds follow by considering $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$. It is therefore of interest to further explore this perspective and determine what components of single-shot information theory could be extended to quasi-distributions.
 
 The primary role of the pre/post-processing by Clifford unitaries in~\cref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix \ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem \ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
 
@@ -611,6 +611,32 @@ In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol,
     \label{fig:rvsa}
 \end{figure}
 
+\newpage
+\subsection{Single-shot divergences for quasi-distributions}
+As already mentioned, the Wigner distribution is generally a quasi-distribution and so taking the Shannon entropy $H(\p) = -\sum_i p_i \log p_i$ of the Wigner distribution is not possible off of the set $\F$. However, does the same obstacle applies to Renyi entropies? The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
+\begin{equation}
+H_\alpha(\p) := -\frac{1}{\alpha -1} \log \sum_i p_i^\alpha,
+\end{equation}
+where $\alpha \ge 0$ and $\lim_{\alpha \rightarrow 1} H_\alpha(\p) = H(\p)$. It is clear that if we take $\alpha$ to be an even integer then $H_\alpha (W_\rho(\x))$ is always a well-defined function on Wigner quasi-distributions. However it still remains to link such expressions to majorization of quasi-distributions.
+ 
+In this direction we first note that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly makes use of the single-shot Renyi divergence $D_\infty (\p ||\r)$, which is given by
+\begin{equation}
+D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
+\end{equation}
+This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In Appendix~\ref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
+\begin{theorem} Let $\tau$ be in the interior of $\F$, and define the Wigner divergence $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{enumerate}
+\item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\infty(\rho , \tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\infty(\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ for any $n \in \mathbb{N}$.
+\item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
+\end{enumerate}
+\end{theorem}
+See Appendix~\ref{app:lcst_technical} for the proof of this. Moreover, in the appendices we also prove that for unital processes the Renyi entropies $H_{2m}(\w)$ are monotones for any $m \in \mathbb{N}$ and lead the generalized distillation bounds.
+\begin{equation}
+R \le \frac{H_{2m}(\rho)}{H_{2m}(\rho')}.
+\end{equation}
+It is of interest to further explore this perspective and determine what components of single-shot information theory could be extended to quasi-distributions.
 
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
@@ -1170,7 +1196,7 @@ Here we prove our main theorem, which bounds magic distillation rates in terms o
 Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we express state $\tau'$ as $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
 
 Then the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
-\begin{equation}\label{eq:rate_bounds_proof}
+\begin{equation}
 	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
@@ -1305,6 +1331,7 @@ Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
 \phi &= -\beta^{-1}\ln (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
 &=E_{k_{\star}} -kT \ln (d W_{\ketbra{E_{k_{\star}}}}(\bmx_{\star})) =E_{k_{\star}}.
 \end{align}
+
 \end{proof}
 
 We note that we may relate our analysis to the classical single-shot entropy $D_\infty (\p ||\r)$ that remains well-defined even in the case of quasi-distributions. We define 
@@ -1313,12 +1340,111 @@ D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x)) =\log  \max_{\x} \fra
 \end{equation}
 which is well-defined since both the nominator and denominator in the above expression are strictly positive when $\tau$ is in the interior of $\F$.
 
-In general we have $D_\infty(\rho, \tau) \ge 0$ for all $\tau$ in the interior of $\F$, and moreover $D_\infty(\rho , \tau) > 0$ for any $\rho \not \in \F$. We also have that $D_\infty(\tau , \tau) = 0$ and $D_\infty(\rho^{\otimes n}, \tau^{\otimes n}) = n D_\infty(\rho ,\tau)$. Finally we have monotonicity of the function, 
-\begin{equation}
-D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))
-\end{equation}
-for any free operation $\E$. \ddd{[True? Can we say a bit more?]}. Note though that $D_\infty (\rho,\tau) = 0$ can also occur for $\rho \ne \tau$. It would be of interest to further explore this more abstract perspective.
+\begin{theorem} Let $\tau$ be in the interior of $\F$, and define $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{enumerate}
+\item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\infty(\rho , \tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\infty(\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ for any $n \in \mathbb{N}$.
+\item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}Since $\tau$ is in the interior of $\F$ its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. In general $W_\rho(\x)$ is a quasi-distribution, however since $\sum_{\x} W_\rho (\x) = 1$ this implies it must have at least one positive component and so $\max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}>0$. Therefore $D_\infty (\rho,\tau)$ is always well-defined. 
 
+1. We have that 
+\begin{equation}
+D_\infty(W_\rho(\x) || W_\tau (\x)) =\log  \max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)},
+\end{equation}
+and therefore $2^{D_\infty(\rho,\tau)}$ equals the slope of the Lorenz curve $L_{\rho|\tau}(x)$ at $x=0$. Since $L_{\rho|\tau}(x)$ is a concave function passing through $(0,0)$ and $(1,1)$ this implies that $L_{\rho |\tau}(x) \ge x$ for all $x \in [0,1]$, and in particular its slope at $x=0$ is always greater than or equal to $1$, which implies $D_\infty (\rho,\tau) \ge 0$ for all $\rho$.
+
+2. If $D_\infty (\rho,\tau) = 0$ this implies that $\max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}=1$ and the initial slope of $L_{\rho|\tau}(x)$ is $1$. From the concavity of the function this implies that the slope of $L_{\rho|\tau}(x)$ must equal $1$ throughout the interval $[0,1]$ and this, together with the definition of the Lorenz curve, implies that $\frac{W_\rho(\x)}{W_\tau(\x)}=1$ for all $\x$. Since the Wigner representation $\rho \mapsto W_\rho(\x)$ is bijective this implies that $\rho = \tau$ only. The converse holds by inspection.
+
+3. Given a vector $\w \in \mathbb{R}^N$ in general it is the case that
+\begin{equation}
+\max_k w_k \ne \max_k |w_k|.
+\end{equation}
+However we do have that
+\begin{equation}
+\max_{k_1,k_2} (w_{k_1} w_{k_2}) = \max_k |w_k|^2 = \max_k w_k^2.
+\end{equation}
+If $\w \in \mathbb{R}^N$ with $w_k \ge 0$ for all $k$ then
+\begin{equation}
+\max_{k_1, k_2, \dots, k_n} [ w_{k_1}w_{k_2}\cdots w_{k_n}] = (\max_k w_k)^n,
+\end{equation}
+and therefore for arbitrary $\w \in \mathbb{R}^N$ and $n$, we have
+\begin{align}
+\hspace{-1.8cm}\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}] &\le \max_{k_1, k_2, \dots, k_{2n}}[|w_{k_1}w_{k_2}|\cdots |w_{k_{2n-1}} w_{k_{2n}}|] \nonumber \\
+&=(\max_{k_1 ,k_2} |w_{k_1} w_{k_2}| )^n \nonumber \\
+&\le\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}]  .
+\end{align}
+and so we have that in general
+\begin{equation}
+\max_{k_1, k_2, \dots, k_{2n}} [ w_{k_1}w_{k_2}\cdots w_{k_{2n}}]  =  (\max_{k_1 ,k_2} [w_{k_1} w_{k_2}] )^n.
+\end{equation}
+If we now let $\w = W_{\rho|\tau}(\x) := W_{\rho}(\x) /W_{\tau}(\x)$ we have
+\begin{equation}
+\max_{\x_1, \x_2, \dots ,\x_{2n}} \prod_{k=1}^{2n} W_{\rho|\tau}(\x_k) = (\max_{\x_1, \x_2} W_{\rho|\tau}(\x_1)W_{\rho|\tau}(\x_2))^n
+\end{equation}
+and therefore taking logarithms we have that $D_\infty (\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ as required. \ddd{[Check details for any fine print.]}
+
+4. The free operation $\E$ in the Wigner representation corresponds to a stochastic map, which sends $W_\tau(\x)$ to $W_{\E(\tau)}(\x)$, which is another strictly positive probability distribution on the phase space, due to $\E(\tau)$ being in the interior of $\F$. Moreover, $(W_\rho(\x), W_\tau(\x) ) \succ (W_{\E(\rho)}(\x) , W_{\E(\tau)}(\x))$. As shown in the main text this condition holds if and only if $L_{\rho|\tau}(x) \ge L_{\E(\rho)|\E(\tau)}(x)$ for all $x$. In particular, this implies the slope at the origin of the input curve is never less than the slope at the origin of the output curve, and hence the result follows.
+\end{proof}
+
+\newpage
+
+\subsection{Schur-Convexity and quasi-distributions}
+We now make use of known results from majorization theory. We first define \emph{Schur-convex functions} on a subset $\D \subseteq \mathbb{R}^N$.
+
+\begin{definition} A continuous, real-valued function $f$ defined on $\D \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\D$ if $\p \prec \q$ on $\D$ implies that $f(\p) \le f(\q)$. A continuous function $f:\D \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
+\end{definition}
+We now can consider the set of all quasi-distributions, which form a hyper-plane and are given by
+\begin{equation}
+\D = \{ \w \in \mathbb{R}^N: \sum_i w_i = 1\}.
+\end{equation}
+For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any permutation $\Pi$ of the components, it suffices to restrict to the following region,
+\begin{equation}
+\D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+\end{equation}
+
+We now have the following theorem [CITE Marshall+Olkin] that provides a characterization of symmetric, Schur-convex functions on quasi-distributions.
+\begin{theorem} Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
+\begin{equation}
+\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
+\end{equation}
+for all $\w$ in the interior of $\D^\downarrow$.
+\end{theorem}
+
+
+\ddd{[TO-DO AND TIDY AND CHECK]} Okay great...this looks easy to do, we just need to compute the terms
+\begin{equation}
+-\frac{\partial H_\alpha}{\partial w_k} (w_1, w_2, \dots, w_N),
+\end{equation}
+for Renyi entropies (which are symmetric), and look to see when the above inequality holds. 
+We assume $ \alpha=2m$ is an even integer, so that $H_\alpha (\w)$ is well-defined on quasi-distributions. We then have that
+\begin{align}
+V_k:=-\frac{\partial H_\alpha}{\partial w_k} &= \partial_k \frac{1}{\alpha-1} \log \sum_i w_i^{2m} \\
+&= \frac{1}{(2m-1) \sum_i w_i^{2m}}2mw_k^{2m-1}.
+\end{align}
+We now impose the monotonicity condition $V_1 \ge V_2 \ge V_3 \cdots \ge V_N$. This requires, setting $S= \sum_i w_i^{2m}$ for simplicity, that
+\begin{align}
+ \frac{1}{(2m-1)S}2mw_i^{2m-1}\ge \frac{1}{(2m-1)S}2mw_{i+1}^{2m-1},
+\end{align}
+for each $i=1,2,\dots, N-1$. We assume that $m >0$ and $2m \ne 1$ and so this becomes
+\begin{equation}
+w_i^{2m-1}\ge w_{i+1}^{2m-1}\mbox{ for all } 1 \le i < N.
+\end{equation}
+For $2m >1$ this condition holds whenever $w_i \ge w_{i+1}$, which is true in $\D^\downarrow$. Therefore $-H_{2m}(\w)$ is Schur-Convex on quasi-distributions for any integer $m\in \mathbb{N}$. This implies it is a monotone function for majorization, namely,
+\begin{equation}
+\w \succ \w' \mbox{ implies } H_{2m} (\w) \le H_{2m} (\w') \mbox{for any } m \in \mathbb{N}.
+\end{equation}
+This therefore should give \emph{additional} distillation bounds in the unital fragment. We'd need to check additivity is okay, but this should be fine. Therefore
+\begin{equation}
+W_{\rho_n}(\x) \succ W_{\rho'_m}(\x) \mbox{ implies } n H_{2m}(\rho) \le m H_{2m}(\rho'). 
+\end{equation}
+(Some sign error here? Should get:)
+\begin{equation}
+R \le \frac{H_{2m}(\rho)}{H_{2m}(\rho')}.
+\end{equation}
+\ddd{[Plan: check all these calculations! Give the generalised unital bound. Then we just conjecture this extends to Renyi-divergences and leave it at this.]}
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
 
@@ -1347,7 +1473,7 @@ and define a threshold error,
 	\end{cases}
 \end{equation}
 Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
-\begin{equation}\label{eq:rate_bounds_proof}
+\begin{equation}
 	R \leq
 	\begin{cases}
 		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
