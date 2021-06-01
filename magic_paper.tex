@@ -40,6 +40,9 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \section{Introduction}
 \label{sec:intro}
+
+\nick{Bunch of refs:}~\cite{White_2021, Rethinasamy_2020, Blackwell_1953, Sarkar_2020, Gour_2020}
+
 The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
@@ -605,13 +608,13 @@ In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol,
 
 \newpage
 \subsection{Single-shot divergences for quasi-distributions}
-As already mentioned, the Wigner distribution is generally a quasi-distribution and so taking the Shannon entropy $H(\p) = -\sum_i p_i \log p_i$ of the Wigner distribution is not possible off of the set $\F$. However, does the same obstacle applies to Renyi entropies? The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
+As already mentioned, the Wigner distribution is generally a quasi-distribution and so taking the Shannon entropy $H(\p) = -\sum_i p_i \log p_i$ of the Wigner distribution is not possible off of the set $\F$. However, does the same obstacle apply to Renyi entropies? The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
 \begin{equation}
-H_\alpha(\p) := -\frac{1}{\alpha -1} \log \sum_i p_i^\alpha,
+	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha,
 \end{equation}
-where $\alpha \ge 0$ and $\lim_{\alpha \rightarrow 1} H_\alpha(\p) = H(\p)$. It is clear that if we take $\alpha$ to be an even integer then $H_\alpha (W_\rho(\x))$ is always a well-defined function on Wigner quasi-distributions. However it still remains to link such expressions to majorization of quasi-distributions.
+where $\alpha \ge 0$ and $\lim_{\alpha \rightarrow 1} H_\alpha(\p) = H(\p)$. It is clear that if we take $\alpha = 2m$ to be an even integer then $H_{2m}(\rho) := H_{2m}(W_\rho(\x))$ is always a well-defined function on Wigner quasi-distributions. However, it still remains to link such expressions to majorization of quasi-distributions.
  
-In this direction we first note that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly makes use of the single-shot Renyi divergence $D_\infty (\p ||\r)$, which is given by
+In this direction, we first note that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly makes use of the single-shot Renyi divergence $D_\infty (\p ||\r)$, which is given by
 \begin{equation}
 D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
@@ -1341,7 +1344,8 @@ which is well-defined since both the nominator and denominator in the above expr
 \item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
 \end{enumerate}
 \end{theorem}
-\begin{proof}Since $\tau$ is in the interior of $\F$ its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. In general $W_\rho(\x)$ is a quasi-distribution, however since $\sum_{\x} W_\rho (\x) = 1$ this implies it must have at least one positive component and so $\max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}>0$. Therefore $D_\infty (\rho,\tau)$ is always well-defined. 
+\begin{proof}
+	Since $\tau$ is in the interior of $\F$, its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. In general, $W_\rho(\x)$ is a quasi-distribution, however since $\sum_{\x} W_\rho (\x) = 1$ this implies it must have at least one positive component, so $\max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)}>0$. Therefore $D_\infty (\rho,\tau)$ is always well-defined. 
 
 1. We have that 
 \begin{equation}
@@ -1393,14 +1397,13 @@ We now can consider the set of all quasi-distributions, which form a hyper-plane
 \begin{equation}
 \D = \{ \w \in \mathbb{R}^N: \sum_i w_i = 1\}.
 \end{equation}
-For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any permutation $\Pi$ of the components, it suffices to restrict to the following region,
-
+For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
 
 \begin{equation}
 \D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
-We now have the following theorem [CITE Marshall+Olkin] that provides a characterization of symmetric, Schur-convex functions on quasi-distributions.
+We now have the following theorem~\cite{cit:marshall} that provides a characterization of symmetric, Schur-convex functions on quasi-distributions.
 \begin{theorem} Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
 \begin{equation}
 \partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
@@ -1408,10 +1411,44 @@ We now have the following theorem [CITE Marshall+Olkin] that provides a characte
 for all $\w$ in the interior of $\D^\downarrow$.
 \end{theorem}
 
+\begin{lemma}[Additivity of $H_{2m}$]\label{H_add}
+	For any states $\rho, \rho'$ and non-negative $m$, we have
+	\begin{equation}
+		H_{2m}(\rho \otimes \rho') = H_{2m}(\rho) + H_{2m}(\rho')
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	This can be seen directly by the multiplicative property of the Wigner distribution,
+	\begin{align*}
+		H_{2m}&(\rho \otimes \rho') = \frac{1}{1-2m}\log \sum_{\bmx,\bmx'} \left[W_{\rho}(\bmx)W_{\rho}(\bmx')\right]^{2m} \\
+		&= \frac{1}{1-2m}\left( \log \sum_{\bmx}W_{\rho}(\bmx)^{2m} + \log \sum_{\bmx'}W_{\rho}(\bmx')^{2m} \right) \\
+		&= H_{2m}(\rho) + H_{2m}(\rho').
+	\end{align*}
+\end{proof}
+\cref{H_add} implies that for any $n$,
+\begin{equation}
+	H_{2m}(\rho_n) := H_{2m}(\rho^{\otimes n}) = n H_{2m}(\rho).
+\end{equation}
+
+Using the above results, we can show that $H_{2m}$ is Schur-concave for all quasi-distributions.
+In particular, for any non-negative integer $m$, we have that
+\begin{equation}
+	W_{\rho_n}(\bmx) \succ W_{\rho'_{n'}}(\bmx) \mbox{ implies } H_{2m}(\rho_n) \leq H_{2m}(\rho'_{n'}).
+\end{equation}
+By additivity of $H_{2m}$, we get $n H_{2m}(\rho) \leq n' H_{2m}(\rho')$, or equivalently,
+\begin{equation}
+	\frac{n'}{n} \geq \frac{H_{2m}(\rho)}{H_{2m}(\rho')}.
+\end{equation}
+
+\nick{Wrong way? I don't think that $m \rightarrow \infty$ leads to our bound}
+
+
+
+
 
 \ddd{[TO-DO AND TIDY AND CHECK]} Okay great...this looks easy to do, we just need to compute the terms
 \begin{equation}
--\frac{\partial H_\alpha}{\partial w_k} (w_1, w_2, \dots, w_N),
+	\frac{\partial H_\alpha}{\partial w_k} (w_1, w_2, \dots, w_N),
 \end{equation}
 for Renyi entropies (which are symmetric), and look to see when the above inequality holds. 
 We assume $ \alpha=2m$ is an even integer, so that $H_\alpha (\w)$ is well-defined on quasi-distributions. We then have that
