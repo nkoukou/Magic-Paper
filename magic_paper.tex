@@ -1449,7 +1449,7 @@ For $2m >1$ this condition holds whenever $w_i \ge w_{i+1}$, which is true in $\
 
 \ddd{[Plan: check all these calculations! Give the generalised unital bound. Then we just conjecture this extends to Renyi-divergences and leave it at this.]}
 
-Using the above results, we can derive the following entropic bound on magic state transformations. \nick{to be extended (1) from unital processes to general relative majorization, (2) from $\alpha = 2m$ to $\alpha = 2m/(2k+1)$ for integer $m,k \geq 0$, (1) from Strange state to any magic state distillation}
+Using the above results, we can derive the following entropic bound on magic state transformations. \nick{to be extended (1) from unital processes to general relative majorization, (2) from $\alpha = 2m$ to $\alpha = 2m/(2k+1)$ for integer $m,k \geq 0$, (3) from Strange state to any magic state distillation}
 
 \begin{theorem}
 	Consider the magic distillation process
@@ -1486,6 +1486,16 @@ Now, $H_\alpha \left( \id/3 \right)$ is the maximum value of $H_\alpha(\rho)$ fo
 \end{equation}
 \end{proof}
 
+For an $\epsilon$-noisy Strange state, we have
+\begin{equation}
+	H_{\alpha}\left(\rho_{\rm{S}}(\epsilon)\right) = \frac{1}{1-\alpha}\log_2 \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right]
+\end{equation}
+
+We also have for any quantum state $\rho$ that
+\begin{equation}
+	H_{0}\left(\rho\right) = 2\log_2 3 = H_\alpha \left( \id/3 \right),
+\end{equation}
+for any $\alpha$, so the bound is not well-defined for $H_0$. \nick{this should be true for general relative majorization.}
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
 
