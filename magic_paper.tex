@@ -1382,41 +1382,89 @@ and therefore taking logarithms we have that $D_\infty (\rho^{\otimes 2n}, \tau^
 
 \newpage
 
-\subsection{Schur-Convexity and quasi-distributions}
-We now make use of known results from majorization theory. We first define \emph{Schur-convex functions} on a subset $\D \subseteq \mathbb{R}^N$.
+\subsection{Entropic bounds on quasi-distributions}
+
+We first define the classical $\alpha$-Renyi entropy in terms of the Wigner quasi-distribution of any state $\rho$ as
+\begin{equation}
+	H_\alpha(\rho) := \frac{1}{1-\alpha} \log \sum_{\bmx} W_{\rho}(\bmx)^\alpha,
+\end{equation}
+where $\alpha$ can take values of the form $\alpha_1 / \alpha_2$, with even $\alpha_1 \geq 0$ and odd $\alpha_2 > 0$.
+
+We then prove the following result connecting simple majorization to relative majorization.
+\nick{move following lemma to section on relative majorization equivalent conditions}
+\begin{lemma}
+Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
+Then,
+\begin{equation}
+(\w, \r) \succ (\w', \r') \mbox{ if and only if } \Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w'),
+\end{equation}
+where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
+\begin{equation}
+	\Gamma_{\bma}(\x) := \bigoplus_{i=1}^N x_i \eta_{b_i},
+\end{equation}
+with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
+\end{lemma}
+\begin{proof}
+	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma'}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
+\begin{equation}
+	\Gamma^{-1}_{\bma}(\w) = \left( \sum_{i=1}^{a_1} w_i,  \sum_{i = a_1 +1}^{a_1 + a_2} \hspace{-5pt} w_i, \dots , \hspace{-15pt} \sum_{i=a_1 + \dots + a_{N-1}+1}^{K} \hspace{-10pt} w_i \right),
+\end{equation}
+that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\x) = \x$ for all $\x \in \mathbb{R}^N$. 
+
+The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
+
+Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
+We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B := \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^A$, since
+\begin{align}
+	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
+	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
+\end{align}
+therefore $B$ is bistochastic.
+Finally, $B$ maps the embedded distributions as follows,
+\begin{equation}
+	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
+\end{equation}
+
+Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A := \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
+\end{proof}
+We also note that the vectors $\r, \r'$ with rational components is dense in the set of all positive probability distributions, and so we appeal to the fact that experiments have a finite resolution, and ignore technical details to do with the completion to arbitrary real components.
+
+We now make use of known results from majorization theory. We first define \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
 
 \begin{definition} A continuous, real-valued function $f$ defined on $\D \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\D$ if $\p \prec \q$ on $\D$ implies that $f(\p) \le f(\q)$. A continuous function $f:\D \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
 \end{definition}
-We now can consider the set of all quasi-distributions, which form a hyper-plane and are given by
+We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
 \begin{equation}
-\D = \{ \w \in \mathbb{R}^N: \sum_i w_i = 1\}.
+\D = \{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1\}.
 \end{equation}
 For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
-
 \begin{equation}
 \D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
-We now have the following theorem~\cite{cit:marshall} that provides a characterization of symmetric, Schur-convex functions on quasi-distributions.
-\begin{theorem} Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
+We now have the following theorem~\cite{cit:marshall} that provides a characterization of symmetric, Schur-convex and Schur-concave functions on quasi-distributions.
+\begin{lemma} 
+Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
 \begin{equation}
 \partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
 for all $\w$ in the interior of $\D^\downarrow$.
-\end{theorem}
+\end{lemma}
 
-\begin{lemma}[Additivity of $H_{2m}$]\label{H_add}
-	For any states $\rho, \rho'$ and non-negative $m$, we have
+We can use the above to prove that $H_\alpha$ is Schur-concave for 
+
+\begin{lemma}[Additivity of $H_{\alpha}$]\label{H_add}
+	For any $\alpha > 0$ such that $H_{\alpha}$ is well-defined and any states $\rho, \rho'$, we have
 	\begin{equation}
-		H_{2m}(\rho \otimes \rho') = H_{2m}(\rho) + H_{2m}(\rho')
+		H_{\alpha}(\rho \otimes \rho') = H_{\alpha}(\rho) + H_{\alpha}(\rho')
 	\end{equation}
 \end{lemma}
 \begin{proof}
 	This can be seen directly by the multiplicative property of the Wigner distribution,
 	\begin{align*}
-		H_{2m}&(\rho \otimes \rho') = \frac{1}{1-2m}\log \sum_{\bmx,\bmx'} \left[W_{\rho}(\bmx)W_{\rho}(\bmx')\right]^{2m} \\
-		&= \frac{1}{1-2m}\left( \log \sum_{\bmx}W_{\rho}(\bmx)^{2m} + \log \sum_{\bmx'}W_{\rho}(\bmx')^{2m} \right) \\
-		&= H_{2m}(\rho) + H_{2m}(\rho').
+		H_{\alpha}&(\rho \otimes \rho') = \frac{1}{1-\alpha}\log \sum_{\bmx,\bmx'} \left[W_{\rho}(\bmx)W_{\rho}(\bmx')\right]^{\alpha} \\
+		&= \frac{1}{1-\alpha}\left( \log \sum_{\bmx}W_{\rho}(\bmx)^{\alpha} + \log \sum_{\bmx'}W_{\rho}(\bmx')^{\alpha} \right) \\
+		&= H_{\alpha}(\rho) + H_{\alpha}(\rho').
 	\end{align*}
 \end{proof}
 \cref{H_add} implies that for any $n$,
@@ -1497,36 +1545,6 @@ We also have for any quantum state $\rho$ that
 	H_{0}\left(\rho\right) = 2\log_2 3 = H_\alpha \left( \id/3 \right),
 \end{equation}
 for any $\alpha$, so the bound is not well-defined for $H_0$.
-
-We extend to relative majorization via the following result.
-\begin{lemma}Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for integers $a_i,K, a_i'$. Then
-\begin{equation}
-(\p, \r) \succ (\p', \r') \mbox{ if and only if } \Gamma_{\mathbf{a}} (\p) \succ \Gamma_{\mathbf{a}'} (\p'),
-\end{equation}
-and where $\Gamma_{\mathbf{a}} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is the map
-\begin{equation}
-\Gamma_{\mathbf{a}}(\x) := \bigoplus_{i=1}^N x_i \eta_{a_i},
-\end{equation}
-and $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ is the uniform distribution on $a_i$ elements.
-\end{lemma}
-\begin{proof}
- The map $\Gamma_{\mathbf{a}}$ has a well-defined left-inverse $\Gamma^{-1}_{\mathbf{a}}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ with 
-\begin{equation}
-\Gamma^{-1}_{\mathbf{a}}(\y) = ( \sum_{i=1}^{a_1} y_i,  \sum_{i=a_1 +1}^{a_1+a_2} y_i, \cdots ,  \sum_{i=a_1 +\cdots a_{N-1}+1}^{N} y_i),
-\end{equation}
-that obeys $\Gamma^{-1}_{\mathbf{a}} \circ \Gamma_{\mathbf{a}} (\x) = \x$ for all $\x \in \mathbb{R}^N$. 
-
-We now claim that a \emph{bistochastic map} $B$ exists that sends $\Gamma_{\mathbf{a}}(\w)$ to $\Gamma_{\mathbf{a}'}(\w')$ if and only if a stochastic map $A$ exists sending $\w$ to $\w'$ and $\r$ to $\r'$.
-
-Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. We define $B := \Gamma_{\mathbf{a}'} \circ A \circ \Gamma_{\mathbf{a}}^{-1}$, and find that
-\begin{align}
-B \Gamma_{\mathbf{a}}(\w) &=\Gamma_{\mathbf{a}'} \circ A \circ \Gamma_{\mathbf{a}}^{-1}\circ\Gamma_{\mathbf{a}}(\w) \nonumber \\
-&=\Gamma_{\mathbf{a}'} (\w').
-\end{align}Moreover since $\Gamma_{\mathbf{a}} (\r) = (1/K, 1/K, \dots, 1/K)=\Gamma_{\mathbf{a}'} (\r') $ we also have that $B$ sends $(1/K, \dots ,1/K)$ to itself. \ddd{[To check that it also conserves probability and has non-negative components]}
-
-Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\mathbf{a}}(\w)$ to $\Gamma_{\mathbf{a}'}(\w')$. Again, define  $A := \Gamma_{\mathbf{a}'}^{-1} \circ B \circ \Gamma_{\mathbf{a}}$, and find that $A$ is stochastic, and obeys $A\w = \w'$ and $A\r=\r'$. \ddd{[Spell out conditions for $A$ to be stochastic maybe]}.
-\end{proof}
-We also note that the vectors $\r, \r'$ with rational components is dense in the set of all positive probability distributions, and so we appeal to the fact that experiments have a finite resolution, and ignore technical details to do with the completion to arbitrary real components.
 
 Therefore if we have a Schur-Concave function $f(\x)$ for majorization of quasi-distributions then we can define a monotonic function for relative majorization via composition with $\Gamma_{\mathbf{a}}$ and its inverse.
 This should provide relative majorization monotones from which we can obtain distillation bounds, such as
