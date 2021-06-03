@@ -1534,6 +1534,16 @@ This should provide relative majorization monotones from which we can obtain dis
 R \le \frac{F_\alpha(\tau) - F_\alpha (\rho)}{F_\alpha(\tau') - F_\alpha (\rho')}.
 \end{equation}
 \ddd{[To be checked...transition from entropies to free energies less obvious from this route...needs reflection]}
+
+This is probably all we need to show:
+\begin{equation}
+H_\alpha(\Gamma_{\mathbf{a}}(\p)) = D_\alpha(\p ||\r),
+\end{equation}
+where we define the Renyi relative entropy
+\begin{equation}
+D_\alpha (\p || \r) := \frac{1}{\alpha -1} \log \sum_i p_i^\alpha q_i^{1-\alpha}.
+\end{equation}
+This probably follows from the details of how the $\Gamma_{\mathbf{a}}$ relates to $\r$. Needs expanding carefully.
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
 
