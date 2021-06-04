@@ -1336,7 +1336,7 @@ We note that we may relate our analysis to the classical single-shot entropy $D_
 \end{equation}
 which is well-defined since both the nominator and denominator in the above expression are strictly positive when $\tau$ is in the interior of $\F$.
 
-\begin{theorem} Let $\tau$ be in the interior of $\F$, and define $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{theorem} Let $\tau$ be in the interior of $\F$, and define $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold: \nick{can generalise to $D_{\alpha}$ for appropriate $\alpha$}
 \begin{enumerate}
 \item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\infty(\rho , \tau) = 0$ if and only if $\rho =\tau$.
@@ -1388,8 +1388,8 @@ We first define the classical $\alpha$-Renyi entropy in terms of the Wigner quas
 \begin{equation}
 	H_\alpha(\rho) := \frac{1}{1-\alpha} \log \sum_{\bmx} W_{\rho}(\bmx)^\alpha,
 \end{equation}
-where $\alpha$ can take values of the form $\alpha_1 / \alpha_2$, with even $\alpha_1 \geq 0$ and odd $\alpha_2 > 0$.
-Note that for any quantum state $\rho$, $H_1$ in particular is not well-defined, while for any valid $\alpha$ we have that
+where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive.
+Note that for any quantum state $\rho$, $H_1(\rho)$ in particular is not well-defined  \nick{Notation clashes with quantum Renyi entropies}, while for any valid $\alpha$ we have that
 \begin{equation}
 	H_0(\rho) = 2\log_2 d = H_\alpha \left( \id/d \right),
 \end{equation}
@@ -1402,7 +1402,7 @@ For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figs/test/H_vs_eps_a.pdf}
-    \caption{\ddd{[TO DO: Set $\epsilon = 0$ and determine region of $\alpha$ such that $H <0$.]} Here, the exponent is $\alpha = even/odd$ for $1.10 \leq \alpha \leq 1.50$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(0)) = 0$.
+    \caption{\ddd{[TO DO: Set $\epsilon = 0$ and determine region of $\alpha$ such that $H <0$.]} Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$ \nick{should be easy to show analytically}. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ has a unique solution, which is the \nick{probably irrational - this seems problematic} solution of $3^\alpha - 2^{3-\alpha} = 1$.
     }
     \label{fig:lcs}
 \end{figure}
@@ -1493,18 +1493,19 @@ for all $\w$ in the interior of $\mathcal{Q}^\downarrow$.
 
 We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distributions for particular values of $\alpha$.
 
+\ddd{[TO-DO TIDY AND CHECK]}
 \begin{theorem}\label{thm:HSchur}
-	Let $\w, \w' \in \mathbb{R}^N$ be quasi-distributions such that $\w \succ \w'$.
-	Then, $H_\alpha(\w) \leq H_\alpha(\w')$, where $\alpha = \frac{2a}{2b+1}$ for any positive integers $a,b$ with $a > b$.
+	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$.
+	Then, $H_\alpha$ is Schur-concave, i.e. for quasi-distributions $\w, \w' \in \mathbb{R}^N$, we have $H_\alpha(\w) \leq H_\alpha(\w')$, whenever $\w \succ \w'$.
 \end{theorem}
 \begin{proof}
-We have $\alpha = \frac{2a}{2b+1} \geq \frac{2b+2}{2b+1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i x_i^\alpha > 0$ and $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$.
+We have $\alpha = \frac{2a}{2b+1} \geq \frac{2b}{2b-1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i x_i^\alpha > 0$ and $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$.
 
 Given a fixed $\alpha$ for which $H_\alpha(\x)$ is well-defined, the function $H_\alpha$ is real-valued, smooth on the interior of $\mathcal{Q}^\downarrow$ and symmetric on permutation components of $\x$.
 
 Consider the partial derivatives
 \begin{equation}
-	\frac{\partial H_\alpha}{\partial w_i} = \frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}}(-w_i^{\alpha-1})
+	\frac{\partial H_\alpha}{\partial w_i} = \frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}}(-w_i^{\alpha-1}).
 \end{equation}
 Whenever $w_i \geq w_j$, for $\alpha$ in the given form, we always have that $\alpha - 1$ is positive and of the form odd$/$odd so \nick{expand argument}
 \begin{equation}
@@ -1519,62 +1520,7 @@ Therefore, $H_\alpha$ is Schur-concave and
 	H_\alpha(\w) \leq H_\alpha(\w'),
 \end{equation}
 for any quasi-distributions $\w, \w'$.
-\end{proof}
-Note that if $\alpha < 1$ or is of the form odd$/$even, the argument of~\cref{thm:HSchur} does not hold.
 
-We can now derive the following entropic bounds on magic state transformations.
-\begin{theorem}
-	Consider a general magic state distillation process $\rho^{\otimes n} \rightarrow \rho'^{\otimes n'}$	in the unital fragment.
-	We have the following family of upper bounds on the distillation rate $R := n'/n$,
-	\begin{equation}
-		R \leq \frac{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho \right)}{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho') \right)},
-	\end{equation}
-	where $\hspace{-1pt}\alpha\hspace{-1pt}$ is such that $\hspace{-1pt}H_\alpha(\sigma)\hspace{-2pt}$ is well-defined for all states $\sigma$.
-\end{theorem}
-\begin{proof}
-	We can regularise the number of output copies in the state distillation by tensoring in $(n-n')$ copies of the (free) maximally mixed state $\id/3$, so that we instead consider the process
-\begin{equation}
-	\rho^{\otimes n} \rightarrow \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')}.
-\end{equation}
-Since we have that $W_{\rho^{\otimes n}}(\bmx) \succ_{\id/3} W_{\rho'^{\otimes n'}}(\bmx)$, by Schur-concativity of $H_\alpha$ we obtain
-\begin{equation}
-	H_\alpha \left( \rho^{\otimes n} \right) \leq H_\alpha \left( \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')} \right).
-\end{equation}
-By additivity of $H_\alpha$, we can rewrite the inequality as
-\begin{equation}
-	n H_\alpha \left( \rho \right) \leq n' H_\alpha \left( \rho' \right) + (n - n') H_\alpha \left( \id/3 \right).
-\end{equation}
-Now, $H_\alpha \left( \id/3 \right)$ is the maximum value of $H_\alpha(\rho)$ for unital processes because every state $\rho$ majorizes $\id/3$, so we can finally re-arrange the inequality to
-\begin{equation}
-	\frac{n'}{n} \leq \frac{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho \right)}{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho' \right)}.
-\end{equation}
-\end{proof}
-
-\subsubsection{Extention to general relative majorization}
-
-
-
-\ddd{[TO-DO AND TIDY AND CHECK]} The extension of the domain of the Renyi entropies to real values means that is it not real-valued for certain values of $\alpha$. However we can make $H_\alpha(\w)$ well-defined on the whole of $\mathcal{Q}$ if $\alpha = \frac{a}{b}$ where $b$ is an odd integer, and $a$ is an even integer. Depending on the set of quasi-distributions the quantum system supports the restriction of $a$ being even could be lifted, provided that the sum $\sum_i w_i^\alpha >0$, however we do not consider this here, and restrict to the assumption that $a$ is even.
-
-\begin{theorem} The functions $H_\alpha(\w)$ are well-defined on $\mathcal{Q}$ for $\alpha = \frac{a}{b}$ with $a$ an even integer and $b$ an odd integer, and are Schur-concave functions.
-\end{theorem}
-\begin{proof}
-We now make use of the Schur-Ostrowski criterion to determine when $H_\alpha$ is Schur-Convex on $\mathcal{Q}$.
-
-We have that
-\begin{align}
-V_k:=-\frac{\partial H_\alpha}{\partial w_k} &= \partial_k \frac{1}{\alpha-1} \log \sum_i w_i^{\alpha} \\
-&= \frac{1}{(\alpha-1) \sum_i w_i^{\alpha}}\alpha w_k^{\alpha-1}.
-\end{align}
-We now impose the monotonicity condition $V_1 \ge V_2 \ge V_3 \cdots \ge V_N$. This requires, setting $S= \sum_i w_i^\alpha$ for simplicity, that
-\begin{align}
- \frac{1}{(\alpha-1)S}\alpha w_i^{\alpha-1}\ge \frac{1}{(\alpha-1)S}\alpha w_{i+1}^{\alpha-1},
-\end{align}
-for each $i=1,2,\dots, N-1$. We have that $S >0$, since $a$ is even, and assume that $\alpha >1$ so that
-\begin{equation}
-w_i^{\alpha-1}\ge w_{i+1}^{\alpha-1}\mbox{ for all } 1 \le i < N.
-\end{equation}
-For $\alpha = a/b > 1$ we have $\alpha-1 = (a-b)/b = a'/b >0$ where $a'$ is an even integer and $b$ an odd integer. We now assume that $\w \in \mathcal{Q}^\downarrow$ so that $ w_i \ge w_{i+1}$. \ddd{[Wait I'm not sure the inequalities work...]} \nick{Look at proof of~\cref{thm:HSchur} and table below}
 
 \begin{table}[h]
   \def\arraystretch{1.5}
@@ -1597,11 +1543,45 @@ For $\alpha = a/b > 1$ we have $\alpha-1 = (a-b)/b = a'/b >0$ where $a'$ is an e
     $-1/3$ & $-2/3$ & $4$ & $-0.01 > -0.10$ T & $2/3$ & $4.33 > 3.43$ T \\
     $-1/3$ & $-4/3$ & $4$ & $-0.01 > -0.79$ T & $2/3$ & $4.33 > 2.73$ T
   \end{tabular}
-  \caption{Exploring in what regimes the Schur-Ostrowski criterion holds.}
+  \caption{\nick{NUMERICS ON SCHUR-OSTROWSKI CONDITION} Seems like $\alpha=$ even$/$odd and $\alpha > 1$ works for any combination of $w_i, w_{i+1}$ with $w_i > w_{i+1}$ and seems also that no other case works.}
   \label{tab:test}
 \end{table}
 
 \end{proof}
+Note that if $\alpha < 1$ or is of the form odd$/$even, the argument of~\cref{thm:HSchur} does not hold.
+However, the set $F := \{2a/(2b+1): a,b \in \mathbb{N} \text{ and } a>b\}$ is dense in the rationals $\mathbb{Q}_{>1}$ (which in turn is dense in $\mathbb{R}_{>1}$) as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n+1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
+
+We can now derive the following entropic bounds on magic state transformations.
+\begin{theorem}
+	Consider a general magic state distillation process $\rho^{\otimes n} \rightarrow \rho'^{\otimes n'}$	in the unital fragment.
+	We have the following family of upper bounds on the distillation rate $R := n'/n$,
+	\begin{equation}
+		R \leq \frac{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho \right)}{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho') \right)} = \frac{D_{\alpha}(\rho||\id/3)}{D_{\alpha}(\rho'||\id/3)},
+	\end{equation}
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$.
+\end{theorem}
+\begin{proof}
+	For the given form of $\alpha$, $H_\alpha(\sigma)$ is well-defined adn Schur-concave for all quantum states $\sigma$.
+	
+	We first regularise the number of output copies in the state distillation by tensoring in $(n-n')$ copies of the (free) maximally mixed state $\id/3$, so that we instead consider the process
+\begin{equation}
+	\rho^{\otimes n} \rightarrow \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')}.
+\end{equation}
+Since we have that $W_{\rho^{\otimes n}}(\bmx) \succ_{\id/3} W_{\rho'^{\otimes n'}}(\bmx)$, by Schur-concativity of $H_\alpha$ we obtain
+\begin{equation}
+	H_\alpha \left( \rho^{\otimes n} \right) \leq H_\alpha \left( \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')} \right).
+\end{equation}
+By additivity of $H_\alpha$, we can rewrite the inequality as
+\begin{equation}
+	n H_\alpha \left( \rho \right) \leq n' H_\alpha \left( \rho' \right) + (n - n') H_\alpha \left( \id/3 \right).
+\end{equation}
+Now, $H_\alpha \left( \id/3 \right)$ is the maximum value of $H_\alpha(\rho)$ for unital processes because every state $\rho$ majorizes $\id/3$, so we can finally re-arrange the inequality to
+\begin{equation}
+	\frac{n'}{n} \leq \frac{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho \right)}{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho' \right)}.
+\end{equation}
+\end{proof}
+
+\subsubsection{Extention to general relative majorization}
 
 Therefore if we have a Schur-Concave function $f(\x)$ for majorization of quasi-distributions then we can define a monotonic function for relative majorization via composition with $\Gamma_{\mathbf{a}}$ and its inverse.
 This should provide relative majorization monotones from which we can obtain distillation bounds, such as
@@ -1619,6 +1599,37 @@ where we define the Renyi relative entropy
 D_\alpha (\p || \r) := \frac{1}{\alpha -1} \log \sum_i p_i^\alpha q_i^{1-\alpha}.
 \end{equation}
 This probably follows from the details of how the $\Gamma_{\mathbf{a}}$ relates to $\r$. Needs expanding carefully.
+
+\begin{theorem}
+	Consider a general magic state distillation process that converts magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes n'}$ as well as equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes n'}$, where we assume that $W_{\tau^{\otimes n}}(\bmx) = a_{\bmx}/K$ and $W_{\tau'^{\otimes n'}}(\bmx) = a_{\bmx}/K$ for positive integers $a_{\bmx}, a_{\bmx}'$ and $K = \sum_{\bmx} a_{\bmx} = \sum_{\bmx} a_{\bmx}'$. 
+	
+	We have the following family of upper bounds on the distillation rate $R := n'/n$,
+	\begin{equation}
+		R \leq \text{\nick{BOUND}},
+	\end{equation}
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$.
+\end{theorem}
+\begin{proof}
+	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_{n'} \coloneqq \rho_S(\epsilon')^{\otimes n'}$, $\tau_n \coloneqq \tau^{\otimes n}$ and $\tau'_{n'} \coloneqq \tau'^{\otimes n'}$.
+	
+	We have that $(W_{\rho_n}, W_{\tau_n}) \succ W_{\rho'_{n'}}, W_{\tau'_{n'}})$, or equivalently $\Gamma_{\bma}(W_{\rho_n}) \succ \Gamma_{\bma'}(W_{\rho'_{n'}})$, where
+\begin{align}
+	\Gamma_{\bma}(W_{\rho_n}) &= \bigoplus_{\bmx} W_{\rho_n}(\bmx) \left(\frac{1}{KW_{\tau_n}(\bmo)}, \dots, \frac{1}{KW_{\tau_n}((d,d))} \right)\nonumber\\
+	&= \frac{1}{K}\bigoplus_{\bmx}\bigoplus_{\bmy} \frac{W_{\rho_n}(\bmx)}{W_{\tau_n}(\bmy)},
+\end{align}
+and similarly for $\Gamma_{\bma'}(W_{\rho'_{n'}})$.
+Therefore,
+\begin{equation}
+	H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) = \frac{1}{1-\alpha} \log_2 \left( \frac{1}{K^\alpha} \sum_{\bmx, \bmy} \frac{W_{\rho_n}(\bmx)^\alpha}{W_{\tau_n}(\bmy)^\alpha} \right),
+\end{equation}
+while
+\begin{equation}
+	D(\rho||\tau) = \frac{1}{\alpha-1} \log_2 \sum_{\bmx,\bmy} \frac{W_{\rho}(\bmx)^\alpha}{W_{\tau}(\bmy)^{\alpha-1}}.
+\end{equation}
+\nick{correct mistakes, bridge gaps}
+\end{proof}
+
+
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
 
