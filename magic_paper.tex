@@ -1462,24 +1462,26 @@ We note that the vectors $\r, \r'$ with rational components form a dense subset 
 We now make use of known results from majorization theory to establish the Schur-concavity of $H_\alpha$ on Wigner quasi-distributions where $\alpha$ is such that $H_\alpha$ is well-defined. 
 We first define the notion of \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
 
-\begin{definition} A continuous, real-valued function $f$ defined on $\D \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\D$ if $\p \prec \q$ on $\D$ implies that $f(\p) \le f(\q)$. A continuous function $f:\D \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
+\begin{definition} 
+A continuous, real-valued function $f$ defined on $\mathcal{Q} \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\mathcal{Q}$ if $\p \prec \q$ on $\mathcal{Q}$ implies that $f(\p) \le f(\q)$. A continuous function $f:\mathcal{Q} \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
 \end{definition}
 We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
 \begin{equation}
-\D = \{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1\}.
+\mathcal{Q} = \left\{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1 \right\}.
 \end{equation}
 For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
 \begin{equation}
-\D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+\mathcal{Q}^\downarrow = \{ \w \in \mathcal{Q} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
 We now have the following theorem~\cite{cit:marshall} that provides a characterization of symmetric, Schur-convex and Schur-concave functions on quasi-distributions.
-\begin{lemma} 
-Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then, $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
+\begin{lemma}
+Let $f$ be a real-valued continuous function defined on $\mathcal{Q}^\downarrow$ that is continuously differentiable on the interior of $\mathcal{Q}^\downarrow$. 
+Then, $f$ is Schur-convex on $\mathcal{Q}^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \mathcal{Q}^\downarrow$, namely
 \begin{equation}
 \partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
-for all $\w$ in the interior of $\D^\downarrow$.
+for all $\w$ in the interior of $\mathcal{Q}^\downarrow$.
 \end{lemma}
 
 We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distributions for particular values of $\alpha$.
@@ -1489,7 +1491,7 @@ We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distribu
 	Then, $H_\alpha(\w) \leq H_\alpha(\w')$, where $\alpha$ is such that $\hspace{-1pt}H_\alpha(\x)\hspace{-2pt}$ is well-defined for all quasi-distributions $\x$.
 \end{theorem}
 \begin{proof}
-Given a fixed $\alpha$ for which $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$, the function $H_\alpha$ is real-valued, smooth on the interior of $\D^\downarrow$ and symmetric on permutation components of $\x$.
+Given a fixed $\alpha$ for which $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$, the function $H_\alpha$ is real-valued, smooth on the interior of $\mathcal{Q}^\downarrow$ and symmetric on permutation components of $\x$.
 
 Consider the partial derivatives
 \begin{equation}
@@ -1499,7 +1501,7 @@ Whenever $w_i \geq w_j$, we have that
 \begin{equation}
 	\frac{w_i^{\alpha-1}}{1-\alpha} \leq \frac{w_j^{\alpha-1}}{1-\alpha},
 \end{equation}
-independently of whether $\alpha < 1$ or $\alpha > 1$, which leads to
+\nick{wrong} independently of whether $\alpha < 1$ or $\alpha > 1$, which leads to
 \begin{equation}
 	\frac{\partial H_\alpha}{\partial w_i} \leq \frac{\partial H_\alpha}{\partial w_j}.
 \end{equation}
@@ -1540,6 +1542,31 @@ Now, $H_\alpha \left( \id/3 \right)$ is the maximum value of $H_\alpha(\rho)$ fo
 \end{proof}
 
 \subsubsection{Extention to general relative majorization}
+
+
+
+\ddd{[TO-DO AND TIDY AND CHECK]} The extension of the domain of the Renyi entropies to real values means that is it not real-valued for certain values of $\alpha$. However we can make $H_\alpha(\w)$ well-defined on the whole of $\mathcal{Q}$ if $\alpha = \frac{a}{b}$ where $b$ is an odd integer, and $a$ is an even integer. Depending on the set of quasi-distributions the quantum system supports the restriction of $a$ being even could be lifted, provided that the sum $\sum_i w_i^\alpha >0$, however we do not consider this here, and restrict to the assumption that $a$ is even.
+
+\begin{theorem} The functions $H_\alpha(\w)$ are well-defined on $\mathcal{Q}$ for $\alpha = \frac{a}{b}$ with $a$ an even integer and $b$ an odd integer, and are Schur-concave functions.
+\end{theorem}
+\begin{proof}
+We now make use of the Schur-Ostrowski criterion to determine when $H_\alpha$ is Schur-Convex on $\mathcal{Q}$.
+
+We have that
+\begin{align}
+V_k:=-\frac{\partial H_\alpha}{\partial w_k} &= \partial_k \frac{1}{\alpha-1} \log \sum_i w_i^{\alpha} \\
+&= \frac{1}{(\alpha-1) \sum_i w_i^{\alpha}}\alpha w_k^{\alpha-1}.
+\end{align}
+We now impose the monotonicity condition $V_1 \ge V_2 \ge V_3 \cdots \ge V_N$. This requires, setting $S= \sum_i w_i^\alpha$ for simplicity, that
+\begin{align}
+ \frac{1}{(\alpha-1)S}\alpha w_i^{\alpha-1}\ge \frac{1}{(\alpha-1)S}\alpha w_{i+1}^{\alpha-1},
+\end{align}
+for each $i=1,2,\dots, N-1$. We have that $S >0$, since $a$ is even, and assume that $\alpha >1$ so that
+\begin{equation}
+w_i^{\alpha-1}\ge w_{i+1}^{\alpha-1}\mbox{ for all } 1 \le i < N.
+\end{equation}
+For $\alpha = a/b > 1$ we have $\alpha-1 = (a-b)/b = a'/b >0$ where $a'$ is an even integer and $b$ an odd integer. We now assume that $\w \in \mathcal{Q}^\downarrow$ so that $ w_i \ge w_{i+1}$. \ddd{[Wait I'm not sure the inequalities work...]}
+\end{proof}
 
 Therefore if we have a Schur-Concave function $f(\x)$ for majorization of quasi-distributions then we can define a monotonic function for relative majorization via composition with $\Gamma_{\mathbf{a}}$ and its inverse.
 This should provide relative majorization monotones from which we can obtain distillation bounds, such as
