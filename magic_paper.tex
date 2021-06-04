@@ -1431,24 +1431,24 @@ We also note that the vectors $\r, \r'$ with rational components is dense in the
 
 We now make use of known results from majorization theory. We first define \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
 
-\begin{definition} A continuous, real-valued function $f$ defined on $\D \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\D$ if $\p \prec \q$ on $\D$ implies that $f(\p) \le f(\q)$. A continuous function $f:\D \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
+\begin{definition} A continuous, real-valued function $f$ defined on $\\mathcal{Q} \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\mathcal{Q}$ if $\p \prec \q$ on $\mathcal{Q}$ implies that $f(\p) \le f(\q)$. A continuous function $f:\mathcal{Q} \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
 \end{definition}
 We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
 \begin{equation}
-\D = \{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1\}.
+\mathcal{Q} = \{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1\}.
 \end{equation}
 For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
 \begin{equation}
-\D^\downarrow = \{ \w \in \D : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+\mathcal{Q}^\downarrow = \{ \w \in \mathcal{Q} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
 We now have the following theorem~\cite{cit:marshall} that provides a characterization of symmetric, Schur-convex and Schur-concave functions on quasi-distributions.
 \begin{lemma} 
-Let $f$ be a real-valued continuous function defined on $\D^\downarrow$ that is continuously differentiable on the interior of $\D^\downarrow$. Then $f$ is Schur-convex on $\D^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \D^\downarrow$, namely
+Let $f$ be a real-valued continuous function defined on $\mathcal{Q}^\downarrow$ that is continuously differentiable on the interior of $\mathcal{Q}^\downarrow$. Then $f$ is Schur-convex on $\mathcal{Q}^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \mathcal{Q}^\downarrow$, namely
 \begin{equation}
 \partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
-for all $\w$ in the interior of $\D^\downarrow$.
+for all $\w$ in the interior of $\mathcal{Q}^\downarrow$.
 \end{lemma}
 
 We can use the above to prove that $H_\alpha$ is Schur-concave for 
@@ -1472,29 +1472,33 @@ We can use the above to prove that $H_\alpha$ is Schur-concave for
 	H_{2m}(\rho_n) := H_{2m}(\rho^{\otimes n}) = n H_{2m}(\rho).
 \end{equation}
 
-\ddd{[TO-DO AND TIDY AND CHECK]} Okay great...this looks easy to do, we just need to compute the terms
-\begin{equation}
-	\frac{\partial H_\alpha}{\partial w_k} (w_1, w_2, \dots, w_N),
-\end{equation}
-for Renyi entropies (which are symmetric), and look to see when the above inequality holds. 
-We assume $ \alpha=2m$ is an even integer, so that $H_\alpha (\w)$ is well-defined on quasi-distributions. We then have that
+\ddd{[TO-DO AND TIDY AND CHECK]} The extension of the domain of the Renyi entropies to real values means that is it not real-valued for certain values of $\alpha$. However we can make $H_\alpha(\w)$ well-defined on the whole of $\mathcal{Q}$ if $\alpha = \frac{a}{b}$ where $b$ is an odd integer, and $a$ is an even integer. Depending on the set of quasi-distributions the quantum system supports the restriction of $a$ being even could be lifted, provided that the sum $\sum_i w_i^\alpha >0$, however we do not consider this here, and restrict to the assumption that $a$ is even.
+
+\begin{theorem} The functions $H_\alpha(\w)$ are well-defined on $\mathcal{Q}$ for $\alpha = \frac{a}{b}$ with $a$ an even integer and $b$ an odd integer, and are Schur-concave functions.
+\end{theorem}
+\begin{proof}
+We now make use of the Schur-Ostrowski criterion to determine when $H_\alpha$ is Schur-Convex on $\mathcal{Q}$.
+
+We have that
 \begin{align}
-V_k:=-\frac{\partial H_\alpha}{\partial w_k} &= \partial_k \frac{1}{\alpha-1} \log \sum_i w_i^{2m} \\
-&= \frac{1}{(2m-1) \sum_i w_i^{2m}}2mw_k^{2m-1}.
+V_k:=-\frac{\partial H_\alpha}{\partial w_k} &= \partial_k \frac{1}{\alpha-1} \log \sum_i w_i^{\alpha} \\
+&= \frac{1}{(\alpha-1) \sum_i w_i^{\alpha}}\alpha w_k^{\alpha-1}.
 \end{align}
-We now impose the monotonicity condition $V_1 \ge V_2 \ge V_3 \cdots \ge V_N$. This requires, setting $S= \sum_i w_i^{2m}$ for simplicity, that
+We now impose the monotonicity condition $V_1 \ge V_2 \ge V_3 \cdots \ge V_N$. This requires, setting $S= \sum_i w_i^\alpha$ for simplicity, that
 \begin{align}
- \frac{1}{(2m-1)S}2mw_i^{2m-1}\ge \frac{1}{(2m-1)S}2mw_{i+1}^{2m-1},
+ \frac{1}{(\alpha-1)S}\alpha w_i^{\alpha-1}\ge \frac{1}{(\alpha-1)S}\alpha w_{i+1}^{\alpha-1},
 \end{align}
-for each $i=1,2,\dots, N-1$. We assume that $m >0$ and $2m \ne 1$ and so this becomes
+for each $i=1,2,\dots, N-1$. We have that $S >0$, since $a$ is even, and assume that $\alpha >1$ so that
 \begin{equation}
-w_i^{2m-1}\ge w_{i+1}^{2m-1}\mbox{ for all } 1 \le i < N.
+w_i^{\alpha-1}\ge w_{i+1}^{\alpha-1}\mbox{ for all } 1 \le i < N.
 \end{equation}
+For $\alpha = a/b > 1$ we have $\alpha-1 = (a-b)/b = a'/b >0$ where $a'$ is an even integer and $b$ an odd integer. We now assume that $\w \in \mathcal{Q}^\downarrow$ so that $ w_i \ge w_{i+1}$. \ddd{[Wait I'm not sure the inequalities work...]}
+
 For $2m >1$ this condition holds whenever $w_i \ge w_{i+1}$, which is true in $\D^\downarrow$. Therefore $-H_{2m}(\w)$ is Schur-Convex on quasi-distributions for any integer $m\in \mathbb{N}$. This implies it is a monotone function for majorization, namely,
 \begin{equation}
 \w \succ \w' \mbox{ implies } H_{2m} (\w) \le H_{2m} (\w') \mbox{for any } m \in \mathbb{N}.
 \end{equation}
-
+\end{proof}
 \ddd{[Plan: check all these calculations! Give the generalised unital bound. Then we just conjecture this extends to Renyi-divergences and leave it at this.]}
 
 Using the above results, we can derive the following entropic bound on magic state transformations. \nick{to be extended (1) from unital processes to general relative majorization, (2) from $\alpha = 2m$ to $\alpha = 2m/(2k+1)$ for integer $m,k \geq 0$, (3) from Strange state to any magic state distillation}
