@@ -1507,7 +1507,23 @@ Consider the partial derivatives
 \begin{equation}
 	\frac{\partial H_\alpha}{\partial w_i} = \frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}}(-w_i^{\alpha-1}).
 \end{equation}
-Whenever $w_i \geq w_j$, for $\alpha$ in the given form, we always have that $\alpha - 1$ is positive and of the form odd$/$odd so \nick{expand argument}
+We first note that for $\alpha$ in the given form, it is always true that
+\begin{equation}
+	\frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}} > 0.
+\end{equation}
+We then show that for $\alpha$ in the given form, the function $f(w) = -w^{\alpha - 1}$ is non-increasing.
+To this end, we obtain the first derivative
+\begin{equation}
+	f'(w) = -(\alpha - 1) w^{\alpha-2} = -(\alpha - 1)w^{\frac{2a-4b+2}{2b-1}} \leq 0,
+\end{equation}
+because $\alpha > 1$ and
+\begin{equation}
+	w^{\frac{2a-4b+2}{2b-1}} = \left(w^{2a-4b+2}\right)^{\frac{1}{2b-1}} = \left(w^{\frac{1}{2b-1}}\right)^{2(a-2b+1)} \geq 0,
+\end{equation}
+where each expression is well defined because the rational exponent has even numerator and odd denominator.
+\nick{This step is the reason why $\alpha =$ odd$/$odd or $\alpha < 1$ do not work. $\alpha - 2$ may be less than 0, is this a problem?}
+
+Therefore, whenever $w_i \geq w_j$, we have that 
 \begin{equation}
 	-w_i^{\alpha-1} \leq -w_j^{\alpha-1},
 \end{equation}
