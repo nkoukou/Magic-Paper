@@ -13,7 +13,7 @@ reprint
 % Labels and Refs (consistency, cref vs ref, thm vs lem vs prop, ??)
 % Figs check(fig.0, move to app, consistency)
 
-% Notation consistency (R is rate not bound, noise vs error, \ln{} -> \ln, italics)
+% Notation consistency (R is rate not bound, noise vs error, \ln{} -> \ln, italics, keep \bmx for vectors?)
 % UK vs US english
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
@@ -165,7 +165,7 @@ In any theory of magic, a natural route to bounding the distillation rates obtai
 
 One prominent magic monotone is the \emph{mana} of a state~\cite{cit:veitch2}, defined as
 \begin{equation}
-    \mana{\rho} \coloneqq \ln{(2\hspace{1pt}\sn{\rho}+1)},
+    \mana{\rho} \coloneqq \ln (2\hspace{1pt}\sn{\rho}+1),
 \end{equation}
 where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative components in $\W{\rho}$,
 \begin{equation}
@@ -421,7 +421,7 @@ Distillation bounds can be obained from any location of the Lorenz curve, includ
 
 The first elbow coordinates for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$, and by considering the slope of the line segment joining this first elbow to the origin we can use~\cref{prop:first_elb} in the Appendices, to bound $R(\epsilon, \epsilon')$. We find that
 \begin{equation}
-	R(\epsilon, \epsilon') \leq \frac{\ln{(3-4\epsilon)}}{\ln{(3-4\epsilon')}}.
+	R(\epsilon, \epsilon') \leq \frac{\ln (3-4\epsilon)}{\ln (3-4\epsilon')}.
 \end{equation}
 For the limiting case of pure magic states on the output ($\epsilon'=0$), this simplifies to
 \begin{equation}
@@ -502,7 +502,7 @@ Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to th
 
 Then the asymptotic magic distillation rate $R = m/n$ is bounded as
 \begin{equation}\label{eq:rate_bounds_proof}
-	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+	R \leq \dfrac{\ln \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\ln \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
 \begin{equation}
@@ -904,7 +904,7 @@ Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \g
 		&= 1 + \sn{\rho}.
 	\end{align}
 	
-Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{mana}(\rho) \coloneqq \ln{(2\hspace{1pt}\sn{\rho}+1)}$, we see that mana corresponds precisely to the peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore, mana is one of $d^{2n}$ constraints, so majorization is strictly a stronger constraint in any fragment.
+Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{mana}(\rho) \coloneqq \ln \hspace{1pt}(2\hspace{1pt}\sn{\rho}+1)$, we see that mana corresponds precisely to the peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore, mana is one of $d^{2n}$ constraints, so majorization is strictly a stronger constraint in any fragment.
 \end{proof}
 
 
@@ -1435,7 +1435,7 @@ Then,
 \end{equation}
 where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
 \begin{equation}
-	\Gamma_{\bma}(\x) := \bigoplus_{i=1}^N x_i \eta_{b_i},
+	\Gamma_{\bma}(\x) := \bigoplus_{i=1}^N x_i \eta_{a_i},
 \end{equation}
 with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
 \end{lemma}
@@ -1501,7 +1501,7 @@ We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distribu
 \begin{proof}
 We have $\alpha = \frac{2a}{2b+1} \geq \frac{2b}{2b-1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i x_i^\alpha > 0$ and $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$.
 
-Given a fixed $\alpha$ for which $H_\alpha(\x)$ is well-defined, the function $H_\alpha$ is real-valued, smooth on the interior of $\mathcal{Q}^\downarrow$ and symmetric on permutation components of $\x$.
+Given a fixed $\alpha$ for which $H_\alpha(\x)$ is well-defined, the function $H_\alpha$ is real-valued, smooth on the interior of $\mathcal{Q}^\downarrow$ and symmetric on any component permutation of $\x$.
 
 Consider the partial derivatives
 \begin{equation}
@@ -1512,7 +1512,7 @@ We first note that for $\alpha$ in the given form, it is always true that
 	\frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}} > 0.
 \end{equation}
 We then show that for $\alpha$ in the given form, the function $f(w) = -w^{\alpha - 1}$ is non-increasing.
-To this end, we obtain the first derivative
+To this end, we first note that, for $\alpha > 1$, $f(w)$ has no discontinuities and we then obtain the first derivative
 \begin{equation}
 	f'(w) = -(\alpha - 1) w^{\alpha-2} = -(\alpha - 1)w^{\frac{2a-4b+2}{2b-1}} \leq 0,
 \end{equation}
@@ -1520,8 +1520,16 @@ because $\alpha > 1$ and
 \begin{equation}
 	w^{\frac{2a-4b+2}{2b-1}} = \left(w^{2a-4b+2}\right)^{\frac{1}{2b-1}} = \left(w^{\frac{1}{2b-1}}\right)^{2(a-2b+1)} \geq 0,
 \end{equation}
-where each expression is well defined because the rational exponent has even numerator and odd denominator.
-\nick{This step is the reason why $\alpha =$ odd$/$odd or $\alpha < 1$ do not work. $\alpha - 2$ may be less than 0, is this a problem?}
+where each expression is well-defined because the rational exponent has odd denominator.
+
+\nick{This step is the reason why $\alpha =$ odd$/$odd or $\alpha < 1$ do not work.
+
+Example 1: if $\alpha =$ odd$/$odd, then $f(w)$ is not monotonous because the sign of $f'(w)$ would depend on the sign of $w$. 
+In~\cref{tab:test}, this case fails when $w_i > 0 > -w_i > w_{i+1}$.
+
+Example 2: if $\alpha =$ even$/$odd and $\alpha < 1$, then  $f(w)$ is not monotonous across $0$ because and in fact $\lim_{w\rightarrow 0^+} f(w) = -\infty$, while $\lim_{w\rightarrow 0^-} f(w) = +\infty$. 
+In~\cref{tab:test}, this case fails when $w_i > 0 > w_{i+1}$.
+}
 
 Therefore, whenever $w_i \geq w_j$, we have that 
 \begin{equation}
@@ -1535,7 +1543,7 @@ Therefore, $H_\alpha$ is Schur-concave and
 \begin{equation}
 	H_\alpha(\w) \leq H_\alpha(\w'),
 \end{equation}
-for any quasi-distributions $\w, \w'$.
+for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 
 
 \begin{table}[h]
@@ -1559,13 +1567,14 @@ for any quasi-distributions $\w, \w'$.
     $-1/3$ & $-2/3$ & $4$ & $-0.01 > -0.10$ T & $2/3$ & $4.33 > 3.43$ T \\
     $-1/3$ & $-4/3$ & $4$ & $-0.01 > -0.79$ T & $2/3$ & $4.33 > 2.73$ T
   \end{tabular}
-  \caption{\nick{NUMERICS ON SCHUR-OSTROWSKI CONDITION} Seems like $\alpha=$ even$/$odd and $\alpha > 1$ works for any combination of $w_i, w_{i+1}$ with $w_i > w_{i+1}$ and seems also that no other case works.}
+  \caption{\nick{NUMERICS ON SCHUR-OSTROWSKI CONDITION} The case $\alpha=$ even$/$odd and $\alpha > 1$ works for any combination of $w_i, w_{i+1}$ with $w_i > w_{i+1}$. 
+  All other cases do not work.}
   \label{tab:test}
 \end{table}
 
 \end{proof}
-Note that if $\alpha < 1$ or is of the form odd$/$even, the argument of~\cref{thm:HSchur} does not hold.
-However, the set $F := \{2a/(2b+1): a,b \in \mathbb{N} \text{ and } a>b\}$ is dense in the rationals $\mathbb{Q}_{>1}$ (which in turn is dense in $\mathbb{R}_{>1}$) as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n+1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
+The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n+1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
+
 
 We can now derive the following entropic bounds on magic state transformations.
 \begin{theorem}
@@ -1617,7 +1626,7 @@ D_\alpha (\p || \r) := \frac{1}{\alpha -1} \log \sum_i p_i^\alpha q_i^{1-\alpha}
 This probably follows from the details of how the $\Gamma_{\mathbf{a}}$ relates to $\r$. Needs expanding carefully.
 
 \begin{theorem}
-	Consider a general magic state distillation process that converts magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes n'}$ as well as equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes n'}$, where we assume that $W_{\tau^{\otimes n}}(\bmx) = a_{\bmx}/K$ and $W_{\tau'^{\otimes n'}}(\bmx) = a_{\bmx}/K$ for positive integers $a_{\bmx}, a_{\bmx}'$ and $K = \sum_{\bmx} a_{\bmx} = \sum_{\bmx} a_{\bmx}'$. 
+	Consider a general magic state distillation process that converts magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes n'}$ as well as equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes n'}$, where we assume that $W_{\tau^{\otimes n}}(\bmx) = a_{\bmx}/K$ and $W_{\tau'^{\otimes n'}}(\bmx) = a_{\bmx}/K$ for positive integers $a_{\bmx}, a_{\bmx}'$ and $K = \sum_{\bmx} a_{\bmx} = \sum_{\bmx} a_{\bmx}'$.  \nick{It may be more convenient to consider $W_{\tau}(\bmx') = a_{\bmx'}/K$, so that $K$ ends up raised to the power of $n$}
 	
 	We have the following family of upper bounds on the distillation rate $R := n'/n$,
 	\begin{equation}
@@ -1628,19 +1637,24 @@ This probably follows from the details of how the $\Gamma_{\mathbf{a}}$ relates 
 \begin{proof}
 	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_{n'} \coloneqq \rho_S(\epsilon')^{\otimes n'}$, $\tau_n \coloneqq \tau^{\otimes n}$ and $\tau'_{n'} \coloneqq \tau'^{\otimes n'}$.
 	
-	We have that $(W_{\rho_n}, W_{\tau_n}) \succ W_{\rho'_{n'}}, W_{\tau'_{n'}})$, or equivalently $\Gamma_{\bma}(W_{\rho_n}) \succ \Gamma_{\bma'}(W_{\rho'_{n'}})$, where
+	We have that 
+\begin{equation}	
+	\Big(W_{\rho_n}(\bmx), W_{\tau_n}(\bmx')\Big) \succ \Big(W_{\rho'_{n'}}(\bmx), W_{\tau'_{n'}}(\bmx')\Big)
+\end{equation}	
+or equivalently $\Gamma_{\bma}(W_{\rho_n}(\bmx)) \succ \Gamma_{\bma'}(W_{\rho'_{n'}}(\bmx))$ for all $\bmx$, where
 \begin{align}
-	\Gamma_{\bma}(W_{\rho_n}) &= \bigoplus_{\bmx} W_{\rho_n}(\bmx) \left(\frac{1}{KW_{\tau_n}(\bmo)}, \dots, \frac{1}{KW_{\tau_n}((d,d))} \right)\nonumber\\
-	&= \frac{1}{K}\bigoplus_{\bmx}\bigoplus_{\bmy} \frac{W_{\rho_n}(\bmx)}{W_{\tau_n}(\bmy)},
+	\Gamma_{\bma}(W_{\rho_n}) &= \bigoplus_{\bmx} W_{\rho_n}(\bmx) \left(\frac{1}{KW_{\tau_n}(\bmx)}, \dots, \frac{1}{KW_{\tau_n}(\bmx)} \right)\nonumber\\
+	&= \frac{1}{K}\bigoplus_{\bmx} \Big( W_{\rho_n|\tau_n}(\bmx), \dots, W_{\rho_n|\tau_n}(\bmx) \Big)
 \end{align}
 and similarly for $\Gamma_{\bma'}(W_{\rho'_{n'}})$.
 Therefore,
-\begin{equation}
-	H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) = \frac{1}{1-\alpha} \log_2 \left( \frac{1}{K^\alpha} \sum_{\bmx, \bmy} \frac{W_{\rho_n}(\bmx)^\alpha}{W_{\tau_n}(\bmy)^\alpha} \right),
-\end{equation}
+\begin{align}
+	&H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) = \frac{1}{1-\alpha} \log_2 \left( \frac{d^{2n}}{K^\alpha} \sum_{\bmx} \big[ W_{\rho_n|\tau_n}(\bmx) \big]^\alpha \right) = \nonumber\\
+	&\frac{1}{1-\alpha} \log_2 \left( \frac{d^{2n}}{K^\alpha} \sum_{\bmx_1, \dots, \bmx_n} \big[ W_{\rho|\tau}(\bmx_1) \dots W_{\rho|\tau}(\bmx_n) \big]^\alpha \right)
+\end{align}
 while
 \begin{equation}
-	D(\rho||\tau) = \frac{1}{\alpha-1} \log_2 \sum_{\bmx,\bmy} \frac{W_{\rho}(\bmx)^\alpha}{W_{\tau}(\bmy)^{\alpha-1}}.
+	D(\rho||\tau) = \frac{1}{\alpha-1} \log_2 \sum_{\bmx} \frac{W_{\rho}(\bmx)^\alpha}{W_{\tau}(\bmx)^{\alpha-1}}.
 \end{equation}
 \nick{correct mistakes, bridge gaps}
 \end{proof}
