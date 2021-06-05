@@ -1635,7 +1635,8 @@ The converse holds by inspection.
 3. This property follows from the multiplicativity of the WIgner distribution.
 In particular,
 \begin{align}
-	&D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) &= \frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho^{\otimes n}}(\bmx)^\alpha W_{\tau^{\otimes n}}(\bmx)^{1-\alpha} = \nonumber\\
+	&D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) = \nonumber\\
+	&\frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho^{\otimes n}}(\bmx)^\alpha W_{\tau^{\otimes n}}(\bmx)^{1-\alpha} = \nonumber\\
 	&= n D_{\alpha}(\rho || \tau). \nick{complete steps}
 \end{align}
 
@@ -1717,6 +1718,28 @@ and then it is clear that we can rearrange it to
 \end{equation}
 \end{proof}
 
+\ddd{The following is a nice thing to establish.}
+\begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho (\x)) < 0$ for some $\alpha >1$.
+\end{theorem}
+Let's try to prove this.
+\begin{proof} If $H_\alpha (W_\rho(\x) <0 $ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+
+Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
+\begin{align}
+\sum_{\x} W_\rho (\x)^{a/b} &= \sum_{\x} |W_\rho (\x)|^{a/b} \nonumber \\
+&= \sum_{\x} |W_\rho (\x)|^{1+ \epsilon},
+\end{align}
+where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$ and therefore there exists a sequence $\epsilon_n$ such that
+\begin{equation}
+\sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
+\end{equation}
+Therefore, $H_\alpha (W_\rho (\x)) <0 $ at some point in the sequence, which completes the proof.
+\end{proof}
+Therefore Wigner negativity coincides with negativity in at least one Renyi entropy.
+\ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 0$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
+\subsubsection{Extention to general relative majorization}
+
+Therefore if we have a Schur-Concave function $f(\x)$ for majorization of quasi-distributions then we can define a monotonic function for relative majorization via composition with $\Gamma_{\mathbf{a}}$ and its inverse.
 
 \subsection{Dropping pre/post-processing of the magic states}
 \label{app:cliff_processing}
