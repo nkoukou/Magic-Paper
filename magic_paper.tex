@@ -1607,6 +1607,23 @@ We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions
 	\end{align}
 \end{proof}
 
+\begin{theorem}\label{thm:DSchur}
+	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$. 
+	Then, $D_\alpha$ is Schur-convex, i.e. let $\w, \w' \in \mathbb{R}^N$ be quasi-distributions and $\r, \r' \in \mathbb{R}^N$ be probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$.
+	Then, we have $D_\alpha(\w || \r) \geq H_\alpha(\w' || \r')$, whenever $(\w, \r) \succ (\w', \r')$.
+\end{theorem}
+\begin{proof}
+	The statement $(\w, \r) \succ (\w', \r')$ is equivalent to $\Gamma_{\bma}(\w) \succ \Gamma_{\bma'}(\w')$.
+	Therefore, due to~\cref{thm:HSchur} we have
+	\begin{equation}
+		H_\alpha(\Gamma_{\bma}(\w)) \leq H_\alpha(\Gamma_{\bma'}(\w'))
+	\end{equation}
+	which due to~\cref{thm:H2D} is equivalent to
+	\begin{equation}
+		D_\alpha(\w ||\r) \geq D_\alpha(\w' ||\r').
+	\end{equation}
+\end{proof}
+
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b+1)$ for non-negative integers $a,b$
 Then, the $\alpha$-Renyi divergence $D_\alpha(\rho, \tau)$ is well-defined for all states $\rho$, and the following hold:
@@ -1622,19 +1639,12 @@ Then, the $\alpha$-Renyi divergence $D_\alpha(\rho, \tau)$ is well-defined for a
 In general, $W_\rho(\x)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmx)^\alpha \geq 0$. 
 Therefore $D_\alpha (\rho || \tau)$ is always well-defined.
 
-1. We need to prove that
+1. $D_\alpha$ is Schur-convex and every pair $(\w, \r)$ majorizes $(\r', \r')$, so
 \begin{equation}
-	\sum_{\bmx} W_{\tau}(\bmx) W_{\rho|\tau}(\x)^\alpha \geq 1.
+	D_\alpha(\w || \r) \geq D_\alpha(\r' || \r') = \frac{1}{\alpha-1} \log_2 \sum_{i} r_i = 0.
 \end{equation}
-\nick{How do we do this, while respecting the constraints on $\alpha$?}
 
-2. Assume $D_\alpha (\rho,\tau) = 0$.
-Then,
-\begin{equation}
-	\sum_{\bmx} W_{\tau}(\bmx) W_{\rho|\tau}(\x)^\alpha = 1,
-\end{equation}
-\nick{so...}.
-The converse holds by inspection.
+2. In the inequality of property 1, equality holds iff $L_{\w|\r}(x) = L_{\r'|\r'}(x) = L_{\r|\r}(x)$ for all $x$ due to~\cref{prop:rmajor} which holds iff $\w = \r$.
 
 3. This property follows from the multiplicativity of the WIgner distribution.
 In particular,
@@ -1647,7 +1657,7 @@ In particular,
 	&= n D_{\alpha}(\rho || \tau).
 \end{align}
 
-4. \nick{This must hold due to~\cref{thm:H2D}}
+4. This follows immediately from Schur-convexity of $D_\alpha$.
 \end{proof}
 \nick{Combining ALL the properties above (and nothing more) leads to the general bound}
 
