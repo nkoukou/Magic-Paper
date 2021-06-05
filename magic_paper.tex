@@ -1601,7 +1601,7 @@ We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions
 	\begin{align}
 		H_\alpha(\Gamma_{\bma}(\w)) &= \frac{1}{1-\alpha} \log_2 \sum_{i=1}^N a_i \left( \frac{w_i}{a_i} \right)^\alpha \nonumber\\
 		&= \frac{1}{1-\alpha} \log_2 \sum_{i=1}^N w_i^{\alpha} a_i^{1-\alpha} \nonumber\\
-		&= \frac{1}{1-\alpha} \log_2 K^{1-\alpha} \sum_{i=1}^N w_i^{\alpha} \nonumber\\
+		&= \frac{1}{1-\alpha} \log_2 K^{1-\alpha} \sum_{i=1}^N w_i^{\alpha} r_i^{1-\alpha} \nonumber\\
 		&= K + \frac{1}{1-\alpha} \log_2 \sum_{i=1}^N w_i^{\alpha} r_i^{1-\alpha} \nonumber\\
 		&= K - D_\alpha(\w ||\r).
 	\end{align}
@@ -1622,12 +1622,16 @@ Then, the $\alpha$-Renyi divergence $D_\alpha(\rho, \tau)$ is well-defined for a
 In general, $W_\rho(\x)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmx)^\alpha \geq 0$. 
 Therefore $D_\alpha (\rho || \tau)$ is always well-defined.
 
-1. \nick{looks true numerically, maybe can use~\cref{thm:H2D}}
+1. We need to prove that
+\begin{equation}
+	\sum_{\bmx} W_{\tau}(\bmx) W_{\rho|\tau}(\x)^\alpha \geq 1.
+\end{equation}
+\nick{How do we do this, while respecting the constraints on $\alpha$?}
 
 2. Assume $D_\alpha (\rho,\tau) = 0$.
 Then,
 \begin{equation}
-	\sum_{\bmx} W_{\tau}(\bmx) \left( \frac{W_\rho(\x)}{W_\tau(\x)} \right)^\alpha = 1,
+	\sum_{\bmx} W_{\tau}(\bmx) W_{\rho|\tau}(\x)^\alpha = 1,
 \end{equation}
 \nick{so...}.
 The converse holds by inspection.
@@ -1637,11 +1641,15 @@ In particular,
 \begin{align}
 	&D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) = \nonumber\\
 	&\frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho^{\otimes n}}(\bmx)^\alpha W_{\tau^{\otimes n}}(\bmx)^{1-\alpha} = \nonumber\\
-	&= n D_{\alpha}(\rho || \tau). \nick{complete steps}
+	&\frac{1}{\alpha - 1} \log_2 \sum_{\bmx} \prod_{i=1}^n W_{\rho}(\bmx_i)^\alpha W_{\tau}(\bmx_i)^{1-\alpha} = \nonumber\\
+	&\frac{1}{\alpha - 1} \log_2 \prod_{i=1}^n \sum_{\bmx_i} W_{\rho}(\bmx_i)^\alpha W_{\tau}(\bmx_i)^{1-\alpha} = \nonumber\\
+	&\sum_{i=1}^n \frac{1}{\alpha - 1} \log_2 \sum_{\bmx'} W_{\rho}(\bmx')^\alpha W_{\tau}(\bmx')^{1-\alpha} = \nonumber\\
+	&= n D_{\alpha}(\rho || \tau).
 \end{align}
 
 4. \nick{This must hold due to~\cref{thm:H2D}}
 \end{proof}
+\nick{Combining ALL the properties above (and nothing more) leads to the general bound}
 
 \subsubsection{General entropic bounds}
 
@@ -1710,9 +1718,9 @@ and we can use~\cref{thm:H2D} to rewrite the inequality as
 \end{equation}.
 Due to~\cref{thm:Da_props}, we can rewrite the inequality as
 \begin{equation}
-	K - nD_{\alpha}(W_{\rho} || W_{\tau_n}) \leq K - n'D_{\alpha}(W_{\rho'} || W_{\tau'_{n'}}),
+	K - nD_{\alpha}(W_{\rho} || W_{\tau}) \leq K - n'D_{\alpha}(W_{\rho'} || W_{\tau'}),
 \end{equation}
-and then it is clear that we can rearrange it to
+and rearrange it to reach
 \begin{equation}
 	\frac{n'}{n} \leq \frac{D_{\alpha}(\rho||\tau)}{D_{\alpha}(\rho'||\tau')}.
 \end{equation}
@@ -1736,7 +1744,8 @@ where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make
 Therefore, $H_\alpha (W_\rho (\x)) <0 $ at some point in the sequence, which completes the proof.
 \end{proof}
 Therefore Wigner negativity coincides with negativity in at least one Renyi entropy.
-\ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 0$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
+\ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 0^+$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
+
 \subsubsection{Extention to general relative majorization}
 
 Therefore if we have a Schur-Concave function $f(\x)$ for majorization of quasi-distributions then we can define a monotonic function for relative majorization via composition with $\Gamma_{\mathbf{a}}$ and its inverse.
