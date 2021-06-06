@@ -1898,7 +1898,7 @@ In particular,
 
 4. This follows immediately from Schur-convexity of $D_\alpha$.
 \end{proof}
-\nick{Combining ALL the properties above (and nothing more) leads to the general bound}
+
 
 \subsubsection{General entropic bounds}
 
@@ -1973,19 +1973,18 @@ We now show the following simple equivalence.
 \end{theorem}
 Let's try to prove this.
 
-\begin{proof} If we have $H_\alpha (W_\rho(\x)) <0 $ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+\begin{proof} If we have $H_\alpha (W_\rho(\x)) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
 
 Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
 \begin{align}
 \sum_{\x} W_\rho (\x)^{a/b} &= \sum_{\x} |W_\rho (\x)|^{a/b} \nonumber \\
 &= \sum_{\x} |W_\rho (\x)|^{1+ \epsilon},
 \end{align}
-where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$ and therefore there exists a sequence $\epsilon_n=a_n/b_n$ such that
+where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$. More precisely, there exists a sequence $\epsilon_n=a_n/b_n$ with valid integer pairs $a_n, b_n$ such that
 \begin{equation}
 \sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
 \end{equation}
-\nick{In this step, we also need to show that $H_\alpha$ is increasing in $\alpha$}
-Therefore, $H_\alpha (W_\rho (\x)) <0 $ at some point in the sequence, which completes the proof.
+Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho (\x)) = \frac{1}{1-\alpha} \log \sum_{\x} W_\rho (\x)^\alpha  <0 $ at some point in the sequence, which completes the proof.
 \end{proof}
 
 Therefore Wigner negativity coincides with negativity of a Renyi entropy.
