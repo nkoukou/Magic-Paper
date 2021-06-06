@@ -490,7 +490,7 @@ The protocol transforms the equilibrium as $\tau^{\otimes n} \rightarrow \E(\tau
 
 \subsection{Temperature-dependent distillation bounds}
 
-W \nick{what is W?} can specify energetic details of a protocol through how much it would disturb some reference equilibrium state. The magic state transformation is then considered relative to the equilibrium transformation, and can be recast via the Wigner representation into a relative majorization statement $(\w, \r) \succ (\w', \r')$ where $\w, \w'$ are quasi-distributions corresponding to the magic transformation, while $\r, \r'$ correspond to the transformation of the reference equilibrium state. 
+We can specify energetic details of a protocol through how much it would disturb some reference equilibrium state. The magic state transformation is then considered relative to the equilibrium transformation, and can be recast via the Wigner representation into a relative majorization statement $(\w, \r) \succ (\w', \r')$ where $\w, \w'$ are quasi-distributions corresponding to the magic transformation, while $\r, \r'$ correspond to the transformation of the reference equilibrium state. 
 
 This leads to the following magic distillation bound that combines computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian and reference temperature $T$ of the physical system. We state the result for the case of qutrits, but a similar analysis is possible for general qudits.
 
@@ -607,17 +607,19 @@ In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol,
 \end{figure}
 
 \newpage
-\subsection{Single-shot divergences for quasi-distributions}
-As already mentioned, the Wigner distribution is generally a quasi-distribution and so taking the Shannon entropy $H(\p) = -\sum_i p_i \log p_i$ of the Wigner distribution is not possible off of the set $\F$. However, does the same obstacle apply to Renyi entropies? The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
-\begin{equation}
-	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha,
-\end{equation}
-where $\alpha \ge 0$ and $\lim_{\alpha \rightarrow 1} H_\alpha(\p) = H(\p)$. It is clear that if we take $\alpha = 2m$ to be an even integer then $H_{2m}(\rho) := H_{2m}(W_\rho(\x))$ is always a well-defined function on Wigner quasi-distributions. However, it still remains to link such expressions to majorization of quasi-distributions.
+\section{Well-defined \& monotonic  entropies for quasi-distributions}
+We have considered Wigner distributions of magic states within a statistical mechanical setting in which it is was argued that magic should be viewed as a non-classical form of free energy. This identification with free energy was done at the level of majorization with respect to stochasticity corresponding to stabilizer operations. In this context non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could be linked to thermodynamic free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
+
+One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution and so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined off of the set $\F$, let alone being a physically meaningful quantity. 
+
+
+
  
-In this direction, we first note that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly makes use of the single-shot Renyi divergence $D_\infty (\p ||\r)$, which is given by
+However in this direction, we first note that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly makes use of the single-shot Renyi divergence $D_\infty (\p ||\r)$, which is given by
 \begin{equation}
 D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
+This does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning.
 This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In Appendix~\ref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
 \begin{theorem} Let $\tau$ be in the interior of $\F$, and define the Wigner divergence $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
@@ -627,16 +629,30 @@ This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \
 \item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
 \end{enumerate}
 \end{theorem}
-See Appendix~\ref{app:lcst_technical} for the proof of this. Moreover, in the appendices we also prove that for unital processes the Renyi entropies $H_{2m}(\w)$ are monotones for any $m \in \mathbb{N}$ and lead the generalized distillation bounds.
-\begin{equation}
-R \le \frac{H_{2m}(\I/d)- H_{2m}(\rho)}{H_{2m}(\I/d)-H_{2m}(\rho')}.
-\end{equation}
-It is of interest to further explore this perspective and determine what components of single-shot information theory could be extended to quasi-distributions.
+See Appendix~\ref{app:lcst_technical} for the proof of this. 
 
+We can now go further, and show that a range of entropies remain both well-defined and meaningful in this setting. The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
+\begin{equation}
+	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
+\end{equation}
+To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under stabilizer/free operations. In the Appendices we show the following.
+\begin{theorem} If $\alpha = \frac{2a}{2b-1}$ for integers $a,b \in \mathbb{N}$ and $a\ge b$ then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\w$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \le H_\alpha(\w')$.
+\end{theorem}
+This therefore provides a meaningful extension of entropies to quasi-distributions. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative Renyi entropy.
+\begin{theorem} A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
+\end{theorem}
+Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are `more ordered' than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy \ddd{[CITE: ``The thermodynamic meaning of
+negative entropy'']} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
+
+The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges to $-\infty$ due to the Lorenz curve $L_\rho(x)$ no longer being bounded by $1$. Alternatively, we can write the divergence as $-\epsilon \log \sum_{\x} |W_\rho (\x)|^{1+\epsilon}$ with $\epsilon \rightarrow 0^+$, which leads to a second new description of mana: \emph{it is the rate of divergence of the Renyi-entropy} as we approach the asymptotic Shannon entropy $H(\w)$. We also note the recent observation \ddd{[CITE Renyi Entropy and Free Energy by John C. Baez]}that in standard statistical mechanics that $H_\alpha(\p)$ can be related to the ``$q$--derivative'' of free energy. Therefore, we might speculate if the presence of magic in Clifford circuits admits a rigorous interpretation in terms of a phase transition signalled by a first-order divergence in the Wigner free energy. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions [Need to cite].
+
+However, every entropy is best understand as a relative entropy and so we now state the extension to Renyi divergences. \ddd{[Add statements of monotonicity under free ops]}
+
+We can now apply this to obtain new magic bounds. \ddd{[Add]}
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
-We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. This raises interesting \nick{questions in the context of statistical mechanics} as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In~\cref{app:lcsu_technical} and~\cref{app:lcst_technical} we give additional results that may be of use for later work.
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. This raises interesting questions in the context of statistical mechanics as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In~\cref{app:lcsu_technical} and~\cref{app:lcst_technical} we give additional results that may be of use for later work.
 
 We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, however this has also been generalised to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
   
@@ -1885,7 +1901,7 @@ Therefore $D_\alpha (\rho || \tau)$ is always well-defined.
 
 2. In the inequality of property 1, equality holds iff $L_{\w|\r}(x) = L_{\r'|\r'}(x) = L_{\r|\r}(x)$ for all $x$ due to~\cref{prop:rmajor} which holds iff $\w = \r$.
 
-3. This property follows from the multiplicativity of the WIgner distribution.
+3. This property follows from the multiplicativity of the Wigner distribution.
 In particular,
 \begin{align}
 	&D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) = \nonumber\\
@@ -1971,8 +1987,7 @@ and rearrange it to reach
 We now show the following simple equivalence.
 \begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho (\x)) < 0$ for some $\alpha >1$.
 \end{theorem}
-Let's try to prove this.
-
+The proof of this is as follows.
 \begin{proof} If we have $H_\alpha (W_\rho(\x)) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
 
 Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
@@ -1988,9 +2003,6 @@ Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\
 \end{proof}
 
 Therefore Wigner negativity coincides with negativity of a Renyi entropy.
-
-
-\ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 1^+$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
 
 
 \end{document}
