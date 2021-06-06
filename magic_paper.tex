@@ -1588,7 +1588,11 @@ and therefore taking logarithms we have that $D_\infty (\rho^{\otimes 2n}, \tau^
 
 We define the classical $\alpha$-Renyi entropy in terms of the Wigner quasi-distribution of any state $\rho$ as
 \begin{equation}
+<<<<<<< HEAD
 	H_\alpha(W_\rho) := \frac{1}{1-\alpha} \log \sum_{\bmx} W_{\rho}(\bmx)^\alpha,
+=======
+	H_\alpha(\rho) := \frac{1}{1-\alpha} \log_2 \sum_{\bmx} W_{\rho}(\bmx)^\alpha,
+>>>>>>> 257f490dd2e77f4ec690559482d8aeb6d66a7bc3
 \end{equation}
 where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive.
 Note that for any quantum state $\rho$, $H_1(W_\rho)$ in particular is not well-defined, while for any valid $\alpha$ we have that
@@ -1596,6 +1600,8 @@ Note that for any quantum state $\rho$, $H_1(W_\rho)$ in particular is not well-
 	H_0(W_\rho) = 2\log_2 d = H_\alpha \left( \id/d \right),
 \end{equation}
 where $d$ is the dimension of $\rho$.
+Inducing any magic state $\rho$ with depolarising noise, $\rho(\epsilon) = (1-\epsilon)\rho + \epsilon \sigma$ results in $H_{\alpha}\left(\rho(\epsilon)\right) \leq H_\alpha(\rho)$ because there exists a free operation $\E \in \O$ that transforms $\rho(\epsilon) = \E(\rho)$ and $H_\alpha$ is Schur-concave.
+
 For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{equation}
 	H_{\alpha}\left(\rho_{\rm{S}}(\epsilon)\right) = \frac{1}{1-\alpha}\log_2 \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right]
@@ -1604,11 +1610,75 @@ For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figs/test/H_vs_eps_a.pdf}
-    \caption{\ddd{[TO DO: Set $\epsilon = 0$ and determine region of $\alpha$ such that $H <0$.]} Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$ \nick{should be easy to show analytically}. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ has a unique solution, which is the \nick{probably irrational} solution of $3^\alpha - 2^{3-\alpha} = 1$.
+    \caption{\ddd{[TO DO: Set $\epsilon = 0$ and determine region of $\alpha$ such that $H <0$.]} Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ has a unique solution, which is the \nick{probably irrational} solution of $3^\alpha - 2^{3-\alpha} = 1$.
     }
-    \label{fig:lcs}
+    \label{fig:H}
 \end{figure}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{figs/test/D_vs_eps_a.pdf}
+    \caption{Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $D_\alpha$ is decreasing in $\alpha$ and $\epsilon$ (clear due to~\cref{thm:H2D}).
+    }
+    \label{fig:D}
+\end{figure}
+
+<<<<<<< HEAD
+=======
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{figs/test/H_test.pdf}
+    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $H_\alpha$ is decreasing in $\epsilon$ (not Schur-conocave for $\alpha < 1$) and increasing in $\alpha$ (clear due to~\cref{thm:H2D}).
+    }
+    \label{fig:Htest}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{figs/test/D_test.pdf}
+    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $D_\alpha$ is increasing in $\epsilon$ (not Schur-convex for $\alpha < 1$) and decreasing in $\alpha$ (clear due to~\cref{thm:H2D}).
+    }
+    \label{fig:Dtest}
+\end{figure}
+
+\begin{lemma}
+	Let $\alpha \geq \beta > 1$ where $\alpha, \beta$ are even$/$odd.
+	Then,
+	\begin{equation}
+		H_\alpha(\x) \geq H_\beta(\x) \text{ and } D_\alpha(\x || \r) \leq D_\beta(\x || \r)
+	\end{equation}
+	for any quasi-distribution $\x \in \mathbb{R}^N$ and probability distribution $\r \in \mathbb{R}^N$.
+\end{lemma}
+\begin{proof}
+	For $\alpha \geq \beta > 1$, we have
+	\begin{equation}
+		0 > \frac{1}{1-\alpha} \geq \frac{1}{1-\beta},
+	\end{equation}
+	and $w_i^\alpha = |w_i|^\alpha \leq |w_i|^\beta = w_i^\beta$.
+	
+	\nick{how to proceed?}
+	
+	For any $\r$ with positive rational components, we have $D_\alpha(\x || \r) \leq D_\beta(\x || \r)$ due to~\cref{thm:H2D}.
+\end{proof}
+
+We can prove additivity of $H_{\alpha}$ on quantum states.
+
+\begin{lemma}\label{H_add}
+	For any quantum states $\rho, \rho'$, we have
+	\begin{equation}
+		H_{\alpha}(\rho \otimes \rho') = H_{\alpha}(\rho) + H_{\alpha}(\rho'),
+	\end{equation}
+	where $\hspace{-1pt}\alpha\hspace{-1pt}$ is such that $\hspace{-1pt}H_\alpha(\sigma)\hspace{-2pt}$ is well-defined for all states $\sigma$.
+\end{lemma}
+\begin{proof}
+	This can be seen directly by the multiplicative property of the Wigner distribution,
+	\begin{align*}
+		H_{\alpha}&(\rho \otimes \rho') = \frac{1}{1-\alpha}\log \sum_{\bmx,\bmx'} \left[W_{\rho}(\bmx)W_{\rho}(\bmx')\right]^{\alpha} \\
+		&= \frac{1}{1-\alpha}\left( \log \sum_{\bmx}W_{\rho}(\bmx)^{\alpha} + \log \sum_{\bmx'}W_{\rho}(\bmx')^{\alpha} \right) \\
+		&= H_{\alpha}(\rho) + H_{\alpha}(\rho').
+	\end{align*}
+\end{proof}
+>>>>>>> 257f490dd2e77f4ec690559482d8aeb6d66a7bc3
 
 We now make use of known results from majorization theory to establish the Schur-concavity of $H_\alpha$ on Wigner quasi-distributions where $\alpha$ is such that $H_\alpha$ is well-defined. 
 We first define the notion of \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
@@ -1688,7 +1758,7 @@ Therefore, $H_\alpha$ is Schur-concave and
 \end{equation}
 for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 \end{proof}
-The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n+1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
+The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n-1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
 
 Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
 \begin{equation}
@@ -1800,7 +1870,7 @@ We now establish monotonicity for Renyi relative divergences.
 \end{proof}
 
 \begin{theorem}\label{thm:Da_props} 
-	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b+1)$ for non-negative integers $a,b$
+	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
 Then, the $\alpha$-Renyi divergence $D_\alpha(\rho, \tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(\rho || \tau) \ge 0$ for all quantum states $\rho$.
@@ -1908,7 +1978,11 @@ We now show the following simple equivalence.
 \begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho (\x)) < 0$ for some $\alpha >1$.
 \end{theorem}
 Let's try to prove this.
+<<<<<<< HEAD
 \begin{proof} If we have $H_\alpha (W_\rho(\x)) <0 $ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+=======
+\begin{proof} If $H_\alpha (W_\rho(\x)) <0 $ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, and it is known that $H_\alpha$ is always non-negative on probability distributions, so $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+>>>>>>> 257f490dd2e77f4ec690559482d8aeb6d66a7bc3
 
 Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
 \begin{align}
@@ -1919,9 +1993,15 @@ where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make
 \begin{equation}
 \sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
 \end{equation}
+\nick{In this step, we also need to show that $H_\alpha$ is increasing in $\alpha$}
 Therefore, $H_\alpha (W_\rho (\x)) <0 $ at some point in the sequence, which completes the proof.
 \end{proof}
+<<<<<<< HEAD
 Therefore Wigner negativity coincides with negativity of a Renyi entropy.
+=======
+Therefore Wigner negativity coincides with negativity in at least one Renyi entropy.
+\ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 1$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
+>>>>>>> 257f490dd2e77f4ec690559482d8aeb6d66a7bc3
 
 \ddd{[Looking at this limit it almost feels like the $\alpha \rightarrow 1^+$ limit is actually giving mana....modulo the technical problem of taking the limit without calculus. I will think more about this point.]}
 
