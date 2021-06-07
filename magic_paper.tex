@@ -11,9 +11,9 @@ reprint
 
 \begin{document}
 % Labels and Refs (consistency, cref vs ref, thm vs lem vs prop, ??)
-% Figs check(fig.0, move to app, consistency)
+% Figs check(fig.0, move to app, consistency, cbars, iffalse)
 
-% Notation consistency (R is rate not bound, noise vs error, \ln{} -> \ln, italics, keep \bmx for vectors?)
+% Notation consistency (noise vs error, \ln{} -> \ln, italics, Aberg -> {\AA}berg)
 % UK vs US english
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
@@ -24,7 +24,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 \preprint{APS/123-QED}
 
-\title{Statistical mechanics of negativity and magic states in quantum computation}
+\title{Statistical mechanics of Wigner negativity and magic states in quantum computation}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -63,7 +63,7 @@ Finally, we discuss how our approach could be improved and how it can be exploit
     \centering
         \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
     \caption{\textbf{Magic distillation protocols \& stabilizer reference states.} 
-	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and the free energy the protocol channel $\E$ injects in. In addition a quantity $\phi$ links the computational and physical aspects, and corresponds to the degree to which Wigner negativity in $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and the free energy the protocol channel $\E$ injects in. In addition, a quantity $\phi$ links the computational and physical aspects, and corresponds to the degree to which Wigner negativity in $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
 
@@ -115,40 +115,12 @@ where $\eta(\bmx, \bmz)$ is the symplectic inner product between any two points 
 where $0, \id$ denote the $n\times n$ zero and identity matrices.
 
 The phase-point operators form an orthogonal operator basis with respect to the Hilbert-Schmidt inner product, as discussed in~\cref{app:wigner}.
-Therefore, any quantum state $\rho \in \cal{B}(\cal{H}_d)$ can be expressed as a linear combination of them,
-\begin{equation}
-    \rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz},
-\end{equation}
-where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rho$,
+Therefore, any quantum state $\rho \in \cal{B}(\cal{H}_d)$ can be expressed as a linear combination of them, $\rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz}$, where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rho$,
 \begin{equation}\label{eq:wstate}
     \W[\bmx]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmx} \rho].
 \end{equation}
 
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$. More precisely, $W_\rho(\x)$ is a bounded real-valued function on $\P_d$ with the normalisation property $\sum_{\x} W_\rho(\bmx) = 1$ (see~\cref{app:wigner} for details).  In~\cref{fig:wstate_examples}, we show Wigner distributions of different types of qutrit states.
-
-\begin{figure}[t]
-    \centering
-    \subfigure[][]{%
-    \label{fig:maxmix}%
-    \includegraphics[height=2cm]{figs/maxmixed.pdf}
-    }\hspace{8pt}%
-    \subfigure[][]{%
-    \label{fig:zero}%
-    \includegraphics[height=2cm]{figs/zerostate.pdf}
-    }\\
-    \subfigure[][]{%
-    \label{fig:bound}%
-    \includegraphics[height=2cm]{figs/boundstate.pdf}
-    }\hspace{8pt}%
-    \subfigure[][]{%
-    \label{fig:Strange}%
-    \includegraphics[height=2cm]{figs/Strangestate.pdf}
-    }
-    \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
-    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $|0\>\<0|$; \subref{fig:bound} A non-stabiliser Wigner-positive state; \subref{fig:Strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
-    }%
-    \label{fig:wstate_examples}
-\end{figure}
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmx)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$. More precisely, $W_\rho(\x)$ is a bounded real-valued function on $\P_d$ with the normalisation property $\sum_{\x} W_\rho(\bmx) = 1$ (see~\cref{app:wigner} for details).
 
 Any quantum operation $\E$ can also admit a Wigner representation. If $\E$ maps some quantum system $A$ to a quantum system $B$, and $\J(\E)$ is its associated Choi state then we can define
 \begin{equation}
@@ -248,6 +220,7 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
 
 However, relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-probability distributions before proceeding with our analysis. This can be done from first principles, but a simpler way is see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-probability distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization. This negativity masking then gives the following result.
 
+\nick{Is the following result more distinguished than other results we have in the appendices?}
 \begin{lemma} Let $\w \in \mathbb{R}^n,\w'\in \mathbb{R}^m$ be quasi-distributions, and let $\r \in \mathbb{R}^n, \r' \in \mathbb{R}^m$ be probability distributions with non-zero components. Then $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w|\r}(x) \ge L_{\w |\r}(x)$ for all $x \in [0,1]$.
 \end{lemma}
  
@@ -299,7 +272,7 @@ The proof of this is straightforward.
 \end{proof}
 One can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular fragment. In the next section we show that this pre-order for a given fragment can always be approximated by a majorization pre-order, and from this we can compute magic distillation bounds.
 
-
+\iffalse
 \begin{figure}[t]
     \centering
         \includegraphics[scale=0.3]{figs/operations.pdf}
@@ -311,6 +284,7 @@ One can compare with resource monotones, which are also called resource measures
     }
     \label{fig:zoo}
 \end{figure}
+\fi
 
 \subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}
 \label{sec:major_frag}
@@ -443,7 +417,7 @@ This figure includes numerical estimates of the optimal majorization bounds $R_{
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
     \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint $R$, mana $\M$ and max--thauma $\theta_{\rm{max}}$ are plotted for $\epsilon' = 0$, up to error $\epsilon = 3/7$.
     Majorisation provides stricter rates than the global mana and max--thauma bounds.
-    Numerical bounds $R_{\rm{opt}}$ obtained by full Lorenz curve comparison for some Strange state purification processes with even number of copies $m,n \leq 30$ highlight that the first elbow constraint can be improved.
+    Numerical bounds $R_{\rm{num}}$ obtained by full Lorenz curve comparison for some Strange state purification processes with even number of copies $m,n \leq 30$ highlight that the first elbow constraint can be improved.
     }
     \label{fig:distill_bounds}
 \end{figure}
@@ -620,7 +594,7 @@ However in this direction, we first note that the analysis for the temperature-d
 D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
 This does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning.
-This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In Appendix~\ref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
+This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In~\cref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
 \begin{theorem} Let $\tau$ be in the interior of $\F$, and define the Wigner divergence $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
@@ -641,14 +615,52 @@ To extend to quasi-distributions we must ensure the following: (a) the entropy i
 This therefore provides a meaningful extension of entropies to quasi-distributions. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative Renyi entropy.
 \begin{theorem} A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
 \end{theorem}
-Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are `more ordered' than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy \ddd{[CITE: ``The thermodynamic meaning of
-negative entropy'']} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
+Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are `more ordered' than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
 
-The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges to $-\infty$ due to the Lorenz curve $L_\rho(x)$ no longer being bounded by $1$. Alternatively, we can write the divergence of the entropy as $-\epsilon^{-1} \log \sum_{\x} |W_\rho (\x)|^{1+\epsilon}$ with $\epsilon \rightarrow 0^+$, which leads to a second new description of mana: \emph{it is the rate of divergence of the Renyi-entropy} as we approach the limiting Shannon entropy $H(\w)$. We also note the recent observation \ddd{[CITE Renyi Entropy and Free Energy by John C. Baez]}that in standard statistical mechanics that $H_\alpha(\p)$ can be related to the ``$q$--derivative'' of free energy. Therefore, we might speculate if the presence of magic in Clifford circuits admits a rigorous interpretation in terms of a phase transition signalled by a first-order divergence in the Wigner free energy. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions \ddd{[Need to cite]}.
+The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges to $-\infty$ due to the Lorenz curve $L_\rho(x)$ no longer being bounded by $1$. Alternatively, we can write the divergence of the entropy as $-\epsilon^{-1} \log \sum_{\x} |W_\rho (\x)|^{1+\epsilon}$ with $\epsilon \rightarrow 0^+$, which leads to a second new description of mana: \emph{it is the rate of divergence of the Renyi-entropy} as we approach the limiting Shannon entropy $H(\w)$. We also note the recent observation~\cite{baez2011renyi} that in standard statistical mechanics that $H_\alpha(\p)$ can be related to the ``$q$--derivative'' of free energy. Therefore, we might speculate if the presence of magic in Clifford circuits admits a rigorous interpretation in terms of a phase transition signalled by a first-order divergence in the Wigner free energy. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions \ddd{[Need to cite]}.
 
-However, every entropy is best understand as a relative entropy and so we now state the extension to Renyi divergences. \ddd{[Add statements of monotonicity under free ops]}
+However, every entropy is best understood as a relative entropy and so we now state the extension to Renyi divergences.
+The $\alpha$--Renyi divergence $D_\alpha(\p)$ is defined as
+\begin{equation}
+	D_\alpha(\p|\r) := \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
+\end{equation}
+where $\p$ is a quasi-distribution, $\r$ a probability distribution with positive components and $\alpha$ takes the same values as for $H_\alpha$.
+In~\cref{app:lcst_technical}, we also show that the divergence satisfies the following natural properties for all $\alpha$ for which it is well-defined.
 
-We can now apply this to obtain new magic bounds. \ddd{[Add]}
+\begin{theorem}\label{thm:Da_props} 
+	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
+Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+\begin{enumerate}
+\item $D_\alpha(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\alpha(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\alpha(W_{\rho^{\otimes n}} || W_{\tau^{\otimes n}}) = n D_\alpha(W_\rho || W_\tau)$ for any $n \in \mathbb{N}$.
+\item $D_\alpha(W_\rho || W_\tau) \geq D_\alpha (W_{\E(\rho)} || W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
+\end{enumerate}
+\end{theorem}
+
+We can now apply this to obtain new magic bounds.
+\begin{theorem}
+	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
+	
+	We have the following family of upper bounds on the distillation rate $R := n'/n$,
+	\begin{equation}
+		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F'_\alpha(W_{\rho'}) - F'_\alpha(W_{\tau'})},
+	\end{equation}
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
+\end{theorem}
+
+\begin{figure}[t!]
+    \centering
+    \subfigure[][]{%
+    \label{fig:Ra}%
+    \includegraphics[scale=0.4]{figs/Ra_vs_a_eps.pdf}}\\
+    \subfigure[][]{%
+    \label{fig:RaDiff}%
+    \includegraphics[scale=0.4]{figs/RaDiff_vs_a_eps.pdf}}
+    \caption{$R_\alpha$}
+    \label{fig:rate_a_contour}
+\end{figure}
+
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
@@ -1529,7 +1541,7 @@ which is well-defined since both the nominator and denominator in the above expr
 \begin{enumerate}
 \item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\infty(\rho , \tau) = 0$ if and only if $\rho =\tau$.
-\item $D_\infty(\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ for any $n \in \mathbb{N}$. \nick{annoying that it doesn't agree with the simpler property of $D_\alpha$ for finite $\alpha$ in~\cref{thm:Da_props}}
+\item $D_\infty(\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ for any $n \in \mathbb{N}$.
 \item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
 \end{enumerate}
 \end{theorem}
@@ -1569,38 +1581,7 @@ and therefore taking logarithms we have that $D_\infty (\rho^{\otimes 2n}, \tau^
 4. The free operation $\E$ in the Wigner representation corresponds to a stochastic map, which sends $W_\tau(\x)$ to $W_{\E(\tau)}(\x)$, which is another strictly positive probability distribution on the phase space, due to $\E(\tau)$ being in the interior of $\F$. Moreover, $(W_\rho(\x), W_\tau(\x) ) \succ (W_{\E(\rho)}(\x) , W_{\E(\tau)}(\x))$. As shown in the main text this condition holds if and only if $L_{\rho|\tau}(x) \ge L_{\E(\rho)|\E(\tau)}(x)$ for all $x$. In particular, this implies the slope at the origin of the input curve is never less than the slope at the origin of the output curve, and hence the result follows.
 \end{proof}
 
-\begin{table}[h]
-  \def\arraystretch{1.5}
-  \centering
-  \begin{tabular}{c|c|c|c||c|c}
-    $w_i$ & $w_{i+1}$ & $\alpha$ & $\frac{w_i^{\alpha-1}}{\alpha-1} \geq \frac{w_{i+1}^{\alpha-1}}{\alpha-1}$ & $\alpha$ & $\frac{w_i^{\alpha-1}}{\alpha-1} \geq \frac{w_{i+1}^{\alpha-1}}{\alpha-1}$ \\[0.5ex]\hline
-    $2$ & $1.5$  & $3$ & $2 > 1.125$ T & $1/3$ & $-0.94 > -1.14$ T \\
-    $2$ & $-1.5$ & $3$ & $2 > 1.125$ T & $1/3$ & $-0.94 > -1.14$ T \\
-    $2$ & $-2.5$ & $3$ & $2 < 3.125$ F & $1/3$ & $-0.94 < -0.81$ F \\[0.5ex]\hline
-    $2/3$ & $1/3$  & $3$ & $0.22 > 0.06$ T & $1/3$ & $-1.97 > -3.12$ T \\
-    $2/3$ & $-1/3$ & $3$ & $0.22 > 0.06$ T & $1/3$ & $-1.97 > -3.12$ T \\
-    $2/3$ & $-4/3$ & $3$ & $0.22 < 0.89$ F & $1/3$ & $-1.97 < -1.24$ F \\[0.5ex]\hline
-    $2$ & $1.5$  & $4$ & $2.67 > 1.125$ T & $2/3$ & $-2.38 > -2.62$ T \\
-    $2$ & $-1.5$ & $4$ & $2.66 > -1.125$ T & $2/3$ & $-2.38 > 2.62$ F \\
-    $2$ & $-2.5$ & $4$ & $2.66 > 5.21$ T & $2/3$ & $-2.38 > 2.21$ F \\
-    $-2$ & $-2.5$ & $4$ & $-2.66 > -5.21$ T & $2/3$ & $2.38 > 2.21$ T \\[0.5ex]\hline
-    $2/3$ & $1/3$  & $4$ & $0.10 > 0.01$ T & $2/3$ & $-3.43 > -4.33$ T \\
-    $2/3$ & $-1/3$ & $4$ & $0.10 > -0.01$ T & $2/3$ & $-3.43 > 4.33$ F \\
-    $2/3$ & $-4/3$ & $4$ & $0.10 > -0.79$ T & $2/3$ & $-3.43 > 2.73$ F \\
-    $-1/3$ & $-2/3$ & $4$ & $-0.01 > -0.10$ T & $2/3$ & $4.33 > 3.43$ T \\
-    $-1/3$ & $-4/3$ & $4$ & $-0.01 > -0.79$ T & $2/3$ & $4.33 > 2.73$ T
-  \end{tabular}
-  \caption{\nick{NUMERICS ON SCHUR-OSTROWSKI CONDITION} The case $\alpha=$ even$/$odd and $\alpha > 1$ works for any combination of $w_i, w_{i+1}$ with $w_i > w_{i+1}$. 
-  All other cases do not work.
-  I put it here cause it's clunky}
-  \label{tab:test}
-\end{table}
-
-
 \subsection{Well-defined Renyi entropies on quasi-distributions}
-
-
-\ddd{[ISSUE WITH NOTATION: We can't clash with the quantum Renyi entropies. I think we have to use $H_\alpha(W_\rho)$ is bulky...but hopefully clear.]}
 
 We define the classical $\alpha$-Renyi entropy in terms of the Wigner quasi-distribution of any state $\rho$ as
 \begin{equation}
@@ -1609,15 +1590,15 @@ We define the classical $\alpha$-Renyi entropy in terms of the Wigner quasi-dist
 where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive.
 Note that for any quantum state $\rho$, $H_1(W_\rho)$ in particular is not well-defined, while for any valid $\alpha$ we have that
 \begin{equation}
-	H_0(W_\rho) = 2\log_2 d = H_\alpha \left( \id/d \right),
+	H_0(W_\rho) = 2\log_2 d = H_\alpha \left( W_{\id/d} \right),
 \end{equation}
 where $d$ is the dimension of $\rho$.
-Inducing any magic state $\rho$ with depolarising noise, $\rho(\epsilon) = (1-\epsilon)\rho + \epsilon \sigma$ results in $H_{\alpha}\left(\rho(\epsilon)\right) \leq H_\alpha(\rho)$ because there exists a free operation $\E \in \O$ that transforms $\rho(\epsilon) = \E(\rho)$ and $H_\alpha$ is Schur-concave.
 
 For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
-\begin{equation}
-	H_{\alpha}\left(\rho_{\rm{S}}(\epsilon)\right) = \frac{1}{1-\alpha}\log_2 \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right]
-\end{equation}
+\begin{align}
+	&H_{\alpha}\left(W_{\rho_{\rm{S}}(\epsilon)}\right) = \frac{1}{1-\alpha}\log_2 \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right] \nonumber\\
+	&= \frac{\alpha}{\alpha-1}\log_2 18+ \frac{1}{1-\alpha}\log_2 \left[ 8(3-\epsilon)^\alpha + (6-8\epsilon)^\alpha \right]
+\end{align}
 
 \begin{figure}[h]
     \centering
@@ -1638,7 +1619,7 @@ For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figs/test/H_test.pdf}
-    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $H_\alpha$ is decreasing in $\epsilon$ (not Schur-conocave for $\alpha < 1$) and increasing in $\alpha$ (clear due to~\cref{thm:H2D}).
+    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $H_\alpha$ is decreasing in $\epsilon$ (not Schur-conocave for $\alpha < 1$) and increasing in $\alpha$.
     }
     \label{fig:Htest}
 \end{figure}
@@ -1651,50 +1632,11 @@ For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
     \label{fig:Dtest}
 \end{figure}
 
-\begin{lemma}
-	Let $\alpha \geq \beta > 1$ where $\alpha, \beta$ are even$/$odd.
-	Then,
-	\begin{equation}
-		H_\alpha(\x) \geq H_\beta(\x) \text{ and } D_\alpha(\x || \r) \leq D_\beta(\x || \r)
-	\end{equation}
-	for any quasi-distribution $\x \in \mathbb{R}^N$ and probability distribution $\r \in \mathbb{R}^N$.
-\end{lemma}
-\begin{proof}
-	For $\alpha \geq \beta > 1$, we have
-	\begin{equation}
-		0 > \frac{1}{1-\alpha} \geq \frac{1}{1-\beta},
-	\end{equation}
-	and $w_i^\alpha = |w_i|^\alpha \leq |w_i|^\beta = w_i^\beta$.
-	
-	\nick{how to proceed?}
-	
-	For any $\r$ with positive rational components, we have $D_\alpha(\x || \r) \leq D_\beta(\x || \r)$ due to~\cref{thm:H2D}.
-\end{proof}
-
-We can prove additivity of $H_{\alpha}$ on quantum states.
-
-\begin{lemma}\label{H_add}
-	For any quantum states $\rho, \rho'$, we have
-	\begin{equation}
-		H_{\alpha}(\rho \otimes \rho') = H_{\alpha}(\rho) + H_{\alpha}(\rho'),
-	\end{equation}
-	where $\hspace{-1pt}\alpha\hspace{-1pt}$ is such that $\hspace{-1pt}H_\alpha(\sigma)\hspace{-2pt}$ is well-defined for all states $\sigma$.
-\end{lemma}
-\begin{proof}
-	This can be seen directly by the multiplicative property of the Wigner distribution,
-	\begin{align*}
-		H_{\alpha}&(\rho \otimes \rho') = \frac{1}{1-\alpha}\log \sum_{\bmx,\bmx'} \left[W_{\rho}(\bmx)W_{\rho}(\bmx')\right]^{\alpha} \\
-		&= \frac{1}{1-\alpha}\left( \log \sum_{\bmx}W_{\rho}(\bmx)^{\alpha} + \log \sum_{\bmx'}W_{\rho}(\bmx')^{\alpha} \right) \\
-		&= H_{\alpha}(\rho) + H_{\alpha}(\rho').
-	\end{align*}
-\end{proof}
-
-
 We now make use of known results from majorization theory to establish the Schur-concavity of $H_\alpha$ on Wigner quasi-distributions where $\alpha$ is such that $H_\alpha$ is well-defined. 
 We first define the notion of \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
 
 \begin{definition} 
-A continuous, real-valued function $f$ defined on $\mathcal{Q} \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\mathcal{Q}$ if $\p \prec \q$ on $\mathcal{Q}$ implies that $f(\p) \le f(\q)$. A continuous function $f:\mathcal{Q} \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
+	A continuous, real-valued function $f$ defined on $\mathcal{Q} \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\mathcal{Q}$ if $\p \prec \q$ on $\mathcal{Q}$ implies that $f(\p) \le f(\q)$. A continuous function $f:\mathcal{Q} \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
 \end{definition}
 We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
 \begin{equation}
@@ -1747,11 +1689,9 @@ where each expression is well-defined because the rational exponent has odd deno
 
 \nick{This step is the reason why $\alpha =$ odd$/$odd or $\alpha < 1$ do not work.
 
-Example 1: if $\alpha =$ odd$/$odd, then $f(w)$ is not monotonous because the sign of $f'(w)$ would depend on the sign of $w$. 
-In~\cref{tab:test}, this case fails when $w_i > 0 > -w_i > w_{i+1}$.
+If $\alpha =$ odd$/$odd, then $f(w)$ is not monotonous because the sign of $f'(w)$ would depend on the sign of $w$.
 
-Example 2: if $\alpha =$ even$/$odd and $\alpha < 1$, then  $f(w)$ is not monotonous across $0$ because and in fact $\lim_{w\rightarrow 0^+} f(w) = -\infty$, while $\lim_{w\rightarrow 0^-} f(w) = +\infty$. 
-In~\cref{tab:test}, this case fails when $w_i > 0 > w_{i+1}$.
+If $\alpha =$ even$/$odd and $\alpha < 1$, then $H_\alpha$ is Schur-convex.
 }
 
 Therefore, whenever $w_i \geq w_j$, we have that 
@@ -1768,11 +1708,11 @@ Therefore, $H_\alpha$ is Schur-concave and
 \end{equation}
 for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 \end{proof}
-The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n-1)$ with every element $f_n$ in the set $F$. \nick{can turn into lemma}
+The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n-1)$ with every element $f_n$ in the set $F$.
 
 Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
 \begin{equation}
-	D_\alpha(\rho || \tau) := \frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho}(\bmx)^\alpha W_{\tau}(\bmx)^{1-\alpha},
+	D_\alpha(W_\rho || W_\tau) := \frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho}(\bmx)^\alpha W_{\tau}(\bmx)^{1-\alpha},
 \end{equation}
 where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive.
 
@@ -1864,8 +1804,7 @@ We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions
 We now establish monotonicity for Renyi relative divergences.
 \begin{theorem}\label{thm:DSchur}
 	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$. 
-	Then, $D_\alpha$ is Schur-convex, i.e. let $\w, \w' \in \mathbb{R}^N$ be quasi-distributions and $\r, \r' \in \mathbb{R}^N$ be probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$.
-	Then, we have $D_\alpha(\w || \r) \geq H_\alpha(\w' || \r')$, whenever $(\w, \r) \succ (\w', \r')$.
+	Then, $D_\alpha$ is Schur-convex, i.e. $D_\alpha(\w || \r) \geq D_\alpha(\w' || \r')$, whenever $(\w, \r) \succ (\w', \r')$.
 \end{theorem}
 \begin{proof}
 	The statement $(\w, \r) \succ (\w', \r')$ is equivalent to $\Gamma_{\bma}(\w) \succ \Gamma_{\bma'}(\w')$.
@@ -1873,7 +1812,7 @@ We now establish monotonicity for Renyi relative divergences.
 	\begin{equation}
 		H_\alpha(\Gamma_{\bma}(\w)) \leq H_\alpha(\Gamma_{\bma'}(\w'))
 	\end{equation}
-	which due to~\cref{thm:H2D} is equivalent to
+	which, due to~\cref{thm:H2D}, is equivalent to
 	\begin{equation}
 		D_\alpha(\w ||\r) \geq D_\alpha(\w' ||\r').
 	\end{equation}
@@ -1881,114 +1820,83 @@ We now establish monotonicity for Renyi relative divergences.
 
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
-Then, the $\alpha$-Renyi divergence $D_\alpha(\rho, \tau)$ is well-defined for all states $\rho$, and the following hold:
+Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
-\item $D_\alpha(\rho || \tau) \ge 0$ for all quantum states $\rho$.
-\item  $D_\alpha(\rho || \tau) = 0$ if and only if $\rho =\tau$.
-\item $D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) = n D_\alpha(\rho, \tau)$ for any $n \in \mathbb{N}$.
-\item $D_\alpha(\rho || \tau) \geq D_\alpha (\E(\rho) || \E(\tau))$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
+\item $D_\alpha(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\alpha(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\alpha(W_{\rho^{\otimes n}} || W_{\tau^{\otimes n}}) = n D_\alpha(W_\rho || W_\tau)$ for any $n \in \mathbb{N}$.
+\item $D_\alpha(W_\rho || W_\tau) \geq D_\alpha (W_{\E(\rho)} || W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 	Since $\tau$ is in the interior of $\F$, its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. 
 In general, $W_\rho(\x)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmx)^\alpha \geq 0$. 
-Therefore $D_\alpha (\rho || \tau)$ is always well-defined.
+Therefore $D_\alpha (W_\rho || W_\tau)$ is always well-defined.
 
-1. $D_\alpha$ is Schur-convex and every pair $(\w, \r)$ majorizes $(\r', \r')$, so
-\begin{equation}
-	D_\alpha(\w || \r) \geq D_\alpha(\r' || \r') = \frac{1}{\alpha-1} \log_2 \sum_{i} r_i = 0.
-\end{equation}
+1. $D_\alpha$ is Schur-convex and every pair $(W_{\rho}, W_{\tau})$ majorizes $(W_{\rho'}, W_{\rho'})$, so
+\begin{align}
+	D_\alpha(W_{\rho} || W_{\tau}) \geq D_\alpha(W_{\rho'} || W_{\rho'}) &= \nonumber\\
+	\frac{1}{\alpha-1} \log_2 \sum_{\bmx} W_{\rho'}(\bmx) &= 0.
+\end{align}
 
-2. In the inequality of property 1, equality holds iff $L_{\w|\r}(x) = L_{\r'|\r'}(x) = L_{\r|\r}(x)$ for all $x$ due to~\cref{prop:rmajor} which holds iff $\w = \r$.
+2. In the inequality of property 1, equality holds iff $L_{\rho|\tau}(x) = L_{\rho'|\rho'}(x) = L_{\tau|\tau}(x)$ for all $x$ due to~\cref{prop:rmajor} which holds iff $\rho = \tau$.
 
 3. This property follows from the multiplicativity of the Wigner distribution.
 In particular,
 \begin{align}
-	&D_\alpha(\rho^{\otimes n} || \tau^{\otimes n}) = \nonumber\\
+	&D_\alpha(W_{\rho^{\otimes n}} || W_{\tau^{\otimes n}}) = \nonumber\\
 	&\frac{1}{\alpha - 1} \log_2 \sum_{\bmx} W_{\rho^{\otimes n}}(\bmx)^\alpha W_{\tau^{\otimes n}}(\bmx)^{1-\alpha} = \nonumber\\
 	&\frac{1}{\alpha - 1} \log_2 \sum_{\bmx} \prod_{i=1}^n W_{\rho}(\bmx_i)^\alpha W_{\tau}(\bmx_i)^{1-\alpha} = \nonumber\\
 	&\frac{1}{\alpha - 1} \log_2 \prod_{i=1}^n \sum_{\bmx_i} W_{\rho}(\bmx_i)^\alpha W_{\tau}(\bmx_i)^{1-\alpha} = \nonumber\\
 	&\sum_{i=1}^n \frac{1}{\alpha - 1} \log_2 \sum_{\bmx'} W_{\rho}(\bmx')^\alpha W_{\tau}(\bmx')^{1-\alpha} = \nonumber\\
-	&= n D_{\alpha}(\rho || \tau).
+	&= n D_{\alpha}(W_\rho || W_\tau).
 \end{align}
 
-4. This follows immediately from Schur-convexity of $D_\alpha$.
-\end{proof}
-
-
-\subsubsection{General entropic bounds}
-
-We first derive the following entropic bounds on magic state transformations for unital processes.
-\begin{theorem}
-	Consider a general magic state distillation process $\rho^{\otimes n} \rightarrow \rho'^{\otimes n'}$	in the unital fragment.
-	We have the following family of upper bounds on the distillation rate $R := n'/n$,
-	\begin{equation}
-		R \leq \frac{D_{\alpha}(\rho||\id/3)}{D_{\alpha}(\rho'||\id/3)},
-	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$.
-\end{theorem}
-\begin{proof}
-	For the given form of $\alpha$, $H_\alpha(\sigma)$ is well-defined adn Schur-concave for all quantum states $\sigma$.
-	
-	We first regularise the number of output copies in the state distillation by tensoring in $(n-n')$ copies of the (free) maximally mixed state $\id/3$, so that we instead consider the process
-\begin{equation}
-	\rho^{\otimes n} \rightarrow \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')}.
-\end{equation}
-Since we have that $W_{\rho^{\otimes n}}(\bmx) \succ_{\id/3} W_{\rho'^{\otimes n'}}(\bmx)$, by Schur-concativity of $H_\alpha$ we obtain
-\begin{equation}
-	H_\alpha \left( \rho^{\otimes n} \right) \leq H_\alpha \left( \rho'^{\otimes n'} \otimes \left( \frac{1}{3}\id \right)^{\otimes (n - n')} \right).
-\end{equation}
-By additivity of $H_\alpha$, we can rewrite the inequality as
-\begin{equation}
-	n H_\alpha \left( \rho \right) \leq n' H_\alpha \left( \rho' \right) + (n - n') H_\alpha \left( \id/3 \right).
-\end{equation}
-Now, $H_\alpha \left( \id/3 \right)$ is the maximum value of $H_\alpha(\rho)$ for unital processes because every state $\rho$ majorizes $\id/3$, so we can finally re-arrange the inequality to
-\begin{equation}
-	\frac{n'}{n} \leq \frac{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho \right)}{H_\alpha \left( \id/3 \right) - H_\alpha \left( \rho' \right)} = \frac{D_{\alpha}(\rho||\id/3)}{D_{\alpha}(\rho'||\id/3)}.
-\end{equation}
+4. This follows immediately from the Schur-convexity of $D_\alpha$.
 \end{proof}
 
 \begin{theorem}
-	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes n'}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes n'}$
+	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
 	
 	We have the following family of upper bounds on the distillation rate $R := n'/n$,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(\rho||\tau)}{D_{\alpha}(\rho'||\tau')} = \frac{F_\alpha(\rho) - F_\alpha( \tau)}{F'_\alpha(\rho') - F'_\alpha( \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F'_\alpha(W_{\rho'}) - F'_\alpha(W_{\tau'})},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(\rho) := D_\alpha (\rho || \tau) - \log \Z$ is the $\alpha$--free energy. 
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
 \end{theorem}
 \begin{proof}
-	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_{n'} \coloneqq \rho_S(\epsilon')^{\otimes n'}$, $\tau_n \coloneqq \tau^{\otimes n}$ and $\tau'_{n'} \coloneqq \tau'^{\otimes n'}$.
+	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes n}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.
 	
 	We have that 
 \begin{equation}	
-	\Big(W_{\rho_n}(\bmx), W_{\tau_n}(\bmx')\Big) \succ \Big(W_{\rho'_{n'}}(\bmx), W_{\tau'_{n'}}(\bmx')\Big)
+	(W_{\rho_n}, W_{\tau_n}) \succ (W_{\rho'_m}, W_{\tau'_m})
 \end{equation}	
-or equivalently $\Gamma_{\bma}(W_{\rho_n}(\bmx)) \succ \Gamma_{\bma'}(W_{\rho'_{n'}}(\bmx))$ for all $\bmx$.
+or equivalently $\Gamma_{\bma}(W_{\rho_n}) \succ \Gamma_{\bma'}(W_{\rho'_m})$.
 
 For the given form of $\alpha$, $H_{\alpha}$ is Schur-concave due to~\cref{thm:HSchur}, so
 \begin{equation}
-	H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) \leq H_{\alpha}(\Gamma_{\bma'}(W_{\rho'_{n'}})),
+	H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) \leq H_{\alpha}(\Gamma_{\bma'}(W_{\rho'_m})),
 \end{equation}
 and we can use~\cref{thm:H2D} to rewrite the inequality as
 \begin{equation}
-	K - D_{\alpha}(W_{\rho_n} || W_{\tau_n}) \leq K - D_{\alpha}(W_{\rho'_{n'}} || W_{\tau'_{n'}}),
+	K - D_{\alpha}(W_{\rho_n} || W_{\tau_n}) \leq K - D_{\alpha}(W_{\rho'_m} || W_{\tau'_m}),
 \end{equation}.
 Due to~\cref{thm:Da_props}, we can rewrite the inequality as
 \begin{equation}
-	K - nD_{\alpha}(W_{\rho} || W_{\tau}) \leq K - n'D_{\alpha}(W_{\rho'} || W_{\tau'}),
+	K - nD_{\alpha}(W_{\rho} || W_{\tau}) \leq K - m D_{\alpha}(W_{\rho'} || W_{\tau'}),
 \end{equation}
 and rearrange it to reach
 \begin{equation}
-	\frac{n'}{n} \leq \frac{D_{\alpha}(\rho||\tau)}{D_{\alpha}(\rho'||\tau')}.
+	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})}.
 \end{equation}
 \end{proof}
 
 We now show the following simple equivalence.
-\begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho (\x)) < 0$ for some $\alpha >1$.
+\begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho) < 0$ for some $\alpha >1$.
 \end{theorem}
 The proof of this is as follows.
-\begin{proof} If we have $H_\alpha (W_\rho(\x)) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+\begin{proof} 
+If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
 
 Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
 \begin{align}
@@ -1999,7 +1907,7 @@ where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make
 \begin{equation}
 \sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
 \end{equation}
-Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho (\x)) = \frac{1}{1-\alpha} \log \sum_{\x} W_\rho (\x)^\alpha  <0 $ at some point in the sequence, which completes the proof.
+Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho) = \frac{1}{1-\alpha} \log \sum_{\x} W_\rho (\x)^\alpha  <0 $ at some point in the sequence, which completes the proof.
 \end{proof}
 
 Therefore Wigner negativity coincides with negativity of a Renyi entropy.

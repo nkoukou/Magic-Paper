@@ -577,6 +577,30 @@ A first requirement is that $\epsilon_\star \leq E(n'/n, \epsilon', \beta)$, but
 \end{align}
 holds, given some distillation rate $n'/n$ and input error rate $\epsilon$.
 
+\begin{figure}[t]
+    \centering
+    \subfigure[][]{%
+    \label{fig:maxmix}%
+    \includegraphics[height=2cm]{figs/maxmixed.pdf}
+    }\hspace{8pt}%
+    \subfigure[][]{%
+    \label{fig:zero}%
+    \includegraphics[height=2cm]{figs/zerostate.pdf}
+    }\\
+    \subfigure[][]{%
+    \label{fig:bound}%
+    \includegraphics[height=2cm]{figs/boundstate.pdf}
+    }\hspace{8pt}%
+    \subfigure[][]{%
+    \label{fig:Strange}%
+    \includegraphics[height=2cm]{figs/Strangestate.pdf}
+    }
+    \caption{\textbf{Qutrit Wigner distributions of varying magic.} 
+    \subref{fig:maxmix} Maximally mixed state $\frac{1}{3}\id$; \subref{fig:zero} Stabilizer zero state $|0\>\<0|$; \subref{fig:bound} A non-stabiliser Wigner-positive state; \subref{fig:Strange} Magic Strange state $\ket{{\rm{S}}} = \frac{1}{\sqrt{2}}(\ket{1} - \ket{2})$, coined in~\cite{cit:veitch2}.
+    }%
+    \label{fig:wstate_examples}
+\end{figure}
+
 \null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
