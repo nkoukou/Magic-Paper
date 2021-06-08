@@ -411,7 +411,7 @@ The recently introduced max--thauma~\cite{Wang_2020} is defined as
 \end{equation}
 and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound we derived via the first elbow constraint as shown in~\cref{fig:distill_bounds}. 
 
-This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{opt}}$ obtained by considering the full Lorenz curve, which show that the first elbow constraint can be further improved.
+This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{num}}$ obtained by considering the full Lorenz curve, which show that the first elbow constraint can be further improved.
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
@@ -595,12 +595,12 @@ D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
 This does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning.
 This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In~\cref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
-\begin{theorem} Let $\tau$ be in the interior of $\F$, and define the Wigner divergence $D_\infty(\rho,\tau) := D_\infty(W_\rho(\x) || W_\tau (\x))$. Then $D_\infty(\rho, \tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{theorem} Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
-\item $D_\infty(\rho, \tau) \ge 0$ for all quantum states $\rho$.
-\item  $D_\infty(\rho , \tau) = 0$ if and only if $\rho =\tau$.
-\item $D_\infty(\rho^{\otimes 2n}, \tau^{\otimes 2n}) = n D_\infty(\rho^{\otimes 2} ,\tau^{\otimes 2})$ for any $n \in \mathbb{N}$.
-\item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (\rho , \tau) \ge D_\infty (\E(\rho), \E(\tau))$.
+\item $D_\infty(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\infty(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\infty(W_{\rho^{\otimes 2n}}|| W_{\tau^{\otimes 2n}}) = n D_\infty(W_{\rho^{\otimes 2}} ||W_{\tau^{\otimes 2}})$ for any $n \in \mathbb{N}$.
+\item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (W_\rho || W_\tau) \ge D_\infty (W_{\E(\rho)}|| W_{\E(\tau)})$.
 \end{enumerate}
 \end{theorem}
 See Appendix~\ref{app:lcst_technical} for the proof of this. 
@@ -617,7 +617,17 @@ This therefore provides a meaningful extension of entropies to quasi-distributio
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are `more ordered' than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
 
-The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges to $-\infty$ due to the Lorenz curve $L_\rho(x)$ no longer being bounded by $1$. Alternatively, we can write the divergence of the entropy as $-\epsilon^{-1} \log \sum_{\x} |W_\rho (\x)|^{1+\epsilon}$ with $\epsilon \rightarrow 0^+$, which leads to a second new description of mana: \emph{it is the rate of divergence of the Renyi-entropy} as we approach the limiting Shannon entropy $H(\w)$. We also note the recent observation~\cite{baez2011renyi} that in standard statistical mechanics that $H_\alpha(\p)$ can be related to the ``$q$--derivative'' of free energy. Therefore, we might speculate if the presence of magic in Clifford circuits admits a rigorous interpretation in terms of a phase transition signalled by a first-order divergence in the Wigner free energy. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions \ddd{[Need to cite]}.
+The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges in a well-defined way. We can write the divergence of the entropy as 
+\begin{equation}
+H_{1-\epsilon}(W_\rho) = -\epsilon^{-1} \log \sum_{\x} |W_\rho (\x)|^{1+\epsilon}
+\end{equation} 
+with $\epsilon \rightarrow 0^+$ through a sequence of rational values $(a-b)/b$. However we recall that mana is defined as $\M(\rho) = \log \sum_{\x} |W_\rho(\x)|$, and so we obtain a second new description of mana: \emph{it is the coefficient of divergence of the Wigner Renyi-entropy} as we approach the limiting Shannon entropy $H(\w)$. 
+
+We also note that the Renyi entropy can be viewed as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and $H_\alpha(\p)$ can be related to the $q$--derivative of free energy. More precisely, it can be shown that
+\begin{equation}
+H_{\frac{T}{x}} = \frac{1}{x-T} ( F(x) - F(T)),
+\end{equation}
+where $F(x)$ is an effect free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions \ddd{[Need to cite]}.
 
 However, every entropy is best understood as a relative entropy and so we now state the extension to Renyi divergences.
 The $\alpha$--Renyi divergence $D_\alpha(\p)$ is defined as
@@ -638,7 +648,7 @@ Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined
 \end{enumerate}
 \end{theorem}
 
-We can now apply this to obtain new magic bounds.
+We can now apply this to obtain magic distillation bounds that describe Wigner negativity directly as a form of non-classical free energy.
 \begin{theorem}
 	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
 	
