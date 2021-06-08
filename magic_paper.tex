@@ -644,7 +644,7 @@ We can now apply this to obtain new magic bounds.
 	
 	We have the following family of upper bounds on the distillation rate $R := n'/n$,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F'_\alpha(W_{\rho'}) - F'_\alpha(W_{\tau'})},
+		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
 \end{theorem}
@@ -756,6 +756,44 @@ Given probability distributions $\p, \q$, $\r , \r'$, such that the components o
   \end{enumerate}
 \end{proposition}
 The proofs for these can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2016,Buscemi_2017} and references therein.
+
+We prove the following result connecting majorization to relative majorization.
+\begin{lemma}
+	Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
+Then,
+\begin{equation}
+(\w, \r) \succ (\w', \r') \mbox{ if and only if } \Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w'),
+\end{equation}
+where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
+\begin{equation}
+	\Gamma_{\bma}(\x) := \bigoplus_{i=1}^N x_i \eta_{a_i},
+\end{equation}
+with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
+\end{lemma}
+\begin{proof}
+	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma'}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
+\begin{equation}
+	\Gamma^{-1}_{\bma}(\w) = \left( \sum_{i=1}^{a_1} w_i,  \sum_{i = a_1 +1}^{a_1 + a_2} \hspace{-5pt} w_i, \dots , \hspace{-15pt} \sum_{i=a_1 + \dots + a_{N-1}+1}^{K} \hspace{-10pt} w_i \right),
+\end{equation}
+that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\x) = \x$ for all $\x \in \mathbb{R}^N$. 
+
+The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
+
+Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
+We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B := \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^A$, since
+\begin{align}
+	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
+	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
+\end{align}
+therefore $B$ is bistochastic.
+Finally, $B$ maps the embedded distributions as follows,
+\begin{equation}
+	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
+\end{equation}
+
+Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A := \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
+\end{proof}
+We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, so we can appeal to the fact that experiments have a finite resolution to ignore technical details regarding the completion to arbitrary real components.
 
 \subsection{Relative majorization for quasi-distributions}
 \label{app:rel_quasi}
@@ -1529,7 +1567,7 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 \newpage
 \section{Single-shot entropies on quasi-distributions and magic distillation bounds}
 
-We note that we may relate our analysis to the classical single-shot entropies that remain well-defined even in the case of quasi-distributions.
+In this section, we develop the tools that allow the use of entropic functions on quasi-probabilities to retrieve magic distillation bounds.
 
 \subsection{Renyi min-divergence from initial slope}
 We first demonstrate that the initial slope analysis on the Wigner quasi-distributions makes use of the min-relative divergence. We define 
@@ -1601,7 +1639,7 @@ where $d$ is the dimension of $\rho$.
 For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{align}
 	&H_{\alpha}\left(W_{\rho_{\rm{S}}(\epsilon)}\right) = \frac{1}{1-\alpha}\log \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right] \nonumber\\
-	&= \frac{\alpha}{\alpha-1}\log 18+ \frac{1}{1-\alpha}\log \left[ 8(3-\epsilon)^\alpha + (6-8\epsilon)^\alpha \right]
+	&\ddd{= \frac{\alpha}{\alpha-1}\log 18+ \frac{1}{1-\alpha}\log \left[ 8(3-\epsilon)^\alpha + (6-8\epsilon)^\alpha \right]}
 \end{align}
 
 \begin{figure}[h]
@@ -1618,22 +1656,6 @@ For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
     \caption{Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $D_\alpha$ is decreasing in $\alpha$ and $\epsilon$ (clear due to~\cref{thm:H2D}).
     }
     \label{fig:D}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.35]{figs/test/H_test.pdf}
-    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $H_\alpha$ is decreasing in $\epsilon$ (not Schur-conocave for $\alpha < 1$) and increasing in $\alpha$.
-    }
-    \label{fig:Htest}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.35]{figs/test/D_test.pdf}
-    \caption{Here, the exponent is $\alpha =$ even$/$odd for $0.10 \leq \alpha \leq 0.90$. $D_\alpha$ is increasing in $\epsilon$ (not Schur-convex for $\alpha < 1$) and decreasing in $\alpha$ (clear due to~\cref{thm:H2D}).
-    }
-    \label{fig:Dtest}
 \end{figure}
 
 We now make use of known results from majorization theory to establish the Schur-concavity of $H_\alpha$ on Wigner quasi-distributions where $\alpha$ is such that $H_\alpha$ is well-defined. 
@@ -1696,7 +1718,6 @@ If $\alpha =$ odd$/$odd, then $H_\alpha$ is not well-defined for all quasi-proba
 
 If $\alpha =$ even$/$odd and $\alpha < 1$, then $f(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ diverges at $0$ with $\lim_{w\rightarrow 0^-} = -\infty$ and $\lim_{w\rightarrow 0^+} = +\infty$.\\
 Example: If $\alpha = 2/3$, then $f(-2/3) = -3.43$, $f(-1/3) = -4.33$ and $f(+1/3) = +4.33$, so $f(w)$ is nether non-increasing nor non-decreasing.
-In~\cref{fig:Htest}, it looks as if it's Schur-convex though..
 }
 
 Therefore, whenever $w_i \geq w_j$, we have that 
@@ -1713,13 +1734,7 @@ Therefore, $H_\alpha$ is Schur-concave and
 \end{equation}
 for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 \end{proof}
-The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, which in turn are dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by a sequence $f_n := c2^n / (d2^n-1)$ with every element $f_n$ in the set $F$.
-
-Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
-\begin{equation}
-	D_\alpha(W_\rho || W_\tau) := \frac{1}{\alpha - 1} \log \sum_{\bmx} W_{\rho}(\bmx)^\alpha W_{\tau}(\bmx)^{1-\alpha},
-\end{equation}
-where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive.
+The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, and hence the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for suficiently large $n$.
 
 We can check additivity of $H_{\alpha}$ also holds on quasi-distributions. 
 \begin{lemma}\label{H_add}
@@ -1740,44 +1755,11 @@ We can check additivity of $H_{\alpha}$ also holds on quasi-distributions.
 \end{proof}
 
 \subsection{Renyi divergences on quasi-distributions}
-We prove the following result connecting majorization to relative majorization.
-\begin{lemma}
-Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
-Then,
+Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
 \begin{equation}
-(\w, \r) \succ (\w', \r') \mbox{ if and only if } \Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w'),
+	D_\alpha(W_\rho || W_\tau) := \frac{1}{\alpha - 1} \log \sum_{\bmx} W_{\rho}(\bmx)^\alpha W_{\tau}(\bmx)^{1-\alpha},
 \end{equation}
-where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
-\begin{equation}
-	\Gamma_{\bma}(\x) := \bigoplus_{i=1}^N x_i \eta_{a_i},
-\end{equation}
-with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
-\end{lemma}
-\begin{proof}
-	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma'}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
-\begin{equation}
-	\Gamma^{-1}_{\bma}(\w) = \left( \sum_{i=1}^{a_1} w_i,  \sum_{i = a_1 +1}^{a_1 + a_2} \hspace{-5pt} w_i, \dots , \hspace{-15pt} \sum_{i=a_1 + \dots + a_{N-1}+1}^{K} \hspace{-10pt} w_i \right),
-\end{equation}
-that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\x) = \x$ for all $\x \in \mathbb{R}^N$. 
-
-The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
-
-Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
-We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B := \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^A$, since
-\begin{align}
-	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
-	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
-\end{align}
-therefore $B$ is bistochastic.
-Finally, $B$ maps the embedded distributions as follows,
-\begin{equation}
-	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
-\end{equation}
-
-Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A := \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
-\end{proof}
-We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, so we can appeal to the fact that experiments have a finite resolution to ignore technical details regarding the completion to arbitrary real components.
-
+where $\alpha$ can take values of the form $2a/(2b+1)$, for non-negative integers $a,b$ to ensure once again that the argument of the logarithm is positive.
 
 We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions via the following result.
 
@@ -1860,37 +1842,31 @@ In particular,
 4. This follows immediately from the Schur-convexity of $D_\alpha$.
 \end{proof}
 
+We are now in a position to derive general magic state distillation bounds.
+
 \begin{theorem}
 	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
 	
 	We have the following family of upper bounds on the distillation rate $R := n'/n$,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F'_\alpha(W_{\rho'}) - F'_\alpha(W_{\tau'})},
+		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
 \end{theorem}
 \begin{proof}
-	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes n}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.
+	The bound is a direct consequence of the properties of the $\alpha$--Renyi diveregence, proven in~\cref{thm:Da_props}.
 	
-	We have that 
+Due to the action of the magic protocol channel, we get
 \begin{equation}	
-	(W_{\rho_n}, W_{\tau_n}) \succ (W_{\rho'_m}, W_{\tau'_m})
-\end{equation}	
-or equivalently $\Gamma_{\bma}(W_{\rho_n}) \succ \Gamma_{\bma'}(W_{\rho'_m})$.
+	D_\alpha(W_{\rho^{\otimes n}} || W_{\tau^{\otimes n}}) \geq D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'^{\otimes m}}).\vspace{10pt}
+\end{equation}
 
-For the given form of $\alpha$, $H_{\alpha}$ is Schur-concave due to~\cref{thm:HSchur}, so
+We can use the additive property to rewrite this as
 \begin{equation}
-	H_{\alpha}(\Gamma_{\bma}(W_{\rho_n})) \leq H_{\alpha}(\Gamma_{\bma'}(W_{\rho'_m})),
+	n D_\alpha(W_\rho || W_\tau) \geq m D_\alpha(W_{\rho'} || W_{\tau'}).
 \end{equation}
-and we can use~\cref{thm:H2D} to rewrite the inequality as
-\begin{equation}
-	K - D_{\alpha}(W_{\rho_n} || W_{\tau_n}) \leq K - D_{\alpha}(W_{\rho'_m} || W_{\tau'_m}),
-\end{equation}.
-Due to~\cref{thm:Da_props}, we can rewrite the inequality as
-\begin{equation}
-	K - nD_{\alpha}(W_{\rho} || W_{\tau}) \leq K - m D_{\alpha}(W_{\rho'} || W_{\tau'}),
-\end{equation}
-and rearrange it to reach
+
+Since $\rho' \neq \tau'$, we have $D_\alpha(W_{\rho'} || W_{\tau'}) > 0$, which directly leads to the bound
 \begin{equation}
 	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})}.
 \end{equation}
@@ -1899,7 +1875,6 @@ and rearrange it to reach
 We now show the following simple equivalence.
 \begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho) < 0$ for some $\alpha >1$.
 \end{theorem}
-The proof of this is as follows.
 \begin{proof} 
 If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
 
