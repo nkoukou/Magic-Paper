@@ -18,13 +18,13 @@ reprint
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
 \begin{abstract}
-\ddd{[To be sharpened]} Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
-Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here we introduce the concept of `fragments', which generalise the concept of magic monotones and has a natural thermodynamic structure based on majorisation. From this perspective magic can be viewed as a form of free energy within each fragment and is constrained by relative majorisation relations but now on quasi-probability distributions. Notably this approach allows us to incorporate actual physical constraints, for example noise models with particular bias or temperature-dependent features, and study how these constrain general magic distillation protocols. In this context we present general temperature-dependent bounds on distillation rates that any theory of magic must respect. Significantly, this analysis also presents a thermodynamic context which cannot be analysed via traditional methods based on thermodynamic entropies, due to the presence of negativity, and raises novel questions in the context of statistical mechanics.
+Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here we develop a statistical mechanical framework in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as those from mana and thauma, and moreover incorporate hardware physics, such as temperature dependence. We show that a sub-set of single-shot Renyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values. We also show that the mana of a magic state is exactly the coefficient of divergence of Renyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
 
-\title{Statistical mechanics of Wigner negativity and magic states in quantum computation}
+\title{General constraints on magic state protocols from the statistical mechanics of \\Wigner negativity}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -654,19 +654,23 @@ In~\cref{app:lcst_technical}, we also show that the divergence satisfies the fol
 
 We can now apply this to obtain magic distillation bounds that describe Wigner negativity directly as a form of non-classical free energy.
 \begin{theorem}\label{thm:entropic_bounds} 
-	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
+	Consider a magic state distillation protocol that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$, which when applied to a reference stabilizer state $\tau^{\otimes n}$ results in $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$.
 	
-	We have the following family of upper bounds on the distillation rate $R := n'/n$,
+	We have the following family of upper bounds on the magic distillation rate $R := m/n$,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
+		R \leq \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy of the Wigner distribution. 
 \end{theorem}
-For unital processes, i.e. operations $\E$ such that $\E(\id/d) = \id/d$, the bound reduces to
+For magic protocols that generate unital maps the above bound reduces to the simpler form
 \begin{equation}
 	R \leq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
 \end{equation}
-
+In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$, this bound becomes
+\begin{equation}
+	R \leq \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
+\end{equation}
+For any $\epsilon$ the upper bound can be numerically minimized over $\alpha$.
 \begin{figure}[t!]
     \centering
     \subfigure[][]{%
