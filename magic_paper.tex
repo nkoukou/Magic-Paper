@@ -11,9 +11,9 @@ reprint
 
 \begin{document}
 % Labels and Refs (consistency, cref vs ref, thm vs lem vs prop, ??)
-% Figs check(fig.0, move to app, consistency, cbars, iffalse)
+% Figs check(fig.0, move to app, consistency, cbars, iffalse, axes)
 
-% Notation consistency (noise vs error, \ln{} -> \ln, italics, Aberg -> {\AA}berg)
+% Notation consistency (noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg, quasi-dist vs quasi-prob dist)
 % UK vs US english
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
 
@@ -596,7 +596,8 @@ D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 This does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning.
 
 This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In~\cref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
-\begin{theorem} Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{theorem}\label{thm:Dinfty} 
+	Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\infty(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\infty(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
@@ -610,10 +611,12 @@ We can now go further, and show that a range of entropies remain both well-defin
 	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
 To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under stabilizer/free operations. In the Appendices we show the following.
-\begin{theorem} If $\alpha = \frac{2a}{2b-1}$ for integers $a,b \in \mathbb{N}$ and $a\ge b$ then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\w$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \le H_\alpha(\w')$.
+\begin{theorem}\label{thm:HSchur} 
+	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\w$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
 This therefore provides a meaningful extension of entropies to quasi-distributions. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative Renyi entropy.
-\begin{theorem} A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
+\begin{theorem}\label{thm:Magic}
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are `more ordered' than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
 
@@ -625,11 +628,12 @@ with $\epsilon \rightarrow 0^+$ through a sequence of rational values $(a-b)/b$.
 
 We also note that the Renyi entropy can be viewed as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and $H_\alpha(\p)$ can be related to the $q$--derivative of free energy. More precisely, it can be shown that
 \begin{equation}
-H_{\frac{T}{x}} = \frac{1}{x-T} ( F(x) - F(T)),
+	H_{\frac{T}{x}} = \frac{1}{x-T} (F(x) - F(T)),
 \end{equation}
-where $F(x)$ is an effect free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions \ddd{[Need to cite]}\nick{any specific in mind?}.
+\nick{Do you mean $H_{\frac{T}{x}}(\w)$? What is $F(x)$ for a number $x$ ?}
+where $F(x)$ is an effective free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions~\cite{arvidsson_2020, halpern_2018}.
 
-However, every entropy is best understood as a relative entropy and so we now state the extension to Renyi divergences.
+Every entropy is best understood as a relative entropy and so we now state the extension to Renyi divergences.
 We define the $\alpha$--Renyi Wigner divergence $D_\alpha$ as
 \begin{equation}
 	D_\alpha(\w || \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
@@ -649,7 +653,7 @@ In~\cref{app:lcst_technical}, we also show that the divergence satisfies the fol
 \end{theorem}
 
 We can now apply this to obtain magic distillation bounds that describe Wigner negativity directly as a form of non-classical free energy.
-\begin{theorem}
+\begin{theorem}\label{thm:entropic_bounds} 
 	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
 	
 	We have the following family of upper bounds on the distillation rate $R := n'/n$,
@@ -658,6 +662,10 @@ We can now apply this to obtain magic distillation bounds that describe Wigner n
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
 \end{theorem}
+For unital processes, i.e. operations $\E$ such that $\E(\id/d) = \id/d$, the bound reduces to
+\begin{equation}
+	R \leq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
+\end{equation}
 
 \begin{figure}[t!]
     \centering
@@ -1586,6 +1594,8 @@ We first demonstrate that the initial slope analysis on the Wigner quasi-distrib
 \end{equation}
 which is well-defined since both the nominator and denominator in the above expression are strictly positive when $\tau$ is in the interior of $\F$.
 
+\begingroup
+\def\thetheorem{\ref{thm:Dinfty}}
 \begin{theorem}
 	Let $\tau$ be in the interior of $\F$, then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
@@ -1595,6 +1605,8 @@ which is well-defined since both the nominator and denominator in the above expr
 \item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (W_\rho || W_\tau) \geq D_\infty (W_{\E(\rho)} || W_{\E(\tau)})$.
 \end{enumerate}
 \end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 \begin{proof}
 	Since $\tau$ is in the interior of $\F$, its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. 
 In general, $W_\rho(\x)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmx)^\alpha \geq 0$. 
@@ -1676,29 +1688,32 @@ We first define the notion of \emph{Schur-convex and Schur-convave functions} on
 \end{definition}
 We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
 \begin{equation}
-\mathcal{Q} = \left\{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1 \right\}.
+	\mathcal{Q} = \left\{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1 \right\}.
 \end{equation}
 For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
 \begin{equation}
-\mathcal{Q}^\downarrow = \{ \w \in \mathcal{Q} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+	\mathcal{Q}^\downarrow = \{ \w \in \mathcal{Q} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
 We now have that the Schur-Ostrowski theorem~\cite{cit:marshall} provides a characterization of symmetric, Schur-convex and Schur-concave functions on quasi-distributions.
 \begin{lemma}
-Let $f$ be a real-valued continuous function defined on $\mathcal{Q}^\downarrow$ that is continuously differentiable on the interior of $\mathcal{Q}^\downarrow$. 
+	Let $f$ be a real-valued continuous function defined on $\mathcal{Q}^\downarrow$ that is continuously differentiable on the interior of $\mathcal{Q}^\downarrow$. 
 Then, $f$ is Schur-convex on $\mathcal{Q}^\downarrow$ if and only if $\partial_k f(\w)$ is decreasing in $k$ for all $\w \in \mathcal{Q}^\downarrow$, namely
 \begin{equation}
-\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
+	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
 for all $\w$ in the interior of $\mathcal{Q}^\downarrow$.
 \end{lemma}
 
 We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distributions for particular values of $\alpha$.
 
-\begin{theorem}\label{thm:HSchur}
-	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$.
-	Then, $H_\alpha$ is Schur-concave, i.e. for quasi-distributions $\w, \w' \in \mathbb{R}^N$, we have $H_\alpha(\w) \leq H_\alpha(\w')$, whenever $\w \succ \w'$.
+\begingroup
+\def\thetheorem{\ref{thm:HSchur}}
+\begin{theorem}
+	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\w$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 \begin{proof}
 We have $\alpha = \frac{2a}{2b+1} \geq \frac{2b}{2b-1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i x_i^\alpha > 0$ and $H_\alpha(\x)$ is well-defined for all quasi-distributions $\x$.
 
@@ -1746,7 +1761,7 @@ for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 \end{proof}
 The set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the rationals $\mathbb{Q}_{>1}$, and hence the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for suficiently large $n$.
 
-We can check additivity of $H_{\alpha}$ also holds on quasi-distributions. 
+We can check that additivity of $H_{\alpha}$ also holds on quasi-distributions. 
 \begin{lemma}\label{H_add}
 	For any $\w, \w' \in \mathcal{Q}$, we have
 	\begin{equation}
@@ -1763,6 +1778,30 @@ We can check additivity of $H_{\alpha}$ also holds on quasi-distributions.
 		&= H_{\alpha}(\w) + H_{\alpha}(\w').
 	\end{align*}
 \end{proof}
+
+We now show the following simple equivalence.
+\begingroup
+\def\thetheorem{\ref{thm:HSchur}}
+\begin{theorem}
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) < 0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \geq b$.
+\end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
+\begin{proof} 
+If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
+
+Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
+\begin{align}
+\sum_{\x} W_\rho (\x)^{a/b} &= \sum_{\x} |W_\rho (\x)|^{a/b} \nonumber \\
+&= \sum_{\x} |W_\rho (\x)|^{1+ \epsilon},
+\end{align}
+where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$. More precisely, there exists a sequence $\epsilon_n=a_n/b_n$ with valid integer pairs $a_n, b_n$ such that
+\begin{equation}
+\sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
+\end{equation}
+Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho) = \frac{1}{1-\alpha} \log \sum_{\x} W_\rho (\x)^\alpha  <0 $ at some point in the sequence, which completes the proof.
+\end{proof}
+Therefore Wigner negativity coincides with negativity of a Renyi entropy.
 
 \subsection{Renyi divergences on quasi-distributions}
 Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
@@ -1815,7 +1854,9 @@ We now establish monotonicity for Renyi relative divergences.
 	\end{equation}
 \end{proof}
 
-\begin{theorem}\label{thm:Da_props} 
+\begingroup
+\def\thetheorem{\ref{thm:Da_props}}
+\begin{theorem}
 	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
 Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
@@ -1825,6 +1866,8 @@ Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined
 \item $D_\alpha(W_\rho || W_\tau) \geq D_\alpha (W_{\E(\rho)} || W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
 \end{enumerate}
 \end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 \begin{proof}
 	Since $\tau$ is in the interior of $\F$, its Wigner function obeys $W_\tau(\x) >0$ for all points $\x$ in the phase space. 
 In general, $W_\rho(\x)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmx)^\alpha \geq 0$. 
@@ -1854,6 +1897,8 @@ In particular,
 
 We are now in a position to derive general magic state distillation bounds.
 
+\begingroup
+\def\thetheorem{\ref{thm:entropic_bounds}}
 \begin{theorem}
 	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
 	
@@ -1863,6 +1908,8 @@ We are now in a position to derive general magic state distillation bounds.
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy. 
 \end{theorem}
+\addtocounter{theorem}{-1}
+\endgroup
 \begin{proof}
 	The bound is a direct consequence of the properties of the $\alpha$--Renyi diveregence, proven in~\cref{thm:Da_props}.
 	
@@ -1881,27 +1928,6 @@ Since $\rho' \neq \tau'$, we have $D_\alpha(W_{\rho'} || W_{\tau'}) > 0$, which 
 	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho||W_\tau)}{D_{\alpha}(W_{\rho'}||W_{\tau'})}.
 \end{equation}
 \end{proof}
-
-We now show the following simple equivalence.
-\begin{theorem} A state $\rho$ has Wigner negativity if and only if $H_\alpha (W_\rho) < 0$ for some $\alpha >1$.
-\end{theorem}
-\begin{proof} 
-If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\x} W_\rho (\x)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\x)$ must be a strict quasi-distribution with negativity.
-
-Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\x} |W_\rho (\x)| >1$. We now consider $\sum_{\x} W_\rho (\x)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. We have that
-\begin{align}
-\sum_{\x} W_\rho (\x)^{a/b} &= \sum_{\x} |W_\rho (\x)|^{a/b} \nonumber \\
-&= \sum_{\x} |W_\rho (\x)|^{1+ \epsilon},
-\end{align}
-where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$. More precisely, there exists a sequence $\epsilon_n=a_n/b_n$ with valid integer pairs $a_n, b_n$ such that
-\begin{equation}
-\sum_{\x} |W_\rho (\x)|^{1+ \epsilon_n} \rightarrow \sum_{\x} |W_\rho (\x)| >1.
-\end{equation}
-Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho) = \frac{1}{1-\alpha} \log \sum_{\x} W_\rho (\x)^\alpha  <0 $ at some point in the sequence, which completes the proof.
-\end{proof}
-
-Therefore Wigner negativity coincides with negativity of a Renyi entropy.
-
 
 \end{document}
 
