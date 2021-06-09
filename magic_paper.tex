@@ -8,14 +8,13 @@ reprint
 ]{revtex4-1}
 
 \input{preamble}
-
-\begin{document}
 % Labels and Refs (consistency, cref vs ref, thm vs lem vs prop, ??)
-% Figs check(fig.0, move to app, consistency, cbars, iffalse, axes)
-
-% Notation consistency (noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg, quasi-dist vs quasi-prob dist)
+% Figs check(consistency, cbars, captions, axes, iffalse)
+% Notation consistency (noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg, quasi-dist vs quasi-prob dist, def elbows)
 % UK vs US english
 % Spacing (figs, sections, paragraphs, eq. numbering, \noindent, QEDs)
+
+\begin{document}
 
 \begin{abstract}
 Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
@@ -415,7 +414,7 @@ This figure includes numerical estimates of the optimal majorization bounds $R_{
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
-    \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint $R$, mana $\M$ and max--thauma $\theta_{\rm{max}}$ are plotted for $\epsilon' = 0$, up to error $\epsilon = 3/7$.
+    \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint $R_{\infty}$, the 10-Renyi bound $R_{10}$,o mana $\M$ and max--thauma $\theta_{\rm{max}}$ are plotted for $\epsilon' = 0$, up to error $\epsilon = 3/7$.
     Majorisation provides stricter rates than the global mana and max--thauma bounds.
     Numerical bounds $R_{\rm{num}}$ obtained by full Lorenz curve comparison for some Strange state purification processes with even number of copies $m,n \leq 30$ highlight that the first elbow constraint can be improved.
     }
@@ -662,7 +661,7 @@ We can now apply this to obtain magic distillation bounds that describe Wigner n
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho || W_\tau) - \log \Z$ is the $\alpha$--free energy of the Wigner distribution. 
 \end{theorem}
-For magic protocols that generate unital maps the above bound reduces to the simpler form
+For magic protocols that preserve unital maps, the above bound reduces to the simpler form
 \begin{equation}
 	R \leq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
 \end{equation}
@@ -670,7 +669,7 @@ In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$,
 \begin{equation}
 	R \leq \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
-For any $\epsilon$ the upper bound can be numerically minimized over $\alpha$.
+The upper bound can be numerically minimized over $\alpha$, for any $\epsilon$.
 \begin{figure}[t!]
     \centering
     \subfigure[][]{%
