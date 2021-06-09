@@ -41,11 +41,11 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
-\nick{Bunch of refs:}~\cite{White_2021, Rethinasamy_2020, Blackwell_1953, Sarkar_2020, Gour_2020}
+\ddd{[Title of Gour2020 paper is incorrect in the bibliography]}
 
 The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}.
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021}.
   
   
 Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
@@ -54,7 +54,7 @@ In this work, we develop a framework to analyse magic state distillation protoco
 
 The approach we take is most closely aligned with resource theories of magic, however it differs in a few ways. Firstly, we obtain distillation upper bounds without the use of monotones, and secondly our distillation bounds are hardware dependent. We approach this problem using tools from statistical mechanics and recent work from the overlap of thermodynamics and quantum information theory~\cite{cit:janzing, cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. In particular, we shall view \emph{magic as a form of free energy}, relative to the set of stabilizer states. From this perspective, the convex set of stabilizer states behaves as the set of ``equilibrium'' states, and magic corresponds to a form of non-equilibrium free energy that is strictly non-classical.
 
-Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. Interestingly, taking a statistical mechanical perspective in this context raises a problem, namely it is impossible to define entropies for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics and information theory -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is also of interest to the study of non-classicality in quantum systems.
+Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics and information theory -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is also of interest to the study of non-classicality in quantum systems.
 
 Through this approach we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamic ordering in the presence of negativity is non-trivial and displays a range of features that, unsurprisingly, do not appear in classical statistical mechanics. 
 Finally, we discuss how our approach could be improved and how it can be exploited to construct explicit lower bounds on distillation that take into account physical structure.
@@ -62,7 +62,7 @@ Finally, we discuss how our approach could be improved and how it can be exploit
 \begin{figure}[t]
     \centering
         \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
-    \caption{\textbf{Magic distillation protocols \& stabilizer reference states.} 
+    \caption{\textbf{Probing magic protocols with reference states.} 
 	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and the free energy the protocol channel $\E$ injects in. In addition, a quantity $\phi$ links the computational and physical aspects, and corresponds to the degree to which Wigner negativity in $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
@@ -131,7 +131,7 @@ where $\bar{x} =(x_1, -p_1, \dots , x_n, -p_n)$ can be viewed as the time-revers
 \subsection{Magic theories for quantum computation}
 \label{sec:mono}
 
-A number of magic theories exist, with the central approach of viewing magic states as computational resource states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However, there are also other noteworthy candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
+A number of magic theories exist, where magic states are computational resource states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford operations, measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
 
 In any theory of magic, a natural route to bounding the distillation rates obtainable is through the concept of a \emph{magic monotone}. A magic monotone is a real-valued function of any quantum state $\M(\rho)$ that is monotonically non-increasing under the free operations of the magic theory. More precisely $\M(\sigma) \le \M(\rho)$ whenever it is possible to convert $\rho$ into $\sigma$ using free operations (e.g. Clifford operations).
 
@@ -151,7 +151,7 @@ In this work we shall develop bounds that apply to essentially any reasonable ma
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Stochastic structure of magic protocols}
+\subsection{Stochastic representation of magic protocols}
 \label{sec:struc}
 
 Within the Wigner representation, all negatively represented states are magic states, although in general the converse is not true~\cite{cit:campbell}. However, it is known that all positively represented states used in Clifford circuits admit an efficient classical description, so it is natural to focus on the negatively represented magic states. The free states in any magic theory are assumed to lie in the set
@@ -175,23 +175,23 @@ In what follows we shall assume that we have a magic theory $\R = (\F, \O)$ in w
 \subsection{Quantifying disorder without entropies}
 \label{sec:major}
 
-Majorisation is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
+Majorisation~\cite{cit:marshall, Blackwell_1953} is a collection of powerful tools that has recently found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
 It describes the disorder of distributions that undergo stochastic transformations. In its simplest form it defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be checked efficiently.
 
 There is a natural generalisation, which is called $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization~\cite{cit:horodecki2013}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as $\p \succ_{\r} \q$, if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. In order words, this majorization pre-order coincides with the image of $\p$ under stochastic maps that have $\r$ as a fixed point. It is readily checked that the original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. The pre-order that results from relative majorization is also easily checked and again corresponds to checking a small number of inequalities.
 
-In fact, we can further generalise to \emph{relative majorization}~\cite{Ruch_1976, ruch_mixing_1978, Renes_2016, Buscemi_2017}, defined as an ordering between pairs of vectors so that 
+In fact, we can further generalise to \emph{relative majorization}~\cite{Blackwell_1953, Ruch_1976, ruch_mixing_1978, Renes_2016, Buscemi_2017, Rethinasamy_2020}, defined as an ordering between pairs of vectors so that 
 \begin{equation}
 	(\p,\r) \succ (\q, \r')
 \end{equation}
 iff there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q$. We retrieve $\bmd$--majorization when $\r = \r'$.
 
-It turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of magic across fragments. We go into more detail on this in the next section.
+It turns out that relative majorization is equally applicable to \emph{quasi-probability} distributions, and therefore can be applied to the Wigner representation of magic across different $\R_\sigma$. We go into more detail on this in the next section.
 
 \subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
 \label{sec:lc}
 
-Our analysis applies majorization to magic states at the level of the associated Wigner distributions. However, these are in general quasi-probability distributions, so it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions.
+Our analysis applies majorization to magic states at the level of the associated Wigner distributions. However, these are in general quasi-probability distributions, so it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions~\cite{arvidsson_2020, halpern_2018}.
 
 Central to the analysis is the notion of a Lorenz curve of a vector $\w \in \mathbb{R}^n$ relative to some other vector $\r \in \mathbb{R}^n$. Given a vector $\w$ we define $\w^\downarrow$ to be the re-arrangement of the components of $\w$ into decreasing order. Given two $n$--component vectors $\w$ and $\r$, we first define $\widetilde{\w}$, where $\widetilde{w}_i \coloneqq w_i/r_i$, as the vector of component-wise ratios between $\w$ and $\r$.
 We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
@@ -213,7 +213,7 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within a particular stabilizer fragment ($\sigma = \id/3$). Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within $\R_{\id/3}$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
     }
     \label{fig:lcs}
 \end{figure}
@@ -246,7 +246,7 @@ Finally, the $(1-\epsilon)x$ terms cancel on both sides and we get the required 
 With all the necessary theory in place, we now turn to magic distillation protocols.
 
 \newpage
-\section{Magic distillation bounds from majorization}
+\section{Magic distillation bounds with fixed-points}
 \label{sec:frag}
 
 We can now consider how physical constraints that may be hardware specific, affect magic distillation rates. These are not a priori encoded in the formulation of the magic theory, and constitute additional physical conditions on top of the underlying resource-theoretic accounting. For example, there may be non-trivial thermal noise in the physical set-up or the accessible operations, there might be strong bias in the noise present, or we might be limited in how easily certain gates can be realised.~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}.
@@ -255,28 +255,28 @@ In~\cref{sec:stab} we shall focus on the energetic costs of a protocol, that are
  
  We begin by defining the following kind of sub-theory of any magic theory $\R$.
 \begin{definition}\label{def:sigmafrag}
-   Given a theory of magic $\R = (\F, \O)$, the \emph{$\sigma$--fragment of $\R$} is the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
+   Given a theory of magic $\R = (\F, \O)$, we define the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
    \begin{equation}
         \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \},
     \end{equation}
 namely those free operations that leave the distinguished state $\sigma \in \F$ invariant.
 \end{definition}
-This notion provides a simple way to break up any theory into smaller, more manageable parts. Moreover, the union over all fragments returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this statement precise as follows.
+This notion provides a simple way to break up any theory into smaller, more manageable parts. Moreover, the union over all sub-theories returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this statement precise as follows.
 \begin{theorem}\label{thm:frag}
     Let $\R = (\F, \O)$ be a theory of magic.
-Then a transformation $\rho_1 \rightarrow \rho_2$ is possible in $\R$ if and only if the transformation $\rho_1 \rightarrow \rho_2$ is possible in at least one $\sigma$--fragment of $\R$.
+Then a transformation $\rho_1 \rightarrow \rho_2$ is possible in $\R$ if and only if the transformation $\rho_1 \rightarrow \rho_2$ is possible in at least one sub-theory $\R_\sigma$.
 \end{theorem}
 The proof of this is straightforward.
 \begin{proof}
-   Suppose the interconversion is possible in a $\sigma$--fragment via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore, $\E \in \O_\sigma$ and the interconversion is possible in this fragment.
+   Suppose the interconversion is possible in a $\R_\sigma$ via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore, $\E \in \O_\sigma$ and the interconversion is possible in $\R_\sigma$.
 \end{proof}
-One can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular fragment. In the next section we show that this pre-order for a given fragment can always be approximated by a majorization pre-order, and from this we can compute magic distillation bounds.
+One can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular $\R_\sigma$. In the next section we show that this pre-order for a given $\R_\sigma$ can always be approximated by a majorization pre-order, and from this we can compute magic distillation bounds.
 
 \iffalse
 \begin{figure}[t]
     \centering
         \includegraphics[scale=0.3]{figs/operations.pdf}
-    \caption{\textbf{Decomposition of a magic theory $\R$ into $\sigma$--fragments.} 
+    \caption{\textbf{Decomposition of a magic theory $\R$ into $\R_\sigma$ bits.} 
 	Examples of magic theories ($\so$: Stabilizer operations, $\Omax$: Completely positive-Wigner-preserving operations, $\rcu$: Random Clifford Unitaries -- subclass of $\so$) are labelled, with other established magic theories also contained within the yellow regions.
     We introduce $\sigma$--fragments $\O_\sigma$ defined for all free states $\sigma$ that cover $\Omax$. 
     Each $\O_\sigma$ is extensible to a set of stochastic maps outside the $\cptp$ operations.
@@ -286,10 +286,10 @@ One can compare with resource monotones, which are also called resource measures
 \end{figure}
 \fi
 
-\subsection{Majorisation of negative Wigner distributions within $\sigma$--fragments}
+\subsection{Majorisation of negative Wigner distributions with fixed-point structure}
 \label{sec:major_frag}
-
-We consider some $\sigma \in \F$, and its corresponding fragment $\R_\sigma$. We are interested in the ability to transform many copies of some noisy magic state $\rho$ towards a more pure form of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, so $W_\rho(\x) < 0$ for some regions of $\x \in \P_d$. The state $\sigma$ is assumed to have a Wigner distribution with $W_\sigma(\x) > 0$ for all $\x$ in the phase space\footnote{Any non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$ in the end.}.
+We can now look at how the simple approach of focussing on fixed-point structures can be used to analyse magic protocols.
+We consider some $\sigma \in \F$, and its corresponding $\R_\sigma$. We are interested in the ability to transform many copies of some noisy magic state $\rho$ towards a more pure form of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, so $W_\rho(\x) < 0$ for some regions of $\x \in \P_d$. The state $\sigma$ is assumed to have a Wigner distribution with $W_\sigma(\x) > 0$ for all $\x$ in the phase space\footnote{Any non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$ in the end.}.
 
 The free operations within the magic theory $\R$ are represented by stochastic maps, and within $\R_\sigma$ by stochastic maps that leave $W_\sigma(\x)$ invariant. Therefore, a necessary condition for magic state transformations $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$ will be that 
 \begin{equation}
@@ -303,12 +303,12 @@ for all $x \in [0,1]$, which restricts the transformations that are possible.
 
   Note, however, that this is not a single numerical constraint, but a family of constraints. For $n$ copies of a qudit system of dimension $d$ the number of terms in $W_{\rho}$ is $d^{2n}$, so imposing the Lorenz curve condition corresponds to \emph{exponentially} many constraints. However,  before computing explicit examples, in the next section we highlight how these majorization constraints relate to other known monotones.
 
-\subsection{Basic monotones for magic states in a particular fragment}
+\subsection{Basic monotones for magic distillation for a particular $\R_\sigma$}
 \label{sec:monotones_frag}
 
-In this section, we state some generic aspects of Lorenz curves for magic states. These allow us to interpret previous magic monotones in a new light. The first result gives an extremely simple way to see that the sum-negativity of a magic state is a monotone.
+We state some generic aspects of Lorenz curves for magic states. These allow us to interpret previous magic monotones in a new light. The first result gives an extremely simple way to see that the sum-negativity of a magic state is a monotone.
 
-\begin{lemma} Relative majorization in any fragment implies the monotonicity of sum-negativity. 
+\begin{lemma} Relative majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity. 
 \end{lemma}
 \begin{proof}
 	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) =\frac{1}{2} (\sum_{\x} |W_\rho(\x) | - 1)$.
@@ -321,25 +321,25 @@ for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum
 
 If we have a magic state $\rho$ that has negativity in its Wigner representation, then, as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an simple relation between $L_\star$ and sum-negativity or mana, which is provided by the following result. 
 \begin{theorem}\label{lem:lcmax}
-	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every fragment.
+	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\R_\sigma$ and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every $\R_\sigma$.
 \end{theorem}
-The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is also simple to construct new monotones. For example, within a given fragment, the area above the horizontal line $y = 1$ is another magic monotone.
+The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is also simple to construct new monotones. For example, within a given $\R_\sigma$, the area above the horizontal line $y = 1$ is another magic monotone.
 \begin{lemma}
 Given a magic state $\rho$ and a free state $\sigma$, let $\A_\sigma(\rho)$ be the area of the region $\{(x, y): 1 \leq y \leq L_{\rho | \sigma}(x)\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
 \end{lemma}
 \begin{proof}
 Consider the transformation $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$. We have that $L_{\rho_1|\sigma}(x)$ is never below the curve $L_{\rho_2|\sigma}(x)$, and therefore the region above $L=1$ for $\rho_2$ is a subset of the corresponding region for $\rho_1$. Thus, $\A_\sigma(\rho_1) \geq \A_\sigma(\rho_2)$, so $\A_\sigma$ is a magic monotone in $\R_\sigma$.
 \end{proof}
-Note though, in contrast to mana, the area monotone is \emph{specific to the fragment}, and its value will vary as we change $\sigma$. Therefore its monotonicity is conditioned on the physics of the fragment and so provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant. One can also define an area monotone in the more general setting of relative majorization, where one drops the fixed point emphasis as in Section \ref{sec:stab}, but we do not explore this here.
+Note though, in contrast to mana, the area monotone is \emph{specific to the $\R_\sigma$}, and its value will vary as we change $\sigma$. Therefore its monotonicity depends on the physics of the fixed point and so provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant. One can also define an area monotone in the more general setting of relative majorization, where one drops the fixed point emphasis as in Section \ref{sec:stab}, but we do not explore this here.
 
 \subsection{Magic distillation bounds for unital protocols}
 \label{sec:unital}
 
 
 
-We now construct magic state distillation bounds within the unital fragment ($\sigma = \I/d$). This describes distillation protocols that generate \emph{unital operations}, meaning that $\E(\I/d) = \I/d$, and includes for example all protocols built from Weyl-covariant channels~\cite{cit:gross3}. 
+We now construct magic state distillation bounds for protocols that generate \emph{unital} channels, meaning that $\E(\I/d) = \I/d$, and includes for example all protocols built from Weyl-covariant channels~\cite{cit:gross3}. 
 
-Our approach applies to any dimension, but for simplicity we consider qutrit magic states ($d=3$), for which a canonical magic state exists with a particularly simple Wigner distribution. This is the Strange state $|S\>$, which is given by
+Our approach works for any dimension, but for simplicity we consider qutrit magic states ($d=3$), for which a canonical magic state exists with a particularly simple Wigner distribution. This is the Strange state $|S\>$, which is given by
 \begin{equation}
 |S\> \coloneqq \frac{1}{\sqrt{2}} (|1\> + |2\>),
 \end{equation}
@@ -415,14 +415,12 @@ This figure includes numerical estimates of the optimal majorization bounds $R_{
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
-    \caption{\textbf{Distillation bounds in the unital fragment.} Distillation bounds obtained by the first elbow majorisation constraint $R$, mana $\M$ and max--thauma $\theta_{\rm{max}}$ are plotted for $\epsilon' = 0$, up to error $\epsilon = 3/7$.
-    Majorisation provides stricter rates than the global mana and max--thauma bounds.
-    Numerical bounds $R_{\rm{num}}$ obtained by full Lorenz curve comparison for some Strange state purification processes with even number of copies $m,n \leq 30$ highlight that the first elbow constraint can be improved.
+    \caption{\textbf{Distillation bounds for unital protocols.} Distillation bounds obtained by the first elbow majorisation constraint $R_\infty$, mana and max--thauma $\theta_{\rm{max}}$ are plotted for $\epsilon' = 0$, up to error $\epsilon = 3/7$. Also shown is the bound $R_{10}$ which comes from single-shot entropies, which we discuss in Section~\ref{section:entropies}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of Lorenz curve constraints. Each majorisation constraint provides stricter bounds than the mana and max--thauma bounds for noisy Strange states.
     }
     \label{fig:distill_bounds}
 \end{figure}
 
-In the next section, we loosen the restriction of working in a fixed fragment, and instead use the full structure of relative majorization to obtain bounds that incorporate energetic aspects of a magic state protocol.
+In the next section, we loosen the restriction of working in a fixed $\R_\sigma$, and instead use full relative majorization to obtain bounds that incorporate energetic aspects of a magic state protocol.
 
 \newpage
 \section{Temperature-dependent bounds for magic state distillation protocols}
@@ -581,7 +579,7 @@ In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol,
 \end{figure}
 
 \newpage
-\section{Well-defined \& monotonic  entropies for quasi-distributions}
+\section{Well-defined \& monotonic  entropies for quasi-distributions}\label{section:entropies}
 We have considered Wigner distributions of magic states within a statistical mechanical setting in which it is was argued that magic should be viewed as a non-classical form of free energy. This identification with free energy was done at the level of majorization with respect to stochasticity corresponding to stabilizer operations. In this context non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could be linked to thermodynamic free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
 
 One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution and so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined off of the set $\F$, let alone being a physically meaningful quantity. 
@@ -631,9 +629,9 @@ We also note that the Renyi entropy can be viewed as a $q$--deformation of the S
 	H_{\frac{T}{x}} = \frac{1}{x-T} (F(x) - F(T)),
 \end{equation}
 \nick{Do you mean $H_{\frac{T}{x}}(\w)$? What is $F(x)$ for a number $x$ ?}
-where $F(x)$ is an effective free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions~\cite{arvidsson_2020, halpern_2018}.
+where $F(x)$ is an effective free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions.
 
-Every entropy is best understood as a relative entropy and so we now state the extension to Renyi divergences.
+Every entropy is best understood as a relative entropy~\cite{Gour_2020} and so we now state the extension to Renyi divergences.
 We define the $\alpha$--Renyi Wigner divergence $D_\alpha$ as
 \begin{equation}
 	D_\alpha(\w || \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
@@ -679,7 +677,7 @@ For any $\epsilon$ the upper bound can be numerically minimized over $\alpha$.
     \subfigure[][]{%
     \label{fig:RaDiff}%
     \includegraphics[scale=0.4]{figs/RaDiff_vs_a_eps.pdf}}
-    \caption{$R_\alpha$ and $R_\alpha - R_{\infty}$ for the Strange state distillation in the unital fragment
+    \caption{$R_\alpha$ and $R_\alpha - R_{\infty}$ for the Strange state distillation for unital protocols
     \nick{Can compare thauma and mana for other magic states now more easily}}
     \label{fig:rate_a_contour}
 \end{figure}
@@ -695,7 +693,7 @@ The topic of $G$--majorization has been extensively studied, but to our knowledg
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997}
 \section{Acknowledgements}
-We thank Earl Campbell for insightful discussions and comments. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
+We thank Earl Campbell for helpful discussions and comments. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -967,11 +965,11 @@ Once again, the above result applies on re-scaled Wigner distributions as well.
 \subsection{Results on Lorenz curve constraints}
 \label{app:lc_constraints}
 
-We first prove the following result on the relation between majorization in a particular fragment and mana, which was stated in~\cref{sec:monotones_frag}.
+We first prove the following result on the relation between majorization in a particular sub-theory $\R_\sigma$ and mana, which was stated in~\cref{sec:monotones_frag}.
 \begingroup
 \def\thetheorem{\ref{lem:lcmax}}
 \begin{theorem}
-	Given a magic state $\rho$, the maximum value $L_\star$ attained by the Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\sigma$--fragment and equal to $1+\sn{\rho}$. Moreover, the relative majorization constraint is stronger than mana in every fragment.
+	Given a magic state $\rho$, the maximum value $L_\star$ attained by the Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\R_\sigma$ and equal to $1+\sn{\rho}$. Moreover, the relative majorization constraint is stronger than mana in every $\R_sigma$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
@@ -986,14 +984,14 @@ Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \g
 	\begin{equation}
 		\lc{\rho}{\sigma}(x_{i_\star}) = \sum_{i=1}^{i_\star} w(\rho)_i,
 	\end{equation}
-	and is achieved at $x_{i_\star} \coloneqq \sum_{i=1}^{i_\star} w(\sigma)_i$. The location of this maximum varies from fragment to fragment, but its value is independent of $\sigma$,
+	and is achieved at $x_{i_\star} \coloneqq \sum_{i=1}^{i_\star} w(\sigma)_i$. The location of this maximum varies with $\R_\sigma$, but its value is independent of $\sigma$,
 	\begin{align}
 	L_\star &:=	\lc{\rho}{\sigma}(x_{i_\star}) 
 		= \sum\limits_{\bmx: \W[\bmx]{\rho} \geq 0}\hspace{-5pt} \W[\bmx]{\rho} \nonumber \\
 		&= 1 + \sn{\rho}.
 	\end{align}
 	
-Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{mana}(\rho) \coloneqq \ln \hspace{1pt}(2\hspace{1pt}\sn{\rho}+1)$, we see that mana corresponds precisely to the peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore, mana is one of $d^{2n}$ constraints, so majorization is strictly a stronger constraint in any fragment.
+Since the magic monotone mana is a monotonic function of sum-negativity, $\rm{mana}(\rho) \coloneqq \ln \hspace{1pt}(2\hspace{1pt}\sn{\rho}+1)$, we see that mana corresponds precisely to the peak of the Lorenz curve $L_{\rho|\sigma}(x)$. Therefore, mana is one of $d^{2n}$ constraints, so majorization is strictly a stronger constraint in any $\R_\sigma$.
 \end{proof}
 
 
@@ -1042,7 +1040,7 @@ We denote the sums over an even number $m$ of successful trials by $\Phi_+(m; n,
 	\Phi_-(m; n, p) &\coloneqq \sum\limits_{\ell=1}^{(m-1)/2} \binom{n}{2\ell+1} p^{2\ell+1} (1-p)^{n-(2\ell+1)}, \nonumber\\ 
 	&\text{for odd integers }m\in[0,n]. \label{eq:fn_app}
 \end{align}
-In~\cref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves in the unital fragment.
+In~\cref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves for unital protocols.
 
 We have the Shannon entropy of a $p$--coin and the Shannon relative entropy for a $p$--coin and a $q$--coin given by the expressions
 \begin{align}
@@ -1140,10 +1138,10 @@ which in turn leads to the following bounds on $\Phi_+(m; n, a)$:
 \end{align}
 Better bounds can be obtained with a finer analysis, and it would be of interest to obtain tighter asymptotic behaviour on $\Phi_{\pm}$ that could in turn be used to improve magic distillation bounds.
 
-\subsection{Lorenz curve coordinates in the unital fragment}\label{app:lcsu_coord}
+\subsection{Lorenz curve coordinates for unital protocols}\label{app:lcsu_coord}
 
 The Wigner distribution of the $n$--copy qutrit maximally mixed state $\left(\id/3\right)^{\otimes n}$ is the uniform probability distribution over the phase space, consisting of $9^n$ components equal to $9^{-n}$.
-The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ in the unital fragment consists of some permutation of a single negative component
+The Wigner distribution of the 1-copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)$ for unital protocols consists of some permutation of a single negative component
 \begin{equation}
 	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right),
 \end{equation} 
@@ -1152,10 +1150,10 @@ and $8$ positive components each with value
 	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon.
 \end{equation}
 
-In the unital fragment we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
+For unital protocols we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
 It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
 
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} in the unital fragment, we can associate it with a set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, the elements of which are presented in~\cref{tab:lcsu} for all different combinations of physical parameters $n, \epsilon$.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} for unital protocols, we can associate it with a set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, the elements of which are presented in~\cref{tab:lcsu} for all different combinations of physical parameters $n, \epsilon$.
 We split the values of index $i$ into two intervals, defined precisely as
 \begin{align}
 &\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
@@ -1183,12 +1181,12 @@ The maximum is included in the $\text{LHS}$ interval.
   \label{tab:lcsu}
 \end{table}
 
-In the unital fragment, the rescaled distribution is simply proportional to the Strange state distribution,
+For unital protocols, the rescaled distribution is simply proportional to the Strange state distribution,
 \begin{equation}
 	W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}|\left(\id/3\right)^{\otimes n}} = 9^n W_{\rho_{\rm{S}}(\epsilon)^{\otimes n}},
 \end{equation}
 therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
-As a result, every Strange state Lorenz curve in the unital fragment contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.
+As a result, every Strange state Lorenz curve for a unital protocol contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.
 Including the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, we label these elbows as 
 \begin{equation*}
 \{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
@@ -1204,7 +1202,7 @@ The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinat
 \end{align}
 %\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
-In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve in the unital fragment for any combination of physical parameters $n, \epsilon$.
+In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve for a unital protocol for any combination of physical parameters $n, \epsilon$.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
@@ -1221,7 +1219,7 @@ In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-co
     & \multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ odd}}} & LHS & $\Phi_+\left(2i;n,\frac{1}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\
     & & RHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\ \hline
   \end{tabular}
-  \caption{Strange state Lorenz curve elbow coordinates in the unital fragment, with $0 \leq i \leq n$. 
+  \caption{Strange state Lorenz curve elbow coordinates for a unital protocol, with $0 \leq i \leq n$. 
   For the LHS cases, the $i$ in the first column labels the elbow coordinate $x_i$ and the second column gives $L_i=L(x_i)$. For RHS cases, the $i$ in the first column labels $x_i - x_{\lfloor n/2 \rfloor}$ and the second column gives $L_i - L_{\lfloor n/2 \rfloor}$.
   The coordinate expressions depend on the error $\epsilon$, the parity of the number of copies $n$ and the location of the elbow relative to the maximum (LHS or RHS).
   The term $2i$ is considered $\hspace{-6pt}\mod{\hspace{-2pt}(n+1)}$, so that $2i\ \hspace{-6pt}\mod{\hspace{-2pt}(n+1)} = 2i - n - 1$ if $i > \left\lfloor n/2 \right\rfloor$.
@@ -1327,7 +1325,7 @@ Therefore, we have that
 where $\x = \oplus_{i=1}^n \x_i \in \mathbb{Z}_3^{2n}$ is the phase space point for the full system in terms of those of the individual subsystems.
 
 The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\x)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\x))$ where $\pi$ is the permutation that realises the sorting. 
-However, similar to the unital fragment analysis, we use the slope constraint (\cref{prop:first_elb}) obtained by considering the line segments connecting the origin to the first elbow of both Lorenz curves.
+However, similar to the unital protocol analysis, we use the slope constraint (\cref{prop:first_elb}) obtained by considering the line segments connecting the origin to the first elbow of both Lorenz curves.
 
 The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(\mathbf{0}) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmx) = u(\epsilon)$ for $\bmx \neq \bmo$.
 The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmx) > 0$ for all $\bmx \in \mathbb{Z}_3^2$.
@@ -1591,7 +1589,7 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 
 In this section, we develop the tools that allow the use of entropic functions on quasi-probabilities to retrieve magic distillation bounds.
 
-\subsection{Renyi min-divergence from initial slope}
+\subsection{Renyi min-divergence from Lorenz curves}
 We first demonstrate that the initial slope analysis on the Wigner quasi-distributions makes use of the min-relative divergence. We define 
 \begin{equation}
 	D_\infty(W_\rho || W_\tau) := \log  \max_{\x} \frac{W_\rho(\x)}{W_\tau(\x)},
@@ -1665,13 +1663,12 @@ where $d$ is the dimension of $\rho$.
 For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
 \begin{align}
 	&H_{\alpha}\left(W_{\rho_{\rm{S}}(\epsilon)}\right) = \frac{1}{1-\alpha}\log \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right] \nonumber\\
-	&\ddd{= \frac{\alpha}{\alpha-1}\log 18+ \frac{1}{1-\alpha}\log \left[ 8(3-\epsilon)^\alpha + (6-8\epsilon)^\alpha \right]}
 \end{align}
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figs/test/H_vs_eps_a.pdf}
-    \caption{\ddd{[TO DO: Set $\epsilon = 0$ and determine region of $\alpha$ such that $H <0$.]} Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ has a unique solution, which is the \nick{probably irrational} solution of $3^\alpha - 2^{3-\alpha} = 1$.
+    \caption{Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ that implies $6^\alpha - 2^{\alpha} = 8$, with the approximate solution $\alpha \approx 1.31$.
     }
     \label{fig:H}
 \end{figure}
