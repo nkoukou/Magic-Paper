@@ -40,31 +40,11 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
+The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-\nick{REFs not already cited and that I think are relevant:}
-\begin{enumerate}
-	\item ``Excluding joint probabilities from quantum theory''~\cite{Allahverdyan_2018}
-	\item ``Quantum computation with realistic magic-state factories''~\cite{Ogorman_2017}
-	\item ``Magic-State Distillation in All Prime Dimensions Using Quantum Reed-Muller Codes''~\cite{CampbellAnwar_2012}
-	\item ``Resource optimized quantum architectures for surface code implementations of magic-state distillation''~\cite{holmes_resource_2019}
-	\item ``Quantum advantage in postselected metrology''~\cite{arvidsson_2020}
-	\item ``Quasiprobability behind the out-of-time-ordered correlator''~\cite{halpern_2018}
-	\item ``Quantum Fluctuation Theorems, Contextuality, and Work Quasiprobabilities''~\cite{Lostaglio_2018}
-	\item ``Quasiprobability Distribution for Heat Fluctuations in the Quantum Regime''~\cite{Levy_2020}
-	\item ``A One-Way Quantum Computer''~\cite{cit:raussendorf}
-	\item ``Measurement-based quantum computation on cluster states''~\cite{Raussendorf_2013}
-	\item ``Contextuality as a Resource for Models of Quantum Computation with Qubits''~\cite{Vega_2017}
-	\item ``On the extremal points of the $\Lambda$-polytopes and classical simulation of quantum computation with magic states''~\cite{okay2021extremal}
-\end{enumerate}
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{Anwar_2012, CampbellAnwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, okay2021extremal}.
 
-
-
-The past few years have seen rapid progress towards the goal of a fault-tolerant quantum computer~\cite{Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy and so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates. A central question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
-
-To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Hastings2018, Litinski_2019, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021}.
-  
-  
-Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
+Recent work towards fault-tolerance has begun to bridge the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{holmes_resource_2019, Kandala_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
 In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated.  Distillation bounds are obtained by considering how a given magic state protocol would behave if it were instead applied to a \emph{stabilizer} state that is distinguished by the physics of the system -- for example an equilibrium state at a characteristic temperature, or the maximally mixed state. The magic distillation bounds can then be expressed in terms of this distinguished degrees of freedom (e.g. free energy changes in the case of temperature, or non-unitality in the case of the maximally mixed state). Such bounds are therefore of interest in assessing how physical features such as temperature, noise-biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols, and so are of relevance to existing work towards fault-tolerant quantum computing~\cite{Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Tuckett_2019, Guillaud_2019, Fowler_2019}. 
 
@@ -72,7 +52,7 @@ The approach we take is most closely aligned with resource theories of magic, ho
 
 Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool in thermodynamics and information theory -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is also of interest to the study of non-classicality in quantum systems.
 
-Through this approach we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamic ordering in the presence of negativity is non-trivial and displays a range of features that, unsurprisingly, do not appear in classical statistical mechanics. 
+Through this approach, we obtain a range of upper bounds for magic distillation rates. We provide explicit bounds for magic protocols that generate unital channels, as well as bounds that depend on the temperature and Hamiltonian of the system. We find that the thermodynamic ordering in the presence of negativity is non-trivial and displays a range of features that, unsurprisingly, do not appear in classical statistical mechanics. 
 Finally, we discuss how our approach could be improved and how it can be exploited to construct explicit lower bounds on distillation that take into account physical structure.
 
 \begin{figure}[t]
@@ -207,7 +187,7 @@ It turns out that relative majorization is equally applicable to \emph{quasi-pro
 \subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
 \label{sec:lc}
 
-Our analysis applies majorization to magic states at the level of the associated Wigner distributions. However, these are in general quasi-probability distributions, so it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions \nick{CITE}.
+Our analysis applies majorization to magic states at the level of the associated Wigner distributions. However, these are in general quasi-probability distributions, so it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions.
 
 Central to the analysis is the notion of a Lorenz curve of a vector $\w \in \mathbb{R}^n$ relative to some other vector $\r \in \mathbb{R}^n$. Given a vector $\w$ we define $\w^\downarrow$ to be the re-arrangement of the components of $\w$ into decreasing order. Given two $n$--component vectors $\w$ and $\r$, we first define $\widetilde{\w}$, where $\widetilde{w}_i \coloneqq w_i/r_i$, as the vector of component-wise ratios between $\w$ and $\r$.
 We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
@@ -609,14 +589,14 @@ D_\infty (\p ||\r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
 This does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning.
 
-This motivates defining the following \emph{Wigner divergence} $D_\infty(\rho, \tau) := D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In~\cref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
+This motivates defining the following \emph{Wigner divergence} $D_\infty (W_\rho(\x) || W_\tau (\x))$ on all quantum states. In~\cref{app:lcst_technical}, we show that this divergence has the following natural properties that are derived via relative majorization.
 \begin{theorem}\label{thm:Dinfty} 
 	Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\infty(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\infty(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
 \item $D_\infty(W_{\rho^{\otimes 2n}}|| W_{\tau^{\otimes 2n}}) = n D_\infty(W_{\rho^{\otimes 2}} ||W_{\tau^{\otimes 2}})$ for any $n \in \mathbb{N}$.
-\item For any quantum state $\rho$, and any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$, we have $D_\infty (W_\rho || W_\tau) \ge D_\infty (W_{\E(\rho)}|| W_{\E(\tau)})$.
+\item $D_\infty(W_\rho || W_\tau) \geq D_\infty(W_{\E(\rho)} || W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
 \end{enumerate}
 \end{theorem}
 
@@ -645,19 +625,19 @@ We also note that the Renyi entropy can be viewed as a $q$--deformation of the S
 	H_{\frac{T}{x}} = \frac{1}{x-T} (F(x) - F(T)),
 \end{equation}
 \nick{Do you mean $H_{\frac{T}{x}}(\w)$? What is $F(x)$ for a number $x$ ?}
-where $F(x)$ is an effective free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions.
+where $F(x)$ is an effective free energy at temperature $x$. If we attempt to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of this effective free energy as $x \rightarrow T$. One might speculate if the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition. However since variation in $\alpha$ is no longer smooth ($\alpha$ is restricted to a dense set of rational values) technical obstacles exist and we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions~\cite{Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020} \nick{I don't understand this statement, so I just dropped all citations on quasi-distributions here}.
 
 Every entropy is best understood as a relative entropy~\cite{Gour_2020} and so we now state the extension to Renyi divergences.
-We define the $\alpha$--Renyi Wigner divergence $D_\alpha$ as
+We define the $\alpha$--Renyi Wigner divergence $D_\alpha(\p||\r)$ as
 \begin{equation}
-	D_\alpha(\w || \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
+	D_\alpha(\p || \r) := \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
 \end{equation}
-where $\w$ can be a quasi-distribution, $\r$ a probability distribution with positive components and $\alpha$ can take the same values as for $H_\alpha$.
+where $\p$ can be a quasi-distribution, $\r$ a probability distribution with positive components and $\alpha$ can take the same values as for $H_\alpha$.
 In~\cref{app:lcst_technical}, we also show that the divergence satisfies the following natural properties for all $\alpha$ for which it is well-defined.
 
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be in the interior of $\F$. 
-	If $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$, then the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(W_\rho || W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\alpha(W_\rho || W_\tau) = 0$ if and only if $\rho =\tau$.
