@@ -401,7 +401,7 @@ We compare this to other known distillation bounds coming from mana and thauma~\
 \end{equation}
 The recently introduced max--thauma~\cite{Wang_2020} is defined as
 \begin{equation}
-	\theta_{\rm{max}}(\rho) \coloneqq \log{\min{\{2\hspace{1pt}\sn{V}+1 : V \geq \rho\}}}
+	\theta_{\rm{max}}(\rho) \coloneqq \log \min{\{2\hspace{1pt}\sn{V}+1 : V \geq \rho\}}
 \end{equation}
 and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound $R_\infty$ as shown in~\cref{fig:distill_bounds}. 
 
@@ -438,7 +438,7 @@ The case of non-trivial correlations in the thermodynamic limit can also be cons
 Our bound depends on the von Neumann entropy $S(\rho)$ of a state, and the free energy at a particular temperature.
 For a state $\tau = e^{-\beta H}/\Z$, the Helmholtz free energy $F$ is given by
 \begin{equation}
-	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log{\Z},
+	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log \Z,
 \end{equation}
 which is obtained from the internal energy via a Legendre transform~\cite{Pathria_1997}.
 
@@ -730,11 +730,11 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
     \label{thm:wchannel}
     The Wigner distribution of a quantum channel $\E: \cal{B}(\cal{H}_{d_A}) \rightarrow \cal{B}(\cal{H}_{d_B})$ is
     \begin{enumerate}
-        \item[(i)]\label{en:wo1} Real-valued: $\W{\E}(\z|\y) \in \mathbb{R}^{d_A^2} \times \mathbb{R}^{d_B^2}$;
+        \item[(i)]\label{en:wo1} Real-valued: $\W{\E}(\bmz|\bmy) \in \mathbb{R}^{d_A^2} \times \mathbb{R}^{d_B^2}$;
         \item[(ii)]\label{en:wo2} Normalised: $\sum_{\bmy \in \cal{P}_{d_B}} \W[\bmz|\bmy]{\E} = 1$ \\ 
         for any $\bmz \in \cal{P}_{d_A}$;
-        \item[(iii)]\label{en:wo3} Bounded: $\abs{\W[\bmy|\bmz]{\E}} \leq \frac{d_A}{d_B}$;
-	    \item[(iv)]\label{en:wo4} $\W[\bmy]{\E(\rho)} = \sum\limits_{\bmz \in \cal{P}_{d_{A}}} \W[\bmy|\bmz]{\E} \W[\bmz]{\rho}$ for any $\bmy \in \cal{P}_{d_B}$.
+        \item[(iii)]\label{en:wo3} Bounded: $\abs{\W[\bmz|\bmy]{\E}} \leq \frac{d_A}{d_B}$;
+	    \item[(iv)]\label{en:wo4} $\W[\bmz]{\E(\rho)} = \sum\limits_{\bmy \in \cal{P}_{d_{A}}} \W[\bmz|\bmy]{\E} \W[\bmy]{\rho}$ for any $\bmz \in \cal{P}_{d_B}$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -855,7 +855,7 @@ Finally, $B$ maps the embedded distributions as follows,
 
 Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A := \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
 \end{proof}
-We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, do not consider technical fine-print that would not affect actual physical measurements, which always have a finite resolution.
+We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, and do not consider further technicalities that have no impact on actual physical measurements, which always have a finite resolution.
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
 
