@@ -19,7 +19,7 @@ reprint
 
 \begin{abstract}
 Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
-Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits for odd prime qudits. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can incorporate hardware physics, such as temperature dependence and physical Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We show that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits for qudits of odd prime dimension. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can incorporate hardware physics, such as temperature dependence and physical Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We find that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
@@ -304,7 +304,7 @@ for all $x \in [0,1]$, which restricts the transformations that are possible.
 
 We state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones in a new light. The first result gives an extremely simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
 
-\begin{theorem} Majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity. 
+\begin{theorem} Majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity/mana. 
 \end{theorem}
 \begin{proof}
 	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) =\frac{1}{2} (\sum_{\bmz} |W_\rho(\bmz) | - 1)$.
@@ -315,7 +315,7 @@ We make use of the $L_1$-norm form of relative majorization, (see~\cref{app:majo
 for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distributions of two quantum states immediately gives the result.
 \end{proof}
 
-If we have a magic state $\rho$ that has negativity in its Wigner representation, then, as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an simple relation between $L_\star$ and sum-negativity or mana, which is provided by the following result. 
+If we have a magic state $\rho$ that has negativity in its Wigner representation, then, as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an simple relation between $L_\star$ and sum-negativity/mana, which is provided by the following result. 
 \begin{theorem}\label{lem:lcmax}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\R_\sigma$ and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every $\R_\sigma$.
 \end{theorem}
@@ -584,40 +584,41 @@ We can go further, and show that in fact a range of R\'{e}nyi entropies remain b
 \begin{equation}
 	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
-To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under stabilizer/free operations. In the Appendices we show the following.
+To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under the majorization pre-order. In Appendix~\ref{app:single-shot} we prove the following.
 \begin{theorem}\label{thm:HSchur} 
-	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
-This monotonicity provides a meaningful extension of entropies to quasi-distributions, and the allowed values of $\alpha$ are dense in $\alpha >1$. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
+This monotonicity provides a meaningful extension of entropies to quasi-distributions. The unusual form of the $\alpha$ parameter is required so that the entropy function is well-defined and real-valued for all $\w$. The allowed values of $\alpha$ are dense in $\alpha >1$, however, while R\'{e}nyi entropies on probabilities can also be used for $0 < \alpha <1$ it turns out that for quasi-probability distributions this parameter regime is no longer monotonic in terms of the majorization pre-order (see Appendix~\ref{app:single-shot} for details).
+
+We can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
 \begin{theorem}\label{thm:Magic}
-	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
 
-The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however the R\'{e}nyi entropy description shows that this diverges in a well-defined way. We can write the divergence of the entropy as 
+The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however it diverges in a well-defined way. We can write the divergence of the entropy as 
 \begin{equation}
 	H_{1+\epsilon}(W_\rho) = -\epsilon^{-1} \log \sum_{\bmz} |W_\rho (\bmz)|^{1+\epsilon}
 \end{equation} 
 with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We now recall that mana can be written as $\M(\rho) = \log \sum_{\bmz} |W_\rho(\bmz)|$, and so we obtain a second new description of mana:
 \begin{equation}\label{eq:mana-divergence}
-\M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1-\epsilon}(W_\rho).
+\M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1+\epsilon}(W_\rho).
 \end{equation}
 Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the R\'{e}nyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
-We note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. We can therefore speculate whether the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition [\ddd{cite}]. However we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions [\ddd{cite}].
+We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of zeroth-order phase transitions [\ddd{cite}].
 
 \subsection{R\'{e}nyi divergences and general distillation bounds}
 Every entropy can be obtained from a relative entropy~\cite{Gour_2020} and so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
-The $\alpha$--R\'{e}nyi divergence $D_\alpha(\p||\r)$ is defined as
+The $\alpha$--R\'{e}nyi divergence $D_\alpha(\w||\r)$ is defined as
 \begin{equation}
-	D_\alpha(\p \hspace{1pt}||\hspace{1pt} \r) := \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
+	D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
 \end{equation}
-where $\p$ can be a quasi-distribution, $\r$ a probability distribution with positive components and $\alpha$ can take the same values as for $H_\alpha$.
-In~\cref{app:lcst_technical}, we also show that the divergence satisfies the following.
+where $\w$ can be a quasi-distribution, $\r$ a probability distribution with positive components. In~\cref{app:single-shot}, we also show that the divergence satisfies the following.
 
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be in the interior of $\F$. 
-	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all quantum states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) = 0$ if and only if $\rho =\tau$.
@@ -626,27 +627,38 @@ In~\cref{app:lcst_technical}, we also show that the divergence satisfies the fol
 \end{enumerate}
 \end{theorem}
 
-We can now apply this to obtain magic distillation bounds that describe Wigner negativity directly as a form of non-classical free energy.
-\begin{theorem}\label{thm:entropic_bounds} 
-	Consider a magic state distillation protocol that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$, which when applied to a reference stabilizer state $\tau^{\otimes n}$ results in $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$.
-	
-	We have the following family of upper bounds on the magic distillation rate $R := m/n$,
+We can now apply this to obtain a family of magic distillation bounds based on R\'{e}nyi divergences.
+\begin{theorem}
+	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) - \log \Z$ is the $\alpha$--free energy of the Wigner distribution. \ddd{[$\Z$ needs discussion]}
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and with the regularized divergence
+	\begin{equation}
+D^{\rm reg}_\alpha( \rho', \tau') = \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
+\end{equation}
+between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
-\ddd{[Perhaps remove free energy form...and allow $\frac{1}{m} D_\alpha(\rho'_m|| \tau'_m)$ general term with no assumption on correlations. ]}
+The proof is given in Appendix~\ref{app:single-shot}. 
 
-For magic protocols that give unital maps, the above bound reduces to the simpler form
+While this bound is abstract in its present form, it does suggest future applications by viewing $D^{\rm reg}_\alpha( \rho', \tau')$ within the context of hypothesis testing, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
+However in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
+
+If correlations in $\tau'_m$ between subsystems can be neglected then we simply get
 \begin{equation}
-	R \leq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
+D^{\rm reg}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} || W_{\tau'}),
+\end{equation}
+which gives a generalized version of Theorem \ref{thm:free-energy}.
+
+We can illustrate a simple application of the above bound for magic protocols that give unital maps. In this case it is easy to see that the above bound reduces to the simple form
+\begin{equation}
+	R \leq R_\alpha=\frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
 \end{equation}
 In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$, this bound becomes
 \begin{equation}
-	R \leq \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
+	R \leq R_\alpha=\frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
-The upper bound can be numerically minimized over $\alpha$, for any $\epsilon$.
+This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Figure~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
 %
 %\begin{figure}[t!]
 %    \centering
@@ -1571,7 +1583,7 @@ There are four combinations of coordinates, depending on the noise parameters $\
 In each of these combinations, we simply use the first elbow constraint, as described in~\cref{prop:first_elb}, and manipulate the coordinates as in the proof of~\cref{thm:free-energy}, leading to the bounds in the statement of the theorem.
 \end{proof}
 
-\section{Single-shot entropies on quasi-distributions and magic distillation bounds}
+\section{Single-shot entropies on quasi-distributions and magic distillation bounds}\label{app:single-shot}
 
 In this section, we analyse R\'{e}nyi entropies on quasi-probabilities and use them to get magic distillation bounds.
 
@@ -1679,13 +1691,13 @@ The exponent function $x \mapsto x^\alpha$ is well-defined and real-valued if $\
 \end{equation}
 
 
-We next show that $H_\alpha (\w)$ for $\alpha = 2a/(2b-1)$ is a Schur-concave function on $\mathcal{Q}_N$.
+We next show that $H_\alpha (\w)$ for $\alpha = 2a/(2b-1)$ is a Schur-concave function on $\mathcal{Q}_N$ provided that $a \ge b$.
 
 
 \begingroup
 \def\thetheorem{\ref{thm:HSchur}}
 \begin{theorem}
-	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\mathcal{Q}_N$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'\in \mathcal{Q}_N$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions $\mathcal{Q}_N$, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'\in \mathcal{Q}_N$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
@@ -1727,19 +1739,19 @@ Therefore, $H_\alpha$ is Schur-concave on $\mathcal{Q}_N$ and
 \end{equation}
 for any quasi-distributions $\w, \w' \in \mathcal{Q}_N$ that obey $\w \succ \w'$.
 \end{proof}
-We note that if $\alpha =a/b$ with both $a$ and $b$ odd, then $H_\alpha$ is not well-defined for all quasi-probabilities, however if the actual set of quasi-distributions has a sufficiently bounded negativity, then $\log \sum_{\bmz} W_\rho(\bmz)^\alpha$ can still be obtained for $a$ odd, provided the sum is never negative.
+While we have integers $a,b$ such that $0 < \alpha=\frac{2a}{2b-1} < 1$ and $H_\alpha(\w)$ is well-defined, it turns out that monotonicity does not hold if we drop the condition $a \ge b$. If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $g(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ is no longer monotonic for all $w \in \mathbb{R}$, and the problem occurs when comparing $w_i < 0$ and $w_j >0$. For example the function $g(x) = \frac{1}{x^3}$ is monotone decreasing on $x<0$ and $x>0$ separately, however it is not monotone on the full real-line.
 
-If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $f(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ is not monotonic. For example, if $\alpha = 2/3$, then $f(-2/6) = -4.33$, $f(-1/6) = -5.45$ and $f(+2/6) = +4.33$.. \ddd{[Needs edits]}
+We note that if $\alpha =r/s$ with both $r$ and $s$ odd, then $H_\alpha$ is not well-defined for all quasi-probabilities, however if the actual set of quasi-distributions has a sufficiently bounded levels negativity, then $\log \sum_{\bmz} W_\rho(\bmz)^\alpha$ can still be obtained for $r$ odd, provided the total sum is never negative. This occurs for Wigner distributions, where we have $|W_\rho(\z)| \ge 1/d$ for a $d$--dimensional quantum system.
 
-  Finally, we note that the set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$
+We also note that the set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$.
 
-We also have that $H_{\alpha}$ is additive on products of quasi-distributions. 
+We have that $H_{\alpha}$ is additive on products of quasi-distributions., which we state for completeness.
 \begin{lemma}\label{H_add}
 	For any $\w \in \mathcal{Q}_N$ and $\w' \in \mathcal{Q}_{N'}$, we have
 	\begin{equation}
 		H_{\alpha}(\w\otimes \w') = H_{\alpha}(\w) + H_{\alpha}(\w'),
 	\end{equation}
-	where $\alpha = 2a/(2b-1)$ with integers $a\ge b$.
+	where $\alpha = 2a/(2b-1)$ with positive integers $a\ge b$.
 \end{lemma}
 \begin{proof}
 	\begin{align*}
@@ -1791,26 +1803,21 @@ Since $\frac{1}{1-\alpha_n} <0$ for any $n$ it follows that $H_{\alpha_n} (W_\rh
 Therefore Wigner negativity coincides with negativity of a R\'{e}nyi entropy.
 
 \subsection{R\'{e}nyi divergences on quasi-distributions}
-Now we define the classical $\alpha$-R\'{e}nyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
+We now define the $\alpha$-R\'{e}nyi divergence for a quasi-distribution $\w \in \mathcal{Q}_N$ relative to a full-rank probability distribution $\r\in \mathcal{Q}_N^+$ as
 \begin{equation}
-	D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) := \frac{1}{\alpha - 1} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha W_{\tau}(\bmz)^{1-\alpha},
+	D_\alpha(\w||\r) := \frac{1}{\alpha - 1} \log \sum_{i} w_i^\alpha r_i^{1-\alpha},
 \end{equation}
-where $\alpha$ can take values of the form $2a/(2b+1)$ \ddd{[2b+1 or 2b-1??]}, for non-negative integers $a,b$ to ensure once again that the argument of the logarithm is positive.
-
-We can connect the $\alpha$-R\'{e}nyi entropy and divergence for quasi-distributions via the following result.
-
+where $\alpha=2a/(2b-1)$ for positive integers $a \ge b$. We now have the following result that relates the R\'{e}nyi divergence to the R\'{e}nyi entropy on a dense subset of probability distributions.
 \begin{theorem}\label{thm:H2D}
-	Let $\w\in \mathcal{Q}_N$ be a quasi-distribution and $\r \in \mathbb{R}^N$ a probability distribution with positive rational entries given by $r_i = a_i/K$ for positive integers $a_i$ and $K = \sum_{i=1}^N a_i$.
+	Let $\w\in \mathcal{Q}_N$ be a quasi-distribution and $\r \in \mathcal{Q}_N^+$ a probability distribution with positive rational entries given by $r_i = a_i/K$ for positive integers $a_i$ and $K = \sum_{i=1}^N a_i$.
 	Then,
 	\begin{equation}
 		H_\alpha(\Gamma_{\bma}(\w)) = K - D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r),
 	\end{equation}
-	where $\alpha = 2a / (2b+1)$ for non-negative integers $a,b$ such that $H_\alpha(\bmz)$ is well-defined for all $\bmz$.
+	where $\alpha = 2a / (2b-1)$ for positive integers $a \ge b$.
 \end{theorem}
 \begin{proof}
-	For the given form of $\alpha$ and positive $r_i,\ i=1,\dots,N$, $D_\alpha(\bmz \hspace{1pt}||\hspace{1pt} \r)$ is well-defined for all $\bmz$.
-
-	The expression follows from the definition of $\Gamma_{\bma}$ which gives
+	For the given form of $\alpha$ and positive $r_i,\ i=1,\dots,N$, $D_\alpha(\w || \r)$ is well-defined for all $\w$. From the definition of $\Gamma_{\bma}$ we have
 	\begin{equation}
 		\Gamma_{\bma}(\w) = \bigoplus_{i=1}^N w_i (1/a_i, 1/a_i, \dots, 1/a_i).
 	\end{equation}
@@ -1823,8 +1830,7 @@ We can connect the $\alpha$-R\'{e}nyi entropy and divergence for quasi-distribut
 		&= K - D_\alpha(\w ||\r).
 	\end{align}
 \end{proof}
-
-We now establish monotonicity for R\'{e}nyi relative divergences.
+With this we now establish monotonicity for R\'{e}nyi relative divergences.
 \begin{theorem}\label{thm:DSchur}
 	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$. 
 	Then, $D_\alpha$ is Schur-convex, i.e. $D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) \geq D_\alpha(\w' \hspace{1pt}||\hspace{1pt} \r')$, whenever $(\w, \r) \succ (\w', \r')$.
@@ -1840,11 +1846,11 @@ We now establish monotonicity for R\'{e}nyi relative divergences.
 		D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) \geq D_\alpha(\w' \hspace{1pt}||\hspace{1pt} \r').
 	\end{equation}
 \end{proof}
-
+We now specialise to Wigner distributions of quantum states, and quantum operations that map the set of free states $\F$ into itself.
 \begingroup
 \def\thetheorem{\ref{thm:Da_props}}
 \begin{theorem}
-	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
+	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for positive integers $a,b$ with $a \geq b$.
 Then, the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
@@ -1857,16 +1863,16 @@ Then, the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho \hspace{1pt}||\hspace{1
 \endgroup
 \begin{proof}
 	Since $\tau$ is in the interior of $\F$, its Wigner function obeys $W_\tau(\bmz) >0$ for all points $\bmz$ in the phase space. 
-In general, $W_\rho(\bmz)$ is a quasi-distribution, but the given form of $\alpha$ ensures that $W_{\rho}(\bmz)^\alpha \geq 0$. 
-Therefore $D_\alpha (W_\rho || W_\tau)$ is always well-defined.
+In general, $W_\rho(\bmz)$ is a quasi-distribution, but for $\alpha = 2a/2b-1$ we that $W_{\rho}(\bmz)^\alpha \geq 0$. 
+Therefore $D_\alpha (W_\rho || W_\tau)$ is always well-defined and real-valued.
 
-1. $D_\alpha$ is Schur-convex and every pair $(W_{\rho}, W_{\tau})$ majorizes $(W_{\rho'}, W_{\rho'})$, so
+1. $D_\alpha$ is Schur-convex and every pair $(W_{\rho}, W_{\tau})$ majorizes the pair $(W_{\I/d}, W_{\I/d})$, so
 \begin{align}
-	D_\alpha(W_{\rho} \hspace{1pt}||\hspace{1pt} W_{\tau}) \geq D_\alpha(W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\rho'}) &= \nonumber\\
-	\frac{1}{\alpha-1} \log \sum_{\bmz} W_{\rho'}(\bmz) &= 0.
+	D_\alpha(W_{\rho} \hspace{1pt}||\hspace{1pt} W_{\tau}) \geq D_\alpha(W_{\I/d} \hspace{1pt}||\hspace{1pt} W_{\I/d}) &= \nonumber\\
+	\frac{1}{\alpha-1} \log \sum_{\bmz} W_{\I/d}(\bmz) &= 0.
 \end{align}
 
-2. In the inequality of property 1, equality holds iff $L_{\rho|\tau}(x) = L_{\rho'|\rho'}(x) = L_{\tau|\tau}(x)$ for all $x$ due to~\cref{prop:rmajor} which holds iff $\rho = \tau$.
+2. In the inequality of property 1, equality holds iff $L_{\rho|\tau}(x) = L_{\I/d|\I/d}(x) = L_{\tau|\tau}(x)$ for all $x\in [0,1]$ due to~\cref{prop:rmajor} which in turn holds iff $\rho = \tau$.
 
 3. This property follows from the multiplicativity of the Wigner distribution.
 In particular,
@@ -1879,7 +1885,7 @@ In particular,
 	&= n D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau).
 \end{align}
 
-4. This follows immediately from the Schur-convexity of $D_\alpha$.
+4. This follows immediately from the fact that $(W_\rho, W_\tau) \succ (W_{\E(\rho)}, W_{\E(\tau)})$ for any free quantum channel $\E$ that sends $\tau$ into the interior of $\F$, and the Schur-convexity of $D_\alpha$.
 \end{proof}
 
 We are now in a position to derive general magic state distillation bounds.
@@ -1887,13 +1893,15 @@ We are now in a position to derive general magic state distillation bounds.
 \begingroup
 \def\thetheorem{\ref{thm:entropic_bounds}}
 \begin{theorem}
-	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \rho'^{\otimes m}$ as well as an equilibrium state $\tau^{\otimes n} \longrightarrow \tau'^{\otimes m}$
-	
-	We have the following family of upper bounds on the distillation rate $R := n'/n$,
+	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D_{\alpha}(W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'})} = \frac{F_\alpha(W_\rho) - F_\alpha(W_\tau)}{F_\alpha(W_{\rho'}) - F_\alpha(W_{\tau'})},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and $\beta F_\alpha(W_\rho) := D_\alpha (W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) - \log \Z$ is the $\alpha$--free energy. 
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ with the regularized divergence
+	\begin{equation}
+D^{\rm reg}_\alpha( \rho', \tau') = \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
+\end{equation}
+between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
@@ -1902,20 +1910,19 @@ We are now in a position to derive general magic state distillation bounds.
 	
 Due to the action of the magic protocol channel, we get
 \begin{equation}	
-	D_\alpha(W_{\rho^{\otimes n}} \hspace{1pt}||\hspace{1pt} W_{\tau^{\otimes n}}) \geq D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'^{\otimes m}}).\vspace{10pt}
+	D_\alpha(W_{\rho^{\otimes n}} \hspace{1pt}||\hspace{1pt} W_{\tau^{\otimes n}}) \geq D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}).\vspace{10pt}
 \end{equation}
 
-We can use the additive property to rewrite this as
+We can use the additivity to rewrite this as
 \begin{equation}
-	n D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \geq m D_\alpha(W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'}).
+	n D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \geq m \frac{1}{m}D_\alpha(W_{\rho'_m} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}).
 \end{equation}
 
-Since $\rho' \neq \tau'$, we have $D_\alpha(W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'}) > 0$, which directly leads to the bound
+Since $\rho'^{\otimes m} \neq \tau'_m$, we have $D_\alpha(W_{\rho'_m} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}) > 0$, which directly leads to the bound
 \begin{equation}
-	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D_{\alpha}(W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'})}.
+	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')}.
 \end{equation}
 \end{proof}
-\ddd{[Add in general divergence without product form]}
 
 \end{document}
 
