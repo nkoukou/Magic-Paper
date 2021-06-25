@@ -19,7 +19,7 @@ reprint
 
 \begin{abstract}
 Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
-Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can incorporate hardware physics, such as temperature dependence and physical Hamiltonians. We also show that a subset of single-shot Renyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We show that the mana of a magic state is the measure of divergence of these Renyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits for odd prime qudits. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can incorporate hardware physics, such as temperature dependence and physical Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We show that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
@@ -73,7 +73,7 @@ We find that the analysis in the presence of negativity is non-trivial, displays
 \end{figure}
 
 
-We show that the mana of a quantum state also arises as a residue in the $\alpha$--parameter for Renyi entropies, and gives the rate of divergence to $-\infty$ as we approach the Shannon entropy of a Wigner distribution (Equation (\ref{eq:mana-divergence})).
+We show that the mana of a quantum state also arises as a residue in the $\alpha$--parameter for R\'{e}nyi entropies, and gives the rate of divergence to $-\infty$ as we approach the Shannon entropy of a Wigner distribution (Equation (\ref{eq:mana-divergence})).
 Finally, in Section~\ref{sec:lower_bounds} we discuss how our approach could be extended and how it can be exploited to construct explicit lower bounds on distillation that take into account physical constraints.
 
 \section{Phase space representations of quantum states}
@@ -564,7 +564,7 @@ One obstacle to linking with macroscopic, equilibrium free energy is that the Wi
 
 
  
-However, it turns out that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot Renyi divergence $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
+However, it turns out that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
 \begin{equation}
 	D_\infty (\p \hspace{1pt}||\hspace{1pt} \r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
@@ -580,7 +580,7 @@ It is clear that this does remain well-defined on quasi-distributions, and from 
 \end{theorem}
 The reason for the power of $2$ in the third property is that the maximization is sensitive to the presence of negativity in the Wigner distribution.
 
-We can go further, and show that in fact a range of Renyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--Renyi entropy $H_\alpha(\p)$ is defined as
+We can go further, and show that in fact a range of R\'{e}nyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--R\'{e}nyi entropy $H_\alpha(\p)$ is defined as
 \begin{equation}
 	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
@@ -588,13 +588,13 @@ To extend to quasi-distributions we must ensure the following: (a) the entropy i
 \begin{theorem}\label{thm:HSchur} 
 	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
-This monotonicity provides a meaningful extension of entropies to quasi-distributions, and the allowed values of $\alpha$ are dense in $\alpha >1$. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative Renyi entropy.
+This monotonicity provides a meaningful extension of entropies to quasi-distributions, and the allowed values of $\alpha$ are dense in $\alpha >1$. Moreover we can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
 \begin{theorem}\label{thm:Magic}
 	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
 
-The $\alpha \rightarrow 1$ limit of the Renyi entropy is not well-defined, however the Renyi entropy description shows that this diverges in a well-defined way. We can write the divergence of the entropy as 
+The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however the R\'{e}nyi entropy description shows that this diverges in a well-defined way. We can write the divergence of the entropy as 
 \begin{equation}
 	H_{1+\epsilon}(W_\rho) = -\epsilon^{-1} \log \sum_{\bmz} |W_\rho (\bmz)|^{1+\epsilon}
 \end{equation} 
@@ -602,13 +602,13 @@ with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We now re
 \begin{equation}\label{eq:mana-divergence}
 \M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1-\epsilon}(W_\rho).
 \end{equation}
-Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the Renyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
+Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the R\'{e}nyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
-We note that the Renyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the Renyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. We can therefore speculate whether the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition [\ddd{cite}]. However we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions [\ddd{cite}].
+We note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. We can therefore speculate whether the presence of magic in Clifford circuits admits a sensible interpretation in terms of a zeroth-order phase transition [\ddd{cite}]. However we do not pursue this speculative line here, but just note that other works exist in which computational transitions are considered in relation to phase transitions [\ddd{cite}].
 
-\subsection{Renyi divergences and general distillation bounds}
-Every entropy can be obtained from a relative entropy~\cite{Gour_2020} and so we now state the extensions for Renyi divergences of Wigner distributions.
-The $\alpha$--Renyi divergence $D_\alpha(\p||\r)$ is defined as
+\subsection{R\'{e}nyi divergences and general distillation bounds}
+Every entropy can be obtained from a relative entropy~\cite{Gour_2020} and so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
+The $\alpha$--R\'{e}nyi divergence $D_\alpha(\p||\r)$ is defined as
 \begin{equation}
 	D_\alpha(\p \hspace{1pt}||\hspace{1pt} \r) := \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
 \end{equation}
@@ -617,7 +617,7 @@ In~\cref{app:lcst_technical}, we also show that the divergence satisfies the fol
 
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be in the interior of $\F$. 
-	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then the $\alpha$-Renyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+	If $\alpha = \frac{2a}{2b-1}$ for non-negative integers $a,b$ with $a \geq b$, then the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) = 0$ if and only if $\rho =\tau$.
@@ -810,13 +810,13 @@ Given quasi-probability distributions $\w, \w'$, $\r , \r'$, such that the compo
 	
 	The equivalence between (i) and (ii) on quasi-distributions was proven in~\cref{thm:lcquasi}.
 	
-	The equivalence between (i) and (iii) follows from a similar argument.
+	The equivalence between (i) and (iii) follows from a similar argument where we mask negativity with a probability distribution.
 	Namely, let $\epsilon > 0$ be such that $\w(\epsilon) \coloneqq \epsilon \w + (1-\epsilon) \r$ and $\w'(\epsilon) \coloneqq \epsilon \w + (1-\epsilon) \r'$ are genuine probability distributions. This is guaranteed by picking a sufficiently small $\epsilon > 0$, since $\r$ has positive components. We now have that $(\w , \r) \succ (\w', \r')$ if and only if $(\w(\epsilon) , \r) \succ (\w'(\epsilon), \r')$.
 	Moreover, we have that for all $c \in \mathbb{R}$, $\sum_{i=1}^n \abs{w(\epsilon)_i - r_i c} \geq \sum_{i=1}^n \abs{w'(\epsilon)_i - r'_i c}$, which leads to
 	\begin{align*}
 		\sum\limits_{i=1}^n \abs{w_i - r_i \frac{\epsilon + c - 1}{\epsilon}} \geq \sum\limits_{i=1}^n \abs{w'_i - r'_i \frac{\epsilon + c - 1}{\epsilon}}
 	\end{align*}
-Replacing $t = (\epsilon + c - 1)/\epsilon$, we see that $t$ can attain any real value for some value of $c$, so we retrieve the property on quasi-distributions $\w, \w'$.
+Replacing $t = (\epsilon + c - 1)/\epsilon$, we see that $t$ can attain any real value for some value of $c$, and so we deduce the required $L_1$ norm condition on quasi-distributions $\w, \w'$.
 \end{proof}
 
 We prove the following result connecting majorization to relative majorization~\cite{cit:horodecki2, Brandao_2015,  cit:lostaglio}.
@@ -964,7 +964,7 @@ We first prove the following result on the relation between majorization in a pa
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof}
-	We denote the Wigner distributions of the states single-component vectors $\w(\rho)=W_\rho(x)$ and $ \w(\sigma)=W_\sigma(x)$. Likewise, we write $\w(\rho|\sigma) = W_{\rho|\tau}(\bmz)$.
+	We denote the Wigner distributions of the states single-component vectors $\w(\rho)=W_\rho(\z)$ and $ \w(\sigma)=W_\sigma(\z)$. Likewise, we write $\w(\rho|\sigma) = W_{\rho|\tau}(\bmz)$.
 	We choose the component indexing so that $\w(\rho|\sigma)^\downarrow = \w(\rho|\sigma)$ and so the components are sorted in non-increasing order.
 
 Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
@@ -1573,9 +1573,9 @@ In each of these combinations, we simply use the first elbow constraint, as desc
 
 \section{Single-shot entropies on quasi-distributions and magic distillation bounds}
 
-In this section, we analyse Renyi entropies on quasi-probabilities and use them to get magic distillation bounds.
+In this section, we analyse R\'{e}nyi entropies on quasi-probabilities and use them to get magic distillation bounds.
 
-\subsection{Renyi min-divergence from Lorenz curves}
+\subsection{R\'{e}nyi min-divergence from Lorenz curves}
 We first demonstrate that the initial slope analysis on the Wigner quasi-distributions makes use of the min-relative divergence. We define 
 \begin{equation}
 	D_\infty(W_\rho || W_\tau) := \log  \max_{\bmz} \frac{W_\rho(\bmz)}{W_\tau(\bmz)},
@@ -1633,61 +1633,54 @@ and therefore taking logarithms we have that $D_\infty(W_{\rho^{\otimes 2n}} || 
 4. The free operation $\E$ in the Wigner representation corresponds to a stochastic map, which sends $W_\tau(\bmz)$ to $W_{\E(\tau)}(\bmz)$, which is another strictly positive probability distribution on the phase space, due to $\E(\tau)$ being in the interior of $\F$. Moreover, $(W_\rho, W_\tau ) \succ (W_{\E(\rho)} , W_{\E(\tau)})$. As shown in the main text this condition holds if and only if $L_{\rho|\tau}(x) \ge L_{\E(\rho)|\E(\tau)}(x)$ for all $x$. In particular, this implies the slope at the origin of the input curve is never less than the slope at the origin of the output curve, and hence the result follows.
 \end{proof}
 
-\subsection{Well-defined Renyi entropies on quasi-distributions}
+\subsection{Well-defined R\'{e}nyi entropies on quasi-distributions}
 
-We define the classical $\alpha$-Renyi entropy in terms of the Wigner quasi-distribution of any state $\rho$ as
+We now make use of known results from majorization theory to establish the Schur-concavity of the R\'{e}nyi entropy $H_\alpha$ on Wigner quasi-distributions for a subset of $\alpha$ values. We consider the set of all quasi-distributions that is a hyper-plane in $\mathbb{R}^N$ given by
 \begin{equation}
-	H_\alpha(W_\rho) := \frac{1}{1-\alpha} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha,
+	\mathcal{Q}_N = \left\{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1 \right\}.
 \end{equation}
-where $\alpha$ can take values of the form $2a / (2b+1)$, for non-negative integers $a,b$ to ensure that the argument of the logarithm is positive. \ddd{[Need to expand on this]}
 
-For $\rho = \rho_{\rm{S}}(\epsilon)$, we get
-\begin{align}
-	&H_{\alpha}\left(W_{\rho_{\rm{S}}(\epsilon)}\right) = \frac{1}{1-\alpha}\log \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right] \nonumber\\
-\end{align}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.3]{figs/H_vs_eps_a.pdf}
-    \caption{Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ that implies $6^\alpha - 2^{\alpha} = 8$, with the approximate solution $\alpha \approx 1.31$.
-    }
-    \label{fig:H}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.3]{figs/D_vs_eps_a.pdf}
-    \caption{Here, the exponent is $\alpha =$ even$/$odd for $1.10 \leq \alpha \leq 1.50$. $D_\alpha$ is decreasing in $\alpha$ and $\epsilon$ (\cref{thm:H2D}).
-    }
-    \label{fig:D}
-\end{figure}
-
-We now make use of known results from majorization theory to establish the Schur-concavity of $H_\alpha$ on Wigner quasi-distributions where $\alpha$ is such that $H_\alpha$ is well-defined. 
-We first define the notion of \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
-
+We define the notion of \emph{Schur-convex and Schur-convave functions} on a subset $\D \subseteq \mathbb{R}^N$.
 \begin{definition} 
 	A continuous, real-valued function $f$ defined on $\mathcal{D} \subseteq \mathbb{R}^N$ is called Schur-convex on the domain $\mathcal{D}$ if $\p \prec \q$ on $\mathcal{D}$ implies that $f(\p) \le f(\q)$. A continuous function $f:\mathcal{D} \rightarrow \mathbb{R}$ is called Schur-concave if $(-f)$ is Schur-convex.
 \end{definition}
-We can consider the set of all quasi-distributions, which form a hyper-plane and are given by
+For any subset $\D \subseteq \mathbb{R}^N$ we define
 \begin{equation}
-	\D=\mathcal{Q}_N = \left\{ \w \in \mathbb{R}^N: \sum_{i=1}^N w_i = 1 \right\}.
-\end{equation}
-For functions that are symmetric, namely $f(\p) = f(\Pi \p)$ for any component permutation $\Pi$, it suffices to restrict to the following region,
-\begin{equation}
-	\mathcal{Q}^\downarrow_N = \{ \w \in \mathcal{Q}_N : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+	\mathcal{D}^\downarrow := \{ \w \in \mathcal{D} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
-We now have that the Schur-Ostrowski theorem~\cite{cit:marshall} provides a characterization of symmetric, Schur-convex and Schur-concave functions on quasi-distributions. \ddd{[Needs a bit more expansion]}
-\begin{lemma}
-	Let $f$ be a real-valued continuous function defined on $\mathcal{Q}^\downarrow_N$ that is continuously differentiable on the interior of $\mathcal{Q}^\downarrow_N$. 
-Then, $f$ is Schur-convex on $\mathcal{Q}^\downarrow_N$ if and only if $\partial_k f(\w)$ is non-increasing in $k$ for all $\w \in \mathcal{Q}^\downarrow_N$, namely
+We now have the following fundamental result in majorization theory. \ddd{[Add original papers to cite bit]}
+\begin{theorem}[Schur-Ostrowski theorem~\cite{cit:marshall}] Let $\D\subseteq \mathbb{R}^N$ be a convex set with non-empty interior, and invariant under permutations of vector components. Let $f: \D \rightarrow \mathbb{R}$ be a continuously differentiable function on the interior of $\D$ and continuous on the whole of $\D$. Then $f$ is Schur-convex on $\D$ if and only if $f$ is a symmetric function on $\D$ and 
 \begin{equation}
 	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
-for all $\w$ in the interior of $\mathcal{Q}^\downarrow_N$.
+for all $\w$ in the interior of $\mathcal{D}^\downarrow$.
+\end{theorem}
+Since the set $\mathcal{Q}_N$ of quasi-distributions obey the necessary conditions, we get the following result:
+\begin{lemma}
+	Let $f$ be a real-valued continuous function defined on $\mathcal{Q}_N$ that is continuously differentiable on the interior of $\mathcal{Q}_N$. 
+Then, $f$ is Schur-convex on $\mathcal{Q}_N$ if and only if it is a symmetric function and
+\begin{equation}
+	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
+\end{equation}
+for all quasi-distributions $\w$ in the interior of $\mathcal{Q}^\downarrow_N$.
 \end{lemma}
 
-We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distributions for particular values of $\alpha$.
+
+The classical $\alpha$-R\'{e}nyi entropy on a probability distribution $\p = (p_i)$ is given by
+\begin{equation}
+	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha,
+\end{equation}
+where $\alpha \ge 0$. This means the function is well-defined on $\mathcal{Q}_N^+$, namely the set of quasi-distributions with non-negative components. We wish to extend the domain to the whole of $\mathcal{Q}_N$, however this requires that $w_i^\alpha$ be a real-number for any $w_i \in \mathbb{R}$. 
+
+The exponent function $x \mapsto x^\alpha$ is well-defined and real-valued if $\alpha$ is a rational number of the form $\alpha = r / s$ where $s$ is an odd integer and $r \in \mathbb{N}$. However, we also require that $\sum_i w_i^\alpha > 0$ in order for the logarithm to return a real-value. To ensure this happens we take $\alpha = r/s$ with $r=2a$ being an even integer and $s=2b-1$ being an odd integer, for some integers $a,b\in  \mathbb{N}$, which implies that the following are all real-valued expressions,
+\begin{equation}
+0 \le w_i^\alpha = w_i^{\frac{2a}{2b-1}} = \left (w_i^{\frac{1}{2b-1}}\right )^{2a} =\left (w_i^{2a}\right )^{\frac{1}{2b-1}} = |w_i|^{\frac{2a}{2b-1}}.
+\end{equation}
+
+
+We next show that $H_\alpha (\w)$ for $\alpha = 2a/(2b-1)$ is a Schur-concave function on $\mathcal{Q}_N$.
+
 
 \begingroup
 \def\thetheorem{\ref{thm:HSchur}}
@@ -1697,57 +1690,58 @@ We can use the above to prove that $H_\alpha$ is Schur-concave on quasi-distribu
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof}
-We have $\alpha = \frac{2a}{2b-1} \geq \frac{2b}{2b-1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i x_i^\alpha > 0$ and $H_\alpha(\bmz)$ is well-defined for all quasi-distributions $\bmz$.
+We have $\alpha = \frac{2a}{2b-1} \geq \frac{2b}{2b-1} > 1$ and $\alpha$ is a rational with even numerator and odd denominator, so $\sum_i w_i^\alpha > 0$ and $H_\alpha(\w)$ is well-defined for all quasi-distributions $\w$.
 
-Given a fixed $\alpha$ for which $H_\alpha(\bmz)$ is well-defined, the function $H_\alpha$ is real-valued, smooth on the interior of $\mathcal{Q}^\downarrow_N$ and symmetric in the components of $\bmz$.
+We also have that $H_\alpha(\w)$ is well-defined, continuous, differentiable on the interior of $\mathcal{Q}_N$ and symmetric in the components of $\w$.
 
 Consider the partial derivatives
 \begin{equation}
 	\frac{\partial H_\alpha}{\partial w_i} = \frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}}\left( -w_i^{\alpha-1} \right).
 \end{equation}
-We first note that for $\alpha= \frac{2a}{2b-1}$,  with $a\ge b$, it is always true that
+For $\alpha= \frac{2a}{2b-1}$,  with $a\ge b$, we have that
 \begin{equation}
 	\frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}} > 0.
 \end{equation}
-We show that for $\alpha$ in the given form, the function $f(w) := -w^{\alpha - 1}$ is non-increasing. \ddd{[Needs improving]}
-To this end, we first note that, for $\alpha > 1$, $f(w)$ has no discontinuities and we can obtain the first derivative
+The first derivative of the function $g(w) := -w^{\alpha - 1}$ is given by
 \begin{equation}
-	f'(w) = -(\alpha - 1) w^{\alpha-2} = -(\alpha - 1)w^{\frac{2a-4b+2}{2b-1}} \leq 0,
+	g'(w) = -(\alpha - 1) w^{\alpha-2} = -(\alpha - 1)w^{\frac{2a-4b+2}{2b-1}} \leq 0,
 \end{equation}
 because $\alpha > 1$ and
 \begin{equation}
 	w^{\frac{2a-4b+2}{2b-1}} = \left(w^{2a-4b+2}\right)^{\frac{1}{2b-1}} = \left(w^{\frac{a-2b+1}{2b-1}}\right)^{2} \geq 0,
 \end{equation}
-where each expression is well-defined because the rational exponent has odd denominator.
+and so $g(w)$ is non-increasing in $w$.
 
 Therefore, whenever $w_i \geq w_j$, we have that 
 \begin{equation}
 	-w_i^{\alpha-1} \leq -w_j^{\alpha-1},
 \end{equation}
-which leads to
+which implies that
 \begin{equation}
-	\frac{\partial H_\alpha}{\partial w_i} \leq \frac{\partial H_\alpha}{\partial w_j}.
+	\frac{\partial H_\alpha}{\partial w_i}(\w) \leq \frac{\partial H_\alpha}{\partial w_j}(\w),
 \end{equation}
-Therefore, $H_\alpha$ is Schur-concave and
+for any $\w$ in the interior of $\mathcal{Q}_N^\downarrow$.
+Therefore, $H_\alpha$ is Schur-concave on $\mathcal{Q}_N$ and
 \begin{equation}
 	H_\alpha(\w) \leq H_\alpha(\w'),
 \end{equation}
-for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
+for any quasi-distributions $\w, \w' \in \mathcal{Q}_N$ that obey $\w \succ \w'$.
 \end{proof}
 We note that if $\alpha =a/b$ with both $a$ and $b$ odd, then $H_\alpha$ is not well-defined for all quasi-probabilities, however if the actual set of quasi-distributions has a sufficiently bounded negativity, then $\log \sum_{\bmz} W_\rho(\bmz)^\alpha$ can still be obtained for $a$ odd, provided the sum is never negative.
 
-If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $f(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ is not monotonic. For example, if $\alpha = 2/3$, then $f(-2/6) = -4.33$, $f(-1/6) = -5.45$ and $f(+2/6) = +4.33$. Finally, we note that the set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$. \ddd{[Needs edits]}
+If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $f(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ is not monotonic. For example, if $\alpha = 2/3$, then $f(-2/6) = -4.33$, $f(-1/6) = -5.45$ and $f(+2/6) = +4.33$.. \ddd{[Needs edits]}
 
-We can check that additivity of $H_{\alpha}$ also holds on quasi-distributions. 
+  Finally, we note that the set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$
+
+We also have that $H_{\alpha}$ is additive on products of quasi-distributions. 
 \begin{lemma}\label{H_add}
-	For any $\w, \w' \in \mathcal{Q}_N$, we have
+	For any $\w \in \mathcal{Q}_N$ and $\w' \in \mathcal{Q}_{N'}$, we have
 	\begin{equation}
 		H_{\alpha}(\w\otimes \w') = H_{\alpha}(\w) + H_{\alpha}(\w'),
 	\end{equation}
 	where $\alpha = 2a/(2b-1)$ with integers $a\ge b$.
 \end{lemma}
 \begin{proof}
-	That fact that negativity does not affect additivity can be seen directly as follows
 	\begin{align*}
 		H_{\alpha}(\w \otimes \w') &= \frac{1}{1-\alpha}\log \sum_{i,j'} \left[\w_i \w'_j\right]^{\alpha} \\
 		&= \frac{1}{1-\alpha}\log  \left [ \sum_i\w_i^\alpha \sum_j\w_j^{\prime \alpha} \right ] \\
@@ -1756,40 +1750,54 @@ We can check that additivity of $H_{\alpha}$ also holds on quasi-distributions.
 	\end{align*}
 \end{proof}
 
-
-
-We now show the following simple equivalence.
+Applied to Wigner distributions $W_\rho (\z)$ for a quantum state $\rho$ we have
+\begin{equation}
+	H_\alpha(W_\rho) := \frac{1}{1-\alpha} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha,
+\end{equation}
+where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integers $a,b$. For the noisy Strange state $\rho = \rho_{\rm{S}}(\epsilon)$, this becomes
+\begin{align}
+	H_{\alpha}\left(W_{\rho_{\rm{S}}(\epsilon)}\right) = \frac{1}{1-\alpha}\log \left[ 8\left( \frac{1}{6} - \frac{1}{18}\epsilon \right)^\alpha + \left(-\frac{1}{3} + \frac{4}{9}\epsilon \right)^\alpha \right] \nonumber\\
+\end{align}
+\begin{figure}[t!]
+    \centering
+    \includegraphics[scale=0.3]{figs/H_vs_eps_a.pdf}
+    \caption{The R\'{e}nyi entropy $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ that implies $6^\alpha - 2^{\alpha} = 8$, with the approximate solution $\alpha \approx 1.31$.
+    }
+    \label{fig:H}
+\end{figure}
+We now show the following equivalence between Wigner negativity and negative R\'{e}nyi entropies.
 \begingroup
 \def\thetheorem{\ref{thm:HSchur}}
 \begin{theorem}
-	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) < 0$ for some $\alpha =  \frac{2a}{2b-1}$, with integers $a \geq b$.
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) < 0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \geq b$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof} 
 If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\bmz} W_\rho (\bmz)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\bmz)$ must be a strict quasi-distribution with negativity.
 
-Conversely, suppose $\rho$ has negativity in its Wigner representation. This implies that $\sum_{\bmz} |W_\rho (\bmz)| >1$. We now consider $\sum_{\bmz} W_\rho (\bmz)^{a/b}$ for $a/b >1$ and $a$ even and $b$ odd. \ddd{[$a, b \rightarrow 2a, 2b-1$]}We have that
+Conversely, suppose $\rho$ has negativity in its Wigner representation. This in particular implies that $\sum_{\bmz} |W_\rho (\bmz)| >1$. We now consider $\sum_{\bmz} W_\rho (\bmz)^{\frac{2a}{2b-1}}$ for positive integers $a\ge b$. We have that
 \begin{align}
-\sum_{\bmz} W_\rho (\bmz)^{a/b} &= \sum_{\bmz} |W_\rho (\bmz)|^{a/b} \nonumber \\
+\sum_{\bmz} W_\rho (\bmz)^{\frac{2a}{2b-1}} &= \sum_{\bmz} |W_\rho (\bmz)|^{\frac{2a}{2b-1}} \nonumber \\
 &= \sum_{\bmz} |W_\rho (\bmz)|^{1+ \epsilon},
 \end{align}
-where $\epsilon = a/b - 1 >0$. By choosing $a$ and $b$ appropriately we can make $\epsilon$ arbitrarily close to $0$. More precisely, there exists a sequence $\epsilon_n=a_n/b_n$ with valid integer pairs $a_n, b_n$ such that
+where $\epsilon = \alpha -1=\frac{2a}{2b-1} - 1 >0$. By choosing the positive integers $a$ and $b$ sufficiently large we can make $\epsilon$ arbitrarily close to $0$. This implies that there exists a sequence $\epsilon_n= \alpha_n-1 =\frac{2a_n}{2b_n-1} - 1$ with integer pairs $a_n, b_n$ such that
 \begin{equation}
-\sum_{\bmz} |W_\rho (\bmz)|^{1+ \epsilon_n} \rightarrow \sum_{\bmz} |W_\rho (\bmz)| >1.
+\sum_{\bmz} |W_\rho (\bmz)|^{1+ \epsilon_n} \rightarrow \sum_{\bmz} |W_\rho (\bmz)| >1,
 \end{equation}
-Since $\frac{1}{1-\alpha}= -\frac{b_n}{a_n} <0$ for any $n$ it follows that $H_\alpha (W_\rho) = \frac{1}{1-\alpha} \log \sum_{\bmz} W_\rho (\bmz)^\alpha  <0 $ at some point in the sequence, which completes the proof.
+as $n$ increases.
+Since $\frac{1}{1-\alpha_n} <0$ for any $n$ it follows that $H_{\alpha_n} (W_\rho) = \frac{1}{1-\alpha_n} \log \sum_{\bmz} W_\rho (\bmz)^{\alpha_n}  <0 $ at some point in the sequence, which completes the proof.
 \end{proof}
-Therefore Wigner negativity coincides with negativity of a Renyi entropy.
+Therefore Wigner negativity coincides with negativity of a R\'{e}nyi entropy.
 
-\subsection{Renyi divergences on quasi-distributions}
-Now we define the classical $\alpha$-Renyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
+\subsection{R\'{e}nyi divergences on quasi-distributions}
+Now we define the classical $\alpha$-R\'{e}nyi divergence in terms of the Wigner quasi-distribution of any magic state $\rho$ and the Wigner probability distribution of any equilibrium state $\tau$ as
 \begin{equation}
 	D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) := \frac{1}{\alpha - 1} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha W_{\tau}(\bmz)^{1-\alpha},
 \end{equation}
 where $\alpha$ can take values of the form $2a/(2b+1)$ \ddd{[2b+1 or 2b-1??]}, for non-negative integers $a,b$ to ensure once again that the argument of the logarithm is positive.
 
-We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions via the following result.
+We can connect the $\alpha$-R\'{e}nyi entropy and divergence for quasi-distributions via the following result.
 
 \begin{theorem}\label{thm:H2D}
 	Let $\w\in \mathcal{Q}_N$ be a quasi-distribution and $\r \in \mathbb{R}^N$ a probability distribution with positive rational entries given by $r_i = a_i/K$ for positive integers $a_i$ and $K = \sum_{i=1}^N a_i$.
@@ -1816,7 +1824,7 @@ We can connect the $\alpha$-Renyi entropy and divergence for quasi-distributions
 	\end{align}
 \end{proof}
 
-We now establish monotonicity for Renyi relative divergences.
+We now establish monotonicity for R\'{e}nyi relative divergences.
 \begin{theorem}\label{thm:DSchur}
 	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$. 
 	Then, $D_\alpha$ is Schur-convex, i.e. $D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) \geq D_\alpha(\w' \hspace{1pt}||\hspace{1pt} \r')$, whenever $(\w, \r) \succ (\w', \r')$.
@@ -1837,7 +1845,7 @@ We now establish monotonicity for Renyi relative divergences.
 \def\thetheorem{\ref{thm:Da_props}}
 \begin{theorem}
 	Let $\tau$ be a state in the interior of $\F$ and $\alpha = 2a / (2b-1)$ for non-negative integers $a,b$ with $a \geq b$.
-Then, the $\alpha$-Renyi divergence $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+Then, the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)$ is well-defined for all states $\rho$, and the following hold:
 \begin{enumerate}
 \item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
 \item  $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) = 0$ if and only if $\rho =\tau$.
@@ -1890,7 +1898,7 @@ We are now in a position to derive general magic state distillation bounds.
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof}
-	The bound is a direct consequence of the properties of the $\alpha$--Renyi diveregence, proven in~\cref{thm:Da_props}.
+	The bound is a direct consequence of the properties of the $\alpha$--R\'{e}nyi diveregence, proven in~\cref{thm:Da_props}.
 	
 Due to the action of the magic protocol channel, we get
 \begin{equation}	
