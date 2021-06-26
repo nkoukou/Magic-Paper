@@ -8,11 +8,22 @@ reprint
 ]{revtex4-1}
 
 \input{preamble}
+
+% Figures
+% Refs
+% Notation
+% Proofreading --- Citations
+% Proofreading --- Main text
+% Proofreading --- Appendices
+
+
+% Figs check --- consistency (size, font, text size, pads, axes, cbars), captions, folder
+
 % Labels and Refs --- consistency, cref vs ref, thm vs lem vs prop, thm restatements, (??)
-% Notation consistency --- noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg + [110 Knig], quasi-dist vs quasi-prob dist, def elbows, cumulant vs cumulative, stabilizer vs free, \p vs \w, W_\rho vs W_\rho(\bmz), \succ_r vs \succ, Eq.49 minus
+
+% Notation consistency --- noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg + [110 Knig], quasi-dist vs quasi-prob dist, def elbows, cumulant vs cumulative, stabilizer vs free, \p vs \w, W_\rho vs W_\rho(\bmz), \succ_r vs \succ
 % UK vs US english
 
-% Figs check --- consistency, cbars, captions, axes, iffalse
 % Spacing --- figs, sections, paragraphs, eq. numbering, \noindent, QEDs
 
 \begin{document}
@@ -43,7 +54,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, okay2021extremal}.
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
 
 Recent work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
@@ -424,7 +435,7 @@ We may also assume that the reference state $\tau$ is not a magic state, and has
 
 A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. We also assume for simplicity that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrise the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
 
-This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{christandl_2007} \ddd{[There is more than one seminal de Finetti paper to cite]} we have that for $m \gg 1$
+This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007} we have that for $m \gg 1$
 \begin{equation}
 \E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
 \end{equation}
@@ -486,18 +497,6 @@ The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian h
 \subsection{Technical aspects and special cases}
 Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in~\cref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix \ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem \ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
 
-
-\iffalse
-\begin{figure}[t!]
-    \centering
-    \includegraphics[scale=0.4]{figs/rate_scatter.pdf}
-    \caption{\textbf{Temperature-dependent bounds for magic distillation.}
-  Shown is a contour plot of the bound on $R(\epsilon, \beta)$ for $H = H' = \sum_{k \in \mathbb{Z}_3} k |k\>\<k|$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ the depolarising error of the input magic state. The relevant data from the spectrum of the qutrit operator $H$ enters in via $\epsilon_\star(\beta)$ and $\beta_\star$. The vertical dashed line is the `Landauer-like' temperature threshold $\beta_\star$ and the diagonal dashed curve corresponds to the noise threshold $\epsilon_\star(\beta)$ for $\beta \leq \beta_\star$. \nick{Refer to definitions of starred quantities} The $\beta = 0$ line corresponds to the regime in which the magic protocol corresponds to a unital channel.
-    }
-    \label{fig:rate_contour}
-\end{figure}
-\fi
-
 \begin{figure}[t!]
     \centering
     \subfigure[][]{%
@@ -513,7 +512,7 @@ In the bottom figure \subref{fig:Cliff} Clifford processing is used resulting in
 \end{figure}
 
 
-The analysis makes other simplifying assumptions that could easily be dropped, at the price of more complex expressions. We could perform similar analysis for general qudits, and different choices of magic states, for example. It might also be of interest to consider other choices of reference states $\tau$ that are more appropriate to the hardware physics, for example for photonic set-ups\ddd{[cite recent PsiQ architecture paper]}.
+The analysis makes other simplifying assumptions that could easily be dropped, at the price of more complex expressions. We could perform similar analysis for general qudits, and different choices of magic states, for example. It might also be of interest to consider other choices of reference states $\tau$ that are more appropriate to the hardware physics, for example for photonic set-ups~\cite{bombin2021interleaving}.
 
 The assumption that is more non-trivial is that we neglect correlations in the reference state in the thermodynamic limit. However for more general scenarios one could make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system via product states, to obtain similar bounds.
 
@@ -595,6 +594,7 @@ We can prove the following result, which establishes the equivalence between Wig
 	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
+\nick{Moreover, recent work~\cite{leone2021renyi} on R\'{e}nyi entropies of magic define the entropies on proper probability distributions related to expectation values of quantum states, hence it is unrelated with the present Wigner negativity setting.}
 
 The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however it diverges in a well-defined way. We can write the divergence of the entropy as 
 \begin{equation}
@@ -606,7 +606,7 @@ with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We now re
 \end{equation}
 Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the R\'{e}nyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
-We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of zeroth-order phase transitions [\ddd{cite}].
+We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of zeroth-order phase transitions~\cite{Aharonov_2000, Shiyu_2020, Ippoliti_2021}.
 
 \subsection{R\'{e}nyi divergences and general distillation bounds}
 Every entropy can be obtained from a relative entropy~\cite{Gour_2020} and so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
@@ -628,14 +628,14 @@ where $\w$ can be a quasi-distribution, $\r$ a probability distribution with pos
 \end{theorem}
 
 We can now apply this to obtain a family of magic distillation bounds based on R\'{e}nyi divergences.
-\begin{theorem}
+\begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
 		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and with the regularized divergence
 	\begin{equation}
-D^{\rm reg}_\alpha( \rho', \tau') = \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
+D^{\rm reg}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
@@ -659,19 +659,6 @@ In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$,
 	R \leq R_\alpha=\frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
 This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Figure~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
-%
-%\begin{figure}[t!]
-%    \centering
-%    \subfigure[][]{%
-%    \label{fig:Ra}%
-%    \includegraphics[scale=0.4]{figs/Ra_vs_a_eps.pdf}}\\
-%    \subfigure[][]{%
-%    \label{fig:RaDiff}%
-%    \includegraphics[scale=0.4]{figs/RaDiff_vs_a_eps.pdf}}
-%    \caption{$R_\alpha$ and $R_\alpha - R_{\infty}$ for the Strange state distillation for unital protocols
-%    \nick{Can compare thauma and mana for other magic states now more easily}}
-%    \label{fig:rate_a_contour}
-%\end{figure}
 
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
@@ -680,7 +667,7 @@ We have described how relative majorization can be used to establish upper bound
 
 We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, however this has also been generalised to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
   
-The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics and so automatically respect a symplectic form~\cite{Pathria_1997} \nick{better ref here?}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
+The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
@@ -1661,8 +1648,8 @@ For any subset $\D \subseteq \mathbb{R}^N$ we define
 	\mathcal{D}^\downarrow := \{ \w \in \mathcal{D} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
-We now have the following fundamental result in majorization theory. \ddd{[Add original papers to cite bit]}
-\begin{theorem}[Schur-Ostrowski theorem~\cite{cit:marshall}] Let $\D\subseteq \mathbb{R}^N$ be a convex set with non-empty interior, and invariant under permutations of vector components. Let $f: \D \rightarrow \mathbb{R}$ be a continuously differentiable function on the interior of $\D$ and continuous on the whole of $\D$. Then $f$ is Schur-convex on $\D$ if and only if $f$ is a symmetric function on $\D$ and 
+We now have the following fundamental result in majorization theory.
+\begin{theorem}[Schur-Ostrowski theorem~\cite{Schur_1923, Ostrowski_1952, cit:marshall}] Let $\D\subseteq \mathbb{R}^N$ be a convex set with non-empty interior, and invariant under permutations of vector components. Let $f: \D \rightarrow \mathbb{R}$ be a continuously differentiable function on the interior of $\D$ and continuous on the whole of $\D$. Then $f$ is Schur-convex on $\D$ if and only if $f$ is a symmetric function on $\D$ and 
 \begin{equation}
 	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
@@ -1899,7 +1886,7 @@ We are now in a position to derive general magic state distillation bounds.
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ with the regularized divergence
 	\begin{equation}
-D^{\rm reg}_\alpha( \rho', \tau') = \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
+D^{\rm reg}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
