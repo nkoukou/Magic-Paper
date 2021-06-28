@@ -78,7 +78,7 @@ We find that the analysis in the presence of negativity is non-trivial, displays
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
-    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorisation on unital protocols. The constraints are plotted as a function of the depolarizing noise level $\epsilon$ for a noisy Strange state. The bound $R_\infty$ follows from a Lorenz curve analysis, while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in Section~\ref{section:entropies}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana and max--thauma $\theta_{\rm{max}}$ bounds for noisy Strange states.
+    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorisation on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Equation~\ref{eq:noisysn}). The bound $R_\infty$ follows from a Lorenz curve analysis presented in Section~\ref{sec:unital}, while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in Section~\ref{section:entropies}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
     }
     \label{fig:distill_bounds}
 \end{figure}
@@ -154,7 +154,7 @@ where $\bar{\bmz} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the t
     \centering
         \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
     \caption{\textbf{Probing magic protocols with reference states.} 
-	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and the free energy the protocol channel $\E$ injects in. In addition, a quantity $\phi$ (Equation~\ref{eq:phi}) links the computational and physical aspects, and corresponds to the degree to which Wigner negativity in $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the error parameters $\epsilon, \epsilon'$, and \nick{the free energies $F, F'$ that the protocol channel $\E$ injects in}. In addition, a quantity $\phi$ (Equation~\ref{eq:phi}) links the computational and physical aspects, and corresponds to the degree to which the Wigner negativity of $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
 A number of magic theories exist, where magic states are computational resource states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford unitaries, Pauli measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
@@ -238,7 +238,7 @@ However, if $\w$ is a \emph{quasi-probability} distribution with negative values
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (\cref{eq:noisysn}) for $n=2,4,6$ within $\R_{\id/3}$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (Equation~\ref{eq:noisysn}) for $n=2,4,6$ within $\R_{\sigma}$, where $\sigma = \id/3$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
     }
     \label{fig:lcs}
 \end{figure}
@@ -505,8 +505,8 @@ Similar to the unital protocol bounds, the above result is based on only part of
     \subfigure[][]{%
     \label{fig:Cliff}%
     \includegraphics[scale=0.35]{figs/rate_scatter_cliff.pdf}}
-    \caption{\textbf{Temperature-dependent bounds for magic distillation.} Shown are two contour plots of the bound on $R(\epsilon, \beta)$ for the case $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ is the depolarising noise of the input magic state. 
-The top figure \subref{fig:noCliff} does not use any changes of Clifford basis, and the form of the bound depends on both the noise parameter and temperature. The curved dashed line is $\epsilon_\star(\beta)$ is given by Equation \ref{eq:threshold} and $\beta_\star = (kT_\star)^{-1}$ is given by $E_2-\phi = kT_\star \ln 2$. 
+    \caption{\textbf{Temperature-dependent bounds for magic distillation.} Shown are two contour plots of the bound on $R(\epsilon, \beta)$ for the case $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ is the depolarising error of the input magic state. 
+The top figure \subref{fig:noCliff} does not use any changes of Clifford basis, and the form of the bound depends on both the noise parameter and temperature. The curved dashed line is $\epsilon_\star(\beta)$ and given by Equation~\ref{eq:threshold} and $\beta_\star = (kT_\star)^{-1}$ is given by $E_2-\phi = kT_\star \ln 2$. 
 In the bottom figure \subref{fig:Cliff} Clifford processing is used resulting in a smoother bound. In both figures the $\beta = 0$ line correspond to the unital bounds.}
     \label{fig:rate_contour}
 \end{figure}
@@ -550,7 +550,7 @@ The simplest special case to consider is where the Hamiltonian $H$ is diagonal i
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/R_vs_A.pdf}
-    \caption{\textbf{Variation of distillation bounds with Hamiltonian.} We consider $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$.
+    \caption{\textbf{Variation of distillation bounds with Hamiltonian.} \nick{ We demonstrate non-trivial variation of our bound in Equation~\ref{eq:rate_bounds_proof} with repect to the system Hamiltonian. To this end, we fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. NEED TO DISCUSS VALUE $1.01$}
     }
     \label{fig:rvsa}
 \end{figure}
@@ -639,12 +639,13 @@ D^{\rm reg}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}}
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
+\nick{Notation $D^{\rm reg}_\alpha( \rho', \tau')$ is a little clunky. What are $\rho'$ and $\tau'$ ? Maybe at least use $D^{\rm reg}_\alpha( \rho', \tau'_m)$ as in the presence of correlations marginal state $\tau'$ is not well defined}
 The proof is given in Appendix~\ref{app:single-shot}. 
 
 While this bound is abstract in its present form, it does suggest future applications by viewing $D^{\rm reg}_\alpha( \rho', \tau')$ within the context of hypothesis testing, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
 However in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
 
-If correlations in $\tau'_m$ between subsystems can be neglected then we simply get
+If correlations in $\tau'_m$ between subsystems can be neglected then \nick{we can write $\tau'_m = \tau'^{\otimes m}$ for some sharp marginal state $\tau'$} and the regularised divergence reduces to
 \begin{equation}
 D^{\rm reg}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} || W_{\tau'}),
 \end{equation}
@@ -1455,8 +1456,8 @@ where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal st
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
-	\W[\bmz]{\tau} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}W_{|k\>\<k|}(x, p) \nonumber\\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{x, k} = \frac{e^{-\beta E_x}}{3\Z},
+	\W[\bmz]{\tau} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}W_{|k\>\<k|}(q, p) \nonumber\\
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{q, k} = \frac{e^{-\beta E_x}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
 The rescaled Wigner distribution $W_{\rho|\tau}(\bmz)$ can now be computed. It has $9$ components, but these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
@@ -1759,8 +1760,8 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \end{align}
 \begin{figure}[t!]
     \centering
-    \includegraphics[scale=0.3]{figs/H_vs_eps_a.pdf}
-    \caption{The R\'{e}nyi entropy $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. First dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. Specifically, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ that implies $6^\alpha - 2^{\alpha} = 8$, with the approximate solution $\alpha \approx 1.31$.
+    \includegraphics[scale=0.35]{figs/H_vs_eps_a.pdf}
+    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of $\epsilon$-noisy Strange state.} \nick{$H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.}
     }
     \label{fig:H}
 \end{figure}
