@@ -9,7 +9,7 @@ reprint
 
 \input{preamble}
 
-% Figures
+% Aberg -> {\AA}berg
 % Refs
 % Notation
 % Proofreading --- Citations
@@ -17,11 +17,11 @@ reprint
 % Proofreading --- Appendices
 
 
-% Figs check --- consistency (size, font, text size, pads, axes, cbars), captions, folder
+%X Figs check --- consistency (size, font, text size, pads, axes, cbars), captions, folder
 
 % Labels and Refs --- consistency, cref vs ref, thm vs lem vs prop, thm restatements, (??)
 
-% Notation consistency --- noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, Aberg -> {\AA}berg + [110 Knig], quasi-dist vs quasi-prob dist, def elbows, cumulant vs cumulative, stabilizer vs free, \p vs \w, W_\rho vs W_\rho(\bmz), \succ_r vs \succ
+% Notation consistency --- noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, quasi-dist vs quasi-prob dist, def elbows, cumulant vs cumulative, stabilizer vs free, \p vs \w, W_\rho vs W_\rho(\bmz), \succ_r vs \succ
 % UK vs US english
 
 % Spacing --- figs, sections, paragraphs, eq. numbering, \noindent, QEDs
@@ -175,8 +175,6 @@ Mana is an additive magic monotone, and the fact that it is non-increasing under
 
 In this work we develop bounds that apply to any reasonable magic theory. The central idea is to apply majorization theory to the quasi-probability distributions that arise for magic states. We begin in the next section by explaining how majorization relates to the free operations in a theory of magic.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Stochastic representation of magic protocols}
 \label{sec:struc}
@@ -435,7 +433,7 @@ We may also assume that the reference state $\tau$ is not a magic state, and has
 
 A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. We also assume for simplicity that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrise the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
 
-This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007} we have that for $m \gg 1$
+This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007, renner_phd} we have that for $m \gg 1$
 \begin{equation}
 \E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
 \end{equation}
@@ -521,32 +519,6 @@ The assumption that is more non-trivial is that we neglect correlations in the r
 
 The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain~\cref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol, when applied to the reference state, adds/extracts free energy from the system. 
 
-
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.4]{figs/test/R_vs_E1.pdf}
-%    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = \rm{diag}(0,E,10)$ and $H' = \rm{diag}(0,E',10)$.
-%    }
-%    \label{fig:rvse1}
-%\end{figure}
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.4]{figs/test/R_vs_E2.pdf}
-%    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = \rm{diag}(0,5,E)$ and $H' = \rm{diag}(0,5,E')$.
-%    }
-%    \label{fig:rvse2}
-%\end{figure}
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.4]{figs/test/R_vs_H.pdf}
-%    \caption{Here, $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$, $H = {\rm{diag}}(0,1,2)$ and $H' = (1-p-q){\rm{diag}}(0,1,2)+p{\rm{diag}}(1,2,0)+q{\rm{diag}}(2,0,1)$.
-%    }
-%    \label{fig:rvsh}
-%\end{figure}
-
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/R_vs_A.pdf}
@@ -559,11 +531,8 @@ The simplest special case to consider is where the Hamiltonian $H$ is diagonal i
 We have considered Wigner distributions of magic states within a statistical mechanical setting in which it was argued that magic can be viewed as a non-classical form of free energy. This identification with free energy was done at the level of majorization constraints that appear due to stabilizer operations being described by stochastic maps in the Wigner representation. In this representation, non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could also be linked to physical free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
 
 One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution and so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined off of the set $\F$, let alone having a physically meaningful interpretation. 
-
-
-
  
-However, it turns out that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
+However, it turns out that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence~\cite{renyi_1960} $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
 \begin{equation}
 	D_\infty (\p \hspace{1pt}||\hspace{1pt} \r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
@@ -579,7 +548,7 @@ It is clear that this does remain well-defined on quasi-distributions, and from 
 \end{theorem}
 The reason for the power of $2$ in the third property is that the maximization is sensitive to the presence of negativity in the Wigner distribution.
 
-We can go further, and show that in fact a range of R\'{e}nyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--R\'{e}nyi entropy $H_\alpha(\p)$ is defined as
+We can go further, and show that in fact a range of R\'{e}nyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--R\'{e}nyi entropy $H_\alpha(\p)$ is defined as~\cite{renyi_1960}
 \begin{equation}
 	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
@@ -605,10 +574,10 @@ with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We now re
 \end{equation}
 Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the R\'{e}nyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
-We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of zeroth-order phase transitions~\cite{Aharonov_2000, Shiyu_2020, Ippoliti_2021}.
+We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of phase transitions~\cite{domb2000phase}.
 
 \subsection{R\'{e}nyi divergences and general distillation bounds}
-Every entropy can be obtained from a relative entropy~\cite{Gour_2020} and so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
+Every entropy can be obtained from a relative entropy~\cite{Gour_2020} so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
 The $\alpha$--R\'{e}nyi divergence $D_\alpha(\w||\r)$ is defined as
 \begin{equation}
 	D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
@@ -630,22 +599,22 @@ We can now apply this to obtain a family of magic distillation bounds based on R
 \begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.1ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
-\tilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
+\widetilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
 The proof is given in Appendix~\ref{app:single-shot}. 
 
-While this bound is abstract in its present form, it does suggest future applications by viewing $\tilde{D}_\alpha( \rho', \tau')$ within the context of hypothesis testing, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
+While this bound is abstract in its present form, it does suggest future applications by viewing $\widetilde{D}_\alpha( \rho', \tau')$ within the context of hypothesis testing~\cite{tomamichel2013}, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
 However in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
 
 If correlations in $\tau'_m$ between subsystems can be neglected then $\tau'_m = \tau'^{\otimes m}$ for some qudit state $\tau'$ we have that
 \begin{equation}
-\tilde{D}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} || W_{\tau'}),
+	\widetilde{D}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'}),
 \end{equation}
 which gives a generalized version of Theorem \ref{thm:free-energy}.
 
@@ -662,7 +631,7 @@ This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$.
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
-We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form [\ddd{cite}]. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In~\cref{app:lcsu_technical} and~\cref{app:lcst_technical} we give additional results that may be of use for later work.
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renyi_1960, renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In~\cref{app:lcsu_technical} and~\cref{app:lcst_technical} we give additional results that may be of use for later work.
 
 We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, however this has also been generalised to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
   
@@ -1879,13 +1848,13 @@ We are now in a position to derive general magic state distillation bounds.
 \begingroup
 \def\thetheorem{\ref{thm:entropic_bounds}}
 \begin{theorem}
-	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state. Then the distillation rate $R := m/n$ is upper bounded as,
+	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.1ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ with the average divergence
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
-\tilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
+\widetilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
@@ -1906,7 +1875,7 @@ We can use the additivity to rewrite this as
 
 Since $\rho'^{\otimes m} \neq \tau'_m$, we have $D_\alpha(W_{\rho'_m} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}) > 0$, which directly leads to the bound
 \begin{equation}
-	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')}.
+	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\widetilde{D}_\alpha( \rho', \tau')}.
 \end{equation}
 \end{proof}
 
