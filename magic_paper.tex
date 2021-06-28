@@ -54,7 +54,7 @@ Theories of magic states attempt to quantify this computational element via mono
 
 There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
 
 Recent work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
@@ -154,7 +154,7 @@ where $\bar{\bmz} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the t
     \centering
         \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
     \caption{\textbf{Probing magic protocols with reference states.} 
-	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the error parameters $\epsilon, \epsilon'$, and \nick{the free energies $F, F'$ that the protocol channel $\E$ injects in}. In addition, a quantity $\phi$ (Equation~\ref{eq:phi}) links the computational and physical aspects, and corresponds to the degree to which the Wigner negativity of $\rho$ can be assigned a sharp energy via the system Hamiltonian.}
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and free energies $F, F'$. In addition, a quantity $\phi$ (Equation~\ref{eq:phi}) relates the computational and energy bases, and corresponds to the degree to which the Wigner negativity of $\rho$ can be given a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
 A number of magic theories exist, where magic states are computational resource states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford unitaries, Pauli measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
@@ -550,7 +550,7 @@ The simplest special case to consider is where the Hamiltonian $H$ is diagonal i
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/R_vs_A.pdf}
-    \caption{\textbf{Variation of distillation bounds with Hamiltonian.} \nick{ We demonstrate non-trivial variation of our bound in Equation~\ref{eq:rate_bounds_proof} with repect to the system Hamiltonian. To this end, we fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. NEED TO DISCUSS VALUE $1.01$}
+    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Equation~\ref{eq:rate_bounds_proof} with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. 
     }
     \label{fig:rvsa}
 \end{figure}
@@ -594,7 +594,6 @@ We can prove the following result, which establishes the equivalence between Wig
 	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
-\nick{Moreover, recent work~\cite{leone2021renyi} on R\'{e}nyi entropies of magic define the entropies on proper probability distributions related to expectation values of quantum states, hence it is unrelated with the present Wigner negativity setting.}
 
 The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however it diverges in a well-defined way. We can write the divergence of the entropy as 
 \begin{equation}
@@ -631,23 +630,22 @@ We can now apply this to obtain a family of magic distillation bounds based on R
 \begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and with the regularized divergence
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
-D^{\rm reg}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
+\tilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} || W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
-\nick{Notation $D^{\rm reg}_\alpha( \rho', \tau')$ is a little clunky. What are $\rho'$ and $\tau'$ ? Maybe at least use $D^{\rm reg}_\alpha( \rho', \tau'_m)$ as in the presence of correlations marginal state $\tau'$ is not well defined}
 The proof is given in Appendix~\ref{app:single-shot}. 
 
-While this bound is abstract in its present form, it does suggest future applications by viewing $D^{\rm reg}_\alpha( \rho', \tau')$ within the context of hypothesis testing, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
+While this bound is abstract in its present form, it does suggest future applications by viewing $\tilde{D}_\alpha( \rho', \tau')$ within the context of hypothesis testing, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
 However in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
 
-If correlations in $\tau'_m$ between subsystems can be neglected then \nick{we can write $\tau'_m = \tau'^{\otimes m}$ for some sharp marginal state $\tau'$} and the regularised divergence reduces to
+If correlations in $\tau'_m$ between subsystems can be neglected then $\tau'_m = \tau'^{\otimes m}$ for some qudit state $\tau'$ we have that
 \begin{equation}
-D^{\rm reg}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} || W_{\tau'}),
+\tilde{D}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} || W_{\tau'}),
 \end{equation}
 which gives a generalized version of Theorem \ref{thm:free-energy}.
 
@@ -1761,7 +1759,7 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.35]{figs/H_vs_eps_a.pdf}
-    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of $\epsilon$-noisy Strange state.} \nick{$H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.}
+    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.
     }
     \label{fig:H}
 \end{figure}
@@ -1883,11 +1881,11 @@ We are now in a position to derive general magic state distillation bounds.
 \begin{theorem}
 	Consider a general magic state distillation process that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state. Then the distillation rate $R := m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ with the regularized divergence
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ with the average divergence
 	\begin{equation}
-D^{\rm reg}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
+\tilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho\prime_m} || W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
@@ -1908,7 +1906,7 @@ We can use the additivity to rewrite this as
 
 Since $\rho'^{\otimes m} \neq \tau'_m$, we have $D_\alpha(W_{\rho'_m} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}) > 0$, which directly leads to the bound
 \begin{equation}
-	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{D^{\rm reg}_\alpha( \rho', \tau')}.
+	\frac{m}{n} \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\tilde{D}_\alpha( \rho', \tau')}.
 \end{equation}
 \end{proof}
 
