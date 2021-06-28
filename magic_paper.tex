@@ -9,33 +9,22 @@ reprint
 
 \input{preamble}
 
-% Aberg -> {\AA}berg
-% Refs
-% Notation
-% Proofreading --- Citations
-% Proofreading --- Main text
+% Proofreading --- Citations (Aberg -> {\AA}berg)
+% Proofreading --- Main text (Spacing)
 % Proofreading --- Appendices
-
-
-%X Figs check --- consistency (size, font, text size, pads, axes, cbars), captions, folder
-
-% Labels and Refs --- consistency, cref vs ref, thm vs lem vs prop, thm restatements, (??)
-
-% Notation consistency --- noise vs error, \ln{} -> \ln, \ln vs \log vs \log_2, italics & \emph, quasi-dist vs quasi-prob dist, def elbows, cumulant vs cumulative, stabilizer vs free, \p vs \w, W_\rho vs W_\rho(\bmz), \succ_r vs \succ
-% UK vs US english
 
 % Spacing --- figs, sections, paragraphs, eq. numbering, \noindent, QEDs
 
 \begin{document}
 
 \begin{abstract}
-Magic states are key ingredients in schemes to realise universal fault-tolerant quantum computation.
+Magic states are key ingredients in schemes to realize universal fault-tolerant quantum computation.
 Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization in which Wigner negative magic states provide non-classical free energy that is processed under Clifford circuits for qudits of odd prime dimension. While traditional free energy is not defined in the presence of negativity, we show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can incorporate hardware physics, such as temperature dependence and physical Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We find that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
 
-\title{General constraints on magic state protocols from the statistical mechanics of \\Wigner negativity}
+\title{Constraints on magic state protocols from the statistical mechanics of \\Wigner negativity}
 
 \author{Nikolaos Koukoulekidis}
 	\email{nk2314@imperial.ac.uk}
@@ -52,18 +41,18 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
-There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. However, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realised transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
+There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. Nevertheless, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realized transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
-To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well as how it is connected with contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well its connection to contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
 
-Recent work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work has been done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical modes~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
+Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
 
-In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a \emph{pair} of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are therefore of interest in assessing how physical features such as temperature, noise-biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
+In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a \emph{pair} of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are of potential interest in assessing how physical features such as temperature, noise biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
 
-The approach we take is most closely aligned with resource theories of magic, however it differs in key ways. We obtain distillation upper bounds without the use of monotones, but instead use tools from statistical mechanics and recent work in single-shot resource theories~\cite{cit:janzing, cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore our analysis is also of relevance to other studies of non-classicality in quantum systems~\cite{Fine_1982, Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
+The approach we take is most closely aligned with resource theories of magic, although it differs in key ways. We obtain distillation upper bounds without the use of monotones, but instead use tools from statistical mechanics and recent work in single-shot resource theories~\cite{cit:janzing, cit:horodecki2, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore these methods could find application in other studies of non-classicality in quantum systems~\cite{Fine_1982, Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
 \subsection{Overview of our results}
-We begin by describing how stabilizer operations correspond to stochastic maps on a discrete phase space, and how majorization can be applied to constrain magic state transformations (Section~\ref{sec:ps}). We then consider families of magic protocols with increasing complexity. The simplest case we consider is for magic protocols that lead to unital channels (Section~\ref{sec:unital}). These are a subset of protocols that leave invariant some distinguished state or have some equilibrium fixed-point structure (Section~\ref{sec:frag}). We then consider protocols that are non-equilibrium processes, but only generate sub-linear correlations that enable a simple description in the thermodynamic limit (Section~\ref{sec:stab}), before giving entropic analysis that can be applied more generally (Section~\ref{section:entropies}).
+We begin by describing how stabilizer operations correspond to stochastic maps on a discrete phase space, and how majorization can be applied to constrain magic state transformations (Sec.~\ref{sec:ps}). We then consider families of magic protocols with increasing complexity. The simplest case we consider is for magic protocols that lead to unital channels (Sec.~\ref{sec:unital}). These are a subset of protocols that leave invariant some distinguished state or have some equilibrium fixed-point structure (Sec.~\ref{sec:frag}). We then consider protocols that are non-equilibrium processes, but only generate sub-linear correlations that enable a simple description in the thermodynamic limit (Sec.~\ref{sec:stab}), before giving entropic analysis that can be applied more generally (Sec.~\ref{section:entropies}).
 
 The relations between the sets of protocols considered are as follows:
 \begin{align}
@@ -71,21 +60,21 @@ The relations between the sets of protocols considered are as follows:
 &\subset \mbox{ sub-linear correlations} \subset \mbox{ general protocols.} \nonumber
 \end{align}
 
-We provide explicit bounds for magic protocols that generate unital channels (Equation~(\ref{eq:unital-bound})), as well as bounds that incorporate the temperature and Hamiltonian of the system (Theorem~\ref{thm:free-energy}) and discuss extensions to more general scenarios. These bounds are shown to be tighter than other bounds such as those that come from mana and thauma (Section~\ref{sec:monotones_frag} and Figure~\ref{fig:distill_bounds}). 
+We provide explicit bounds for magic protocols that generate unital channels (Eq.~(\ref{eq:unital-bound})), as well as bounds that incorporate the temperature and Hamiltonian of the system (Theorem~\ref{thm:free-energy}) and discuss extensions to more general scenarios. These bounds are shown to be tighter than other bounds such as those that come from mana and thauma (Sec.~\ref{sec:monotones_frag} and Fig.~\ref{fig:distill_bounds}). 
 
-We find that the analysis in the presence of negativity is non-trivial, displays a range of features that do not appear in classical statistical mechanics, and leads to a picture of Wigner negativity in a quantum circuit being described as non-classical free energy that is processed under stochastic dynamics. This is demonstrated by Lorenz curves having a non-trivial maximum that is related to the mana of a state (Section~\ref{sec:lc}), and by showing that single-shot entropies for general Wigner quasi-distributions are well-defined, obey data-processing under stabilizer operations and can take on negative values (Section~\ref{section:entropies}).
+We find that the analysis in the presence of negativity displays a range of features that do not appear in classical statistical mechanics, and leads to a picture of Wigner negativity in a quantum circuit being described as non-classical free energy that is processed under stochastic dynamics. This is demonstrated by non-monotonic Lorenz curves (Sec.~\ref{sec:lc}), and by single-shot entropies for general Wigner quasi-distributions that are well-defined, obey data-processing under stabilizer operations and can take on negative values (Sec.~\ref{section:entropies}).
 
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.35]{figs/distill_bounds.pdf}
-    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorisation on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Equation~\ref{eq:noisysn}). The bound $R_\infty$ follows from a Lorenz curve analysis presented in Section~\ref{sec:unital}, while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in Section~\ref{section:entropies}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
+    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorization on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Eq.~(\ref{eq:noisysn})). The bound $R_\infty$ follows from a Lorenz curve analysis presented in Sec.~\ref{sec:unital}, while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in Sec.~\ref{section:entropies}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
     }
     \label{fig:distill_bounds}
 \end{figure}
 
 
-We show that the mana of a quantum state also arises as a residue in the $\alpha$--parameter for R\'{e}nyi entropies, and gives the rate of divergence to $-\infty$ as we approach the Shannon entropy of a Wigner distribution (Equation (\ref{eq:mana-divergence})).
-Finally, in Section~\ref{sec:lower_bounds} we discuss how our approach could be extended and how it can be exploited to construct explicit lower bounds on distillation that take into account physical constraints.
+We show that the mana of a quantum state arises as a residue in the $\alpha$--parameter for R\'{e}nyi entropies, and gives the rate of divergence to $-\infty$ as we approach the Shannon entropy of a Wigner distribution (Eq.~(\ref{eq:mana-divergence})).
+Finally, in Sec.~\ref{sec:lower_bounds} we discuss how our approach could be extended to construct explicit lower bounds on distillation that take into account physical constraints.
 
 \section{Phase space representations of quantum states}
 \label{sec:ps}
@@ -97,7 +86,7 @@ Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\
     X \ket{k} &= \ket{k + 1} \label{eq:xpauli}\\
 	Z \ket{k} &= \omega^k \ket{k}. \label{eq:zpauli}
 \end{align}
-Here $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is taken modulo $d$. From these we can construct a phase space $\cal{P}_d := \mathbb{Z}_d \times \mathbb{Z}_d$ that provides a complete representation of the quantum system. Given a point $\bmz \coloneqq (q, p)$ we define a displacement operator, 
+Here $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is taken modulo $d$. From these we can construct a phase space $\cal{P}_d \coloneqq \mathbb{Z}_d \times \mathbb{Z}_d$ that provides a complete representation of the quantum system. Given a point $\bmz \coloneqq (q, p)$ we define a displacement operator, 
 \begin{equation}\label{eq:ddef}
     D_{\bmz} \coloneqq \tau^{q p} X^{q} Z^{p},\ 
 \end{equation}
@@ -110,14 +99,14 @@ where now we have
 	\bmz &\coloneqq (q_1, \dots, q_n, p_1, \dots, p_n) \in \cal{P}_{d_1} \times \dots \times \cal{P}_{d_n},
 \end{align*}
 to denote the phase space point for the composite system. 
-For simplicity going forward, we assume $n$ copies of a $d$--dimensional system $d_1=d_2 = \cdots = d$, and therefore we have that $\bmz \in \mathbb{Z}_d^{2n}$.
+For simplicity, we assume $n$ copies of a $d$--dimensional system $d_1=d_2 = \cdots = d$, and therefore we have that $\bmz \in \mathbb{Z}_d^{2n}$.
 
 
 The displacement operators form the Heisenberg-Weyl group~\cite{Folland_1989, Bengtsson_2006} under matrix multiplication modulo phases,
 \begin{equation}\label{eq:gp}
     {\rm{HW}}_d^n \coloneqq \{ \tau^k D_{\bmz}: k \in \mathbb{Z}_d, \bmz \in \cal{P}_d^n\}.
 \end{equation}
-The Clifford group $ \cal{C}_d^n $ is then defined as the set of unitaries that normalise the Heisenberg-Weyl group~\cite{Appleby_2005}. We may define the pure stabiliser states as those states obtained by acting on $|0\>$ with Clifford unitaries~\cite{cit:gross3} and, finally, the full set of stabilizer states as the convex hull of all pure stabilisers, namely all probabilistic mixtures of states of the form $U|0\>\<0|U^\dagger$ where $U$ is Clifford. 
+The Clifford group $ \cal{C}_d^n $ is then defined as the set of unitaries that normalise the Heisenberg-Weyl group~\cite{Appleby_2005}. We may define the pure stabilizer states as those states obtained by acting on $|0\>$ with Clifford unitaries~\cite{cit:gross3} and, finally, the full set of stabilizer states as the convex hull of all pure stabilizers, namely all probabilistic mixtures of states of the form $U|0\>\<0|U^\dagger$ where $U$ is Clifford. 
 
 \subsection{Wigner representations for quantum states and quantum operations}\label{sec:wigner}
 
@@ -125,7 +114,7 @@ In order to provide a complete decomposition of arbitrary quantum states and qua
 \begin{equation}\label{eq:ax}
 	A_{\bmz} \coloneqq \frac{1}{d} \sum_{\bmy \in \cal{P}_d} \omega^{\eta(\bmz, \bmy)} D_{\bmy}, 
 \end{equation}
-where $\eta(\bmz, \bmz)$ is the symplectic inner product between any two points $\bmz,\z \in \P_d$, and is given explicitly by
+where $\eta(\bmz, \y)$ is the symplectic inner product between any two points $\bmz,\y \in \P_d$, and is given explicitly by
 \begin{equation}
 	\eta(\bmz, \bmy) \coloneqq \bmy^T \begin{pmatrix}
 		0  & \id \\ %\mathbbm{O}_n  & \id_n \\
@@ -134,13 +123,13 @@ where $\eta(\bmz, \bmz)$ is the symplectic inner product between any two points 
 \end{equation}
 where $0, \id$ denote the $n\times n$ zero and identity matrices.
 
-The phase-point operators form an orthogonal operator basis with respect to the Hilbert-Schmidt inner product, as discussed in~\cref{app:wigner}.
-Therefore, any quantum state $\rho \in \cal{B}(\cal{H}_d)$ can be expressed as a linear combination of them, $\rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz}$, where the coefficient vector $\W{\rho}$ is the Wigner distribution of state $\rho$,
+The phase-point operators form an orthogonal operator basis with respect to the Hilbert-Schmidt inner product, as discussed in Appendix~\ref{app:wigner}.
+Therefore, any quantum state $\rho$ can be expressed as a linear combination of them, $\rho = \sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho} A_{\bmz}$, where the coefficients $\W{\rho}(\z)$ give the Wigner distribution of state $\rho$,
 \begin{equation}\label{eq:wstate}
     \W[\bmz]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmz} \rho].
 \end{equation}
 
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-probability distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see~\cref{app:wigner} for details).
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details).
 
 Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = \E \otimes id (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state of the channel~\cite{watrous_2018}, then we can define
 \begin{equation}\label{Wigner-Choi}
@@ -154,10 +143,10 @@ where $\bar{\bmz} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the t
     \centering
         \includegraphics[scale=0.3]{figs/protocol_diagram.pdf}
     \caption{\textbf{Probing magic protocols with reference states.} 
-	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with noise parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the noise parameters $\epsilon, \epsilon'$, and free energies $F, F'$. In addition, a quantity $\phi$ (Equation~\ref{eq:phi}) relates the computational and energy bases, and corresponds to the degree to which the Wigner negativity of $\rho$ can be given a sharp energy via the system Hamiltonian.}
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with error parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the error parameters $\epsilon, \epsilon'$, and free energies $F, F'$. In addition, a quantity $\phi$ (Eq.~(\ref{eq:phi})) relates the computational and energy bases, and corresponds to the degree to which the Wigner negativity of $\rho$ can be given a sharp energy via the system Hamiltonian.}
     \label{fig:sketch}
 \end{figure}
-A number of magic theories exist, where magic states are computational resource states with respect to a natural class of quantum operations that are considered free~\cite{Gour_2019}. One very natural class of free operations are those obtained from Clifford unitaries, Pauli measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
+A number of magic theories exist, where magic states are computational resource states with respect to a class of quantum operations that are considered free~\cite{Gour_2019}. One natural class of free operations are those obtained from Clifford unitaries, Pauli measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
 
 In any theory of magic, one route to bounding distillation rates is through a \emph{magic monotone}. A magic monotone is a real-valued function of any quantum state $M(\rho)$ that is monotonically non-increasing under the free operations of the magic theory. More precisely $M(\sigma) \le M(\rho)$ whenever it is possible to convert $\rho$ into $\sigma$ using free operations.
 
@@ -169,11 +158,11 @@ where the \emph{sum-negativity}~\cite{cit:veitch2} is the sum of the negative co
 \begin{equation}
     \sn{\rho} \coloneqq \sum\limits_{\bmz: \W[\bmz]{\rho} < 0} \abs{\W[\bmz]{\rho}}.
 \end{equation}
-Using the fact that $W_\rho(\z)$ is a normalised quasi-distribution, we can also write $\M(\rho) = \sum_{\z} |W_\rho(\z)|$.
+Using the fact that $W_\rho(\z)$ is a normalized quasi-distribution, we can also write $\M(\rho) = \sum_{\z} |W_\rho(\z)|$.
 
 Mana is an additive magic monotone, and the fact that it is non-increasing under free operations provides a constraint on magic state interconvertibility.
 
-In this work we develop bounds that apply to any reasonable magic theory. The central idea is to apply majorization theory to the quasi-probability distributions that arise for magic states. We begin in the next section by explaining how majorization relates to the free operations in a theory of magic.
+In this work we develop bounds that apply to any reasonable magic theory. The central idea is to apply majorization theory to the quasi-distributions that arise for magic states. In the next section we explain how majorization relates to the free operations in a theory of magic.
 
 
 \subsection{Stochastic representation of magic protocols}
@@ -183,15 +172,15 @@ Within the Wigner representation for odd prime dimension, all negatively represe
 \begin{equation}
     \F \coloneqq \{ \rho: \W[\bmz]{\rho} \geq 0 \text{ for all } \bmz \in \cal{P}_d\}.
 \end{equation}
-Our focus is on states with negativity, so the particular choice of free states is not critical for our analysis. The remaining component that defines any magic theory is the set of allowed quantum operations, i.e. the ones that are considered free within the theory. The most basic assumption we require on free operations is that they send any free state to another free state, meaning that a resource state cannot be created freely.
+Our focus is on states with negativity, so the particular choice of free states is not critical for our analysis. The remaining component that defines any magic theory is the set of free quantum operations. The most basic assumption we require on free operations is that they send any free state to another free state.
 
-Any magic state protocol will correspond to a quantum channel $\E$, and so from Equation~(\ref{Wigner-Choi}) admits a Wigner representation $W_{\E}( \y | \bmz)$ that acts as a transition matrix mapping phase space points $\bmz \rightarrow \y$. The representation obeys the relation 
+Any magic state protocol will correspond to a quantum channel $\E$, so from Eq.~(\ref{Wigner-Choi}) it admits a Wigner representation $W_{\E}(\y | \bmz)$ that acts as a transition matrix mapping phase space points $\bmz \rightarrow \y$. The representation obeys the relation 
 \begin{equation}
 	W_{\E(\rho)} (\y) = \sum_{\bmz \in \P_d} W_{\E}( \y | \bmz) W_\rho(\bmz),
 \end{equation}
-for any $\E$ and $\rho$. Since the magic protocol sends free states to free states, $\E$ sends all positively represented quantum state to other positively represented quantum states. In such cases, it can be shown~\cite{Wang_2019} that if $\E$ is a free operation then the associated Wigner representation $W_{\E}(\y |\bmz)$ must form a stochastic matrix. In particular, all stabilizer operations correspond to stochastic matrices in the Wigner representation. 
+for any $\rho$. Since the magic protocol sends free states to free states, $\E$ sends all positively represented quantum state to other positively represented quantum states. In such cases, it can be shown~\cite{Wang_2019} that if $\E$ is a free operation then the associated Wigner representation $W_{\E}(\y |\bmz)$ must form a stochastic matrix. In particular, all stabilizer operations correspond to stochastic matrices in the Wigner representation. 
 
-However, note that this mapping to stochastic maps is not one-to-one. Not all stochastic maps on the phase space correspond to valid quantum operations. The reason is that the maps must also respect the symplectic structure of the phase space, which is an additional non-trivial constraint.
+We note that this mapping to stochastic maps is not one-to-one. Not all stochastic maps on the phase space correspond to valid quantum operations. The reason is that the maps must also respect the symplectic structure of the phase space, which is an additional non-trivial constraint.
 
 In what follows, we shall assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ are represented by non-negative Wigner functions, while the free operations $\O$ are stochastic maps in the Wigner representation. Our analysis of magic in this phase space setting makes use of majorization theory, which we describe in the next section.
 
@@ -201,11 +190,11 @@ In what follows, we shall assume that we have a magic theory $\R = (\F, \O)$ in 
 \label{sec:major}
 
 Majorisation~\cite{cit:marshall, Blackwell_1953} is a collection of powerful tools that has found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Vallejos_2021}.
-It describes the disorder of distributions that undergo stochastic transformations, and in its simplest form defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorises $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. A well-known result~\cite{cit:marshall} tells us that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be checked efficiently.
+It describes the disorder of distributions that undergo stochastic transformations, and in its simplest form defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorizes $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. It can be shown~\cite{cit:marshall} that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be checked efficiently.
 
-There is a natural generalisation, which is called $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization~\cite{cit:horodecki2013}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as $\p \succ_{\r} \q$, if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. In order words, this majorization pre-order coincides with the image of $\p$ under stochastic maps that have $\r$ as a fixed point. It is readily checked that the original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. The pre-order that results from $\bmd$-majorization is also easily computed and again corresponds to checking a small number of inequalities.
+There is a natural generalisation, which is called $\bmd$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization~\cite{cit:horodecki2013}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as $\p \succ_{\r} \q$, if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. The original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. 
 
-In fact, we can further generalise to \emph{relative majorization}~\cite{Blackwell_1953, Ruch_1976, ruch_mixing_1978, Renes_2016, Buscemi_2017, Rethinasamy_2020}, defined as an ordering between pairs of vectors and write 
+In fact, we can further generalize to \emph{relative majorization}~\cite{Blackwell_1953, Ruch_1976, ruch_mixing_1978, Renes_2016, Buscemi_2017, Rethinasamy_2020}, defined as an ordering between pairs of vectors and write 
 \begin{equation}
 	(\p,\r) \succ (\q, \r')
 \end{equation}
@@ -214,7 +203,7 @@ if and only if there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q
 \subsection{Quasi-probability majorization and non-monotonic Lorenz curves}
 \label{sec:lc}
 
-Our analysis applies majorization to magic states at the level of the associated Wigner distributions. However, these are in general quasi-probability distributions, so it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions.
+Our analysis applies majorization to magic states at the level of the associated Wigner distributions. Since these are in general quasi-distributions, it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions.
 
 We also make use of the notion of a Lorenz curve of a vector $\w \in \mathbb{R}^n$ relative to some other vector $\r \in \mathbb{R}^n$. Given a vector $\w$ we define $\w^\downarrow$ to be the re-arrangement of the components of $\w$ into decreasing order. Given two $n$--component vectors $\w$ and $\r$, we first define $\widetilde{\w}=(\widetilde{w}_i)$, where $\widetilde{w}_i \coloneqq w_i/r_i$, as the vector of component-wise ratios between $\w$ and $\r$.
 We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
@@ -231,28 +220,28 @@ In the usual case where $\w$ and $\r$ are both probability distributions the Lor
 for all $x \in [0,1]$.
 This provides a simple way of computing whether relative majorization holds between pairs of probability distributions.
 
-However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotonically increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See~\cref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality.
+However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotonically increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Fig.~\ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality.
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/lc_strange.pdf}
-    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulant functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-probability distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (Equation~\ref{eq:noisysn}) for $n=2,4,6$ within $\R_{\sigma}$, where $\sigma = \id/3$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulative functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (Eq.~(\ref{eq:noisysn})) for $n=2,4,6$ within $\R_{\sigma}$, where $\sigma = \id/3$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
     }
     \label{fig:lcs}
 \end{figure}
 
-Relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-probability distributions before proceeding with our analysis. This can be done from first principles, but a simpler way to see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-probability distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization. This negativity masking then gives the following result.
+Relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-distributions before proceeding with our analysis. This can be done from first principles, but a simpler way to see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization. This negativity masking then gives the following result.
 
 \begin{theorem}\label{thm:lcquasi}
-	Let $\w \in \mathbb{R}^n,\w'\in \mathbb{R}^m$ be quasi-distributions, and let $\r \in \mathbb{R}^n, \r' \in \mathbb{R}^m$ be probability distributions with non-zero components. Then $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w|\r}(x) \ge L_{\w' |\r'}(x)$ for all $x \in [0,1]$.
+	Let $\w \in \mathbb{R}^n,\w'\in \mathbb{R}^m$ be quasi-distributions, and let $\r \in \mathbb{R}^n, \r' \in \mathbb{R}^m$ be probability distributions with non-zero components. Then, $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w|\r}(x) \ge L_{\w' |\r'}(x)$ for all $x \in [0,1]$.
 \end{theorem}
 \begin{proof}
-	Since the components of $\r$ are strictly positive, there always exists an $\epsilon >0$ such that $\w_\epsilon \coloneqq \epsilon \w + (1-\epsilon) \r$ is a genuine probability distribution. A similar result holds for $\w'$ and $\r'$ and we choose $\epsilon$ sufficiently small so that both $\w_\epsilon$ and $\w_\epsilon'$ are probability distributions. We now have that $(\w , \r) \succ (\w', \r')$ if and only if $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$. This equivalence holds because there exists a stochastic map $A$ such that $A \w = \w'$ and $A \r = \r'$ if and only if 
+	Since the components of $\r$ are strictly positive, there always exists an $\epsilon >0$ such that $\w_\epsilon \coloneqq \epsilon \w + (1-\epsilon) \r$ is a genuine probability distribution. A similar result holds for $\w'$ and $\r'$ and we choose $\epsilon$ sufficiently small so that both $\w_\epsilon$ and $\w_\epsilon'$ are probability distributions. We now have that $(\w, \r) \succ (\w', \r')$ if and only if $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$. This equivalence holds because there exists a stochastic map $A$ such that $A \w = \w'$ and $A \r = \r'$ if and only if 
 \begin{equation}
 A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'\mbox{ and } A\r = \r'.
 \end{equation}
 In terms of a Lorenz curve condition we have that $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$ if and only if $L_{\w_\epsilon |\r} (x) \ge L_{\w'_\epsilon |\r'} (x)$ for all $x \in [0,1]$. 
-However, as we show in the Appendices (\cref{lemma:Lorenz_linearity}), the Lorenz curve for any quasi-probability distribution obeys the relation
+Additionally, we show in the appendices (Proposition~\ref{Lorenz_linearity}) that the Lorenz curve for any quasi-distribution obeys the relation
 \begin{equation}
 L_{a \w + b \r | \r} (x) = a L_{\w|\r} (x) + bx,
 \end{equation}
@@ -265,12 +254,12 @@ L_{\w_\epsilon |\r} (x) &\ge L_{\w'_\epsilon |\r'} (x) \nonumber \\
 Finally, the $(1-\epsilon)x$ terms cancel on both sides and we get the required relative majorization conditions that $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w | \r} (x) \ge L_{\w' | \r'}(x)$ for all $x \in [0,1]$, as required.
 \end{proof}
 
-With this theory in place, we now turn to magic distillation protocols.
+With this theory in place, we turn to magic distillation protocols.
 
 \section{Magic distillation bounds with fixed-points}
 \label{sec:frag}
 
-We can now consider how physical constraints affect magic distillation rates starting in this section with an abstract setting based on the fixed-point structure of the physical operations accessible to us. We show that any magic theory can always be decomposed in terms of `sub-theories' with a particular fixed-point structure. This allows the use of $\mathbf{d}$--majorization, however in~\cref{sec:stab}, we drop the requirement of fixed-points and instead use the full relative majorization, before giving general entropic constraints in Section~\ref{section:entropies}.
+We can now consider how majorization constrains magic distillation rates starting in this section with an abstract setting based on the fixed-point structure of the physical operations accessible to us. We show that any magic theory can always be decomposed in terms of `sub-theories' with a particular fixed-point structure, which allows the use of $\mathbf{d}$--majorization. Later, in Sec.~\ref{sec:stab}, we drop the requirement of fixed-points and instead use the full relative majorization, before giving general entropic constraints in Sec.~\ref{section:entropies}.
  
  We begin by defining the following sub-theory of any magic theory $\R$.
 \begin{definition}\label{def:sigmafrag}
@@ -287,13 +276,12 @@ Then a transformation $\rho_1 \rightarrow \rho_2$ is possible in $\R$ if and onl
 \end{theorem}
 The proof of this is straightforward.
 \begin{proof}
-   Suppose the interconversion is possible in a $\R_\sigma$ via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer Fixed-Point theorem~\cite{cit:brouwer} this mapping must therefore have a fixed point $\sigma \in \F$. Therefore, $\E \in \O_\sigma$ and the interconversion is possible in $\R_\sigma$.
+   Suppose the interconversion is possible in a $\R_\sigma$ via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer fixed-point theorem~\cite{cit:brouwer}, this mapping must therefore have a fixed point $\sigma \in \F$, so $\E \in \O_\sigma$ and the interconversion is possible in $\R_\sigma$.
 \end{proof}
-We can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular $\R_\sigma$. In the next section we show that a given $\R_\sigma$ can be approximated by a majorization pre-order, and from this we can compute magic distillation bounds.
+We can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular $\R_\sigma$. In the next section we show that a given $\R_\sigma$ can be approximated by a majorization pre-order, and from this we compute magic distillation bounds.
 
 \subsection{Majorisation of Wigner distributions with fixed-point structure}
 \label{sec:major_frag}
-We now look at how fixed-points give constraints on magic protocols.
 We consider some $\sigma \in \F$, and its corresponding $\R_\sigma$. We are interested in the ability to transform many copies of some noisy magic state $\rho$ towards a more pure form of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, so $W_\rho(\bmz) < 0$ for some regions of $\bmz \in \P_d$. The state $\sigma$ is assumed to have a Wigner distribution with $W_\sigma(\bmz) > 0$ for all $\bmz$ in the phase space\footnote{A non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$ in the end.}.
 
 The free operations within the magic theory $\R$ are represented by stochastic maps, and within $\R_\sigma$ by stochastic maps that leave $W_\sigma(\bmz)$ invariant. Therefore, a necessary condition for magic state transformations $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$ will be that 
@@ -306,18 +294,18 @@ or put another way, that the quasi-distribution $W_{\rho_1}$ is more ordered tha
 \end{equation}
 for all $x \in [0,1]$, which restricts the transformations that are possible.
 
-  Note, however, that this is not a single numerical constraint, but a family of constraints. For $n$ copies of a qudit system of dimension $d$ the number of terms in $W_{\rho}$ is $d^{2n}$, so imposing the Lorenz curve condition corresponds to \emph{exponentially} many constraints. However,  before computing explicit examples, in the next section we describe how these majorization constraints relate to other known monotones.
+Note that this is not a single numerical constraint, but a family of constraints. For $n$ copies of a qudit system of dimension $d$ the number of terms in $W_{\rho}$ is $d^{2n}$, so imposing the Lorenz curve condition corresponds to exponentially many constraints.  Before computing explicit examples, in the next section we describe how these majorization constraints relate to other known monotones.
 
 \subsection{Basic monotones for magic distillation for a particular $\R_\sigma$ and the relation to mana}
 \label{sec:monotones_frag}
 
-We state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones in a new light. The first result gives an extremely simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
+We state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones in a new light. The first result gives a simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
 
 \begin{theorem} Majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity/mana. 
 \end{theorem}
 \begin{proof}
 	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) =\frac{1}{2} (\sum_{\bmz} |W_\rho(\bmz) | - 1)$.
-We make use of the $L_1$-norm form of relative majorization, (see~\cref{app:major}), which states that $\p \succ_{\r} \q$ if and only if
+We make use of the $L_1$-norm form of relative majorization, (see Appendix~\ref{app:major}), which states that $\p \succ_{\r} \q$ if and only if
 	\begin{equation}
 \sum_k | p_k - r_k t | \geq \sum_k | q_k - r_k t |,
 \end{equation}
@@ -328,19 +316,19 @@ If we have a magic state $\rho$ that has negativity in its Wigner representation
 \begin{theorem}\label{lem:lcmax}
 	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $\lc{\rho}{\sigma}(x)$ is independent of the $\R_\sigma$ and equal to $1+\sn{\rho}$. Moreover, the majorization constraint is stronger than mana in every $\R_\sigma$.
 \end{theorem}
-The proof of this is given in~\cref{app:major}. Using the Lorenz curve perspective, it is also simple to construct new monotones. For example, within a given $\R_\sigma$, the area above the horizontal line $y = 1$ is another magic monotone.
-\begin{lemma}
+The proof of this is given in Appendix~\ref{app:major}. Using the Lorenz curve perspective, it is also simple to construct new monotones. For example, within a given $\R_\sigma$, the area above the horizontal line $y = 1$ is another magic monotone.
+\begin{theorem}
 Given a magic state $\rho$ and a free state $\sigma$, let $\A_\sigma(\rho)$ be the area of the region $\{(x, y): 1 \leq y \leq L_{\rho | \sigma}(x)\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
-\end{lemma}
+\end{theorem}
 \begin{proof}
 Consider the transformation $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$. We have that $L_{\rho_1|\sigma}(x)$ is never below the curve $L_{\rho_2|\sigma}(x)$, and therefore the region above $L=1$ for $\rho_2$ is a subset of the corresponding region for $\rho_1$. Thus, $\A_\sigma(\rho_1) \geq \A_\sigma(\rho_2)$, so $\A_\sigma$ is a magic monotone in $\R_\sigma$.
 \end{proof}
-Note though, in contrast to mana, the area monotone is \emph{specific to the $\R_\sigma$}, and its value will vary as we change $\sigma$. Therefore its monotonicity depends on the physics of the fixed point and provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant. One can also define an area monotone in the more general setting of relative majorization, where one drops the fixed point emphasis as in Section \ref{sec:stab}, but we do not explore this here.
+Note though, in contrast to mana, the area monotone is \emph{specific to $\R_\sigma$}, and its value will vary as we change $\sigma$. Therefore its monotonicity depends on the physics of the fixed point and provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant. One can also define an area monotone in the more general setting of relative majorization, where one drops the fixed point emphasis as in Sec.~\ref{sec:stab}.
 
 \subsection{Magic distillation bounds for unital protocols}
 \label{sec:unital}
 
-We now construct magic state distillation bounds for protocols that generate \emph{unital} channels, meaning that $\E(\I/d) = \I/d$, and includes for example all protocols built from Weyl-covariant channels~\cite{cit:gross3}. 
+We now construct magic state distillation bounds for protocols that generate \emph{unital} channels, meaning that $\E(\I/d) = \I/d$.
 
 Our approach works for any odd dimension, but for simplicity we consider qutrit magic states ($d=3$), for which a canonical magic state exists with a simple Wigner distribution. This is the Strange state $|S\>$, which is given by
 \begin{equation}
@@ -350,7 +338,7 @@ in the computational basis. Its distribution $W_{|S\>\<S|}(\z)$ has a single neg
 \begin{equation}\label{eq:noisysn}
     \rho_{\rm{S}}(\epsilon)\coloneqq (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id,
 \end{equation}
-where $\epsilon$ is the depolarizing error parameter. One nice feature of this is that any magic state $\rho$ can be processed via Clifford operations~\cite{cit:prakash,cit:prakash2} and put into this canonical form for some $\epsilon \ge 0$.
+where $\epsilon$ is the depolarizing error parameter. Any magic state $\rho$ can be processed via Clifford operations~\cite{cit:prakash,cit:prakash2} and put into this canonical form for some $\epsilon \ge 0$.
 
 The Wigner distribution of the single-copy, $\epsilon$--noisy Strange state  is given by
 \begin{equation}
@@ -366,23 +354,19 @@ located at the origin $\bmz = \bmo$ and positive components
 \end{equation}
 at the 8 phase space points $\bmz \ne \mathbf{0}$. We assume that $\epsilon < 3/4$ to ensure the presence of negativity in the Wigner distribution. 
 
-We now consider purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ into a smaller number of copies $n'$ of a less noisy Strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$. The maximally mixed state is a stabilizer state and so free, we choose to tensor in $n'-n$ auxiliary copies of it to the output. This simplifies analysis, and does not affect distillation rates as it is easy to see that
-\begin{equation}
-	L_{\rho |\sigma} (x) = L_{\rho \otimes \sigma |\sigma \otimes \sigma}(x),
-\end{equation}
-for any full-rank $\sigma \in \F$. Therefore, we compute the Lorenz curves for the transformation
+We now consider the problem of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ into a smaller number of copies $n'$ of a less noisy Strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$. In particular, we compute the Lorenz curves for the transformation
 \begin{equation}\label{eq:sudist}
 	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'}, %\otimes \left( \frac{1}{3}\id \right)^{\otimes (n-n')},
 \end{equation}
 and use them to bound the magic distillation rate $R(\epsilon, \epsilon') \coloneqq n'/n$.
 
-Due to negativity, the ordering of the components of rescaled Wigner distribution $W_{\rho_n |\sigma_n}(\bmz) \coloneqq W_{\rho_n}(\bmz)/W_{\sigma_n}(\bmz)$, for $\rho_n = \rho_S(\epsilon)^{\otimes n}$, and $\sigma_n = \sigma^{\otimes n}= (\I/3)^{\otimes n}$, depends on whether $-v(\epsilon)$ appears to an even or odd power. Treating the Wigner distributions as vectors, the component values $w_i$ and associated multiplicities $m_i$ in the $n$--copy case are found to be 
+Due to negativity, the ordering of the components of the rescaled Wigner distribution $W_{\rho_n |\sigma_n}(\bmz) \coloneqq W_{\rho_n}(\bmz)/W_{\sigma_n}(\bmz)$, for $\rho_n = \rho_S(\epsilon)^{\otimes n}$, and $\sigma_n = \sigma^{\otimes n}= (\I/3)^{\otimes n}$, depends on whether $-v(\epsilon)$ is raised to an even or odd power. Treating the Wigner distributions as vectors, the component values $w_i$ and associated multiplicities $m_i$ in the $n$--copy case are found to be 
 \begin{align}
 	m_i &= 8^{i}\binom{n}{i}, \\
 	w_i &= u^{i}(-v)^{n-i}, \label{eq:wigu}
 \end{align}
 where index $i$ runs through $0, \dots, n$, and we assume for simplicity that $n$ is even and $\epsilon \leq 3/7$, which implies that $v \geq u$.
-All details on the analysis are provided in~\cref{app:lcsu_technical}.
+All details on the analysis are provided in Appendix~\ref{app:lcsu_technical}.
 
 The Lorenz curve $L_{\rho_n|\sigma_n}(x)$ reaches a maximum value of
 \begin{align}\label{eq:lcsu_max}
@@ -396,30 +380,30 @@ which occurs at $x=x_\star$ given by
 
 Distillation bounds can be obtained from any location of the Lorenz curve, including the region around the peak, by imposing the constraint that the Lorenz curve of the input state never dips below the curve of the output. In particular a simple constraint can be obtained by considering the initial slopes of the two Lorenz curves. 
 
-The coordinates of the first point after the origin for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$, and by considering the slope of the line segment joining this point to the origin we can use~\cref{prop:first_elb} in the Appendices, to bound $R(\epsilon, \epsilon')$. We find that
+The coordinates of the first point after the origin for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$, and by considering the slope of the line segment joining this point to the origin we can use Proposition~\ref{prop:first_elb} in the appendices, to bound $R(\epsilon, \epsilon')$. We find that
 \begin{equation}\label{eq:unital-bound}
-	R(\epsilon, \epsilon') \leq R_\infty :=\frac{\ln (3-4\epsilon)}{\ln (3-4\epsilon')}.
+	R(\epsilon, \epsilon') \leq R_\infty \coloneqq\frac{\log (3-4\epsilon)}{\log (3-4\epsilon')}.
 \end{equation}
-The choice of denoting the bound by $R_\infty$ is explained in Section \ref{section:entropies} in relation to single-shot entropies. For the limiting case of pure magic states on the output ($\epsilon'=0$), this simplifies to
+The choice of denoting the bound by $R_\infty$ is explained in Sec.~\ref{section:entropies} in relation to single-shot entropies. For the limiting case of pure magic states on the output ($\epsilon'=0$), this simplifies to
 \begin{equation}
-	R \leq 1 + \frac{\ln (1 - \frac{4}{3} \epsilon)}{\ln 3}.
+	R \leq 1 + \frac{\log (1 - \frac{4}{3} \epsilon)}{\log 3}.
 \end{equation}
 We compare this to other known distillation bounds coming from mana and thauma~\cite{Wang_2020}. The mana bound can be directly calculated as
 \begin{equation}
-	R \leq \frac{\M(\rho_{\rm{S}}(\epsilon))}{\M(\rho_{\rm{S}}(0))} = 1 + \frac{\ln \left(1 - \frac{8}{15}\epsilon \right)}{\ln \frac{5}{3}}.
+	R \leq \frac{\M(\rho_{\rm{S}}(\epsilon))}{\M(\rho_{\rm{S}}(0))} = 1 + \frac{\log \left(1 - \frac{8}{15}\epsilon \right)}{\log \frac{5}{3}}.
 \end{equation}
 The recently introduced max--thauma~\cite{Wang_2020} is defined as
 \begin{equation}
 	\theta_{\rm{max}}(\rho) \coloneqq \log \min{\{2\hspace{1pt}\sn{V}+1 : V \geq \rho\}}
 \end{equation}
-and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound $R_\infty$ as shown in~\cref{fig:distill_bounds}. 
+and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound $R_\infty$ as shown in Fig.~\ref{fig:distill_bounds}. 
 
 This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{num}}$ obtained by considering the full Lorenz curve, which show that the bound $R_\infty$ can be further improved.
 
 \section{Temperature-dependent bounds for magic state distillation protocols}
 \label{sec:stab}
 
-We now show how relative majorization can incorporate physics into magic distillation bounds. The way we do this is by considering how the protocol would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the actual $n$-copy magic state. 
+We now show how relative majorization can incorporate the system's Hamiltonian into magic distillation bounds. The way we do this is by considering how the protocol would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the actual $n$-copy magic state. 
 
 We consider a magic distillation protocol on multiple identical qudits in a noisy magic state $\rho(\epsilon)$, with noise parameter $\epsilon$, sending 
 \begin{equation}
@@ -431,18 +415,16 @@ with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel indu
 \end{equation}
 We may also assume that the reference state $\tau$ is not a magic state, and has a strictly positive Wigner distribution $W_\tau(\bmz)$.
 
-A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. We also assume for simplicity that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrise the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general.
-
-This means in particular that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007, renner_phd} we have that for $m \gg 1$
+A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. We also assume for simplicity that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrize the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general. This means that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007} we have that for $m \gg 1$
 \begin{equation}
 \E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
 \end{equation}
 where $d\mu(x)$ is a probability measure over a set $\{\tau'_x\}$ of single qudit states.
 
 \subsection{Free energy and sub-linear correlations in the thermodynamic limit}
-To keep our analysis simple we make the following physical assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ the correlations generated on the reference equilibrium state are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and $\E(\tau^{\otimes n}) \approx \tau'^{\otimes m}$. This occurs in the context of traditional thermodynamics, and states that the output system is well-described by intrinsic variables that do not scale in $m$, and correlations are sub-linear in $m$. In particular, this allows us to compute a free energy per qudit of the output state. 
+To keep our analysis simple we make the following physical assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ the correlations generated on the reference equilibrium state are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and $\E(\tau^{\otimes n}) \approx \tau'^{\otimes m}$. This scenario occurs in the context of traditional thermodynamics, and states that the output system is well-described by intrinsic variables that do not scale in $m$, and correlations are sub-linear in $m$. In particular, this allows us to compute a free energy per qudit of the output state. 
 
-The case of non-trivial correlations in the thermodynamic limit can also be considered, but leads to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. In particular, it has been shown~\cite{muller_2015} that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy~\cite{muller_2016, muller_2019}.
+Non-trivial correlations in the thermodynamic limit can also be considered, but leads to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. It has been shown~\cite{muller_2015} that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy~\cite{muller_2016, muller_2019}.
 
 Our bound depends on the von Neumann entropy $S(\rho)$ of a state, and the free energy at a particular temperature.
 For a state $\tau = e^{-\beta H}/\Z$, the Helmholtz free energy $F$ is given by
@@ -451,13 +433,13 @@ For a state $\tau = e^{-\beta H}/\Z$, the Helmholtz free energy $F$ is given by
 \end{equation}
 which is obtained from the internal energy via a Legendre transform~\cite{Pathria_1997}.
 
-The protocol transforms the equilibrium as $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$.  The protocol does not on its own generate magic and so we assume the output state $\tau'$ is also a Wigner-positive state. However, this is generally a \emph{non-equilibrium} state for the system. Despite this it is useful to associate an effective Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This Hamiltonian is defined by the expression $\tau' = e^{-\beta H'}/\Z'$, and has free energy $F' = -\beta^{-1} \log \Z'$. 
+The protocol transforms the equilibrium as $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$.  The protocol does not generate magic on its own, so we assume that the output state $\tau'$ is also a Wigner-positive state. However, this is generally a \emph{non-equilibrium} state for the system. Despite this it is useful to associate an effective Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This Hamiltonian is defined by the expression $\tau' = e^{-\beta H'}/\Z'$, and has free energy $F' = -\beta^{-1} \log \Z'$. 
 
 \subsection{Temperature-dependent distillation bounds}
 
-The magic state transformation is now considered by how it transforms the pair of quantum states $(\rho^{\otimes n}, \tau^{\otimes n})$. This transformation is then constrained by the relative majorization condition $(W_{\rho}, W_\tau) \succ (W_{\rho'}, W_{\tau'})$ that holds due to the protocol being a stochastic map in the Wigner representation.
+The magic state protocol is now considered by how it transforms the pair of quantum states $(\rho^{\otimes n}, \tau^{\otimes n})$ and is then constrained by the relative majorization condition $(W_{\rho}, W_\tau) \succ (W_{\rho'}, W_{\tau'})$ that holds due to the protocol being a stochastic map in the Wigner representation.
 
-In Appendix~\ref{thm:free-energy-bound-proof} we analyse the Lorenz curves of this condition and obtain the following magic distillation bound that combines computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian and reference temperature $T$ of the physical system. We state the result for the case of qutrits, but a similar analysis works for general odd-dimension qudits.
+In Appendix~\ref{app:lcst_technical} we analyse the Lorenz curves of this condition and obtain the following magic distillation bound that combines computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian and reference temperature $T$ of the physical system. We state the result for the case of qutrits, but a similar analysis works for general odd-dimension qudits.
 
 \begin{theorem}\label{thm:free-energy}
 	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
@@ -467,7 +449,7 @@ Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to th
 
 Then the asymptotic magic distillation rate $R = m/n$ is bounded as
 \begin{equation}\label{eq:rate_bounds_proof}
-	R \leq \dfrac{\ln \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\ln \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
+	R \leq \dfrac{\log \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\log \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
 \begin{equation}\label{eq:phi}
@@ -480,7 +462,7 @@ with $\zeta$ given by the expressions
 \end{align}
 and $W_\tau(\bmz)$ attaining a minimum at $\bmz=\bmz_\star$. The primed variables are defined similarly for the output system.
 \end{theorem}
-\noindent The proof of this is provided in~\cref{thm:free-energy-bound-proof}, and follows a similar line as taken for our unital protocol bound.
+\noindent The proof of this is provided in Appendix~\ref{app:lcst_technical}, and follows a similar line to the unital protocol bound.
 
 The above bound depends on: 
 \begin{itemize}
@@ -490,53 +472,49 @@ The above bound depends on:
 \end{itemize}
 The intermediate terms specify how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the term $\phi$ quantifies to what degree a sharp energy value can be associated to the negativity in the Wigner representation. Its form is similar to $F$, and so $\phi$ can loosely speaking be viewed as a `magic free energy' term. 
 
-The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Appendix \ref{app:lcst_technical}.
+The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Appendix~\ref{app:lcst_technical}.
 
 \subsection{Technical aspects and special cases}
-Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in~\cref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix \ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem \ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
+Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in Theorem~\ref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Appendix~\ref{app:lcst_technical}, we give bounds in which one does not include these Clifford changes of basis (see Theorem~\ref{thm:no-processing}), and which have a more non-trivial dependency on the parameters.
 
 \begin{figure}[t!]
     \centering
-    \subfigure[][]{%
-    \label{fig:noCliff}%
+    \subfigure[][]{
+    \label{fig:noCliff}
     \includegraphics[scale=0.35]{figs/rate_scatter.pdf}}\\
-    \subfigure[][]{%
-    \label{fig:Cliff}%
+    \subfigure[][]{
+    \label{fig:Cliff}
     \includegraphics[scale=0.35]{figs/rate_scatter_cliff.pdf}}
     \caption{\textbf{Temperature-dependent bounds for magic distillation.} Shown are two contour plots of the bound on $R(\epsilon, \beta)$ for the case $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ is the depolarising error of the input magic state. 
-The top figure \subref{fig:noCliff} does not use any changes of Clifford basis, and the form of the bound depends on both the noise parameter and temperature. The curved dashed line is $\epsilon_\star(\beta)$ and given by Equation~\ref{eq:threshold} and $\beta_\star = (kT_\star)^{-1}$ is given by $E_2-\phi = kT_\star \ln 2$. 
-In the bottom figure \subref{fig:Cliff} Clifford processing is used resulting in a smoother bound. In both figures the $\beta = 0$ line correspond to the unital bounds.}
+The top figure~\subref{fig:noCliff} does not use any changes of Clifford basis, and the form of the bound depends on both the error parameter and temperature. The curved dashed line is $\epsilon_\star(\beta)$ and given by Eq.~(\ref{eq:threshold}) and $\beta_\star = (kT_\star)^{-1}$ is given by $E_2-\phi = kT_\star \ln 2$. 
+In the bottom figure~\subref{fig:Cliff} Clifford processing is used resulting in a smoother bound. In both figures the $\beta = 0$ line correspond to the unital bounds.}
     \label{fig:rate_contour}
 \end{figure}
 
-
 The analysis makes other simplifying assumptions that could easily be dropped, at the price of more complex expressions. We could perform similar analysis for general qudits, and different choices of magic states, for example. It might also be of interest to consider other choices of reference states $\tau$ that are more appropriate to the hardware physics, for example for photonic set-ups~\cite{bombin2021interleaving}.
 
-The assumption that is more non-trivial is that we neglect correlations in the reference state in the thermodynamic limit. However for more general scenarios one could make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system via product states, to obtain similar bounds.
+The assumption which is non-trivial is that we neglect correlations in the reference state in the thermodynamic limit. However, for more general scenarios one could make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system via product states, to obtain similar bounds.
 
-
-
-
-The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain~\cref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$ and so the protocol, when applied to the reference state, adds/extracts free energy from the system. 
+The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain Fig.~\ref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$, so the protocol, when applied to the reference state, adds/extracts free energy from the system. 
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/R_vs_A.pdf}
-    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Equation~\ref{eq:rate_bounds_proof} with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. 
+    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Eq.~(\ref{eq:rate_bounds_proof}) with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. 
     }
     \label{fig:rvsa}
 \end{figure}
 
 \section{Extension of single-shot entropies to quasi-distributions}\label{section:entropies}
-We have considered Wigner distributions of magic states within a statistical mechanical setting in which it was argued that magic can be viewed as a non-classical form of free energy. This identification with free energy was done at the level of majorization constraints that appear due to stabilizer operations being described by stochastic maps in the Wigner representation. In this representation, non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could also be linked to physical free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
+We have considered Wigner distributions of magic states within a statistical mechanical setting in which it was argued that magic can be viewed as a non-classical form of free energy. This was done at the level of majorization constraints that appear due to stabilizer operations being described by stochastic maps in the Wigner representation. In this representation, non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could also be linked to physical free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
 
-One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution and so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined off of the set $\F$, let alone having a physically meaningful interpretation. 
+One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution, so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined outside the set $\F$, let alone have a physically meaningful interpretation.
  
-However, it turns out that the analysis for the temperature-dependent bound given by Equation (\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence~\cite{renyi_1960} $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
+However, it turns out that the analysis for the temperature-dependent bound given by Eq.~(\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence~\cite{renyi_1960} $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
 \begin{equation}
 	D_\infty (\p \hspace{1pt}||\hspace{1pt} \r) = \log \max_i \frac{p_i}{r_i}.
 \end{equation}
-It is clear that this does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning, and in~\cref{app:lcst_technical}, we show that this divergence has the following properties that are derived via relative majorization.
+It is clear that this does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning, and in Appendix~\ref{app:lcst_technical}, we show that this divergence has the following properties that are derived via relative majorization.
 \begin{theorem}\label{thm:Dinfty} 
 	Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
 \begin{enumerate}
@@ -550,39 +528,39 @@ The reason for the power of $2$ in the third property is that the maximization i
 
 We can go further, and show that in fact a range of R\'{e}nyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--R\'{e}nyi entropy $H_\alpha(\p)$ is defined as~\cite{renyi_1960}
 \begin{equation}
-	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
+	H_\alpha(\p) \coloneqq \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
 To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under the majorization pre-order. In Appendix~\ref{app:single-shot} we prove the following.
 \begin{theorem}\label{thm:HSchur} 
-	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and moreover if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
-This monotonicity provides a meaningful extension of entropies to quasi-distributions. The unusual form of the $\alpha$ parameter is required so that the entropy function is well-defined and real-valued for all $\w$. The allowed values of $\alpha$ are dense in $\alpha >1$, however, while R\'{e}nyi entropies on probabilities can also be used for $0 < \alpha <1$ it turns out that for quasi-probability distributions this parameter regime is no longer monotonic in terms of the majorization pre-order (see Appendix~\ref{app:single-shot} for details).
+This monotonicity provides a meaningful extension of entropies to quasi-distributions. The unusual form of the $\alpha$ parameter is required so that the entropy function is well-defined and real-valued for all $\w$. The allowed values of $\alpha$ are dense in $\alpha >1$, however, while R\'{e}nyi entropies on probabilities can also be used for $0 < \alpha <1$, it turns out that this parameter regime is no longer monotonic in terms of the majorization pre-order for quasi-distributions (see Appendix~\ref{app:single-shot} for details).
 
 We can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
 \begin{theorem}\label{thm:Magic}
 	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \ge b$.
 \end{theorem}
-Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, however this is unrelated to the present negative entropy.
+Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, but is unrelated to the present negative entropy.
 
 The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy is not well-defined, however it diverges in a well-defined way. We can write the divergence of the entropy as 
 \begin{equation}
 	H_{1+\epsilon}(W_\rho) = -\epsilon^{-1} \log \sum_{\bmz} |W_\rho (\bmz)|^{1+\epsilon}
 \end{equation} 
-with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We now recall that mana can be written as $\M(\rho) = \log \sum_{\bmz} |W_\rho(\bmz)|$, and so we obtain a second new description of mana:
+with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We recall that mana can be written as $\M(\rho) = \log \sum_{\bmz} |W_\rho(\bmz)|$, so we obtain a second new perspective on mana:
 \begin{equation}\label{eq:mana-divergence}
 \M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1+\epsilon}(W_\rho).
 \end{equation}
-Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies \emph{the divergence of the R\'{e}nyi-entropy} as we approach the limiting Shannon entropy $H(W_\rho)$. 
+Therefore, the mana of a state $\rho$ is the residue of a pole in $H_\alpha(W_\rho)$, and quantifies the divergence of the R\'{e}nyi-entropy as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
-We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether the presence of magic in Clifford circuits could admit a sensible interpretation in terms of phase transitions~\cite{domb2000phase}.
+We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether this non-classicality could be interpreted in terms of a phase transition~\cite{domb2000phase}.
 
 \subsection{R\'{e}nyi divergences and general distillation bounds}
 Every entropy can be obtained from a relative entropy~\cite{Gour_2020} so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
-The $\alpha$--R\'{e}nyi divergence $D_\alpha(\w||\r)$ is defined as
+The $\alpha$--R\'{e}nyi divergence $D_\alpha(\p||\r)$ is defined as
 \begin{equation}
-	D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) := \frac{1}{\alpha-1} \log \sum_i w_i^\alpha r_i^{1-\alpha},
+	D_\alpha(\p \hspace{1pt}||\hspace{1pt} \r) \coloneqq \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
 \end{equation}
-where $\w$ can be a quasi-distribution, $\r$ a probability distribution with positive components. In~\cref{app:single-shot}, we also show that the divergence satisfies the following.
+where $\p$ can be a quasi-distribution and $\r$ a probability distribution with positive components. In Appendix~\ref{app:single-shot}, we also show that the divergence satisfies the following.
 
 \begin{theorem}\label{thm:Da_props} 
 	Let $\tau$ be in the interior of $\F$. 
@@ -597,26 +575,26 @@ where $\w$ can be a quasi-distribution, $\r$ a probability distribution with pos
 
 We can now apply this to obtain a family of magic distillation bounds based on R\'{e}nyi divergences.
 \begin{theorem}\label{thm:entropic_bounds}
-	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
+	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.1ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
-\widetilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
+\widetilde{D}_\alpha( \rho', \tau') \coloneqq \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
 The proof is given in Appendix~\ref{app:single-shot}. 
 
 While this bound is abstract in its present form, it does suggest future applications by viewing $\widetilde{D}_\alpha( \rho', \tau')$ within the context of hypothesis testing~\cite{tomamichel2013}, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
-However in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
+However, in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
 
 If correlations in $\tau'_m$ between subsystems can be neglected then $\tau'_m = \tau'^{\otimes m}$ for some qudit state $\tau'$ we have that
 \begin{equation}
 	\widetilde{D}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'}),
 \end{equation}
-which gives a generalized version of Theorem \ref{thm:free-energy}.
+which gives a generalized version of Theorem~\ref{thm:free-energy}.
 
 We can illustrate a simple application of the above bound for magic protocols that give unital maps. In this case it is easy to see that the above bound reduces to the simple form
 \begin{equation}
@@ -626,16 +604,16 @@ In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$,
 \begin{equation}
 	R \leq R_\alpha=\frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
-This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Figure~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
+This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Fig.~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
 
 \section{Outlook and open questions}
 \label{sec:lower_bounds}
 
-We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renyi_1960, renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In~\cref{app:lcsu_technical} and~\cref{app:lcst_technical} we give additional results that may be of use for later work.
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In Appendix~\ref{app:lcsu_technical} and Appendix~\ref{app:lcst_technical} we give additional results that may be of use for later work.
 
-We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correpond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, however this has also been generalised to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
+We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
   
-The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
+The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are \emph{not} unital, but still respect the symplectic structure. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of classical statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g. for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
@@ -664,16 +642,16 @@ In this appendix we present basic properties of the phase-point operators and th
 	    \item[(ii)]\label{en:a2} Closure under transposition: $A_{(q, p)}^T = A_{(q, -p)}$;
 	    \item[(iii)]\label{en:a3} Unit trace for odd $d$: $\tr[A_{\bmz}] = 1$;
 	    \item[(iv)]\label{en:a4} Completeness relation: $\sum_{\bmz \in \cal{P}_d} A_{\bmz} = d\id$;
-	    \item[(i)]\label{en:a5} Orthogonality: $\tr[A_{\bmz}^\dagger A_{\bmy'}] = d \delta_{\bmz,\bmy'}$.
+	    \item[(i)]\label{en:a5} Orthogonality: $\tr[A_{\bmz}^\dagger A_{\bmy}] = d \delta_{\bmz,\bmy}$.
 	\end{enumerate}
 \end{proposition}
-All properties follow from the definition in~\cref{eq:ax} along with properties of the displacement operator $D_{\bmz}$ and can be found in the literature, e.g.~\cite{cit:veitch,Vourdas_2004,cit:gross3}
+All properties follow from the definition in Eq.~(\ref{eq:ax}) along with properties of the displacement operators $D_{\bmz}$ and can be found in the literature, e.g.~\cite{cit:veitch,Vourdas_2004,cit:gross3}
 
 \begin{proposition}\label{thm:wstate}
   The state Wigner distribution is
   \begin{enumerate}
     \item[(i)]\label{en:w1} Real valued: $\W{\rho}(\bmz) \in \mathbb{R}^{d^2}$;
-    \item[(ii)]\label{en:w2} Normalised: $\sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho}=1$;
+    \item[(ii)]\label{en:w2} Normalized: $\sum_{\bmz \in \cal{P}_d} \W[\bmz]{\rho}=1$;
     \item[(iii)]\label{en:w3} Bounded: $\abs{\W[\bmz]{\rho}} \leq \frac{1}{d}$.
     \item[(iv)]\label{en:w4} Additive under mixing: \vspace{2pt}\\
     $\W[\bmz]{p\rho_1 + (1-p)\rho_2} = p\W[\bmz]{\rho_1} + (1-p)\W[\bmz]{\rho_2}$;
@@ -698,25 +676,25 @@ The first inequality follows from Theorem 1 of~\cite{cit:mirsky} for the trace o
     The Wigner distribution of a quantum channel $\E: \cal{B}(\cal{H}_{d_A}) \rightarrow \cal{B}(\cal{H}_{d_B})$ is
     \begin{enumerate}
         \item[(i)]\label{en:wo1} Real-valued: $\W{\E}(\bmz|\bmy) \in \mathbb{R}^{d_A^2} \times \mathbb{R}^{d_B^2}$;
-        \item[(ii)]\label{en:wo2} Normalised: $\sum_{\bmy \in \cal{P}_{d_B}} \W[\bmz|\bmy]{\E} = 1$ \\ 
+        \item[(ii)]\label{en:wo2} Normalized: $\sum_{\bmy \in \cal{P}_{d_{\scalebox{.9}{$\scriptscriptstyle B$}}}} \W[\bmz|\bmy]{\E} = 1$ \\ 
         for any $\bmz \in \cal{P}_{d_A}$;
         \item[(iii)]\label{en:wo3} Bounded: $\abs{\W[\bmz|\bmy]{\E}} \leq \frac{d_A}{d_B}$;
 	    \item[(iv)]\label{en:wo4} $\W[\bmz]{\E(\rho)} = \sum\limits_{\bmy \in \cal{P}_{d_{A}}} \W[\bmz|\bmy]{\E} \W[\bmy]{\rho}$ for any $\bmz \in \cal{P}_{d_B}$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-	Proof of all properties are provided in~\cite{Wang_2019} except for property (iii) which is a direct consequence of the definition of $\W{\E}$ and property (iii) in~\cref{thm:wstate}.
+	Proof of all properties are provided in~\cite{Wang_2019} except for property (iii) which is a direct consequence of the definition of $\W{\E}$ and property (iii) in Proposition~\ref{thm:wstate}.
 \end{proof}
 
-Within the context of the Wigner representation, we define the re-scaled quasi-distribution
+Within the context of the Wigner representation, we define the rescaled quasi-distribution
 \begin{equation}
-	W_{\rho|\tau}(\bmz) := \frac{W_\rho (\bmz) }{ W_\tau(\bmz)},
+	W_{\rho|\tau}(\bmz) \coloneqq \frac{W_\rho (\bmz) }{ W_\tau(\bmz)},
 \end{equation}
 which is well-defined if $\tau$ is a full-rank stabilizer state.
 
-The following lemma shows that the re-scaled Lorenz curves behave in a natural way under tensor products. 
+The following result shows that the rescaled Lorenz curves behave in a natural way under tensor products. 
 \begin{proposition}\label{prop:rescaled_multi}
-	Let $\tau_A, \tau_B$ be full rank stabilizer states on systems $A$ and $B$, and let $\rho_A, \rho_B$ be arbitrary states on $A,B$. Then the rescaled quasi-distribution obeys
+	Let $\tau_A, \tau_B$ be full rank stabilizer states on systems $A$ and $B$, and let $\rho_A, \rho_B$ be arbitrary states on $A,B$. Then, the rescaled quasi-distribution obeys
 \begin{equation}
 W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmz_A \oplus \bmz_B) =W_{\rho_A | \tau_A}(\bmz_A) W_{\rho_B | \tau_B}(\bmz_B)
 \end{equation}
@@ -734,18 +712,19 @@ W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmz_A \oplus \bmz_B) &= \frac
 \subsection{Relative majorization for quasi-distributions}
 \label{app:rel_quasi}
 
-We define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, in accordance to the use of the term for Lorenz curve of proper probability distributions.
+We define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, in accordance to the use of the term for Lorenz curves of proper probability distributions.
 
 Here, we verify useful majorization properties in the context of quasi-probability distributions, starting from the property that the Lorenz curve is concave.
-\begin{lemma}\label{L-concave} Let $\w$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\w|\r}(x)$ is a concave function on $[0,1]$.
-\end{lemma}
+\begin{proposition}\label{L-concave} 
+	Let $\w$ be a quasi-distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\w|\r}(x)$ is a concave function on $[0,1]$.
+\end{proposition}
 \begin{proof} 
-Let $x_\star$ be the point where $L_{\w|\r}(x)$ first attains it maximum. Therefore, on $[0,x_\star]$ the function rises monotonically to $L_{\w|\r}(x_\star)$, via the sum of all positive entries of $\w$, taken in decreasing order. Likewise on $[x_\star, 1]$, the function decreases monotonically from its maximum via the partial sums of the negative entries of $\w$ in decreasing order. Let $f_1(x)$ be equal to $L_{\w|\r}(x)$ on $[0, x_\star]$ and $0$ otherwise. Also let $f_2(x)$ be equal to $L_{\w|\r}(x)$ on $[x_\star,1]$ and and $0$ otherwise. By inspection both $f_1$ and $f_2$ are concave functions, and $f_1(x) + f_2 (x) = L_{\w|\r}(x)$ for all $x\in [0,1]$. However, the sum of two concave functions is also concave and the result follows.
+	Let $x_\star$ be the point where $L_{\w|\r}(x)$ first attains it maximum. Therefore, on $[0,x_\star]$ the function rises monotonically to $L_{\w|\r}(x_\star)$, via the sum of all positive entries of $\w$, taken in decreasing order. Likewise on $[x_\star, 1]$, the function decreases monotonically from its maximum via the partial sums of the negative entries of $\w$ in decreasing order. Let $f_1(x)$ be equal to $L_{\w|\r}(x)$ on $[0, x_\star]$ and $0$ otherwise. Also let $f_2(x)$ be equal to $L_{\w|\r}(x)$ on $[x_\star,1]$ and and $0$ otherwise. By inspection both $f_1$ and $f_2$ are concave functions, and $f_1(x) + f_2 (x) = L_{\w|\r}(x)$ for all $x\in [0,1]$. However, the sum of two concave functions is also concave which concludes the proof.
 \end{proof}
 
-The following result is used in~\cref{sec:lc} to prove that the Lorenz curve condition due to relative majorization is true for quasi-distributions.
-\begin{proposition}\label{lemma:Lorenz_linearity}
-	Let $\w$ be a quasi-probability distribution and let $\r$ be a probability distribution with strictly non-zero components. 
+The following result is used in Sec.~\ref{sec:lc} to prove that the Lorenz curve condition due to relative majorization is true for quasi-distributions.
+\begin{proposition}\label{Lorenz_linearity}
+	Let $\w$ be a quasi-distribution and let $\r$ be a probability distribution with strictly non-zero components. 
 	Then, $L_{a\w + b \r | \r} (x) = a L_{\w |\r}(x) + b x$ for any constants $a > 0$ and $b \in \mathbb{R}$.
 \end{proposition}
 \begin{proof} 
@@ -762,10 +741,10 @@ so the value of the Lorenz curve at each potential elbow point $x_k = \sum_{i=1}
 so we have $L_{a\w  + b\r|\r} (x) = a L_{\w |\r}(x) + b x$ for any $x \in [0,1]$ due to linearity.
 \end{proof}
 	
-The following provides equivalent formulations of relative majorization on quasi-probabilities. 
+The following provides equivalent formulations of relative majorization on quasi-distributions. 
 
 \begin{proposition}\label{prop:rmajor}
-Given quasi-probability distributions $\w, \w'$, $\r , \r'$, such that the components of $\r$ and $\r'$ are positive, the following statements are equivalent:
+Given quasi-distributions $\w, \w'$, $\r , \r'$, such that the components of $\r$ and $\r'$ are positive, the following statements are equivalent:
   \begin{enumerate}
     \item[(i)] $\w' = A\w$ and $\r' = A\r$ for a stochastic map $A$;
     \item[(ii)] $L_{\w|\r}(t) \geq L_{\w'|\r'}(t)$ for $t\in [0,1)$ and \vspace{5pt}\\ $L_{\w|\r}(1) = L_{\w'|\r'}(1)$;
@@ -775,7 +754,7 @@ Given quasi-probability distributions $\w, \w'$, $\r , \r'$, such that the compo
 \begin{proof}
 	The proofs for these properties on proper probability distributions can be found in~\cite{cit:marshall,ruch_mixing_1978,Renes_2016,Buscemi_2017} and references therein.
 	
-	The equivalence between (i) and (ii) on quasi-distributions was proven in~\cref{thm:lcquasi}.
+	The equivalence between (i) and (ii) on quasi-distributions was proven in Theorem~\ref{thm:lcquasi}.
 	
 	The equivalence between (i) and (iii) follows from a similar argument where we mask negativity with a probability distribution.
 	Namely, let $\epsilon > 0$ be such that $\w(\epsilon) \coloneqq \epsilon \w + (1-\epsilon) \r$ and $\w'(\epsilon) \coloneqq \epsilon \w + (1-\epsilon) \r'$ are genuine probability distributions. This is guaranteed by picking a sufficiently small $\epsilon > 0$, since $\r$ has positive components. We now have that $(\w , \r) \succ (\w', \r')$ if and only if $(\w(\epsilon) , \r) \succ (\w'(\epsilon), \r')$.
@@ -783,11 +762,11 @@ Given quasi-probability distributions $\w, \w'$, $\r , \r'$, such that the compo
 	\begin{align*}
 		\sum\limits_{i=1}^n \abs{w_i - r_i \frac{\epsilon + c - 1}{\epsilon}} \geq \sum\limits_{i=1}^n \abs{w'_i - r'_i \frac{\epsilon + c - 1}{\epsilon}}
 	\end{align*}
-Replacing $t = (\epsilon + c - 1)/\epsilon$, we see that $t$ can attain any real value for some value of $c$, and so we deduce the required $L_1$ norm condition on quasi-distributions $\w, \w'$.
+Replacing $t = (\epsilon + c - 1)/\epsilon$, we see that $t$ can attain any real value for $c \in \mathbb{R}$, so we deduce the required $L_1$--norm condition on quasi-distributions $\w, \w'$.
 \end{proof}
 
 We prove the following result connecting majorization to relative majorization~\cite{cit:horodecki2, Brandao_2015,  cit:lostaglio}.
-\begin{lemma}
+\begin{proposition}\label{relmaj2maj}
 	Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
 Then,
 \begin{equation}
@@ -795,10 +774,10 @@ Then,
 \end{equation}
 where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
 \begin{equation}
-	\Gamma_{\bma}(\bmz) := \bigoplus_{i=1}^N x_i \eta_{a_i},
+	\Gamma_{\bma}(\bmz) \coloneqq \bigoplus_{i=1}^N x_i \eta_{a_i},
 \end{equation}
 with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
-\end{lemma}
+\end{proposition}
 \begin{proof}
 	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma'}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
 \begin{equation}
@@ -809,7 +788,7 @@ that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\bmz) = \bmz$ for all $\bm
 The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
 
 Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
-We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B := \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^K$, since
+We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B \coloneqq \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^K$, since
 \begin{align}
 	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
 	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
@@ -820,32 +799,33 @@ Finally, $B$ maps the embedded distributions as follows,
 	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
 \end{equation}
 
-Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A := \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
+Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A \coloneqq \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
 \end{proof}
 We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, and do not consider further technicalities that have no impact on actual physical measurements, which always have a finite resolution.
+
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
 
-In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}(\bmz)$. 
-The distribution $\W{\rho}(\bmz)$ is defined on the phase space, but it can be convenient to re-express this using vector notation.
+In general, a $1$--copy $d$--dimensional state $\rho$ is described by its $d^2$--dimensional Wigner distribution $\W{\rho}$. 
+The distribution $\W{\rho}$ is defined on the phase space, but it can be convenient to re-express this using vector notation.
 We discuss this in terms of Wigner distributions, but there is nothing to prevent the discussion from applying to rescaled Wigner distributions as well.
 
 To each Wigner distribution $W_\rho(\bmz)$ we can associate \emph{component-multiplicity} pairs $\{(w_i, m_i)\}$ where the value $w_i$ occurs in the distribution $W_\rho(\bmz)$ with multiplicity $m_i$.
 
-As an example, for the Strange state $\rho_S := \rho_S(\epsilon=0)$ with
+As an example, for the Strange state $\rho_S \coloneqq \rho_S(\epsilon=0)$ with
 \begin{equation}
-W_{\rho_S}(\bmz) = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
+\hspace{-5pt} W_{\rho_S} = (-1/3, 1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6,  1/6)
 \end{equation}
-we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example, the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}(\bmz)$.
+we have the component-multiplicity pairs: $\{( -1/3, 1), ( 1/6, 8)\}$. However, we might also wish more freedom and not require that the different $w_i$ values are all distinct. For example, the component-multiplity pairs $\{(-1/3, 1), (1/6, 2), (1/6, 3), (1/6, 3)\}$ also describe $W_{\rho_S}$.
 
 This representation is more compact when a Wigner distribution has a lot of multiplicities, and allows for simple handling of multiple copies via the following fact.
-\begin{lemma}
+\begin{proposition}
 Consider two Wigner distributions $\W{\rho_A}(\bmz_A), \W{\rho_B}(\bmz_B)$ with component-multiplicity pairs 
 \begin{equation}
 	\{(w_i, m_i)\} \text{ and } \{(w_j', m_j')\},
 \end{equation}
 respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pairs for $\W{\rho_A \otimes \rho_B}(\bmz_A \oplus \bmz_B)$.
-\end{lemma}
+\end{proposition}
 \begin{proof}
 	This result is true because all components of $\W{\rho_A \otimes \rho_B}(\bmz_A \oplus \bmz_B)$ are of the form $w_i w_j'$ and 
 \begin{equation*}
@@ -854,21 +834,21 @@ respectively. Then, $\{(w_i w_j', m_i m_j')\}$ gives component-multiplicity pair
 where $d_A, d_B$ are the dimensions of $\rho_A, \rho_B$ respectively, and
 so the set $\{(w_i w_j', m_i m_j')\}$ contains exactly the Wigner components of $\W{\rho_A \otimes \rho_B}(\bmz_A \oplus \bmz_B)$.
 \end{proof}
-The above result also applies when we consider re-scaled Wigner distributions, crucially due to the multiplicativity result shown in~\cref{prop:rescaled_multi}.
+The above result also applies when we consider rescaled Wigner distributions, crucially due to the multiplicativity result shown in Proposition~\ref{prop:rescaled_multi}.
 
 In the case of distillation protocols, we are interested in copies of distributions. 
 For this, we have the following result, which follows from combinatorics.
-\begin{lemma}\label{lem:ncopycomponents}
-	Suppose $W_\rho(\bmz)$ has a set of $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}} (\bmz)$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, with index $\q$ running through all vectors $(q_1, \dots, q_D)$, where $q_1, \dots, q_D$ are non-negative integers that sum to $n$, and
+\begin{proposition}\label{ncopycomponents}
+	Suppose $W_\rho$ has a set of $D$ component-multiplicity pairs $\{(w_i, m_i)\}$. Then, $W_{\rho^{\otimes n}}$ has component-multiplicity pairs $\{(W_{\q}, M_{\q})\}$, with index $\q$ running through all vectors $(q_1, \dots, q_D)$, where $q_1, \dots, q_D$ are non-negative integers that sum to $n$, and
 \begin{align}
 	W_{\q} &= \prod_{i=1}^D w_i^{q_i} \label{eq:W}\\
 	M_{\q} &= \binom{n}{q_1,q_2, \dots, q_d} \prod_{i=1}^D m_i^{q_i}. \label{eq:M}
 \end{align}
 The term outside the product in the expression for $M_{\q}$ is the generalized binomial coefficient,
 \begin{equation}
-	\binom{n}{q_1,q_2, \dots, q_d} := \frac{n!}{q_1!\dots q_D!}.
+	\binom{n}{q_1,q_2, \dots, q_d} \coloneqq \frac{n!}{q_1!\dots q_D!}.
 \end{equation}
-\end{lemma}
+\end{proposition}
 \begin{proof}
 	Denote by $C_D^n \coloneqq \{\bmk\}$ the set of all vectors $\bmk \coloneqq (k_1, \dots, k_D)$ with non-negative integer components that sum to $n$, i.e.
 	\begin{equation*}
@@ -885,15 +865,15 @@ The term outside the product in the expression for $M_{\q}$ is the generalized b
 \begin{equation*}
 	\left( W_{\bmk_i}, M_{\bmk_i} \right) = (w_i, m_i).
 \end{equation*}
-Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W_\rho(\bmz)$.
+Therefore, $\{ (W_{\bmk}, M_{\bmk}) \}_{\bmk \in C_D^1}$ is a complete set of component-multiplicity pairs for $W_\rho$.
 
-	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in~\cref{eq:M,eq:W} is a complete set of component-multiplicity pairs for the $n$--copy distribution $W_{\rho^{\otimes n}}(\bmz) = W_{\rho}(\bmz)^{\otimes n}$.
-	By construction, the distribution $W_{\rho}(\bmz)^{\otimes (n+1)} = W_{\rho}(\bmz)^{\otimes n} \otimes W_{\rho}(\bmz)$, so it admits the complete set of component multiplicity pairs
+	Assume that $\{(W_{\bmk}, M_{\bmk})\}_{\bmk \in C_D^n}$ as given in Eqs.~(\ref{eq:W}, \ref{eq:M}) is a complete set of component-multiplicity pairs for the $n$--copy distribution $W_{\rho^{\otimes n}} = W_{\rho}^{\otimes n}$.
+	By construction, the distribution $W_{\rho}^{\otimes (n+1)} = W_{\rho}^{\otimes n} \otimes W_{\rho}$, so it admits the complete set of component multiplicity pairs
 \begin{equation}
 	\{(W_{\bmk} w_i, M_{\bmk} m_i)\},\ \bmk \in C_D^n \text{ and } i=1,\dots,D.
 \end{equation}
 	
-	Consider the component sum of the distribution $W_{\rho}(\bmz)^{\otimes (n+1)}$,
+	Consider the component sum of distribution $W_{\rho}^{\otimes (n+1)}$,
 \begin{align*}
 	&\sum_{\bmk \in C_D^n}\sum_{i=1}^D M_{\bmk} m_i W_{\bmk} w_i = \sum_{\bmk \in C_D^n} M_{\bmk}W_{\bmk} \sum_{i=1}^D m_i w_i =\\
 	&\sum_{\bmk \in C_D^n} \frac{n!}{k_1!\dots k_D!} \prod\limits_{i=1}^D {m_i}^{k_i}{w_i}^{k_i} \sum_{i=1}^D m_i w_i =\\
@@ -910,19 +890,19 @@ We have used the multinomial theorem to proceed between lines 2-3 and lines 3-4 
 We have achieved a regrouping of the distribution components.
 Every component $W_{\bmq}$ is of the form $W_{\bmk} w_i$ with $q_i = k_i + 1$ and $q_j = k_j$ for $j\neq i$ and 
 \begin{align*}
-	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} =  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = 
-	\left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} = d^{2(n+1)},
+	\sum_{\bmq \in C_D^{n+1}}  \hspace{-6pt} M_{\bmq} &=  \hspace{-10pt} \sum_{\bmq \in C_D^{n+1}} \frac{(n+1)!}{q_1!\dots q_D!} \prod\limits_{i=1}^D {m_i}^{q_i} = \left( \sum_{i=1}^D m_i \right)^{n+1} \hspace{-10pt} \\
+	&= d^{2(n+1)},
 \end{align*}
-which is the dimension of $W_{\rho}(\bmz)^{\otimes (n+1)}$.
+which is the dimension of $W_{\rho}^{\otimes (n+1)}$.
 
-Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W_{\rho}(\bmz)^{\otimes n}$, completing the proof.
+Therefore, $\{ (W_{\bmq}, M_{\bmq}) \}_{\bmq \in C_D^{n+1}}$ contains exactly the components of $W_{\rho}^{\otimes n}$, completing the proof.
 \end{proof}
-Once again, the above result applies on re-scaled Wigner distributions as well.
+Once again, the above result applies on rescaled Wigner distributions as well.
 
 \subsection{Results on Lorenz curve constraints}
 \label{app:lc_constraints}
 
-We first prove the following result on the relation between majorization in a particular sub-theory $\R_\sigma$ and mana, which was stated in~\cref{sec:monotones_frag}.
+We first prove the following result on the relation between majorization in a particular sub-theory $\R_\sigma$ and mana, which was stated in Sec.~\ref{sec:monotones_frag}.
 \begingroup
 \def\thetheorem{\ref{lem:lcmax}}
 \begin{theorem}
@@ -932,7 +912,7 @@ We first prove the following result on the relation between majorization in a pa
 \endgroup
 \begin{proof}
 	We denote the Wigner distributions of the states single-component vectors $\w(\rho)=W_\rho(\z)$ and $ \w(\sigma)=W_\sigma(\z)$. Likewise, we write $\w(\rho|\sigma) = W_{\rho|\tau}(\bmz)$.
-	We choose the component indexing so that $\w(\rho|\sigma)^\downarrow = \w(\rho|\sigma)$ and so the components are sorted in non-increasing order.
+	We choose the component indexing so that $\w(\rho|\sigma)^\downarrow = \w(\rho|\sigma)$, so the components are sorted in non-increasing order.
 
 Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \geq 0$ if and only if $w(\rho)_i \geq 0$ for any $i=1,\dots,d^2$.
 	
@@ -943,7 +923,7 @@ Note that all components of $\bmw(\sigma)$ are positive, so $w(\rho|\sigma)_i \g
 	\end{equation}
 	and is achieved at $x_{i_\star} \coloneqq \sum_{i=1}^{i_\star} w(\sigma)_i$. The location of this maximum varies with $\R_\sigma$, but its value is independent of $\sigma$,
 	\begin{align}
-	L_\star &:=	\lc{\rho}{\sigma}(x_{i_\star}) 
+	L_\star &\coloneqq	\lc{\rho}{\sigma}(x_{i_\star}) 
 		= \sum\limits_{\bmz: \W[\bmz]{\rho} \geq 0}\hspace{-5pt} \W[\bmz]{\rho} \nonumber \\
 		&= 1 + \sn{\rho}.
 	\end{align}
@@ -953,7 +933,7 @@ Since mana is a monotonic function of sum-negativity, $\M(\rho) \coloneqq \log \
 
 
 We now prove a simple majorization constraint, arising by considering only the part of the Lorenz curves between the origin $(0,0)$ and the first elbow.
-\begin{proposition}\label{prop:first_elb}
+\begin{proposition}[First elbow constraint]\label{prop:first_elb}
 	Consider a magic state process $\rho \longrightarrow \rho'$ with input and output Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$ and denote the coordinates of the first elbow of $L_{\rho|\sigma}(x)$ by $(X_0, L_0)$ and the coordinates of the first elbow of $L_{\rho' |\sigma'}(x)$ by $(X'_0, L'_0)$.
 	
 Then, given any coordinates $(x, L)$ and $(x', L')$ on the input and output Lorenz curves respectively, where $0 < x \leq X_0$ and $0 < x' \leq X'_0$, the process is possible only if
@@ -965,9 +945,9 @@ Then, given any coordinates $(x, L)$ and $(x', L')$ on the input and output Lore
 	If the transformation is possible, then $L_{\rho|\sigma}(x) \geq L_{\rho'|\sigma'} (x)$ for all $x$ in $[0,1]$. 
 	Restricting to the initial linear segment of $L_{\rho|\sigma}(x)$ joining $(0,0)$ to $(X_0,L_0)$, we then require that it be above the initial linear segment of $L_{\rho'|\sigma'}(x)$ joining $(0,0)$ to $(X_0', L_0')$. 
 	Since both these linear segments start at the origin, this condition is equivalent to the slope of the initial segment of the input Lorenz curve being greater than or equal to the slope of the initial segment of the output Lorenz curve. 
-	This slope constraint is then equivalent to~\cref{eq:first_elb_bound1}. \end{proof}
+	This slope constraint is then equivalent to Eq.~(\ref{eq:first_elb_bound1}). \end{proof}
 
-The following result, referenced in~\cref{sec:major_frag}, reduces the Lorenz curve condition on the interval $[0,1]$ to a finite set of independent inequalities and can therefore simplify the computation of relative majorization constraints in practical scenarios.
+The following result, referenced in Sec.~\ref{sec:major_frag}, reduces the Lorenz curve condition on the interval $[0,1]$ to a finite set of independent inequalities and can therefore simplify the computation of relative majorization constraints in practical scenarios.
 \begin{proposition}\label{thm:elbows}
 	Let $\rho, \rho'$ be any two quantum states with Lorenz curves $\lc{\rho}{\sigma}(x), \lc{\rho'}{\sigma'}(x)$, where $\sigma, \sigma'$ are states with positive Wigner distributions. Assume that $\lc{\rho'}{\sigma'}(x)$ has $t$ elbows at locations $x_1, \dots, x_t$. Then, $\lc{\rho}{\sigma}(x) \geq \lc{\rho'}{\sigma'}(x)$ for all $x \in [0,1]$ iff $\lc{\rho}{\sigma}(x_{i}) \geq \lc{\rho'}{\sigma'}(x_{i})$ for all $i =1,\dots,t$.
 \end{proposition}
@@ -981,7 +961,7 @@ L_{\rho|\sigma}(x_i) &\ge L_{\rho'|\sigma'}(x_i) \nonumber \\
 L_{\rho|\sigma}(y) & <L_{\rho'|\sigma'}(y) \nonumber \\
 L_{\rho|\sigma}(x_{i+1}) &\ge L_{\rho'|\sigma'}(x_{i+1}).
 \end{align}
-However, since $L_{\rho'|\sigma'}(x)$ is linear between $x_i$ and $x_{i+1}$, the above conditions imply that $L_{\rho|\sigma}(x)$ is not concave, which contradicts~\cref{L-concave}. 
+However, since $L_{\rho'|\sigma'}(x)$ is linear between $x_i$ and $x_{i+1}$, the above conditions imply that $L_{\rho|\sigma}(x)$ is not concave, which contradicts Proposition~\ref{L-concave}.
 Therefore, $L_{\rho|\sigma}(x) \geq L_{\rho'|\sigma'}(x)$ for all $x$ in $[0,1]$.
 \end{proof}
 
@@ -999,7 +979,7 @@ We denote the sums over an even number $m$ of successful trials by $\Phi_+(m; n,
 	\Phi_-(m; n, p) &\coloneqq \sum\limits_{\ell=1}^{(m-1)/2} \binom{n}{2\ell+1} p^{2\ell+1} (1-p)^{n-(2\ell+1)}, \nonumber\\ 
 	&\text{for odd integers }m\in[0,n]. \label{eq:fn_app}
 \end{align}
-In~\cref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves for unital protocols.
+In Appendix~\ref{app:lcsu_coord}, we will use $\Phi_+$ and $\Phi_-$ to express the elbow coordinates of Lorenz curves for unital protocols.
 
 We have the Shannon entropy of a $p$--coin and the Shannon relative entropy for a $p$--coin and a $q$--coin given by the expressions
 \begin{align}
@@ -1007,14 +987,14 @@ We have the Shannon entropy of a $p$--coin and the Shannon relative entropy for 
 	\ent{p}{q} &\coloneqq p \log{\frac{p}{q}} + (1-p) \log{\frac{1-p}{1-q}}. \label{eq:ent_rel}
 \end{align}
 They are symmetric about $p=1/2$ and $q=1/2$, namely $S(p) = S(1-p)$ and $\ent{p}{q} = \ent{1-p}{1-q}$. We also have the entropic bounds
-\begin{lemma}\label{lem:comb_bounds}
+\begin{proposition}\label{comb_bounds}
 	For all $\ell\in [1,n-1]$,
 	\begin{align}
 		&\left[ 8\ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)} \leq \binom{n}{\ell} \leq \\
 		&\left[ 2\pi \ell\left(1-\frac{\ell}{n}\right) \right]^{-\frac{1}{2}} 2^{n S\left(\frac{\ell}{n}\right)}.
 	\end{align}
-\end{lemma}
-The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use of Stirling's approximation for the remaining cases. The bounds in~\cref{lem:comb_bounds} can be directly inserted into the expressions of functions $\Phi_+$ and $\Phi_-$ to derive strict upper and lower bounds.
+\end{proposition}
+The proof provided in~\cite{cit:ash} proceeds with direct calculation for the edge cases $\ell = 1,2, n-1, n-2$ and use of Stirling's approximation for the remaining cases. The bounds in Proposition~\ref{comb_bounds} can be directly inserted into the expressions of functions $\Phi_+$ and $\Phi_-$ to derive strict upper and lower bounds.
 
 It is also possible to derive more manageable bounds on $\Phi_+, \Phi_-$.
 To this end, we rewrite the functions as
@@ -1030,7 +1010,7 @@ and we define the remainder term
 	S(m; n, a) \coloneqq \sum_{k=0}^m \binom{n}{k} (-a)^k.
 \end{equation}
 The cumulative function $\Phi$ obeys the following bounds, which are proven in~\cite{cit:ash}.
-\begin{lemma}\label{lem:phi_bounds}
+\begin{proposition}\label{phi_bounds}
 	Given fixed $n>0$ and $p$, $\Phi$ satisfies the following bounds:
 	\begin{align*}
 		\begin{split}
@@ -1043,7 +1023,7 @@ The cumulative function $\Phi$ obeys the following bounds, which are proven in~\
 		\\
 		&\text{4. } \Phi(m; n, p) \leq 2^{-n\ent{\frac{m}{n}}{p}},\ m\in [0,np]
 	\end{align*}
-\end{lemma}
+\end{proposition}
 
 We can now put estimates on $S(m; n, a)$, and hence the functions $\Phi_{\pm}$, for different parameter regimes. 
 We can consider the function $f(x) = (1+x)^n$ and note that $S(m; n, a)$ is the $m$'th partial sum of this expansion at the point $x=-a$. The truncated Maclaurin series is given by
@@ -1112,7 +1092,7 @@ and $8$ positive components each with value
 For unital protocols we need the condition $0 \leq \epsilon < 3/4$, so that the state contains some Wigner negativity ($-v < 0$).
 It is also clear that $v \geq u$ in the interval $0 \leq \epsilon \leq 3/7$, while $u > v$ in the interval $3/7 < \epsilon < 3/4$.
 
-The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using~\cref{lem:ncopycomponents} for unital protocols, we can associate it with a set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, the elements of which are presented in~\cref{tab:lcsu} for all different combinations of physical parameters $n, \epsilon$.
+The Wigner distribution of the $n$--copy $\epsilon$--noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ is given by $\W{\rho_{\rm{S}}(\epsilon)^{\otimes n}} = W_{\rho_{\rm{S}}(\epsilon)}^{\otimes n}$ and, using Proposition~\ref{ncopycomponents} for unital protocols, we can associate it with a set $\{(w_i, m_i)\}_{i=0,\dots,n}$ of component-multiplicity pairs, the elements of which are presented in Table~\ref{tab:lcsu} for all different combinations of physical parameters $n, \epsilon$.
 We split the values of index $i$ into two intervals, defined precisely as
 \begin{align}
 &\text{LHS: } 0 \leq i \leq \left\lfloor \frac{n}{2} \right\rfloor \text{ and} \\
@@ -1146,7 +1126,7 @@ For unital protocols, the rescaled distribution is simply proportional to the St
 \end{equation}
 therefore expressions for the Lorenz curve coordinates follow from summing up the Wigner components in decreasing order.
 As a result, every Strange state Lorenz curve for a unital protocol contains $n$ elbows. In the case of accidental degeneracies among Wigner components, some of these elbows may be straightened out.
-Including the boundary points $(x_{-1}, L_{-1}) := (0,0)$ and $(x_{n}, L_{n}) := (1,1)$, we label these elbows as 
+Including the boundary points $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{n}, L_{n}) \coloneqq (1,1)$, we label these elbows as 
 \begin{equation*}
 \{(x_{i}, L_{i})\}_{i=-1,0,\dots,n},
 \end{equation*}
@@ -1161,13 +1141,11 @@ The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinat
 \end{align}
 %\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
-In~\cref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve for a unital protocol for any combination of physical parameters $n, \epsilon$.
+In Table~\ref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve for a unital protocol for any combination of physical parameters $n, \epsilon$.
 \begin{table}[h]
   \def\arraystretch{1.5}
   \centering
   \begin{tabular}{c|c|c|r|r}
-%\multicolumn{2}{c|}{\multirow{2}{*}{Case}} & \multicolumn{1}{c|}{LHS} & \multicolumn{1}{c|}{$x_{i}$} & \multicolumn{1}{c}{$L_{i}$} \\
-%    \multicolumn{2}{c|}{} & \multicolumn{1}{c|}{RHS} & \multicolumn{1}{c|}{$x_{i} - x_{\lfloor n/2 \rfloor}$} & \multicolumn{1}{c}{$L_{i} - L_{\lfloor n/2 \rfloor}$} \\[0.5ex]
 \hline 
     \multirow{4}{*}{\raisebox{-5ex}{\rotatebox[origin=c]{90}{$0\leq \epsilon < \frac{3}{7}$}}} & \hspace{0.8ex}\multirow{2}{*}{\raisebox{-3ex}{\rotatebox[origin=c]{90}{$n$ even}}}\hspace{0.8ex} & LHS & $\Phi_+\left(2i;n,\frac{8}{9}\right)$ & $\left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n \Phi_+\left(2i;n,\frac{12-4\epsilon}{15-8\epsilon}\right)$ \\
     & & RHS & $\Phi_-\left(2i;n,\frac{1}{9}\right)$ & $- \left( \frac{5}{3} - \frac{8}{9}\epsilon\ \right)^n\Phi_-\left(2i;n,\frac{3-4\epsilon}{15-8\epsilon}\right)$ \\ \cline{2-5}
@@ -1192,7 +1170,7 @@ We can get explicit expressions for all $9^{n}$ points of the Lorenz curve $\lc{
     x_{ij} &= \left( 1-\frac{j}{m_{i}} \right) x_{i-1} + \frac{j}{m_{i}} x_{i}, \label{eq:x}\\
     L_{ij} &= \left( 1-\frac{j}{m_{i}} \right) L_{i-1} + \frac{j}{m_{i}} L_{i} \label{eq:l}
 \end{align}
-for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i$ are given in~\cref{tab:lcsu}.
+for $j = 1,\dots,m_{i}$ and $i=0,\dots,n$, where multiplicities $m_i$ are given in Table~\ref{tab:lcsu}.
 
 One can consider the state 
 \begin{equation*}
@@ -1235,7 +1213,7 @@ Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to th
 
 Then the magic distillation rate $R = m/n$ for the protocol is bounded by the expression
 \begin{equation}
-	R \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+	R \leq \dfrac{\log \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\log \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
 \end{equation}
 where $F$ is the free energy of $\tau$,  and 
 \begin{equation}
@@ -1251,8 +1229,8 @@ and $W_\tau(\bmz)$ attains a minimum at $\z_\star$. The primed variables are def
 \addtocounter{theorem}{-1}
 \endgroup
 
-\begin{proof}	\label{thm:free-energy-bound-proof}
-For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.  We also assume, without loss of generality on the asymptotic distillation rate, that $n$ and $m$ are both even.
+\begin{proof}
+	For the sake of clarity, we write $\rho_n \coloneqq \rho_S(\epsilon)^{\otimes n}$, $\rho'_m \coloneqq \rho_S(\epsilon')^{\otimes m}$, $\tau_n \coloneqq \tau^{\otimes m}$ and $\tau'_m \coloneqq \tau'^{\otimes m}$.  We also assume, without loss of generality on the asymptotic distillation rate, that $n$ and $m$ are both even.
 
 To establish the distillation bound we consider the distillation protocol that gives $\E( \rho_n) = \rho'_m$ for the magic states. 
 We then consider that the protocol transforms the reference equilibrium state as $\E( \tau_n) = \tau'_m$.
@@ -1279,8 +1257,8 @@ Therefore, we have that
 \end{align}
 where $\bmz = \oplus_{i=1}^n \bmz_i \in \mathbb{Z}_3^{2n}$ is the phase space point for the full system in terms of those of the individual subsystems.
 
-The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\bmz)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\bmz))$ where $\pi$ is the permutation that realises the sorting. 
-However, similar to the unital protocol analysis, we use the slope constraint (\cref{prop:first_elb}) obtained by considering the line segments connecting the origin to the first elbow of both Lorenz curves.
+The points defining the Lorenz curve $L_{\rho_n |\tau_n}(x)$ are obtained from sorting the components of $W_{\rho_n |\tau_n}(\bmz)$ in non-increasing order and then computing the partial sums of $W_{\rho_n |\tau_n}(\pi(\bmz))$ where $\pi$ is the permutation that realizes the sorting. 
+However, similar to the unital protocol analysis, we use the slope constraint (Proposition~\ref{prop:first_elb}) obtained by considering the line segments connecting the origin to the first elbow of both Lorenz curves.
 
 The Wigner distribution of a single noisy Strange state consists of 1 negative component $W_{\rho}(\mathbf{0}) = -v(\epsilon)$ and 8 positive components $W_{\rho}(\bmz) = u(\epsilon)$ for $\bmz \neq \bmo$.
 The Wigner distribution of the full-rank, stabilizer equilibrium state $\tau$ is $W_{\tau}(\bmz) > 0$ for all $\bmz \in \mathbb{Z}_3^2$.
@@ -1291,10 +1269,9 @@ Assume that the smallest component of the distribution $W_\tau(\bmz)$ is at $\bm
 \end{equation}
 which has its single negative Wigner component $-v(\epsilon)$ at the point $\bmz_\star$.
 
-
-The rescaled distribution components for this transformed state are given by
+The components of the rescaled distribution $W_{\rho_n|\tau_n}$ for this transformed state are given by
 \begin{equation}
-	W_{\rho_n|\tau_n} = \left(\frac{-v}{W_{\tau}(\bmz_\star)}\right)^{i_{\bmz_\star}} \prod_{\bmz \neq \bmz_\star} \left(\frac{u}{W_{\tau}(\bmz)}\right)^{i_{\bmz}},
+	\left(\frac{-v}{W_{\tau}(\bmz_\star)}\right)^{i_{\bmz_\star}} \prod_{\bmz \neq \bmz_\star} \left(\frac{u}{W_{\tau}(\bmz)}\right)^{i_{\bmz}},
 \end{equation}
 where the integer indices obey the following conditions:
 \begin{align}
@@ -1305,7 +1282,7 @@ We now compute the largest rescaled component.
 Firstly, note that $n$ is even, so we require that $i_{\bmz_\star} \in \{0,2,\dots,n\}$ for the component to be positive.
 Then, we have that $v \geq u$ because $\epsilon \leq 3/7$, and we have already ensured that $W_{\tau}(\bmz_\star) \leq W_{\tau}(\bmz)$ for all $\bmz \in \mathbb{Z}_3^2$.
 Therefore, the largest rescaled component occurs when $i_{\bmz_{\star}} = n$ and $i_{\bmz} = 0$ for $\bmz \neq \bmz_\star$ and is equal to $(v/W_{\tau}(\bmz_\star))^n$.
-Accordingly, the coordinates of the first Lorenz curve point after the origin are given by
+The coordinates of the first Lorenz curve point after the origin are given by
 \begin{equation}
 	(x_0, L_0) = ((W_{\tau}(\bmz_\star))^n, v^n)
 \end{equation}
@@ -1324,21 +1301,21 @@ we now express the coordinates of the first point in terms of free energy quanti
 \end{align}
 where we define
 \begin{align}
-\alpha_k := \<E_k |A_{\bmz_\star} |E_k\> \\
-\zeta :=  \sum_{k \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
+\alpha_k \coloneqq \<E_k |A_{\bmz_\star} |E_k\> \\
+\zeta \coloneqq  \sum_{k \in \mathbb{Z}_3} \alpha_k e^{-\beta E_k},
 \end{align}
-and a `magic free energy' term $\phi := -\beta^{-1} \log \zeta$.
+and a `magic free energy' term $\phi \coloneqq -\beta^{-1} \log \zeta$.
 Therefore, the coordinates can be expressed as
 \begin{equation}
 	(x_0, L_0) = \left( \frac{e^{n\beta (F - \phi)}}{3^n}, v(\epsilon)^n \right).
 \end{equation}
-The output states obey the same conditions and so we also have the first point coordinates of the output Lorenz curve given by
+The output states obey the same conditions, so we also have the first point coordinates of the output Lorenz curve given by
 \begin{equation}
 	(x'_0, L'_0) = \left( \frac{e^{m\beta (F' - \phi')}}{3^m}, v(\epsilon')^m \right).
 \end{equation}
 
 If the largest rescaled component of a state is distinct with no multiplicities, then these coordinates correspond to the first elbow of the corresponding Lorenz curve, whereas if it appears multiple times, then the coordinates derived correspond to a point on the interior of the line segment connecting the origin to the first elbow.
-In both cases, the distillation bound remains the same, as is clear by its derivation in~\cref{prop:first_elb}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
+In both cases, the distillation bound remains the same, as is clear by its derivation in Proposition~\ref{prop:first_elb}, given by $L_0/x_0 \geq L'_0/x'_0$, leading to
 \begin{equation}
 	\left( 3v(\epsilon)e^{-\beta (F - \phi)} \right)^{n} = \frac{L_0}{x_0}
 	\geq \frac{L'_0}{x'_0} = \left( 3v(\epsilon')e^{-\beta (F' - \phi')} \right)^{m}.
@@ -1346,7 +1323,7 @@ In both cases, the distillation bound remains the same, as is clear by its deriv
 We note that $3v(\epsilon')e^{-\beta (F' - \phi')} > 1$ always, as $\rho_{\rm{S}}(\epsilon')$ is not a free state, so the initial slope of its Lorenz curve exceeds $1$.
 Taking the natural logarithm on both sides and rearranging gives the bound
 \begin{equation}
-	\frac{m}{n} \leq \dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (\phi - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (\phi' - F')},
+	\frac{m}{n} \leq \dfrac{\log \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\log \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
 \end{equation}
 which completes the proof.
 \end{proof}
@@ -1366,8 +1343,8 @@ Additionally, its distribution is uniform on its support, so $W_{|E_{k_\star}\>\
 
 Therefore, only the coefficient $\alpha_{k_{\star}}$ is non-zero and
 \begin{align}
-\phi &= -\beta^{-1}\ln (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
-&=E_{k_{\star}} -kT \ln (d W_{|E_{k_\star}\>\<E_{k_\star}|}(\bmz_{\star})) =E_{k_{\star}}.
+\phi &= -\beta^{-1}\log (\sum_k \alpha_k e^{-\beta E_k}) \nonumber \\
+&=E_{k_{\star}} \hspace{-2pt}-\hspace{1pt} kT \log (d W_{|E_{k_\star}\>\<E_{k_\star}|}(\bmz_{\star})) =E_{k_{\star}}.
 \end{align}
 
 \end{proof}
@@ -1403,23 +1380,23 @@ Then, the distillation rate $R = m/n$ of the magic protocol is bounded as:
 \begin{equation}
 	R \leq
 	\begin{cases}
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
-		\dfrac{\ln{\big( 1-\frac{4}{3}\epsilon \big)} + \beta (E_s - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' > \epsilon'_\star, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( 1-\frac{4}{3}\epsilon' \big)} + \beta (E'_s - F')},\ &\epsilon > \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
-		\dfrac{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon \big)} + \beta (E_{\rm{max}} - F)}{\ln{\big( \frac{1}{2}-\frac{1}{6}\epsilon' \big)} + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star,
+		\dfrac{\ln \big( 1-\frac{4}{3}\epsilon \big) + \beta (E_s - F)}{\ln \big( 1-\frac{4}{3}\epsilon' \big) + \beta (E'_s - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln \big( 1-\frac{4}{3}\epsilon \big) + \beta (E_s - F)}{\ln \big( \frac{1}{2}-\frac{1}{6}\epsilon' \big) + \beta (E'_{\rm{max}} - F')},\ &\epsilon \leq \epsilon_\star, \epsilon' > \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln \big( \frac{1}{2}-\frac{1}{6}\epsilon \big) + \beta (E_{\rm{max}} - F)}{\ln \big( 1-\frac{4}{3}\epsilon' \big) + \beta (E'_s - F')},\ &\epsilon > \epsilon_\star, \epsilon' \leq \epsilon'_\star, \vspace{10pt}\\
+		\dfrac{\ln\big( \frac{1}{2}-\frac{1}{6}\epsilon \big) + \beta (E_{\rm{max}} - F)}{\ln \big( \frac{1}{2}-\frac{1}{6}\epsilon' \big) + \beta (E'_{\rm{max}} - F')},\ &\epsilon > \epsilon_\star, \epsilon' > \epsilon'_\star,
 	\end{cases}
 \end{equation}
 where $F$ is the free energy of state $\tau$ and all primed quantities are similarly defined for the ouptut system.
 \end{theorem}
 \begin{proof}
-The proof proceeds in the same manner as in~\cref{thm:free-energy-bound-proof} up to the point where we need to evaluate $W_{\rho_n |\tau_n} (\bmz)$ and $W_{\rho_n}(\bmz)$ explicitly, beyond which we do not have the freedom of additional Clifford processing.
+The proof proceeds in the same manner as in Theorem~\ref{thm:free-energy} up to the point where we need to evaluate $W_{\rho_n |\tau_n} (\bmz)$ and $W_{\rho_n}(\bmz)$ explicitly, beyond which we do not have the freedom of additional Clifford processing.
 
 The equilibrium state at inverse temperature $\beta$ on a single qutrit is given by $\tau = e^{-\beta H} / \Z$. Moreover, we have that $\tau$ is a full-rank stabilizer state, where $\beta \geq 0$ and $H = E_0 |\varphi_0\>\<\varphi_0| + E_1 |\varphi_1\>\<\varphi_1| + E_2 |\varphi_2\>\<\varphi_2|$ is an eigendecomposition of $H$.
 The state $\tau$ can now be written as 
 \begin{equation}
 	\tau = \frac{e^{-\beta E_0}}{\Z} |\varphi_0\>\<\varphi_0| + \frac{e^{-\beta E_1}}{\Z} |\varphi_1\>\<\varphi_1| + \frac{e^{-\beta E_2}}{\Z} |\varphi_2\>\<\varphi_2|,
 \end{equation}
-where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabiliser states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. However, this re-definition of the computational basis means that the coordinates on the discrete phase space are also permuted, so the negative Wigner component $-v(\epsilon)$ of the Strange state is in a new position. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the state $C\rho_S(\epsilon)C^\dagger$ in the original phase space, hence also of the state Strange state $\rho_S(\epsilon)$ in the re-defined phase space. The eigenvalue $E_s$ is unique, since the eigenstates form an orthonormal basis.
+where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal stabilizer states, which can be represented in terms of generalized Paulis. We are free to redefine the computational basis so it coincides with the basis of $H$. Abstractly, let $C$ be the unitary transforming each $|\varphi_k\>\<\varphi_k|$ to $|k\>\<k|$. Since the Clifford group is the normalizer of the Heisenberg-Weyl group, $C$ is a Clifford unitary. Therefore, $C$ maps $\tau$ to another stabilizer state that is diagonal in the computational basis, and we can assume without loss of generality that $\tau$ is diagonal in $\{|0\>,|1\>, |2\>\}$. This re-definition of the computational basis means that the coordinates on the discrete phase space are also permuted, so the negative Wigner component $-v(\epsilon)$ of the Strange state is in a new position. We denote by $E_s$ the eigenvalue of $H$ where the associated eigenvector has Wigner distribution overlapping the negative component of the state $C\rho_S(\epsilon)C^\dagger$ in the original phase space, hence also of the state Strange state $\rho_S(\epsilon)$ in the re-defined phase space. The eigenvalue $E_s$ is unique, since the eigenstates form an orthonormal basis.
 
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
@@ -1427,25 +1404,25 @@ The Wigner distribution of state $\tau$ is then given by
 	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{q, k} = \frac{e^{-\beta E_x}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
-The rescaled Wigner distribution $W_{\rho|\tau}(\bmz)$ can now be computed. It has $9$ components, but these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in~\cref{fig:pd_split}.
+The rescaled Wigner distribution $W_{\rho|\tau}(\bmz)$ can now be computed. It has $9$ components, but these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in Fig.~\ref{fig:pd_split}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.35]{figs/pd_split_thermal.pdf}
     \caption{\textbf{Qutrit phase space regions for $W_{\rho | \tau}(\bmz)$.}
-    Here, the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions, proportional to the value depicted in the region, see~\cref{eq:bmw_rescaled}.
+    Here, the negative component of the magic state overlaps the Wigner distribution of $|0\>$. The rescaled distribution attains a single value in each of the four regions, proportional to the value depicted in the region, see Eq.~(\ref{eq:bmw_rescaled}).
     }
     \label{fig:pd_split}
 \end{figure}
 
-We denote by $\w(\rho), \w(\rho|\tau)$ the unique values occurring in $W_\rho(\bmz), W_{\rho|\tau}(\bmz)$ respectively and $\bmm$ the vector of associated multiplicities of each value in $W_\rho(\bmz)$. The component values and multiplicities of the relevant distributions in the four distinct regions are given by
+We define vectors $\w(\rho), \w(\tau), \w(\rho|\tau)$ based on the values occurring in $W_\rho, W_\tau, W_{\rho|\tau}$ respectively and $\bmm$ as the vector of associated multiplicities of each value in $W_\rho(\bmz)$. Specifically, the component values and multiplicities of the relevant distributions in the four distinct regions are given by
 \begin{align}
-	\w(\rho) &\coloneqq (-v, u, u, u), \\
 		\bmm &\coloneqq (1,2,3,3), \\
+	\w(\rho) &\coloneqq (-v, u, u, u), \\
 	\w(\tau) &\coloneqq \frac{1}{3\Z} \left( e^{-\beta E_0}, e^{-\beta E_0}, e^{-\beta E_1}, e^{-\beta E_2} \right), \\
-	\w(\rho_{\rm{S}} | \tau) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
+	\w(\rho | \tau) &\coloneqq 3\Z \left( -v e^{\beta E_0}, u e^{\beta E_0}, u e^{\beta E_1}, u e^{\beta E_2} \right). \label{eq:bmw_rescaled}
 \end{align}
 
-Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in~\cref{lem:ncopycomponents}. The values are given by 
+Using this notation, the values and multiplicities of the $n$--copy distribution $\bmw(\rho_n |\tau_n)$ are computed in Proposition~\ref{ncopycomponents}. The values are given by 
 \begin{align}\label{eq:ncopy_w_rescaled}
 	[\w(\rho_n | \tau_n)]_{ijk} &= (3\Z)^{n} (-v)^{n-\alpha} u^{\alpha} e^{\beta (n-\alpha)E_s} e^{\beta ( i E_0 + j E_1 + k E_2 )},
 \end{align}
@@ -1460,9 +1437,9 @@ The associated components of $\w(\rho_n)$ are given by
 	[\w(\tau)]_{ijk} &= (3\Z)^{-n} e^{-\beta (n-\alpha)E_s} e^{-\beta ( i E_0 + j E_1 + k E_2 )}. \label{eq:ncopy_wsigma}
 \end{align}
 
-In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho_{\rm{S}} | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\bmz))$.
+In order to construct the $n$--copy Lorenz curve $L_{\rho_n|\tau_n}(x)$ we need to order the components of the distribution, $w(\rho | \tau)_{ijk}$ in decreasing order, and identify the sequence of indices that give us $W_{\rho_n}(\pi(\bmz))$.
 
-However, it again suffices to use only the constraint from the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\bmz)$. We therefore compute the largest component 
+However, in order to obtain a non-trivial bound, it again suffices to use the constraint from the first elbow $(x_0, L_0)$ of $L_{\rho_n|\tau_n}(\bmz)$. We therefore compute the largest component 
 \begin{equation}
 	w_{\rm max} \coloneqq \max_{i,j,k} [\w(\rho_n | \tau_n)]_{ijk},
 \end{equation}
@@ -1475,7 +1452,7 @@ Putting in the values we obtain
 where $0 \leq i,j,k \leq n$ and $\alpha \coloneqq i+j+k \leq n$.
 Now for $0 \leq \epsilon \leq 3/7$, we have $v \geq u$. Since we assume that $n$ is even, we need the sum $\alpha = i+j+k$ to be even too, so that the expression is positive. 
 
-Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximised by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
+Given an even value for $\alpha$, the term $v^{n-\alpha} u^{\alpha} e^{-\beta (n-\alpha)E_s}$ is fixed, so the expression is maximized by setting the coefficient of the highest energy $E_{\rm{max}}$ equal to $\alpha$.
 Hence, we have
 \begin{align}
 	&w_{\rm max} = \nonumber\\
@@ -1490,7 +1467,7 @@ If $E_{\rm{max}} = E_s$, namely if the state negativity lies in the same phase s
 	\beta_{\star} \coloneqq \frac{1}{E_{\rm{max}} - E_s} \ln2,
 \end{equation}
 such that for the regime $0 \leq \beta \leq \beta_\star$ a threshold error $\epsilon_\star$ exists, and for $\beta > \beta_\star$ no such transition exists, so we choose $\epsilon_\star = 0$. 
-Therefore, the transition value for the noise is given by
+Therefore, the transition value for the error is given by
 \begin{equation}
 	\epsilon_{\star}(\beta) \coloneqq 
 	\begin{cases}
@@ -1534,18 +1511,18 @@ Similarly, considering the output magic state with respect to state $\sigma'$, t
 		\left( e^{-n'\beta (E'_{\rm{max}}\hspace{-2.5pt}-F')}, (3u(\epsilon'))^{n'} \right), &\epsilon' > \epsilon'_\star
 	\end{cases}
 \end{equation}
-There are four combinations of coordinates, depending on the noise parameters $\epsilon, \epsilon'$ for the input and output states.
-In each of these combinations, we simply use the first elbow constraint, as described in~\cref{prop:first_elb}, and manipulate the coordinates as in the proof of~\cref{thm:free-energy}, leading to the bounds in the statement of the theorem.
+There are four combinations of coordinates, depending on the error parameters $\epsilon, \epsilon'$ for the input and output states.
+In each of these combinations, we simply use the first elbow constraint, as described in Proposition~\ref{prop:first_elb}, and manipulate the coordinates as in the proof of Theorem~\ref{thm:free-energy}, leading to the bounds in the statement of this theorem.
 \end{proof}
 
 \section{Single-shot entropies on quasi-distributions and magic distillation bounds}\label{app:single-shot}
 
-In this section, we analyse R\'{e}nyi entropies on quasi-probabilities and use them to get magic distillation bounds.
+In this section, we analyse R\'{e}nyi entropies on quasi-distributions and use them to get magic distillation bounds.
 
 \subsection{R\'{e}nyi min-divergence from Lorenz curves}
 We first demonstrate that the initial slope analysis on the Wigner quasi-distributions makes use of the min-relative divergence. We define 
 \begin{equation}
-	D_\infty(W_\rho || W_\tau) := \log  \max_{\bmz} \frac{W_\rho(\bmz)}{W_\tau(\bmz)},
+	D_\infty(W_\rho || W_\tau) \coloneqq \log  \max_{\bmz} \frac{W_\rho(\bmz)}{W_\tau(\bmz)},
 \end{equation}
 which is well-defined since both the nominator and denominator in the above expression are strictly positive when $\tau$ is in the interior of $\F$.
 
@@ -1591,7 +1568,7 @@ Therefore, for arbitrary $\w \in \mathbb{R}^N$ and $n$, we have
 	&\left( \max_{k_1 ,k_2}\left( w_{k_1} w_{k_2} \right) \right)^n.
 \end{align}
 
-If we now let $\w = W_{\rho|\tau}(\bmz) := W_{\rho}(\bmz) /W_{\tau}(\bmz)$ we have
+If we now let $\w = W_{\rho|\tau}(\bmz) \coloneqq W_{\rho}(\bmz) /W_{\tau}(\bmz)$ we have
 \begin{equation}
 \max_{\bmz_1, \bmz_2, \dots ,\bmz_{2n}} \prod_{k=1}^{2n} W_{\rho|\tau}(\bmz_k) = \left( \max_{\bmz_1, \bmz_2} W_{\rho|\tau}(\bmz_1)W_{\rho|\tau}(\bmz_2) \right)^n
 \end{equation}
@@ -1613,38 +1590,39 @@ We define the notion of \emph{Schur-convex and Schur-convave functions} on a sub
 \end{definition}
 For any subset $\D \subseteq \mathbb{R}^N$ we define
 \begin{equation}
-	\mathcal{D}^\downarrow := \{ \w \in \mathcal{D} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
+	\mathcal{D}^\downarrow \coloneqq \{ \w \in \mathcal{D} : w_1 \ge w_2 \ge \cdots \ge w_N\}.
 \end{equation}
 
 We now have the following fundamental result in majorization theory.
-\begin{theorem}[Schur-Ostrowski theorem~\cite{Schur_1923, Ostrowski_1952, cit:marshall}] Let $\D\subseteq \mathbb{R}^N$ be a convex set with non-empty interior, and invariant under permutations of vector components. Let $f: \D \rightarrow \mathbb{R}$ be a continuously differentiable function on the interior of $\D$ and continuous on the whole of $\D$. Then $f$ is Schur-convex on $\D$ if and only if $f$ is a symmetric function on $\D$ and 
+\begin{theorem}[Schur-Ostrowski theorem~\cite{Schur_1923, Ostrowski_1952, cit:marshall}] 
+	Let $\D\subseteq \mathbb{R}^N$ be a convex set with non-empty interior, and invariant under permutations of vector components. Let $f: \D \rightarrow \mathbb{R}$ be a continuously differentiable function on the interior of $\D$ and continuous on the whole of $\D$. Then $f$ is Schur-convex on $\D$ if and only if $f$ is a symmetric function on $\D$ and 
 \begin{equation}
 	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
 for all $\w$ in the interior of $\mathcal{D}^\downarrow$.
 \end{theorem}
 Since the set $\mathcal{Q}_N$ of quasi-distributions obey the necessary conditions, we get the following result:
-\begin{lemma}
+\begin{theorem}
 	Let $f$ be a real-valued continuous function defined on $\mathcal{Q}_N$ that is continuously differentiable on the interior of $\mathcal{Q}_N$. 
 Then, $f$ is Schur-convex on $\mathcal{Q}_N$ if and only if it is a symmetric function and
 \begin{equation}
 	\partial_1 f(\w) \ge \partial_2 f(\w) \ge \cdots \ge \partial_N f(\w),
 \end{equation}
 for all quasi-distributions $\w$ in the interior of $\mathcal{Q}^\downarrow_N$.
-\end{lemma}
+\end{theorem}
 
 
 The classical $\alpha$-R\'{e}nyi entropy on a probability distribution $\p = (p_i)$ is given by
 \begin{equation}
-	H_\alpha(\p) := \frac{1}{1-\alpha} \log \sum_i p_i^\alpha,
+	H_\alpha(\p) \coloneqq \frac{1}{1-\alpha} \log \sum_i p_i^\alpha,
 \end{equation}
-where $\alpha \ge 0$. This means the function is well-defined on $\mathcal{Q}_N^+$, namely the set of quasi-distributions with non-negative components. We wish to extend the domain to the whole of $\mathcal{Q}_N$, however this requires that $w_i^\alpha$ be a real-number for any $w_i \in \mathbb{R}$. 
+where $\alpha \ge 0$. This means the function is well-defined on $\mathcal{Q}_N^+$, namely the set of quasi-distributions with non-negative components. We wish to extend the domain to the whole of $\mathcal{Q}_N$, but this requires that $w_i^\alpha$ be a real number for any $w_i \in \mathbb{R}$. 
 
-The exponent function $x \mapsto x^\alpha$ is well-defined and real-valued if $\alpha$ is a rational number of the form $\alpha = r / s$ where $s$ is an odd integer and $r \in \mathbb{N}$. However, we also require that $\sum_i w_i^\alpha > 0$ in order for the logarithm to return a real-value. To ensure this happens we take $\alpha = r/s$ with $r=2a$ being an even integer and $s=2b-1$ being an odd integer, for some integers $a,b\in  \mathbb{N}$, which implies that the following are all real-valued expressions,
-\begin{equation}
-0 \le w_i^\alpha = w_i^{\frac{2a}{2b-1}} = \left (w_i^{\frac{1}{2b-1}}\right )^{2a} =\left (w_i^{2a}\right )^{\frac{1}{2b-1}} = |w_i|^{\frac{2a}{2b-1}}.
-\end{equation}
-
+The exponent function $x \mapsto x^\alpha$ is well-defined and real-valued if $\alpha$ is a rational number of the form $\alpha = r / s$ where $s$ is an odd integer and $r \in \mathbb{N}$. However, we also require that $\sum_i w_i^\alpha > 0$ in order for the logarithm to return a real value. To ensure this, we restrict to $\alpha = r/s$ with $r=2a$ being an even integer and $s=2b-1$ being an odd integer, for some integers $a,b\in  \mathbb{N}$, which implies that the following are all well-defined, real-valued expressions,
+\begin{equation*}
+	0 \le w_i^\alpha = w_i^{\frac{2a}{2b-1}} = \left (w_i^{\frac{1}{2b-1}}\right )^{2a} =\left (w_i^{2a}\right )^{\frac{1}{2b-1}} = |w_i|^{\frac{2a}{2b-1}}.
+\end{equation*}
+We note that previous work~\cite{Manfredi_2000} has considered the $\alpha=2$ entropy of Wigner distributions, and other work exists that uses the Wehrl entropy, based on the Hussimi function of a quantum state~\cite{Gnutzmann_2001}.
 
 We next show that $H_\alpha (\w)$ for $\alpha = 2a/(2b-1)$ is a Schur-concave function on $\mathcal{Q}_N$ provided that $a \ge b$.
 
@@ -1669,15 +1647,15 @@ For $\alpha= \frac{2a}{2b-1}$,  with $a\ge b$, we have that
 \begin{equation}
 	\frac{\alpha}{(\alpha-1)\sum_k{w_k^\alpha}} > 0.
 \end{equation}
-The first derivative of the function $g(w) := -w^{\alpha - 1}$ is given by
+The first derivative of the function $g(w) \coloneqq -w^{\alpha - 1}$ is given by
 \begin{equation}
 	g'(w) = -(\alpha - 1) w^{\alpha-2} = -(\alpha - 1)w^{\frac{2a-4b+2}{2b-1}} \leq 0,
 \end{equation}
 because $\alpha > 1$ and
 \begin{equation}
-	w^{\frac{2a-4b+2}{2b-1}} = \left(w^{2a-4b+2}\right)^{\frac{1}{2b-1}} = \left(w^{\frac{a-2b+1}{2b-1}}\right)^{2} \geq 0,
+	w^{\frac{2a-4b+2}{2b-1}} = \left(w^{\frac{a-2b+1}{2b-1}}\right)^{2} \geq 0,
 \end{equation}
-and so $g(w)$ is non-increasing in $w$.
+so $g(w)$ is non-increasing in $w$.
 
 Therefore, whenever $w_i \geq w_j$, we have that 
 \begin{equation}
@@ -1692,22 +1670,22 @@ Therefore, $H_\alpha$ is Schur-concave on $\mathcal{Q}_N$ and
 \begin{equation}
 	H_\alpha(\w) \leq H_\alpha(\w'),
 \end{equation}
-for any quasi-distributions $\w, \w' \in \mathcal{Q}_N$ that obey $\w \succ \w'$.
+for any quasi-distributions $\w, \w'$ that obey $\w \succ \w'$.
 \end{proof}
-While we have integers $a,b$ such that $0 < \alpha=\frac{2a}{2b-1} < 1$ and $H_\alpha(\w)$ is well-defined, it turns out that monotonicity does not hold if we drop the condition $a \ge b$. If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $g(w) := \frac{-w^{\alpha-1}}{\alpha-1}$ is no longer monotonic for all $w \in \mathbb{R}$, and the problem occurs when comparing $w_i < 0$ and $w_j >0$. For example the function $g(x) = \frac{1}{x^3}$ is monotone decreasing on $x<0$ and $x>0$ separately, however it is not monotone on the full real-line.
+While we have integers $a,b$ such that $0 < \alpha=\frac{2a}{2b-1} < 1$ and $H_\alpha(\w)$ is well-defined, it turns out that monotonicity does not hold if we drop the condition $a \ge b$. If $\alpha =2a/(2b-1)$ with $\alpha < 1$, then $g(w) \coloneqq \frac{-w^{\alpha-1}}{\alpha-1}$ is no longer monotonic for all $w \in \mathbb{R}$, and the problem occurs when comparing $w_i < 0$ and $w_j >0$. As an analogy, consider the function $g(x) = \frac{1}{x^3}$ which is monotone decreasing on $x<0$ and $x>0$ separately, however it is not monotone on the full real-line.
 
-We note that if $\alpha =r/s$ with both $r$ and $s$ odd, then $H_\alpha$ is not well-defined for all quasi-probabilities, however if the actual set of quasi-distributions has a sufficiently bounded levels negativity, then $\log \sum_{\bmz} W_\rho(\bmz)^\alpha$ can still be obtained for $r$ odd, provided the total sum is never negative. This occurs for Wigner distributions, where we have $|W_\rho(\z)| \ge 1/d$ for a $d$--dimensional quantum system.
+We note that if $\alpha =r/s$ with both $r$ and $s$ odd, then $H_\alpha$ is not well-defined for all quasi-distributions, although if the actual set of quasi-distributions has a sufficiently bounded levels negativity, then $\log \sum_{\bmz} W_\rho(\bmz)^\alpha$ can still be obtained for $r$ odd, provided the total sum is never negative. This occurs for Wigner distributions, where we have $|W_\rho(\z)| \leq 1/d$ for a $d$--dimensional quantum system.
 
-We also note that the set $F := \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$.
+We also note that the set $F \coloneqq \{2a/(2b-1): a,b \in \mathbb{N} \text{ and } a \geq b\}$ is dense in the reals $\mathbb{R}_{>1}$, as any rational $c/d$ with $c>d$ can be approximated by  $c2^n / (d2^n-1) \in F$ for sufficiently large $n$.
 
-We have that $H_{\alpha}$ is additive on products of quasi-distributions., which we state for completeness.
-\begin{lemma}\label{H_add}
+We have that $H_{\alpha}$ is additive on products of quasi-distributions, which we state for completeness.
+\begin{proposition}\label{H_add}
 	For any $\w \in \mathcal{Q}_N$ and $\w' \in \mathcal{Q}_{N'}$, we have
 	\begin{equation}
 		H_{\alpha}(\w\otimes \w') = H_{\alpha}(\w) + H_{\alpha}(\w'),
 	\end{equation}
 	where $\alpha = 2a/(2b-1)$ with positive integers $a\ge b$.
-\end{lemma}
+\end{proposition}
 \begin{proof}
 	\begin{align*}
 		H_{\alpha}(\w \otimes \w') &= \frac{1}{1-\alpha}\log \sum_{i,j'} \left[\w_i \w'_j\right]^{\alpha} \\
@@ -1719,7 +1697,7 @@ We have that $H_{\alpha}$ is additive on products of quasi-distributions., which
 
 Applied to Wigner distributions $W_\rho (\z)$ for a quantum state $\rho$ we have
 \begin{equation}
-	H_\alpha(W_\rho) := \frac{1}{1-\alpha} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha,
+	H_\alpha(W_\rho) \coloneqq \frac{1}{1-\alpha} \log \sum_{\bmz} W_{\rho}(\bmz)^\alpha,
 \end{equation}
 where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integers $a,b$. For the noisy Strange state $\rho = \rho_{\rm{S}}(\epsilon)$, this becomes
 \begin{align}
@@ -1734,14 +1712,15 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \end{figure}
 We now show the following equivalence between Wigner negativity and negative R\'{e}nyi entropies.
 \begingroup
-\def\thetheorem{\ref{thm:HSchur}}
+\def\thetheorem{\ref{thm:Magic}}
 \begin{theorem}
 	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) < 0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \geq b$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof} 
-If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$ then this implies that $\log \sum_{\bmz} W_\rho (\bmz)^\alpha > 1$, however it is known that $H_\alpha$ is always non-negative on probability distributions and therefore $W_\rho(\bmz)$ must be a strict quasi-distribution with negativity.
+If we have $H_\alpha (W_\rho) <0 $ for $\alpha >1$, then it follows that $\log \sum_{\bmz} W_\rho (\bmz)^\alpha > 1$. 
+However, it is known that $H_\alpha$ is always non-negative on probability distributions, so $W_\rho(\bmz)$ must be a strict quasi-distribution with negativity.
 
 Conversely, suppose $\rho$ has negativity in its Wigner representation. This in particular implies that $\sum_{\bmz} |W_\rho (\bmz)| >1$. We now consider $\sum_{\bmz} W_\rho (\bmz)^{\frac{2a}{2b-1}}$ for positive integers $a\ge b$. We have that
 \begin{align}
@@ -1760,17 +1739,17 @@ Therefore Wigner negativity coincides with negativity of a R\'{e}nyi entropy.
 \subsection{R\'{e}nyi divergences on quasi-distributions}
 We now define the $\alpha$-R\'{e}nyi divergence for a quasi-distribution $\w \in \mathcal{Q}_N$ relative to a full-rank probability distribution $\r\in \mathcal{Q}_N^+$ as
 \begin{equation}
-	D_\alpha(\w||\r) := \frac{1}{\alpha - 1} \log \sum_{i} w_i^\alpha r_i^{1-\alpha},
+	D_\alpha(\w||\r) \coloneqq \frac{1}{\alpha - 1} \log \sum_{i} w_i^\alpha r_i^{1-\alpha},
 \end{equation}
 where $\alpha=2a/(2b-1)$ for positive integers $a \ge b$. We now have the following result that relates the R\'{e}nyi divergence to the R\'{e}nyi entropy on a dense subset of probability distributions.
-\begin{theorem}\label{thm:H2D}
+\begin{proposition}\label{H2D}
 	Let $\w\in \mathcal{Q}_N$ be a quasi-distribution and $\r \in \mathcal{Q}_N^+$ a probability distribution with positive rational entries given by $r_i = a_i/K$ for positive integers $a_i$ and $K = \sum_{i=1}^N a_i$.
 	Then,
 	\begin{equation}
 		H_\alpha(\Gamma_{\bma}(\w)) = K - D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r),
 	\end{equation}
 	where $\alpha = 2a / (2b-1)$ for positive integers $a \ge b$.
-\end{theorem}
+\end{proposition}
 \begin{proof}
 	For the given form of $\alpha$ and positive $r_i,\ i=1,\dots,N$, $D_\alpha(\w || \r)$ is well-defined for all $\w$. From the definition of $\Gamma_{\bma}$ we have
 	\begin{equation}
@@ -1786,22 +1765,22 @@ where $\alpha=2a/(2b-1)$ for positive integers $a \ge b$. We now have the follow
 	\end{align}
 \end{proof}
 With this we now establish monotonicity for R\'{e}nyi relative divergences.
-\begin{theorem}\label{thm:DSchur}
+\begin{proposition}\label{DSchur}
 	Let $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$. 
 	Then, $D_\alpha$ is Schur-convex, i.e. $D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) \geq D_\alpha(\w' \hspace{1pt}||\hspace{1pt} \r')$, whenever $(\w, \r) \succ (\w', \r')$.
-\end{theorem}
+\end{proposition}
 \begin{proof}
 	The statement $(\w, \r) \succ (\w', \r')$ is equivalent to $\Gamma_{\bma}(\w) \succ \Gamma_{\bma'}(\w')$.
-	Therefore, due to~\cref{thm:HSchur} we have
+	Therefore, due to Theorem~\ref{thm:HSchur} we have
 	\begin{equation}
 		H_\alpha(\Gamma_{\bma}(\w)) \leq H_\alpha(\Gamma_{\bma'}(\w'))
 	\end{equation}
-	which, due to~\cref{thm:H2D}, is equivalent to
+	which, due to Proposition~\ref{H2D}, is equivalent to
 	\begin{equation}
 		D_\alpha(\w \hspace{1pt}||\hspace{1pt} \r) \geq D_\alpha(\w' \hspace{1pt}||\hspace{1pt} \r').
 	\end{equation}
 \end{proof}
-We now specialise to Wigner distributions of quantum states, and quantum operations that map the set of free states $\F$ into itself.
+We now specialize to Wigner distributions of quantum states, and quantum operations that map the set of free states $\F$ into itself.
 \begingroup
 \def\thetheorem{\ref{thm:Da_props}}
 \begin{theorem}
@@ -1827,7 +1806,7 @@ Therefore $D_\alpha (W_\rho || W_\tau)$ is always well-defined and real-valued.
 	\frac{1}{\alpha-1} \log \sum_{\bmz} W_{\I/d}(\bmz) &= 0.
 \end{align}
 
-2. In the inequality of property 1, equality holds iff $L_{\rho|\tau}(x) = L_{\I/d|\I/d}(x) = L_{\tau|\tau}(x)$ for all $x\in [0,1]$ due to~\cref{prop:rmajor} which in turn holds iff $\rho = \tau$.
+2. In the inequality of property 1, equality holds iff $L_{\rho|\tau}(x) = L_{\I/d|\I/d}(x) = L_{\tau|\tau}(x)$ for all $x\in [0,1]$ due to Proposition~\ref{prop:rmajor} which in turn holds iff $\rho = \tau$.
 
 3. This property follows from the multiplicativity of the Wigner distribution.
 In particular,
@@ -1848,20 +1827,20 @@ We are now in a position to derive general magic state distillation bounds.
 \begingroup
 \def\thetheorem{\ref{thm:entropic_bounds}}
 \begin{theorem}
-	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R := m/n$ is upper bounded as,
+	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
 		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.1ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
-\widetilde{D}_\alpha( \rho', \tau') := \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
+\widetilde{D}_\alpha( \rho', \tau') \coloneqq \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
 between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
 \end{theorem}
 \addtocounter{theorem}{-1}
 \endgroup
 \begin{proof}
-	The bound is a direct consequence of the properties of the $\alpha$--R\'{e}nyi diveregence, proven in~\cref{thm:Da_props}.
+	The bound is a direct consequence of the properties of the $\alpha$--R\'{e}nyi diveregence, proven in Theorem~\ref{thm:Da_props}.
 	
 Due to the action of the magic protocol channel, we get
 \begin{equation}	
