@@ -180,7 +180,7 @@ Any magic state protocol will correspond to a quantum channel $\E$, so from Eq.~
 \end{equation}
 for any $\rho$. Since the magic protocol sends free states to free states, $\E$ sends all positively represented quantum state to other positively represented quantum states. In such cases, it can be shown~\cite{Wang_2019} that if $\E$ is a free operation then the associated Wigner representation $W_{\E}(\y |\bmz)$ must form a stochastic matrix. In particular, all stabilizer operations correspond to stochastic matrices in the Wigner representation. 
 
-We note that this mapping to stochastic maps is not one-to-one. Not all stochastic maps on the phase space correspond to valid quantum operations. The reason is that the maps must also respect the symplectic structure of the phase space, which is an additional non-trivial constraint.
+We note however, that not all stochastic maps on the phase space correspond to valid quantum operations. The reason is that the maps must also respect the symplectic structure of the phase space, which is an additional non-trivial constraint.
 
 In what follows, we shall assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ are represented by non-negative Wigner functions, while the free operations $\O$ are stochastic maps in the Wigner representation. Our analysis of magic in this phase space setting makes use of majorization theory, which we describe in the next section.
 
@@ -213,7 +213,7 @@ We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{
 \end{equation}
 where $R\coloneqq \sum_{i=1}^n r_i$ and $\pi$ is the permutation on $n$ objects mapping $\widetilde{\w}$ to $\widetilde{\w}^{\downarrow}$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as the rank of a quantum state is not operationally meaningful.
 
-In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with neither of $\r,\r'$ having negative components then it can be shown~\cite{ruch_mixing_1978} that
+In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with $\r,\r'$ having positive components then it can be shown~\cite{ruch_mixing_1978} that
 \begin{equation}
 (\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
 \end{equation}
@@ -617,7 +617,6 @@ The topic of $G$--majorization has been extensively studied, but to our knowledg
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
-\vspace{1cm}
 \section{Acknowledgements}
 We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpern for helpful comments and discussions. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
 	
