@@ -1398,7 +1398,7 @@ where the eigenstates $\{\ket{\varphi_k}\<\varphi_k|\}$ are pure, orthonormal st
 The Wigner distribution of state $\tau$ is then given by
 \begin{align}
 	\W[\bmz]{\tau} &= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z}W_{|k\>\<k|}(q, p) \nonumber\\
-	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{q, k} = \frac{e^{-\beta E_x}}{3\Z},
+	&= \sum\limits_{k=0}^2 \frac{e^{-\beta E_k}}{\Z} \delta_{q, k} = \frac{e^{-\beta E_q}}{3\Z},
 \end{align}
 where $x$ labels one of the three vertical lines in the phase space.
 The rescaled Wigner distribution $W_{\rho|\tau}(\bmz)$ can now be computed. It has $9$ components, but these come with multiplicities. In total, there are four distinct values on the phase space, as illustrated in Fig.~\ref{fig:pd_split}.
@@ -1826,7 +1826,7 @@ We are now in a position to derive general magic state distillation bounds.
 \begin{theorem}
 	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.1ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.17ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
