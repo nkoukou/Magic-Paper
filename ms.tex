@@ -16,7 +16,7 @@ reprint
 
 \begin{abstract}
 Magic states are key ingredients in schemes to realize universal fault-tolerant quantum computation.
-Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization to describe Wigner negative magic states for qudits of odd prime dimension processed under Clifford circuits. We show that majorization allows us to both quantify disorder in the Wigner representation and derive magic distillation bounds. These upper bounds are shown to be tighter than other bounds, such as from mana and thauma, and can be used to incorporate hardware physics, such as temperature dependence and system Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We find that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization to describe Wigner negative magic states for qudits of odd prime dimension processed under Clifford circuits. We show that majorization allows us to both quantify disorder in the Wigner representation and derive upper bounds for magic distillation. These bounds are shown to be tighter than other bounds, such as from mana and thauma, and can be used to incorporate hardware physics, such as temperature dependence and system Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We find that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting. This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises novel questions in the context of classical statistical mechanics.
 \end{abstract}
 
 \preprint{APS/123-QED}
@@ -128,7 +128,7 @@ Therefore, any quantum state $\rho$ can be expressed as a linear combination of 
 
 For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details).
 
-Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = \E \otimes id (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state of the channel~\cite{watrous_2018}, then we can define
+Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = (id \otimes \E) (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state~\cite{watrous_2018}, then we can define
 \begin{equation}\label{Wigner-Choi}
 W_{\E}(\y |\bmz) \coloneqq d_A^2 W_{\J(\E)}(\bar{\bmz} \oplus \y),
 \end{equation}
@@ -492,12 +492,13 @@ The analysis makes other simplifying assumptions that could easily be dropped, a
 
 The assumption which is non-trivial is that we neglect correlations in the reference state in the thermodynamic limit. However, for more general scenarios one could make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system via product states, to obtain similar bounds.
 
-The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain Fig.~\ref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$, so the protocol, when applied to the reference state, adds/extracts free energy from the system. 
+The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain Fig.~\ref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$, so the protocol, when applied to the reference state, adds/extracts free energy from the system.
+We demonstrate change of the bounds with respect to a varying output Hamiltonian in Fig.~\ref{fig:rvsa}.
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.35]{figs/R_vs_A.pdf}
-    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Eq.~(\ref{eq:rate_bounds_proof}) with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$ for varying probabilities $p, q$. 
+    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Eq.~(\ref{eq:rate_bounds_proof}) with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$, with varying parameters $p, q$, and where $A_{\bmo}$ and $A_{(1,2)}$ are phase-point operators. 
     }
     \label{fig:rvsa}
 \end{figure}
@@ -574,7 +575,7 @@ We can now apply this to obtain a family of magic distillation bounds based on R
 \begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation protocol on odd prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
+		R \leq R_\alpha \coloneqq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
@@ -608,7 +609,7 @@ This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$.
 
 We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In Appendix~\ref{app:lcsu_technical} and Appendix~\ref{app:lcst_technical} we give additional results that may be of use for later work.
 
-We can also ask if this approach could also provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{cit:gross3, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
+We can also ask if this approach could additionally provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G=SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{Appleby_2005, cit:bengtsson}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. This $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, eaton_1977}. For example, it is known that if $G$ is a finite reflection group then the $G$--majorization pre-order is described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. One route leading to concrete lower bounds on distillation rates is therefore to consider reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions.
   
 The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are not unital. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of classical statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g.~for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
 
@@ -619,8 +620,9 @@ We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpe
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\bibliography{bib}
+%\bibliography{bib}
 %\bibliographystyle{apsrev4-2}
+\input{ms.bbl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1702,7 +1704,7 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.35]{figs/H_vs_eps_a.pdf}
-    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.
+    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of the $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.
     }
     \label{fig:H}
 \end{figure}
@@ -1826,7 +1828,7 @@ We are now in a position to derive general magic state distillation bounds.
 \begin{theorem}
 	Consider a general magic state distillation process on prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.17ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')}
+		R \leq R_\alpha \coloneqq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
