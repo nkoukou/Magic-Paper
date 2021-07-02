@@ -7,7 +7,7 @@
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
 \providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}
-\begin{thebibliography}{138}%
+\begin{thebibliography}{144}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -128,6 +128,32 @@
   }\href {\doibase 10.1103/PhysRevA.102.052415} {\bibfield  {journal} {\bibinfo
    {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {102}},\ \bibinfo
   {pages} {052415} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Chamberland}\ \emph {et~al.}(2020)\citenamefont
+  {Chamberland}, \citenamefont {Noh}, \citenamefont {Arrangoiz-Arriola},
+  \citenamefont {Campbell}, \citenamefont {Hann}, \citenamefont {Iverson},
+  \citenamefont {Putterman}, \citenamefont {Bohdanowicz}, \citenamefont
+  {Flammia}, \citenamefont {Keller}, \citenamefont {Refael}, \citenamefont
+  {Preskill}, \citenamefont {Jiang}, \citenamefont {Safavi-Naeini},
+  \citenamefont {Painter},\ and\ \citenamefont {Brandão}}]{chamberland_2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Chamberland}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Noh}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Arrangoiz-Arriola}},
+  \bibinfo {author} {\bibfnamefont {E.~T.}\ \bibnamefont {Campbell}}, \bibinfo
+  {author} {\bibfnamefont {C.~T.}\ \bibnamefont {Hann}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Iverson}}, \bibinfo {author} {\bibfnamefont
+  {H.}~\bibnamefont {Putterman}}, \bibinfo {author} {\bibfnamefont {T.~C.}\
+  \bibnamefont {Bohdanowicz}}, \bibinfo {author} {\bibfnamefont {S.~T.}\
+  \bibnamefont {Flammia}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Keller}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Refael}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Preskill}}, \bibinfo
+  {author} {\bibfnamefont {L.}~\bibnamefont {Jiang}}, \bibinfo {author}
+  {\bibfnamefont {A.~H.}\ \bibnamefont {Safavi-Naeini}}, \bibinfo {author}
+  {\bibfnamefont {O.}~\bibnamefont {Painter}}, \ and\ \bibinfo {author}
+  {\bibfnamefont {F.~G. S.~L.}\ \bibnamefont {Brandão}},\ }\href@noop {}
+  {\enquote {\bibinfo {title} {Building a fault-tolerant quantum computer using
+  concatenated cat codes},}\ } (\bibinfo {year} {2020}),\ \Eprint
+  {http://arxiv.org/abs/2012.04108} {arXiv:2012.04108} \BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bourassa}\ \emph {et~al.}(2021)\citenamefont
   {Bourassa}, \citenamefont {Alexander}, \citenamefont {Vasmer}, \citenamefont
   {Patil}, \citenamefont {Tzitrin}, \citenamefont {Matsuura}, \citenamefont
@@ -611,6 +637,23 @@
   {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
   {54}},\ \bibinfo {pages} {3824} (\bibinfo {year} {1996})}\BibitemShut
   {NoStop}%
+\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
+  {Noh}(2020)}]{chamberland_very_2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Noh}},\ }\href {https://doi.org/10.1038/s41534-020-00319-5} {\bibfield
+  {journal} {\bibinfo  {journal} {npj Quantum Information}\ }\textbf {\bibinfo
+  {volume} {6}},\ \bibinfo {pages} {91} (\bibinfo {year} {2020})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
+  {Cross}(2019)}]{Chamberland2019faulttolerantmagic}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {A.~W.}\ \bibnamefont
+  {Cross}},\ }\href {\doibase 10.22331/q-2019-05-20-143} {\bibfield  {journal}
+  {\bibinfo  {journal} {{Quantum}}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo
+  {pages} {143} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Tuckett}\ \emph {et~al.}(2019)\citenamefont
   {Tuckett}, \citenamefont {Darmawan}, \citenamefont {Chubb}, \citenamefont
   {Bravyi}, \citenamefont {Bartlett},\ and\ \citenamefont
@@ -911,6 +954,13 @@
   {\doibase 10.1103/PhysRevLett.124.090505} {\bibfield  {journal} {\bibinfo
   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {124}},\ \bibinfo
   {pages} {090505} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gross}(2006)}]{cit:gross3}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Gross}},\ }\href {\doibase 10.1063/1.2393152} {\bibfield  {journal}
+  {\bibinfo  {journal} {Journal of Mathematical Physics}\ }\textbf {\bibinfo
+  {volume} {47}},\ \bibinfo {pages} {122107} (\bibinfo {year}
+  {2006})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Wigner}(1932)}]{Wigner_1932}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
@@ -931,6 +981,43 @@
   {\bibinfo  {journal} {Journal of Mathematical Physics}\ }\textbf {\bibinfo
   {volume} {46}},\ \bibinfo {pages} {052107} (\bibinfo {year}
   {2005})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph
+  {et~al.}(2021{\natexlab{a}})\citenamefont {Schmid}, \citenamefont {Du},
+  \citenamefont {Selby},\ and\ \citenamefont
+  {Pusey}}]{schmid2021noncontextual}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Du}}, \bibinfo
+  {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}},\ }\href@noop {}
+  {\enquote {\bibinfo {title} {The only noncontextual model of the stabilizer
+  subtheory is gross's},}\ } (\bibinfo {year} {2021}{\natexlab{a}}),\ \Eprint
+  {http://arxiv.org/abs/2101.06263} {arXiv:2101.06263} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph {et~al.}(2020)\citenamefont {Schmid},
+  \citenamefont {Selby}, \citenamefont {Pusey},\ and\ \citenamefont
+  {Spekkens}}]{schmid2020structure}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
+  \bibinfo {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}}, \ and\
+  \bibinfo {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\
+  }\href@noop {} {\enquote {\bibinfo {title} {A structure theorem for
+  generalized-noncontextual ontological models},}\ } (\bibinfo {year} {2020}),\
+  \Eprint {http://arxiv.org/abs/2005.07161} {arXiv:2005.07161} \BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph
+  {et~al.}(2021{\natexlab{b}})\citenamefont {Schmid}, \citenamefont {Selby},
+  \citenamefont {Wolfe}, \citenamefont {Kunjwal},\ and\ \citenamefont
+  {Spekkens}}]{Schmid_2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
+  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Wolfe}}, \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Kunjwal}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\ }\href {\doibase
+  10.1103/PRXQuantum.2.010331} {\bibfield  {journal} {\bibinfo  {journal} {PRX
+  Quantum}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {010331}
+  (\bibinfo {year} {2021}{\natexlab{b}})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Mermin}(1990)}]{Mermin_1990}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~D.}\ \bibnamefont
@@ -966,13 +1053,6 @@
   {title} {Geometry of Quantum States: An Introduction to Quantum
   Entanglement}}}\ (\bibinfo  {publisher} {Cambridge University Press},\
   \bibinfo {year} {2006})\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Gross}(2006)}]{cit:gross3}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Gross}},\ }\href {\doibase 10.1063/1.2393152} {\bibfield  {journal}
-  {\bibinfo  {journal} {Journal of Mathematical Physics}\ }\textbf {\bibinfo
-  {volume} {47}},\ \bibinfo {pages} {122107} (\bibinfo {year}
-  {2006})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Watrous}(2018)}]{watrous_2018}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont

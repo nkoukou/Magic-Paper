@@ -38,11 +38,11 @@ Theories of magic states attempt to quantify this computational element via mono
 \section{Introduction}
 \label{sec:intro}
 
-There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, Bourassa_2021}. Nevertheless, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realized transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
+There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, chamberland_2020, Bourassa_2021}. Nevertheless, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realized transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and protocols for qudits of odd dimension have also been proposed~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well its connection to contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021}.
 
-Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. 
+Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. \nick{There have also been breathroughs in the preparation of high quality magi states with low overhead~\cite{chamberland_very_2020, Chamberland2019faulttolerantmagic}}
 
 In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a \emph{pair} of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are of potential interest in assessing how physical features such as temperature, noise biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
 
@@ -76,7 +76,7 @@ Finally, in Sec.~\ref{sec:lower_bounds} we discuss how our approach could be ext
 \section{Phase space representations of quantum states}
 \label{sec:ps}
 
-Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space~\cite{Ferrie_2008}. This construction is a discrete version of Wigner representations in quantum optics~\cite{Wigner_1932, Vourdas_2004}.
+Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space~\cite{cit:gross3, Ferrie_2008}. This construction is a discrete version of Wigner representations in quantum optics~\cite{Wigner_1932, Vourdas_2004}.
 
 Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\{ |0\>, |1\>, \dots , |d-1\>\}$ denote the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$. On this space, generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators, acting on the basis states as follows,
 \begin{align}
@@ -87,7 +87,7 @@ Here $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is
 \begin{equation}\label{eq:ddef}
     D_{\bmz} \coloneqq \tau^{q p} X^{q} Z^{p},\ 
 \end{equation}
-where the phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity. We assume going forward that $d$ is an odd prime~\cite{Appleby_2005}. The qubit case $d=2$ is known to have obstacles to using a Wigner representation to quantify magic in terms of negativity~\cite{Mermin_1990, cit:howard2}, although recent work~\cite{Raussendorf_qubits} has shown how to extend this to include qubits by enlarging the phase space. For a composite system with dimension $d_{\rm tot} = d_1 \dots d_n$ and Hilbert space $\cal{H}_{d_1} \otimes \dots \otimes \cal{H}_{d_n}$, we define displacement operators as
+where the phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity. We assume going forward that $d$ is an odd prime~\cite{Appleby_2005} \nick{which ensures that the discrete Wigner representation is in fact the only non-contextual quasi-probability representation of odd-dimensional stabilizer theories~\cite{schmid2021noncontextual, schmid2020structure, Schmid_2021}}. The qubit case $d=2$ is known to have obstacles to using a Wigner representation to quantify magic in terms of negativity~\cite{Mermin_1990, cit:howard2}, although recent work~\cite{Raussendorf_qubits} has shown how to extend this to include qubits by enlarging the phase space. For a composite system with dimension $d_{\rm tot} = d_1 \dots d_n$ and Hilbert space $\cal{H}_{d_1} \otimes \dots \otimes \cal{H}_{d_n}$, we define displacement operators as
 \begin{equation}\label{eq:composited}
     D_{\bmz} \coloneqq D_{(q_1, p_1)} \otimes \dots \otimes D_{(q_n, p_n)},
 \end{equation}
@@ -575,7 +575,7 @@ We can now apply this to obtain a family of magic distillation bounds based on R
 \begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation protocol on odd prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
-		R \leq R_\alpha \coloneqq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
 	\end{equation}
 	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
 	\begin{equation}
@@ -596,11 +596,11 @@ which gives a generalized version of Theorem~\ref{thm:free-energy}, with a term 
 
 We can illustrate a basic application of the above bound for magic protocols that give unital maps. In this case it is easy to see that the above bound reduces to the simple form
 \begin{equation}
-	R \leq R_\alpha=\frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
+	R \leq R_\alpha \coloneqq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
 \end{equation}
 In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$, this bound becomes
 \begin{equation}
-	R \leq R_\alpha=\frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
+	R \leq R_\alpha = \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
 This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Fig.~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
 
@@ -620,9 +620,9 @@ We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpe
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\bibliography{bib}
+\bibliography{bib}
 %\bibliographystyle{apsrev4-2}
-\input{ms.bbl}
+%\input{ms.bbl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

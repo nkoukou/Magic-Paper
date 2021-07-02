@@ -1,4 +1,4 @@
-magic_paperNotes.bib
+*Notes.bib
 
 *.pdf
 !figs/*.pdf
@@ -24,7 +24,6 @@ magic_paperNotes.bib
 *.synctex.gz
 *.synctex.gz(busy)
 
-notes/notesNotes.bib
 notes/*.pdf
 notes/*.aux 
 notes/*.bit 
