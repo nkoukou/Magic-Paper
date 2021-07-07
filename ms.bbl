@@ -7,7 +7,7 @@
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
 \providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}
-\begin{thebibliography}{144}%
+\begin{thebibliography}{145}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -338,6 +338,23 @@
   {\bibinfo  {journal} {Proceedings of the Royal Society A: Mathematical,
   Physical and Engineering Sciences}\ }\textbf {\bibinfo {volume} {476}},\
   \bibinfo {pages} {20200187} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
+  {Noh}(2020)}]{chamberland_very_2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Noh}},\ }\href {https://doi.org/10.1038/s41534-020-00319-5} {\bibfield
+  {journal} {\bibinfo  {journal} {npj Quantum Information}\ }\textbf {\bibinfo
+  {volume} {6}},\ \bibinfo {pages} {91} (\bibinfo {year} {2020})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
+  {Cross}(2019)}]{Chamberland2019faulttolerantmagic}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {A.~W.}\ \bibnamefont
+  {Cross}},\ }\href {\doibase 10.22331/q-2019-05-20-143} {\bibfield  {journal}
+  {\bibinfo  {journal} {{Quantum}}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo
+  {pages} {143} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Campbell}\ and\ \citenamefont
   {Howard}(2017{\natexlab{a}})}]{Campbell_2017}%
   \BibitemOpen
@@ -487,6 +504,31 @@
   $\lambda$-polytopes and classical simulation of quantum computation with
   magic states},}\ } (\bibinfo {year} {2021}),\ \Eprint
   {http://arxiv.org/abs/2104.05822} {arXiv:2104.05822} \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph {et~al.}(2020)\citenamefont {Schmid},
+  \citenamefont {Selby}, \citenamefont {Pusey},\ and\ \citenamefont
+  {Spekkens}}]{schmid2020structure}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
+  \bibinfo {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}}, \ and\
+  \bibinfo {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\
+  }\href@noop {} {\enquote {\bibinfo {title} {A structure theorem for
+  generalized-noncontextual ontological models},}\ } (\bibinfo {year} {2020}),\
+  \Eprint {http://arxiv.org/abs/2005.07161} {arXiv:2005.07161} \BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph
+  {et~al.}(2021{\natexlab{a}})\citenamefont {Schmid}, \citenamefont {Selby},
+  \citenamefont {Wolfe}, \citenamefont {Kunjwal},\ and\ \citenamefont
+  {Spekkens}}]{Schmid_2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
+  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Wolfe}}, \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Kunjwal}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\ }\href {\doibase
+  10.1103/PRXQuantum.2.010331} {\bibfield  {journal} {\bibinfo  {journal} {PRX
+  Quantum}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {010331}
+  (\bibinfo {year} {2021}{\natexlab{a}})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Jones}\ \emph {et~al.}(2012)\citenamefont {Jones},
   \citenamefont {Van~Meter}, \citenamefont {Fowler}, \citenamefont {McMahon},
   \citenamefont {Kim}, \citenamefont {Ladd},\ and\ \citenamefont
@@ -637,23 +679,6 @@
   {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
   {54}},\ \bibinfo {pages} {3824} (\bibinfo {year} {1996})}\BibitemShut
   {NoStop}%
-\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
-  {Noh}(2020)}]{chamberland_very_2020}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
-  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
-  {Noh}},\ }\href {https://doi.org/10.1038/s41534-020-00319-5} {\bibfield
-  {journal} {\bibinfo  {journal} {npj Quantum Information}\ }\textbf {\bibinfo
-  {volume} {6}},\ \bibinfo {pages} {91} (\bibinfo {year} {2020})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Chamberland}\ and\ \citenamefont
-  {Cross}(2019)}]{Chamberland2019faulttolerantmagic}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
-  {Chamberland}}\ and\ \bibinfo {author} {\bibfnamefont {A.~W.}\ \bibnamefont
-  {Cross}},\ }\href {\doibase 10.22331/q-2019-05-20-143} {\bibfield  {journal}
-  {\bibinfo  {journal} {{Quantum}}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo
-  {pages} {143} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Tuckett}\ \emph {et~al.}(2019)\citenamefont
   {Tuckett}, \citenamefont {Darmawan}, \citenamefont {Chubb}, \citenamefont
   {Bravyi}, \citenamefont {Bartlett},\ and\ \citenamefont
@@ -974,6 +999,15 @@
   {journal} {\bibinfo  {journal} {Reports on Progress in Physics}\ }\textbf
   {\bibinfo {volume} {67}},\ \bibinfo {pages} {267} (\bibinfo {year}
   {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kenfack}\ and\ \citenamefont
+  {{\.{Z}}yczkowski}(2004)}]{Kenfack_2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kenfack}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {{\.{Z}}yczkowski}},\ }\href {\doibase 10.1088/1464-4266/6/10/003} {\bibfield
+   {journal} {\bibinfo  {journal} {Journal of Optics B: Quantum and
+  Semiclassical Optics}\ }\textbf {\bibinfo {volume} {6}},\ \bibinfo {pages}
+  {396} (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Appleby}(2005)}]{Appleby_2005}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~M.}\ \bibnamefont
@@ -981,43 +1015,6 @@
   {\bibinfo  {journal} {Journal of Mathematical Physics}\ }\textbf {\bibinfo
   {volume} {46}},\ \bibinfo {pages} {052107} (\bibinfo {year}
   {2005})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Schmid}\ \emph
-  {et~al.}(2021{\natexlab{a}})\citenamefont {Schmid}, \citenamefont {Du},
-  \citenamefont {Selby},\ and\ \citenamefont
-  {Pusey}}]{schmid2021noncontextual}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Schmid}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Du}}, \bibinfo
-  {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}}, \ and\ \bibinfo
-  {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}},\ }\href@noop {}
-  {\enquote {\bibinfo {title} {The only noncontextual model of the stabilizer
-  subtheory is gross's},}\ } (\bibinfo {year} {2021}{\natexlab{a}}),\ \Eprint
-  {http://arxiv.org/abs/2101.06263} {arXiv:2101.06263} \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Schmid}\ \emph {et~al.}(2020)\citenamefont {Schmid},
-  \citenamefont {Selby}, \citenamefont {Pusey},\ and\ \citenamefont
-  {Spekkens}}]{schmid2020structure}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
-  \bibinfo {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}}, \ and\
-  \bibinfo {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\
-  }\href@noop {} {\enquote {\bibinfo {title} {A structure theorem for
-  generalized-noncontextual ontological models},}\ } (\bibinfo {year} {2020}),\
-  \Eprint {http://arxiv.org/abs/2005.07161} {arXiv:2005.07161} \BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Schmid}\ \emph
-  {et~al.}(2021{\natexlab{b}})\citenamefont {Schmid}, \citenamefont {Selby},
-  \citenamefont {Wolfe}, \citenamefont {Kunjwal},\ and\ \citenamefont
-  {Spekkens}}]{Schmid_2021}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Schmid}}, \bibinfo {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}},
-  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Wolfe}}, \bibinfo
-  {author} {\bibfnamefont {R.}~\bibnamefont {Kunjwal}}, \ and\ \bibinfo
-  {author} {\bibfnamefont {R.~W.}\ \bibnamefont {Spekkens}},\ }\href {\doibase
-  10.1103/PRXQuantum.2.010331} {\bibfield  {journal} {\bibinfo  {journal} {PRX
-  Quantum}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {010331}
-  (\bibinfo {year} {2021}{\natexlab{b}})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Mermin}(1990)}]{Mermin_1990}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~D.}\ \bibnamefont
@@ -1045,12 +1042,12 @@
   {publisher} {Princeton University Press},\ \bibinfo {year}
   {1989})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bengtsson}\ and\ \citenamefont
-  {Zyczkowski}(2006{\natexlab{a}})}]{Bengtsson_2006}%
+  {{\.{Z}}yczkowski}(2006)}]{Bengtsson_2006}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
   {Bengtsson}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
-  {Zyczkowski}},\ }\href {\doibase 10.1017/CBO9780511535048} {\emph {\bibinfo
-  {title} {Geometry of Quantum States: An Introduction to Quantum
+  {{\.{Z}}yczkowski}},\ }\href {\doibase 10.1017/CBO9780511535048} {\emph
+  {\bibinfo {title} {Geometry of Quantum States: An Introduction to Quantum
   Entanglement}}}\ (\bibinfo  {publisher} {Cambridge University Press},\
   \bibinfo {year} {2006})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Watrous}(2018)}]{watrous_2018}%
@@ -1059,6 +1056,18 @@
   {Watrous}},\ }\href {\doibase 10.1017/9781316848142} {\emph {\bibinfo {title}
   {The Theory of Quantum Information}}}\ (\bibinfo  {publisher} {Cambridge
   University Press},\ \bibinfo {year} {2018})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schmid}\ \emph
+  {et~al.}(2021{\natexlab{b}})\citenamefont {Schmid}, \citenamefont {Du},
+  \citenamefont {Selby},\ and\ \citenamefont
+  {Pusey}}]{schmid2021noncontextual}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Schmid}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Du}}, \bibinfo
+  {author} {\bibfnamefont {J.~H.}\ \bibnamefont {Selby}}, \ and\ \bibinfo
+  {author} {\bibfnamefont {M.~F.}\ \bibnamefont {Pusey}},\ }\href@noop {}
+  {\enquote {\bibinfo {title} {The only noncontextual model of the stabilizer
+  subtheory is {G}ross's},}\ } (\bibinfo {year} {2021}{\natexlab{b}}),\ \Eprint
+  {http://arxiv.org/abs/2101.06263} {arXiv:2101.06263} \BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Blackwell}(1953)}]{Blackwell_1953}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
@@ -1124,6 +1133,17 @@
   {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
   {67}},\ \bibinfo {pages} {062104} (\bibinfo {year} {2003})}\BibitemShut
   {NoStop}%
+\bibitem [{\citenamefont {Pucha{\l}a}\ \emph {et~al.}(2013)\citenamefont
+  {Pucha{\l}a}, \citenamefont {Rudnicki},\ and\ \citenamefont
+  {{\.{Z}}yczkowski}}]{Puchala_2013}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Z.}~\bibnamefont
+  {Pucha{\l}a}}, \bibinfo {author} {\bibfnamefont {{\L}.}~\bibnamefont
+  {Rudnicki}}, \ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {{\.{Z}}yczkowski}},\ }\href {\doibase 10.1088/1751-8113/46/27/272002}
+  {\bibfield  {journal} {\bibinfo  {journal} {Journal of Physics A:
+  Mathematical and Theoretical}\ }\textbf {\bibinfo {volume} {46}},\ \bibinfo
+  {pages} {272002} (\bibinfo {year} {2013})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Vallejos}\ \emph {et~al.}(2021)\citenamefont
   {Vallejos}, \citenamefont {de~Melo},\ and\ \citenamefont
   {Carlo}}]{Vallejos_2021}%
@@ -1337,15 +1357,6 @@
   Distribution}}},\ \href {https://arxiv.org/abs/quant-ph/0512258} {Ph.D.
   thesis},\ \bibinfo  {school} {Swiss Federal Institute of Technology Zurich}
   (\bibinfo {year} {2005})\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bengtsson}\ and\ \citenamefont
-  {Zyczkowski}(2006{\natexlab{b}})}]{cit:bengtsson}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
-  {Bengtsson}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
-  {Zyczkowski}},\ }\href {\doibase 10.1017/CBO9780511535048} {\emph {\bibinfo
-  {title} {Geometry of Quantum States: An Introduction to Quantum
-  Entanglement}}}\ (\bibinfo  {publisher} {Cambridge University Press},\
-  \bibinfo {year} {2006})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Hardy}\ \emph {et~al.}(1952)\citenamefont {Hardy},
   \citenamefont {Collection}, \citenamefont {Littlewood}, \citenamefont
   {Pólya}, \citenamefont {Pólya},\ and\ \citenamefont
@@ -1449,12 +1460,12 @@
   {\bibinfo  {journal} {Phys. Rev. E}\ }\textbf {\bibinfo {volume} {62}},\
   \bibinfo {pages} {4665} (\bibinfo {year} {2000})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Gnutzmann}\ and\ \citenamefont
-  {Zyczkowski}(2001)}]{Gnutzmann_2001}%
+  {{\.{Z}}yczkowski}(2001)}]{Gnutzmann_2001}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
   {Gnutzmann}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
-  {Zyczkowski}},\ }\href {\doibase 10.1088/0305-4470/34/47/317} {\bibfield
-  {journal} {\bibinfo  {journal} {Journal of Physics A: Mathematical and
-  General}\ }\textbf {\bibinfo {volume} {34}},\ \bibinfo {pages} {10123}
-  (\bibinfo {year} {2001})}\BibitemShut {NoStop}%
+  {{\.{Z}}yczkowski}},\ }\href {\doibase 10.1088/0305-4470/34/47/317}
+  {\bibfield  {journal} {\bibinfo  {journal} {Journal of Physics A:
+  Mathematical and General}\ }\textbf {\bibinfo {volume} {34}},\ \bibinfo
+  {pages} {10123} (\bibinfo {year} {2001})}\BibitemShut {NoStop}%
 \end{thebibliography}%
