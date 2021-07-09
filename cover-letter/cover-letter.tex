@@ -15,9 +15,8 @@
 \renewcommand*\rmdefault{ppl}
 
 \usepackage[table,xcdraw,dvipsnames]{xcolor}
-\renewcommand{\cc}[1]{\textcolor{magenta}{#1}}
-\newcommand{\mjg}[1]{{\color{NavyBlue}[#1]}}
-\newcommand{\ddd}[1]{\textcolor{Blue}{[#1]}}
+\newcommand{\nick}[1]{\textcolor{red}{[#1]}}
+\newcommand{\ddd}[1]{\textcolor{blue}{[#1]}}
 
 \pagestyle{empty}
 
@@ -27,38 +26,38 @@
 \hfill\begin{minipage}{6cm}
 	\raggedright
 	\vspace{-2.5cm}
-	{\footnotesize\itshape Matthew Girling}\\
-	{\footnotesize\itshape School of Physics and Astronomy}\\
-	{\footnotesize\itshape University of Leeds}\\
-	{\footnotesize\itshape Leeds, LS2 9JT, United Kingdom}\\
+	{\footnotesize\itshape Nikolaos Koukoulekidis}\\
+	{\footnotesize\itshape Department of Physics}\\
+	{\footnotesize\itshape Imperial College London}\\
+	{\footnotesize\itshape London SW7 2AZ, UK}\\
 	{\footnotesize\itshape %\MVAt~ 
-		\verb|m.j.girling@leeds.ac.uk|}\\
+		\verb|nk2314@imperial.ac.uk|}\\
 	~\\
 		\footnotesize\today
 \end{minipage}
 
 \vspace{-3.5cm}
-\includegraphics[scale=.40]{leeds-logo.pdf}
+\includegraphics[scale=.1]{icllogo.png}
 \vspace{3.5cm}
 
-
 \vspace{-1.5cm}
-Dear Editors of Physical Review X,
+Dear Editors of PRX Quantum,
+
+\nick{this is supposed to be a ``100-word concise and compelling argument''. Currently: 203 words}
 
 \vspace{.3cm}
 	
-Please find enclosed a copy of our manuscript \emph{``Estimation of correlations and non-separability in quantum channels via unitarity benchmarking''}, which we would like to submit for review in Physical Review~X. We believe our work fits naturally into the scope of the journal. 
+Please find enclosed a copy of our manuscript \emph{``Constraints on magic state protocols from the statistical mechanics of Wigner negativity''}, which we would like to submit for review in PRX Quantum. 
+We believe our work fits naturally into the scope of the journal. 
 
+Our work establishes a connection between two fields within quantum information: quantum thermodynamics and quasi-probability representations of quantum physics.
+This allows for important advances in the subfield of magic theory, an increasingly important area of quantum computation.
 
-%\ddd{Our manuscript connects analysis of fundamental quantum information theoretic concepts- namely the properties of coherent information flow and correlations in quantum channels, with experimentally estimatable measures of noise in quantum devices. The measures we introduce can be related to foundational elements quantum theory, and provide novel (statements?) of non-classical behaviour. Applied to benchmarking, our measures provide independent information beyond that of existing techniques. In this way, our work links tractable real world methods used in quantum devices with concepts that are of broad interest in the physics community. }
+Primarily, we develop new techniques that provide analytical bounds on general magic state distillation processes. We show that our bounds are tighter than previously defined bounds, and importantly can be expressed in terms of the physical symmetries of the circuit in question.
+We therefore provide novel and powerful constraints on the design of magic protocols.
 
-Our results develop connections between fundamental topics in quantum physics and the experimental development of quantum technologies. Moreover, our work pushes core theory of quantum information into experimentally testable regimes.
-
-Famously, quantum states allow for correlations (quantum entanglement) that exceed anything possible in classical physics. Such correlations underlie the complexity of many-body quantum systems, are the focus of foundations research, are central to quantum computing and communications, and are a major focus of high energy physics research. Extensive work has been done on their structure, detection and certification, however far less is known about \emph{dynamical} correlations in quantum physics. For this, the concept of a quantum channel unifies reversible dynamics based on Lagrangians with more general evolutions of quantum systems such as open system dynamics, measurement theory and quantum information processing. Channels therefore constitute fundamental tools, applicable to a broad range of contemporary quantum physics research.
-
-Our work constructs a framework to both quantify and certify correlations in quantum channels. We tackle this problem using methods that have recently been developed in the field of quantum technologies. We develop novel methods to quantify correlations in general quantum channels and prove that, just as with quantum states, there is a separation between ``classical'' correlations and genuinely quantum correlations. We then prove that these quantum correlations obey a fundamental Information-Disturbance trade-off relation that provides a new description of the security of quantum encryption. Finally, we show that the presence of these correlations can be certified in quantum systems, and construct an explicit scheme to do so using existing noisy devices for quantum technologies. Our scheme is both efficient in the number of experimental rounds and robust against imperfections arising due to experimental state preparation and measurement errors.
-
-Our results give a fundamental description of non-classicality in dynamical quantum processes.  This analysis of classical/quantum correlations links to recent work on quantum non-locality and the ``self-testing'' of quantum states, and so may find further application in these areas. The measures and means to estimate correlations are relevant to controlled quantum dynamics and the manipulation of quantum coherence.  Also, to our knowledge, the Information-Disturbance relation constitutes the first such formulation that could be efficiently tested experimentally.  Finally, correlated and cross-talk errors are fundamental obstacles to the construction of a full-scale quantum computer, and our results can be directly applied to the benchmarking of noise in quantum devices. Therefore, our work directly impacts ongoing quantum technology research.
+The implications of our analysis are also important foundationally.
+We develop a novel theory of statistical mechanics on quasi-distributions and we further construct entropic functions which attain negative values, a property which acts as a fundamental witness of non-classicality.
 
 For the above reasons, we believe that our manuscript is of relevance to a wide audience of quantum physicists, and so is suitable for publication in Phys. Rev. X.
 
@@ -68,38 +67,25 @@ For the above reasons, we believe that our manuscript is of relevance to a wide 
 \flushleft
 Sincerely Yours,\\
 
-Matthew Girling, Cristina Cirstoiu, David Jennings.
+Nikolaos Koukoulekidis, David Jennings.
 \end{minipage}
 \newpage
 
 
+\textbf{Popular Summary}
 
+\nick{this is supposed to be 250 words long. Currently: 243 words}
 
-%\ddd{Popular Summary: Physical Review X requires authors to submit a nontechnical summary that conveys the context, the essential message(s), and the significance of the work to all readers. The summary should be concise (approximately 250 words), readable, objective, and have broad appeal. Please avoid including mathematical expressions.}
-%
-%\ddd{When writing the Popular Summary, imagine \textbf{how you would explain your work to a junior physics undergrad}: someone familiar with physics fundamentals but likely unfamiliar with your area of research. Step back from the details (expert readers can always read the paper) and focus more on the essence of your work. Depending on the paper, that essence may be a new paradigm, the discovery of some phenomenon, a new technical milestone, or a new methodological capability. The tone can be casual and conversational. Be careful with jargon -- avoid it if possible, but if a technical word or phrase is essential, please make a conscious effort to explain it using plain language.}
-%
+Quantum computers promise astronomical speed-ups for important computational tasks.
+A practically necessary requirement to achieve such speed-ups for useful computational tasks is establishing a framework that ensures fault-tolerance, which is the ability to correct computational errors in the circuit successfully and reliably.
+It is well-known that restricting to this framework, it is impossible to achieve quantum speed-ups, therefore we need to initiate the circuit with some low-noise input state that contains enough resources which can be used by the circuit to perform the desired computational task.
 
-%
-% \ddd{The first paragraph provides the “big picture” context and tells the reader why your investigation is worth doing. The reader should come away knowing what problem you’re trying to solve and the main point of what you found. Keep the wording concise—don’t make the reader wade through lots of background before revealing the central point of the paper. Think of this paragraph as a summary within a summary—a reader could read just this paragraph and have a sense of what you did and why it’s useful.}
-% 
-% \ddd{The second paragraph fleshes out the most essential details. This is a good place to add extra background and context and to tell the reader how you went about your work and, when appropriate, the new qualitative physical insights you gained from the detailed results. But stay focused on the essentials: The reader doesn’t need to know everything you did, just a “taste” of how you arrived at your results and what your results teach all readers.}
-% 
-% \ddd{The third paragraph provides the reader with an outlook to the future. In just a sentence or two, tell the reader where you see this research going or what a logical next step might be.}
-% 
- 
-\textbf{[Popular Summary]}
+Creating this low-noise, highly resourceful state, called a ``magic state'', is a costly process, requiring in principle a quantum process that manipulates many highly noisy copies of the magic state in order to distill one with very low noise.
+Our work addresses the question regarding the highest possible rate of low-noise magic states one could extract, given some copies of highly noisy magic states.
+We provide fundamental bounds on this rate, based on the thermodynamic properties of the quantum process, which constraint the efficiency of any general quantum processes attempting to distill magic.
+As our bounds depend on the thermodynamic properties of the process, they notably provide a way of assessing how physical properties affect the distillation process.
 
-Quantum entanglement was described by Einstein as `spooky action at a distance' and is the uniquely quantum effect where two separated objects hide all their properties in the correlations between them. Remarkably entanglement is also useful: it will power the quantum computers that are currently being built, which promise to revolutionize our modern information age. Our paper looks at quantum correlations in the dynamics of a quantum system, where it is the interactions between particles that are, in a sense, entangled. Such correlations are essential in order for quantum bits to flow through a quantum computer. Our theoretical work both quantifies these correlations and gives means to detect them in existing quantum systems.
- 
-Our work predicts that this `dynamical entanglement' should be detectable by virtue of it having stronger dynamical effects than anything possible with classical physics. We also predict that the flow of quantum bits through systems should behave somewhat like an incompressible fluid: quantum bits can stretch and even break into parts but the total `volume' can never increase. In fact, we explain how it is this inability to `expand' quantum bits that makes quantum encryption perfectly secure. Finally, we have devised experimental protocols that could be done to both measure these `volumes' and also detect this dynamical entanglement.
- 
-Our work applies to all quantum systems, irrespective of the size or type of the system, and so constitute fundamental results. Moreover, with the concrete protocols we have developed, our predictions should be testable on existing devices, such as IBM or Google's quantum computer. Our results shed new light on how quantum physics differs so fundamentally from classical physics, and provide a novel toolkit of broad relevance to contemporary quantum physics research and the development of quantum technologies.
- 
-
-% -- Tools for studying quantum dynamics (a subset of quantum channel theory).
-% }
-
+On our way to addressing this question, we develop a novel physical framework of thermodynamics, where \nick{microstates of a system can be quasi-probabilistic} and where entropies can attain negative values, which are fully meaningful as indicators of quantum computational speed-ups.
 
 
 

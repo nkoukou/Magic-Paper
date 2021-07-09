@@ -2,6 +2,8 @@
 
 *.pdf
 !figs/*.pdf
+*.fls
+*.fdb_latexmk
 *.aux 
 *.bit 
 *.blg 
