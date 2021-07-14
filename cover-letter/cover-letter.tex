@@ -43,21 +43,24 @@
 \vspace{-1.5cm}
 Dear Editors of PRX Quantum,
 
-\nick{this is supposed to be a ``100-word concise and compelling argument''. Currently: 203 words}
+\nick{this is supposed to be a ``100-word concise and compelling argument''. Currently: 301 words}
 
 \vspace{.3cm}
 	
 Please find enclosed a copy of our manuscript \emph{``Constraints on magic state protocols from the statistical mechanics of Wigner negativity''}, which we would like to submit for review in PRX Quantum. 
 We believe our work fits naturally into the scope of the journal. 
 
-Our work establishes a connection between two fields within quantum information: quantum thermodynamics and quasi-probability representations of quantum physics.
-This allows for important advances in the subfield of magic theory, an increasingly important area of quantum computation.
+Our work brings together two major fields within quantum information: quantum thermodynamics and quasi-probability representations of quantum physics.
+We combine the two fields in a novel, but natural way leading to the derivation of powerful results which are of interest both in a practical sense to the quantum computing community as well as at a fundamental level to the quantum thermodynamics community.
 
-Primarily, we develop new techniques that provide analytical bounds on general magic state distillation processes. We show that our bounds are tighter than previously defined bounds, and importantly can be expressed in terms of the physical symmetries of the circuit in question.
-We therefore provide novel and powerful constraints on the design of magic protocols.
+Primarily, we develop techniques that provide analytical bounds on general magic state distillation processes. 
+Our bounds are tighter than previously defined bounds, and, importantly, they can incorporate and reflect the physical symmetries of the system at question, which can inevitably manifest as some noise bias or temperature threshold of the quantum device.
+We therefore introduce a large family of new and powerful constraints on the design of experimentally implementable magic protocols, which are vital components of fault-tolerant quantum technologies.
+Our work also provides a concrete direction for obtaining lower bounds for magic distillation, \nick{a task which still remains elusive}.
 
-The implications of our analysis are also important foundationally.
-We develop a novel theory of statistical mechanics on quasi-distributions and we further construct entropic functions which attain negative values, a property which acts as a fundamental witness of non-classicality.
+Secondly, the implications of our analysis are also important foundationally, as we develop a novel theory of statistical mechanics on quasi-distributions.
+We develop the first majorization framework which is applicable to quasi-distributions, while providing comprehensive explanations of the unusual features which arise contrasted to common probability distribution settings.
+A prominent example is our construction of entropic functions which attain negative values, hence acting as fundamental witnesses of non-classicality.
 
 For the above reasons, we believe that our manuscript is of relevance to a wide audience of quantum physicists, and so is suitable for publication in Phys. Rev. X.
 
@@ -74,18 +77,21 @@ Nikolaos Koukoulekidis, David Jennings.
 
 \textbf{Popular Summary}
 
-\nick{this is supposed to be 250 words long. Currently: 243 words}
+\nick{this is supposed to be ``three paragraphs, first should be self-contained summary within summary, second and third more extensive description'', should be at most 250 words long. Currently: 264 words}
 
 Quantum computers promise astronomical speed-ups for important computational tasks.
-A practically necessary requirement to achieve such speed-ups for useful computational tasks is establishing a framework that ensures fault-tolerance, which is the ability to correct computational errors in the circuit successfully and reliably.
-It is well-known that restricting to this framework, it is impossible to achieve quantum speed-ups, therefore we need to initiate the circuit with some low-noise input state that contains enough resources which can be used by the circuit to perform the desired computational task.
+A practical requirement to achieve such speed-ups is the ability to correct computational errors during the computation successfully and reliably.
+Having a quantum device with this capability is, however, not sufficient to achieve quantum speed-ups.
+In fact, we need to initiate the computation with some ``magic'' input state which contains enough resources that can be used up during the fault-tolerant steps of the computation by the quantum device.
+We provide novel fundamental bounds on the quantity and quality of the magic input state given the thermodynamic properties of the device.
 
-Creating this low-noise, highly resourceful state, called a ``magic state'', is a costly process, requiring in principle a quantum process that manipulates many highly noisy copies of the magic state in order to distill one with very low noise.
-Our work addresses the question regarding the highest possible rate of low-noise magic states one could extract, given some copies of highly noisy magic states.
-We provide fundamental bounds on this rate, based on the thermodynamic properties of the quantum process, which constraint the efficiency of any general quantum processes attempting to distill magic.
-As our bounds depend on the thermodynamic properties of the process, they notably provide a way of assessing how physical properties affect the distillation process.
+Creating this low-noise, highly resourceful magic state is a costly process, requiring in principle a quantum protocol to distill many highly noisy copies of the desired magic state into a few with very low noise.
+Our bounds restrict the rate at which one can perform this distillation giving the noise levels of the states.
+As our bounds depend on the thermodynamic properties of the process, they notably provide a way of assessing how these properties affect distillation in real implementable protocols, therefore instructing their design.
 
-On our way to addressing this question, we develop a novel physical framework of thermodynamics, where \nick{microstates of a system can be quasi-probabilistic} and where entropies can attain negative values, which are fully meaningful as indicators of quantum computational speed-ups.
+On our way to addressing our main question, we develop a novel physical framework of thermodynamics, where we provide a family of generalised entropies to characterize the disorder of physical quantum processes.
+Our generalised entropies turn out to be quite intriguing, as they can be defined via negative probability representations of the quantum process and can further attain negative values, reversing the direction of the arrow of time.
+The last property acts as an indicator of the quantum computational speed-ups.
 
 
 
