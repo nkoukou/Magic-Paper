@@ -43,26 +43,18 @@
 \vspace{-1.5cm}
 Dear Editors of PRX Quantum,
 
-\nick{this is supposed to be a ``100-word concise and compelling argument''. Currently: 301 words}
-
 \vspace{.3cm}
 	
 Please find enclosed a copy of our manuscript \emph{``Constraints on magic state protocols from the statistical mechanics of Wigner negativity''}, which we would like to submit for review in PRX Quantum. 
 We believe our work fits naturally into the scope of the journal. 
 
-Our work brings together two major fields within quantum information: quantum thermodynamics and quasi-probability representations of quantum physics.
-We combine the two fields in a novel, but natural way leading to the derivation of powerful results which are of interest both in a practical sense to the quantum computing community as well as at a fundamental level to the quantum thermodynamics community.
+A fundamental problem is to understand how quantum physics admits higher degrees of order than possible in classical physics. One signature of this non-classical order is the appearance of `negative probabilities' in the Wigner representation of quantum systems. However statistical mechanics cannot be directly applied to quantify this order since the Boltzmann entropy is not well-defined when Wigner negativity arises. In this work we do two main things: we show how a well-defined statistical mechanics of Wigner negativity can be constructed, and then apply this framework to quantify the order in `magic states', which are the key sources of non-classicality in leading quantum computing models. 
 
-Primarily, we develop techniques that provide analytical bounds on general magic state distillation processes. 
-Our bounds are tighter than previously defined bounds, and, importantly, they can incorporate and reflect the physical symmetries of the system at question, which can inevitably manifest as some noise bias or temperature threshold of the quantum device.
-We therefore introduce a large family of new and powerful constraints on the design of experimentally implementable magic protocols, which are vital components of fault-tolerant quantum technologies.
-Our work also provides a concrete direction for obtaining lower bounds for magic distillation, \nick{a task which still remains elusive}.
+It is a major goal to properly understand the processing and `distillation' of magic states for quantum technologies. Upper bounds on magic state distillation protocols do exist and are based on abstract information-theoretic measures. Our methods outperform existing upper bounds in the literature, and to our knowledge, provide the first general framework to incorporate dependence on hardware physics, such as system Hamiltonians or temperatures. As such this approach is relevant to the challenge of designing and building quantum computers.
 
-Secondly, the implications of our analysis are also important foundationally, as we develop a novel theory of statistical mechanics on quasi-distributions.
-We develop the first majorization framework which is applicable to quasi-distributions, while providing comprehensive explanations of the unusual features which arise contrasted to common probability distribution settings.
-A prominent example is our construction of entropic functions which attain negative values, hence acting as fundamental witnesses of non-classicality.
+Our results are also of interest beyond quantum technologies. We show that recent research on the thermodynamics of small quantum systems can be extended to Wigner negativity/quasi-distributions. To our knowledge, we provide the first application of majorization (a fundamental concept in classical statistics) to quasi-probability distributions, and so open up the possibility of new tools to analyse non-classicality more generally. We show that sub-set of classical (R\'{e}nyi) entropies remain meaningful on quasi-distributions and the appearance of negative entropies is a witness of non-classicality in quantum systems. Finally, our analysis also raises novel questions relevant to work on classical statistical mechanics.
 
-For the above reasons, we believe that our manuscript is of relevance to a wide audience of quantum physicists, and so is suitable for publication in Phys. Rev. X.
+For the above reasons, we believe that our manuscript is of relevance to a wide audience of quantum physicists, and so is suitable for publication in PRX Quantum.
 
 \vspace{1cm}
 \hspace{8cm}
@@ -77,21 +69,15 @@ Nikolaos Koukoulekidis, David Jennings.
 
 \textbf{Popular Summary}
 
-\nick{this is supposed to be ``three paragraphs, first should be self-contained summary within summary, second and third more extensive description'', should be at most 250 words long. Currently: 264 words}
+\ddd{You can use the first paragraph, which is 100 words, for the 100 word summary. We can include the cover-letter too, which is not 100 words. Find a place to add it in and make it clear e.g. in the title, it's a cover letter. This way the editor should open it and read it.}
 
-Quantum computers promise astronomical speed-ups for important computational tasks.
-A practical requirement to achieve such speed-ups is the ability to correct computational errors during the computation successfully and reliably.
-Having a quantum device with this capability is, however, not sufficient to achieve quantum speed-ups.
-In fact, we need to initiate the computation with some ``magic'' input state which contains enough resources that can be used up during the fault-tolerant steps of the computation by the quantum device.
-We provide novel fundamental bounds on the quantity and quality of the magic input state given the thermodynamic properties of the device.
+\nick{this is supposed to be ``three paragraphs, first should be self-contained summary within summary, second and third more extensive description'', should be at most 250 words long. Currently: 250 words}
 
-Creating this low-noise, highly resourceful magic state is a costly process, requiring in principle a quantum protocol to distill many highly noisy copies of the desired magic state into a few with very low noise.
-Our bounds restrict the rate at which one can perform this distillation giving the noise levels of the states.
-As our bounds depend on the thermodynamic properties of the process, they notably provide a way of assessing how these properties affect distillation in real implementable protocols, therefore instructing their design.
+A fundamental problem is to understand how quantum physics admits higher degrees of order than classical physics. Here we show how quantum-mechanical order can be described in terms of a rigorous statistical mechanics framework in which negative entropies arise. We then apply this framework to quantify the order in `magic states' - crucial resources that power quantum computers. Our methods outperform existing magic bounds, and provide the first general framework to incorporate dependence on hardware physics, such as system Hamiltonians or temperatures. This work is relevant both to quantum technologies and the fundamental challenge of quantifying non-classicality in quantum systems.
 
-On our way to addressing our main question, we develop a novel physical framework of thermodynamics, where we provide a family of generalised entropies to characterize the disorder of physical quantum processes.
-Our generalised entropies turn out to be quite intriguing, as they can be defined via negative probability representations of the quantum process and can further attain negative values, reversing the direction of the arrow of time.
-The last property acts as an indicator of the quantum computational speed-ups.
+A signature of non-classical order is the appearance of `negative probabilities' in representations of quantum systems. However traditional statistical mechanics cannot be directly applied to negative probabilities. We first show how to extend statistical mechanics by using a more fundamental concept of order (`majorization') from statistical theory and then apply this to quantifying the order in magic states.
+
+Quantum computers `burn' magic states as a form of fuel to provide exponential speed-ups for important tasks, such as in computational Chemistry. Our results show that this thermodynamic intuition can be made precise and that magic states, in a rigorous sense, carry `negative entropy' that is processed thermodynamically. Our methods outperform existing magic bounds in the literature, and to our knowledge, provide the first general framework to incorporate dependence on hardware physics, such as system Hamiltonians or temperatures. As such this approach is relevant to the challenge of designing and building quantum computers.
 
 
 

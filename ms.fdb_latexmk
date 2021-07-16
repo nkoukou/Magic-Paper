@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex ms"] 1625573502 "ms.aux" "ms.bbl" "ms" 1625573508
+["bibtex ms"] 1625573502 "ms.aux" "ms.bbl" "ms" 1625741964
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/revtex4-1/apsrev4-1.bst" 1602107945 71515 e333383ed72bf24aa6de7e8cabb55f84 ""
   "bib.bib" 1625240737 78436 8b6e2fc7528df2133229db1e0dde1d6c ""
   "ms.aux" 1625573504 48953 7f6e0ab33c8aad17671635e63cf0c99f "pdflatex"
   "msNotes.bib" 1625573504 103 48ad29797468f16e2853d8797278d7af "pdflatex"
   (generated)
-  "ms.blg"
   "ms.bbl"
-["pdflatex"] 1625573502 "ms.tex" "ms.pdf" "ms" 1625573508
+  "ms.blg"
+["pdflatex"] 1625573502 "ms.tex" "ms.pdf" "ms" 1625741964
   "/Users/David/Library/texlive/2021/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1625573501 6964 3fc2f0badb4a9a47895c70ea287e3aef ""
   "/Users/David/Library/texlive/2021/texmf-var/fonts/pk/ljfour/public/bbm/bbm7.600pk" 1625573491 4840 e6126f197ed6dc7a4e12ba8d00eae480 ""
   "/Users/David/Library/texlive/2021/texmf-var/fonts/pk/ljfour/public/bbm/bbm8.600pk" 1625573494 5580 c567441e0849db64c02d439fee913f3f ""
@@ -195,8 +195,8 @@
   "preamble.tex" 1625061506 1175 0215e25614dee2a81b2e17075b247314 ""
   "preamble_mathchars.sty" 1624965183 2909 16a04a9f41bd9527990fc18402831ca0 ""
   (generated)
-  "ms.pdf"
   "ms.aux"
-  "ms.log"
+  "ms.pdf"
   "ms.out"
   "msNotes.bib"
+  "ms.log"

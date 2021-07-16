@@ -42,9 +42,7 @@ There has been rapid progress towards the goal of a fault-tolerant quantum compu
 
 To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and there have been proposals of protocols for qudits of odd dimension~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash} as well as of protocols within a full architectural analysis~\cite{chamberland_very_2020, Chamberland2019faulttolerantmagic}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well its connection to contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021, schmid2020structure, Schmid_2021}.
 
-Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}.
-
-In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a \emph{pair} of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are of potential interest in assessing how physical features such as temperature, noise biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
+Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a \emph{pair} of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are of potential interest in assessing how physical features such as temperature, noise biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
 
 The approach we take is most closely aligned with resource theories of magic, although it differs in key ways. We obtain distillation upper bounds without the use of monotones, but instead use tools from statistical mechanics and recent work in single-shot resource theories~\cite{cit:janzing, cit:horodecki2013, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore these methods could find application in other studies of non-classicality in quantum systems~\cite{Fine_1982, Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
@@ -125,16 +123,13 @@ Therefore, any quantum state $\rho$ can be expressed as a linear combination of 
 \begin{equation}\label{eq:wstate}
     \W[\bmz]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmz} \rho].
 \end{equation}
-
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details).
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details). Moreover, the above Wigner representation has recently been shown to be the only non-contextual quasi-probability representation of odd-dimensional stabilizer theories for odd prime dimensions~\cite{schmid2021noncontextual}.
 
 Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = (id \otimes \E) (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state~\cite{watrous_2018}, then we can define
 \begin{equation}\label{Wigner-Choi}
 W_{\E}(\y |\bmz) \coloneqq d_A^2 W_{\J(\E)}(\bar{\bmz} \oplus \y),
 \end{equation}
 where $\bar{\bmz} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the time-reversed version of $\bmz$ in the discrete phase space, where momenta are reflected while position coordinates remain unchanged. 
-
-\nick{We note that the discrete Wigner representation described in this section is in fact the only non-contextual quasi-probability representation of odd-dimensional stabilizer theories~\cite{schmid2021noncontextual}. In particular, negativity within the Wigner representation cannot be eliminated by considering a different quasi-probability representation. - look at paragraph starting ``In the setting of the full stabilizer subtheory...'' on page 2 of~\cite{schmid2021noncontextual}}
 
 \subsection{Magic theories for quantum computation}
 \label{sec:mono}
@@ -167,7 +162,7 @@ In this work we develop bounds that apply to any reasonable magic theory. The ce
 \subsection{Stochastic representation of magic protocols}
 \label{sec:struc}
 
-Within the Wigner representation for odd prime dimension, it is well-known that all positively represented states used in Clifford circuits admit an efficient classical description~\cite{cit:mari}, so negativity is a necessary resource for universal fault-tolerant quantum computing~\cite{cit:veitch}. Therefore, the free states in any magic theory are required to be a subset of
+Within the Wigner representation for odd prime dimension, it is well-known that all positively represented states used in Clifford circuits admit an efficient classical simulation~\cite{cit:mari}, so negativity is a necessary resource for universal fault-tolerant quantum computing~\cite{cit:veitch}. Therefore, the free states in any magic theory are required to be a subset of
 \begin{equation}
     \F \coloneqq \{ \rho: \W[\bmz]{\rho} \geq 0 \text{ for all } \bmz \in \cal{P}_d\}.
 \end{equation}
@@ -530,7 +525,7 @@ We can go further, and show that in fact a range of R\'{e}nyi entropies remain b
 \begin{equation}
 	H_\alpha(\p) \coloneqq \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
 \end{equation}
-To extend to quasi-distributions we must ensure the following: (a) the entropy is well-defined on quasi-distributions, and (b) obeys monotonicity under the majorization pre-order. In Appendix~\ref{app:single-shot} we prove the following.
+To extend to quasi-distributions we must ensure the following: (a) the entropy is mathematically well-defined on quasi-distributions, and (b) obeys monotonicity under the majorization pre-order. In Appendix~\ref{app:single-shot} we prove the following.
 \begin{theorem}\label{thm:HSchur} 
 	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
 \end{theorem}
@@ -579,7 +574,7 @@ We can now apply this to obtain a family of magic distillation bounds based on R
 	\begin{equation}
 		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence per qudit
 	\begin{equation}
 \widetilde{D}_\alpha( \rho', \tau') \coloneqq \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
