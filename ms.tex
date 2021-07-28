@@ -617,9 +617,9 @@ We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpe
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\bibliography{bib}
-%\bibliographystyle{apsrev4-2}
-%\input{ms.bbl}
+%\bibliography{bib}
+%\bibliographystyle{naturemag}
+\input{ms.bbl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1128,13 +1128,13 @@ Including the boundary points $(x_{-1}, L_{-1}) \coloneqq (0,0)$ and $(x_{n}, L_
 where the coordinates are given by
 \begin{equation}
 	(x_{i}, L_{i}) = \left( \frac{1}{9^n}\sum_{\ell=0}^i m_{\ell}, \sum_{\ell=0}^i m_{\ell} w_{\ell} \right).
+%\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 \end{equation}
 The Lorenz curve maximum is the $\lfloor n/2 \rfloor$-th elbow and its coordinates are calculated by collecting all the positive Wigner components,
 \begin{align}
 	x_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left(1 + \left(\frac{7}{9}\right)^n\right), \\
 	L_{\lfloor n/2 \rfloor} &= \frac{1}{2}\left (1 + \left(\frac{15 - 8\epsilon}{9}\right)^n \right).
 \end{align}
-%\sum_{j: even}^n a^j \binom{n}{j} = \frac{1}{2} [ (1+a)^n + (1-a)^n ]
 
 In Table~\ref{tab:lcsu_coord_elb_app}, we present the elbow coordinates of the $n$-copy, $\epsilon$--noisy Strange state Lorenz curve for a unital protocol for any combination of physical parameters $n, \epsilon$.
 \begin{table}[h]
@@ -1701,7 +1701,7 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.35]{figs/H_vs_eps_a.pdf}
-    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of the $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ corresponds to $\alpha \approx 1.31$.
+    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of the $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ occurs at $\alpha \approx 1.31$.
     }
     \label{fig:H}
 \end{figure}
@@ -1827,7 +1827,7 @@ We are now in a position to derive general magic state distillation bounds.
 	\begin{equation}
 		R \leq R_\alpha \coloneqq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
 	\end{equation}
-	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence per qudit
 	\begin{equation}
 \widetilde{D}_\alpha( \rho', \tau') \coloneqq \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
 \end{equation}
