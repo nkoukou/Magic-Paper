@@ -79,7 +79,7 @@
 \bibinfo{author}{Chamberland, C.} \emph{et~al.}
 \newblock \bibinfo{title}{Building a fault-tolerant quantum computer using
   concatenated cat codes} (\bibinfo{year}{2020}).
-\newblock \eprint{2012.04108}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2012.04108}.
 
 \bibitem{Bourassa_2021}
 \bibinfo{author}{Bourassa, J.~E.} \emph{et~al.}
@@ -405,17 +405,17 @@
 \bibitem{Okay_2021}
 \bibinfo{author}{Okay, C.}, \bibinfo{author}{Zurel, M.} \&
   \bibinfo{author}{Raussendorf, R.}
-\newblock \bibinfo{title}{On the extremal points of the $\lambda$-polytopes and
-  classical simulation of quantum computation with magic states}
+\newblock \bibinfo{title}{On the extremal points of the {$\Lambda$}-polytopes
+  and classical simulation of quantum computation with magic states}
   (\bibinfo{year}{2021}).
-\newblock \eprint{2104.05822}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2104.05822}.
 
 \bibitem{schmid2020structure}
 \bibinfo{author}{Schmid, D.}, \bibinfo{author}{Selby, J.~H.},
   \bibinfo{author}{Pusey, M.~F.} \& \bibinfo{author}{Spekkens, R.~W.}
 \newblock \bibinfo{title}{A structure theorem for generalized-noncontextual
   ontological models} (\bibinfo{year}{2020}).
-\newblock \eprint{2005.07161}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2005.07161}.
 
 \bibitem{Schmid_2021}
 \bibinfo{author}{Schmid, D.}, \bibinfo{author}{Selby, J.~H.},
@@ -500,7 +500,7 @@
 \bibinfo{author}{Song, C.} \emph{et~al.}
 \newblock \bibinfo{title}{Quantum computation with universal error mitigation
   on superconducting quantum processor} (\bibinfo{year}{2018}).
-\newblock \eprint{1812.10903}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2005.07161}.
 
 \bibitem{Bravyi_2021}
 \bibinfo{author}{Bravyi, S.}, \bibinfo{author}{Sheldon, S.},
@@ -584,7 +584,7 @@
 \bibinfo{author}{Fowler, A.~G.} \& \bibinfo{author}{Gidney, C.}
 \newblock \bibinfo{title}{Low overhead quantum computation using lattice
   surgery} (\bibinfo{year}{2019}).
-\newblock \eprint{1808.06709}.
+\newblock \urlprefix\url{https://arxiv.org/abs/1808.06709}.
 
 \bibitem{cit:janzing}
 \bibinfo{author}{Janzing, D.}, \bibinfo{author}{Wocjan, P.},
@@ -673,8 +673,8 @@
 
 \bibitem{cit:mari}
 \bibinfo{author}{Mari{ }, A.} \& \bibinfo{author}{Eisert, J.}
-\newblock \bibinfo{title}{Positive wigner functions render classical simulation
-  of quantum computation efficient}.
+\newblock \bibinfo{title}{Positive {W}igner functions render classical
+  simulation of quantum computation efficient}.
 \newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
   \textbf{\bibinfo{volume}{109}}, \bibinfo{pages}{230503}
   (\bibinfo{year}{2012}).
@@ -806,6 +806,7 @@
 \newblock \emph{\bibinfo{journal}{Journal of Mathematical Physics}}
   \textbf{\bibinfo{volume}{47}}, \bibinfo{pages}{122107}
   (\bibinfo{year}{2006}).
+\newblock \urlprefix\url{https://aip.scitation.org/doi/10.1063/1.2393152}.
 
 \bibitem{Wigner_1932}
 \bibinfo{author}{Wigner, E.}
@@ -825,8 +826,8 @@
 
 \bibitem{Kenfack_2004}
 \bibinfo{author}{Kenfack, A.} \& \bibinfo{author}{{\.{Z}}yczkowski, K.}
-\newblock \bibinfo{title}{Negativity of the wigner function as an indicator of
-  non-classicality}.
+\newblock \bibinfo{title}{Negativity of the {W}igner function as an indicator
+  of non-classicality}.
 \newblock \emph{\bibinfo{journal}{Journal of Optics B: Quantum and
   Semiclassical Optics}} \textbf{\bibinfo{volume}{6}},
   \bibinfo{pages}{396--404} (\bibinfo{year}{2004}).
@@ -878,7 +879,7 @@
   J.~H.} \& \bibinfo{author}{Pusey, M.~F.}
 \newblock \bibinfo{title}{The only noncontextual model of the stabilizer
   subtheory is {G}ross's} (\bibinfo{year}{2021}).
-\newblock \eprint{2101.06263}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2101.06263}.
 
 \bibitem{watrous_2018}
 \bibinfo{author}{Watrous, J.}
@@ -956,9 +957,12 @@
 \bibitem{Vallejos_2021}
 \bibinfo{author}{Vallejos, R.~O.}, \bibinfo{author}{de~Melo, F.} \&
   \bibinfo{author}{Carlo, G.~G.}
-\newblock \bibinfo{title}{The principle of majorization: application to random
-  quantum circuits} (\bibinfo{year}{2021}).
-\newblock \eprint{2102.09999}.
+\newblock \bibinfo{title}{Principle of majorization: Application to random
+  quantum circuits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{104}}, \bibinfo{pages}{012602}
+  (\bibinfo{year}{2021}).
+\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.104.012602}.
 
 \bibitem{ruch_mixing_1978}
 \bibinfo{author}{Ruch, E.}, \bibinfo{author}{Schranner, R.} \&
@@ -1045,6 +1049,7 @@
 \newblock \emph{\bibinfo{journal}{IEEE Transactions on Information Theory}}
   \textbf{\bibinfo{volume}{62}}, \bibinfo{pages}{1711--1720}
   (\bibinfo{year}{2016}).
+\newblock \urlprefix\url{https://ieeexplore.ieee.org/document/7404001}.
 
 \bibitem{muller_2019}
 \bibinfo{author}{Boes, P.}, \bibinfo{author}{Eisert, J.},
@@ -1068,7 +1073,7 @@
 \bibinfo{author}{Bombin, H.} \emph{et~al.}
 \newblock \bibinfo{title}{Interleaving: Modular architectures for
   fault-tolerant photonic quantum computing} (\bibinfo{year}{2021}).
-\newblock \eprint{2103.08612}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2103.08612}.
 
 \bibitem{bogolyubov_1966}
 \bibinfo{author}{{Bogolubov}, J., N.~N.}
@@ -1109,9 +1114,9 @@
 
 \bibitem{baez2011renyi}
 \bibinfo{author}{Baez, J.~C.}
-\newblock \bibinfo{title}{Renyi entropy and free energy}
+\newblock \bibinfo{title}{R{\'e}nyi entropy and free energy}
   (\bibinfo{year}{2011}).
-\newblock \eprint{1102.2098}.
+\newblock \urlprefix\url{https://arxiv.org/abs/1102.2098}.
 
 \bibitem{domb2000phase}
 \bibinfo{author}{Domb, C.}
@@ -1124,7 +1129,7 @@
 \bibinfo{author}{{Gour}, G.} \& \bibinfo{author}{{Tomamichel}, M.}
 \newblock \bibinfo{title}{Entropy and relative entropy from
   information-theoretic principles} (\bibinfo{year}{2020}).
-\newblock \eprint{2006.11164}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2006.11164}.
 
 \bibitem{tomamichel2013}
 \bibinfo{author}{Tomamichel, M.}
@@ -1230,12 +1235,10 @@
 \newblock \emph{\bibinfo{journal}{Journal de Mathématiques Pures et
   Appliquées}} \textbf{\bibinfo{volume}{31}}, \bibinfo{pages}{253--292}
   (\bibinfo{year}{1952}).
-\newblock
-  \urlprefix\url{https://www.semanticscholar.org/paper/Sur-quelques-applications-des-fonctions-convexes-et-Ostrowski/46934a7eabf5a3f8d74727cf33ac8fb92844adb6}.
 
 \bibitem{Manfredi_2000}
 \bibinfo{author}{Manfredi, G.} \& \bibinfo{author}{Feix, M.~R.}
-\newblock \bibinfo{title}{Entropy and wigner functions}.
+\newblock \bibinfo{title}{Entropy and {W}igner functions}.
 \newblock \emph{\bibinfo{journal}{Phys. Rev. E}} \textbf{\bibinfo{volume}{62}},
   \bibinfo{pages}{4665--4674} (\bibinfo{year}{2000}).
 \newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevE.62.4665}.
