@@ -313,7 +313,7 @@
 \bibinfo{author}{Leone, L.}, \bibinfo{author}{Oliviero, S. F.~E.} \&
   \bibinfo{author}{Hamma, A.}
 \newblock \bibinfo{title}{R{\'e}nyi entropy of magic} (\bibinfo{year}{2021}).
-\newblock \eprint{2106.12587}.
+\newblock \urlprefix\url{https://arxiv.org/abs/2106.12587}.
 
 \bibitem{Gour_2019}
 \bibinfo{author}{Chitambar, E.} \& \bibinfo{author}{Gour, G.}

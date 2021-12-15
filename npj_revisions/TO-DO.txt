@@ -1,0 +1,29 @@
+--- Complete rebuttal letter
+
+--- Complete manuscript with highlighted changes.
+Please select the file type ‘Revised Manuscript - Marked Up’ when uploading the manuscript file to our online system.
+
+--- Complete manuscript with line numbers.
+Please select the file type ‘Article File’.
+
+--- Complete checklist, uploaded as a ‘Related Manuscript File’ type.
+
+--- Complete Editorial Policy, uploaded as a ‘Related Manuscript File’ type.
+
+--- Ensure that the manuscript components are ordered as follows: 
+Title page, Abstract, Introduction, 
+Results and Discussion, Methods, 
+Data Availability statement, 
+Code Availability statement, 
+Acknowledgements, 
+Author Contributions, 
+Competing Interests, 
+References, 
+Figure Legends.
+
+--- Divide the Results and Discussion section into subsections, each with a title of 60 characters or fewer including spaces.
+A subheading must be present right after "Results and Discussion".
+
+--- Upload each figure as its own file (Fig 1, Fig 2, Fig 3...etc.). Figures 4a-b should be included in Fig 4 file. Each figure and its panels should be no larger than a single A4 portrait page (260x179 mm).
+
+--- Include the figure legends at the end of the manuscript file in a section called "Figure legends".

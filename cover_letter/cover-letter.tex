@@ -1,0 +1,70 @@
+\documentclass[11pt]{letter}
+
+%\usepackage{pxfonts}
+%\usepackage{color}
+%\hyphenation{ma-nu-script}
+\usepackage[colorlinks=true,urlcolor=blue, hyperindex,breaklinks=true] {hyperref}
+
+\usepackage{graphicx}
+\usepackage[a4paper,left=2cm,right=2cm,bottom=2cm]{geometry}
+
+\usepackage{fancyhdr}
+%\usepackage{marvosym}
+
+% nice font.
+\renewcommand*\rmdefault{ppl}
+
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\newcommand{\nick}[1]{\textcolor{red}{[#1]}}
+\newcommand{\ddd}[1]{\textcolor{blue}{[#1]}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+
+\hfill\begin{minipage}{6cm}
+	\raggedright
+	\vspace{-2.5cm}
+	{\footnotesize\itshape Nikolaos Koukoulekidis}\\
+	{\footnotesize\itshape Department of Physics}\\
+	{\footnotesize\itshape Imperial College London}\\
+	{\footnotesize\itshape London SW7 2AZ, UK}\\
+	{\footnotesize\itshape %\MVAt~ 
+		\verb|nk2314@imperial.ac.uk|}\\
+	~\\
+		\footnotesize\today
+\end{minipage}
+
+\vspace{-3.5cm}
+\includegraphics[scale=.1]{icllogo.png}
+\vspace{3.5cm}
+
+\vspace{-1.5cm}
+Dear Editors of npj Quantum Information,
+
+\vspace{.3cm}
+	
+Please find enclosed a copy of our manuscript \emph{``Constraints on magic state protocols from the statistical mechanics of Wigner negativity''}, which we would like to submit for review in npj Quantum Information. 
+Our work provides fundamental restrictions on `magic' protocols, a leading model of fault-tolerant quantum computing, that are novel in their ability to include experimental hardware limitations. We believe our methods and results are relevant to the audience of the journal.
+
+A fundamental problem is to understand how quantum physics admits higher degrees of order than possible in classical physics. One signature of this non-classical order is the appearance of `negative probabilities' in the Wigner representation of quantum systems. However, statistical mechanics cannot be directly applied to quantify this order since the Boltzmann entropy is not well-defined when Wigner negativity arises. In this work, we construct a well-defined framework of statistical mechanics for Wigner negativity, and then apply it to quantify the order in magic states, which are the key sources of non-classicality in leading quantum computing models.
+
+It is a major goal within the quantum computing community to properly understand the processing and `distillation' of magic states for quantum technologies. Several distillation protocols exist, each effectively providing a low bound on the distillation rate of magic states. However, upper bounds on distillation protocols express restrictions on our ability to distill magic states. Some upper bounds do exist, but they are based on abstract information-theoretic measures. Our novel methods of deriving upper bounds via Wigner negativity statistics result in a family of new upper bounds. This new family of bounds outperforms existing upper bounds in the literature, and, to our knowledge, provides the first general framework to incorporate dependence on hardware physics. In particular, our bounds attain different optimal values depending on the specific quantum computer architectures. The architectural properties that dictate optimality can, for example, be some temperature threshold or noise bias of the device or a fixed-point structure associated with a restriction in the allowed quantum gates.  As such, this approach is relevant to the challenge of designing and building quantum computers.
+
+%Our methods also provide for the first time a clear path towards deriving fundamental lower bounds on magic distillation rates by exploiting the underlying statistical structure of magic states. Therefore, it is possible to sharpen current distillation rates, thereby potentially closing the gap between experimentally achievable and theoretically possible distillation rates.
+
+Our results are also of interest to other areas in quantum information science. We show that recent research on the thermodynamics of small quantum systems can be extended to Wigner negativity and quasi-probability distributions. As an example, we show that a sub-set of classical (R\'{e}nyi) entropies remain meaningful on quasi-distributions, while they can attain negative values, thus acting as witnesses of non-classicality in quantum systems.
+
+For the above reasons, we believe that our manuscript provides significant novel methods and results that connect active areas of research, and so is suitable for publication in npj Quantum Information.
+
+\vspace{1cm}
+\hspace{8cm}
+\begin{minipage}{9cm}
+\flushleft
+Sincerely Yours,\\
+
+Nikolaos Koukoulekidis, David Jennings.
+\end{minipage}
+
+\end{document}

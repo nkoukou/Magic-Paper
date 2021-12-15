@@ -7,6 +7,9 @@ nofootinbib,
 reprint
 ]{revtex4-1}
 
+%\usepackage[columnwise,switch,displaymath,mathlines]{lineno}
+%\linenumbers
+
 \input{preamble}
 
 
@@ -123,7 +126,7 @@ Therefore, any quantum state $\rho$ can be expressed as a linear combination of 
 \begin{equation}\label{eq:wstate}
     \W[\bmz]{\rho} \coloneqq \frac{1}{d}\tr[A_{\bmz} \rho].
 \end{equation}
-For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details). Moreover, the above Wigner representation has recently been shown to be the only non-contextual quasi-probability representation of odd-dimensional stabilizer theories for odd prime dimensions~\cite{schmid2021noncontextual}.
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\bmz)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\cal{P}_d$. More precisely, $W_\rho(\bmz)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\bmz} W_\rho(\bmz) = 1$ (see Appendix~\ref{app:wigner} for details). Moreover, the above Wigner representation has recently been shown to be the only non-contextual quasi-probability representation of stabilizer theories in odd prime dimensions~\cite{schmid2021noncontextual}.
 
 Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = (id \otimes \E) (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state~\cite{watrous_2018}, then we can define
 \begin{equation}\label{Wigner-Choi}
@@ -201,18 +204,18 @@ Our analysis applies majorization to magic states at the level of the associated
 
 We also make use of the notion of a Lorenz curve of a vector $\w \in \mathbb{R}^n$ relative to some other vector $\r \in \mathbb{R}^n$. Given a vector $\w$ we define $\w^\downarrow$ to be the re-arrangement of the components of $\w$ into decreasing order. Given two $n$--component vectors $\w$ and $\r$, we first define $\widetilde{\w}=(\widetilde{w}_i)$, where $\widetilde{w}_i \coloneqq w_i/r_i$, as the vector of component-wise ratios between $\w$ and $\r$.
 We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
-\begin{equation}
-\label{eq:lc}
-        (x_k,L_{\w|\r}(x_k)) =\left( \frac{1}{R}\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
+\begin{equation}\label{eq:lc}
+	(x_k,L_{\w|\r}(x_k)) =\left( \frac{1}{R}\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
 \end{equation}
 where $R\coloneqq \sum_{i=1}^n r_i$ and $\pi$ is the permutation on $n$ objects mapping $\widetilde{\w}$ to $\widetilde{\w}^{\downarrow}$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as the rank of a quantum state is not operationally meaningful.
 
-In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with $\r,\r'$ having positive components then it can be shown~\cite{ruch_mixing_1978} that
+In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with $\r,\r'$ having positive components, then
 \begin{equation*}
 (\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
 \end{equation*}
-for all $x \in [0,1]$.
-This provides a simple way of computing whether relative majorization holds between pairs of probability distributions.
+for all $x \in [0,1]$. 
+\revhigh{This result is shown in~\cite{ruch_mixing_1978} and we reproduce it in Appendix~\ref{app:rel_quasi}.}
+It provides a simple way of computing whether relative majorization holds between pairs of probability distributions.
 
 However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotonically increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Fig.~\ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality.
 
@@ -235,7 +238,7 @@ Relative majorization is usually considered for probability distributions, so we
 A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'\mbox{ and } A\r = \r'.
 \end{equation}
 In terms of a Lorenz curve condition we have that $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$ if and only if $L_{\w_\epsilon |\r} (x) \ge L_{\w'_\epsilon |\r'} (x)$ for all $x \in [0,1]$. 
-Additionally, we show in the appendices (Proposition~\ref{Lorenz_linearity}) that the Lorenz curve for any quasi-distribution obeys the relation
+Additionally, we show in \revhigh{Appendix~\ref{app:rel_quasi}} that the Lorenz curve for any quasi-distribution obeys the relation
 \begin{equation}
 L_{a \w + b \r | \r} (x) = a L_{\w|\r} (x) + bx,
 \end{equation}
@@ -533,7 +536,7 @@ This monotonicity provides a meaningful extension of entropies to quasi-distribu
 
 We can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
 \begin{theorem}\label{thm:Magic}
-	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha =  \frac{2a}{2b-1}$, with positive integers $a \ge b$.
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha = \frac{2a}{2b-1}$, with positive integers $a \ge b$.
 \end{theorem}
 Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, but is unrelated to the present negative entropy.
 
@@ -569,6 +572,7 @@ where $\p$ can be a quasi-distribution and $\r$ a probability distribution with 
 \end{theorem}
 
 We can now apply this to obtain a family of magic distillation bounds based on R\'{e}nyi divergences.
+
 \begin{theorem}\label{thm:entropic_bounds}
 	Consider a general magic state distillation protocol on odd prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then the distillation rate $R \coloneqq m/n$ is upper bounded as,
 	\begin{equation}
@@ -596,6 +600,7 @@ We can illustrate a basic application of the above bound for magic protocols tha
 	R \leq R_\alpha \coloneqq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
 \end{equation}
 In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$, this bound becomes
+
 \begin{equation}
 	R \leq R_\alpha = \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
 \end{equation}
@@ -611,17 +616,28 @@ We can also ask if this approach could additionally provide \emph{lower bounds} 
 The topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are not unital. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of classical statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g.~for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
-
-\section{Acknowledgements}
-We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpern for helpful comments and discussions. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliography{bib}
 \bibliographystyle{naturemag}
-%\input{ms.bbl}
+%\bibliography{ms.bbl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgements}
+We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpern for helpful comments and discussions. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
+
+\section*{Author contributions}
+DJ conceived the theoretical idea. 
+Calculations were performed by NK. 
+Analysis and writing of the manuscript were jointly done by NK and DJ.
+
+\section*{Competing interests}
+The authors declare that there are no competing interests.
+
+\section*{Data availability}
+No datasets were generated or analysed during the current study.
 
 \appendix
 \newpage
@@ -707,9 +723,94 @@ W_{\rho_A \otimes \rho_B | \tau_A \otimes \tau_B}(\bmz_A \oplus \bmz_B) &= \frac
 \subsection{Relative majorization for quasi-distributions}
 \label{app:rel_quasi}
 
-We define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, in accordance to the use of the term for Lorenz curves of proper probability distributions.
+We prove the following result connecting majorization to relative majorization~\cite{cit:horodecki2013, Brandao_2015,  cit:lostaglio}.
+\begin{proposition}\label{relmaj2maj}
+	Let $\w \in \mathbb{R}^N, \w' \in \mathbb{R}^{N'}$ be quasi-distributions and $\r \in \mathbb{R}^N, \r' \in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
+Then,
+\begin{equation}
+(\w, \r) \succ (\w', \r') \mbox{ if and only if } \Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w'),
+\end{equation}
+where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
+\begin{equation}
+	\Gamma_{\bma}(\bmz) \coloneqq \bigoplus_{i=1}^N z_i \bmeta_{a_i},
+\end{equation}
+with $\bmeta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
+\end{proposition}
+\begin{proof}
+	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
+\begin{equation}
+	\Gamma^{-1}_{\bma}(\x) = \left( \sum_{i=1}^{a_1} x_i,  \sum_{i = a_1 +1}^{a_1 + a_2} \hspace{-5pt} x_i, \dots , \hspace{-15pt} \sum_{i=a_1 + \dots + a_{N-1}+1}^{K} \hspace{-10pt} x_i \right),
+\end{equation}
+that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\bmz) = \bmz$ for all $\bmz \in \mathbb{R}^N$. 
 
-Here, we verify useful majorization properties in the context of quasi-probability distributions, starting from the property that the Lorenz curve is concave.
+The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
+
+Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
+We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B \coloneqq \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^K$, since
+\begin{align}
+	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
+	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
+\end{align}
+therefore $B$ is bistochastic.
+Finally, $B$ maps the embedded distributions as follows,
+\begin{equation}
+	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
+\end{equation}
+
+Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A \coloneqq \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
+\end{proof}
+We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, and do not consider further technicalities that have no impact on actual physical measurements, which always have a finite resolution.
+
+\revhigh{
+Restricting the above result in the context of proper probability distributions, we can immediately prove the Lorenz curve condition for probability distributions.
+We first need to define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, expressed explicitly in~Eq.~(\ref{eq:lc}) for Lorenz curve $L_{\w | \r}(x)$
+\begin{proposition}\label{thm:lc_equiv_prob}
+    Given probability distributions $\w, \r \in \mathbb{R}^{N}$ and $\w', \r' \in \mathbb{R}^{N'}$ with $\r,\r'$ having positive components, then
+\begin{equation*}
+	(\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
+\end{equation*}
+for all $x \in [0,1]$.
+\end{proposition}
+\begin{proof}
+	In the case of $N=N'$ and $\r = \r' = \bmeta$, where $\bmeta = (1/N,1/N,\dots, 1/N)$ is the uniform distribution on $N$ elements, the statement reduces to the Lorenz curve condition for simple majorization which is proven in~\cite{cit:marshall}.
+
+Borrowing the notation of Proposition~\ref{relmaj2maj}, we can define $\Gamma_{\bma} (\w), \Gamma_{\bma'} (\w')$ and the uniform distribution $\bmeta = (1/K, 1/K, \dots, 1/K)$.
+We can then see that the Lorenz curve of $\w$ relative to $\r$ coincides with the Lorenz curve of $\Gamma_{\bma} (\w)$, i.e.
+\begin{equation}
+	L_{\w | \r}(x) = L_{\Gamma_{\bma} (\w) | \bmeta}(x)\ \mbox{for all } x \in [0,1].
+\end{equation}
+This is clear to see by considering the elbows of $L_{\w | \r}(x)$,
+\begin{equation}
+	(x_k, L_{\w|\r}(x_k)) = \left( \sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
+\end{equation}
+where permutation $\pi$ sorts $(w_i/r_i)$ in non-increasing order.
+Expressing $\Gamma_{\bma} (\w)$ as
+\begin{equation}
+	\Gamma_{\bma} (\w) = \frac{1}{K} \bigoplus_{i=1}^N \left( \frac{w_i}{r_i}, \dots, \frac{w_i}{r_i} \right),
+\end{equation}
+where $(w_i/r_i, \dots, w_i/r_i)$ has $a_i$ elements, it is clear that permutation $\pi$ sorts $\Gamma_{\bma}(\w)$ in non-increasing order too.
+The elbows of $(y_k, L_{\Gamma_{\bma} (\w) | \bmeta}(y_k))$ then occur at
+\begin{equation}
+	y_k = \sum_{j=1}^{a_{\pi(1)} + \dots + a_{\pi(k)}} \frac{1}{K} = \sum_{i=1}^k \frac{a_{\pi(i)}}{K} = x_k
+\end{equation}
+and take values
+\begin{equation}
+	L_{\Gamma_{\bma} (\w) | \bmeta}(y_k) = \sum_{i=1}^k a_{\pi(i)}\frac{1}{K}\frac{w_{\pi(i)}}{r_{\pi(i)}} = L_{\w|\r}(x_k).
+\end{equation}
+This argument holds for $\w', \r'$ and $\Gamma_{\bma'} (\w')$ too.
+
+Therefore, in the general case of relative majorization, we have
+\begin{align}
+	&(\w, \r) \succ (\w', \r') &\mbox{ iff} \nonumber\\
+	&\Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w') &\mbox{ iff} \nonumber\\
+	&L_{\Gamma_{\bma} (\w) | \bmeta}(x) \geq L_{\Gamma_{\bma'} (\w') | \bmeta}(x),\ x \in [0,1] &\mbox{ iff} \nonumber\\
+	&L_{\w | \r}(x) \geq L_{\w' | \r'}(x),\ x \in [0,1],
+\end{align}
+concluding the proof.
+\end{proof}
+}
+
+We now verify useful majorization properties in the context of quasi-probability distributions, starting from the property that the Lorenz curve is concave.
 \begin{proposition}\label{L-concave} 
 	Let $\w$ be a quasi-distribution and let $\r$ be a probability distribution with strictly non-zero components. Then $L_{\w|\r}(x)$ is a concave function on $[0,1]$.
 \end{proposition}
@@ -717,7 +818,7 @@ Here, we verify useful majorization properties in the context of quasi-probabili
 	Let $x_\star$ be the point where $L_{\w|\r}(x)$ first attains it maximum. Therefore, on $[0,x_\star]$ the function rises monotonically to $L_{\w|\r}(x_\star)$, via the sum of all positive entries of $\w$, taken in decreasing order. Likewise on $[x_\star, 1]$, the function decreases monotonically from its maximum via the partial sums of the negative entries of $\w$ in decreasing order. Let $f_1(x)$ be equal to $L_{\w|\r}(x)$ on $[0, x_\star]$ and $0$ otherwise. Also let $f_2(x)$ be equal to $L_{\w|\r}(x)$ on $[x_\star,1]$ and and $0$ otherwise. By inspection both $f_1$ and $f_2$ are concave functions, and $f_1(x) + f_2 (x) = L_{\w|\r}(x)$ for all $x\in [0,1]$. However, the sum of two concave functions is also concave which concludes the proof.
 \end{proof}
 
-The following result is used in Sec.~\ref{sec:lc} to prove that the Lorenz curve condition due to relative majorization is true for quasi-distributions.
+The following result is used in Sec.~\ref{sec:lc} to extend the Lorenz curve condition of Proposition~\ref{thm:lc_equiv_prob} into the context of quasi-distributions.
 \begin{proposition}\label{Lorenz_linearity}
 	Let $\w$ be a quasi-distribution and let $\r$ be a probability distribution with strictly non-zero components. 
 	Then, $L_{a\w + b \r | \r} (x) = a L_{\w |\r}(x) + b x$ for any constants $a > 0$ and $b \in \mathbb{R}$.
@@ -759,44 +860,6 @@ Given quasi-distributions $\w, \w'$, $\r , \r'$, such that the components of $\r
 	\end{align*}
 Replacing $t = (\epsilon + c - 1)/\epsilon$, we see that $t$ can attain any real value for $c \in \mathbb{R}$, so we deduce the required $L_1$--norm condition on quasi-distributions $\w, \w'$.
 \end{proof}
-
-We prove the following result connecting majorization to relative majorization~\cite{cit:horodecki2013, Brandao_2015,  cit:lostaglio}.
-\begin{proposition}\label{relmaj2maj}
-	Let $\w\in \mathbb{R}^N, \w'\in \mathbb{R}^{N'}$ be quasi-distributions and $\r\in \mathbb{R}^N, \r'\in \mathbb{R}^{N'}$ probability distributions with positive rational entries given by $r_i = a_i/K$ and $r_i' = a_i'/K$ for positive integers $a_i, a_i'$ and $K = \sum_{i=1}^N a_i = \sum_{i=1}^{N'} a_i'$. 
-Then,
-\begin{equation}
-(\w, \r) \succ (\w', \r') \mbox{ if and only if } \Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w'),
-\end{equation}
-where the embedding map $\Gamma_{\bma} :\mathbb{R}^N \rightarrow \mathbb{R}^K$ is given by
-\begin{equation}
-	\Gamma_{\bma}(\bmz) \coloneqq \bigoplus_{i=1}^N x_i \eta_{a_i},
-\end{equation}
-with $\eta_{a_i} = (1/a_i, 1/a_i, \dots, 1/a_i)$ the uniform distribution on $a_i$ elements.
-\end{proposition}
-\begin{proof}
-	We first note that the map $\Gamma_{\bma}$ is stochastic and has a well-defined left-inverse $\Gamma^{-1}_{\bma'}: \mathbb{R}^K \rightarrow \mathbb{R}^N$ given by
-\begin{equation}
-	\Gamma^{-1}_{\bma}(\w) = \left( \sum_{i=1}^{a_1} w_i,  \sum_{i = a_1 +1}^{a_1 + a_2} \hspace{-5pt} w_i, \dots , \hspace{-15pt} \sum_{i=a_1 + \dots + a_{N-1}+1}^{K} \hspace{-10pt} w_i \right),
-\end{equation}
-that obeys $(\Gamma^{-1}_{\bma} \circ \Gamma_{\bma}) (\bmz) = \bmz$ for all $\bmz \in \mathbb{R}^N$. 
-
-The claim is equivalent to the statement that there exists a \emph{bistochastic map} $B$ sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$ if and only if there exists a stochastic map $A$ sending $\w$ to $\w'$ and $\r$ to $\r'$.
-
-Suppose there is a stochastic map $A$ such that $A\w=\w'$ and $A\r = \r'$. 
-We define $B:\mathbb{R}^K \mapsto \mathbb{R}^K$ by $B \coloneqq \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1}$ so that it is stochastic as a composition of stochastic maps and it preserves the uniform distribution in $\mathbb{R}^K$, since
-\begin{align}
-	&B(1/K, 1/K, \dots, 1/K) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma'}(\r) \big) = \nonumber\\
-	&\Gamma_{\bma'} (\r') = (1/K, 1/K, \dots, 1/K),
-\end{align}
-therefore $B$ is bistochastic.
-Finally, $B$ maps the embedded distributions as follows,
-\begin{equation}
-	B \Gamma_{\bma}(\w) = \big( \Gamma_{\bma'} \circ A \circ \Gamma_{\bma}^{-1} \big) \big( \Gamma_{\bma}(\w) \big) = \Gamma_{\bma'} (\w').
-\end{equation}
-
-Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to $\Gamma_{\bma'}(\w')$. Again, define $A: \mathbb{R}^N \mapsto \mathbb{R}^{N'}$ by $A \coloneqq \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma}$ so that it is stochastic as a composition of stochastic maps and $A \w = \big( \Gamma_{\bma'}^{-1} \circ B \circ \Gamma_{\bma} \big) \w = \w'$, as well as $A \r = \r'$.
-\end{proof}
-We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, and do not consider further technicalities that have no impact on actual physical measurements, which always have a finite resolution.
 
 \subsection{Component-multiplicity pairs}
 \label{app:cmpairs}
