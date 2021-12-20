@@ -8,15 +8,57 @@
 \usepackage[table,xcdraw,dvipsnames]{xcolor}
 
 \usepackage{amsmath,amsfonts, amssymb, amsthm}
-\usepackage{bm, bbm, physics, mathtools}
+\usepackage{bbm, physics, mathtools}
 
 \renewcommand*\rmdefault{ppl}
 
 \newcommand{\nick}[1]{\textcolor{red}{[#1]}}
 \newcommand{\ddd}[1]{\textcolor{blue}{[#1]}}
+\newcommand{\revhigh}[1]{{\color{red}#1}}
 
-\pagestyle{empty}
-\input{preamble_mathchars.sty}
+\hypersetup{
+	colorlinks=true,  
+	linkcolor=blue,   
+	citecolor=blue,   
+	urlcolor=blue     
+}
+
+\newcommand{\ent}[2]{S\left( #1 \middle\vert\middle\vert #2 \right)}
+\def\>{\rangle}
+\def\<{\langle}
+
+\def\id{\mathbbm{1}}
+\renewcommand{\tr}{{\rm{tr}}}
+\renewcommand{\det}{{\rm{det}}}
+
+\def\bmeta{\boldsymbol{\eta}}
+\def\bmo{\bm{0}}
+\def\bma{\boldsymbol{a}}
+\let\ring\r
+
+\def\x{\boldsymbol{x}}
+\def\y{\boldsymbol{y}}
+\def\z{\boldsymbol{z}}
+\def\r{\boldsymbol{r}}
+\def\w{\boldsymbol{w}}
+\def\p{\boldsymbol{p}}
+\def\q{\boldsymbol{q}}
+\def\d{\boldsymbol{d}}
+\def\m{\boldsymbol{m}}
+\def\k{\boldsymbol{k}}
+\def\q{\boldsymbol{q}}
+
+\def\A{{\cal A}}
+\def\Z{{\cal Z}}
+\def\H{{\cal H}}
+\def\E{{\cal E}}
+\def\J{{\cal J}}
+\def\R{{\cal R}}
+\def\D{{\cal D}}
+\def\M{{\cal M}}
+\def\F{{\cal F}}
+\renewcommand{\O}{{\cal O}}
+\renewcommand{\P}{{\cal P}}
 
 \begin{document}
 
@@ -35,7 +77,7 @@ In this letter, we address the revisions suggested by both Reviewers, by respond
 
 \textit{They also discuss the case of finite temperature, which shows that their method can be generalized to a variety of situations.}
 
-\textit{They also show that one can define Renyi entropies for quasi-probability distributions, and derive an elegant interpretation of the mana as the residue of a pole quantifying the divergence of the Renyi entropy as it approaches the Shannon entropy.}
+\textit{They also show that one can define R\'{e}nyi entropies for quasi-probability distributions, and derive an elegant interpretation of the mana as the residue of a pole quantifying the divergence of the R\'{e}nyi entropy as it approaches the Shannon entropy.}
 
 \textit{Overall, the results of the paper appear to me to be novel, topical, and mathematically elegant. I also found the paper to be well-written. I therefore strongly recommend it for publication.}
 
@@ -45,14 +87,13 @@ We thank the Reviewer for the positive comments.
 
 \textit{The main result of the authors seems to rest on Theorem 1, which in turn relies on the unnumbered result on page 5, after equation (15), which states roughly that “relative majorization holds between pairs of probability distributions holds if the Lorenz curve of one is greater than or equal to the Lorenz curve of the other, for all x.” The authors refer to [103] for a proof of this fact. However, I think it would substantially enhance accessibility and readability if the authors could give a proof of this result within the present paper, perhaps in an appendix.}
 
-We are grateful for suggestion on making our results more accessible.
-To this end, we have added a proof of the result in Appendix~B1, relying on the assumption that the result is clear for simple majorization (i.e. when $\r = \r'= (1/N,1/N,\dots,1/N)$) as shown in~[81]. 
-In general, we consider statements about simple majorization (presented in Marshall \& Olkin [81]) as well-established in the quantum information community and do not prove them in our paper.
-As a side remark, the original proof of this result in the context of relative majorization can be found in [111], not [103].
+We are grateful for suggestions on making our results more accessible -- we have added a proof of the result in Supplementary Note~2 and a reference to it in the main text.
 
 \textit{A side remark: As I understand, Lorenz curves were initially defined in economics to describe the income distribution of a population. It seems possible for some individuals to lose money during the year, so the distribution of incomes in a population is in general, more analogous to a quasi-probability distribution rather than a probability distribution. So, perhaps some of the basic results of the paper may also be applicable, in principle, to a wider context in economics.}
 
-\nick{David, thoughts on bounding wealth distillation?}\\
+This is an interesting idea,  and following the Reviewer's suggestion we have thought about it a little.  It seems that variants of the Gini coefficient do exist to account for losses,  however the level of technical detail is quite simple.  The R\'{e}nyi entropies we consider here would certainly give finer information about levels of inequality,  although the physical or statistical interpretations are not so clear to us at present.  We might expect that the $\alpha \rightarrow 1$ entropy measures the total cumulative losses within a country,  in the same way as mana for magic states relates to the sum negativity.
+
+In traditional majorization this kind of thinking has occurred previously -- for example Robin-Hood transforms that take from the rich and give to the poor. Of course in the vein of the present paper,  one could construct a ``resource theory of social inequality'' (although calling this a ``resource'' is highly questionable,  except perhaps for billionaire CEOs) in which socialist policies that redistribute wealth more fairly over a population are the ``free/easy operations'' that transform a country.  Distillation protocols on multiple countries would then address the question of the degree to which one could form high levels of inequality in one country solely via collective socialist actions on multiple countries.  However, we do not pursue such social engineering theories any further here.
 
 \textbf{\large{Response to Reviewer 2}}\\
 
@@ -71,51 +112,43 @@ Questions/comments for the authors:}
 
 \textit{1. In section 3C, an upper bound on the rate of distillation for qutrit magic states is presented. However, we do not see an explicit scheme that can actually achieve this bound. Some comments on whether this bound is achievable would be appreciated.}
 
-\nick{ANSWER}
+Our current bounds can be viewed as describing purely the constraints on distillation coming from Wigner stochasticity, and the bounds are still far above actual distillation rates one can obtain from explicit schemes. We have at least narrowed down the high-level principles that determine the ultimate distillation rates achievable, and our work indicates that to make substantially stronger global statements (as opposed to applications of the theory to specific hardware set-ups) one should probably delve into the affine symplectic group structure on the phase space.
+Since free stabilizer operations correspond to the affine symplectic group which is a strict subgroup of the stochastic group, we do not expect our bounds to be achievable by an explicit distillation scheme.
 
 \textit{In the conclusions, short discussion on lower bounds can be lengthened. Does this require explicit error correcting codes for distillation?}
 
-\nick{David, do you want to take this one? -- your previous notes are accessible on GitHub for copy-pasting}
+The proposed route to lower bounds would be separate from the method of explicit distillation rates from error correcting codes.  Instead the proposal is to leverage the critical additional structure that the Wigner distribution carries,  above and beyond involving stochasticity.  The upper bounds obtained are upper bounds on distillation rates because the set of stochastic maps is a superset for the actual maps that free operations generate.  
+Therefore, one can approach things from the other direction: construct a set of stochastic maps that respect the structure of a subgroup of maps that correspond to free operations and then compute the associated majorization constraints for this restricted set. This would then provide lower bounds on what free operations can achieve. 
 
-\nick{I haven't added lines on this in the main text}
+The difficulty in obtaining lower bounds lies in the choice of sensible sets of maps. 
+We have briefly explored the stochastic maps one gets from Weyl covariant channels -- these can be shown to be simply represented as convex mixtures of unitary displacements and in fact one can solve the majorization conditions for this class of channels (it is called cyclic majorization in the mathematical literature~[136]). The problem is that while Weyl covariant channels are a nice family of channels,  they turn out to be useless for distillation (which can be shown via majorization). 
+More non-trivial and useful classes of operations could be analysed but the problem becomes that the majorization conditions may not be solvable in closed form (we flag a class of operations based on finite-reflection groups~[134] -- they are known to have finite conditions for majorization with respect to a discrete group). Beyond tidy closed analytics, one can use techniques from semi-definite programming to estimate distillation rates -- which might be an interesting future project to explore.
+
+We have extended our discussion in the main text with some of the above comments.
 
 \textit{2. It was shown by Bengtsson et al. that qudit magic states for prime-dimensional qudits, where the prime p is 1 mod 3, there exist distinct magic states under distinct orbits of the Clifford group. In other words, there exist magic states such that we cannot convert from one to other using only Clifford operations. Can authors reproduce this result using their theory?}
 
-\nick{I haven't had the time to consider this yet. In principle, we would need to find $R_\alpha = 0$ for some $\alpha$ and reference process, given a magic interconversion between Clifford non-equivalent magic states -- seems tough and numerically doesn't look to be the case for the Strange and Norrell states ($d=3$, does not fall under Bengtsson et al's results)}
+\nick{ANSWER}
 
 \textit{3. Perhaps authors have already mentioned this, but Clifford operations can also be supplemented by Pauli measurements and adaptive gates. In the main text, as well as in conclusions (comments about G-majorization) this is not mentioned. Would this lead to distinct/ refined bounds?}
 
-This is a very interesting question from the lens of implementing our results on actual distillation protocols.
-According to Jozsa and Van den Nest's work\footnote{Jozsa R and Van den Nest M (2013) Classical simulation complexity of extended Clifford circuits, arXiv:1305.6190}, an $N$-qudit circuit consisting of intermediate measurements and adaptive Clifford gates is always equivalent to an $(N+k)$-qudit circuit ($k \in \mathbb{N}$) consisting of a Clifford gate.
+This is a good point -- these operations still admit representations in terms of positive, stochastic maps and therefore our results cover this regime, and the bounds remain unchanged. 
+For example, according to Jozsa and Van den Nest's work [Jozsa R and Van den Nest M (2013) Classical simulation complexity of extended Clifford circuits, arXiv:1305.6190], intermediate Pauli measurements and adaptive Clifford gates on $N$ qubits can always be substituted by a Clifford gate on $(N+k)$ qudits, with $k \in \mathbb{N}$.
 Therefore, our bounds are directly applicable on the equivalent circuit.
 
-In more general scenarios, suppose we project an $n$-copy state $\rho$ with projector $P$, which has success probabilty $p$. This can be written as
-\begin{equation}
-	\cal{E}(\rho) = p\ \tr_{i=1,\dots,n-1} [P\rho P] \otimes \ketbra{0} + (1-p)\ \tr[(\id-P)\rho] \sigma \otimes \ketbra{1},
-\end{equation}
-where the last subsystem is labelled $0$ when the projection is successful and 1 when it is not.
-Then, $\E$ admits a stochastic Wigner representation and in principle our results can provide bounds on the distillation ratio $\frac{pm}{n}$.
-However, one complication arises due to this operational representation of projective measurements, namely that states are no longer product states and the entropic functions are not guaranteed to factor out nicely (Theorem 11 property 3).
-
-\nick{I haven't added lines on this in the main text}
+We do agree that it is important to better engage the actual classes of operations of interest from a quantum computing perspective, and in recent work we are extending the approach to qubit systems. There, it is much more important to be clear on what actual operations are permitted and we better engage such concrete techniques in quantum computing (in particular CSS-code based protocols).
 
 \textit{4. Is it possible that the bounds in a more refined form will depend on the prime dimension of the qudit?}
 
-Yes, this is already clear in Eq.(52) obtained by restricting to unital channels.
-\nick{What about more refined, unrestricted bounds? I am not sure this is a well-defined question, as the bounds implicitly depend on the dimension via the states considered. The question seems motivated from the context of real distillation protocols, where the overhead scaling $\gamma$ tends to depend on the dimension e.g. Krishna and Tillich (2019) Towards Low Overhead Magic State Distillation.}
+The dimension of the system does arise in the bounds in fairly simple ways (for example see the R\'{e}nyi entropy bounds for unital operations in Eq.(52) of the main text).  However it does not depend on prime properties of the dimension.  The only non-trivial dependence on primality is in the original Wigner representation,  with the $p=2$ prime case famously having a more complex structure.  We might expect that if one consider $G$-majorization for the lower bounds,  one obtains non-trivial features that do depend on the particular prime dimension.  In this vein,  we note that the symplectic groups for $p=3$ and $p=5$ are finite reflection groups and therefore the associated $G$-majorization for each case is fully solvable in terms of a finite number of conditions.
 
 We further note that the numerically optimal bounds presented in Fig.(1), for which we do not have explicit expressions, depend on the numbers of copies $n,m$ and therefore are not constant for a given ratio $m/n$.
 
 \textit{5. In optics, the Wigner function is not the only quasi-probability distribution. Indeed, there are the P and Q distributions and potentially a continuous spectrum of quasiprobability distributions. In the discrete setting the Wigner function occupies a special role because of Gross' work showing that stabilizer states can be represented positively for prime-power dimensions and other useful properties like Clifford covariance. However is it possible that the other distributions offer extra information not captured by the Wigner distribution? Can we use a discrete analogue of the P and Q distributions?}
 
-We particularly welcome this question as it relates to some of the authors' current research.
-Firstly, we stress that in odd prime dimensions Gross' Wigner function is the only non-contextual quasi-probability representation of stabilizer theories (see~[101]), and contextuality has been shown to be equivalent to magic (see~[44]), as understood in the resource-theoretic formalism.
-Therefore, using different distributions, would in general represent negatively states and channels that are operationally ``free'', while simultaneously representing positively states and operations that are not operationally free, thus shifting the role of our bounds as fundamental bounds on \emph{magic distillation} protocols.
+We again thank the Reviewer for this nice point. In our paper, we first establish results for \emph{arbitrary} quasi-distributions,  and only then specialise to Wigner quasi-distributions. The Supplementary Material has general analysis for arbitrary quasi-distributions, which hopefully makes this clear.
 
-Having noted the above, we are claiming (in upcoming work) that using different distributions offers useful additional information in the context of classical simulability of general quantum circuits.
-Indeed, the P and Q quasi-distributions as well as the entire spectrum of s-ordered quasi-distributions introduced by Cahill and Glauber\footnote{Cahill K E and Glauber R J (1969) Ordered expansions in boson amplitude operators, Phys. Rev. 177 1857} find discrete analogues in Ruzzi \textit{et al.}'s work\footnote{Ruzzi M \textit{et al.} (2005) Extended Cahill-Glauber formalism for finite dimensional spaces: I. Fundamentals, J. Phys. A: Math. Gen. 38 6239}.
-In our work we come up with different infinite families of quasi-probability representations, but the core idea is the same: the probability outcome of a general quantum circuit can be estimated via Monte Carlo sampling\footnote{Pashayan H (2015) Estimating Outcome Probabilities of Quantum Circuits Using Quasiprobabilities, Phys. Rev. Lett. 115, 070501}, and using different quasi-distributions for representing different circuit components can reduce the sampling overhead.
-More specifically, the number of samples required for a probability estimate, which converges well to the actual circuit outcome, scales as a function of the negativities of the distributions that represent the circuit components. Therefore, different quasi-distribution representations can result in greater reduction of the negativity overhead compared to the Wigner representation.
+The question of whether switching representations provides extra information is a very interesting one,  and it is not obvious to us when this occurs.  In the context of magic distillation the central thing that must be checked is that the free operations are postively represented as stochastic maps in this new representation -- if they are not,  then the majorization theory cannot be applied.  However, if the free operations are still positively represented then we can certainly imagine situations in which the majorization bounds can be improved.  Perhaps the strategy would be to look for a representation that has the largest contrast between free operations and the target magic state: i.e.  all free operations are positively represented,  but the magic state has very ``large'' negativity in this representation.  This seems to us an interesting line to explore,  perhaps using the discrete analogues to the $s$--ordered Cahill/Glauber distributions due to Ruzzi \textit{et al.} [Ruzzi M \textit{et al.} (2005),  J. Phys. A: Math. Gen. 38 6239].  Or more generally from frame-theory, by perturbing the Wigner frame defined via $\{D_{\x}A_0 D_{\x}^\dagger\}$ to the more general scenario of $\{D_{\x} M D_{\x}^\dagger\}$ where $M$ is an arbitrary trace-one operator that can be tuned to vary the choice of frame,  while still keeping covariance properties.
 
 
 
