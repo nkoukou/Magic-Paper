@@ -9,13 +9,15 @@ superscriptaddress
 \usepackage{enumerate, multirow, makecell}
 \usepackage{xcolor, hyperref}
 
-\newcommand{\revhigh}[1]{{\color{red}#1}}
 \hypersetup{
 	colorlinks=true,  
 	linkcolor=blue,   
 	citecolor=blue,   
 	urlcolor=blue     
 }
+
+\usepackage{lineno}
+\linenumbers
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -92,14 +94,13 @@ Work towards fault-tolerance is increasingly bridging the gap between abstract t
 The approach we take is most closely aligned with resource theories of magic, although it differs in key ways. We obtain distillation upper bounds without the use of monotones, but instead use tools from statistical mechanics and recent work in single-shot resource theories~\cite{cit:janzing, cit:horodecki2013, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore these methods could find application in other studies of non-classicality in quantum systems~\cite{Fine_1982, Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
 \subsection*{Overview of our results}
-\revhigh{
-We begin by describing how stabilizer operations correspond to stochastic maps on a discrete phase space, and how majorization can be applied to constrain magic state transformations. We then consider families of magic protocols with increasing complexity. The simplest case we consider is for magic protocols that lead to unital channels. These are a subset of protocols that leave invariant some distinguished state or have some equilibrium fixed-point structure. We then consider protocols that are non-equilibrium processes, but only generate sub-linear correlations that enable a simple description in the thermodynamic limit before giving entropic analysis that can be applied generally.}
+We begin by describing how stabilizer operations correspond to stochastic maps on a discrete phase space, and how majorization can be applied to constrain magic state transformations. We then consider families of magic protocols with increasing complexity. The simplest case we consider is for magic protocols that lead to unital channels. These are a subset of protocols that leave invariant some distinguished state or have some equilibrium fixed-point structure. We then consider protocols that are non-equilibrium processes, but only generate sub-linear correlations that enable a simple description in the thermodynamic limit before giving entropic analysis that can be applied generally.
 
 The relations between the sets of protocols considered are as follows:
-\begin{align}
-\mbox{Unital} &\subset \mbox{ local fixed-points} \nonumber\\ 
+\begin{linenomath}\begin{align}
+	\mbox{Unital} &\subset \mbox{ local fixed-points} \nonumber\\ 
 &\subset \mbox{ sub-linear correlations} \subset \mbox{ general protocols.} \nonumber
-\end{align}
+\end{align}\end{linenomath}
 
 We provide explicit bounds for magic protocols that generate unital channels (Eq.~(\ref{eq:unital-bound})), as well as bounds that incorporate the temperature and Hamiltonian of the system (Theorem~\ref{thm:free-energy}) and discuss extensions to more general scenarios. These bounds are shown to be tighter than other bounds such as those that come from mana and thauma (Fig.~\ref{fig:distill_bounds}). 
 
@@ -108,7 +109,7 @@ We find that the analysis in the presence of negativity displays a range of feat
 \begin{figure}[t]
     \centering
     \includegraphics[scale=0.38]{distill_bounds.pdf}
-    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorization on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Eq.~(\ref{eq:noisysn})). \revhigh{The bound $R_\infty$ follows from a Lorenz curve analysis presented before Eq.~(\ref{eq:unital-bound}), while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in the derivation of Eq.~(\ref{eq:Ra})}. Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
+    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorization on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Eq.~(\ref{eq:noisysn})). The bound $R_\infty$ follows from a Lorenz curve analysis presented before Eq.~(\ref{eq:unital-bound}), while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in the derivation of Eq.~(\ref{eq:Ra}). Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. The new bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
     }
     \label{fig:distill_bounds}
 \end{figure}
@@ -119,17 +120,15 @@ Finally, in the Discussion section, we discuss how our approach could be extende
 
 \section*{Results}
 
-\revhigh{
 \subsection*{Phase space representation of quantum mechanics}
-}
 
 Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space~\cite{Gross2006, Ferrie_2008}. This construction is a discrete version of Wigner representations in quantum optics~\cite{Wigner_1932, Vourdas_2004, Kenfack_2004}.
 
 Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\{ |0\>, |1\>, \dots , |d-1\>\}$ denote the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$. On this space, generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators, acting on the basis states as follows,
-\begin{align}
+\begin{linenomath}\begin{align}
     X \ket{k} &= \ket{k + 1} \label{eq:xpauli}\\
 	Z \ket{k} &= \omega^k \ket{k}. \label{eq:zpauli}
-\end{align}
+\end{align}\end{linenomath}
 Here $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is taken modulo $d$. From these we can construct a phase space $\P_d \coloneqq \mathbb{Z}_d \times \mathbb{Z}_d$ that provides a complete representation of the quantum system. Given a point $\z \coloneqq (q, p)$ we define a displacement operator, 
 \begin{equation}\label{eq:ddef}
     D_{\z} \coloneqq \tau^{q p} X^{q} Z^{p},\ 
@@ -139,9 +138,9 @@ where the phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity. We assu
     D_{\z} \coloneqq D_{(q_1, p_1)} \otimes \dots \otimes D_{(q_n, p_n)},
 \end{equation}
 where now we have
-\begin{align*}
+\begin{linenomath}\begin{align*}
 	\z &\coloneqq (q_1, \dots, q_n, p_1, \dots, p_n) \in \P_{d_1} \times \dots \times \P_{d_n},
-\end{align*}
+\end{align*}\end{linenomath}
 to denote the phase space point for the composite system. 
 For simplicity, we assume $n$ copies of a $d$--dimensional system $d_1=d_2 = \cdots = d$, and therefore we have that $\z \in \mathbb{Z}_d^{2n}$.
 
@@ -252,11 +251,11 @@ We can now define the \emph{Lorenz curve} of $\w$ relative to $\r$, denoted $L_{
 where $R\coloneqq \sum_{i=1}^n r_i$ and $\pi$ is the permutation on $n$ objects mapping $\widetilde{\w}$ to $\widetilde{\w}^{\downarrow}$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as the rank of a quantum state is not operationally meaningful.
 
 In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with $\r,\r'$ having positive components, then
-\begin{equation*}
-(\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
-\end{equation*}
+\begin{linenomath}\begin{equation*}
+	(\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
+\end{equation*}\end{linenomath}
 for all $x \in [0,1]$. 
-\revhigh{This result is shown in~\cite{ruch_mixing_1978} and we reproduce it in Supplementary Note~2.}
+This result is shown in~\cite{ruch_mixing_1978} and we reproduce it in Supplementary Note~2.
 It provides a simple way of computing whether relative majorization holds between pairs of probability distributions.
 
 However, if $\w$ is a \emph{quasi-probability} distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotonically increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Fig.~\ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality.
@@ -294,7 +293,7 @@ With this theory in place, we turn to magic distillation protocols.
 \subsection*{Magic distillation bounds with fixed-points}
 
 We can now consider how majorization constrains magic distillation rates starting in this section with an abstract setting based on the fixed-point structure of the physical operations accessible to us. We show that any magic theory can always be decomposed in terms of `sub-theories' with a particular fixed-point structure, which allows the use of $\d$--majorization. 
-\revhigh{Later, we drop the requirement of fixed-points and instead use the full relative majorization, before giving general entropic constraints.}
+Later, we drop the requirement of fixed-points and instead use the full relative majorization, before giving general entropic constraints.
  
  We begin by defining the following sub-theory of any magic theory $\R$.
 \begin{definition}\label{def:sigmafrag}
@@ -319,7 +318,7 @@ In the next section we show that a given $\R_\sigma$ can be approximated by a ma
 \subsection*{Majorisation of Wigner distributions with fixed-point structure}
 
 We consider some $\sigma \in \F$, and its corresponding $\R_\sigma$. We are interested in the ability to transform many copies of some noisy magic state $\rho$ towards a more pure form of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, so $W_\rho(\z) < 0$ for some regions of $\z \in \P_d$. The state $\sigma$ is assumed to have a Wigner distribution with $W_\sigma(\z) > 0$ for all $\z$ in the phase space.
-\revhigh{This is justified because a non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$.}
+This is justified because a non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$.
 
 The free operations within the magic theory $\R$ are represented by stochastic maps, and within $\R_\sigma$ by stochastic maps that leave $W_\sigma(\z)$ invariant. Therefore, a necessary condition for magic state transformations $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$ will be that 
 \begin{equation}
@@ -333,7 +332,7 @@ for all $x \in [0,1]$, which restricts the transformations that are possible.
 
 Note that this is not a single numerical constraint, but a family of constraints. For $n$ copies of a qudit system of dimension $d$ the number of terms in $W_{\rho}$ is $d^{2n}$, so imposing the Lorenz curve condition corresponds to exponentially many constraints.
 
-\revhigh{Before computing explicit examples,} we state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones in a new light. The first result gives a simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
+Before computing explicit examples, we state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones in a new light. The first result gives a simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
 
 \begin{theorem} Majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity/mana. 
 \end{theorem}
@@ -394,18 +393,18 @@ We now consider the problem of purifying $n$ copies of a noisy Strange state $\r
 and use them to bound the magic distillation rate $R(\epsilon, \epsilon') \coloneqq n'/n$.
 
 Due to negativity, the ordering of the components of the rescaled Wigner distribution $W_{\rho_n |\sigma_n}(\z) \coloneqq W_{\rho_n}(\z)/W_{\sigma_n}(\z)$, for $\rho_n = \rho_S(\epsilon)^{\otimes n}$, and $\sigma_n = \sigma^{\otimes n}= (\id/3)^{\otimes n}$, depends on whether $-v(\epsilon)$ is raised to an even or odd power. Treating the Wigner distributions as vectors, the component values $w_i$ and associated multiplicities $m_i$ in the $n$--copy case are found to be 
-\begin{align}
+\begin{linenomath}\begin{align}
 	m_i &= 8^{i}\binom{n}{i}, \\
 	w_i &= u^{i}(-v)^{n-i}, \label{eq:wigu}
-\end{align}
+\end{align}\end{linenomath}
 where index $i$ runs through $0, \dots, n$, and we assume for simplicity that $n$ is even and $\epsilon \leq 3/7$, which implies that $v \geq u$.
 All details on the analysis are provided in Supplementary Note~3.
 
 The Lorenz curve $L_{\rho_n|\sigma_n}(x)$ reaches a maximum value of
-\begin{align}\label{eq:lcsu_max}
+\begin{linenomath}\begin{align}\label{eq:lcsu_max}
 	L_\star &\coloneqq L_{\rho_n |\sigma_n} (x_\star) = \sum_{i = 0}^{n/2} m_{2i} w_{2i} \nonumber\\
 	&= \frac{1}{2} + \frac{1}{2}\left(\frac{15 - 8\epsilon}{9}\right)^n > 1,
-\end{align}
+\end{align}\end{linenomath}
 which occurs at $x=x_\star$ given by
 \begin{equation}
 	x_\star = \frac{1}{2} + \frac{1}{2}\left(\frac{7}{9}\right)^n.
@@ -431,7 +430,7 @@ The max--thauma~\cite{Wang_2020} is defined as
 \end{equation}
 and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound $R_\infty$ as shown in Fig.~\ref{fig:distill_bounds}. 
 
-This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{num}}$ obtained by considering the full Lorenz curve, which show that the bound $R_\infty$ can be further improved. \revhigh{While this is an improvement on prior results,  all known distillation protocols have rates much lower than these upper bounds.  It remains a major open question to determine what are the best possible rates that can be achieved.}
+This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{num}}$ obtained by considering the full Lorenz curve, which show that the bound $R_\infty$ can be further improved. While this is an improvement on prior results,  all known distillation protocols have rates much lower than these upper bounds.  It remains a major open question to determine what are the best possible rates that can be achieved.
 
 \subsection*{Temperature-dependent bounds for magic distillation protocols}
 
@@ -487,10 +486,10 @@ where $F$ is the free energy of $\tau$,  and
 	\phi = -\beta^{-1} \log \zeta
 \end{equation}
 with $\zeta$ given by the expressions
-\begin{align}
+\begin{linenomath}\begin{align}
 	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \\
 	\alpha_k &= \<E_k| A_{\z_\star} |E_k\>,
-\end{align}
+\end{align}\end{linenomath}
 and $W_\tau(\z)$ attaining a minimum at $\z=\z_\star$. The primed variables are defined similarly for the output system.
 \end{theorem}
 \noindent The proof of this is provided in Supplementary Note~4, and follows a similar line to the unital protocol bound.
@@ -505,9 +504,7 @@ The intermediate terms specify how the energy eigenbasis of the system $\{|E_k\>
 
 The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Supplementary Note~4.
 
-\revhigh{
 \subsection*{Technical aspects and special cases of free energy bounds}
-}
 
 Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in Theorem~\ref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Supplementary Note~4, we give bounds in which one does not include these Clifford changes of basis, thus having a more non-trivial dependency on the parameters.
 
@@ -643,18 +640,18 @@ This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$.
 
 We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In Supplementary Notes~2,~3 and~4 we give additional results that may be of use for later work.
 
-Because Theorem \ref{thm:frag}  provides a completeness statement for majorization, we can ask if this approach could additionally provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations.  \revhigh{In principle the resultant majorization (and relative majorization) constraints should provide exact specifications on what can be obtained via free operations. 
-Interestingly, this route does not require the use of error correcting codes, but instead is built on group-theoretic features of the phase space. } The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G \coloneqq SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{Appleby_2005, Bengtsson_2006}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, giovagnoli_cyclic_1996, eaton_1977}. 
-\revhigh{One can therefore consider sub-groups of the affine symplectic group and analyse the resulting majorization/relative majorization that follows from its action on quasi-distributions. However if the sub-group considered is too simple then it may lead to trivial distillation rates. An example of this is when we restrict to the set of Weyl covariant channels~\cite{fukuda2006}, which are represented by a convex mixture of displacements on the phase space. Initial work by the authors have shown that the majorization conditions for Weyl covariant channels can be solved exactly in terms of discrete Fourier transforms, however it is found that the resultant distillation rates are trivial.  
+Because Theorem \ref{thm:frag}  provides a completeness statement for majorization, we can ask if this approach could additionally provide \emph{lower bounds} for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. In principle the resultant majorization (and relative majorization) constraints should provide exact specifications on what can be obtained via free operations. 
+Interestingly, this route does not require the use of error correcting codes, but instead is built on group-theoretic features of the phase space. 
+The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G \coloneqq SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{Appleby_2005, Bengtsson_2006}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, giovagnoli_cyclic_1996, eaton_1977}. 
+One can therefore consider sub-groups of the affine symplectic group and analyse the resulting majorization/relative majorization that follows from its action on quasi-distributions. However if the sub-group considered is too simple then it may lead to trivial distillation rates. An example of this is when we restrict to the set of Weyl covariant channels~\cite{fukuda2006}, which are represented by a convex mixture of displacements on the phase space. Initial work by the authors have shown that the majorization conditions for Weyl covariant channels can be solved exactly in terms of discrete Fourier transforms, however it is found that the resultant distillation rates are trivial.  
 
-One notable structure that could be exploited for $G$--majorization is when $G$ is a finite reflection group. For this,  the $G$--majorization pre-order is guaranteed to be described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering.} Therefore one route to concrete lower bounds on distillation rates is to consider stochastic maps obtained by reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions. \revhigh{Beyond this, another promising route is to formulate the majorization conditions for a sub-set of operations as a semi-definite program and then attempt to estimate realisable distillation rates by exploiting dualities and appropriate coarse-grainings. This approach has recently been applied by one of the authors to estimate the set of quantum states accessible by covariant channels in the resource theory of asymmetry~\cite{alexander2021} where one allows depolarizing noise that is then minimized. 
-It would be of interest to see if a similar approach could be followed for magic state distillation.}
+One notable structure that could be exploited for $G$--majorization is when $G$ is a finite reflection group. For this,  the $G$--majorization pre-order is guaranteed to be described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. Therefore one route to concrete lower bounds on distillation rates is to consider stochastic maps obtained by reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions. Beyond this, another promising route is to formulate the majorization conditions for a sub-set of operations as a semi-definite program and then attempt to estimate realisable distillation rates by exploiting dualities and appropriate coarse-grainings. This approach has recently been applied by one of the authors to estimate the set of quantum states accessible by covariant channels in the resource theory of asymmetry~\cite{alexander2021} where one allows depolarizing noise that is then minimized. 
+It would be of interest to see if a similar approach could be followed for magic state distillation.
  
 Beyond magic state distillation, the topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are not unital. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of classical statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g.~for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
 
 Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
 
-\revhigh{
 \section*{Methods}
 
 In order to derive our results we make use of three broad subfields.
@@ -667,7 +664,6 @@ We then develop a theory of majorization~\cite{cit:marshall,  Veinott_1971, Ruch
 Finally, we extend the theory of classical R\'{e}nyi entropies and divergences~\cite{renyi_1960} for probability distributions to quasi-distributions and show that they possess sufficient properties for the derivation of our entropic bounds. 
 
 Precise definitions of all the above concepts and explanations of their incorporation to the study of magic distillation are provided in the Results section as the concepts become relevant.
-}
 
 \section*{Data availability}
 No datasets were generated or analysed during the current study.

@@ -187,8 +187,8 @@ Conversely, suppose a bistochastic map $B$ exists sending $\Gamma_{\bma}(\w)$ to
 We note that the vectors $\r, \r'$ with rational components form a dense subset of the positive probability distributions, and do not consider further technicalities that have no impact on actual physical measurements, which always have a finite resolution.
 
 \revhigh{
-Restricting the above result in the context of proper probability distributions, we can immediately prove the Lorenz curve condition for probability distributions.
-We first need to define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, expressed explicitly in Eq.~(15) for Lorenz curve $L_{\w | \r}(x)$
+Restricting the above result in the context of proper probability distributions, we can prove the Lorenz curve condition for probability distributions.
+We define a Lorenz curve \emph{elbow} as a point where the slope of the curve changes, expressed explicitly in Eq.~(15) for Lorenz curve $L_{\w | \r}(x)$
 \begin{proposition}\label{thm:lc_equiv_prob}
     Given probability distributions $\w, \r \in \mathbb{R}^{N}$ and $\w', \r' \in \mathbb{R}^{N'}$ with $\r,\r'$ having positive components, then
 \begin{equation*}
@@ -197,24 +197,26 @@ We first need to define a Lorenz curve \emph{elbow} as a point where the slope o
 for all $x \in [0,1]$.
 \end{proposition}
 \begin{proof}
-	In the case of $N=N'$ and $\r = \r' = \bmeta$, where $\bmeta = (1/N,1/N,\dots, 1/N)$ is the uniform distribution on $N$ elements, the statement reduces to the Lorenz curve condition for simple majorization which is proven in~\cite{cit:marshall}.
+	In the case of $N=N'$ and $\r = \r' = \bmeta$, where $\bmeta = (1/N,1/N,\dots, 1/N)$ is the uniform distribution on $N$ elements, the statement reduces to the Lorenz curve condition $L_{\w}(x) \ge L_{\w'}(x)$ for all $x$, for simple majorization which follows immediately from the defining set of inequalities for majorization~\cite{cit:marshall}.  Namely, the Lorenz curve $L_{\w}(x)$ for $\w$ is obtained from the partial sums of $\w$ sorted in non-increasing order. It is also clear from the definition that the Lorenz curve of $\w$ is given by $L_{\w}(x) = L_{\w | \bmeta}(x)$.
 
-Borrowing the notation of Proposition~\ref{relmaj2maj}, we can define $\Gamma_{\bma} (\w), \Gamma_{\bma'} (\w')$ and the uniform distribution $\bmeta = (1/K, 1/K, \dots, 1/K)$.
-We can then see that the Lorenz curve of $\w$ relative to $\r$ coincides with the Lorenz curve of $\Gamma_{\bma} (\w)$, i.e.
+To prove the general statement we reduce the relative majorization Lorenz curve condition to standard majorization. Using the notation and assumptions of Proposition~\ref{relmaj2maj} for distributions with rational components, we can define $\Gamma_{\bma} (\w), \Gamma_{\bma'} (\w')$ and the uniform distribution $\bmeta = (1/K, 1/K, \dots, 1/K)$.
+
+The key ingredient in the proof is that the Lorenz curve of $\w$ relative to $\r$ coincides with the Lorenz curve of $\Gamma_{\bma} (\w)$, namely
 \begin{equation}
-	L_{\w | \r}(x) = L_{\Gamma_{\bma} (\w) | \bmeta}(x)\ \mbox{for all } x \in [0,1].
+	L_{\w | \r}(x) = L_{\Gamma_{\bma} (\w) | \bmeta}(x) = L_{
+	\Gamma_{\bma}(\w)}(x) \mbox{ for all } x \in [0,1].
 \end{equation}
-This is clear to see by considering the elbows of $L_{\w | \r}(x)$,
+To see this we consider the elbows of $L_{\w | \r}(x)$,
 \begin{equation}
 	(x_k, L_{\w|\r}(x_k)) = \left( \sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
 \end{equation}
-where permutation $\pi$ sorts $(w_i/r_i)$ in non-increasing order.
+where the permutation $\pi$ sorts $(w_i/r_i)$ in non-increasing order.
 Expressing $\Gamma_{\bma} (\w)$ as
 \begin{equation}
 	\Gamma_{\bma} (\w) = \frac{1}{K} \bigoplus_{i=1}^N \left( \frac{w_i}{r_i}, \dots, \frac{w_i}{r_i} \right),
 \end{equation}
 where $(w_i/r_i, \dots, w_i/r_i)$ has $a_i$ elements, it is clear that permutation $\pi$ sorts $\Gamma_{\bma}(\w)$ in non-increasing order too.
-The elbows of $(y_k, L_{\Gamma_{\bma} (\w) | \bmeta}(y_k))$ then occur at
+The Lorenz curve elbows $(y_k, L_{\Gamma_{\bma} (\w) | \bmeta}(y_k))$ occur at
 \begin{equation}
 	y_k = \sum_{j=1}^{a_{\pi(1)} + \dots + a_{\pi(k)}} \frac{1}{K} = \sum_{i=1}^k \frac{a_{\pi(i)}}{K} = x_k
 \end{equation}
@@ -222,16 +224,9 @@ and take values
 \begin{equation}
 	L_{\Gamma_{\bma} (\w) | \bmeta}(y_k) = \sum_{i=1}^k a_{\pi(i)}\frac{1}{K}\frac{w_{\pi(i)}}{r_{\pi(i)}} = L_{\w|\r}(x_k).
 \end{equation}
-This argument holds for $\w', \r'$ and $\Gamma_{\bma'} (\w')$ too.
+Therefore, the Lorenz curve of the embedded distribution coincides with the Lorenz curve in the relative majorization setting.
 
-Therefore, in the general case of relative majorization, we have
-\begin{align}
-	&(\w, \r) \succ (\w', \r') &\mbox{ iff} \nonumber\\
-	&\Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w') &\mbox{ iff} \nonumber\\
-	&L_{\Gamma_{\bma} (\w) | \bmeta}(x) \geq L_{\Gamma_{\bma'} (\w') | \bmeta}(x),\ x \in [0,1] &\mbox{ iff} \nonumber\\
-	&L_{\w | \r}(x) \geq L_{\w' | \r'}(x),\ x \in [0,1],
-\end{align}
-concluding the proof.
+Finally, we have $(\w, \r) \succ (\w', \r')$  if and only if $\Gamma_{\bma} (\w) \succ \Gamma_{\bma'} (\w')$, which holds if and only if $L_{\Gamma_{\bma} (\w) | \bmeta}(x) \geq L_{\Gamma_{\bma'} (\w') | \bmeta}(x)$ for all $x \in [0,1]$, which in turn holds if and only if $L_{\w | \r}(x) \geq L_{\w' | \r'}(x),\ x \in [0,1]$,  which concludes the proof.
 \end{proof}
 }
 
