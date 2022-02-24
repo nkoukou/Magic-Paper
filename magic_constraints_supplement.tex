@@ -1141,7 +1141,7 @@ We have that $H_{\alpha}$ is additive on products of quasi-distributions, which 
 \end{proposition}
 \begin{proof}
 	\begin{align}
-		H_{\alpha}(\w \otimes \w') &= \frac{1}{1-\alpha}\log \sum_{i,j'} \left[\w_i \w'_j\right]^{\alpha} \nonumber\\
+		H_{\alpha}(\w \otimes \w') &= \frac{1}{1-\alpha}\log \sum_{i,j} \left[\w_i \w'_j\right]^{\alpha} \nonumber\\
 		&= \frac{1}{1-\alpha}\log  \left [ \sum_i\w_i^\alpha \sum_j\w_j^{\prime \alpha} \right ] \nonumber\\
 				&= \frac{1}{1-\alpha}\log  \left [ \sum_i\w_i^\alpha\right ] + \frac{1}{1-\alpha}\log \left [ \sum_j\w_j^{\prime \alpha} \right ] \nonumber\\
 		&= H_{\alpha}(\w) + H_{\alpha}(\w').
@@ -1159,7 +1159,7 @@ where $\alpha$ can take values of the form $2a / (2b-1)$, for non-negative integ
 \begin{figure}[t!]
     \centering
     \includegraphics[scale=0.35]{H_vs_eps_a.pdf}
-    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of the $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The first dashed contour from the right corresponds to $H_\alpha(\rho_{\rm{S}}(\epsilon)) = 0$. In particular, $H_\alpha(\rho_{\rm{S}}(0)) = 0$ occurs at $\alpha \approx 1.31$.
+    \caption{\textbf{R\'{e}nyi entropy $H_\alpha$ of the $\epsilon$-noisy Strange state.} $H_\alpha$ is increasing in $\alpha$ and $\epsilon$. The rightmost contour corresponds to $H_\alpha(W_{\rho_{\rm{S}}(\epsilon)}) = 0$. In particular, $H_\alpha(W_{\rho_{\rm{S}}(0)}) = 0$ occurs at $\alpha \approx 1.31$.
     }
     \label{fig:H}
 \end{figure}

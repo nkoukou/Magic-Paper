@@ -176,7 +176,7 @@ For any quantum state $\rho$, the Wigner distribution $W_\rho(\z)$ is readily se
 
 Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = (id \otimes \E) (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state~\cite{watrous_2018}, then we can define
 \begin{equation}\label{Wigner-Choi}
-W_{\E}(\y |\z) \coloneqq d_A^2 W_{\J(\E)}(\bar{\z} \oplus \y),
+	W_{\E}(\y |\z) \coloneqq d_A^2 W_{\J(\E)}(\bar{\z} \oplus \y),
 \end{equation}
 where $\bar{\z} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the time-reversed version of $\z$ in the discrete phase space, where momenta are reflected while position coordinates remain unchanged. 
 
@@ -579,9 +579,9 @@ The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy diverges if negativity
 \end{equation} 
 with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We recall that mana can be written as $\M(\rho) = \log \sum_{\z} |W_\rho(\z)|$, so we obtain a second new perspective on mana:
 \begin{equation}\label{eq:mana-divergence}
-\M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1+\epsilon}(W_\rho).
+	\M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1+\epsilon}(W_\rho).
 \end{equation}
-Therefore, the mana of a state $\rho$ is minus the residue of the pole at $\alpha=1$ for $H_\alpha(W_\rho)$, and quantifies the divergence of the R\'{e}nyi-entropy as we approach the limiting Shannon entropy $H(W_\rho)$. 
+Therefore, the mana of a state $\rho$ is minus the residue of the pole at $\alpha=1$ for $H_\alpha(W_\rho)$, and quantifies the divergence of the R\'{e}nyi entropy as we approach the limiting Shannon entropy $H(W_\rho)$. 
 
 We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether this non-classicality could be interpreted in terms of a phase transition~\cite{domb2000phase}.
 
@@ -1476,7 +1476,7 @@ Analysis and writing of the manuscript were jointly done by NK and DJ.
 \newblock \emph{\bibinfo{journal}{New Journal of Physics}}
   \textbf{\bibinfo{volume}{16}}, \bibinfo{pages}{013009}
   (\bibinfo{year}{2014}).
-\newblock \urlprefix\url{https://doi.org/10.1088/F1367-2630/16/1/013009}.
+\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/16/1/013009}.
 
 \bibitem{Wang_2020}
 \bibinfo{author}{Wang, X.}, \bibinfo{author}{Wilde, M.~M.} \&
