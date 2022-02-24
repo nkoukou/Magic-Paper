@@ -1,0 +1,1883 @@
+\documentclass[
+onecolumn,
+superscriptaddress
+]{revtex4-1}
+
+\usepackage{amsmath,amsfonts, amssymb, amsthm}
+\usepackage{bbm, physics, mathtools}
+\usepackage{graphicx, subfigure}
+\usepackage{enumerate, multirow, makecell}
+\usepackage{xcolor, hyperref}
+
+\hypersetup{
+	colorlinks=true,  
+	linkcolor=blue,   
+	citecolor=blue,   
+	urlcolor=blue     
+}
+
+%\usepackage{lineno}
+%\linenumbers
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\ent}[2]{S\left( #1 \middle\vert\middle\vert #2 \right)}
+\def\>{\rangle}
+\def\<{\langle}
+
+\def\id{\mathbbm{1}}
+\renewcommand{\tr}{{\rm{tr}}}
+\renewcommand{\det}{{\rm{det}}}
+
+\def\bmeta{\boldsymbol{\eta}}
+\def\bmo{\boldsymbol{0}}
+\def\bma{\boldsymbol{a}}
+\let\ring\r
+
+\def\x{\boldsymbol{x}}
+\def\y{\boldsymbol{y}}
+\def\z{\boldsymbol{z}}
+\def\r{\boldsymbol{r}}
+\def\w{\boldsymbol{w}}
+\def\p{\boldsymbol{p}}
+\def\q{\boldsymbol{q}}
+\def\d{\boldsymbol{d}}
+\def\m{\boldsymbol{m}}
+\def\k{\boldsymbol{k}}
+\def\q{\boldsymbol{q}}
+
+\def\A{{\cal A}}
+\def\Z{{\cal Z}}
+\def\H{{\cal H}}
+\def\E{{\cal E}}
+\def\J{{\cal J}}
+\def\R{{\cal R}}
+\def\D{{\cal D}}
+\def\M{{\cal M}}
+\def\F{{\cal F}}
+\renewcommand{\O}{{\cal O}}
+\renewcommand{\P}{{\cal P}}
+
+
+
+\begin{document}
+
+\begin{abstract}
+Magic states are key ingredients in schemes to realize universal fault-tolerant quantum computation.
+Theories of magic states attempt to quantify this computational element via monotones and determine how these states may be efficiently transformed into useful forms. Here, we develop a statistical mechanical framework based on majorization to describe Wigner negative magic states for qudits of odd prime dimension processed under Clifford circuits. We show that majorization allows us to both quantify disorder in the Wigner representation and derive upper bounds for magic distillation. These bounds are shown to be tighter than other bounds, such as from mana and thauma, and can be used to incorporate hardware physics, such as temperature dependence and system Hamiltonians. We also show that a subset of single-shot R\'{e}nyi entropies remain well-defined on quasi-distributions, are fully meaningful in terms of data processing and can acquire negative values that signal magic. We find that the mana of a magic state is the measure of divergence of these R\'{e}nyi entropies as one approaches the Shannon entropy for Wigner distributions, and discuss how distillation lower bounds could be obtained in this setting.  This use of majorization for quasi-distributions could find application in other studies of non-classicality, and raises non-trivial questions in the context of classical statistical mechanics.
+\end{abstract}
+
+\preprint{APS/123-QED}
+
+\title{Constraints on magic state protocols from the statistical mechanics of Wigner negativity}
+
+\author{Nikolaos Koukoulekidis}
+	\email{nk2314@imperial.ac.uk}
+	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
+\author{David Jennings}
+	\affiliation{Department of Physics, Imperial College London, London SW7 2AZ, UK}
+	\affiliation{School of Physics and Astronomy, University of Leeds, Leeds, LS2 9JT, UK}
+
+\date{\today}
+\maketitle
+
+\section*{Introduction}
+
+There has been rapid progress towards the goal of a fault-tolerant quantum computer~\cite{campbell_roads_2017, cit:raussendorf, Raussendorf_2013, Nickerson_2014, Nikahd_2017, chao_2018, lin_pieceable_2020, Lin_2020, chamberland_2020, Bourassa_2021}. Nevertheless, many challenges remain and there is increasing need for theory to take into account physical limitations of the hardware involved. The surface code~\cite{Bravyi_1998, Freedman_2001, Dennis_2002, Raussendorf_2007} is a leading framework for fault-tolerance with very high error thresholds. Within this scheme, Clifford unitaries can be implemented in a robust, fault-tolerant way. However, due to the Eastin-Knill theorem~\cite{Eastin_2009}, we also know that it is impossible to have a universal set of transversal gates, and although Clifford unitaries can be realized transversally~\cite{Calderbank_1996, Steane_1996}, one needs to find ways around the Eastin-Knill restriction. This can be achieved by injecting in quantum states, called magic states, which promote the Clifford group to universal quantum computing~\cite{cit:bravyi}. The obstacle to this is that these states are invariably noisy, so protocols involving stabilizer operations must be employed to purify many copies of the magic states and improve the overall performance of the induced quantum gates~\cite{cit:bravyi, Jones_2013, Ogorman_2017}. A key question then arises about the overhead on purifying many copies of a magic state into less noisy forms. 
+
+To address this, concrete distillation protocols have been developed, such as the Bravyi-Haah qubit protocol that provides a quadratic reduction in noise per cycle~\cite{Bravyi2012}. Such distillation rates have been improved in more recent works~\cite{Jones_2013, haah2017magic, Hastings2018, Litinski_2019} and there have been proposals of protocols for qudits of odd dimension~\cite{CampbellAnwar_2012, Anwar_2012, Dawkins_2015, Krishna2019, cit:prakash} as well as of protocols within a full architectural analysis~\cite{chamberland_very_2020, Chamberland2019faulttolerantmagic}. There is also analysis of magic protocols from the perspective of magic monotones, which provide upper bounds on distillation rates and find application in the analysis of gate synthesis~\cite{Campbell_2017, Howard_2017, Prakash_2018, Seddon_2021,leone2021renyi}. These frameworks for magic view magic states as resource states with respect to a natural class of quantum operations that are considered cheap, or free, such as stabilizer operations~\cite{Gour_2019, cit:ahmadi, cit:seddon, Wang_2019}. Beyond quantum computing, recent work has also looked at how magic can be used to analyse many-body physics~\cite{Sarkar_2020} and conformal field theories~\cite{White_2021} as well its connection to contextuality~\cite{Vega_2017, cit:howard2, Zurel_2020, Okay_2021, schmid2020structure, Schmid_2021}.
+
+Work towards fault-tolerance is increasingly bridging the gap between abstract theory and experiment. Extensive work is being done on error mitigation~\cite{jones_2012, Li_2017, Temme_2017, Endo_2018, McClean_2017}, and the incorporation of hardware physics into the theoretical models~\cite{Kandala_2019, holmes_resource_2019, Colless_2018, song2018quantum, Bravyi_2021}. For example, the XZZX code~\cite{bonilla_ataides_xzzx_2021} is a variant of the surface code that incorporates noise bias explicitly and has been shown to attain the hashing bound of random codes~\cite{Bennett_1996}. In this work, we develop a framework to analyse magic state distillation protocols where explicit physics of the system is incorporated in the distillation bounds. This is achieved by considering how a given magic state protocol transforms a pair of quantum states -- one being a noisy magic state, and the other a stabilizer state that is distinguished by the physics of the system (for example a state at a characteristic temperature, or the maximally mixed state) and acts as a reference state for the protocol. The magic distillation bounds can then be expressed in terms of the physics of the reference state (e.g.~free energy changes in the case of temperature). Such bounds are of potential interest in assessing how physical features such as temperature, noise biases or fixed-point structure associated with restricted gate-sets constrain distillation protocols~\cite{Tuckett_2019, Aliferis_2008, Stephens_2013, Li_2015, Babbush_2018, Guillaud_2019, Fowler_2019}.
+
+The approach we take is most closely aligned with resource theories of magic, although it differs in key ways. We obtain distillation upper bounds without the use of monotones, but instead use tools from statistical mechanics and recent work in single-shot resource theories~\cite{cit:janzing, cit:horodecki2013, Brandao_2015, Vinjanampathy_2016, Goold_2016, cit:lostaglio, cit:gour}. Our analysis relies on the discrete Wigner representation of quantum systems, in which all states and operations can be described on a discrete phase space~\cite{Ferrie_2008, Okay_2021}. Crucially, we focus on magic states with negativity in their Wigner representation, which is known to be a necessary condition for universality in the state-injection model~\cite{cit:veitch, cit:mari, cit:gottesman, cit:knill, Campbell_2011}. However, taking a statistical mechanical perspective in this context raises a problem: the standard Boltzmann entropy is not defined for quasi-distributions. We circumvent this obstacle by making use of a more fundamental tool -- majorization theory~\cite{cit:marshall, Veinott_1971, Ruch_1976}. To our knowledge majorization of quasi-distributions has not been considered in quantum physics before, and therefore these methods could find application in other studies of non-classicality in quantum systems~\cite{Fine_1982, Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.\\
+
+We begin by describing how stabilizer operations correspond to stochastic maps on a discrete phase space, and how majorization can be applied to constrain magic state transformations. We then consider families of magic protocols with increasing complexity. The simplest case we consider is for magic protocols that lead to unital channels. These are a subset of protocols that leave invariant some distinguished state or have some equilibrium fixed-point structure. We then consider protocols that are non-equilibrium processes, but only generate sub-linear correlations that enable a simple description in the thermodynamic limit before giving entropic analysis that can be applied generally.
+
+The relations between the sets of protocols considered are as follows:
+\begin{align}
+	\mbox{Unital} &\subset \mbox{ local fixed-points} \nonumber\\ 
+&\subset \mbox{ sub-linear correlations} \subset \mbox{ general protocols.} \nonumber
+\end{align}
+
+We provide explicit bounds for magic protocols that generate unital channels (Eq.~(\ref{eq:unital-bound})), as well as bounds that incorporate the temperature and Hamiltonian of the system (Theorem~\ref{thm:free-energy}) and discuss extensions to more general scenarios. These bounds are shown to be tighter than other bounds such as those that come from mana and thauma (Fig.~\ref{fig:distill_bounds}). 
+
+We find that the analysis in the presence of negativity displays a range of features that do not appear in classical statistical mechanics, and leads to a picture of Wigner negativity in a quantum circuit being described as non-classical free energy that is processed under stochastic dynamics. This is demonstrated by non-monotonic Lorenz curves (Fig.~\ref{fig:lcs}), and by single-shot entropies for general Wigner quasi-distributions that are well-defined, obey data-processing under stabilizer operations and can take on negative values (Eq.~(\ref{eq:H})).
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.38]{distill_bounds.pdf}
+    \caption{\textbf{Magic distillation bounds from majorization of Wigner quasi-distributions.} The above plot shows distillation upper bounds for qutrits obtained from majorization on unital protocols. The constraints are plotted as a function of the depolarizing error $\epsilon$ for a noisy Strange state (Eq.~(\ref{eq:noisysn})). The bound $R_\infty$ follows from a Lorenz curve analysis presented before Eq.~(\ref{eq:unital-bound}), while the bound $R_{10}$ comes from single-shot entropies on the Wigner quasi-distributions, as discussed in the derivation of Eq.~(\ref{eq:Ra}). Numerical bounds $R_{\rm{num}}$ are obtained by using the full set of majorization constraints. Bounds $R_\infty$, $R_{10}$, $R_{\rm{num}}$ all provide stricter constraints than mana~\cite{cit:veitch2} and max--thauma $\theta_{\rm{max}}$~\cite{Wang_2020} bounds for noisy Strange states.
+    }
+    \label{fig:distill_bounds}
+\end{figure}
+
+
+We show that the mana of a quantum state arises as a residue in the $\alpha$--parameter for R\'{e}nyi entropies, and gives the rate of divergence to $-\infty$ as we approach the Shannon entropy of a Wigner distribution (Eq.~(\ref{eq:mana-divergence})).
+Finally, in the Discussion section, we discuss how our approach could be extended to construct explicit lower bounds on distillation that take into account physical constraints.
+
+\section*{Results}
+
+\subsection*{Phase space representation of quantum mechanics}
+
+Central to our construction is the representation of any quantum state or quantum operation on a system of dimension $d$ in terms of quasi-probability representations on a discrete phase space~\cite{Gross2006, Ferrie_2008}. This construction is a discrete version of Wigner representations in quantum optics~\cite{Wigner_1932, Vourdas_2004, Kenfack_2004}.
+
+Consider a $d$--dimensional quantum system with Hilbert space $\H_d$, and let $\{ |0\>, |1\>, \dots , |d-1\>\}$ denote the standard computational basis, defined over $\mathbb{Z}_d = \{ 0, 1, \dots,d-1 \}$. On this space, generalised Pauli matrices $X, Z$ can be defined by their respective roles as shift and phase operators, acting on the basis states as follows,
+\begin{align}
+    X \ket{k} &= \ket{k + 1} \label{eq:xpauli}\\
+	Z \ket{k} &= \omega^k \ket{k}. \label{eq:zpauli}
+\end{align}
+Here $\omega \coloneqq e^{2\pi i/d}$ is the $d$-th root of unity and addition is taken modulo $d$. From these we can construct a phase space $\P_d \coloneqq \mathbb{Z}_d \times \mathbb{Z}_d$ that provides a complete representation of the quantum system. Given a point $\z \coloneqq (q, p)$ we define a displacement operator, 
+\begin{equation}\label{eq:ddef}
+    D_{\z} \coloneqq \tau^{q p} X^{q} Z^{p},\ 
+\end{equation}
+where the phase factor $\tau \coloneqq -\omega^{1/2}$ ensures unitarity. We assume going forward that $d$ is an odd prime~\cite{Appleby_2005}. The qubit case $d=2$ is known to have obstacles to using a Wigner representation to quantify magic in terms of negativity~\cite{Mermin_1990, cit:howard2}, although recent work~\cite{Raussendorf_qubits} has shown how to extend the representation to include qubits by enlarging the phase space. For a composite system with dimension $d_{\rm tot} = d_1 \dots d_n$ and Hilbert space $\H_{d_1} \otimes \dots \otimes \H_{d_n}$, we define displacement operators as
+\begin{equation}\label{eq:composited}
+    D_{\z} \coloneqq D_{(q_1, p_1)} \otimes \dots \otimes D_{(q_n, p_n)},
+\end{equation}
+where now we have
+\begin{align*}
+	\z &\coloneqq (q_1, \dots, q_n, p_1, \dots, p_n) \in \P_{d_1} \times \dots \times \P_{d_n},
+\end{align*}
+to denote the phase space point for the composite system. 
+For simplicity, we assume $n$ copies of a $d$--dimensional system $d_1=d_2 = \cdots = d$, and therefore we have that $\z \in \mathbb{Z}_d^{2n}$.
+
+
+The displacement operators form the Heisenberg-Weyl group~\cite{Folland_1989, Bengtsson_2006} under matrix multiplication modulo phases,
+\begin{equation}\label{eq:gp}
+    {\rm{HW}}_d^n \coloneqq \{ \tau^k D_{\z}: k \in \mathbb{Z}_d, \z \in \P_d^n\}.
+\end{equation}
+The Clifford group $ {\cal C}_d^n $ is then defined as the set of unitaries that normalise the Heisenberg-Weyl group~\cite{Appleby_2005}. We may define the pure stabilizer states as those states obtained by acting on $|0\>$ with Clifford unitaries~\cite{Gross2006} and, finally, the full set of stabilizer states as the convex hull of all pure stabilizers, namely all probabilistic mixtures of states of the form $U|0\>\<0|U^\dagger$ where $U$ is Clifford. 
+
+\subsection*{Wigner representation for quantum states and quantum operations}
+
+In order to provide a complete decomposition of arbitrary quantum states and quantum operations we now define a basis of Hermitian observables that transforms covariantly under the action of the Clifford group. At every point $\z \in \P_d$ we define the phase-point operator
+\begin{equation}\label{eq:ax}
+	A_{\z} \coloneqq \frac{1}{d} \sum_{\y \in \P_d} \omega^{\eta(\z, \y)} D_{\y}, 
+\end{equation}
+where $\eta(\z, \y)$ is the symplectic inner product between any two points $\z,\y \in \P_d$, and is given explicitly by
+\begin{equation}
+	\eta(\z, \y) \coloneqq \y^T \begin{pmatrix}
+		0  & \id \\
+		-\id & 0 \\
+	\end{pmatrix} \z,
+\end{equation}
+where $0, \id$ denote the $n\times n$ zero and identity matrices.
+
+The phase-point operators form an orthogonal operator basis with respect to the Hilbert-Schmidt inner product, as discussed in Supplementary Note~1.
+Therefore, any quantum state $\rho$ can be expressed as a linear combination of them, $\rho = \sum_{\z \in \P_d} W_\rho(\z) A_{\z}$, where the coefficients $W_\rho(\z)$ give the Wigner distribution of state $\rho$,
+\begin{equation}\label{eq:wstate}
+    W_\rho(\z) \coloneqq \frac{1}{d}\tr[A_{\z} \rho].
+\end{equation}
+For any quantum state $\rho$, the Wigner distribution $W_\rho(\z)$ is readily seen to be a $d^2$-dimensional quasi-distribution over $\P_d$. More precisely, $W_\rho(\z)$ is a real-valued function on $\P_d$ with the normalisation property $\sum_{\z} W_\rho(\z) = 1$ (see Supplementary Note~1 for details). Moreover, the above Wigner representation has recently been shown to be the only non-contextual quasi-probability representation of stabilizer theories in odd prime dimensions~\cite{schmid2021noncontextual}.
+
+Any quantum channel $\E$ also admits a Wigner representation. If $\E$ maps some quantum system $A$ of dimension $d_A$ to a quantum system $B$ of dimension $d_B$ and $\J(\E) = (id \otimes \E) (|\phi^+\> \<\phi^+|)$, with $|\phi^+\> = d_A^{-1/2} \sum_k |kk\>$, is its associated Choi state~\cite{watrous_2018}, then we can define
+\begin{equation}\label{Wigner-Choi}
+	W_{\E}(\y |\z) \coloneqq d_A^2 W_{\J(\E)}(\bar{\z} \oplus \y),
+\end{equation}
+where $\bar{\z} = (q_1, \dots, q_n, -p_1, \dots, -p_n)$ can be viewed as the time-reversed version of $\z$ in the discrete phase space, where momenta are reflected while position coordinates remain unchanged. 
+
+\subsection*{Magic theories for quantum computation}
+\begin{figure}[t]
+    \centering
+        \includegraphics[scale=0.3]{protocol_diagram.pdf}
+    \caption{\textbf{Probing magic protocols with reference states.} 
+	A magic protocol (top figure) converts $n$ copies of some noisy magic state $\rho$ with error parameter $\epsilon$ to $m$ copies of some less noisy state $\rho'$ with $\epsilon' < \epsilon$. The physics of the protocol can be analysed by considering how it would transform some distinguished reference stabilizer state $\tau^{\otimes n}$ (bottom figure). For the case where this reference state is a thermal state at some temperature $T$ our magic distillation bounds are functions of $T$, the error parameters $\epsilon, \epsilon'$, and free energies $F, F'$. In addition, a quantity $\phi$ (Eq.~(\ref{eq:phi})) relates the computational and energy bases, and corresponds to the degree to which the Wigner negativity of $\rho$ can be given a sharp energy via the system Hamiltonian.}
+    \label{fig:sketch}
+\end{figure}
+A number of magic theories exist, where magic states are computational resource states with respect to a class of quantum operations that are considered free~\cite{Gour_2019}. One natural class of free operations are those obtained from Clifford unitaries, Pauli measurements and the ability to discard quantum systems. However, there are also other candidates~\cite{cit:ahmadi, cit:seddon, Wang_2019}.
+
+In any theory of magic, one route to bounding distillation rates is through a magic monotone. A magic monotone is a real-valued function of any quantum state $M(\rho)$ that is monotonically non-increasing under the free operations of the magic theory. More precisely $M(\sigma) \le M(\rho)$ whenever it is possible to convert $\rho$ into $\sigma$ using free operations.
+
+One prominent magic monotone is the mana of a state~\cite{cit:veitch2}, defined as
+\begin{equation}
+    \M(\rho) \coloneqq \log (2\hspace{1pt}{\rm sn}(\rho)+1),
+\end{equation}
+where the sum-negativity~\cite{cit:veitch2} is the sum of the negative components in $W_\rho$,
+\begin{equation}
+    {\rm sn}(\rho) \coloneqq \sum\limits_{\z: W_\rho(\z) < 0} \abs{W_\rho(\z)}.
+\end{equation}
+Using the fact that $W_\rho(\z)$ is a normalized quasi-distribution, we can also write $\M(\rho) = \sum_{\z} |W_\rho(\z)|$.
+
+Mana is an additive magic monotone, and the fact that it is non-increasing under free operations provides a constraint on magic state interconvertibility.
+
+In this work we develop bounds that apply to any reasonable magic theory. The central idea is to apply majorization theory to the quasi-distributions that arise for magic states. In the next section we explain how majorization relates to the free operations in a theory of magic.
+
+
+\subsection*{Stochastic representation of magic protocols}
+
+Within the Wigner representation for odd prime dimension, it is well-known that all positively represented states used in Clifford circuits admit an efficient classical simulation~\cite{cit:mari}, so negativity is a necessary resource for universal fault-tolerant quantum computing~\cite{cit:veitch}. Therefore, the free states in any magic theory are required to be a subset of
+\begin{equation}
+    \F \coloneqq \{ \rho: W_\rho(\z) \geq 0 \text{ for all } \z \in \P_d\}.
+\end{equation}
+Our focus is on states with negativity, so the particular choice of free states is not critical for our analysis. The remaining component that defines any magic theory is the set of free quantum operations. The most basic assumption we require on free operations is that they send any free state to another free state.
+
+Any magic state protocol will correspond to a quantum channel $\E$, so from Eq.~(\ref{Wigner-Choi}) it admits a Wigner representation $W_{\E}(\y | \z)$ that acts as a transition matrix mapping phase space points $\z \rightarrow \y$. The representation obeys the relation 
+\begin{equation}
+	W_{\E(\rho)} (\y) = \sum_{\z \in \P_d} W_{\E}( \y | \z) W_\rho(\z),
+\end{equation}
+for any $\rho$. Since the magic protocol sends free states to free states, $\E$ sends all positively represented quantum state to other positively represented quantum states. In such cases, it can be shown~\cite{Wang_2019} that if $\E$ is a free operation then the associated Wigner representation $W_{\E}(\y |\z)$ must form a stochastic matrix. In particular, all stabilizer operations correspond to stochastic matrices in the Wigner representation. 
+
+We note however, that not all stochastic maps on the phase space correspond to valid quantum operations. The reason is that the maps must also respect the symplectic structure of the phase space, which is an additional non-trivial constraint.
+
+In what follows, we shall assume that we have a magic theory $\R = (\F, \O)$ in which the free states $\F$ are represented by non-negative Wigner functions, while the free operations $\O$ are stochastic maps in the Wigner representation. Our analysis of magic in this phase space setting makes use of majorization theory, which we describe in the next section.
+
+
+
+\subsection*{Quantifying disorder without entropies}
+
+Majorisation~\cite{cit:marshall, Blackwell_1953} is a collection of powerful tools that has found many applications in quantum information theory~\cite{Nielsen_1999, cit:cwiklinski, cit:lostaglio2, cit:gour, cit:gour2, Horodecki_2003, Puchala_2013, Vallejos_2021}.
+It describes the disorder of distributions that undergo stochastic transformations, and in its simplest form defines a pre-order on probability distributions. Given two distributions $\p= (p_1, \dots, p_n)$ and $\q = (q_1, \dots, q_n)$ over $n$ outcomes, we say that $\p$ majorizes $\q$, denoted $\p \succ \q$, if there exists a bistochastic map $A = (A_{ij})$ such that $A\p = \q$, where bistochastic means that $A_{ij} \geq 0$ and $\sum_i A_{ij} = \sum_j A_{ij} = 1$. It can be shown~\cite{cit:marshall} that the condition $ \p \succ \q$ over probability distributions is equivalent to $n-1$ inequalities, which can be checked efficiently.
+
+There is a natural generalisation, which is called $\d$--majorization~\cite{Veinott_1971}, or in the context of thermodynamics, thermo-majorization~\cite{cit:horodecki2013}. For a fixed probability distribution $\r = (r_1, \dots, r_n)$ with positive components, we define majorization relative to $\r$ as $\p \succ_{\r} \q$, if and only if there exists a stochastic map $A$ such that $A\r = \r$ and $A \p = \q$. The original majorization condition between probability distributions corresponds to the case $\r = (1/n, \dots, 1/n)$. 
+
+In fact, we can further generalize to relative majorization~\cite{Blackwell_1953, Ruch_1976, ruch_mixing_1978, Renes_2016, Buscemi_2017, Rethinasamy_2020}, defined as an ordering between pairs of vectors and write 
+\begin{equation}
+	(\p,\r) \succ (\q, \r')
+\end{equation}
+if and only if there is a stochastic map $A$ such that $A\r = \r'$ and $A\p = \q$. We retrieve $\d$--majorization when $\r = \r'$.
+
+\subsection*{Quasi-probability majorization and non-monotonic Lorenz curves}
+
+Our analysis applies majorization to magic states at the level of the associated Wigner distributions. Since these are in general quasi-distributions, it is important to check how majorization is computed for these cases and what differences quasi-distributions bring over genuine probability distributions.
+
+We also make use of the notion of a Lorenz curve of a vector $\w \in \mathbb{R}^n$ relative to some other vector $\r \in \mathbb{R}^n$. Given a vector $\w$ we define $\w^\downarrow$ to be the re-arrangement of the components of $\w$ into decreasing order. Given two $n$--component vectors $\w$ and $\r$, we first define $\widetilde{\w}=(\widetilde{w}_i)$, where $\widetilde{w}_i \coloneqq w_i/r_i$, as the vector of component-wise ratios between $\w$ and $\r$.
+We can now define the Lorenz curve of $\w$ relative to $\r$, denoted $L_{\w|\r}(x)$, as the piece-wise linear function that passes through $(0,0)$ and the $n$ points
+\begin{equation}\label{eq:lc}
+	(x_k,L_{\w|\r}(x_k)) =\left( \frac{1}{R}\sum_{i=1}^k r_{\pi(i)}, \sum_{i=1}^k w_{\pi(i)} \right),
+\end{equation}
+where $R\coloneqq \sum_{i=1}^n r_i$ and $\pi$ is the permutation on $n$ objects mapping $\widetilde{\w}$ to $\widetilde{\w}^{\downarrow}$. The form of this requires that $\r$ has no zero components, which we shall assume without loss of generality as the rank of a quantum state is not operationally meaningful.
+
+In the usual case where $\w$ and $\r$ are both probability distributions the Lorenz curve is defined on the interval $[0,1]$, and rises monotonically until it reaches the value $1$ at $x=1$. The value $L_{\w|\r}(x) = 1$ is a global maximum. Moreover, if $\w, \w', \r, \r'$ are all valid probability distributions with $\r,\r'$ having positive components, then
+\begin{equation*}
+	(\w, \r) \succ (\w', \r') \mbox{ if and only if } L_{\w |\r}(x) \ge L_{\w' |\r'}(x),
+\end{equation*}
+for all $x \in [0,1]$. 
+This result is shown in~\cite{ruch_mixing_1978} and we reproduce it in Supplementary Note~2.
+It provides a simple way of computing whether relative majorization holds between pairs of probability distributions.
+
+However, if $\w$ is a quasi-probability distribution with negative values, and $\r$ a regular probability distribution things are different. Now the Lorenz curve is no longer monotonically increasing, but is a concave function that breaks through the $L_{\w|\r}(x) = 1$ barrier at an interior point and attains some non-trivial maximum $L_\star$ above the value $1$, before decreasing monotonically to $L_{\w|\r}(x)= 1$ at the end-point $x=1$. See Fig.~\ref{fig:lcs} for examples of non-monotonic Lorenz curves for quasi-distributions. Within quantum theory, the breaking of this barrier is associated with the degree of non-classicality.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{lc_strange.pdf}
+    \caption{\textbf{A `heretical' family of Lorenz curves.} Traditionally, Lorenz curves for distributions are monotone increasing cumulative functions that reach a maximum value of $1$. In contrast, Lorenz curves for magic states break through the value of $L(x)=1$ due to the presence of negativity in the associated quasi-distributions. The above family of curves correspond to multiple copies of noisy Strange states $\rho\coloneqq\rho_{\rm{S}}(\epsilon)^{\otimes n}$ (Eq.~(\ref{eq:noisysn})) for $n=2,4,6$ within $\R_{\sigma}$, where $\sigma = \id/3$. Solid lines represent pure Strange states, while dashed lines represent $\epsilon$-noisy Strange states with depolarising error $\epsilon = 0.1$.
+    }
+    \label{fig:lcs}
+\end{figure}
+
+Relative majorization is usually considered for probability distributions, so we need to verify that the same Lorenz curve conditions apply to quasi-distributions before proceeding with our analysis. This can be done from first principles, but a simpler way to see that this holds is to reduce to the problem of genuine distributions by first `masking' the negativity in the quasi-distribution $\w$ using the reference distribution $\r$ and then applying the conditions for relative majorization. This negativity masking then gives the following result.
+
+\begin{theorem}\label{thm:lcquasi}
+	Let $\w \in \mathbb{R}^n,\w'\in \mathbb{R}^m$ be quasi-distributions, and let $\r \in \mathbb{R}^n, \r' \in \mathbb{R}^m$ be probability distributions with non-zero components. Then, $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w|\r}(x) \ge L_{\w' |\r'}(x)$ for all $x \in [0,1]$.
+\end{theorem}
+\begin{proof}
+	Since the components of $\r$ are strictly positive, there always exists an $\epsilon >0$ such that $\w_\epsilon \coloneqq \epsilon \w + (1-\epsilon) \r$ is a genuine probability distribution. A similar result holds for $\w'$ and $\r'$ and we choose $\epsilon$ sufficiently small so that both $\w_\epsilon$ and $\w_\epsilon'$ are probability distributions. We now have that $(\w, \r) \succ (\w', \r')$ if and only if $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$. This equivalence holds because there exists a stochastic map $A$ such that $A \w = \w'$ and $A \r = \r'$ if and only if 
+\begin{equation}
+A[\epsilon \w + (1-\epsilon) \r] = \epsilon \w' + (1-\epsilon) \r'\mbox{ and } A\r = \r'.
+\end{equation}
+In terms of a Lorenz curve condition we have that $(\w_\epsilon , \r) \succ (\w_\epsilon', \r')$ if and only if $L_{\w_\epsilon |\r} (x) \ge L_{\w'_\epsilon |\r'} (x)$ for all $x \in [0,1]$. 
+Additionally, we show in Supplementary Note~2 that the Lorenz curve for any quasi-distribution obeys the relation
+\begin{equation}
+L_{a \w + b \r | \r} (x) = a L_{\w|\r} (x) + bx,
+\end{equation}
+for any $a >0$ and $b \in \mathbb{R}$. 
+This relation implies that $L_{\w_\epsilon |\r} (x) \ge L_{\w'_\epsilon |\r'} (x)$ if and only if $\epsilon L_{\w |\r} (x) + (1-\epsilon) x \ge \epsilon L_{\w' |\r'} (x) + (1-\epsilon) x$. 
+Finally, the $(1-\epsilon)x$ terms cancel on both sides and we get the required relative majorization conditions that $(\w, \r) \succ (\w', \r')$ if and only if $L_{\w | \r} (x) \ge L_{\w' | \r'}(x)$ for all $x \in [0,1]$, as required.
+\end{proof}
+
+With this theory in place, we turn to magic distillation protocols.
+
+\subsection*{Magic distillation bounds with fixed-points}
+
+We can now consider how majorization constrains magic distillation rates starting in this section with an abstract setting based on the fixed-point structure of the physical operations accessible to us. We show that any magic theory can always be decomposed in terms of `sub-theories' with a particular fixed-point structure, which allows the use of $\d$--majorization. 
+Later, we drop the requirement of fixed-points and instead use the full relative majorization, before giving general entropic constraints.
+ 
+ We begin by defining the following sub-theory of any magic theory $\R$.
+\begin{definition}\label{def:sigmafrag}
+   Given a theory of magic $\R = (\F, \O)$, we define the sub-theory $\R_\sigma = (\F, \O_\sigma)$, in which the free operations are 
+   \begin{equation}
+        \O_\sigma \coloneqq \{ \E \in \O: \E(\sigma) = \sigma \},
+    \end{equation}
+namely those free operations that leave the distinguished state $\sigma \in \F$ invariant.
+\end{definition}
+This gives a simple way to break up any theory into smaller, more manageable parts, and where the union over all sub-theories returns the parent theory, so we are not discarding any information by breaking up the theory in this way. We make this precise as follows.
+\begin{theorem}\label{thm:frag}
+    Let $\R = (\F, \O)$ be a theory of magic.
+Then a transformation $\rho_1 \rightarrow \rho_2$ is possible in $\R$ if and only if the transformation $\rho_1 \rightarrow \rho_2$ is possible in at least one sub-theory $\R_\sigma$.
+\end{theorem}
+\noindent The proof of this is straightforward.
+\begin{proof}
+   Suppose the interconversion is possible in a $\R_\sigma$ via some $\E \in \O_\sigma$. But since $\O_\sigma \subseteq \O$ it is also possible in $\R$. Conversely, suppose the transformation is possible in $\R$ via some $\E$ in $\O$. The free states $\F$ are a closed, bounded set and moreover the image of $\F$ under the map $\E$ is in $\F$. By the Brouwer fixed-point theorem~\cite{cit:brouwer}, this mapping must therefore have a fixed point $\sigma \in \F$, so $\E \in \O_\sigma$ and the interconversion is possible in $\R_\sigma$.
+\end{proof}
+We can compare with resource monotones, which are also called resource measures. A complete set of measures $\{\M_i\}_i$ is such that $\rho \rightarrow \sigma$ if and only if $\M_i(\rho) \ge \M_i(\sigma)$ for all $i$. The above set of sub-theories can therefore be viewed as a complete set of ``co-measures'' for the theory, where the parent resource theory's complex pre-order of states is mapped to a simpler pre-order for a particular $\R_\sigma$. 
+In the next section we show that a given $\R_\sigma$ can be approximated by a majorization pre-order, and from this we compute magic distillation bounds.
+
+\subsection*{Majorisation of Wigner distributions with fixed-point structure}
+
+We consider some $\sigma \in \F$, and its corresponding $\R_\sigma$. We are interested in the ability to transform many copies of some noisy magic state $\rho$ towards a more pure form of magic. The state $\rho$ is assumed to have negativity in the Wigner representation, so $W_\rho(\z) < 0$ for some regions of $\z \in \P_d$. The state $\sigma$ is assumed to have a Wigner distribution with $W_\sigma(\z) > 0$ for all $\z$ in the phase space.
+This is justified because a non-full rank state $\sigma$ can be handled as a limiting case in which we first add an infinitesimal fraction of depolarising noise $\epsilon (\id/d)$ and then take $\epsilon \rightarrow 0$.
+
+The free operations within the magic theory $\R$ are represented by stochastic maps, and within $\R_\sigma$ by stochastic maps that leave $W_\sigma(\z)$ invariant. Therefore, a necessary condition for magic state transformations $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$ will be that 
+\begin{equation}
+	W_{\rho_1} \succ_{W_{\sigma}} W_{\rho_2},
+\end{equation}
+or put another way, that the quasi-distribution $W_{\rho_1}$ is more ordered than the quasi-distribution $W_{\rho_2}$ relative to $W_\sigma$. To simplify notation, we denote by $L_{\rho | \sigma}(x)$ the Lorenz curve $L_{W_{\rho} | W_{\sigma}} (x)$, and therefore have that
+\begin{equation}
+\rho_1 \rightarrow \rho_2 \mbox{ within }\R_\sigma \mbox{ implies } L_{\rho_1 |\sigma} (x) \ge L_{\rho_2 |\sigma} (x),
+\end{equation}
+for all $x \in [0,1]$, which restricts the transformations that are possible.
+
+Note that this is not a single numerical constraint, but a family of constraints. For $n$ copies of a qudit system of dimension $d$ the number of terms in $W_{\rho}$ is $d^{2n}$, so imposing the Lorenz curve condition corresponds to exponentially many constraints.
+
+Before computing explicit examples, we state some generic aspects of Lorenz curves for magic states, which allow us to interpret previous magic monotones as features of the curves. The first result gives a simple way to see that the sum-negativity/mana of a magic state is a monotone~\cite{cit:veitch2}.
+
+\begin{theorem} Majorization in any $\R_\sigma$ implies the monotonicity of sum-negativity/mana. 
+\end{theorem}
+\begin{proof}
+	The sum-negativity of a magic state $\rho$ can be written as $sn(\rho) =\frac{1}{2} (\sum_{\z} |W_\rho(\z) | - 1)$.
+We make use of the $L_1$-norm form of relative majorization, (see Supplementary Note~2), which states that $\p \succ_{\r} \q$ if and only if
+	\begin{equation}
+\sum_k | p_k - r_k t | \geq \sum_k | q_k - r_k t |,
+\end{equation}
+for all $t\in \mathbb{R}$. Choosing $t=0$ we get the single condition that $\sum_k |p_k| \ge |\sum_k |q_k|$, independent of the choice of $\r$. Applying this to the Wigner quasi-distributions of two quantum states immediately gives the result.
+\end{proof}
+
+If we have a magic state $\rho$ that has negativity in its Wigner representation, then, as discussed, its Lorenz curve over-shoots $1$ and reaches a non-trivial maximum $L_\star$ that depends on the particular state. There is an simple relation between $L_\star$ and sum-negativity/mana, which is provided by the following result. 
+\begin{theorem}\label{lem:lcmax}
+	Given a magic state $\rho$, the maximum $L_\star$ of its Lorenz curve $L_{\rho|\sigma}(x)$ is independent of the $\R_\sigma$ and equal to $1+{\rm sn}(\rho)$. Moreover, the majorization constraint is stronger than mana in every $\R_\sigma$.
+\end{theorem}
+The proof of this is given in Supplementary Note~2. Using the Lorenz curve perspective, it is also simple to construct magic monotones. For example, within a given $\R_\sigma$, the area above the horizontal line $y = 1$ is a magic monotone.
+\begin{theorem}
+Given a magic state $\rho$ and a free state $\sigma$, let $\A_\sigma(\rho)$ be the area of the region $\{(x, y): 1 \leq y \leq L_{\rho | \sigma}(x)\}$. Then $\A_\sigma(\rho)$ is a magic monotone for $\R_\sigma$.
+\end{theorem}
+\begin{proof}
+Consider the transformation $\rho_1 \rightarrow \rho_2$ within $\R_\sigma$. We have that $L_{\rho_1|\sigma}(x)$ is never below the curve $L_{\rho_2|\sigma}(x)$, and therefore the region above $L=1$ for $\rho_2$ is a subset of the corresponding region for $\rho_1$. Thus, $\A_\sigma(\rho_1) \geq \A_\sigma(\rho_2)$, so $\A_\sigma$ is a magic monotone in $\R_\sigma$.
+\end{proof}
+Note though, in contrast to mana, the area monotone is specific to $\R_\sigma$, and its value will vary as we change $\sigma$. Therefore its monotonicity depends on the physics of the fixed point and provides a means to analyse magic distillation only under free operations that leave $\sigma$ invariant. One can also define an area monotone in the more general setting of relative majorization, where one drops the fixed point emphasis.
+
+\subsection*{Magic distillation bounds for unital protocols}
+
+We now construct magic state distillation bounds for protocols that generate unital channels, meaning that $\E(\id/d) = \id/d$.
+
+Our approach works for any odd dimension, but for simplicity we consider qutrit magic states ($d=3$), for which a canonical magic state exists with a simple Wigner distribution. This is the Strange state $|S\>$, which is given by
+\begin{equation}
+|S\> \coloneqq \frac{1}{\sqrt{2}} (|1\> + |2\>),
+\end{equation}
+in the computational basis. Its distribution $W_{|S\>\<S|}(\z)$ has a single negative value of $-1/3$ at $\z =(0,0)$ and the positive value $1/6$ at all other points. We define the $\epsilon$--noisy Strange state as
+\begin{equation}\label{eq:noisysn}
+    \rho_{\rm{S}}(\epsilon)\coloneqq (1 - \epsilon) \ket{\rm{S}}\bra{\rm{S}} + \epsilon \frac{1}{3}\id,
+\end{equation}
+where $\epsilon$ is the depolarizing error parameter. Any magic state $\rho$ can be processed via Clifford operations~\cite{cit:prakash,cit:prakash2} and put into this canonical form for some $\epsilon \ge 0$.
+
+The Wigner distribution of the single-copy, $\epsilon$--noisy Strange state  is given by
+\begin{equation}
+	W_{\rho_{\rm{S}}(\epsilon)}(\z) = (1-\epsilon)W_{|\rm{S}\>\<\rm{S}|}(\z) + \epsilon W_{\frac{1}{3}\id}(\z).
+\end{equation}
+with a single negative component
+\begin{equation}
+	- v(\epsilon) \coloneqq - \left( \frac{1}{3} -\frac{4}{9}\epsilon \right)
+\end{equation} 
+located at the origin $\z = \bmo$ and positive components
+\begin{equation}
+	u(\epsilon) \coloneqq \frac{1}{6} -\frac{1}{18}\epsilon
+\end{equation}
+at the 8 phase space points $\z \ne \bmo$. We assume that $\epsilon < 3/4$ to ensure the presence of negativity in the Wigner distribution. 
+
+We now consider the problem of purifying $n$ copies of a noisy Strange state $\rho_{\rm{S}}(\epsilon)^{\otimes n}$ into a smaller number of copies $n'$ of a less noisy Strange state $\rho_{\rm{S}}(\epsilon')^{\otimes n'}$, with $\epsilon' < \epsilon$ and $n' \leq n$. In particular, we compute the Lorenz curves for the transformation
+\begin{equation}\label{eq:sudist}
+	\rho_{\rm{S}}(\epsilon)^{\otimes n} \longrightarrow \rho_{\rm{S}}(\epsilon')^{\otimes n'},
+\end{equation}
+and use them to bound the magic distillation rate $R(\epsilon, \epsilon') \coloneqq n'/n$.
+
+Due to negativity, the ordering of the components of the rescaled Wigner distribution $W_{\rho_n |\sigma_n}(\z) \coloneqq W_{\rho_n}(\z)/W_{\sigma_n}(\z)$, for $\rho_n = \rho_S(\epsilon)^{\otimes n}$, and $\sigma_n = \sigma^{\otimes n}= (\id/3)^{\otimes n}$, depends on whether $-v(\epsilon)$ is raised to an even or odd power. Treating the Wigner distributions as vectors, the component values $w_i$ and associated multiplicities $m_i$ in the $n$--copy case are found to be 
+\begin{align}
+	m_i &= 8^{i}\binom{n}{i}, \\
+	w_i &= u^{i}(-v)^{n-i}, \label{eq:wigu}
+\end{align}
+where index $i$ runs through $0, \dots, n$, and we assume for simplicity that $n$ is even and $\epsilon \leq 3/7$, which implies that $v \geq u$.
+All details on the analysis are provided in Supplementary Note~3.
+
+The Lorenz curve $L_{\rho_n|\sigma_n}(x)$ reaches a maximum value of
+\begin{align}\label{eq:lcsu_max}
+	L_\star &\coloneqq L_{\rho_n |\sigma_n} (x_\star) = \sum_{i = 0}^{n/2} m_{2i} w_{2i} \nonumber\\
+	&= \frac{1}{2} + \frac{1}{2}\left(\frac{15 - 8\epsilon}{9}\right)^n > 1,
+\end{align}
+which occurs at $x=x_\star$ given by
+\begin{equation}
+	x_\star = \frac{1}{2} + \frac{1}{2}\left(\frac{7}{9}\right)^n.
+\end{equation}
+
+Distillation bounds can be obtained from any part of the Lorenz curve by imposing the constraint that the Lorenz curve of the input state never dips below the curve of the output. One simple constraint can be obtained by considering the initial slopes of the two Lorenz curves. 
+
+The coordinates of the first point after the origin for $\rho_S(\epsilon)^{\otimes n}$ are given by $(1/9^n, v(\epsilon)^n)$, while for $\rho_S(\epsilon')^{\otimes n'}$ by $(1/9^{n'}, v(\epsilon')^{n'})$, and by requiring that the initial slope for the input state Lorenz curve is larger than that of the output state (Proposition~12 in Supplementary Note~2) we find that
+\begin{equation}\label{eq:unital-bound}
+	R(\epsilon, \epsilon') \leq R_\infty \coloneqq\frac{\log (3-4\epsilon)}{\log (3-4\epsilon')}.
+\end{equation}
+The choice of denoting the bound by $R_\infty$ is explained in the derivation of Eq.~(\ref{eq:Ra}) in relation to single-shot entropies. For the limiting case of pure magic states on the output ($\epsilon'=0$), this simplifies to
+\begin{equation}
+	R \leq 1 + \frac{\log (1 - \frac{4}{3} \epsilon)}{\log 3}.
+\end{equation}
+We compare this to other known distillation bounds coming from mana and thauma. The mana bound can be directly calculated as
+\begin{equation}
+	R \leq \frac{\M(\rho_{\rm{S}}(\epsilon))}{\M(\rho_{\rm{S}}(0))} = 1 + \frac{\log \left(1 - \frac{8}{15}\epsilon \right)}{\log \frac{5}{3}}.
+\end{equation}
+The max--thauma~\cite{Wang_2020} is defined as
+\begin{equation}
+	\theta_{\rm{max}}(\rho) \coloneqq \log \min{\{2\hspace{1pt}{\rm sn}(V)+1 : V \geq \rho\}}
+\end{equation}
+and can be calculated numerically via a semi-definite program. For the noisy Strange state, the max--thauma bound coincides with the mana bound, and we find that they are both looser than the majorization bound $R_\infty$ as shown in Fig.~\ref{fig:distill_bounds}. 
+
+This figure includes numerical estimates of the optimal majorization bounds $R_{\rm{num}}$ obtained by considering the full Lorenz curve, which show that the bound $R_\infty$ can be further improved. While this is an improvement on prior results,  all known distillation protocols have rates much lower than these upper bounds.  It remains a major open question to determine what are the best possible rates that can be achieved.
+
+\subsection*{Temperature-dependent bounds for magic distillation protocols}
+
+We now show how relative majorization can incorporate the system's Hamiltonian into magic distillation bounds. The way we do this is by considering how the protocol would disturb a reference equilibrium state $\tau$ to some different state $\tau'$, if the protocol had been applied to this reference state instead of the actual $n$-copy magic state. 
+
+We consider a magic distillation protocol on multiple identical qudits in a noisy magic state $\rho(\epsilon)$, with noise parameter $\epsilon$, sending 
+\begin{equation}
+\rho(\epsilon)^{\otimes n} \longrightarrow \E(\rho(\epsilon)^{\otimes n}) =\rho(\epsilon')^{\otimes m}
+\end{equation}
+with $n \gg 1$, $\epsilon' <\epsilon$ and $\E$ denoting the quantum channel induced by the protocol. We also assume each qudit has a Hamiltonian $H$ and neglect interaction terms. We choose some temperature $T = (k\beta)^{-1}$ where $k$ is Boltzmann's constant and $\beta$ the inverse temperature. The reference equilibrium state of the $n$ qudits is given by
+\begin{equation}
+\tau^{\otimes n} = \left ( \frac{e^{-\beta H}}{\Z} \right )  ^{\otimes n}.
+\end{equation}
+We may also assume that the reference state $\tau$ is not a magic state, and has a strictly positive Wigner distribution $W_\tau(\z)$.
+
+A given magic protocol on the $n$ qudits will correspond to a quantum channel $\E$. We also assume for simplicity that $U_\pi\E(X) U_\pi^\dagger = \E(X)$ for all $X$ and any permutation $U_\pi$ of the $m$ output subsystems. This is justified because the protocol on the input magic state results in state $\rho(\epsilon')^{\otimes m}$, which is invariant under permutations. Therefore, we are always allowed to symmetrize the output $\E(X)$ by performing a group average over the permutation group for the output systems without changing the performance of the distillation protocol on $\rho(\epsilon)^{\otimes n}$. Thus, we can assume that $\E$ always outputs a symmetric state in general. This means that $\E(\tau^{\otimes n})$ is a symmetric state on $m$ subsystems, so by the quantum de Finetti theorem~\cite{hudson_locally_1976, christandl_2007} we have that for $m \gg 1$
+\begin{equation}
+\E(\tau) \approx \int d\mu(x) \tau_x^{\prime \otimes m},
+\end{equation}
+where $d\mu(x)$ is a probability measure over a set $\{\tau'_x\}$ of single qudit states.
+
+\subsection*{Free energy and sub-linear correlations in the thermodynamic limit}
+
+To keep our analysis simple we make the following physical assumption. We assume that in the asymptotic/thermodynamic limit $n,m \rightarrow \infty$ the correlations generated on the reference equilibrium state are negligible. This implies that $d\mu(x)$ is peaked on a particular state $\tau'$, and $\E(\tau^{\otimes n}) \approx \tau'^{\otimes m}$. This scenario occurs in the context of traditional thermodynamics, and states that the output system is well-described by intrinsic variables that do not scale in $m$, and correlations are sub-linear in $m$. In particular, this allows us to compute a free energy per qudit of the output state. 
+
+Non-trivial correlations in the thermodynamic limit can also be considered, but leads to a more complex analysis within our majorization framework of Wigner distributions. In this direction, we highlight recent work in majorization in which stochastic independence and correlations are analysed. It has been shown~\cite{muller_2015} that stochastic independence (no correlations) of independent distributions can be viewed as a resource in an extension of catalytic majorization, and leads to a single-shot operational interpretation of the Shannon entropy~\cite{muller_2016, muller_2019}.
+
+Our bound depends on the von Neumann entropy $S(\rho)$ of a state, and the free energy at a particular temperature.
+For a state $\tau = e^{-\beta H}/\Z$, the Helmholtz free energy $F$ is given by
+\begin{equation}
+	F \coloneqq \tr[H \tau] - \beta^{-1}S(\tau) = -\beta^{-1}\log \Z,
+\end{equation}
+which is obtained from the internal energy via a Legendre transform~\cite{Pathria_1997}.
+
+The protocol transforms the equilibrium as $\tau^{\otimes n} \rightarrow \E(\tau^{\otimes n}) = \tau^{\prime \otimes m}$.  The protocol does not generate magic on its own, so we assume that the output state $\tau'$ is also a Wigner-positive state. However, this is generally a non-equilibrium state for the system. Despite this it is useful to associate an effective Hamiltonian $H'$ to the output state by considering the change $H \rightarrow H'$ such that equilibrium is restored at the reference temperature $T$. This Hamiltonian is defined by the expression $\tau' = e^{-\beta H'}/\Z'$, and has free energy $F' = -\beta^{-1} \log \Z'$.
+
+The magic state protocol is now considered by how it transforms the pair of quantum states $(\rho^{\otimes n}, \tau^{\otimes n})$ and is then constrained by the relative majorization condition $(W_{\rho}, W_\tau) \succ (W_{\rho'}, W_{\tau'})$ that holds due to the protocol being a stochastic map in the Wigner representation.
+
+In Supplementary Note~4 we analyse the Lorenz curves of this condition and obtain the following magic distillation bound that combines computational measures $\epsilon,\epsilon'$, with terms that depend on the Hamiltonian and reference temperature $T$ of the physical system. We state the result for the case of qutrits, but a similar analysis works for general odd-dimension qudits.
+
+\begin{theorem}\label{thm:free-energy}
+	Consider a magic distillation protocol on qutrits that transforms $n$ copies of an $\epsilon$--noisy Strange state into $m$ copies of an $\epsilon'$--noisy Strange state, with depolarising errors $\epsilon' \leq \epsilon \leq 3/7$. We also allow pre/post-processing by local Clifford unitaries.
+	
+	Let $T =(k\beta)^{-1}$ be any finite temperature for the physical system and let $H= \sum_{k \in \mathbb{Z}_3} E_k |E_k\>\<E_k|$ be the Hamiltonian of each qutrit subsystem in its eigen-decomposition.
+Assume that in the thermodynamic limit ($n,m \gg 1$), the protocol applied to the equilibrium state $\tau^{\otimes n} = (e^{-\beta H}/\Z)^{\otimes n}$ maps $\tau^{\otimes n} \longrightarrow \tau^{\prime \otimes m}$, where we write $\tau' = e^{-\beta H'}/\Z'$ for some Hermitian $H'$.
+
+Then the asymptotic magic distillation rate $R = m/n$ is bounded as
+\begin{equation}\label{eq:rate_bounds_proof}
+	R \leq \dfrac{\log \big( 1-\frac{4}{3}\epsilon \big) + \beta (\phi - F)}{\log \big( 1-\frac{4}{3}\epsilon' \big) + \beta (\phi' - F')},
+\end{equation}
+where $F$ is the free energy of $\tau$,  and 
+\begin{equation}\label{eq:phi}
+	\phi = -\beta^{-1} \log \zeta
+\end{equation}
+with $\zeta$ given by the expressions
+\begin{align}
+	\zeta &= \sum_{k\in \mathbb{Z}_3} \alpha_k e^{-\beta E_k}, \\
+	\alpha_k &= \<E_k| A_{\z_\star} |E_k\>,
+\end{align}
+and $W_\tau(\z)$ attaining a minimum at $\z=\z_\star$. The primed variables are defined similarly for the output system.
+\end{theorem}
+\noindent The proof of this is provided in Supplementary Note~4, and follows a similar line to the unital protocol bound.
+
+The above bound depends on: 
+\begin{itemize}
+	\item Quantum computational measures $\epsilon, \epsilon'$,
+	\item Thermodynamic quantities $\beta, F, F'$,
+	\item Intermediate terms $\phi, \phi'$. 
+\end{itemize}
+The intermediate terms specify how the energy eigenbasis of the system $\{|E_k\>\}$ relates to the computational stabilizer basis $\{|k\>\}$.  In particular, the term $\phi$ quantifies to what degree a sharp energy value can be associated to the negativity in the Wigner representation. Its form is similar to $F$, and so $\phi$ can loosely speaking be viewed as a `magic free energy' term. 
+
+The coefficients $\alpha_k$ may be negative for some $k$, when the Hamiltonian has non-stabilizer eigenstates, but the quantity $\phi$ is always well-defined, since the function $\zeta$ is always positive for $\tau$ in the interior of $\F$. The quantity $\phi$ can diverge if the state $\tau$ acquired zero Wigner components, which occurs for $\tau$ on the boundary of the set of Wigner-positive states, and is not defined outside of $\F$. Finally, if $H$ has a stabilizer eigenbasis then $\phi = E_i$ for some $i$, independent of the temperature $T$. Details of this are provided in Supplementary Note~4.
+
+\subsection*{Technical aspects and special cases of free energy bounds}
+
+Similar to the unital protocol bounds, the above result is based on only part of the Lorenz curves and so can certainly be tightened with further analysis. The primary role of the pre/post-processing by Clifford unitaries in Theorem~\ref{thm:free-energy} is to simplify the form of the bound, and allow it to be expressed in terms of the free energy per particle in a way that does not depend on the parameters $\epsilon, \epsilon', \beta$ in a complex form. In Supplementary Note~4, we give bounds in which one does not include these Clifford changes of basis, thus having a more non-trivial dependency on the parameters.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[scale=0.39]{rate_scatter_twopanels.pdf}
+    \caption{\textbf{Temperature-dependent bounds for magic distillation.} Shown are two contour plots of the bound on $R(\epsilon, \beta)$ for the case $H = H' = \sum_{k \in \mathbb{Z}_3} k \ketbra{k}$ and $\epsilon' = 0$, where $\beta$ is the inverse temperature and $\epsilon$ is the depolarising error of the input magic state. 
+The top figure~(a) does not use any changes of Clifford basis, and the form of the bound depends on both the error parameter and temperature. The curved dashed line is $\epsilon_\star(\beta)$ and given by Eq.~(86) in Supplementary Note~4 and $\beta_\star = (kT_\star)^{-1}$ is given by $E_2-\phi = kT_\star \ln 2$. 
+In the bottom figure~(b) Clifford processing is used resulting in a smoother bound. In both figures the $\beta = 0$ line correspond to the unital bounds.}
+    \label{fig:rate_contour}
+\end{figure}
+
+The analysis makes other simplifying assumptions that could easily be dropped, at the price of more complex expressions. We could perform similar analysis for general qudits, and different choices of magic states, for example. It might also be of interest to consider other choices of reference states $\tau$ that are more appropriate to the hardware physics, for example for photonic set-ups~\cite{bombin2021interleaving}.
+
+The assumption which is non-trivial is that we neglect correlations in the reference state in the thermodynamic limit. However, for more general scenarios one could make use of variational tools such as the Bogoliubov inequality~\cite{bogolyubov_1966} for approximating the free energy of a system via product states, to obtain similar bounds.
+
+The simplest special case to consider is where the Hamiltonian $H$ is diagonal in the computational basis, and $H=H'$, implying that the protocol leaves the reference equilibrium state unchanged, hence it corresponds to a Gibbs-preserving map~\cite{faist_2015}. For the limiting case of $\epsilon' \rightarrow 0$ we obtain Fig.~\ref{fig:rate_contour} which is a contour plot of the bound on $R$ as a function of inverse temperature $\beta$ and the depolarising error $\epsilon$ for the noisy input magic states. In this figure we show both the bounds with Clifford basis changes and without them. In the more general case, $\Delta F \coloneqq F' - F \ne 0$, so the protocol, when applied to the reference state, adds/extracts free energy from the system.
+We demonstrate change of the bounds with respect to a varying output Hamiltonian in Fig.~\ref{fig:rvsa}.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.35]{R_vs_A.pdf}
+    \caption{\textbf{Variation of distillation bounds with Hamiltonian.}  We illustrate variation of the bound in Eq.~(\ref{eq:rate_bounds_proof}) with respect to the system Hamiltonian. We fix $(\epsilon, \epsilon', \beta) = (0.1, 0.0, 0.2)$ and look at a family of Hamiltonians for the qutrit systems, given by $H = A_{\bmo}$ and $H' = (1-p-q)A_{\bmo}+pA_{(1,2)}+q{\rm{diag}}(0,1,2)$, with varying parameters $p, q$, and where $A_{\bmo}$ and $A_{(1,2)}$ are phase-point operators. 
+    }
+    \label{fig:rvsa}
+\end{figure}
+
+\subsection*{Extension of single-shot entropies to quasi-distributions}
+
+We have considered Wigner distributions of magic states within a statistical mechanical setting in which it was argued that magic can be viewed as a non-classical form of free energy. This was done at the level of majorization constraints that appear due to stabilizer operations being described by stochastic maps in the Wigner representation. In this representation, non-equilibrium states with substantial free energy have Lorenz curves that deviate noticeably from the line $y=x$. We also found that when considered in a distillation protocol, magic could also be linked to physical free energies in a non-trivial way. We can therefore ask: is it possible to make a more direct link between magic and free energy or entropy?
+
+One obstacle to linking with macroscopic, equilibrium free energy is that the Wigner distribution is generally a quasi-distribution, so the entropy $H(\w) = -\sum_i w_i \log w_i$ of the Wigner distribution is not defined outside the set $\F$, let alone have a physically meaningful interpretation.
+ 
+However, it turns out that the analysis for the temperature-dependent bound given by Eq.~(\ref{eq:rate_bounds_proof}) implicitly made use of the single-shot R\'{e}nyi divergence~\cite{renyi_1960} $D_\infty (\p \hspace{1pt}||\hspace{1pt} \r)$, which is given by
+\begin{equation}
+	D_\infty (\p \hspace{1pt}||\hspace{1pt} \r) = \log \max_i \frac{p_i}{r_i}.
+\end{equation}
+It is clear that this does remain well-defined on quasi-distributions, and from the majorization relation also has a clear physical meaning, and in Supplementary Note~4, we show that this divergence has the following properties that are derived via relative majorization.
+\begin{theorem}\label{thm:Dinfty}
+	Let $\tau$ be in the interior of $\F$. Then $D_\infty(W_\rho || W_\tau)$ is well-defined for all $\rho$, and the following hold:
+\begin{enumerate}
+\item $D_\infty(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
+\item  $D_\infty(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) = 0$ if and only if $\rho =\tau$.
+\item $D_\infty(W_{\rho^{\otimes 2n}} \hspace{1pt}||\hspace{1pt} W_{\tau^{\otimes 2n}}) = n D_\infty(W_{\rho^{\otimes 2}} \hspace{1pt}||\hspace{1pt} W_{\tau^{\otimes 2}})$ for any $n \in \mathbb{N}$.
+\item $D_\infty(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \geq D_\infty(W_{\E(\rho)} \hspace{1pt}||\hspace{1pt} W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
+\end{enumerate}
+\end{theorem}
+The reason for the power of $2$ in the third property is that the maximization is sensitive to the presence of negativity in the Wigner distribution.
+
+We can go further, and show that in fact a range of R\'{e}nyi entropies remain both well-defined and meaningful in the Wigner representation. The $\alpha$--R\'{e}nyi entropy $H_\alpha(\p)$ is defined as~\cite{renyi_1960}
+\begin{equation}\label{eq:H}
+	H_\alpha(\p) \coloneqq \frac{1}{1-\alpha} \log \sum_i p_i^\alpha.
+\end{equation}
+To extend to quasi-distributions we must ensure the following: (a) the entropy is mathematically well-defined on quasi-distributions, and (b) obeys monotonicity under the majorization pre-order. In Supplementary Note~5 we prove the following.
+\begin{theorem}\label{thm:HSchur} 
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then $H_\alpha(\w)$ is well-defined on the set of quasi-distributions, and if $\w \succ \w'$ for two quasi-distributions $\w, \w'$ then $H_\alpha (\w) \leq H_\alpha(\w')$.
+\end{theorem}
+This monotonicity provides a meaningful extension of entropies to quasi-distributions. The unusual form of the $\alpha$ parameter is required so that the entropy function is well-defined and real-valued for all $\w$. The allowed values of $\alpha$ are dense in $\alpha >1$, however, while R\'{e}nyi entropies on probabilities can also be used for $0 < \alpha <1$, it turns out that this parameter regime is no longer monotonic in terms of the majorization pre-order for quasi-distributions (see Supplementary Note~5 for details).
+
+We can prove the following result, which establishes the equivalence between Wigner negativity and the existence of negative R\'{e}nyi entropy.
+\begin{theorem}\label{thm:Magic}
+	A quantum state $\rho$ has Wigner negativity if and only if $H_\alpha(W_\rho) <0$ for some $\alpha = \frac{2a}{2b-1}$, with positive integers $a \ge b$.
+\end{theorem}
+Therefore, the statistical mechanical description of stabilizer operations provides a setting in which negative entropy is fully meaningful, and quantifies the fact that magic states are more ordered than a perfectly sharp, deterministic classical state $\w = (1,0, \dots , 0)$ with zero entropy. We note that prior work has shown that negative conditional entropy~\cite{rio_thermodynamic_2011} arises in the context of quantum correlations, but is unrelated to the present negative entropy.
+
+The $\alpha \rightarrow 1$ limit of the R\'{e}nyi entropy diverges if negativity is present, however it diverges in a well-defined way. We can write the entropy as 
+\begin{equation}
+	H_{1+\epsilon}(W_\rho) = -\epsilon^{-1} \log \sum_{\z} |W_\rho (\z)|^{1+\epsilon}
+\end{equation} 
+with $\epsilon \rightarrow 0^+$ through a sequence of rational values. We recall that mana can be written as $\M(\rho) = \log \sum_{\z} |W_\rho(\z)|$, so we obtain a second perspective on mana:
+\begin{equation}\label{eq:mana-divergence}
+	\M(\rho) = -\lim_{\epsilon \rightarrow 0^+} \epsilon H_{1+\epsilon}(W_\rho).
+\end{equation}
+Therefore, the mana of a state $\rho$ is minus the residue of the pole at $\alpha=1$ for $H_\alpha(W_\rho)$, and quantifies the divergence of the R\'{e}nyi-entropy as we approach the limiting Shannon entropy $H(W_\rho)$. 
+
+We also note that the R\'{e}nyi entropy can be described as a $q$--deformation of the Shannon entropy~\cite{baez2011renyi}, and that $H_\alpha(\p)$ can be related to the $q$--derivative of free energy.  For this, the R\'{e}nyi parameter becomes a temperature term $\alpha = \frac{T_0}{T}$ where $T_0$ is a reference temperature and derivatives are considered via the limit $T \rightarrow T_0$. Therefore, if we try to push this to the present setting, the presence of Wigner negativity would correspond to a divergence in the first derivative of an effective free energy as $T \rightarrow T_0$. It is interesting to speculate whether this non-classicality could be interpreted in terms of a phase transition~\cite{domb2000phase}.
+
+\subsection*{R\'{e}nyi divergences and general distillation bounds}
+Every entropy can be obtained from a relative entropy~\cite{Gour_2020} so we now state the extensions for R\'{e}nyi divergences of Wigner distributions.
+The $\alpha$--R\'{e}nyi divergence $D_\alpha(\p||\r)$ is defined as
+\begin{equation}\label{eq:D}
+	D_\alpha(\p \hspace{1pt}||\hspace{1pt} \r) \coloneqq \frac{1}{\alpha-1} \log \sum_i p_i^\alpha r_i^{1-\alpha},
+\end{equation}
+where $\p$ can be a quasi-distribution and $\r$ a probability distribution with positive components. In Supplementary Note~5, we also show that the divergence satisfies the following.
+
+\begin{theorem}\label{thm:Da_props} 
+	Let $\tau$ be in the interior of $\F$. 
+	If $\alpha = \frac{2a}{2b-1}$ for positive integers $a,b$ with $a \geq b$, then the $\alpha$-R\'{e}nyi divergence $D_\alpha(W_\rho || W_\tau)$ is well-defined for all states $\rho$, and the following hold:
+\begin{enumerate}
+	\item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \ge 0$ for all quantum states $\rho$.
+	\item  $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) = 0$ if and only if $\rho =\tau$.
+	\item $D_\alpha(W_{\rho^{\otimes n}} \hspace{1pt}||\hspace{1pt} W_{\tau^{\otimes n}}) = n D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)$ for any $n \in \mathbb{N}$.
+	\item $D_\alpha(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau) \geq D_\alpha (W_{\E(\rho)} \hspace{1pt}||\hspace{1pt} W_{\E(\tau)})$ for any free operation $\E$ such that $\E(\tau)$ is in the interior of $\F$.
+\end{enumerate}
+\end{theorem}
+
+We can now apply this to obtain a family of magic distillation bounds based on R\'{e}nyi divergences.
+
+\begin{theorem}\label{thm:entropic_bounds}
+	Consider a general magic state distillation protocol on odd prime dimension qudits, that converts a magic state $\rho^{\otimes n} \longrightarrow \E(\rho^{\otimes n})=\rho'^{\otimes m}$ and let $\tau$ be any full-rank stabilizer reference state on a qudit. Then, the distillation rate $R \coloneqq m/n$ is upper bounded as
+	\begin{equation}
+		R \leq \frac{D_{\alpha}(W_\rho \hspace{1pt}||\hspace{1pt} W_\tau)}{\rlap{\raisebox{-0.2ex}{$\widetilde{\phantom{D}}$}}D_\alpha( \rho', \tau')},
+	\end{equation}
+	where $\alpha = \frac{2a}{2b-1}$ for any positive integers $a,b$ with $a \geq b$ and the average divergence per qudit
+	\begin{equation}
+\widetilde{D}_\alpha( \rho', \tau') \coloneqq \frac{1}{m} D_\alpha (W_{\rho'^{\otimes m}} \hspace{1pt}||\hspace{1pt} W_{\tau'_m}),
+\end{equation}
+between the output magic state $\rho'^{\otimes m}$ and $\tau'_m = \E(\tau^{\otimes n})$.
+\end{theorem}
+The proof is given in Supplementary Note~5. 
+
+While this bound is abstract in its present form, it does suggest future applications by viewing $\widetilde{D}_\alpha( \rho', \tau')$ within the context of hypothesis testing~\cite{tomamichel2013}, as a measure of distinguishability between $\rho'^{\otimes m}$ and the $m$ qudit state $\tau'_m$. 
+However, in order to properly link with hypothesis-testing one would have to first extend such results to quasi-distributions.
+
+If correlations in $\tau'_m$ between subsystems can be neglected, then $\tau'_m = \tau'^{\otimes m}$ for some qudit state $\tau'$ and
+\begin{equation}
+	\widetilde{D}_\alpha( \rho', \tau') = D_\alpha (W_{\rho'} \hspace{1pt}||\hspace{1pt} W_{\tau'}),
+\end{equation}
+which gives a generalized version of Theorem~\ref{thm:free-energy}, with a term such as $D_\alpha(W_\rho ||W_\tau)$ that behaves essentially as an $\alpha$--free energy difference~\cite{Brandao_2015} in the Wigner representation.
+
+We can illustrate a basic application of the above bound for magic protocols that give unital maps. In this case it is easy to see that the above bound reduces to the simple form
+\begin{equation}\label{eq:Ra}
+	R \leq R_\alpha \coloneqq \frac{2\log d - H_{\alpha}(W_\rho)}{2\log d - H_{\alpha}(W_{\rho'})}.
+\end{equation}
+In particular for the case of noisy Strange states on qutrits and $\epsilon'=0$, this bound becomes
+
+\begin{equation}
+	R \leq R_\alpha = \frac{2(1-\alpha)\log 3 - \log \left [8(\frac{1}{6} - \frac{\epsilon}{18})^\alpha + (-\frac{1}{3} + \frac{4\epsilon}{9})^\alpha\right ] }{2(1-\alpha)\log 3 + \alpha \log 6 - \log (8 + 2^\alpha )}.
+\end{equation}
+This upper bound can be numerically minimized over $\alpha$, for any $\epsilon$. The case $R_{10}$ is shown in Fig.~\ref{fig:distill_bounds} and numerical evidence shows it is close to the optimal bound from majorization.
+
+\section*{Discussion}
+
+We have described how relative majorization can be used to establish upper bounds on magic distillation protocols that take into account additional physics of the system. Our bounds exploited relatively simple aspects of the Lorenz curves of the quasi-distributions, so it would be of interest to sharpen these bounds and obtain a better handle on the Lorenz curve structure in the $n\rightarrow \infty$ limit. It would also be of interest to analyse what features of single-shot entropies can be extended to quasi-distributions in a sensible form~\cite{renner_phd, tomamichel2013}. This raises interesting questions as we no longer have a notion of typicality and the central limit theorem does not apply. That said, for special states such as the Strange state, the asymptotic behaviour is relatively simple, so exact asymptotics for this should be possible. In Supplementary Notes~2,~3 and~4 we give additional results that may be of use for later work.
+
+Because Theorem \ref{thm:frag}  provides a completeness statement for majorization, we can ask if this approach could additionally provide lower bounds for distillation protocols. In contrast to the upper bounds, it is now essential to include the symplectic constraints on the phase space in the majorization relations. In principle the resultant majorization (and relative majorization) constraints should provide exact specifications on what can be obtained via free operations. 
+Interestingly, this route does not require the use of error correcting codes, but instead is built on group-theoretic features of the phase space. 
+The Clifford group action on a quantum system corresponds to the action of the affine symplectic group $G \coloneqq SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_d^2$ on the discrete phase space~\cite{Appleby_2005, Bengtsson_2006}. Therefore, any convex mixture of Clifford unitaries will correspond to a convex mixture of these group actions. The Hardy-Littlewood theorem~\cite{hardy_1952} tells us that majorization is obtained from convex mixtures of arbitrary permutations, a result that has also been generalized to convex mixtures of elements of a general group $G$. $G$--majorization has been studied in the classical literature and a range of results are known about it~\cite{giovagnoli_1985, steerneman_1990, giovagnoli_cyclic_1996, eaton_1977}. 
+One can therefore consider sub-groups of the affine symplectic group and analyse the resulting majorization/relative majorization that follows from its action on quasi-distributions. However if the sub-group considered is too simple then it may lead to trivial distillation rates. An example of this is when we restrict to the set of Weyl covariant channels~\cite{fukuda2006}, which are represented by a convex mixture of displacements on the phase space. Initial work by the authors have shown that the majorization conditions for Weyl covariant channels can be solved exactly in terms of discrete Fourier transforms, however it is found that the resultant distillation rates are trivial.  
+
+One notable structure that could be exploited for $G$--majorization is when $G$ is a finite reflection group. For this,  the $G$--majorization pre-order is guaranteed to be described by a finite list of conditions~\cite{giovagnoli_1985}, just as is the case for the relative majorization ordering. Therefore one route to concrete lower bounds on distillation rates is to consider stochastic maps obtained by reflection sub-groups of $SL(2,\mathbb{Z}_d) \ltimes \mathbb{Z}_2$, or other simple sub-groups, for which the majorization relation reduces to a finite set of conditions. Beyond this, another promising route is to formulate the majorization conditions for a sub-set of operations as a semi-definite program and then attempt to estimate realisable distillation rates by exploiting dualities and appropriate coarse-grainings. This approach has recently been applied by one of the authors to estimate the set of quantum states accessible by covariant channels in the resource theory of asymmetry~\cite{alexander2021} where one allows depolarizing noise that is then minimized. 
+It would be of interest to see if a similar approach could be followed for magic state distillation.
+ 
+Beyond magic state distillation, the topic of $G$--majorization has been extensively studied, but to our knowledge there has not been work on relative $G$--majorization. This would correspond to transformations that are not unital. Physically, this regime would correspond to a form of thermo-majorization obtained from looking at the action of the Clifford group at a micro-canonical level, and then reducing to a small subsystem~\cite{Pathria_1997}. While this seems like a painful thing to consider, there is motivation for this beyond the aim of magic protocols: in the case of classical statistical mechanics on a phase space this is precisely the situation, albeit in the continuum limit. Statistical mechanics of actual systems obey Hamiltonian dynamics, thus they automatically respect a symplectic form~\cite{Arnold_2000, Pathria_1997}. Therefore, the pre-order of statistical mechanical states with respect to phase space dynamics preserving a Gibbs state must correspond to a symplectic majorization condition. Of course, technical features arise in the continuum limit when considering distributions on an unbounded phase space, but this could be remedied by either considering a compact phase space (e.g.~for a particle on a ring) or by first studying the discrete case. Such scenarios also arise in the Quantum Hall Effect~\cite{Klitzing_1980}, which is another regime where these techniques could be of use.
+
+Lastly, we note that it would be of interest to consider the possibility of applying the approach taken here to other scenarios in which one wishes to distinguish classical from non-classical behaviour based on quasi-probability representations~\cite{Ferrie_2008, barnett_1997,Allahverdyan_2018, arvidsson_2020, halpern_2018, Lostaglio_2018, Levy_2020}.
+
+\section*{Methods}
+
+\subsection*{Mathematical methods used for proofs}
+
+In order to derive our results we make use of three broad subfields.
+
+The first one is the phase space representation of quantum systems as described in the first section of our Results.
+Generally, there are various possible representations~\cite{Ferrie_2008}, but we make use of the distinguished Wigner representation~\cite{Gross2006} for odd-dimensional systems.
+
+We then develop a theory of majorization~\cite{cit:marshall,  Veinott_1971, Ruch_1976} for quasi-distributions so as to impose a partial order between magic states.
+
+Finally, we extend the theory of classical R\'{e}nyi entropies and divergences~\cite{renyi_1960} for probability distributions to quasi-distributions and show that they possess sufficient properties for the derivation of our entropic bounds. 
+
+Precise definitions of all the above concepts and explanations of their incorporation to the study of magic distillation are provided in the Results section as the concepts become relevant.
+
+\section*{Data availability}
+No datasets were generated or analysed during the current study.
+
+\section*{Code availability}
+The code used to produce the figures in this work is available from the corresponding author upon reasonable request.
+
+\section*{Acknowledgements}
+We thank Earl Campbell, Matteo Lostaglio, Philippe Faist and Nicole Yunger Halpern for helpful comments and discussions. NK is supported by the EPSRC Centre for Doctoral Training in Controlled Quantum Dynamics. DJ is supported by the Royal Society and a University Academic Fellowship.
+
+\section*{Competing interests}
+The authors declare no competing interests.
+
+\section*{Author contributions}
+DJ proposed the initial idea. 
+Derivations were done by NK. 
+Analysis and writing of the manuscript were jointly done by NK and DJ.
+
+\section*{References}
+
+\providecommand{\noopsort}[1]{}\providecommand{\singleletter}[1]{#1}
+\begin{thebibliography}{100}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{}\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{campbell_roads_2017}
+\bibinfo{author}{Campbell, E.~T.}, \bibinfo{author}{Terhal, B.~M.} \&
+  \bibinfo{author}{Vuillot, C.}
+\newblock \bibinfo{title}{Roads towards fault-tolerant universal quantum
+  computation}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{549}},
+  \bibinfo{pages}{172--179} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/nature23460}.
+
+\bibitem{cit:raussendorf}
+\bibinfo{author}{Raussendorf{ }, R.} \& \bibinfo{author}{Briegel, H.~J.}
+\newblock \bibinfo{title}{A one-way quantum computer}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{86}}, \bibinfo{pages}{5188--5191}
+  (\bibinfo{year}{2001}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.86.5188}.
+
+\bibitem{Raussendorf_2013}
+\bibinfo{author}{Raussendorf, R.}, \bibinfo{author}{Browne, D.~E.} \&
+  \bibinfo{author}{Briegel, H.~J.}
+\newblock \bibinfo{title}{Measurement-based quantum computation on cluster
+  states}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{68}},
+  \bibinfo{pages}{022312} (\bibinfo{year}{2003}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.68.022312}.
+
+\bibitem{Nickerson_2014}
+\bibinfo{author}{Nickerson, N.~H.}, \bibinfo{author}{Fitzsimons, J.~F.} \&
+  \bibinfo{author}{Benjamin, S.~C.}
+\newblock \bibinfo{title}{Freely scalable quantum technologies using cells of
+  5-to-50 qubits with very lossy and noisy photonic links}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{4}},
+  \bibinfo{pages}{041041} (\bibinfo{year}{2014}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.4.041041}.
+
+\bibitem{Nikahd_2017}
+\bibinfo{author}{Nikahd, E.}, \bibinfo{author}{Sedighi, M.} \&
+  \bibinfo{author}{Saheb~Zamani, M.}
+\newblock \bibinfo{title}{Nonuniform code concatenation for universal
+  fault-tolerant quantum computing}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{pages}{032337} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.96.032337}.
+
+\bibitem{chao_2018}
+\bibinfo{author}{Chao, R.} \& \bibinfo{author}{Reichardt, B.~W.}
+\newblock \bibinfo{title}{Fault-tolerant quantum computation with few qubits}.
+\newblock \emph{\bibinfo{journal}{npj Quantum Inf.}}
+  \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{1--8} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/s41534-018-0085-z}.
+
+\bibitem{lin_pieceable_2020}
+\bibinfo{author}{Lin, C.}, \bibinfo{author}{Yang, G.}, \bibinfo{author}{Luo,
+  Q.} \& \bibinfo{author}{Li, X.}
+\newblock \bibinfo{title}{Pieceable fault tolerant conversion between 5-qubit
+  code and 7-{CSS} code}.
+\newblock \emph{\bibinfo{journal}{Quantum Inf. Process.}}
+  \textbf{\bibinfo{volume}{19}}, \bibinfo{pages}{243} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/s11128-020-02740-3}.
+
+\bibitem{Lin_2020}
+\bibinfo{author}{Lin, C.} \& \bibinfo{author}{Yang, G.}
+\newblock \bibinfo{title}{Concatenated pieceable fault-tolerant scheme for
+  universal quantum computation}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{102}}, \bibinfo{pages}{052415}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.102.052415}.
+
+\bibitem{chamberland_2020}
+\bibinfo{author}{Chamberland, C.} \emph{et~al.}
+\newblock \bibinfo{title}{Building a fault-tolerant quantum computer using
+  concatenated cat codes} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2012.04108}.
+
+\bibitem{Bourassa_2021}
+\bibinfo{author}{Bourassa, J.~E.} \emph{et~al.}
+\newblock \bibinfo{title}{Blueprint for a {S}calable {P}hotonic
+  {F}ault-{T}olerant {Q}uantum {C}omputer}.
+\newblock \emph{\bibinfo{journal}{{Quantum}}} \textbf{\bibinfo{volume}{5}},
+  \bibinfo{pages}{392} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://doi.org/10.22331/q-2021-02-04-392}.
+
+\bibitem{Bravyi_1998}
+\bibinfo{author}{Bravyi, S.~B.} \& \bibinfo{author}{Kitaev, A.~Y.}
+\newblock \bibinfo{title}{Quantum codes on a lattice with boundary}
+  (\bibinfo{year}{1998}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/quant-ph/9811052}.
+
+\bibitem{Freedman_2001}
+\bibinfo{author}{Freedman, M.~H.}
+\newblock \bibinfo{title}{Quantum computation and the localization of modular
+  functors}.
+\newblock \emph{\bibinfo{journal}{Found. Comut. Math.}}
+  \textbf{\bibinfo{volume}{1}}, \bibinfo{pages}{183--204}
+  (\bibinfo{year}{2001}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/s102080010006}.
+
+\bibitem{Dennis_2002}
+\bibinfo{author}{Dennis, E.}, \bibinfo{author}{Kitaev, A.},
+  \bibinfo{author}{Landahl, A.} \& \bibinfo{author}{Preskill, J.}
+\newblock \bibinfo{title}{Topological quantum memory}.
+\newblock \emph{\bibinfo{journal}{J. Math. Phys.}}
+  \textbf{\bibinfo{volume}{43}}, \bibinfo{pages}{4452--4505}
+  (\bibinfo{year}{2002}).
+%\newblock \urlprefix\url{https://aip.scitation.org/doi/10.1063/1.1499754}.
+
+\bibitem{Raussendorf_2007}
+\bibinfo{author}{Raussendorf, R.} \& \bibinfo{author}{Harrington, J.}
+\newblock \bibinfo{title}{Fault-tolerant quantum computation with high
+  threshold in two dimensions}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{98}}, \bibinfo{pages}{190504}
+  (\bibinfo{year}{2007}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.98.190504}.
+
+\bibitem{Eastin_2009}
+\bibinfo{author}{Eastin, B.} \& \bibinfo{author}{Knill, E.}
+\newblock \bibinfo{title}{Restrictions on transversal encoded quantum gate
+  sets}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{102}}, \bibinfo{pages}{110502}
+  (\bibinfo{year}{2009}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.102.110502}.
+
+\bibitem{Calderbank_1996}
+\bibinfo{author}{Calderbank, A.~R.} \& \bibinfo{author}{Shor, P.~W.}
+\newblock \bibinfo{title}{Good quantum error-correcting codes exist}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{54}},
+  \bibinfo{pages}{1098--1105} (\bibinfo{year}{1996}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.54.1098}.
+
+\bibitem{Steane_1996}
+\bibinfo{author}{Steane, A.}
+\newblock \bibinfo{title}{Multiple-particle interference and quantum error
+  correction}.
+\newblock \emph{\bibinfo{journal}{Proc. Math. Phys. Eng. Sci.}}
+  \textbf{\bibinfo{volume}{452}}, \bibinfo{pages}{2551--2577}
+  (\bibinfo{year}{1996}).
+%\newblock \urlprefix\url{https://royalsocietypublishing.org/doi/abs/10.1098/rspa.1996.0136}.
+
+\bibitem{cit:bravyi}
+\bibinfo{author}{Bravyi{ }, S.} \& \bibinfo{author}{Kitaev, A.}
+\newblock \bibinfo{title}{Universal quantum computation with ideal clifford
+  gates and noisy ancillas}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{71}},
+  \bibinfo{pages}{022316} (\bibinfo{year}{2005}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.71.022316}.
+
+\bibitem{Jones_2013}
+\bibinfo{author}{Jones, C.}
+\newblock \bibinfo{title}{Multilevel distillation of magic states for quantum
+  computing}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{87}},
+  \bibinfo{pages}{042305} (\bibinfo{year}{2013}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.87.042305}.
+
+\bibitem{Ogorman_2017}
+\bibinfo{author}{O'Gorman, J.} \& \bibinfo{author}{Campbell, E.~T.}
+\newblock \bibinfo{title}{Quantum computation with realistic magic-state
+  factories}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{032338} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.95.032338}.
+
+\bibitem{Bravyi2012}
+\bibinfo{author}{Bravyi, S.} \& \bibinfo{author}{Haah, J.}
+\newblock \bibinfo{title}{Magic-state distillation with low overhead}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{86}},
+  \bibinfo{pages}{052329} (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.86.052329}.
+
+\bibitem{haah2017magic}
+\bibinfo{author}{Haah, J.}, \bibinfo{author}{Hastings, M.~B.},
+  \bibinfo{author}{Poulin, D.} \& \bibinfo{author}{Wecker, D.}
+\newblock \bibinfo{title}{Magic state distillation with low space overhead and
+  optimal asymptotic input count}.
+\newblock \emph{\bibinfo{journal}{{Quantum}}} \textbf{\bibinfo{volume}{1}},
+  \bibinfo{pages}{31} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://doi.org/10.22331/q-2017-10-03-31}.
+
+\bibitem{Hastings2018}
+\bibinfo{author}{Hastings, M.~B.} \& \bibinfo{author}{Haah, J.}
+\newblock \bibinfo{title}{Distillation with sublogarithmic overhead}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{120}}, \bibinfo{pages}{050504}
+  (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.120.050504}.
+
+\bibitem{Litinski_2019}
+\bibinfo{author}{Litinski, D.}
+\newblock \bibinfo{title}{Magic {S}tate {D}istillation: {N}ot as {C}ostly as
+  {Y}ou {T}hink}.
+\newblock \emph{\bibinfo{journal}{{Quantum}}} \textbf{\bibinfo{volume}{3}},
+  \bibinfo{pages}{205} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://doi.org/10.22331/q-2019-12-02-205}.
+
+\bibitem{CampbellAnwar_2012}
+\bibinfo{author}{Campbell, E.~T.}, \bibinfo{author}{Anwar, H.} \&
+  \bibinfo{author}{Browne, D.~E.}
+\newblock \bibinfo{title}{Magic-state distillation in all prime dimensions
+  using quantum reed-muller codes}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{2}},
+  \bibinfo{pages}{041021} (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.2.041021}.
+
+\bibitem{Anwar_2012}
+\bibinfo{author}{Anwar, H.}, \bibinfo{author}{Campbell, E.~T.} \&
+  \bibinfo{author}{Browne, D.~E.}
+\newblock \bibinfo{title}{Qutrit magic state distillation}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{14}}, \bibinfo{pages}{063006}
+  (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/14/6/063006}.
+
+\bibitem{Dawkins_2015}
+\bibinfo{author}{Dawkins, H.} \& \bibinfo{author}{Howard, M.}
+\newblock \bibinfo{title}{Qutrit magic state distillation tight in some
+  directions}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{115}}, \bibinfo{pages}{030501}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.115.030501}.
+
+\bibitem{Krishna2019}
+\bibinfo{author}{Krishna, A.} \& \bibinfo{author}{Tillich, J.-P.}
+\newblock \bibinfo{title}{Towards low overhead magic state distillation}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{123}}, \bibinfo{pages}{070507}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.123.070507}.
+
+\bibitem{cit:prakash}
+\bibinfo{author}{Prakash, S.}
+\newblock \bibinfo{title}{Magic state distillation with the ternary golay
+  code}.
+\newblock \emph{\bibinfo{journal}{Proc. Math. Phys. Eng. Sci.}}
+  \textbf{\bibinfo{volume}{476}}, \bibinfo{pages}{20200187}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://royalsocietypublishing.org/doi/abs/10.1098/rspa.2020.0187}.
+
+\bibitem{chamberland_very_2020}
+\bibinfo{author}{Chamberland, C.} \& \bibinfo{author}{Noh, K.}
+\newblock \bibinfo{title}{Very low overhead fault-tolerant magic state
+  preparation using redundant ancilla encoding and flag qubits}.
+\newblock \emph{\bibinfo{journal}{npj Quantum Inf.}}
+  \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{91} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/s41534-020-00319-5}.
+
+\bibitem{Chamberland2019faulttolerantmagic}
+\bibinfo{author}{Chamberland, C.} \& \bibinfo{author}{Cross, A.~W.}
+\newblock \bibinfo{title}{Fault-tolerant magic state preparation with flag
+  qubits}.
+\newblock \emph{\bibinfo{journal}{{Quantum}}} \textbf{\bibinfo{volume}{3}},
+  \bibinfo{pages}{143} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://doi.org/10.22331/q-2019-05-20-143}.
+
+\bibitem{Campbell_2017}
+\bibinfo{author}{Campbell, E.~T.} \& \bibinfo{author}{Howard, M.}
+\newblock \bibinfo{title}{Unifying gate synthesis and magic state
+  distillation}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{118}}, \bibinfo{pages}{060501}
+  (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.118.060501}.
+
+\bibitem{Howard_2017}
+\bibinfo{author}{Campbell, E.~T.} \& \bibinfo{author}{Howard, M.}
+\newblock \bibinfo{title}{Unified framework for magic state distillation and
+  multiqubit gate synthesis with reduced resource cost}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{022316} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.95.022316}.
+
+\bibitem{Prakash_2018}
+\bibinfo{author}{Prakash, S.}, \bibinfo{author}{Jain, A.},
+  \bibinfo{author}{Kapur, B.} \& \bibinfo{author}{Seth, S.}
+\newblock \bibinfo{title}{Normal form for single-qutrit clifford+$t$ operators
+  and synthesis of single-qutrit gates}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{98}},
+  \bibinfo{pages}{032304} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.98.032304}.
+
+\bibitem{Seddon_2021}
+\bibinfo{author}{Seddon, J.~R.}, \bibinfo{author}{Regula, B.},
+  \bibinfo{author}{Pashayan, H.}, \bibinfo{author}{Ouyang, Y.} \&
+  \bibinfo{author}{Campbell, E.~T.}
+\newblock \bibinfo{title}{Quantifying quantum speedups: Improved classical
+  simulation from tighter magic monotones}.
+\newblock \emph{\bibinfo{journal}{PRX Quantum}} \textbf{\bibinfo{volume}{2}},
+  \bibinfo{pages}{010345} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PRXQuantum.2.010345}.
+
+\bibitem{leone2021renyi}
+\bibinfo{author}{Leone, L.}, \bibinfo{author}{Oliviero, S. F.~E.} \&
+  \bibinfo{author}{Hamma, A.}
+\newblock \bibinfo{title}{R{\'e}nyi entropy of magic} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2106.12587}.
+
+\bibitem{Gour_2019}
+\bibinfo{author}{Chitambar, E.} \& \bibinfo{author}{Gour, G.}
+\newblock \bibinfo{title}{Quantum resource theories}.
+\newblock \emph{\bibinfo{journal}{Rev. Mod. Phys.}}
+  \textbf{\bibinfo{volume}{91}}, \bibinfo{pages}{025001}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/RevModPhys.91.025001}.
+
+\bibitem{cit:ahmadi}
+\bibinfo{author}{Ahmadi, M.}, \bibinfo{author}{Dang, H.~B.},
+  \bibinfo{author}{Gour, G.} \& \bibinfo{author}{Sanders, B.~C.}
+\newblock \bibinfo{title}{Quantification and manipulation of magic states}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{97}},
+  \bibinfo{pages}{062332} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.97.062332}.
+
+\bibitem{cit:seddon}
+\bibinfo{author}{Seddon, J.~R.} \& \bibinfo{author}{Campbell, E.~T.}
+\newblock \bibinfo{title}{Quantifying magic for multi-qubit operations}.
+\newblock \emph{\bibinfo{journal}{Proc. Math. Phys. Eng. Sci.}}
+  \textbf{\bibinfo{volume}{475}}, \bibinfo{pages}{20190251}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://royalsocietypublishing.org/doi/abs/10.1098/rspa.2019.0251}.
+
+\bibitem{Wang_2019}
+\bibinfo{author}{Wang, X.}, \bibinfo{author}{Wilde, M.~M.} \&
+  \bibinfo{author}{Su, Y.}
+\newblock \bibinfo{title}{Quantifying the magic of quantum channels}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{21}}, \bibinfo{pages}{103002}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/ab451d}.
+
+\bibitem{Sarkar_2020}
+\bibinfo{author}{Sarkar, S.}, \bibinfo{author}{Mukhopadhyay, C.} \&
+  \bibinfo{author}{Bayat, A.}
+\newblock \bibinfo{title}{Characterization of an operational quantum resource
+  in a critical many-body system}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{22}}, \bibinfo{pages}{083077}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/aba919}.
+
+\bibitem{White_2021}
+\bibinfo{author}{White, C.~D.}, \bibinfo{author}{Cao, C.} \&
+  \bibinfo{author}{Swingle, B.}
+\newblock \bibinfo{title}{Conformal field theories are magical}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. B}}
+  \textbf{\bibinfo{volume}{103}}, \bibinfo{pages}{075145}
+  (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevB.103.075145}.
+
+\bibitem{Vega_2017}
+\bibinfo{author}{Bermejo-Vega, J.}, \bibinfo{author}{Delfosse, N.},
+  \bibinfo{author}{Browne, D.~E.}, \bibinfo{author}{Okay, C.} \&
+  \bibinfo{author}{Raussendorf, R.}
+\newblock \bibinfo{title}{Contextuality as a resource for models of quantum
+  computation with qubits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{119}}, \bibinfo{pages}{120505}
+  (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.119.120505}.
+
+\bibitem{cit:howard2}
+\bibinfo{author}{Howard, M.}, \bibinfo{author}{Wallman, J.},
+  \bibinfo{author}{Veitch, V.} \& \bibinfo{author}{Emerson, J.}
+\newblock \bibinfo{title}{Contextuality supplies the ‘magic’ for quantum
+  computation}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{510}},
+  \bibinfo{pages}{351--355} (\bibinfo{year}{2014}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/nature13460}.
+
+\bibitem{Zurel_2020}
+\bibinfo{author}{Zurel, M.}, \bibinfo{author}{Okay, C.} \&
+  \bibinfo{author}{Raussendorf, R.}
+\newblock \bibinfo{title}{Hidden variable model for universal quantum
+  computation with magic states on qubits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{125}}, \bibinfo{pages}{260404}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.125.260404}.
+
+\bibitem{Okay_2021}
+\bibinfo{author}{Okay, C.}, \bibinfo{author}{Zurel, M.} \&
+  \bibinfo{author}{Raussendorf, R.}
+\newblock \bibinfo{title}{On the extremal points of the {$\Lambda$}-polytopes
+  and classical simulation of quantum computation with magic states}
+  (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2104.05822}.
+
+\bibitem{schmid2020structure}
+\bibinfo{author}{Schmid, D.}, \bibinfo{author}{Selby, J.~H.},
+  \bibinfo{author}{Pusey, M.~F.} \& \bibinfo{author}{Spekkens, R.~W.}
+\newblock \bibinfo{title}{A structure theorem for generalized-noncontextual
+  ontological models} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2005.07161}.
+
+\bibitem{Schmid_2021}
+\bibinfo{author}{Schmid, D.}, \bibinfo{author}{Selby, J.~H.},
+  \bibinfo{author}{Wolfe, E.}, \bibinfo{author}{Kunjwal, R.} \&
+  \bibinfo{author}{Spekkens, R.~W.}
+\newblock \bibinfo{title}{Characterization of noncontextuality in the framework
+  of generalized probabilistic theories}.
+\newblock \emph{\bibinfo{journal}{PRX Quantum}} \textbf{\bibinfo{volume}{2}},
+  \bibinfo{pages}{010331} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PRXQuantum.2.010331}.
+
+\bibitem{jones_2012}
+\bibinfo{author}{Jones, N.~C.} \emph{et~al.}
+\newblock \bibinfo{title}{Layered architecture for quantum computing}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{2}},
+  \bibinfo{pages}{031007} (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.2.031007}.
+
+\bibitem{Li_2017}
+\bibinfo{author}{Li, Y.} \& \bibinfo{author}{Benjamin, S.~C.}
+\newblock \bibinfo{title}{Efficient variational quantum simulator incorporating
+  active error minimization}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{7}},
+  \bibinfo{pages}{021050} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.7.021050}.
+
+\bibitem{Temme_2017}
+\bibinfo{author}{Temme, K.}, \bibinfo{author}{Bravyi, S.} \&
+  \bibinfo{author}{Gambetta, J.~M.}
+\newblock \bibinfo{title}{Error mitigation for short-depth quantum circuits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{119}}, \bibinfo{pages}{180509}
+  (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.119.180509}.
+
+\bibitem{Endo_2018}
+\bibinfo{author}{Endo, S.}, \bibinfo{author}{Benjamin, S.~C.} \&
+  \bibinfo{author}{Li, Y.}
+\newblock \bibinfo{title}{Practical quantum error mitigation for near-future
+  applications}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{8}},
+  \bibinfo{pages}{031027} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.8.031027}.
+
+\bibitem{McClean_2017}
+\bibinfo{author}{McClean, J.~R.}, \bibinfo{author}{Kimchi-Schwartz, M.~E.},
+  \bibinfo{author}{Carter, J.} \& \bibinfo{author}{de~Jong, W.~A.}
+\newblock \bibinfo{title}{Hybrid quantum-classical hierarchy for mitigation of
+  decoherence and determination of excited states}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{042308} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.95.042308}.
+
+\bibitem{Kandala_2019}
+\bibinfo{author}{Kandala, A.} \emph{et~al.}
+\newblock \bibinfo{title}{Error mitigation extends the computational reach of a
+  noisy quantum processor}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{567}},
+  \bibinfo{pages}{491--495} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/s41586-019-1040-7}.
+
+\bibitem{holmes_resource_2019}
+\bibinfo{author}{Holmes, A.} \emph{et~al.}
+\newblock \bibinfo{title}{Resource optimized quantum architectures for surface
+  code implementations of magic-state distillation}.
+\newblock \emph{\bibinfo{journal}{Microprocess. Microsyst.}}
+  \textbf{\bibinfo{volume}{67}}, \bibinfo{pages}{56--70}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0141933118303314}.
+
+\bibitem{Colless_2018}
+\bibinfo{author}{Colless, J.~I.} \emph{et~al.}
+\newblock \bibinfo{title}{Computation of molecular spectra on a quantum
+  processor with an error-resilient algorithm}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{8}},
+  \bibinfo{pages}{011021} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.8.011021}.
+
+\bibitem{song2018quantum}
+\bibinfo{author}{Song, C.} \emph{et~al.}
+\newblock \bibinfo{title}{Quantum computation with universal error mitigation
+  on superconducting quantum processor} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2005.07161}.
+
+\bibitem{Bravyi_2021}
+\bibinfo{author}{Bravyi, S.}, \bibinfo{author}{Sheldon, S.},
+  \bibinfo{author}{Kandala, A.}, \bibinfo{author}{Mckay, D.~C.} \&
+  \bibinfo{author}{Gambetta, J.~M.}
+\newblock \bibinfo{title}{Mitigating measurement errors in multiqubit
+  experiments}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{103}}, \bibinfo{pages}{042605}
+  (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.103.042605}.
+
+\bibitem{bonilla_ataides_xzzx_2021}
+\bibinfo{author}{Bonilla~Ataides, J.~P.}, \bibinfo{author}{Tuckett, D.~K.},
+  \bibinfo{author}{Bartlett, S.~D.}, \bibinfo{author}{Flammia, S.~T.} \&
+  \bibinfo{author}{Brown, B.~J.}
+\newblock \bibinfo{title}{The {XZZX} surface code}.
+\newblock \emph{\bibinfo{journal}{Nat. Commun.}}
+  \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{2172} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/s41467-021-22274-1}.
+
+\bibitem{Bennett_1996}
+\bibinfo{author}{Bennett, C.~H.}, \bibinfo{author}{DiVincenzo, D.~P.},
+  \bibinfo{author}{Smolin, J.~A.} \& \bibinfo{author}{Wootters, W.~K.}
+\newblock \bibinfo{title}{Mixed-state entanglement and quantum error
+  correction}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{54}},
+  \bibinfo{pages}{3824--3851} (\bibinfo{year}{1996}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.54.3824}.
+
+\bibitem{Tuckett_2019}
+\bibinfo{author}{Tuckett, D.~K.} \emph{et~al.}
+\newblock \bibinfo{title}{Tailoring surface codes for highly biased noise}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{041031} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.9.041031}.
+
+\bibitem{Aliferis_2008}
+\bibinfo{author}{Aliferis, P.} \& \bibinfo{author}{Preskill, J.}
+\newblock \bibinfo{title}{Fault-tolerant quantum computation against biased
+  noise}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{78}},
+  \bibinfo{pages}{052331} (\bibinfo{year}{2008}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.78.052331}.
+
+\bibitem{Stephens_2013}
+\bibinfo{author}{Stephens, A.~M.}, \bibinfo{author}{Munro, W.~J.} \&
+  \bibinfo{author}{Nemoto, K.}
+\newblock \bibinfo{title}{High-threshold topological quantum error correction
+  against biased noise}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{88}},
+  \bibinfo{pages}{060301} (\bibinfo{year}{2013}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.88.060301}.
+
+\bibitem{Li_2015}
+\bibinfo{author}{Li, Y.}
+\newblock \bibinfo{title}{A magic state's fidelity can be superior to the
+  operations that created it}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{17}}, \bibinfo{pages}{023037}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/17/2/023037}.
+
+\bibitem{Babbush_2018}
+\bibinfo{author}{Babbush, R.} \emph{et~al.}
+\newblock \bibinfo{title}{Encoding electronic spectra in quantum circuits with
+  linear t complexity}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{8}},
+  \bibinfo{pages}{041015} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.8.041015}.
+
+\bibitem{Guillaud_2019}
+\bibinfo{author}{Guillaud, J.} \& \bibinfo{author}{Mirrahimi, M.}
+\newblock \bibinfo{title}{Repetition cat qubits for fault-tolerant quantum
+  computation}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. X}} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{041053} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevX.9.041053}.
+
+\bibitem{Fowler_2019}
+\bibinfo{author}{Fowler, A.~G.} \& \bibinfo{author}{Gidney, C.}
+\newblock \bibinfo{title}{Low overhead quantum computation using lattice
+  surgery} (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/1808.06709}.
+
+\bibitem{cit:janzing}
+\bibinfo{author}{Janzing, D.}, \bibinfo{author}{Wocjan, P.},
+  \bibinfo{author}{Zeier, R.}, \bibinfo{author}{Geiss, R.} \&
+  \bibinfo{author}{Beth, T.}
+\newblock \bibinfo{title}{Thermodynamic cost of reliability and low
+  temperatures: Tightening landauer's principle and the second law}.
+\newblock \emph{\bibinfo{journal}{Int. J. Theor. Phys.}} \textbf{\bibinfo{volume}{39}}, \bibinfo{pages}{2717--2753}
+  (\bibinfo{year}{2000}).
+%\newblock \urlprefix\url{https://doi.org/10.1023/A:1026422630734}.
+
+\bibitem{cit:horodecki2013}
+\bibinfo{author}{Horodecki, M.} \& \bibinfo{author}{Oppenheim, J.}
+\newblock \bibinfo{title}{Fundamental limitations for quantum and nanoscale
+  thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Nat. Commun.}}
+  \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{2059} (\bibinfo{year}{2013}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/ncomms3059}.
+
+\bibitem{Brandao_2015}
+\bibinfo{author}{Brand{\~a}o, F.}, \bibinfo{author}{Horodecki, M.},
+  \bibinfo{author}{Ng, N.}, \bibinfo{author}{Oppenheim, J.} \&
+  \bibinfo{author}{Wehner, S.}
+\newblock \bibinfo{title}{The second laws of quantum thermodynamics}.
+\newblock \emph{\bibinfo{journal}{PNAS}} \textbf{\bibinfo{volume}{112}}, \bibinfo{pages}{3275--3279}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://www.pnas.org/content/112/11/3275}.
+
+\bibitem{Vinjanampathy_2016}
+\bibinfo{author}{Vinjanampathy, S.} \& \bibinfo{author}{Anders, J.}
+\newblock \bibinfo{title}{Quantum thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Contemp. Phys.}}
+  \textbf{\bibinfo{volume}{57}}, \bibinfo{pages}{545--579}
+  (\bibinfo{year}{2016}).
+%\newblock \urlprefix\url{https://doi.org/10.1080/00107514.2016.1201896}.
+
+\bibitem{Goold_2016}
+\bibinfo{author}{Goold, J.}, \bibinfo{author}{Huber, M.},
+  \bibinfo{author}{Riera, A.}, \bibinfo{author}{del Rio, L.} \&
+  \bibinfo{author}{Skrzypczyk, P.}
+\newblock \bibinfo{title}{The role of quantum information in
+  thermodynamics{\textemdash}a topical review}.
+\newblock \emph{\bibinfo{journal}{J. Phys. A Math.}} \textbf{\bibinfo{volume}{49}}, \bibinfo{pages}{143001}
+  (\bibinfo{year}{2016}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1751-8113/49/14/143001}.
+
+\bibitem{cit:lostaglio}
+\bibinfo{author}{Lostaglio, M.}
+\newblock \bibinfo{title}{An introductory review of the resource theory
+  approach to thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Reports on Progress in Physics}}
+  \textbf{\bibinfo{volume}{82}}, \bibinfo{pages}{114001}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1361-6633/ab46e5}.
+
+\bibitem{cit:gour}
+\bibinfo{author}{Gour, G.}, \bibinfo{author}{Jennings, D.},
+  \bibinfo{author}{Buscemi, F.}, \bibinfo{author}{Duan, R.} \&
+  \bibinfo{author}{Marvian, I.}
+\newblock \bibinfo{title}{Quantum majorization and a complete set of entropic
+  conditions for quantum thermodynamics} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{5352} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/s41467-018-06261-7}.
+
+\bibitem{Ferrie_2008}
+\bibinfo{author}{Ferrie, C.} \& \bibinfo{author}{Emerson, J.}
+\newblock \bibinfo{title}{Frame representations of quantum mechanics and the
+  necessity of negativity in quasi-probability representations}.
+\newblock \emph{\bibinfo{journal}{J. Phys. A Math.}} \textbf{\bibinfo{volume}{41}}, \bibinfo{pages}{352001}
+  (\bibinfo{year}{2008}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1751-8113/41/35/352001}.
+
+\bibitem{cit:veitch}
+\bibinfo{author}{Veitch, V.}, \bibinfo{author}{Ferrie, C.},
+  \bibinfo{author}{Gross, D.} \& \bibinfo{author}{Emerson, J.}
+\newblock \bibinfo{title}{Negative quasi-probability as a resource for quantum
+  computation}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{14}}, \bibinfo{pages}{113011}
+  (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/14/11/113011}.
+
+\bibitem{cit:mari}
+\bibinfo{author}{Mari{ }, A.} \& \bibinfo{author}{Eisert, J.}
+\newblock \bibinfo{title}{Positive {W}igner functions render classical
+  simulation of quantum computation efficient}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{109}}, \bibinfo{pages}{230503}
+  (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.109.230503}.
+
+\bibitem{cit:gottesman}
+\bibinfo{author}{{Gottesman}, D.}
+\newblock \bibinfo{title}{{Stabilizer codes and quantum error
+  correction}}.
+\newblock Ph.D. thesis, \bibinfo{school}{California Institute of Technology}
+  (\bibinfo{year}{1997}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/quant-ph/9705052}.
+
+\bibitem{cit:knill}
+\bibinfo{author}{Knill, E.}
+\newblock \bibinfo{title}{Quantum computing with realistically noisy devices}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{434}},
+  \bibinfo{pages}{39–44} (\bibinfo{year}{2005}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/nature03350}.
+
+\bibitem{Campbell_2011}
+\bibinfo{author}{Campbell, E.~T.}
+\newblock \bibinfo{title}{Catalysis and activation of magic states in
+  fault-tolerant architectures}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{83}},
+  \bibinfo{pages}{032317} (\bibinfo{year}{2011}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.83.032317}.
+
+\bibitem{cit:marshall}
+\bibinfo{author}{Marshall, A.~W.}, \bibinfo{author}{Olkin, I.} \&
+  \bibinfo{author}{Arnold, B.~C.}
+\newblock {\bibinfo{title}{Inequalities: Theory of Majorization and Its
+  Applications}} (\bibinfo{publisher}{Springer}, \bibinfo{year}{2011}).
+
+\bibitem{Veinott_1971}
+\bibinfo{author}{Veinott, A.~F.}
+\newblock \bibinfo{title}{Least d-majorized network flows with inventory and
+  statistical applications}.
+\newblock \emph{\bibinfo{journal}{Management Science}}
+  \textbf{\bibinfo{volume}{17}}, \bibinfo{pages}{547--567}
+  (\bibinfo{year}{1971}).
+%\newblock \urlprefix\url{https://doi.org/10.1287/mnsc.17.9.547}.
+
+\bibitem{Ruch_1976}
+\bibinfo{author}{Ruch, E.} \& \bibinfo{author}{Mead, A.}
+\newblock \bibinfo{title}{The principle of increasing mixing character and some
+  of its consequences}.
+\newblock \emph{\bibinfo{journal}{Theoretica chimica acta}}
+  \textbf{\bibinfo{volume}{41}}, \bibinfo{pages}{95--117}
+  (\bibinfo{year}{1976}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/BF01178071}.
+
+\bibitem{Fine_1982}
+\bibinfo{author}{Fine, A.}
+\newblock \bibinfo{title}{Hidden variables, joint probability, and the bell
+  inequalities}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{48}}, \bibinfo{pages}{291--295}
+  (\bibinfo{year}{1982}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.48.291}.
+
+\bibitem{Allahverdyan_2018}
+\bibinfo{author}{Allahverdyan, A.~E.} \& \bibinfo{author}{Danageozian, A.}
+\newblock \bibinfo{title}{Excluding joint probabilities from quantum theory}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{97}},
+  \bibinfo{pages}{030102} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.97.030102}.
+
+\bibitem{arvidsson_2020}
+\bibinfo{author}{Arvidsson-Shukur, D. R.~M.} \emph{et~al.}
+\newblock \bibinfo{title}{Quantum advantage in postselected metrology}.
+\newblock \emph{\bibinfo{journal}{Nat. Commun.}}
+  \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{3775} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/s41467-020-17559-w}.
+
+\bibitem{halpern_2018}
+\bibinfo{author}{Yunger~Halpern, N.}, \bibinfo{author}{Swingle, B.} \&
+  \bibinfo{author}{Dressel, J.}
+\newblock \bibinfo{title}{Quasiprobability behind the out-of-time-ordered
+  correlator}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{97}},
+  \bibinfo{pages}{042105} (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.97.042105}.
+
+\bibitem{Lostaglio_2018}
+\bibinfo{author}{Lostaglio, M.}
+\newblock \bibinfo{title}{Quantum fluctuation theorems, contextuality, and work
+  quasiprobabilities}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{120}}, \bibinfo{pages}{040602}
+  (\bibinfo{year}{2018}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.120.040602}.
+
+\bibitem{Levy_2020}
+\bibinfo{author}{Levy, A.} \& \bibinfo{author}{Lostaglio, M.}
+\newblock \bibinfo{title}{Quasiprobability distribution for heat fluctuations
+  in the quantum regime}.
+\newblock \emph{\bibinfo{journal}{PRX Quantum}} \textbf{\bibinfo{volume}{1}},
+  \bibinfo{pages}{010309} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PRXQuantum.1.010309}.
+
+\bibitem{cit:veitch2}
+\bibinfo{author}{Veitch, V.}, \bibinfo{author}{Mousavian, S. A.~H.},
+  \bibinfo{author}{Gottesman, D.} \& \bibinfo{author}{Emerson, J.}
+\newblock \bibinfo{title}{The resource theory of stabilizer quantum
+  computation}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{16}}, \bibinfo{pages}{013009}
+  (\bibinfo{year}{2014}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1367-2630/16/1/013009}.
+
+\bibitem{Wang_2020}
+\bibinfo{author}{Wang, X.}, \bibinfo{author}{Wilde, M.~M.} \&
+  \bibinfo{author}{Su, Y.}
+\newblock \bibinfo{title}{Efficiently computable bounds for magic state
+  distillation}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{124}}, \bibinfo{pages}{090505}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.124.090505}.
+
+\bibitem{Gross2006}
+\bibinfo{author}{Gross, D.}
+\newblock \bibinfo{title}{Hudson’s theorem for finite-dimensional quantum
+  systems}.
+\newblock \emph{\bibinfo{journal}{J. Math. Phys.}}
+  \textbf{\bibinfo{volume}{47}}, \bibinfo{pages}{122107}
+  (\bibinfo{year}{2006}).
+%\newblock \urlprefix\url{https://aip.scitation.org/doi/10.1063/1.2393152}.
+
+\bibitem{Wigner_1932}
+\bibinfo{author}{Wigner, E.}
+\newblock \bibinfo{title}{On the quantum correction for thermodynamic
+  equilibrium}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev.}} \textbf{\bibinfo{volume}{40}},
+  \bibinfo{pages}{749--759} (\bibinfo{year}{1932}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRev.40.749}.
+
+\bibitem{Vourdas_2004}
+\bibinfo{author}{Vourdas, A.}
+\newblock \bibinfo{title}{Quantum systems with finite hilbert space}.
+\newblock \emph{\bibinfo{journal}{Reports on Progress in Physics}}
+  \textbf{\bibinfo{volume}{67}}, \bibinfo{pages}{267--320}
+  (\bibinfo{year}{2004}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/0034-4885/67/3/r03}.
+
+\bibitem{Kenfack_2004}
+\bibinfo{author}{Kenfack, A.} \& \bibinfo{author}{{\.{Z}}yczkowski, K.}
+\newblock \bibinfo{title}{Negativity of the {W}igner function as an indicator
+  of non-classicality}.
+\newblock \emph{\bibinfo{journal}{J. opt. B, Quantum semiclass. opt.}} \textbf{\bibinfo{volume}{6}},
+  \bibinfo{pages}{396--404} (\bibinfo{year}{2004}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1464-4266/6/10/003}.
+
+\bibitem{Appleby_2005}
+\bibinfo{author}{Appleby, D.~M.}
+\newblock \bibinfo{title}{Symmetric informationally complete–positive
+  operator valued measures and the extended clifford group}.
+\newblock \emph{\bibinfo{journal}{J. Math. Phys.}}
+  \textbf{\bibinfo{volume}{46}}, \bibinfo{pages}{052107}
+  (\bibinfo{year}{2005}).
+%\newblock \urlprefix\url{https://doi.org/10.1063/1.1896384}.
+
+\bibitem{Mermin_1990}
+\bibinfo{author}{Mermin, N.~D.}
+\newblock \bibinfo{title}{Simple unified form for the major no-hidden-variables
+  theorems}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{65}}, \bibinfo{pages}{3373--3376}
+  (\bibinfo{year}{1990}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.65.3373}.
+
+\bibitem{Raussendorf_qubits}
+\bibinfo{author}{Raussendorf, R.}, \bibinfo{author}{Bermejo-Vega, J.},
+  \bibinfo{author}{Tyhurst, E.}, \bibinfo{author}{Okay, C.} \&
+  \bibinfo{author}{Zurel, M.}
+\newblock \bibinfo{title}{Phase-space-simulation method for quantum computation
+  with magic states on qubits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{101}}, \bibinfo{pages}{012350}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.101.012350}.
+
+\bibitem{Folland_1989}
+\bibinfo{author}{Folland, G.~B.}
+\newblock {\bibinfo{title}{Harmonic Analysis in Phase Space}}
+  (\bibinfo{publisher}{Princeton University Press}, \bibinfo{year}{1989}).
+%\newblock \urlprefix\url{https://www.jstor.org/stable/j.ctt1b9rzs2}.
+
+\bibitem{Bengtsson_2006}
+\bibinfo{author}{Bengtsson, I.} \& \bibinfo{author}{{\.{Z}}yczkowski, K.}
+\newblock {\bibinfo{title}{Geometry of Quantum States: An Introduction to
+  Quantum Entanglement}} (\bibinfo{publisher}{Cambridge University Press},
+  \bibinfo{year}{2006}).
+
+\bibitem{schmid2021noncontextual}
+\bibinfo{author}{Schmid, D.}, \bibinfo{author}{Du, H.}, \bibinfo{author}{Selby,
+  J.~H.} \& \bibinfo{author}{Pusey, M.~F.}
+\newblock \bibinfo{title}{The only noncontextual model of the stabilizer
+  subtheory is {G}ross's} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2101.06263}.
+
+\bibitem{watrous_2018}
+\bibinfo{author}{Watrous, J.}
+\newblock {\bibinfo{title}{The Theory of Quantum Information}}
+  (\bibinfo{publisher}{Cambridge University Press}, \bibinfo{year}{2018}).
+
+\bibitem{Blackwell_1953}
+\bibinfo{author}{Blackwell, D.}
+\newblock \bibinfo{title}{{Equivalent Comparisons of Experiments}}.
+\newblock \emph{\bibinfo{journal}{The Annals of Mathematical Statistics}}
+  \textbf{\bibinfo{volume}{24}}, \bibinfo{pages}{265 -- 272}
+  (\bibinfo{year}{1953}).
+%\newblock \urlprefix\url{https://doi.org/10.1214/aoms/1177729032}.
+
+\bibitem{Nielsen_1999}
+\bibinfo{author}{Nielsen, M.~A.}
+\newblock \bibinfo{title}{Conditions for a class of entanglement
+  transformations}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{83}}, \bibinfo{pages}{436--439}
+  (\bibinfo{year}{1999}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.83.436}.
+
+\bibitem{cit:cwiklinski}
+\bibinfo{author}{\ifmmode \acute{C}\else \'{C}\fi{}wikli\ifmmode~\acute{n}\else
+  \'{n}\fi{}ski, P.}, \bibinfo{author}{Studzi\ifmmode~\acute{n}\else
+  \'{n}\fi{}ski, M.}, \bibinfo{author}{Horodecki, M.} \&
+  \bibinfo{author}{Oppenheim, J.}
+\newblock \bibinfo{title}{Limitations on the evolution of quantum coherences:
+  Towards fully quantum second laws of thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{115}}, \bibinfo{pages}{210403}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.115.210403}.
+
+\bibitem{cit:lostaglio2}
+\bibinfo{author}{Lostaglio, M.}, \bibinfo{author}{Jennings, D.} \&
+  \bibinfo{author}{Rudolph, T.}
+\newblock \bibinfo{title}{Description of quantum coherence in thermodynamic
+  processes requires constraints beyond free energy}.
+\newblock \emph{\bibinfo{journal}{Nat. Commun.}}
+  \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{6383} (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://doi.org/10.1038/ncomms7383}.
+
+\bibitem{cit:gour2}
+\bibinfo{author}{Gour, G.}, \bibinfo{author}{M{\"u}ller, M.~P.},
+  \bibinfo{author}{Narasimhachar, V.}, \bibinfo{author}{Spekkens, R.~W.} \&
+  \bibinfo{author}{Yunger~Halpern, N.}
+\newblock \bibinfo{title}{The resource theory of informational nonequilibrium
+  in thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Physics Reports}}
+  \textbf{\bibinfo{volume}{583}}, \bibinfo{pages}{1--58}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://doi.org/10.1016/j.physrep.2015.04.003}.
+
+\bibitem{Horodecki_2003}
+\bibinfo{author}{Horodecki, M.}, \bibinfo{author}{Horodecki, P.} \&
+  \bibinfo{author}{Oppenheim, J.}
+\newblock \bibinfo{title}{Reversible transformations from pure to mixed states
+  and the unique measure of information}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{67}},
+  \bibinfo{pages}{062104} (\bibinfo{year}{2003}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.67.062104}.
+
+\bibitem{Puchala_2013}
+\bibinfo{author}{Pucha{\l}a, Z.}, \bibinfo{author}{Rudnicki, {\L}.} \&
+  \bibinfo{author}{{\.{Z}}yczkowski, K.}
+\newblock \bibinfo{title}{Majorization entropic uncertainty relations}.
+\newblock \emph{\bibinfo{journal}{J. Phys. A Math.}} \textbf{\bibinfo{volume}{46}}, \bibinfo{pages}{272002}
+  (\bibinfo{year}{2013}).
+%\newblock \urlprefix\url{https://doi.org/10.1088/1751-8113/46/27/272002}.
+
+\bibitem{Vallejos_2021}
+\bibinfo{author}{Vallejos, R.~O.}, \bibinfo{author}{de~Melo, F.} \&
+  \bibinfo{author}{Carlo, G.~G.}
+\newblock \bibinfo{title}{Principle of majorization: Application to random
+  quantum circuits}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{104}}, \bibinfo{pages}{012602}
+  (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.104.012602}.
+
+\bibitem{ruch_mixing_1978}
+\bibinfo{author}{Ruch, E.}, \bibinfo{author}{Schranner, R.} \&
+  \bibinfo{author}{Seligman, T.~H.}
+\newblock \bibinfo{title}{The mixing distance}.
+\newblock \emph{\bibinfo{journal}{J. Chem. Phys.}}
+  \textbf{\bibinfo{volume}{69}}, \bibinfo{pages}{386--392}
+  (\bibinfo{year}{1978}).
+%\newblock \urlprefix\url{https://aip.scitation.org/doi/10.1063/1.436364}.
+
+\bibitem{Renes_2016}
+\bibinfo{author}{Renes, J.~M.}
+\newblock \bibinfo{title}{Relative submajorization and its use in quantum
+  resource theories}.
+\newblock \emph{\bibinfo{journal}{J. Math. Phys.}}
+  \textbf{\bibinfo{volume}{57}}, \bibinfo{pages}{122202}
+  (\bibinfo{year}{2016}).
+%\newblock \urlprefix\url{https://aip.scitation.org/doi/10.1063/1.4972295}.
+
+\bibitem{Buscemi_2017}
+\bibinfo{author}{Buscemi, F.} \& \bibinfo{author}{Gour, G.}
+\newblock \bibinfo{title}{Quantum relative lorenz curves}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{012110} (\bibinfo{year}{2017}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.95.012110}.
+
+\bibitem{Rethinasamy_2020}
+\bibinfo{author}{Rethinasamy, S.} \& \bibinfo{author}{Wilde, M.~M.}
+\newblock \bibinfo{title}{Relative entropy and catalytic relative
+  majorization}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Research}}
+  \textbf{\bibinfo{volume}{2}}, \bibinfo{pages}{033455} (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevResearch.2.033455}.
+
+\bibitem{cit:brouwer}
+\bibinfo{author}{Brouwer, L. E.~J.}
+\newblock \bibinfo{title}{{\"U}ber abbildung von mannigfaltigkeiten}.
+\newblock \emph{\bibinfo{journal}{Mathematische Annalen}}
+  \textbf{\bibinfo{volume}{71}} (\bibinfo{year}{1911}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/BF01456931}.
+
+\bibitem{cit:prakash2}
+\bibinfo{author}{Jain, A.} \& \bibinfo{author}{Prakash, S.}
+\newblock \bibinfo{title}{Qutrit and ququint magic states}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. A}}
+  \textbf{\bibinfo{volume}{102}}, \bibinfo{pages}{042409}
+  (\bibinfo{year}{2020}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevA.102.042409}.
+
+\bibitem{hudson_locally_1976}
+\bibinfo{author}{Hudson, R.~L.} \& \bibinfo{author}{Moody, G.~R.}
+\newblock \bibinfo{title}{Locally normal symmetric states and an analogue of de
+  finetti's theorem}.
+\newblock \emph{\bibinfo{journal}{Zeitschrift für Wahrscheinlichkeitstheorie
+  und Verwandte Gebiete}} \textbf{\bibinfo{volume}{33}},
+  \bibinfo{pages}{343--351} (\bibinfo{year}{1976}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/BF00534784}.
+
+\bibitem{christandl_2007}
+\bibinfo{author}{Christandl, M.}, \bibinfo{author}{König, R.},
+  \bibinfo{author}{Mitchison, G.} \& \bibinfo{author}{Renner, R.}
+\newblock \bibinfo{title}{One-and-a-half quantum de finetti theorems}.
+\newblock \emph{\bibinfo{journal}{Commun. Math. Phys.}}
+  \textbf{\bibinfo{volume}{273}}, \bibinfo{pages}{473--498}
+  (\bibinfo{year}{2007}).
+%\newblock \urlprefix\url{https://doi.org/10.1007/s00220-007-0189-3}.
+
+\bibitem{muller_2015}
+\bibinfo{author}{Lostaglio, M.}, \bibinfo{author}{M\"uller, M.~P.} \&
+  \bibinfo{author}{Pastena, M.}
+\newblock \bibinfo{title}{Stochastic independence as a resource in small-scale
+  thermodynamics}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{115}}, \bibinfo{pages}{150402}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.115.150402}.
+
+\bibitem{muller_2016}
+\bibinfo{author}{M{\"u}ller, M.~P.} \& \bibinfo{author}{Pastena, M.}
+\newblock \bibinfo{title}{A generalization of majorization that characterizes
+  shannon entropy}.
+\newblock \emph{\bibinfo{journal}{IEEE Trans. Inf. Theory}}
+  \textbf{\bibinfo{volume}{62}}, \bibinfo{pages}{1711--1720}
+  (\bibinfo{year}{2016}).
+%\newblock \urlprefix\url{https://ieeexplore.ieee.org/document/7404001}.
+
+\bibitem{muller_2019}
+\bibinfo{author}{Boes, P.}, \bibinfo{author}{Eisert, J.},
+  \bibinfo{author}{Gallego, R.}, \bibinfo{author}{M\"uller, M.~P.} \&
+  \bibinfo{author}{Wilming, H.}
+\newblock \bibinfo{title}{Von neumann entropy from unitarity}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{122}}, \bibinfo{pages}{210402}
+  (\bibinfo{year}{2019}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.122.210402}.
+
+\bibitem{Pathria_1997}
+\bibinfo{author}{Pathria, R.~K.} \& \bibinfo{author}{Beale, P.~D.}
+\newblock {\bibinfo{title}{Statistical Mechanics}}
+  (\bibinfo{publisher}{Elsevier}, \bibinfo{year}{2011}).
+%\newblock \urlprefix\url{https://www.sciencedirect.com/book/9780123821881/statistical-mechanics}.
+
+\bibitem{bombin2021interleaving}
+\bibinfo{author}{Bombin, H.} \emph{et~al.}
+\newblock \bibinfo{title}{Interleaving: Modular architectures for
+  fault-tolerant photonic quantum computing} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2103.08612}.
+
+\bibitem{bogolyubov_1966}
+\bibinfo{author}{{Bogolubov}, J., N.~N.}
+\newblock \bibinfo{title}{On model dynamical systems in statistical mechanics}.
+\newblock \emph{\bibinfo{journal}{Physica}} \textbf{\bibinfo{volume}{32}},
+  \bibinfo{pages}{933--944} (\bibinfo{year}{1966}).
+%\newblock \urlprefix\url{https://doi.org/10.1016/0031-8914(66)90024-3}.
+
+\bibitem{faist_2015}
+\bibinfo{author}{Faist, P.}, \bibinfo{author}{Oppenheim, J.} \&
+  \bibinfo{author}{Renner, R.}
+\newblock \bibinfo{title}{Gibbs-preserving maps outperform thermal operations
+  in the quantum regime}.
+\newblock \emph{\bibinfo{journal}{New J. Phys.}}
+  \textbf{\bibinfo{volume}{17}}, \bibinfo{pages}{043003}
+  (\bibinfo{year}{2015}).
+%\newblock \urlprefix\url{https://iopscience.iop.org/article/10.1088/1367-2630/17/4/043003}.
+
+\bibitem{renyi_1960}
+\bibinfo{author}{R{\'e}nyi, A.}
+\newblock \bibinfo{title}{On measures of entropy and information}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the 4th Berkeley Symposium on
+  Mathematics, Statistics and Probability}} \textbf{\bibinfo{volume}{1}},
+  \bibinfo{pages}{547--561} (\bibinfo{year}{1960}).
+%\newblock \urlprefix\url{https://digitalassets.lib.berkeley.edu/math/ucb/text/math_s4_v1_article-27.pdf}.
+
+\bibitem{rio_thermodynamic_2011}
+\bibinfo{author}{Rio, L.~d.},
+  \bibinfo{author}{{$\text{\normalfont\ring{A}}$}berg, J.},
+  \bibinfo{author}{Renner, R.}, \bibinfo{author}{Dahlsten, O.} \&
+  \bibinfo{author}{Vedral, V.}
+\newblock \bibinfo{title}{The thermodynamic meaning of negative entropy}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{474}},
+  \bibinfo{pages}{61--63} (\bibinfo{year}{2011}).
+%\newblock \urlprefix\url{https://www.nature.com/articles/nature10123}.
+
+\bibitem{baez2011renyi}
+\bibinfo{author}{Baez, J.~C.}
+\newblock \bibinfo{title}{R{\'e}nyi entropy and free energy}
+  (\bibinfo{year}{2011}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/1102.2098}.
+
+\bibitem{domb2000phase}
+\bibinfo{author}{Domb, C.}
+\newblock {\bibinfo{title}{Phase transitions and critical phenomena}}
+  (\bibinfo{publisher}{Elsevier}, \bibinfo{year}{2000}).
+%\newblock \urlprefix\url{https://www.elsevier.com/books/phase-transitions-and-critical-phenomena/domb/978-0-12-220318-3}.
+
+\bibitem{Gour_2020}
+\bibinfo{author}{{Gour}, G.} \& \bibinfo{author}{{Tomamichel}, M.}
+\newblock \bibinfo{title}{Entropy and relative entropy from information-theoretic principles}.
+\newblock \emph{\bibinfo{journal}{IEEE Trans. Inf. Theory}} \textbf{\bibinfo{volume}{67}},
+  \bibinfo{pages}{6313-–6327} (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{http://dx.doi.org/10.1109/TIT.2021.3078337}.
+
+\bibitem{tomamichel2013}
+\bibinfo{author}{Tomamichel, M.}
+\newblock {\bibinfo{title}{A Framework for Non-Asymptotic Quantum
+  Information Theory}}.
+\newblock Ph.D. thesis, \bibinfo{school}{ETH Zurich} (\bibinfo{year}{2012}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/1203.2142}.
+
+\bibitem{renner_phd}
+\bibinfo{author}{{Renner}, R.}
+\newblock {\bibinfo{title}{{Security of Quantum Key Distribution}}}.
+\newblock Ph.D. thesis, \bibinfo{school}{Swiss Federal Institute of Technology
+  Zurich} (\bibinfo{year}{2005}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/quant-ph/0512258}.
+
+\bibitem{hardy_1952}
+\bibinfo{author}{Hardy, G.} \emph{et~al.}
+\newblock {\bibinfo{title}{Inequalities}} (\bibinfo{publisher}{Cambridge
+  University Press}, \bibinfo{year}{1952}).
+%\newblock \urlprefix\url{https://books.google.gr/books?id=t1RCSP8YKt8C}.
+
+\bibitem{giovagnoli_1985}
+\bibinfo{author}{Giovagnoli, A.} \& \bibinfo{author}{Wynn, H.~P.}
+\newblock \bibinfo{title}{G-majorization with applications to matrix
+  orderings}.
+\newblock \emph{\bibinfo{journal}{Linear Algebra Appl.}}
+  \textbf{\bibinfo{volume}{67}}, \bibinfo{pages}{111--135}
+  (\bibinfo{year}{1985}).
+%\newblock \urlprefix\url{https://www.sciencedirect.com/science/article/pii/0024379585901909}.
+
+\bibitem{steerneman_1990}
+\bibinfo{author}{Steerneman, A. G.~M.}
+\newblock \bibinfo{title}{G-majorization, group-induced cone orderings, and
+  reflection groups}.
+\newblock \emph{\bibinfo{journal}{Linear Algebra Appl.}}
+  \textbf{\bibinfo{volume}{127}}, \bibinfo{pages}{107--119}
+  (\bibinfo{year}{1990}).
+%\newblock \urlprefix\url{https://www.sciencedirect.com/science/article/pii/002437959090338D}.
+
+\bibitem{giovagnoli_cyclic_1996}
+\bibinfo{author}{Giovagnoli, A.} \& \bibinfo{author}{Wynn, H.~P.}
+\newblock \bibinfo{title}{Cyclic majorization and smoothing operators}.
+\newblock \emph{\bibinfo{journal}{Linear Algebra Appl.}}
+  \textbf{\bibinfo{volume}{239}}, \bibinfo{pages}{215--225}
+  (\bibinfo{year}{1996}).
+%\newblock \urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0024379596900130}.
+
+\bibitem{eaton_1977}
+\bibinfo{author}{Eaton, M.~L.} \& \bibinfo{author}{Perlman, M.~D.}
+\newblock \bibinfo{title}{{Reflection Groups, Generalized Schur Functions, and
+  the Geometry of Majorization}}.
+\newblock \emph{\bibinfo{journal}{The Annals of Probability}}
+  \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{829 -- 860}
+  (\bibinfo{year}{1977}).
+%\newblock \urlprefix\url{https://doi.org/10.1214/aop/1176995655}.
+
+\bibitem{fukuda2006}
+\bibinfo{author}{Fukuda, M.} \& \bibinfo{author}{Holevo, A.~S.}
+\newblock \bibinfo{title}{On weyl-covariant channels}  (\bibinfo{year}{2006}).
+%\newblock \urlprefix\url{http://arxiv.org/abs/quant-ph/0510148}.
+
+\bibitem{alexander2021}
+\bibinfo{author}{Alexander, R.}, \bibinfo{author}{Gvirtz-Chen, S.} \&
+  \bibinfo{author}{Jennings, D.}
+\newblock \bibinfo{title}{Infinitesimal reference frames suffice to determine the asymmetry properties of a quantum system}  (\bibinfo{year}{2021}).
+%\newblock \urlprefix\url{https://arxiv.org/abs/2107.14181}.
+
+\bibitem{Arnold_2000}
+\bibinfo{author}{Arnold, V.~I.}
+\newblock \bibinfo{title}{Symplectic geometry and topology}.
+\newblock \emph{\bibinfo{journal}{J. Math. Phys.}}
+  \textbf{\bibinfo{volume}{41}}, \bibinfo{pages}{3307--3343}
+  (\bibinfo{year}{2000}).
+%\newblock \urlprefix\url{https://doi.org/10.1063/1.533315}.
+
+\bibitem{Klitzing_1980}
+\bibinfo{author}{Klitzing, K.~v.}, \bibinfo{author}{Dorda, G.} \&
+  \bibinfo{author}{Pepper, M.}
+\newblock \bibinfo{title}{New method for high-accuracy determination of the
+  fine-structure constant based on quantized hall resistance}.
+\newblock \emph{\bibinfo{journal}{Phys. Rev. Lett.}}
+  \textbf{\bibinfo{volume}{45}}, \bibinfo{pages}{494--497}
+  (\bibinfo{year}{1980}).
+%\newblock \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.45.494}.
+
+\bibitem{barnett_1997}
+\bibinfo{author}{Barnett, S.~M.} \& \bibinfo{author}{Radmore, P.~M.}
+\newblock \bibinfo{title}{Methods in Theoretical Quantum Optics}.
+\newblock Oxford science publications (\bibinfo{publisher}{Clarendon Press},
+  \bibinfo{year}{1997}).
+%\newblock \urlprefix\url{https://books.google.gr/books?id=Hp5z09gPmC8C}.
+
+\end{thebibliography}
+
+
+\end{document}
+
